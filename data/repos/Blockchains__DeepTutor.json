@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T13:35:33Z",
  "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/.",
  "commit": "f07029cfcf2c8dfccdb671cdfc343db8334f5741",
- "indexed_at": "2026-10-04T16:56:49Z",
+ "indexed_at": "2026-10-04T18:20:51Z",
  "status": "ok",
  "clone_kb": 101644,
- "seconds": 24.9,
+ "seconds": 16.0,
  "files_scanned": 3423,
  "languages": {
   "Python": 1817,

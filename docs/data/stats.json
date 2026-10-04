@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-10-04T16:57:06Z",
- "repos_listed": 100,
- "repos_indexed_ok": 100,
+ "generated_at": "2026-10-04T18:21:14Z",
+ "repos_listed": 99,
+ "repos_indexed_ok": 99,
  "repos_failed": [],
- "repos_with_grok_surface": 99,
- "grok_files": 4182,
- "files_scanned": 332432,
- "clone_mb_total": 16306.0,
- "parts": 620,
+ "repos_with_grok_surface": 98,
+ "grok_files": 4180,
+ "files_scanned": 332422,
+ "clone_mb_total": 16302.2,
+ "parts": 619,
  "parts_by_type": {
-  "repo-surface": 99,
+  "repo-surface": 98,
   "code-snippet": 427,
   "sdk-exports": 75,
   "package": 19
  },
- "search_tokens": 2037,
+ "search_tokens": 2035,
  "repos_per_endpoint": {
   "/v1/models": 40,
   "/v1/chat/completions": 34,
@@ -135,5 +135,5 @@
   "VERTEX_XAI_MODELS": 1,
   "MAXAI_DEFAULT_CONTEXT": 1
  },
- "run_seconds": 522.5
+ "run_seconds": 524.0
 }

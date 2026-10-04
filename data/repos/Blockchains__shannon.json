@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-01T22:17:59Z",
  "description": "Shannon is an AI pentester for web applications and APIs. It analyzes your source code, identifies attack vectors, and executes real exploits to prove vulnerabilities before they reach production.",
  "commit": "a14c7944d87b30ed7bfecd4bad06562e24002b01",
- "indexed_at": "2026-10-04T16:56:31Z",
+ "indexed_at": "2026-10-04T18:20:37Z",
  "status": "ok",
- "clone_kb": 110696,
- "seconds": 7.0,
+ "clone_kb": 110692,
+ "seconds": 3.9,
  "files_scanned": 312,
  "languages": {
   "TypeScript": 206

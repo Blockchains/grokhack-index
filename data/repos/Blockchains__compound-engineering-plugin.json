@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-02T09:55:48Z",
  "description": "Official Compound Engineering plugin for Claude Code, Codex, Cursor, and more",
  "commit": "9af474a70e7f2a844338519ad9e92aafbd92d4fb",
- "indexed_at": "2026-10-04T16:53:53Z",
+ "indexed_at": "2026-10-04T18:18:03Z",
  "status": "ok",
- "clone_kb": 28820,
- "seconds": 15.3,
+ "clone_kb": 28828,
+ "seconds": 18.1,
  "files_scanned": 1401,
  "languages": {
   "TypeScript": 283,

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:03:46Z",
  "description": "Supercharge your AI agents with data from the web and beyond. Building the library for superintelligence. \ud83d\udd25",
  "commit": "4244638a7041bae8b99bdd42e3c44520f9e62da1",
- "indexed_at": "2026-10-04T16:56:24Z",
+ "indexed_at": "2026-10-04T18:20:35Z",
  "status": "ok",
- "clone_kb": 89716,
- "seconds": 8.1,
+ "clone_kb": 89708,
+ "seconds": 7.7,
  "files_scanned": 1828,
  "languages": {
   "TypeScript": 1022,

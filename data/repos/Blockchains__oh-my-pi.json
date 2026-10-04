@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T16:17:24Z",
  "description": "\u2325 Coding agent with the IDE wired in. Built by Stencil Labs.",
  "commit": "6d8552d7f9df1852826923f07f0eed4fe29511f3",
- "indexed_at": "2026-10-04T16:54:30Z",
+ "indexed_at": "2026-10-04T18:18:49Z",
  "status": "ok",
  "clone_kb": 293600,
- "seconds": 67.2,
+ "seconds": 79.0,
  "files_scanned": 7631,
  "languages": {
   "TypeScript": 5819,

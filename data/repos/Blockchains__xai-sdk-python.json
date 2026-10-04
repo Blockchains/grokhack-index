@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-28T14:25:38Z",
  "description": "The official Python SDK for the xAI API",
  "commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
- "indexed_at": "2026-10-04T16:48:25Z",
+ "indexed_at": "2026-10-04T18:12:32Z",
  "status": "ok",
  "clone_kb": 3644,
- "seconds": 1.5,
+ "seconds": 1.7,
  "files_scanned": 207,
  "languages": {
   "Python": 191

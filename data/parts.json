@@ -7339,28 +7339,6 @@
 "url": "https://github.com/Blockchains/goose/blob/591edd47cf2cfea4957d720c607cf2a4def8673d/crates/goose/src/providers/xai_oauth.rs#L692-L715"
 },
 {
-"repo": "Blockchains/grok-1",
-"upstream": "xai-org/grok-1",
-"license": "Apache-2.0",
-"stars": 52233,
-"category": "official",
-"commit": "7050ed204b8206bb8645c7b7bbef7252f79561b0",
-"id": "Blockchains/grok-1#repo",
-"type": "repo-surface",
-"languages": [
-"Python"
-],
-"capabilities": [],
-"models": [
-"grok-1",
-"grok-1.git"
-],
-"endpoints": [],
-"env_vars": [],
-"grok_files": 2,
-"description": "Grok open release"
-},
-{
 "repo": "Blockchains/grok-app",
 "upstream": "RongleCat/grok-app",
 "license": "MIT",

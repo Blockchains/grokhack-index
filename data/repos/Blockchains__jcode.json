@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T05:31:28Z",
  "description": "High performance coding agent harness written in rust",
  "commit": "77f4f9d50bb41ae849da9ffaab7ea25e7815e096",
- "indexed_at": "2026-10-04T16:54:18Z",
+ "indexed_at": "2026-10-04T18:18:34Z",
  "status": "ok",
  "clone_kb": 371476,
- "seconds": 24.8,
+ "seconds": 30.6,
  "files_scanned": 1955,
  "languages": {
   "Rust": 1319,

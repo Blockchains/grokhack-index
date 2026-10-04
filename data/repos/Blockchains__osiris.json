@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T06:32:37Z",
  "description": "Open Source Global Intelligence Platform - Real-Time OSINT Dashboard - A Palantir Alternative -                            2nZNHm3Lr9umG3DVrzYwHgktwkuKuJRXqqRqs3ewpump ",
  "commit": "6431d1a99a59b2e3946764151ebf9bc2fd8af5ce",
- "indexed_at": "2026-10-04T16:56:57Z",
+ "indexed_at": "2026-10-04T18:21:06Z",
  "status": "ok",
  "clone_kb": 20060,
- "seconds": 8.2,
+ "seconds": 4.9,
  "files_scanned": 417,
  "languages": {
   "TypeScript": 386,

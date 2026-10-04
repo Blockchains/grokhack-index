@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T09:39:02Z",
  "description": "Unrestricted Open-source alternative to AI video platforms \u2014 Free AI image & video generation studio with 600+ models (Flux, Midjourney, Kling, Sora, Veo). No content filters. Self-hosted, MIT licensed.",
  "commit": "ce82e99365ee25271427442e92310c6b0c05e94c",
- "indexed_at": "2026-10-04T16:56:34Z",
+ "indexed_at": "2026-10-04T18:20:49Z",
  "status": "ok",
  "clone_kb": 56952,
- "seconds": 3.2,
+ "seconds": 3.0,
  "files_scanned": 189,
  "languages": {
   "JavaScript": 145
