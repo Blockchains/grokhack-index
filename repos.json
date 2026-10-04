@@ -1,14 +1,5 @@
 [
  {
-  "fork": "Blockchains/grok-1",
-  "upstream": "xai-org/grok-1",
-  "category": "official",
-  "stars": 52233,
-  "license": "Apache-2.0",
-  "pushed_at": "2024-08-30T04:17:25Z",
-  "description": "Grok open release"
- },
- {
   "fork": "Blockchains/x-algorithm",
   "upstream": "xai-org/x-algorithm",
   "category": "official",
