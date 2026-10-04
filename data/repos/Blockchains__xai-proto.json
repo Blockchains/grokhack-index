@@ -1,0 +1,43 @@
+{
+ "fork": "Blockchains/xai-proto",
+ "upstream": "xai-org/xai-proto",
+ "category": "official",
+ "stars": 150,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-09-28T14:25:27Z",
+ "description": "Public protobuf definitions for xAI's gRPC APIs",
+ "commit": "065692d0455244b0d5f0ccf9c05f8b98ff4618cd",
+ "indexed_at": "2026-10-03T18:47:18Z",
+ "status": "ok",
+ "clone_kb": 532,
+ "seconds": 0.7,
+ "files_scanned": 10,
+ "languages": {},
+ "grok_files": 1,
+ "grok_files_by_kind": {
+  "doc": 1
+ },
+ "hosts": {},
+ "endpoints": {},
+ "models": {},
+ "env_vars": {},
+ "features": {},
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [],
+ "files": [
+  {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 56,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "grpc"
+   ]
+  }
+ ]
+}

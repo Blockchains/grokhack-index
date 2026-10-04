@@ -1,0 +1,24 @@
+name: CI
+on:
+  push:
+    paths-ignore: ["data/**", "docs/data/**"]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Index two real repos end to end
+        run: |
+          python3 -c "import json;r=json.load(open('repos.json'));json.dump([x for x in r if x['upstream'] in ('xai-org/xai-sdk-python','xai-org/xai-sdk-ts')],open('/tmp/two.json','w'))"
+          python3 indexer/grokindex.py --repos /tmp/two.json --out /tmp/out --jobs 2
+          python3 indexer/check.py /tmp/out
+      - name: Validate committed index
+        run: python3 indexer/check.py data
+      - name: Search works
+        run: python3 indexer/search.py "streaming tool calling python" --data data | head -20

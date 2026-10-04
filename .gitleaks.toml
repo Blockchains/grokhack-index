@@ -1,0 +1,10 @@
+# Default rules. The index stores short code snippets from public open-source repos; documentation placeholders such as
+# "xai-..." or "sk-..." in those snippets are not secrets, but real-looking keys still fail the scan.
+[extend]
+useDefault = true
+
+# Environment-variable NAMES (all caps + underscores, e.g. XAI_API_KEY, EAPI_GROK_..._MODEL) are indexed as config surface; they are not secrets.
+[allowlist]
+description = "upper-case env var identifiers"
+regexTarget = "secret"
+regexes = ['''^[A-Z][A-Z0-9_]{2,}$''']

@@ -1,0 +1,228 @@
+{
+ "fork": "Blockchains/community-writer",
+ "upstream": "xai-org/community-writer",
+ "category": "official",
+ "stars": 1,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-10-01T17:59:34Z",
+ "description": "Community driven AI writer for Community Notes",
+ "commit": "b232e59249a151ef2ee9b7c722db7c9afb62497a",
+ "indexed_at": "2026-10-03T18:47:19Z",
+ "status": "ok",
+ "clone_kb": 892,
+ "seconds": 1.2,
+ "files_scanned": 61,
+ "languages": {
+  "Python": 58
+ },
+ "grok_files": 13,
+ "grok_files_by_kind": {
+  "config": 1,
+  "source": 12
+ },
+ "hosts": {
+  "api.x.ai": 2
+ },
+ "endpoints": {},
+ "models": {},
+ "env_vars": {
+  "XAI_API_KEY": 1
+ },
+ "features": {
+  "reasoning": 2,
+  "tool_calling": 2,
+  "embeddings": 1,
+  "grpc": 1,
+  "live_search": 1,
+  "streaming": 1
+ },
+ "sdk_exports": [
+  {
+   "path": "src/note_writer/grok_client.py",
+   "lang": "Python",
+   "names": [
+    "shorten_image_content",
+    "GrokClient"
+   ]
+  }
+ ],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "src/rejectors/screenshot_rejector.py",
+   "start": 12,
+   "end": 35,
+   "code": "from data_models.writer_data_models import (\n    PostWithContext,\n    RejectorSampleResult,\n    ScreenshotRejectorResult,\n)\nfrom note_writer.grok_client import GrokClient\nfrom xai_sdk.chat import image\nfrom fetcher.fetcher import (\n    capture_screenshots_for_url,\n    compute_url_hash,\n    extract_base_domain,\n)\nfrom rejectors import find_best_draft, is_draft_on_track_for_submission\nfrom utils.url_utils import URL_PATTERN\n\nfrom utils.log_setup import get_logger\n\nlogger = get_logger(\"screenshot\")\n\n\n_MAX_SAMPLE_SCORE = 1.0\n\n\ndef _extract_urls(text: str) -> list[str]:"
+  },
+  {
+   "path": "src/data_models/arena_config.py",
+   "start": 316,
+   "end": 339,
+   "code": "\nclass GrokWriter(AliasedModelConfig):\n    writer_name: str = Field(\n        pattern=r\"^[a-z0-9_]+$\", description=\"The name of the writer\"\n    )\n    model_uri: str = Field(\n        default=\"api.x.ai\", description=\"The host or base URI of the model API\"\n    )\n    writer_prompt: str = Field(\n        description=\"The prompt template to use for note writing (must support '{post_link}' placeholder)\",\n        examples=\"Write a note for the following post: {post_link}\",\n    )\n    length_restriction: str = Field(\n        default=\"\",\n        description=\"Text substituted into the writer_prompt's '{length_restriction}' slot when every \"\n        \"draft in the first round exceeded the note length limit, prompting a second round. The slot is \"\n        \"left empty in the first round, so the restriction only appears once it is needed. Configuring \"\n        \"one of the two without the other is a validation error; leaving both out disables the retry.\",\n    )\n    allowed_media_types: list[MediaType] = Field(\n        description=\"List of media types to allow posts\",\n        default_factory=lambda: list(DEFAULT_ALLOWED_MEDIA_TYPES),\n    )\n    temperature: float = Field("
+  },
+  {
+   "path": "src/note_writer/grok_client.py",
+   "start": 1,
+   "end": 21,
+   "code": "import asyncio\nimport re\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import user, system\nfrom xai_sdk.tools import web_search, x_search\n\nMAX_MESSAGE_LENGTH = 50 * 1024 * 1024\n\nfrom data_models.writer_data_models import GrokOutput\nfrom note_writer.llm_client import (\n    JSONValidationError,\n    LLMClient,\n    ModelRateLimiter,\n    extract_json_content,\n)\n\nfrom utils.log_setup import get_logger\n\nlogger = get_logger(\"grok_client\")\n"
+  },
+  {
+   "path": "src/utils/init_helpers.py",
+   "start": 6,
+   "end": 29,
+   "code": "from data_models.environment_variables import KeySet, EnvironmentVariables\n\n\ndef load_environment_variables(x_key_sets: List[str]) -> EnvironmentVariables:\n    dotenv.load_dotenv(override=True)\n    missing_vars = []\n    xai_api_key = os.getenv(\"XAI_API_KEY\")\n    if not xai_api_key:\n        missing_vars.append(\"XAI_API_KEY\")\n\n    if not os.getenv(\"POST_HASH_SALT\"):\n        missing_vars.append(\"POST_HASH_SALT\")\n\n    for path_var in (\n        \"CONFIG_DIR\",\n        \"FEED_LOGS_DIR\",\n        \"SUBMISSION_LOGS_DIR\",\n        \"SCREENSHOT_DIR\",\n    ):\n        if not os.getenv(path_var):\n            missing_vars.append(path_var)\n    x_api_keys = {}\n    for suffix in x_key_sets:\n        upper_suffix = suffix.upper().replace(\"-\", \"_\")"
+  },
+  {
+   "path": "src/utils/log_setup.py",
+   "start": 20,
+   "end": 42,
+   "code": "    \"transformers\",\n    \"huggingface_hub\",\n    \"PIL\",\n    \"matplotlib\",\n    \"playwright\",\n    \"websockets\",\n    \"xai_sdk\",\n)\n\n\ndef configure_logging(level: int = logging.INFO) -> None:\n    handler = logging.StreamHandler(sys.stdout)\n    handler.setFormatter(logging.Formatter(LOG_FORMAT, datefmt=DATE_FORMAT))\n    root = logging.getLogger()\n    root.handlers.clear()\n    root.addHandler(handler)\n    root.setLevel(level)\n    for name in _QUIET_LIBRARIES:\n        logging.getLogger(name).setLevel(logging.WARNING)\n\n\ndef get_logger(name: str) -> logging.Logger:\n    return logging.getLogger(name)"
+  }
+ ],
+ "files": [
+  {
+   "path": "writer.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 598,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/main.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 481,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "src/rejectors/rl_rejector.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 148,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/rejectors/recent_context_rejector.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 216,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/rejectors/screenshot_rejector.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 325,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/rejectors/revision_rejector.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 193,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/data_models/environment_variables.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 13,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/data_models/arena_config.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1408,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/note_writer/write_note.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 833,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/note_writer/grok_client.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 231,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "grpc",
+    "live_search",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/utils/init_helpers.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 71,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "src/utils/log_setup.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 42,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/workers/consumer.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 529,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  }
+ ]
+}

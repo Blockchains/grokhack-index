@@ -1,0 +1,1573 @@
+{
+ "fork": "Blockchains/grok-app",
+ "upstream": "RongleCat/grok-app",
+ "category": "coding-agent-cli",
+ "stars": 1389,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2026 RongleCat Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom",
+ "pushed_at": "2026-10-02T07:29:29Z",
+ "description": "Open-source Grok App \u2014 desktop workbench (GUI) for the local Grok Build CLI: sessions, projects, media, automations. Tauri 2.",
+ "commit": "453eb857940bc3f264b037dff74572fe67267d0e",
+ "indexed_at": "2026-10-03T18:48:22Z",
+ "status": "ok",
+ "clone_kb": 70348,
+ "seconds": 18.2,
+ "files_scanned": 2692,
+ "languages": {
+  "TypeScript": 2095,
+  "Rust": 287,
+  "JavaScript": 14,
+  "Python": 12
+ },
+ "grok_files": 92,
+ "grok_files_by_kind": {
+  "doc": 20,
+  "source": 52,
+  "config": 1,
+  "test": 19
+ },
+ "hosts": {
+  "api.x.ai": 9
+ },
+ "endpoints": {
+  "/v1/models": 7,
+  "/v1/responses": 5,
+  "/v1/realtime": 2,
+  "/v1/audio/transcriptions": 1,
+  "/v1/messages": 1
+ },
+ "models": {
+  "grok-4.5": 38,
+  "grok-4.7": 34,
+  "grok-4.6": 27,
+  "grok-4": 12,
+  "grok-4.7-build-fast": 10,
+  "grok-3": 8,
+  "grok-2": 2,
+  "grok-code": 2,
+  "grok-2-vision": 2,
+  "grok-3-mini": 2,
+  "grok-4-fast": 1,
+  "grok-4-latest": 1,
+  "grok-4.1": 1,
+  "grok-code-fast-1": 1,
+  "grok-0.2.111-macos-aarch64": 1,
+  "grok-0.2.111-macos-x86_64": 1,
+  "grok-codebase-idx": 1,
+  "grok-imagine-saved": 1,
+  "grok-2-vision-1212": 1,
+  "grok-3-mini-fast": 1,
+  "grok-4.7\uc73c\ub85c": 1,
+  "grok-4.7\uc774": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 5,
+  "PROVIDER_MODE_GROK_BUILD_PROXY": 3,
+  "OFFICIAL_GROK_API_BACKEND": 2,
+  "OFFICIAL_GROK_BASE_URL": 2,
+  "LEGACY_XAI_AUTH_SCOPE": 1,
+  "XAI_BUILD_AUTH_SCOPE": 1,
+  "XAI_OAUTH_CLIENT_ID": 1,
+  "XAI_OAUTH_ISSUER": 1
+ },
+ "features": {
+  "live_search": 24,
+  "mcp": 24,
+  "voice_realtime": 21,
+  "tool_calling": 20,
+  "vision": 19,
+  "structured_output": 9,
+  "reasoning": 7,
+  "streaming": 2,
+  "embeddings": 2,
+  "anthropic_compatible": 1,
+  "image_generation": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "src-tauri/src/voice_auth.rs",
+   "start": 19,
+   "end": 42,
+   "code": "    // 2) CLI OIDC / coding token from ~/.grok/auth.json (`key` field).\n    if let Some(key) = read_cli_auth_key() {\n        return Ok(key);\n    }\n\n    // 3) Environment fallback for CI / custom setups.\n    for var in [\"XAI_API_KEY\", \"GROK_API_KEY\"] {\n        if let Ok(key) = std::env::var(var) {\n            let key = key.trim().to_string();\n            if !key.is_empty() {\n                return Ok(key);\n            }\n        }\n    }\n\n    Err(\n        \"No xAI credentials found. Sign in with Grok CLI (`grok login`) or add an official API key in Settings.\"\n            .into(),\n    )\n}\n\nfn read_cli_auth_key() -> Option<String> {\n    // Route-aware: official syncs OIDC into agent-home; custom strips it.\n    // Never blind-copy auth.json here \u2014 a custom relay process could lazily"
+  },
+  {
+   "path": "src-tauri/src/models_aux.rs",
+   "start": 647,
+   "end": 670,
+   "code": "        return !main_is_text_only(text, list);\n    };\n    if is_official_catalog_model(&target) {\n        let table = format!(\"model.{target}\");\n        let base = get_table_string(text, &table, \"base_url\").unwrap_or_default();\n        let key = get_table_string(text, &table, \"api_key\").unwrap_or_default();\n        let ok_base = base.contains(\"cli-chat-proxy.grok.com\") || base.contains(\"api.x.ai\");\n        // On official route auth.json may substitute for api_key\n        let ok_cred = !key.is_empty() || list.active_source == \"official\";\n        return ok_base && ok_cred;\n    }\n    // Custom provider id must exist with base_url\n    list.providers\n        .iter()\n        .any(|p| p.id == target && !p.base_url.trim().is_empty() && p.has_api_key)\n}\n\npub fn main_is_text_only(text: &str, list: &crate::providers::ProvidersListResult) -> bool {\n    if list.active_source == \"official\" {\n        return false;\n    }\n    let def = main_default_from_text(text);\n    if def.is_empty() || def == crate::providers::OFFICIAL_DEFAULT_MODEL {\n        return list.active_source != \"official\";"
+  },
+  {
+   "path": "src-tauri/src/wsl_backend.rs",
+   "start": 577,
+   "end": 600,
+   "code": "    \"GROK_SANDBOX:\",\n    \"GROK_MEMORY:\",\n    \"GROK_SUBAGENT_WORKTREE_SNAPSHOT:\",\n    \"GROK_MODELS_BASE_URL:\",\n    \"GROK_MODELS_LIST_URL:\",\n    \"GROK_CLI_CHAT_PROXY_BASE_URL:\",\n    \"XAI_API_KEY:\",\n    \"HTTP_PROXY:\",\n    \"HTTPS_PROXY:\",\n    \"http_proxy:\",\n    \"https_proxy:\",\n    \"ALL_PROXY:\",\n    \"all_proxy:\",\n    \"NO_PROXY:\",\n    \"no_proxy:\",\n    \"SSL_CERT_FILE/p:\",\n    \"REQUESTS_CA_BUNDLE/p:\",\n    \"CURL_CA_BUNDLE/p\"\n);\n\npub fn apply_wslenv(cmd: &mut tokio::process::Command) {\n    // Keys we commonly set on the agent process. Unknown keys are ignored by WSL.\n    cmd.env(\"WSLENV\", WSLENV_KEYS);\n}"
+  },
+  {
+   "path": "src-tauri/src/acp_client.rs",
+   "start": 5968,
+   "end": 5991,
+   "code": "            Some(&\"https://relay.example/v1/models\")\n        );\n        assert_eq!(\n            envs.get(\"GROK_CLI_CHAT_PROXY_BASE_URL\"),\n            Some(&\"https://relay.example/v1\")\n        );\n        assert_eq!(envs.get(\"XAI_API_KEY\"), Some(&\"runtime-only-key\"));\n    }\n}\n\n#[cfg(test)]\nmod agent_profile_spawn_tests {\n    use super::*;\n\n    #[test]\n    fn empty_yields_no_flags() {\n        assert!(agent_profile_spawn_flags(\"\").is_none());\n        assert!(agent_profile_spawn_flags(\"  \").is_none());\n        assert!(agent_profile_spawn_flags(\"a\\nb\").is_none());\n    }\n\n    #[test]\n    fn builds_agent_option_pair() {\n        assert_eq!("
+  },
+  {
+   "path": "src-tauri/src/voice_host.rs",
+   "start": 1,
+   "end": 22,
+   "code": "//! Live voice host: full-duplex xAI realtime + host tools \u2192 SessionManager.\n//!\n//! Modes:\n//! - `GROK_APP_VOICE=mock` \u2014 no network; tool path + state machine for tests/UI dev\n//! - default \u2014 WebSocket to `wss://api.x.ai/v1/realtime?model=grok-voice-latest`\n\nuse std::sync::atomic::{AtomicBool, Ordering};\nuse std::sync::Arc;\n\nuse base64::{engine::general_purpose::STANDARD as B64, Engine as _};\nuse futures_util::{SinkExt, StreamExt};\nuse parking_lot::Mutex;\nuse serde::{Deserialize, Serialize};\nuse serde_json::{json, Value};\nuse tauri::{AppHandle, Emitter, State};\nuse tokio::sync::mpsc;\nuse tokio_tungstenite::tungstenite::client::IntoClientRequest;\nuse tokio_tungstenite::tungstenite::http::HeaderValue;\nuse tokio_tungstenite::tungstenite::Message;\nuse tracing::{info, warn};\n\nuse crate::session_manager::SessionManager;"
+  },
+  {
+   "path": "src-tauri/src/voice_stt.rs",
+   "start": 1,
+   "end": 21,
+   "code": "//! Speech-to-text for Composer dictation (xAI STT).\n//!\n//! Official REST contract (docs.x.ai speech-to-text): multipart `POST\n//! https://api.x.ai/v1/stt` with Bearer token, `file` field last, optional\n//! `language` / `format` / `keyterm` fields before it. Relay-only installs\n//! report `not_available`. Custom OpenAI-compatible endpoints are routed to\n//! `{base}/audio/transcriptions` instead.\n\nuse std::time::Duration;\n\nuse base64::Engine;\nuse serde::{Deserialize, Serialize};\nuse serde_json::Value;\n\nuse crate::account;\nuse crate::providers::{self, ActiveRoute};\nuse crate::secrets;\nuse crate::voice_auth;\n\nconst STT_URL: &str = \"https://api.x.ai/v1/stt\";\nconst CONNECT_TIMEOUT: Duration = Duration::from_secs(15);"
+  },
+  {
+   "path": "src-tauri/src/acp_client/spawn_flags.rs",
+   "start": 733,
+   "end": 756,
+   "code": "    // Process-scoped only: expose the relay as Grok Build's native model\n    // catalog / chat proxy and authenticate with the provider key. Never write\n    // or log these values outside this child.\n    cmd.env(\"GROK_MODELS_BASE_URL\", &native.base_url);\n    cmd.env(\"GROK_MODELS_LIST_URL\", &native.models_url);\n    cmd.env(\"GROK_CLI_CHAT_PROXY_BASE_URL\", &native.base_url);\n    cmd.env(\"XAI_API_KEY\", &native.api_key);\n}\n\n/// Whether this ACP process should call `authenticate(cached_token)`.\n///\n/// Skip when:\n/// - **custom relay** \u2014 Grok Build sends OIDC once `cached_token` succeeds,\n///   even when the request URL is a custom relay (HTTP 400 Incorrect API key\n///   / 401). `cached_token` reads `~/.grok/auth.json`, which official login\n///   must keep for Account billing / official-aux. Clearing only agent-home\n///   `auth.json` is not enough.\n/// - **unsigned-in** \u2014 no usable cached token (`auth.json` missing, or no\n///   `key` / `access_token` / `refresh_token`). The CLI has nothing to load;\n///   sending `authenticate` waits `AUTH_TIMEOUT_SECS` twice then soft-fails\n///   (~24s of ERROR logs) while the workbench still opens idle.\n///\n/// Keep the call when the official route is signed in. The #528\n/// signed-in-but-agent-home-stale path still re-syncs and retries once."
+  },
+  {
+   "path": "src-tauri/src/account/build_oauth.rs",
+   "start": 628,
+   "end": 651,
+   "code": "        for (label, audience) in [\n            (\"api-grok-audience\", \"api://grok\"),\n            (\n                \"grok-service-url-audience\",\n                \"https://cli-chat-proxy.grok.com/v1\",\n            ),\n            (\"xai-service-url-audience\", \"https://api.x.ai/v1\"),\n        ] {\n            let token = fake_jwt(serde_json::json!({\n                \"iss\": XAI_OAUTH_ISSUER,\n                \"aud\": audience,\n                \"exp\": fixed_oauth_now().timestamp() + 3600\n            }));\n            let value = build_oauth_entries(&[(\n                XAI_BUILD_AUTH_SCOPE,\n                serde_json::json!({\n                    \"key\": token,\n                    \"auth_mode\": \"oidc\",\n                    \"expires_at\": \"2026-08-28T02:00:00Z\"\n                }),\n            )]);\n\n            assert_eq!(\n                expect_build_oauth_error(read_build_oauth_fixture(label, &value)),"
+  },
+  {
+   "path": "src-tauri/src/commands/doctor_p1.rs",
+   "start": 690,
+   "end": 713,
+   "code": "}\n\n/// Grok endpoints probed by the network self-check (NEW-02 / NEW-07).\nconst NET_PROBE_TARGETS: &[(&str, &str)] = &[\n    (\"auth\", \"https://auth.x.ai/.well-known/openid-configuration\"),\n    (\"chat\", \"https://cli-chat-proxy.grok.com/\"),\n    (\"api\", \"https://api.x.ai/\"),\n];\n\n/// Per-endpoint reachability probe through the effective proxy. Any HTTP\n/// response (including 401/404) counts as reachable \u2014 we test the network\n/// path, not authentication. Short curl-style probes can pass while streaming\n/// fails, so this is a hint, not a guarantee.\n#[tauri::command]\npub async fn network_probe() -> Result<serde_json::Value, String> {\n    let client = crate::proxy::apply_to_reqwest(reqwest::Client::builder())\n        .connect_timeout(std::time::Duration::from_secs(5))\n        .timeout(std::time::Duration::from_secs(8))\n        .user_agent(\"grok-app-net-probe\")\n        .build()\n        .map_err(|e| e.to_string())?;\n\n    let mut results = Vec::new();\n    for (key, url) in NET_PROBE_TARGETS {"
+  }
+ ],
+ "files": [
+  {
+   "path": "CHANGELOG.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 2965,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "grpc",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "scripts/official-aux-mcp.mjs",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 606,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "scripts/publish-website-downloads.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 363,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "scripts/probe-models.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 124,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-3",
+    "grok-4",
+    "grok-4-fast",
+    "grok-4-latest",
+    "grok-4.1",
+    "grok-4.5",
+    "grok-code",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src-tauri/tauri.conf.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 136,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src-tauri/src/wallpaper_x_responses.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 708,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src-tauri/src/voice_auth.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 76,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src-tauri/src/providers.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 4252,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-4.7-build-fast"
+   ],
+   "env": [
+    "PROVIDER_MODE_GROK_BUILD_PROXY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "vision"
+   ]
+  },
+  {
+   "path": "src-tauri/src/secrets.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1236,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src-tauri/src/cc_switch_import.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1206,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [
+    "PROVIDER_MODE_GROK_BUILD_PROXY"
+   ],
+   "features": []
+  },
+  {
+   "path": "src-tauri/src/cli_install.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 982,
+   "endpoints": [],
+   "models": [
+    "grok-0.2.111-macos-aarch64",
+    "grok-0.2.111-macos-x86_64"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src-tauri/src/wallpaper_responses_client.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 467,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src-tauri/src/agent_memory.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1566,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "src-tauri/src/models_aux.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1869,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.5",
+    "grok-4.7"
+   ],
+   "env": [
+    "OFFICIAL_GROK_API_BACKEND",
+    "OFFICIAL_GROK_BASE_URL"
+   ],
+   "features": [
+    "live_search",
+    "vision"
+   ]
+  },
+  {
+   "path": "src-tauri/src/store.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 5913,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-4.7-build-fast"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src-tauri/src/account.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 2373,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src-tauri/src/official_aux.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 2554,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "OFFICIAL_GROK_API_BACKEND",
+    "OFFICIAL_GROK_BASE_URL"
+   ],
+   "features": [
+    "live_search",
+    "mcp",
+    "structured_output",
+    "vision"
+   ]
+  },
+  {
+   "path": "src-tauri/src/agent_codebase_indexing.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 452,
+   "endpoints": [],
+   "models": [
+    "grok-codebase-idx"
+   ],
+   "env": [],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "src-tauri/src/wsl_backend.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 782,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "src-tauri/src/models_catalog.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 750,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-4.7-build-fast"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src-tauri/src/agent_config_view.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 456,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "src-tauri/src/wallpaper_grok_album.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 925,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-saved"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "src-tauri/src/acp_client.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 6564,
+   "endpoints": [
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src-tauri/src/voice_host.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 828,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src-tauri/src/voice_stt.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1041,
+   "endpoints": [
+    "/v1/audio/transcriptions"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src-tauri/src/hooks.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 759,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src-tauri/src/acp_client/spawn_flags.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 769,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src-tauri/src/account/build_oauth.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 889,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "LEGACY_XAI_AUTH_SCOPE",
+    "XAI_BUILD_AUTH_SCOPE",
+    "XAI_OAUTH_CLIENT_ID",
+    "XAI_OAUTH_ISSUER"
+   ],
+   "features": []
+  },
+  {
+   "path": "src-tauri/src/commands/providers.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 615,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [
+    "PROVIDER_MODE_GROK_BUILD_PROXY"
+   ],
+   "features": [
+    "live_search",
+    "streaming"
+   ]
+  },
+  {
+   "path": "src-tauri/src/commands/doctor_p1.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1257,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src-tauri/src/commands/hooks_setup_p1.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1026,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "src-tauri/src/wallpaper_x_search/cache/tests.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 215,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src-tauri/src/ssh_remote/tests.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 642,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src-tauri/src/session_manager/connect.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 2916,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "src-tauri/src/session_manager/control.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1928,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "docs/SPIKE-ACP.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 163,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/\u5206\u6790-Grok-Desktop\u5bf9\u7167\u62a5\u544a.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 545,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-3",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/plans/2026-07-31-model-aux-routing-design.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "docs/plans/2026-08-21-ai98pro-preset-pi-review.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 19,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/plans/2026-08-24-wp-w26-w27-pi-review.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 27,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/plans/2026-08-20-session-api-stall-pi-review-merge.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 22,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/plans/2026-07-24-live-voice-agent-delegation.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 305,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "live_search",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/plans/2026-08-20-session-api-stall-pi-review-landed.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 16,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/plans/2026-07-26-\u5f00\u6e90\u8bca\u65ad\u4e0e\u6574\u6539\u4ea4\u63a5.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 3685,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "mcp",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/plans/2026-08-07-grok-build-1.0-gui-optimization.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 378,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/plans/2026-08-13-v0.2.16-review-fix-plan.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 420,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/plans/2026-08-20-session-api-stall-pi-review-2.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 20,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/plans/2026-07-31-composer-provider-model-picker.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 703,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/plans/2026-08-20-session-api-stall-pi-review-1.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 57,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/llm-wiki/website-downloads.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 335,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/llm-wiki/catalog.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 204,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-4.7-build-fast"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "docs/llm-wiki/providers.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 265,
+   "endpoints": [
+    "/v1/messages",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-4.7-build-fast"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "mcp",
+    "streaming",
+    "vision"
+   ]
+  },
+  {
+   "path": "docs/llm-wiki/wallpaper-search.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 438,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "docs/llm-wiki/model-routing.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 92,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "vision"
+   ]
+  },
+  {
+   "path": "src/lib/projectInspect.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 334,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "src/lib/effectiveModel.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 86,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4.5",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/lib/session.projection-snapshot.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 580,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/lib/networkProxy.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 286,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/lib/modelEffortApply.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 277,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/lib/estimateCost.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 131,
+   "endpoints": [],
+   "models": [
+    "grok-2-vision",
+    "grok-2-vision-1212",
+    "grok-3",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-4.7-build-fast"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "vision"
+   ]
+  },
+  {
+   "path": "src/lib/grokCatalog.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 686,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-4.7-build-fast"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/lib/configTomlView.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 89,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/lib/grokCatalog.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 552,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-4.7-build-fast"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/lib/goalOrch.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 663,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/lib/accountQuotaRefresh.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 270,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/lib/streamingMessagesJson.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 430,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/lib/agentDashboard.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 853,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/lib/providerPresets.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 462,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/lib/providerRouteHonesty.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 285,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/lib/estimateCost.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 223,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-2-vision",
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-4.7-build-fast",
+    "grok-code"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/lib/errorDeck.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 299,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "src/lib/costRollup.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 772,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/lib/providerPresets.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 684,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-4.7-build-fast"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/lib/composerPrefsApply.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 129,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/lib/composerPrefsBarrier.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 85,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/lib/composerModelGroups.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 176,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/i18n/messages/uk/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/es/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/ta/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/zh-TW/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/fil/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/id/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/zh/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/ko/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [
+    "grok-4.7\uc73c\ub85c",
+    "grok-4.7\uc774"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/en/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/ja/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/fr/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/de/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/pt-BR/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/ru/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/it/features.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 532,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/components/ComposerPortalPop.test.tsx",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 650,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  }
+ ]
+}

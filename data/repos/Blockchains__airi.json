@@ -1,0 +1,135 @@
+{
+ "fork": "Blockchains/airi",
+ "upstream": "moeru-ai/airi",
+ "category": "chat-ui",
+ "stars": 49973,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2024-PRESENT Neko Ayaka Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit person",
+ "pushed_at": "2026-10-03T17:26:30Z",
+ "description": "\ud83d\udc96\ud83e\uddf8 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.",
+ "commit": "7684415927147a8f64bb442ff0069c33816efedd",
+ "indexed_at": "2026-10-03T18:48:21Z",
+ "status": "ok",
+ "clone_kb": 960356,
+ "seconds": 63.0,
+ "files_scanned": 5029,
+ "languages": {
+  "TypeScript": 2728,
+  "Vue": 781,
+  "C#": 50,
+  "JavaScript": 13,
+  "Kotlin": 9,
+  "Swift": 8,
+  "Python": 1
+ },
+ "grok_files": 6,
+ "grok_files_by_kind": {
+  "doc": 3,
+  "test": 2,
+  "source": 1
+ },
+ "hosts": {
+  "api.x.ai": 4
+ },
+ "endpoints": {},
+ "models": {
+  "grok-4.5": 2,
+  "grok-4.6": 2
+ },
+ "env_vars": {},
+ "features": {
+  "openai_compatible": 1
+ },
+ "sdk_exports": [
+  {
+   "path": "packages/provider-inference/src/providers/cloud/xai/index.ts",
+   "lang": "TypeScript",
+   "names": [
+    "providerXAI"
+   ]
+  }
+ ],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "packages/provider-inference/src/providers/cloud/xai/index.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { createXai } from '@xsai-ext/providers/create'\nimport { z } from 'zod'\n\nimport { ProviderValidationCheck } from '../../../types'\nimport { createOpenAICompatibleValidators } from '../../../validators'\nimport { defineProvider } from '../../registry'\n\nconst xaiConfigSchema = z.object({\n  apiKey: z\n    .string('API Key'),\n  baseUrl: z\n    .string('Base URL')\n    .optional()\n    .default('https://api.x.ai/v1/'),\n})\n\ntype XAIConfig = z.input<typeof xaiConfigSchema>\n"
+  }
+ ],
+ "files": [
+  {
+   "path": "docs/content/ko/docs/manual/config/providers/consciousness/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 35,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/content/en/docs/manual/config/providers/consciousness/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 35,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/content/zh-Hans/docs/manual/config/providers/consciousness/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 35,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "packages/stage-ui/src/components/scenarios/dialogs/onboarding/onboarding.browser.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 205,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/stage-ui/src/stores/providers/onboarding-save.browser.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 114,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/provider-inference/src/providers/cloud/xai/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 53,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "openai_compatible"
+   ]
+  }
+ ]
+}

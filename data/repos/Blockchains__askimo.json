@@ -1,0 +1,136 @@
+{
+ "fork": "Blockchains/askimo",
+ "upstream": "askimo-ai/askimo",
+ "category": "gateway-router",
+ "stars": 511,
+ "license_spdx": "AGPL-3.0",
+ "license_text_head": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007 Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/> Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. Preamble The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure coop",
+ "pushed_at": "2026-10-03T18:12:31Z",
+ "description": "AI desktop app for chat, RAG, Skills, MCP tools, and agents. Support multiple LLMs (Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM, Gemini, OpenRouter)",
+ "commit": "6b4d6683182b1665fbad750010332d39e47dd761",
+ "indexed_at": "2026-10-03T18:48:29Z",
+ "status": "ok",
+ "clone_kb": 70812,
+ "seconds": 6.6,
+ "files_scanned": 721,
+ "languages": {
+  "Kotlin": 683
+ },
+ "grok_files": 6,
+ "grok_files_by_kind": {
+  "source": 4,
+  "test": 2
+ },
+ "hosts": {
+  "api.x.ai": 2
+ },
+ "endpoints": {},
+ "models": {
+  "grok-4": 3,
+  "grok-3": 1,
+  "grok-2-vision": 1,
+  "grok-4-fast": 1,
+  "grok-vision-beta": 1
+ },
+ "env_vars": {},
+ "features": {
+  "embeddings": 2,
+  "anthropic_compatible": 1,
+  "vision": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "shared/src/main/kotlin/io/askimo/core/providers/xai/XAiSettings.kt",
+   "start": 10,
+   "end": 33,
+   "code": "import io.askimo.core.providers.ProviderSettings\nimport io.askimo.core.providers.SettingField\nimport kotlinx.serialization.Serializable\n\n@Serializable\ndata class XAiSettings(\n    override var baseUrl: String = \"https://api.x.ai/v1\",\n    override var apiKey: String = \"\",\n    override val defaultModel: String = \"\",\n    override val utilityModel: String = \"\",\n    override val visionModel: String = \"\",\n    override val imageModel: String = \"\",\n    override val embeddingModel: String = \"\",\n) : ProviderSettings,\n    HasApiKey,\n    HasBaseUrl {\n    override fun describe(): List<String> = listOf(\n        \"apiKey:  ${maskApiKey()}\",\n        \"baseUrl: $baseUrl\",\n    )\n\n    override fun toString(): String = \"XAiSettings(baseUrl=$baseUrl, apiKey=${maskApiKey()})\"\n\n    override fun getFields(): List<SettingField> = listOf("
+  }
+ ],
+ "files": [
+  {
+   "path": "shared/src/main/kotlin/io/askimo/core/context/ParamKey.kt",
+   "kind": "source",
+   "lang": "Kotlin",
+   "lines": 71,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "shared/src/main/kotlin/io/askimo/core/providers/ModelProvider.kt",
+   "kind": "source",
+   "lang": "Kotlin",
+   "lines": 87,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "shared/src/main/kotlin/io/askimo/core/providers/ModelFilterUtils.kt",
+   "kind": "source",
+   "lang": "Kotlin",
+   "lines": 69,
+   "endpoints": [],
+   "models": [
+    "grok-2-vision"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "vision"
+   ]
+  },
+  {
+   "path": "shared/src/main/kotlin/io/askimo/core/providers/xai/XAiSettings.kt",
+   "kind": "source",
+   "lang": "Kotlin",
+   "lines": 88,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "cli/src/test/kotlin/io/askimo/core/providers/xai/XAiModelFactoryTest.kt",
+   "kind": "test",
+   "lang": "Kotlin",
+   "lines": 136,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "cli/src/test/kotlin/io/askimo/core/config/AppConfigTest.kt",
+   "kind": "test",
+   "lang": "Kotlin",
+   "lines": 590,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4-fast",
+    "grok-vision-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "vision"
+   ]
+  }
+ ]
+}

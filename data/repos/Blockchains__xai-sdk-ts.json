@@ -1,0 +1,752 @@
+{
+ "fork": "Blockchains/xai-sdk-ts",
+ "upstream": "xai-org/xai-sdk-ts",
+ "category": "official",
+ "stars": 46,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-10-02T22:13:59Z",
+ "description": "The official TypeScript SDK for the SpaceXAI API",
+ "commit": "0092a5f7f313ed092ea1326ae147c22981165e82",
+ "indexed_at": "2026-10-03T18:47:19Z",
+ "status": "ok",
+ "clone_kb": 1492,
+ "seconds": 1.1,
+ "files_scanned": 101,
+ "languages": {
+  "TypeScript": 74,
+  "JavaScript": 10
+ },
+ "grok_files": 34,
+ "grok_files_by_kind": {
+  "doc": 2,
+  "config": 1,
+  "source": 12,
+  "test": 19
+ },
+ "hosts": {
+  "api.x.ai": 12
+ },
+ "endpoints": {
+  "/v1/responses": 5,
+  "/v1/files": 4,
+  "/v1/models": 4,
+  "/v1/api-key": 3,
+  "/v1/image-generation-models": 3,
+  "/v1/images/edits": 3,
+  "/v1/images/generations": 3,
+  "/v1/language-models": 3,
+  "/v1/tokenize-text": 3,
+  "/v1/videos": 3,
+  "/v1/videos/generations": 3,
+  "/v1/realtime": 2,
+  "/v1/batches": 1,
+  "/v1/chat/completions": 1,
+  "/v1/completions": 1,
+  "/v1/messages": 1
+ },
+ "models": {
+  "grok-4.6": 12,
+  "grok-imagine-image-2.0": 9,
+  "grok-imagine-video": 8,
+  "grok-imagine-video-1.5": 5,
+  "grok-imagine-image": 4,
+  "grok-4.7": 3,
+  "grok-4": 3,
+  "grok-4.3": 3,
+  "grok-4.20": 2,
+  "grok-imagine-video-1.5-preview": 1,
+  "grok-imagine-video-released-after-this-sdk": 1,
+  "grok-imagine-image-released-after-this-sdk": 1,
+  "grok-4.6-latest": 1,
+  "grok-4.20-0309-non-reasoning": 1,
+  "grok-4.20-0309-reasoning": 1,
+  "grok-4.20-multi-agent-0309": 1,
+  "grok-4.5": 1,
+  "grok-imagine-image-quality": 1,
+  "grok-3": 1,
+  "grok-4-latest": 1,
+  "grok-4.3-latest": 1,
+  "grok-420-reasoning": 1,
+  "grok-imagine": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 5,
+  "XAI_DEBUG": 4,
+  "XAI_MODELS_URL": 1,
+  "XAI_TEST_IMAGES": 1,
+  "XAI_TEST_IMAGE_MODEL": 1,
+  "XAI_TEST_MAX_COST_USD": 1,
+  "XAI_TEST_MAX_OUTPUT_TOKENS": 1,
+  "XAI_TEST_MODEL": 1
+ },
+ "features": {
+  "image_generation": 8,
+  "voice_realtime": 6,
+  "streaming": 5,
+  "structured_output": 5,
+  "live_search": 4,
+  "tool_calling": 4,
+  "embeddings": 2,
+  "vision": 2,
+  "reasoning": 2,
+  "anthropic_compatible": 1,
+  "mcp": 1
+ },
+ "sdk_exports": [],
+ "packages": [
+  {
+   "path": "package.json",
+   "ecosystem": "npm",
+   "name": "@xai-official/sdk",
+   "version": "0.2.1"
+  }
+ ],
+ "snippets": [
+  {
+   "path": "scripts/test-live.mjs",
+   "start": 1,
+   "end": 20,
+   "code": "#!/usr/bin/env node\n\nconst apiKey = process.env.XAI_API_KEY;\nconst testImages = process.env.XAI_TEST_IMAGES === \"1\";\nconst maxOutputTokens = Number(process.env.XAI_TEST_MAX_OUTPUT_TOKENS ?? 64);\nconst maxCostUsd = Number(process.env.XAI_TEST_MAX_COST_USD ?? (testImages ? 0.15 : 0.05));\n\nif (!apiKey) throw new Error(\"XAI_API_KEY is required\");\nif (!Number.isInteger(maxOutputTokens) || maxOutputTokens < 1 || maxOutputTokens > 256) {\n  throw new Error(\"XAI_TEST_MAX_OUTPUT_TOKENS must be an integer from 1 to 256\");\n}\nif (!Number.isFinite(maxCostUsd) || maxCostUsd <= 0) {\n  throw new Error(\"XAI_TEST_MAX_COST_USD must be a positive number\");\n}\n\nfunction reportedCostUsd(label, usage) {\n  if (typeof usage?.cost_usd !== \"number\") {\n    throw new Error(`${label} did not report a cost, so the cost limit cannot be enforced`);\n  }\n  return usage.cost_usd;"
+  },
+  {
+   "path": "src/constants.ts",
+   "start": 1,
+   "end": 20,
+   "code": "import { SDK_VERSION } from \"./version.js\";\n\nexport const DEFAULT_BASE_URL = \"https://api.x.ai/v1\";\nexport const DEFAULT_TIMEOUT_MS = 3_600_000;\nexport const DEFAULT_IDLE_TIMEOUT_MS = 60_000;\nexport const DEFAULT_MAX_RETRIES = 2;\nexport const DEFAULT_MAX_RESPONSE_BODY_BYTES = 32 * 1024 * 1024;\nexport const DEFAULT_MAX_ERROR_BODY_BYTES = 1024 * 1024;\n\nexport const SDK_USER_AGENT = `xai-sdk/${SDK_VERSION} (typescript)`;\n\nexport const CLIENT_REQUEST_ID_HEADER = \"x-client-request-id\";\n\n/** Wire default is true (stored 30 days). This client defaults to false. */\nexport const SDK_STORE_DEFAULT = false;\n\nexport const ENCRYPTED_REASONING = \"reasoning.encrypted_content\" as const;\n\nexport const KNOWN_STREAM_EVENT_TYPES = [\n  \"ping\","
+  },
+  {
+   "path": "src/env.ts",
+   "start": 31,
+   "end": 54,
+   "code": "  if (major < 22 || (major === 22 && minor < 13)) {\n    throw new Error(`@xai-official/sdk requires Node.js 22.13 or later (found ${raw})`);\n  }\n}\n\nexport function readEnvApiKey(): string | undefined {\n  const key = nodeProcess()?.env?.XAI_API_KEY;\n  return key && key.length > 0 ? key : undefined;\n}\n\nexport function debugEnabled(): boolean {\n  return nodeProcess()?.env?.XAI_DEBUG === \"1\";\n}\n\n/** Runtime label for `xai-sdk-language` (`python/3.12` in the Python SDK). */\nexport function sdkLanguage(): string {\n  const versions = nodeProcess()?.versions;\n  const bun =\n    versions?.bun ??\n    (globalThis as { Bun?: { version?: string } }).Bun?.version;\n  if (bun) return `bun/${majorMinor(bun)}`;\n  const deno = (globalThis as { Deno?: { version?: { deno?: string } } }).Deno?.version?.deno;\n  if (deno) return `deno/${majorMinor(deno)}`;\n  const raw = versions?.node;"
+  },
+  {
+   "path": "src/client.ts",
+   "start": 51,
+   "end": 74,
+   "code": "      );\n    }\n    const apiKey = opts.apiKey ?? readEnvApiKey();\n    if (!apiKey) {\n      throw new Error(\n        isNode()\n          ? \"SpaceXAI: apiKey is missing (set XAI_API_KEY or pass apiKey)\"\n          : \"SpaceXAI: pass apiKey from a server; do not use a secret API key in browsers or Workers\",\n      );\n    }\n    storeApiKey(this, apiKey);\n    this.baseURL = (opts.baseURL ?? DEFAULT_BASE_URL).replace(/\\/+$/, \"\");\n    this.timeout = opts.timeout ?? DEFAULT_TIMEOUT_MS;\n    this.idleTimeout = opts.idleTimeout ?? DEFAULT_IDLE_TIMEOUT_MS;\n    this.maxResponseBodyBytes =\n      opts.maxResponseBodyBytes ?? DEFAULT_MAX_RESPONSE_BODY_BYTES;\n    this.maxRetries = opts.maxRetries ?? DEFAULT_MAX_RETRIES;\n    this.retryBeforeOutput = opts.retryBeforeOutput ?? false;\n    this.defaultHeaders = { ...opts.defaultHeaders };\n    this.fetch = opts.fetch ?? globalThis.fetch.bind(globalThis);\n    this.onRequest = opts.onRequest;\n    this.onResponse = opts.onResponse;\n    this.responses = new Responses(this);\n    this.models = new ModelsResource(this);"
+  },
+  {
+   "path": "src/types.ts",
+   "start": 479,
+   "end": 502,
+   "code": "export type RequestHook = (request: Request) => void | Promise<void>;\n/** Receives `response.clone()`, which is cancelled after the hook returns. */\nexport type ResponseHook = (response: Response) => void | Promise<void>;\n\nexport type ClientOptions = {\n  /**\n   * Secret API key. Prefer `XAI_API_KEY` in Node. Do not construct this client\n   * in a browser with a real key \u2014 put a backend in front.\n   */\n  apiKey?: string;\n  /**\n   * Allow construction in a browser or Worker despite the risk of exposing\n   * the API key. Defaults to false.\n   */\n  dangerouslyAllowBrowser?: boolean;\n  /** Must accept a `Request` as the first argument. */\n  fetch?: typeof fetch;\n  baseURL?: string;\n  /** Per-attempt timeout in milliseconds. Retry backoff is additional time. */\n  timeout?: number;\n  /** Maximum time in milliseconds between response-body chunks. */\n  idleTimeout?: number;\n  /** Maximum buffered JSON response size. Defaults to 32 MiB. */\n  maxResponseBodyBytes?: number;"
+  }
+ ],
+ "files": [
+  {
+   "path": "CONTRIBUTING.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 65,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1301,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [
+    "grok-4.7",
+    "grok-imagine-image-2.0",
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_DEBUG"
+   ],
+   "features": [
+    "image_generation",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "package.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 85,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "scripts/generate-models.mjs",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 114,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-video"
+   ],
+   "env": [
+    "XAI_MODELS_URL"
+   ],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "scripts/generate-voice.mjs",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 123,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "scripts/generate-types.mjs",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 131,
+   "endpoints": [
+    "/v1/api-key",
+    "/v1/files",
+    "/v1/image-generation-models",
+    "/v1/images/edits",
+    "/v1/images/generations",
+    "/v1/language-models",
+    "/v1/models",
+    "/v1/responses",
+    "/v1/tokenize-text",
+    "/v1/videos",
+    "/v1/videos/generations"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "image_generation",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "scripts/test-live.mjs",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 113,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-imagine-image"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_TEST_IMAGES",
+    "XAI_TEST_IMAGE_MODEL",
+    "XAI_TEST_MAX_COST_USD",
+    "XAI_TEST_MAX_OUTPUT_TOKENS",
+    "XAI_TEST_MODEL"
+   ],
+   "features": [
+    "image_generation",
+    "streaming"
+   ]
+  },
+  {
+   "path": "scripts/test-package.mjs",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 204,
+   "endpoints": [],
+   "models": [
+    "grok-4.7",
+    "grok-imagine-image-2.0"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "live_search",
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "test/files.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 223,
+   "endpoints": [
+    "/v1/files"
+   ],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "test/responses-compact.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 119,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "vision"
+   ]
+  },
+  {
+   "path": "test/helpers.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 158,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "test/models.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 26,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "test/voice.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 358,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "test/http.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 505,
+   "endpoints": [
+    "/v1/files",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_DEBUG"
+   ],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "test/videos.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 416,
+   "endpoints": [
+    "/v1/videos",
+    "/v1/videos/generations"
+   ],
+   "models": [
+    "grok-imagine-video",
+    "grok-imagine-video-1.5",
+    "grok-imagine-video-1.5-preview"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "test/create.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 242,
+   "endpoints": [
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_DEBUG"
+   ],
+   "features": [
+    "live_search",
+    "vision"
+   ]
+  },
+  {
+   "path": "test/batches.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 384,
+   "endpoints": [
+    "/v1/batches"
+   ],
+   "models": [
+    "grok-4",
+    "grok-4.3",
+    "grok-imagine-image-2.0",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "test/types.compile.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 128,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "test/batches.compile.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 119,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.3",
+    "grok-imagine-image-2.0",
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "test/videos.compile.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 52,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video",
+    "grok-imagine-video-1.5",
+    "grok-imagine-video-released-after-this-sdk"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "test/images.compile.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 41,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-released-after-this-sdk"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "test/models-account.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 101,
+   "endpoints": [
+    "/v1/api-key",
+    "/v1/language-models",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.6-latest"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "test/defaults.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 57,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "test/abort.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 179,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "vision"
+   ]
+  },
+  {
+   "path": "test/tokenizer.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 49,
+   "endpoints": [
+    "/v1/tokenize-text"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "test/openapi-contract.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 48,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image-2.0"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "test/images.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 318,
+   "endpoints": [
+    "/v1/image-generation-models",
+    "/v1/images/edits",
+    "/v1/images/generations"
+   ],
+   "models": [
+    "grok-imagine-image-2.0"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/constants.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 83,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "image_generation",
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/env.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 62,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_DEBUG"
+   ],
+   "features": []
+  },
+  {
+   "path": "src/client.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 94,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/types.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 654,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image-2.0"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "image_generation",
+    "live_search",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/http.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 663,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "src/models.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 30,
+   "endpoints": [],
+   "models": [
+    "grok-4.20",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-quality",
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/generated/types.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 5659,
+   "endpoints": [
+    "/v1/api-key",
+    "/v1/chat/completions",
+    "/v1/completions",
+    "/v1/files",
+    "/v1/image-generation-models",
+    "/v1/images/edits",
+    "/v1/images/generations",
+    "/v1/language-models",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses",
+    "/v1/tokenize-text",
+    "/v1/videos",
+    "/v1/videos/generations"
+   ],
+   "models": [
+    "grok-3",
+    "grok-4",
+    "grok-4-latest",
+    "grok-4.20",
+    "grok-4.3-latest",
+    "grok-420-reasoning",
+    "grok-imagine",
+    "grok-imagine-image",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  }
+ ]
+}

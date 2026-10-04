@@ -1,0 +1,1285 @@
+{
+ "fork": "Blockchains/opencode",
+ "upstream": "anomalyco/opencode",
+ "category": "coding-agent-cli",
+ "stars": 211613,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2025 opencode Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom ",
+ "pushed_at": "2026-10-03T18:14:59Z",
+ "description": "The open source coding agent.",
+ "commit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
+ "indexed_at": "2026-10-03T18:48:46Z",
+ "status": "ok",
+ "clone_kb": 229396,
+ "seconds": 17.4,
+ "files_scanned": 4598,
+ "languages": {
+  "TypeScript": 3349,
+  "JavaScript": 10
+ },
+ "grok_files": 65,
+ "grok_files_by_kind": {
+  "config": 3,
+  "doc": 39,
+  "source": 13,
+  "test": 10
+ },
+ "hosts": {
+  "api.x.ai": 6
+ },
+ "endpoints": {
+  "/v1/chat/completions": 39,
+  "/v1/models": 38,
+  "/v1/responses": 37,
+  "/v1/messages": 36
+ },
+ "models": {
+  "grok-4.6": 37,
+  "grok-4.7": 37,
+  "grok-4.5": 19,
+  "grok-4": 4,
+  "grok-code": 3,
+  "grok-3-mini": 3,
+  "grok-4.3": 2
+ },
+ "env_vars": {
+  "XAI_API_KEY": 5
+ },
+ "features": {
+  "anthropic_compatible": 7,
+  "structured_output": 5,
+  "openai_compatible": 3,
+  "reasoning": 3,
+  "tool_calling": 2,
+  "streaming": 1,
+  "mcp": 1
+ },
+ "sdk_exports": [],
+ "packages": [
+  {
+   "path": "package.json",
+   "ecosystem": "npm",
+   "name": "opencode",
+   "version": null
+  }
+ ],
+ "snippets": [
+  {
+   "path": "packages/opencode/src/provider/provider.ts",
+   "start": 154,
+   "end": 177,
+   "code": "  \"@ai-sdk/google-vertex\": () => import(\"@ai-sdk/google-vertex\").then((m) => m.createVertex),\n  \"@ai-sdk/google-vertex/anthropic\": () =>\n    import(\"@ai-sdk/google-vertex/anthropic\").then((m) => m.createVertexAnthropic),\n  \"@ai-sdk/openai\": () => import(\"@ai-sdk/openai\").then((m) => m.createOpenAI),\n  \"@ai-sdk/openai-compatible\": () => import(\"@ai-sdk/openai-compatible\").then((m) => m.createOpenAICompatible),\n  \"@openrouter/ai-sdk-provider\": () => import(\"@openrouter/ai-sdk-provider\").then((m) => m.createOpenRouter),\n  \"@ai-sdk/xai\": () => import(\"@ai-sdk/xai\").then((m) => m.createXai),\n  \"@ai-sdk/mistral\": () => import(\"@ai-sdk/mistral\").then((m) => m.createMistral),\n  \"@ai-sdk/groq\": () => import(\"@ai-sdk/groq\").then((m) => m.createGroq),\n  \"@ai-sdk/deepinfra\": () => import(\"@ai-sdk/deepinfra\").then((m) => m.createDeepInfra),\n  \"@ai-sdk/cerebras\": () => import(\"@ai-sdk/cerebras\").then((m) => m.createCerebras),\n  \"@ai-sdk/cohere\": () => import(\"@ai-sdk/cohere\").then((m) => m.createCohere),\n  \"@ai-sdk/gateway\": () => import(\"@ai-sdk/gateway\").then((m) => m.createGateway),\n  \"@ai-sdk/togetherai\": () => import(\"@ai-sdk/togetherai\").then((m) => m.createTogetherAI),\n  \"@ai-sdk/perplexity\": () => import(\"@ai-sdk/perplexity\").then((m) => m.createPerplexity),\n  \"@ai-sdk/vercel\": () => import(\"@ai-sdk/vercel\").then((m) => m.createVercel),\n  \"@ai-sdk/alibaba\": () => import(\"@ai-sdk/alibaba\").then((m) => m.createAlibaba),\n  \"gitlab-ai-provider\": () => import(\"gitlab-ai-provider\").then((m) => m.createGitLab),\n  \"@ai-sdk/github-copilot\": () =>\n    import(\"@opencode-ai/core/github-copilot/copilot-provider\").then((m) => m.createOpenaiCompatible),\n  \"venice-ai-sdk-provider\": () => import(\"venice-ai-sdk-provider\").then((m) => m.createVenice),\n}\n\ntype CustomModelLoader = (sdk: any, modelID: string, options?: Record<string, any>, model?: Model) => Promise<any>"
+  },
+  {
+   "path": "packages/opencode/src/provider/transform.ts",
+   "start": 73,
+   "end": 96,
+   "code": "    case \"@ai-sdk/perplexity\":\n      return \"perplexity\"\n    case \"@ai-sdk/togetherai\":\n      return \"togetherai\"\n    case \"@ai-sdk/vercel\":\n      return \"vercel\"\n    case \"@ai-sdk/xai\":\n      return \"xai\"\n    case \"venice-ai-sdk-provider\":\n      return \"venice\"\n    case \"@ai-sdk/gateway\":\n      return \"gateway\"\n    case \"@openrouter/ai-sdk-provider\":\n      return \"openrouter\"\n    case \"merge-gateway-ai-sdk-provider\":\n      return \"mergeGateway\"\n    case \"ai-gateway-provider\":\n      // ai-gateway-provider/unified wraps createOpenAICompatible({ name: \"Unified\" }),\n      // and @ai-sdk/openai-compatible parses compatibleOptions from one of\n      // \"openai-compatible\" / \"openaiCompatible\" / \"Unified\" / \"unified\". The\n      // \"openai-compatible\" key emits a deprecation warning at runtime, so we\n      // pick the camelCase form the SDK now treats as canonical.\n      return \"openaiCompatible\"\n  }"
+  },
+  {
+   "path": "packages/opencode/src/plugin/xai.ts",
+   "start": 214,
+   "end": 237,
+   "code": "        // provider onto one HTTP call so we don't replay a rotating refresh_token.\n        let refreshPromise: Promise<RefreshResult> | undefined\n\n        return {\n          // Dummy bearer keeps the AI SDK from bailing on \"missing apiKey\"; the\n          // real OAuth token is injected by the fetch override below.\n          // We intentionally do NOT set baseURL \u2014 @ai-sdk/xai already defaults\n          // to https://api.x.ai/v1 and overriding here would silently route\n          // around a user-configured gateway.\n          apiKey: OAUTH_DUMMY_KEY,\n          async fetch(requestInput: RequestInfo | URL, init?: RequestInit) {\n            let currentAuth = await getAuth()\n            // Auth can flip from oauth to api mid-session (user re-runs\n            // /connect with a pasted key). When that happens, pass the\n            // request through untouched so the AI SDK's own apiKey-based\n            // Authorization header reaches xAI unmodified.\n            if (currentAuth.type !== \"oauth\") return fetch(requestInput, init)\n\n            // Refresh either when the stored expires timestamp is within the\n            // skew window, or \u2014 for JWT access tokens \u2014 when the JWT exp\n            // claim itself is. The stored expires field is best-effort\n            // (xAI doesn't always return expires_in) so the JWT check is the\n            // load-bearing one for tokens that lack a fresh stored deadline.\n            const expiresSoon ="
+  },
+  {
+   "path": "packages/opencode/src/session/message-v2.ts",
+   "start": 150,
+   "end": 173,
+   "code": "    if (model.api.npm === \"@ai-sdk/amazon-bedrock/mantle\") return true\n    if (model.api.npm === \"@ai-sdk/amazon-bedrock\") {\n      if (!attachment.mime.startsWith(\"image/\")) return false\n      const id = model.api.id.toLowerCase()\n      return id.includes(\"anthropic.\") || id.includes(\"nova\") || id.includes(\"llama4\") || id.includes(\"llama-4\")\n    }\n    if (model.api.npm === \"@ai-sdk/xai\") return attachment.mime.startsWith(\"image/\")\n    if (model.api.npm === \"@ai-sdk/google-vertex/anthropic\") return true\n    if (model.api.npm === \"@ai-sdk/google\") {\n      const id = model.api.id.toLowerCase()\n      return id.includes(\"gemini-3\") && !id.includes(\"gemini-2\")\n    }\n    return false\n  }\n\n  const toModelOutput = (options: { toolCallId: string; input: unknown; output: unknown }) => {\n    const output = options.output\n    if (typeof output === \"string\") {\n      return { type: \"text\", value: output }\n    }\n\n    if (typeof output === \"object\") {\n      const outputObject = output as {\n        text: string"
+  },
+  {
+   "path": "packages/llm/script/recording-cost-report.ts",
+   "start": 57,
+   "end": 80,
+   "code": "const providerFromUrl = (url: string) => {\n  if (url.includes(\"api.openai.com\")) return \"openai\"\n  if (url.includes(\"api.anthropic.com\")) return \"anthropic\"\n  if (url.includes(\"generativelanguage.googleapis.com\")) return \"google\"\n  if (url.includes(\"bedrock\")) return \"amazon-bedrock\"\n  if (url.includes(\"openrouter.ai\")) return \"openrouter\"\n  if (url.includes(\"api.x.ai\")) return \"xai\"\n  if (url.includes(\"api.groq.com\")) return \"groq\"\n  if (url.includes(\"api.deepseek.com\")) return \"deepseek\"\n  if (url.includes(\"api.together.xyz\")) return \"togetherai\"\n  return \"unknown\"\n}\n\nconst providerAliases: Record<string, ReadonlyArray<string>> = {\n  openai: [\"openai\"],\n  anthropic: [\"anthropic\"],\n  google: [\"google\"],\n  \"amazon-bedrock\": [\"amazon-bedrock\"],\n  openrouter: [\"openrouter\", \"openai\", \"anthropic\", \"google\"],\n  xai: [\"xai\"],\n  groq: [\"groq\"],\n  deepseek: [\"deepseek\"],\n  togetherai: [\"togetherai\"],\n}"
+  },
+  {
+   "path": "packages/llm/script/setup-recording-env.ts",
+   "start": 97,
+   "end": 120,
+   "code": "  },\n  {\n    id: \"xai\",\n    label: \"xAI\",\n    tier: \"canary\",\n    note: \"OpenAI-compatible xAI chat endpoint\",\n    vars: [{ name: \"XAI_API_KEY\" }],\n    validate: (env) => validateBearer(\"https://api.x.ai/v1/models\", Redacted.make(env.XAI_API_KEY)),\n  },\n  {\n    id: \"cloudflare-ai-gateway\",\n    label: \"Cloudflare AI Gateway\",\n    tier: \"canary\",\n    note: \"Cloudflare Unified/OpenAI-compatible gateway; supports provider/model ids like workers-ai/@cf/...\",\n    vars: [\n      { name: \"CLOUDFLARE_ACCOUNT_ID\", label: \"Cloudflare account ID\", secret: false },\n      {\n        name: \"CLOUDFLARE_GATEWAY_ID\",\n        label: \"Cloudflare AI Gateway ID (defaults to default)\",\n        optional: true,\n        secret: false,\n      },\n      { name: \"CLOUDFLARE_API_TOKEN\", label: \"Cloudflare AI Gateway token\" },\n    ],"
+  },
+  {
+   "path": "packages/llm/src/providers/openai-compatible-profile.ts",
+   "start": 9,
+   "end": 20,
+   "code": "  deepinfra: { provider: \"deepinfra\", baseURL: \"https://api.deepinfra.com/v1/openai\" },\n  deepseek: { provider: \"deepseek\", baseURL: \"https://api.deepseek.com/v1\" },\n  fireworks: { provider: \"fireworks\", baseURL: \"https://api.fireworks.ai/inference/v1\" },\n  groq: { provider: \"groq\", baseURL: \"https://api.groq.com/openai/v1\" },\n  openrouter: { provider: \"openrouter\", baseURL: \"https://openrouter.ai/api/v1\" },\n  togetherai: { provider: \"togetherai\", baseURL: \"https://api.together.xyz/v1\" },\n  xai: { provider: \"xai\", baseURL: \"https://api.x.ai/v1\" },\n} as const satisfies Record<string, OpenAICompatibleProfile>\n\nexport const byProvider: Record<string, OpenAICompatibleProfile> = Object.fromEntries(\n  Object.values(profiles).map((profile) => [profile.provider, profile]),\n)"
+  },
+  {
+   "path": "packages/llm/src/providers/xai.ts",
+   "start": 11,
+   "end": 34,
+   "code": "  ProviderAuthOption<\"optional\"> & {\n    readonly baseURL?: string\n  }\n\nexport const routes = [OpenAIResponses.route, OpenAICompatibleChat.route]\n\nconst auth = (options: ProviderAuthOption<\"optional\">) => AuthOptions.bearer(options, \"XAI_API_KEY\")\n\nconst configuredResponsesRoute = (input: ModelOptions) => {\n  const { apiKey: _, auth: _auth, baseURL, ...rest } = input\n  return OpenAIResponses.route.with({\n    ...rest,\n    provider: id,\n    endpoint: { baseURL: baseURL ?? OpenAICompatibleProfiles.profiles.xai.baseURL },\n    auth: auth(input),\n  })\n}\n\nconst configuredChatRoute = (input: ModelOptions) => {\n  const { apiKey: _, auth: _auth, baseURL, ...rest } = input\n  return OpenAICompatibleChat.route.with({\n    ...rest,\n    provider: id,\n    endpoint: { baseURL: baseURL ?? OpenAICompatibleProfiles.profiles.xai.baseURL },"
+  },
+  {
+   "path": "packages/core/src/v1/config/provider-options.ts",
+   "start": 150,
+   "end": 173,
+   "code": "  \"@ai-sdk/openai-compatible\": openaiCompatible,\n  \"@ai-sdk/cerebras\": openaiCompatible,\n  \"@ai-sdk/deepinfra\": openaiCompatible,\n  \"@ai-sdk/groq\": openaiCompatible,\n  \"@ai-sdk/mistral\": openaiCompatible,\n  \"@ai-sdk/togetherai\": openaiCompatible,\n  \"@ai-sdk/xai\": openaiCompatible,\n  \"@openrouter/ai-sdk-provider\": openaiCompatible,\n  \"ai-gateway-provider\": openaiCompatible,\n  \"venice-ai-sdk-provider\": openaiCompatible,\n}\n\nfunction direct(options: Options, extraKeys: ReadonlyArray<string> = []): ProviderResult {\n  return {\n    headers: headers(options.headers),\n    body: body(options.body),\n    settings: omit(options, [\"headers\", \"body\", ...extraKeys]),\n  }\n}\n\nfunction body(input: unknown) {\n  if (!isRecord(input)) return undefined\n  return { ...input }\n}"
+  },
+  {
+   "path": "packages/core/src/plugin/provider/xai.ts",
+   "start": 4,
+   "end": 22,
+   "code": "\nexport const XAIPlugin = define({\n  id: \"xai\",\n  effect: Effect.fn(function* (ctx) {\n    yield* ctx.aisdk.sdk(\n      Effect.fn(function* (evt) {\n        if (evt.package !== \"@ai-sdk/xai\") return\n        const mod = yield* Effect.promise(() => import(\"@ai-sdk/xai\"))\n        evt.sdk = mod.createXai(evt.options)\n      }),\n    )\n    yield* ctx.aisdk.language(\n      Effect.fn(function* (evt) {\n        if (evt.model.providerID !== ProviderV2.ID.make(\"xai\")) return\n        evt.language = evt.sdk.responses(evt.model.api.id)\n      }),\n    )\n  }),\n})"
+  }
+ ],
+ "files": [
+  {
+   "path": "package.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 169,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "grpc",
+    "mcp"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/providers.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 2685,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 465,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 500,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/da/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 465,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/da/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 487,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/tr/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 447,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/tr/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 499,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/pl/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 464,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/pl/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 500,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/es/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 465,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/es/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 499,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/bs/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 470,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/bs/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 487,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/th/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 449,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/th/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 500,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/pt-br/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 447,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/pt-br/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 500,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/zh-cn/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 447,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/zh-cn/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 475,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/nb/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 465,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/nb/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 500,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/ko/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 447,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/ko/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 483,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/zh-tw/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 453,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/zh-tw/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 475,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/ja/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 447,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/ja/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 483,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/fr/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 447,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/fr/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 485,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/ar/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 452,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/ar/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 481,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/de/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 447,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/de/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 489,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/ru/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 465,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/ru/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 501,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/it/zen.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 465,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/web/src/content/docs/it/go.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 497,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/console/app/src/routes/workspace/[id]/usage/graph-section.tsx",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 556,
+   "endpoints": [],
+   "models": [
+    "grok-code"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "packages/console/app/src/component/go-models.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 114,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "packages/stats/core/src/domain/model-normalization.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 69,
+   "endpoints": [],
+   "models": [
+    "grok-code"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/stats/core/src/domain/inference.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 434,
+   "endpoints": [],
+   "models": [
+    "grok-code"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/plugin/src/v2/promise/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 103,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "packages/plugin/src/v2/effect/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 111,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "packages/opencode/package.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 157,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "packages/opencode/test/preload.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 92,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "packages/opencode/test/provider/transform.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 6317,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/opencode/test/plugin/xai.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 585,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "packages/opencode/src/provider/provider.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 2094,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/opencode/src/provider/transform.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1922,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "openai_compatible",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/opencode/src/plugin/xai.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 339,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/opencode/src/session/message-v2.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 741,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/llm/test/exports.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 76,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/llm/test/auth-options.types.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 168,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/llm/test/provider/golden.recorded.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 223,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/llm/script/recording-cost-report.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 250,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/llm/script/setup-recording-env.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 542,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/llm/src/providers/openai-compatible-profile.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 20,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "packages/llm/src/providers/xai.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 56,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "packages/core/package.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 133,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/core/test/provider-xai-responses.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 85,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/core/test/plugin/provider-xai.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 125,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "packages/core/test/config/provider-options.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 224,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/core/src/v1/config/provider-options.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 227,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/core/src/plugin/provider/xai.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 22,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  }
+ ]
+}

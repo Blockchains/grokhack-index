@@ -1,0 +1,152 @@
+{
+ "fork": "Blockchains/forgecode",
+ "upstream": "tailcallhq/forgecode",
+ "category": "coding-agent-cli",
+ "stars": 7638,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-10-03T17:18:41Z",
+ "description": "AI enabled pair programmer for Claude, GPT, O Series, Grok, Deepseek, Gemini and 300+ models",
+ "commit": "937577539c6e1b57b765fad231a802f1cc0d1a11",
+ "indexed_at": "2026-10-03T18:47:29Z",
+ "status": "ok",
+ "clone_kb": 11964,
+ "seconds": 9.7,
+ "files_scanned": 713,
+ "languages": {
+  "Rust": 474,
+  "TypeScript": 19
+ },
+ "grok_files": 5,
+ "grok_files_by_kind": {
+  "doc": 1,
+  "config": 2,
+  "source": 2
+ },
+ "hosts": {
+  "api.x.ai": 3
+ },
+ "endpoints": {
+  "/v1/chat/completions": 3,
+  "/v1/models": 3,
+  "/v1/messages": 2,
+  "/v1/responses": 1
+ },
+ "models": {
+  "grok-code-fast-1": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 2
+ },
+ "features": {
+  "anthropic_compatible": 2,
+  "reasoning": 1,
+  "structured_output": 1,
+  "tool_calling": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "crates/forge_domain/src/provider.rs",
+   "start": 466,
+   "end": 489,
+   "code": "    /// Test helper for creating an XAI provider\n    pub(super) fn xai(key: &str) -> Provider<Url> {\n        Provider {\n            id: ProviderId::XAI,\n            provider_type: Default::default(),\n            response: Some(ProviderResponse::OpenAI),\n            url: Url::parse(\"https://api.x.ai/v1/chat/completions\").unwrap(),\n            auth_methods: vec![crate::AuthMethod::ApiKey],\n            url_params: vec![],\n            credential: make_credential(ProviderId::XAI, key),\n            custom_headers: None,\n            models: Some(ModelSource::Url(\n                Url::parse(\"https://api.x.ai/v1/models\").unwrap(),\n            )),\n        }\n    }\n\n    /// Test helper for creating a Vertex AI provider\n    pub(super) fn vertex_ai(key: &str, project_id: &str, location: &str) -> Provider<Url> {\n        let (chat_url, model_url) = if location == \"global\" {\n            (\n                format!(\n                    \"https://aiplatform.googleapis.com/v1/projects/{}/locations/{}/endpoints/openapi/chat/completions\",\n                    project_id, location"
+  },
+  {
+   "path": "crates/forge_app/src/dto/openai/transformers/pipeline.rs",
+   "start": 284,
+   "end": 307,
+   "code": "\n    fn xai(key: &str) -> Provider<Url> {\n        Provider {\n            id: ProviderId::XAI,\n            provider_type: Default::default(),\n            response: Some(ProviderResponse::OpenAI),\n            url: Url::parse(\"https://api.x.ai/v1/chat/completions\").unwrap(),\n            auth_methods: vec![forge_domain::AuthMethod::ApiKey],\n            url_params: vec![],\n            credential: make_credential(ProviderId::XAI, key),\n            custom_headers: None,\n            models: Some(ModelSource::Url(\n                Url::parse(\"https://api.x.ai/v1/models\").unwrap(),\n            )),\n        }\n    }\n\n    fn requesty(key: &str) -> Provider<Url> {\n        Provider {\n            id: ProviderId::REQUESTY,\n            provider_type: Default::default(),\n            response: Some(ProviderResponse::OpenAI),\n            url: Url::parse(\"https://api.requesty.ai/v1/chat/completions\").unwrap(),\n            auth_methods: vec![forge_domain::AuthMethod::ApiKey],"
+  }
+ ],
+ "files": [
+  {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1159,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "crates/forge_repo/src/provider/provider.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 4126,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "crates/forge_domain/src/provider.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1014,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "crates/forge_app/src/dto/openai/transformers/pipeline.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1335,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "benchmarks/evals/sem_search/task.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 138,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  }
+ ]
+}

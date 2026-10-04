@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>grokhack-index: search Grok/xAI integration parts</title>
+<meta name="description" content="Searchable index of the Grok/xAI integration surface (endpoints, models, tool calling, streaming, env vars, SDK exports) across open-source repos forked to github.com/Blockchains.">
+<style>body{font-family:system-ui,sans-serif;background:#0b0d10;color:#e8eaed;max-width:1000px;margin:0 auto;padding:24px}a{color:#7cf0c5}
+input{width:100%;padding:10px;border-radius:8px;border:1px solid #2a2f36;background:#14181d;color:#e8eaed;font-size:1rem}
+.mut{color:#9aa0a6}.r{border-bottom:1px solid #1c2127;padding:10px 0}.t{font-size:.75rem;color:#0b0d10;background:#7cf0c5;border-radius:4px;padding:1px 6px;margin-right:6px}
+.c{font-size:.8rem;color:#9aa0a6}pre{white-space:pre-wrap;font-size:.8rem}</style></head><body>
+<h1>grokhack-index</h1>
+<p class="mut" id="stats">Loading index...</p>
+<input id="q" placeholder="e.g. streaming tool calling typescript, grok-4, live_search python, XAI_API_KEY" autofocus>
+<div id="res"></div>
+<p class="mut">Data: <a href="data/parts.json">parts.json</a> · <a href="data/stats.json">stats.json</a> · <a href="data/search-index.json">search-index.json</a> · per-repo shards in <a href="https://github.com/Blockchains/grokhack-index/tree/main/data/repos">data/repos</a>. Refreshed nightly. Used by <a href="https://grokhack.com/forge">grokhack.com /forge</a>.</p>
+<script>
+const syn={tool:'tool_calling',tools:'tool_calling',search:'live_search',structured:'structured_output',json:'structured_output',image:'image_generation',stream:'streaming'};
+let parts=[],idx={};
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+Promise.all([fetch('data/parts.json').then(r=>r.json()),fetch('data/search-index.json').then(r=>r.json()),fetch('data/stats.json').then(r=>r.json())]).then(([p,i,s])=>{
+  parts=p;idx=i.index;
+  document.getElementById('stats').textContent=`${s.repos_indexed_ok} repos indexed · ${s.repos_with_grok_surface} with Grok/xAI code · ${s.grok_files} Grok files · ${s.parts} parts · generated ${s.generated_at}`;
+  search();});
+function search(){
+  const q=document.getElementById('q').value.toLowerCase();const terms=[];
+  for(const t of q.match(/[a-z0-9][a-z0-9.\-_]+/g)||[]){terms.push(t);if(syn[t])terms.push(syn[t]);}
+  const sc=new Map();
+  for(const t of terms)for(const i of (idx[t]||[]))sc.set(i,(sc.get(i)||0)+1);
+  let ids=[...sc.keys()].sort((a,b)=>(sc.get(b)-sc.get(a))||((parts[b].stars||0)-(parts[a].stars||0)));
+  if(!terms.length)ids=parts.map((_,i)=>i).filter(i=>parts[i].type==='repo-surface').sort((a,b)=>(parts[b].stars||0)-(parts[a].stars||0));
+  document.getElementById('res').innerHTML=ids.slice(0,40).map(i=>{const p=parts[i];
+    const link=p.url||`https://github.com/${p.repo}`;
+    return `<div class="r"><span class="t">${esc(p.type)}</span><a href="${esc(link)}">${esc(p.id)}</a> <span class="c">${esc(p.license)} · ${p.stars??''}★</span>
+    <div class="c">${p.capabilities?'capabilities: '+esc(p.capabilities.join(', ')):''} ${p.models&&p.models.length?' · models: '+esc(p.models.slice(0,6).join(', ')):''} ${p.env_vars&&p.env_vars.length?' · env: '+esc(p.env_vars.slice(0,4).join(', ')):''} ${p.exports?' · exports: '+esc(p.exports.slice(0,12).join(', ')):''}</div></div>`}).join('');}
+document.getElementById('q').addEventListener('input',search);
+</script></body></html>

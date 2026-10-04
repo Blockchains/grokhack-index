@@ -1,0 +1,2131 @@
+{
+ "fork": "Blockchains/xai-sdk-python",
+ "upstream": "xai-org/xai-sdk-python",
+ "category": "official",
+ "stars": 583,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-09-28T14:25:38Z",
+ "description": "The official Python SDK for the xAI API",
+ "commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+ "indexed_at": "2026-10-03T18:47:18Z",
+ "status": "ok",
+ "clone_kb": 3648,
+ "seconds": 1.4,
+ "files_scanned": 207,
+ "languages": {
+  "Python": 191
+ },
+ "grok_files": 102,
+ "grok_files_by_kind": {
+  "doc": 3,
+  "config": 6,
+  "test": 24,
+  "example": 50,
+  "source": 19
+ },
+ "hosts": {
+  "api.x.ai": 8,
+  "management-api.x.ai": 1
+ },
+ "endpoints": {},
+ "models": {
+  "grok-4.20-non-reasoning": 22,
+  "grok-4.20": 16,
+  "grok-imagine-image": 12,
+  "grok-3": 12,
+  "grok-imagine-video": 11,
+  "grok-4.3": 9,
+  "grok-imagine-video-1.5": 8,
+  "grok-3-latest": 7,
+  "grok-imagine-image-2.0": 6,
+  "grok-2-image": 5,
+  "grok-4.5": 5,
+  "grok-4.6": 4,
+  "grok-4-fast": 3,
+  "grok-4.20-0309": 2,
+  "grok-4.20-multi-agent": 2,
+  "grok-4.3-latest": 2,
+  "grok-4.5-latest": 2,
+  "grok-imagine-image-quality": 2,
+  "grok-2": 2,
+  "grok-3-beta": 2,
+  "grok-imagine": 2,
+  "grok-4.20-beta": 1,
+  "grok-4.20-beta-0309": 1,
+  "grok-4.20-experimental-beta": 1,
+  "grok-4.20-multi-agent-beta-0309": 1,
+  "grok-4.20-multi-agent-experimental-beta": 1,
+  "grok-imagine-image-pro": 1,
+  "grok-imagine-video-1.5-preview": 1,
+  "grok-4-1": 1,
+  "grok-4.1": 1,
+  "grok-3-fast": 1,
+  "grok-3-fast-latest": 1,
+  "grok-3-mini": 1,
+  "grok-3-mini-fast": 1,
+  "grok-3-mini-fast-latest": 1,
+  "grok-4": 1,
+  "grok-4-0709": 1,
+  "grok-4-1-fast": 1,
+  "grok-4-1-fast-non-reasoning": 1,
+  "grok-4-1-fast-non-reasoning-latest": 1,
+  "grok-4-1-fast-reasoning": 1,
+  "grok-4-1-fast-reasoning-latest": 1,
+  "grok-4-fast-non-reasoning": 1,
+  "grok-4-fast-non-reasoning-latest": 1,
+  "grok-4-fast-reasoning": 1,
+  "grok-4-fast-reasoning-latest": 1,
+  "grok-4-latest": 1,
+  "grok-4.20-0309-non-reasoning": 1,
+  "grok-4.20-0309-reasoning": 1,
+  "grok-4.20-multi-agent-0309": 1,
+  "grok-4.20-multi-agent-latest": 1,
+  "grok-4.20-non-reasoning-latest": 1,
+  "grok-4.20-reasoning-latest": 1,
+  "grok-code-fast-1": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 10,
+  "XAI_MANAGEMENT_KEY": 5,
+  "XAI_SDK_DISABLE_TRACING": 3,
+  "XAI_MANAGEMENT_API_KEY": 1
+ },
+ "features": {
+  "reasoning": 24,
+  "image_generation": 23,
+  "grpc": 22,
+  "vision": 20,
+  "streaming": 19,
+  "tool_calling": 9,
+  "live_search": 7,
+  "structured_output": 7,
+  "embeddings": 6,
+  "voice_realtime": 3,
+  "mcp": 1
+ },
+ "sdk_exports": [
+  {
+   "path": "src/xai_sdk/chat.py",
+   "lang": "Python",
+   "names": [
+    "BaseClient",
+    "BaseChat",
+    "user",
+    "assistant",
+    "system",
+    "developer",
+    "tool_result",
+    "tool",
+    "required_tool",
+    "text",
+    "image",
+    "file",
+    "file",
+    "file",
+    "file",
+    "Chunk",
+    "CompletionOutputChunk",
+    "ImageGenerationOutput",
+    "Response",
+    "CompactContextResponse"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/video.py",
+   "lang": "Python",
+   "names": [
+    "VideoGenerationError",
+    "BaseClient",
+    "VideoResponse",
+    "convert_video_aspect_ratio_to_pb",
+    "convert_video_resolution_to_pb"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/tools.py",
+   "lang": "Python",
+   "names": [
+    "web_search",
+    "x_search",
+    "code_execution",
+    "image_generation",
+    "collections_search",
+    "mcp",
+    "get_tool_call_type"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/client.py",
+   "lang": "Python",
+   "names": [
+    "BaseClient",
+    "create_channel_credentials"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/search.py",
+   "lang": "Python",
+   "names": [
+    "SearchParameters",
+    "web_source",
+    "news_source",
+    "x_source",
+    "rss_source"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/aio/models.py",
+   "lang": "Python",
+   "names": [
+    "Client"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/aio/batch.py",
+   "lang": "Python",
+   "names": [
+    "Client"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/aio/chat.py",
+   "lang": "Python",
+   "names": [
+    "Client",
+    "Chat"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/aio/video.py",
+   "lang": "Python",
+   "names": [
+    "Client"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/aio/image.py",
+   "lang": "Python",
+   "names": [
+    "Client",
+    "ImageResponse"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/aio/client.py",
+   "lang": "Python",
+   "names": [
+    "Client"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/telemetry/config.py",
+   "lang": "Python",
+   "names": [
+    "Telemetry",
+    "get_tracer",
+    "should_disable_sensitive_attributes"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/sync/models.py",
+   "lang": "Python",
+   "names": [
+    "Client"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/sync/batch.py",
+   "lang": "Python",
+   "names": [
+    "Client"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/sync/chat.py",
+   "lang": "Python",
+   "names": [
+    "Client",
+    "Chat"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/sync/video.py",
+   "lang": "Python",
+   "names": [
+    "Client"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/sync/image.py",
+   "lang": "Python",
+   "names": [
+    "Client",
+    "ImageResponse"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/sync/client.py",
+   "lang": "Python",
+   "names": [
+    "Client"
+   ]
+  }
+ ],
+ "packages": [
+  {
+   "path": "pyproject.toml",
+   "ecosystem": "pypi",
+   "name": "xai-sdk",
+   "version": null
+  }
+ ],
+ "snippets": [
+  {
+   "path": "examples/aio/models.py",
+   "start": 1,
+   "end": 23,
+   "code": "import asyncio\nfrom typing import Sequence\n\nfrom absl import app, flags\n\nfrom xai_sdk import AsyncClient\n\nOPERATION = flags.DEFINE_enum(\"operation\", \"list\", [\"list\", \"get\"], \"Operation to perform.\")\nMODEL_TYPE = flags.DEFINE_enum(\"model-type\", None, [\"language\", \"embedding\", \"image\"], \"Model type to list.\")\nMODEL_NAME = flags.DEFINE_string(\"model-name\", None, \"Model name to get.\")\n\n\nasync def list_language_models(client: AsyncClient) -> None:\n    \"\"\"List all language models associated with the API key used to make the request.\"\"\"\n    language_models = await client.models.list_language_models()\n    for model in language_models:\n        print(f\"Model name: {model.name}\")\n        print(f\"Aliases: {model.aliases}\")\n        print(f\"Version: {model.version}\")\n        print(f\"Input modalities: {model.input_modalities}\")\n        print(f\"Output modalities: {model.output_modalities}\")\n        print(f\"Prompt text token price: {model.prompt_text_token_price}\")\n        print(f\"Prompt image token price: {model.prompt_image_token_price}\")"
+  },
+  {
+   "path": "examples/aio/inline_files_chat.py",
+   "start": 2,
+   "end": 25,
+   "code": "\nimport asyncio\nimport mimetypes\nimport os\nimport tempfile\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import file, user\n\n\nasync def chat_with_inline_file(client: AsyncClient, file_path: str, query: str) -> None:\n    \"\"\"Create a chat with an inline file attachment and stream the response.\"\"\"\n    # Read file bytes locally and attach inline (no Files API upload required).\n    with open(file_path, \"rb\") as f:\n        data = f.read()\n\n    mime_type, _ = mimetypes.guess_type(file_path)\n\n    # Create a chat\n    chat = client.chat.create(model=\"grok-4.20\")\n\n    # Append a message with the inline file\n    chat.append(user(query, file(data=data, filename=os.path.basename(file_path), mime_type=mime_type)))\n"
+  },
+  {
+   "path": "examples/aio/server_side_tools.py",
+   "start": 1,
+   "end": 21,
+   "code": "import asyncio\nimport json\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import tool, tool_result, user\nfrom xai_sdk.tools import code_execution, get_tool_call_type, web_search, x_search\n\n\nasync def agentic_search(client: AsyncClient, model: str, query: str) -> None:\n    chat = client.chat.create(\n        model=model,\n        # All three tools are active, you can add/remove server-side tools as needed\n        tools=[\n            web_search(),\n            x_search(),\n            code_execution(),\n        ],\n        include=[\n            \"verbose_streaming\",\n            # The output content of `web_search` and `x_search` will be encrypted by default,\n            # thus only enable the output for `code_execution`"
+  },
+  {
+   "path": "examples/aio/image_generation_tool.py",
+   "start": 6,
+   "end": 29,
+   "code": "response via `response.image_outputs`.\n\"\"\"\n\nimport asyncio\nimport os\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import Response, image, user\nfrom xai_sdk.tools import get_tool_call_type, image_generation, web_search\n\n\nasync def generate_image(client: AsyncClient) -> None:\n    \"\"\"Generates an image in a single turn.\"\"\"\n    chat = client.chat.create(\n        model=\"grok-4.5\",\n        tools=[image_generation()],\n    )\n    chat.append(user(\"Generate an image of a corgi surfing a big wave, in the style of a Japanese woodblock print\"))\n    response = await chat.sample()\n    print(response.content)\n    _save_images(response, \"corgi_surfing\")\n    print(response.server_side_tool_usage)\n\n"
+  },
+  {
+   "path": "examples/aio/auth.py",
+   "start": 1,
+   "end": 19,
+   "code": "import asyncio\n\nfrom xai_sdk import AsyncClient\n\n\nasync def get_api_key_info(client: AsyncClient) -> None:\n    \"\"\"Get the information regarding your API key.\"\"\"\n    api_key_info = await client.auth.get_api_key_info()\n    print(\"API key info\")\n    print(api_key_info)\n\n\nasync def main() -> None:\n    client = AsyncClient()\n    await get_api_key_info(client)\n\n\nif __name__ == \"__main__\":\n    asyncio.run(main())"
+  },
+  {
+   "path": "examples/aio/image_multi_reference_editing.py",
+   "start": 11,
+   "end": 34,
+   "code": "import asyncio\nimport os\nfrom typing import Sequence, cast\n\nfrom absl import app, flags\n\nimport xai_sdk\nfrom xai_sdk.aio.image import ImageResponse\nfrom xai_sdk.image import ImageFormat\n\nN = flags.DEFINE_integer(\"n\", 1, \"Number of images to generate.\")\nFORMAT = flags.DEFINE_enum(\"format\", \"base64\", [\"base64\", \"url\"], \"Image format used to return the result.\")\nMODEL = flags.DEFINE_string(\"model\", \"grok-imagine-image\", \"Image generation model to use.\")\nOUTPUT_DIR = flags.DEFINE_string(\"output-dir\", None, \"Directory to save the generated images.\")\nPROMPT = flags.DEFINE_string(\"prompt\", None, \"Prompt to edit the input images.\", required=True)\nIMAGE_URLS = flags.DEFINE_multi_string(\n    \"image-url\",\n    [],\n    \"Input image URL or base64-encoded string. Repeat for multiple images.\",\n)\n\n\nasync def edit_images(client: xai_sdk.AsyncClient, image_format: ImageFormat) -> Sequence[ImageResponse]:\n    \"\"\"Multi-reference image editing using image URLs or base64 strings.\"\"\""
+  },
+  {
+   "path": "examples/aio/structured_outputs.py",
+   "start": 1,
+   "end": 23,
+   "code": "import asyncio\nfrom datetime import datetime\n\nfrom pydantic import BaseModel\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import image, system, user\n\n\nasync def structured_output(client: AsyncClient) -> None:\n    \"\"\"Extract structured information from an image.\"\"\"\n\n    # Define the desired shape of the output as a Pydantic model.\n    class Item(BaseModel):\n        name: str\n        quantity: int\n        price_in_cents: int\n\n    class Receipt(BaseModel):\n        date: datetime\n        items: list[Item]\n        currency: str\n        total_in_cents: int"
+  },
+  {
+   "path": "examples/aio/collections_tool.py",
+   "start": 1,
+   "end": 22,
+   "code": "import asyncio\n\nimport httpx\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import user\nfrom xai_sdk.tools import collections_search\n\nTESLA_10_Q_PDF_URL = \"https://ir.tesla.com/_flysystem/s3/sec/000162828025045968/tsla-20250930-gen.pdf\"\nTESLA_10_K_PDF_URL = \"https://ir.tesla.com/_flysystem/s3/sec/000162828025003063/tsla-20241231-gen.pdf\"\n\n\nasync def agentic_collections_search(client: AsyncClient, model: str) -> None:\n    response = await client.collections.create(\"tesla-sec-filings\")\n    print(f\"Created collection: {response.collection_id}\")\n\n    async def upload_document(url: str, name: str, collection_id: str) -> None:\n        async with httpx.AsyncClient() as http_client:\n            pdf_response = await http_client.get(url, timeout=30.0)\n            pdf_content = pdf_response.content\n\n        print(f\"Uploading {name} document to collection\")"
+  },
+  {
+   "path": "examples/aio/files.py",
+   "start": 4,
+   "end": 27,
+   "code": "import io\nimport os\nimport tempfile\n\nfrom tqdm import tqdm\n\nimport xai_sdk\n\n\nasync def upload_example(client: xai_sdk.AsyncClient):\n    \"\"\"Demonstrate file upload asynchronously.\"\"\"\n    print(\"\\n=== Upload Example ===\")\n\n    # Create a temporary file to upload\n    with tempfile.NamedTemporaryFile(mode=\"w\", suffix=\".txt\", delete=False) as f:\n        f.write(\"This is a test file for the Files API.\\n\")\n        f.write(\"It demonstrates uploading files to the xAI platform.\\n\")\n        temp_file_path = f.name\n\n    try:\n        # Upload the file\n        file = await client.files.upload(temp_file_path)\n        print(f\"Uploaded file: {file.filename}\")\n        print(f\"File ID: {file.id}\")"
+  },
+  {
+   "path": "examples/aio/compaction.py",
+   "start": 1,
+   "end": 20,
+   "code": "import asyncio\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import assistant, system, user\n\nMODEL = \"grok-4.3\"\n\n\nasync def standalone_compaction():\n    \"\"\"Demonstrates client.chat.compact_context() on a pre-built message list.\"\"\"\n    client = AsyncClient()\n\n    # Build a conversation: real content we care about, then thousands of tokens of filler\n    # to demonstrate compaction savings.\n    messages = [\n        system(\"You are a concise and knowledgeable science tutor.\"),\n        # === Important context we want preserved through compaction ===\n        user(\"What is the Higgs boson and why is it important?\"),\n        assistant(\n            \"The Higgs boson is an elementary particle in the Standard Model of particle physics. \""
+  },
+  {
+   "path": "examples/aio/telemetry.py",
+   "start": 1,
+   "end": 24,
+   "code": "import asyncio\n\nfrom opentelemetry import trace\nfrom opentelemetry.sdk.resources import Resource\nfrom opentelemetry.sdk.trace import TracerProvider\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import user\nfrom xai_sdk.telemetry import Telemetry\n\n\nasync def no_telemetry_example(client: AsyncClient):\n    \"\"\"\n    Example without telemetry - no traces will be collected.\n    \"\"\"\n    chat = client.chat.create(model=\"grok-4.20-non-reasoning\")\n    chat.append(user(\"Hello, how are you?\"))\n    response = await chat.sample()\n    print(f\"Response: {response.content}\")\n\n\nasync def console_export_example(client: AsyncClient):\n    \"\"\"\n    Export traces to console for debugging and development."
+  },
+  {
+   "path": "examples/aio/image_generation.py",
+   "start": 2,
+   "end": 25,
+   "code": "import itertools\nimport os\nfrom typing import Sequence, cast\n\nfrom absl import app, flags\n\nimport xai_sdk\nfrom xai_sdk.aio.image import ImageResponse\nfrom xai_sdk.image import ImageFormat\n\nN = flags.DEFINE_integer(\"n\", 1, \"Number of images to generate.\")\nFORMAT = flags.DEFINE_enum(\"format\", \"base64\", [\"base64\", \"url\"], \"Image format used to return the result.\")\nMODEL = flags.DEFINE_string(\"model\", \"grok-imagine-image\", \"Image generation model to use.\")\nOUTPUT_DIR = flags.DEFINE_string(\"output-dir\", None, \"Directory to save the generated images.\", required=True)\n\n\nasync def generate_multi_turn(client: xai_sdk.AsyncClient, image_format: ImageFormat):\n    \"\"\"Multi-turn image generation that builds on the previous output image.\n\n    Turn 0 generates an initial image from your prompt. Each subsequent turn reuses the previous\n    image output as an input image (image-to-image) while you provide a new prompt to refine it.\n    \"\"\"\n    previous_image: str | None = None\n"
+  },
+  {
+   "path": "examples/aio/files_chat.py",
+   "start": 1,
+   "end": 24,
+   "code": "\"\"\"Example demonstrating chat with file attachments using AsyncClient.\"\"\"\n\nimport asyncio\nimport os\nimport tempfile\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import file, user\n\n\nasync def chat_with_file(client: AsyncClient, file_path: str, query: str) -> None:\n    \"\"\"Create a chat with a file attachment and stream the response.\"\"\"\n    # Upload the file first\n    print(f\"Uploading file: {file_path}\")\n    uploaded_file = await client.files.upload(file_path)\n    print(f\"File uploaded with ID: {uploaded_file.id}\\n\")\n\n    # Create a chat\n    chat = client.chat.create(model=\"grok-4.20\")\n\n    # Append a message with the file\n    chat.append(user(query, file(uploaded_file.id)))\n\n    # Stream the response"
+  },
+  {
+   "path": "examples/aio/video_generation.py",
+   "start": 1,
+   "end": 24,
+   "code": "import asyncio\nfrom datetime import timedelta\nfrom typing import Sequence, cast\n\nfrom absl import app, flags\n\nimport xai_sdk\nfrom xai_sdk.video import VideoAspectRatio, VideoResolution\n\nMODEL = flags.DEFINE_string(\"model\", \"grok-imagine-video\", \"Video generation model to use.\")\nIMAGE_URL = flags.DEFINE_string(\n    \"image-url\",\n    \"\",\n    \"Optional input image (URL or base64 data URL) to use as the first frame (image-to-video).\",\n)\nVIDEO_URL = flags.DEFINE_string(\n    \"video-url\",\n    \"\",\n    \"Optional input video (URL or base64 data URL) to edit based on the prompt (video-to-video).\",\n)\nDURATION = flags.DEFINE_integer(\"duration\", 0, \"Optional duration in seconds (1-15). Use 0 to omit.\")\nASPECT_RATIO = flags.DEFINE_string(\n    \"aspect-ratio\",\n    \"\","
+  },
+  {
+   "path": "examples/aio/chat.py",
+   "start": 1,
+   "end": 23,
+   "code": "import asyncio\nfrom typing import Sequence\n\nfrom absl import app, flags\n\nimport xai_sdk\nfrom xai_sdk.chat import assistant, system, user\n\nSTREAM = flags.DEFINE_bool(\"stream\", False, \"Whether streaming is enabled.\")\nN = flags.DEFINE_integer(\"n\", 1, \"Number of answers to generate.\")\n\n\nasync def basic_chat(chat: xai_sdk.aio.chat.Chat):\n    \"\"\"Multi-turn chat between a user and an assistant.\"\"\"\n    total_cost_usd = 0.0\n    while True:\n        prompt = input(\"You: \")\n        if prompt.lower() == \"exit\":\n            break\n\n        # Append a user turn to the conversation history.\n        chat.append(user(prompt))\n        # Sample a response from the assistant."
+  },
+  {
+   "path": "examples/aio/reasoning.py",
+   "start": 1,
+   "end": 23,
+   "code": "import asyncio\nfrom typing import Sequence\n\nfrom absl import app, flags\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import user\n\nSTREAM = flags.DEFINE_bool(\"stream\", False, \"Whether streaming is enabled.\")\n\n\nasync def reasoning(client: AsyncClient) -> None:\n    \"\"\"Sample from a reasoning model.\"\"\"\n    chat = client.chat.create(\n        model=\"grok-4.20\",  # This model is a reasoning model.\n    )\n\n    prompt = input(\"Enter a prompt: \")\n    chat.append(user(prompt))\n\n    response = await chat.sample()\n    print(f\"Reasoning Content: {response.reasoning_content}\")\n    print(f\"Final Answer: {response.content}\")"
+  },
+  {
+   "path": "examples/aio/collection.py",
+   "start": 1,
+   "end": 20,
+   "code": "import asyncio\n\nimport xai_sdk\n\n\nasync def create_collection(client: xai_sdk.AsyncClient):\n    print(\"\\n=== Create Collection ===\")\n\n    collection = await client.collections.create(\n        name=\"research-papers\",\n        model_name=\"grok-embedding-small\",\n        description=\"A collection of research papers\",\n    )\n\n    print(f\"Created collection: {collection.collection_name}\")\n    print(f\"Collection ID: {collection.collection_id}\")\n    print(f\"Model: {collection.index_configuration.model_name}\")\n    print(f\"Created at: {collection.created_at.ToDatetime()}\")\n    print(f\"Description: {collection.collection_description}\")\n    print(f\"Documents Count: {collection.documents_count}\")"
+  },
+  {
+   "path": "examples/aio/function_calling.py",
+   "start": 2,
+   "end": 25,
+   "code": "import json\nfrom typing import Literal, Sequence\n\nfrom absl import app, flags\nfrom pydantic import BaseModel, Field\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import system, tool, tool_result, user\n\nSTREAM = flags.DEFINE_bool(\"stream\", False, \"Whether streaming is enabled.\")\n\n\nasync def function_calling(client: AsyncClient) -> None:\n    \"\"\"Multi-turn chat with function calling.\"\"\"\n\n    def get_weather(city: str, units: Literal[\"C\", \"F\"]) -> str:\n        temperature = 20 if units == \"C\" else 68\n        return f\"The weather in {city} is sunny at a temperature of {temperature} {units}.\"\n\n    chat = client.chat.create(\n        model=\"grok-4.20-non-reasoning\",\n        messages=[system(\"You are a helpful assistant that can answer questions and help with tasks.\")],\n        tools=[\n            tool("
+  },
+  {
+   "path": "examples/aio/deferred_chat.py",
+   "start": 1,
+   "end": 24,
+   "code": "import asyncio\nfrom datetime import timedelta\nfrom typing import Sequence\n\nfrom absl import app, flags\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import user\n\nTIMEOUT = flags.DEFINE_integer(\"timeout\", 5, \"Timeout for the deferred chat request.\")\nINTERVAL = flags.DEFINE_integer(\"interval\", 2000, \"Interval for the deferred chat request.\")\n\n\n# see https://docs.x.ai/docs/guides/deferred-chat-completions#deferred-chat-completions\n\n\nasync def deferred_chat(client: AsyncClient):\n    \"\"\"Sample a response from a model using polling.\"\"\"\n\n    chat = client.chat.create(model=\"grok-4.20-non-reasoning\")\n    chat.append(user(\"Hello\"))\n    try:\n        response = await chat.defer(\n            timeout=timedelta(minutes=TIMEOUT.value), interval=timedelta(milliseconds=INTERVAL.value)"
+  },
+  {
+   "path": "examples/aio/stored_chat.py",
+   "start": 1,
+   "end": 22,
+   "code": "import asyncio\n\nimport grpc\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import system, user\n\n\nasync def stored_response(client: AsyncClient):\n    # Create a new chat instance with message storage enabled\n    chat = client.chat.create(model=\"grok-4.20-non-reasoning\", store_messages=True)\n    chat.append(system(\"You give brief answers\"))\n    chat.append(user(\"Tell me about xAI\"))\n    original_response = await chat.sample()\n\n    print(\"----------------- Original response -----------------\")\n    print(original_response.content)\n\n    # Start a new chat with the previous response as the previous_response_id\n    chat = client.chat.create(\n        model=\"grok-4.20-non-reasoning\",\n        previous_response_id=original_response.id,"
+  },
+  {
+   "path": "examples/aio/video_extension.py",
+   "start": 1,
+   "end": 24,
+   "code": "import asyncio\nfrom datetime import timedelta\nfrom typing import Sequence\n\nfrom absl import app, flags\n\nimport xai_sdk\n\nMODEL = flags.DEFINE_string(\"model\", \"grok-imagine-video\", \"Video generation model to use.\")\nVIDEO_URL = flags.DEFINE_string(\n    \"video-url\",\n    \"\",\n    \"Input video (URL or base64 data URL) to extend.\",\n)\nDURATION = flags.DEFINE_integer(\"duration\", 0, \"Optional extension duration in seconds (1-10). Use 0 to omit.\")\nTIMEOUT = flags.DEFINE_integer(\"timeout\", 600, \"Timeout in seconds for polling.\")\nINTERVAL = flags.DEFINE_integer(\"interval\", 1, \"Polling interval in seconds.\")\n\n\nasync def main(argv: Sequence[str]) -> None:\n    if len(argv) > 1:\n        raise app.UsageError(\"Unexpected command line arguments.\")\n\n    if not VIDEO_URL.value:"
+  },
+  {
+   "path": "examples/aio/tokenizer.py",
+   "start": 1,
+   "end": 20,
+   "code": "import asyncio\n\nfrom xai_sdk import AsyncClient\n\n\nasync def tokenize_text(client: AsyncClient):\n    prompt = input(\"Enter a prompt: \")\n    tokens = await client.tokenize.tokenize_text(prompt, model=\"grok-4.20-non-reasoning\")\n    for token in tokens:\n        print(f\"Token ID: {token.token_id}\")\n        print(f\"Token Text: {token.string_token}\")\n        print(f\"Token Bytes: {token.token_bytes}\")\n\n\nasync def main():\n    client = AsyncClient()\n    await tokenize_text(client)\n\n\nif __name__ == \"__main__\":"
+  },
+  {
+   "path": "examples/aio/batch_request.py",
+   "start": 1,
+   "end": 20,
+   "code": "import asyncio\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import image, user\n\n\nasync def main():\n    client = AsyncClient()\n\n    # Create a new batch\n    batch = await client.batch.create(batch_name=\"my_batch\")\n    print(\"Created new batch\")\n    print(\"---\" * 20)\n    print(batch)\n\n    # Compose the chat requests\n    image_urls = [\n        \"https://images.unsplash.com/photo-1761301006532-fa8143787a88?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=987\",\n        \"https://images.unsplash.com/photo-1761562964782-4c971df72d29?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=987\",\n        \"https://images.unsplash.com/photo-1521747116042-5a810fda9664?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170\","
+  },
+  {
+   "path": "examples/aio/video_keyframes.py",
+   "start": 13,
+   "end": 36,
+   "code": "\nimport asyncio\nfrom typing import Sequence, cast\n\nfrom absl import app, flags\n\nimport xai_sdk\nfrom xai_sdk.types import VideoResolution\n\nMODEL = flags.DEFINE_string(\n    \"model\", \"grok-imagine-video-1.5\", \"Video model; pinned frames need grok-imagine-video-1.5.\"\n)\nIMAGE_MODEL = flags.DEFINE_string(\"image-model\", \"grok-imagine-image\", \"Image model used to create the stills.\")\nDURATION = flags.DEFINE_integer(\"duration\", 9, \"Clip length in seconds (2-15). Keyframes are spaced evenly.\")\nRESOLUTION = flags.DEFINE_enum(\n    \"resolution\", \"720p\", [\"480p\", \"720p\"], \"Video resolution. 1080p is unavailable once a frame is pinned.\"\n)\n\nWINTER_PROMPT = (\n    \"Photorealistic wide landscape: a lone oak tree on a gentle rise in the middle of a ploughed field in \"\n    \"late winter, bare branches against an overcast sky, the tree centered, camera at eye level.\"\n)\nKEEP_SCENE = \"Keep the exact same tree, field, horizon and camera angle.\"\nSEASON_EDITS = {"
+  },
+  {
+   "path": "examples/aio/image_understanding.py",
+   "start": 2,
+   "end": 25,
+   "code": "import base64\nfrom typing import Sequence\n\nimport aiohttp\nfrom absl import app, flags\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.chat import image, user\n\nFORMAT = flags.DEFINE_enum(\"format\", \"url\", [\"url\", \"base64\"], \"Image format used when providing the image.\")\n\n\nasync def image_understanding(client: AsyncClient) -> None:\n    \"\"\"Image understanding with multiple images.\"\"\"\n    chat = client.chat.create(model=\"grok-4.20-non-reasoning\")\n\n    # We can easily interleave text and images in a single user conversation turn.\n    chat.append(\n        user(\n            \"What do these images have in common?\",\n            image(\n                \"https://www.nasa.gov/wp-content/uploads/2025/04/51d-9092large.jpg\",\n                detail=\"high\",\n            ),"
+  },
+  {
+   "path": "examples/sync/models.py",
+   "start": 1,
+   "end": 22,
+   "code": "from typing import Sequence\n\nfrom absl import app, flags\n\nfrom xai_sdk import Client\n\nOPERATION = flags.DEFINE_enum(\"operation\", \"list\", [\"list\", \"get\"], \"Operation to perform.\")\nMODEL_TYPE = flags.DEFINE_enum(\"model-type\", None, [\"language\", \"embedding\", \"image\"], \"Model type to list.\")\nMODEL_NAME = flags.DEFINE_string(\"model-name\", None, \"Model name to get.\")\n\n\ndef list_language_models(client: Client) -> None:\n    \"\"\"List all language models associated with the API key used to make the request.\"\"\"\n    language_models = client.models.list_language_models()\n    for model in language_models:\n        print(f\"Model name: {model.name}\")\n        print(f\"Aliases: {model.aliases}\")\n        print(f\"Version: {model.version}\")\n        print(f\"Input modalities: {model.input_modalities}\")\n        print(f\"Output modalities: {model.output_modalities}\")\n        print(f\"Prompt text token price: {model.prompt_text_token_price}\")\n        print(f\"Prompt image token price: {model.prompt_image_token_price}\")"
+  },
+  {
+   "path": "examples/sync/inline_files_chat.py",
+   "start": 1,
+   "end": 24,
+   "code": "\"\"\"Example demonstrating chat with inline file attachments using sync Client.\"\"\"\n\nimport mimetypes\nimport os\nimport tempfile\n\nfrom xai_sdk import Client\nfrom xai_sdk.chat import file, user\n\n\ndef chat_with_inline_file(client: Client, file_path: str, query: str) -> None:\n    \"\"\"Create a chat with an inline file attachment and stream the response.\"\"\"\n    # Read file bytes locally and attach inline (no Files API upload required).\n    with open(file_path, \"rb\") as f:\n        data = f.read()\n\n    mime_type, _ = mimetypes.guess_type(file_path)\n\n    # Create a chat\n    chat = client.chat.create(model=\"grok-4.20\")\n\n    # Append a message with the inline file\n    chat.append(user(query, file(data=data, filename=os.path.basename(file_path), mime_type=mime_type)))\n"
+  },
+  {
+   "path": "examples/sync/server_side_tools.py",
+   "start": 1,
+   "end": 20,
+   "code": "import json\n\nfrom xai_sdk import Client\nfrom xai_sdk.chat import tool, tool_result, user\nfrom xai_sdk.tools import code_execution, get_tool_call_type, web_search, x_search\n\n\ndef agentic_search(client: Client, model: str, query: str) -> None:\n    chat = client.chat.create(\n        model=model,\n        # All three tools are active, you can add/remove server-side tools as needed\n        tools=[\n            web_search(),\n            x_search(),\n            code_execution(),\n        ],\n        include=[\n            \"verbose_streaming\",\n            # The output content of `web_search` and `x_search` will be encrypted by default,\n            # thus only enable the output for `code_execution`"
+  },
+  {
+   "path": "examples/sync/image_generation_tool.py",
+   "start": 5,
+   "end": 28,
+   "code": "as part of a single agentic chat request. Generated images are exposed on the\nresponse via `response.image_outputs`.\n\"\"\"\n\nimport os\n\nfrom xai_sdk import Client\nfrom xai_sdk.chat import Response, image, user\nfrom xai_sdk.tools import get_tool_call_type, image_generation, web_search\n\n\ndef generate_image(client: Client) -> None:\n    \"\"\"Generates an image in a single turn.\"\"\"\n    chat = client.chat.create(\n        model=\"grok-4.5\",\n        tools=[image_generation()],\n    )\n    chat.append(user(\"Generate an image of a corgi surfing a big wave, in the style of a Japanese woodblock print\"))\n    response = chat.sample()\n    print(response.content)\n    _save_images(response, \"corgi_surfing\")\n    print(response.server_side_tool_usage)\n\n"
+  },
+  {
+   "path": "examples/sync/auth.py",
+   "start": 1,
+   "end": 18,
+   "code": "from xai_sdk import Client\n\n\ndef get_api_key_info(client: Client) -> None:\n    \"\"\"Get the information regarding your API key.\"\"\"\n    api_key_info = client.auth.get_api_key_info()\n    print(\"--- API key info ---\")\n    print(f\"redacted_api_key: {api_key_info.redacted_api_key}\")\n    print(f\"user_id: {api_key_info.user_id}\")\n    print(f\"name: {api_key_info.name}\")\n    print(f\"create_time: {api_key_info.create_time}\")\n    print(f\"modify_time: {api_key_info.modify_time}\")\n    print(f\"modified_by: {api_key_info.modified_by}\")\n    print(f\"team_id: {api_key_info.team_id}\")\n    print(f\"acls: {api_key_info.acls}\")\n    print(f\"api_key_id: {api_key_info.api_key_id}\")\n    print(f\"api_key_blocked: {api_key_info.api_key_blocked}\")\n    print(f\"team_blocked: {api_key_info.team_blocked}\")"
+  },
+  {
+   "path": "examples/sync/image_multi_reference_editing.py",
+   "start": 10,
+   "end": 33,
+   "code": "\nimport os\nfrom typing import Sequence, cast\n\nfrom absl import app, flags\n\nimport xai_sdk\nfrom xai_sdk.image import ImageFormat\nfrom xai_sdk.sync.image import ImageResponse\n\nN = flags.DEFINE_integer(\"n\", 1, \"Number of images to generate.\")\nFORMAT = flags.DEFINE_enum(\"format\", \"base64\", [\"base64\", \"url\"], \"Image format used to return the result.\")\nMODEL = flags.DEFINE_string(\"model\", \"grok-imagine-image\", \"Image generation model to use.\")\nOUTPUT_DIR = flags.DEFINE_string(\"output-dir\", None, \"Directory to save the generated images.\")\nPROMPT = flags.DEFINE_string(\"prompt\", None, \"Prompt to edit the input images.\", required=True)\nIMAGE_URLS = flags.DEFINE_multi_string(\n    \"image-url\",\n    [],\n    \"Input image URL or base64-encoded string. Repeat for multiple images.\",\n)\n\n\ndef edit_images(client: xai_sdk.Client, image_format: ImageFormat) -> Sequence[ImageResponse]:\n    \"\"\"Multi-reference image editing using image URLs or base64 strings.\"\"\""
+  },
+  {
+   "path": "examples/sync/structured_outputs.py",
+   "start": 1,
+   "end": 22,
+   "code": "from datetime import datetime\n\nfrom pydantic import BaseModel\n\nfrom xai_sdk import Client\nfrom xai_sdk.chat import image, system, user\n\n\ndef structured_output(client: Client) -> None:\n    \"\"\"Extract structured information from an image.\"\"\"\n\n    # Define the desired shape of the output as a Pydantic model.\n    class Item(BaseModel):\n        name: str\n        quantity: int\n        price_in_cents: int\n\n    class Receipt(BaseModel):\n        date: datetime\n        items: list[Item]\n        currency: str\n        total_in_cents: int"
+  },
+  {
+   "path": "examples/sync/collections_tool.py",
+   "start": 1,
+   "end": 22,
+   "code": "from concurrent.futures import ThreadPoolExecutor\n\nimport requests\n\nfrom xai_sdk import Client\nfrom xai_sdk.chat import user\nfrom xai_sdk.tools import collections_search\n\nTESLA_10_Q_PDF_URL = \"https://ir.tesla.com/_flysystem/s3/sec/000162828025045968/tsla-20250930-gen.pdf\"\nTESLA_10_K_PDF_URL = \"https://ir.tesla.com/_flysystem/s3/sec/000162828025003063/tsla-20241231-gen.pdf\"\n\n\ndef agentic_collections_search(client: Client, model: str) -> None:\n    response = client.collections.create(\"tesla-sec-filings\")\n    print(f\"Created collection: {response.collection_id}\")\n\n    def upload_document(url: str, name: str, collection_id: str) -> None:\n        print(f\"Uploading {name} document to collection\")\n        pdf_content = requests.get(url, timeout=5).content\n        client.collections.upload_document(\n            collection_id=collection_id,\n            name=name,"
+  },
+  {
+   "path": "examples/sync/files.py",
+   "start": 3,
+   "end": 26,
+   "code": "import io\nimport os\nimport tempfile\n\nfrom tqdm import tqdm\n\nimport xai_sdk\n\n\ndef upload_example(client: xai_sdk.Client):\n    \"\"\"Demonstrate file upload.\"\"\"\n    print(\"\\n=== Upload Example ===\")\n\n    # Create a temporary file to upload\n    with tempfile.NamedTemporaryFile(mode=\"w\", suffix=\".txt\", delete=False) as f:\n        f.write(\"This is a test file for the Files API.\\n\")\n        f.write(\"It demonstrates uploading files to the xAI platform.\\n\")\n        temp_file_path = f.name\n\n    try:\n        # Upload the file\n        file = client.files.upload(temp_file_path)\n        print(f\"Uploaded file: {file.filename}\")\n        print(f\"File ID: {file.id}\")"
+  },
+  {
+   "path": "examples/sync/compaction.py",
+   "start": 1,
+   "end": 18,
+   "code": "from xai_sdk import Client\nfrom xai_sdk.chat import assistant, system, user\n\nMODEL = \"grok-4.3\"\n\n\ndef standalone_compaction():\n    \"\"\"Demonstrates client.chat.compact_context() on a pre-built message list.\"\"\"\n    client = Client()\n\n    # Build a conversation: real content we care about, then thousands of tokens of filler\n    # to demonstrate compaction savings.\n    messages = [\n        system(\"You are a concise and knowledgeable science tutor.\"),\n        # === Important context we want preserved through compaction ===\n        user(\"What is the Higgs boson and why is it important?\"),\n        assistant(\n            \"The Higgs boson is an elementary particle in the Standard Model of particle physics. \""
+  },
+  {
+   "path": "examples/sync/telemetry.py",
+   "start": 1,
+   "end": 22,
+   "code": "from opentelemetry import trace\nfrom opentelemetry.sdk.resources import Resource\nfrom opentelemetry.sdk.trace import TracerProvider\n\nfrom xai_sdk import Client\nfrom xai_sdk.chat import user\nfrom xai_sdk.telemetry import Telemetry\n\n\ndef no_telemetry_example(client: Client):\n    \"\"\"\n    Example without telemetry - no traces will be collected.\n    \"\"\"\n    chat = client.chat.create(model=\"grok-4.20-non-reasoning\")\n    chat.append(user(\"Hello, how are you?\"))\n    response = chat.sample()\n    print(f\"Response: {response.content}\")\n\n\ndef console_export_example(client: Client):\n    \"\"\"\n    Export traces to console for debugging and development."
+  },
+  {
+   "path": "examples/sync/image_generation.py",
+   "start": 1,
+   "end": 24,
+   "code": "import itertools\nimport os\nfrom typing import Sequence, cast\n\nfrom absl import app, flags\n\nimport xai_sdk\nfrom xai_sdk.image import ImageFormat\nfrom xai_sdk.sync.image import ImageResponse\n\nN = flags.DEFINE_integer(\"n\", 1, \"Number of images to generate.\")\nFORMAT = flags.DEFINE_enum(\"format\", \"base64\", [\"base64\", \"url\"], \"Image format used to return the result.\")\nMODEL = flags.DEFINE_string(\"model\", \"grok-imagine-image\", \"Image generation model to use.\")\nOUTPUT_DIR = flags.DEFINE_string(\"output-dir\", None, \"Directory to save the generated images.\", required=True)\n\n\ndef generate_multi_turn(client: xai_sdk.Client, image_format: ImageFormat):\n    \"\"\"Multi-turn image generation that builds on the previous output image.\n\n    Turn 0 generates an initial image from your prompt. Each subsequent turn reuses the previous\n    image output as an input image (image-to-image) while you provide a new prompt to refine it.\n    \"\"\"\n    previous_image: str | None = None\n"
+  },
+  {
+   "path": "examples/sync/files_chat.py",
+   "start": 1,
+   "end": 23,
+   "code": "\"\"\"Example demonstrating chat with file attachments using sync Client.\"\"\"\n\nimport os\nimport tempfile\n\nfrom xai_sdk import Client\nfrom xai_sdk.chat import file, user\n\n\ndef chat_with_file(client: Client, file_path: str, query: str) -> None:\n    \"\"\"Create a chat with a file attachment and stream the response.\"\"\"\n    # Upload the file first\n    print(f\"Uploading file: {file_path}\")\n    uploaded_file = client.files.upload(file_path)\n    print(f\"File uploaded with ID: {uploaded_file.id}\\n\")\n\n    # Create a chat\n    chat = client.chat.create(model=\"grok-4.20\")\n\n    # Append a message with the file\n    chat.append(user(query, file(uploaded_file.id)))\n\n    # Stream the response"
+  },
+  {
+   "path": "examples/sync/video_generation.py",
+   "start": 1,
+   "end": 23,
+   "code": "from datetime import timedelta\nfrom typing import Sequence, cast\n\nfrom absl import app, flags\n\nimport xai_sdk\nfrom xai_sdk.video import VideoAspectRatio, VideoResolution\n\nMODEL = flags.DEFINE_string(\"model\", \"grok-imagine-video\", \"Video generation model to use.\")\nIMAGE_URL = flags.DEFINE_string(\n    \"image-url\",\n    \"\",\n    \"Optional input image (URL or base64 data URL) to use as the first frame (image-to-video).\",\n)\nVIDEO_URL = flags.DEFINE_string(\n    \"video-url\",\n    \"\",\n    \"Optional input video (URL or base64 data URL) to edit based on the prompt (video-to-video).\",\n)\nDURATION = flags.DEFINE_integer(\"duration\", 0, \"Optional duration in seconds (1-15). Use 0 to omit.\")\nASPECT_RATIO = flags.DEFINE_string(\n    \"aspect-ratio\",\n    \"\","
+  },
+  {
+   "path": "examples/sync/chat.py",
+   "start": 1,
+   "end": 22,
+   "code": "from typing import Sequence\n\nfrom absl import app, flags\n\nimport xai_sdk\nfrom xai_sdk.chat import assistant, system, user\n\nSTREAM = flags.DEFINE_bool(\"stream\", False, \"Whether streaming is enabled.\")\nN = flags.DEFINE_integer(\"n\", 1, \"Number of answers to generate.\")\n\n\ndef basic_chat(chat: xai_sdk.sync.chat.Chat):\n    \"\"\"Multi-turn chat between a user and an assistant.\"\"\"\n    total_cost_usd = 0.0\n    while True:\n        prompt = input(\"You: \")\n        if prompt.lower() == \"exit\":\n            break\n\n        # Append a user turn to the conversation history.\n        chat.append(user(prompt))\n        # Sample a response from the assistant."
+  }
+ ],
+ "files": [
+  {
+   "path": "CONTRIBUTING.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 64,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "pyproject.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 199,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "grpc"
+   ]
+  },
+  {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 588,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-imagine-video"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_SDK_DISABLE_TRACING"
+   ],
+   "features": [
+    "grpc",
+    "image_generation",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "CHANGELOG.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 309,
+   "endpoints": [],
+   "models": [
+    "grok-2-image",
+    "grok-4.20",
+    "grok-4.20-0309",
+    "grok-4.20-beta",
+    "grok-4.20-beta-0309",
+    "grok-4.20-experimental-beta",
+    "grok-4.20-multi-agent",
+    "grok-4.20-multi-agent-beta-0309",
+    "grok-4.20-multi-agent-experimental-beta",
+    "grok-4.3",
+    "grok-4.3-latest",
+    "grok-4.5",
+    "grok-4.5-latest",
+    "grok-4.6",
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-pro",
+    "grok-imagine-image-quality",
+    "grok-imagine-video",
+    "grok-imagine-video-1.5",
+    "grok-imagine-video-1.5-preview"
+   ],
+   "env": [
+    "XAI_MANAGEMENT_API_KEY"
+   ],
+   "features": [
+    "grpc",
+    "image_generation",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/chat_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 940,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "image_generation",
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/telemetry_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 71,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_SDK_DISABLE_TRACING"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/server.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1704,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings",
+    "grpc",
+    "image_generation",
+    "live_search",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/file_content_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 61,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/aio/files_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 922,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "grpc"
+   ]
+  },
+  {
+   "path": "tests/aio/tokenize_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 46,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "grpc"
+   ]
+  },
+  {
+   "path": "tests/aio/collections_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1080,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings",
+    "grpc"
+   ]
+  },
+  {
+   "path": "tests/aio/chat_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2071,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-latest",
+    "grok-4-fast",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "image_generation",
+    "live_search",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/aio/batch_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 323,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-latest"
+   ],
+   "env": [],
+   "features": [
+    "grpc"
+   ]
+  },
+  {
+   "path": "tests/aio/client_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 194,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_MANAGEMENT_KEY"
+   ],
+   "features": [
+    "grpc",
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/aio/auth_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 41,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/aio/models_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 173,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-2-image",
+    "grok-3",
+    "grok-3-beta",
+    "grok-3-latest"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "grpc",
+    "image_generation"
+   ]
+  },
+  {
+   "path": "tests/aio/video_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1307,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "image_generation",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/aio/image_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 784,
+   "endpoints": [],
+   "models": [
+    "grok-2-image",
+    "grok-imagine-image",
+    "grok-imagine-image-2.0"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/sync/files_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 893,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "grpc"
+   ]
+  },
+  {
+   "path": "tests/sync/tokenize_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 35,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "grpc"
+   ]
+  },
+  {
+   "path": "tests/sync/collections_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1160,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings",
+    "grpc"
+   ]
+  },
+  {
+   "path": "tests/sync/chat_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2235,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-latest",
+    "grok-4-fast",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "image_generation",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/sync/batch_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 305,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-latest"
+   ],
+   "env": [],
+   "features": [
+    "grpc"
+   ]
+  },
+  {
+   "path": "tests/sync/client_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 189,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_MANAGEMENT_KEY"
+   ],
+   "features": [
+    "grpc",
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/sync/auth_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 30,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/sync/models_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 146,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-2-image",
+    "grok-3",
+    "grok-3-beta",
+    "grok-3-latest"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "grpc",
+    "image_generation"
+   ]
+  },
+  {
+   "path": "tests/sync/video_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1255,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "image_generation",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/sync/image_test.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 768,
+   "endpoints": [],
+   "models": [
+    "grok-2-image",
+    "grok-imagine-image",
+    "grok-imagine-image-2.0"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/aio/models.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 130,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/aio/inline_files_chat.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 91,
+   "endpoints": [],
+   "models": [
+    "grok-4.20"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/aio/server_side_tools.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 226,
+   "endpoints": [],
+   "models": [
+    "grok-4.20"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/aio/image_generation_tool.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 161,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "image_generation",
+    "live_search",
+    "streaming",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/aio/auth.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 19,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/aio/image_multi_reference_editing.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 85,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/aio/structured_outputs.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 108,
+   "endpoints": [],
+   "models": [
+    "grok-4.20"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "examples/aio/collections_tool.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 82,
+   "endpoints": [],
+   "models": [
+    "grok-4.20"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/aio/files.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 357,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/aio/compaction.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 223,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/aio/telemetry.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 89,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/aio/image_generation.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 90,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/aio/files_chat.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 94,
+   "endpoints": [],
+   "models": [
+    "grok-4.20"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/aio/video_generation.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 93,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/aio/chat.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 131,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/aio/reasoning.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 74,
+   "endpoints": [],
+   "models": [
+    "grok-4.20"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/aio/collection.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 395,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "examples/aio/function_calling.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 151,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/aio/deferred_chat.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 62,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/aio/stored_chat.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 104,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/aio/video_extension.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 67,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/aio/tokenizer.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 21,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/aio/batch_request.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 91,
+   "endpoints": [],
+   "models": [
+    "grok-4.20"
+   ],
+   "env": [],
+   "features": [
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/aio/video_keyframes.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 88,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/aio/image_understanding.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 77,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/sync/models.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 131,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/sync/inline_files_chat.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 90,
+   "endpoints": [],
+   "models": [
+    "grok-4.20"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/sync/server_side_tools.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 225,
+   "endpoints": [],
+   "models": [
+    "grok-4.20"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/sync/image_generation_tool.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 160,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "image_generation",
+    "live_search",
+    "streaming",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/sync/auth.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 28,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/sync/image_multi_reference_editing.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 84,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/sync/structured_outputs.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 102,
+   "endpoints": [],
+   "models": [
+    "grok-4.20"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "examples/sync/collections_tool.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 78,
+   "endpoints": [],
+   "models": [
+    "grok-4.20"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/sync/files.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 352,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/sync/compaction.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 221,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/sync/telemetry.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 87,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/sync/image_generation.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 89,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/sync/files_chat.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 93,
+   "endpoints": [],
+   "models": [
+    "grok-4.20"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/sync/video_generation.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 92,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/sync/chat.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 131,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/sync/reasoning.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 73,
+   "endpoints": [],
+   "models": [
+    "grok-4.20"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/sync/collection.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 390,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "examples/sync/function_calling.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 146,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/sync/deferred_chat.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 63,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/sync/stored_chat.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 98,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/sync/video_extension.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 66,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/sync/tokenizer.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 19,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/sync/batch_request.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 91,
+   "endpoints": [],
+   "models": [
+    "grok-4.20"
+   ],
+   "env": [],
+   "features": [
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/sync/video_keyframes.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 83,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/sync/image_understanding.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 76,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "vision"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/chat.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1540,
+   "endpoints": [],
+   "models": [
+    "grok-4-1",
+    "grok-4.1",
+    "grok-4.20-non-reasoning",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "image_generation",
+    "live_search",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/video.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 482,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "grpc",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/tools.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 336,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "grpc",
+    "image_generation",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/client.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 178,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_MANAGEMENT_KEY"
+   ],
+   "features": [
+    "grpc"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/search.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 253,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "live_search",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/types/model.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-fast-latest",
+    "grok-3-latest",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-3-mini-fast-latest",
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-1-fast",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-non-reasoning-latest",
+    "grok-4-1-fast-reasoning",
+    "grok-4-1-fast-reasoning-latest",
+    "grok-4-fast",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-non-reasoning-latest",
+    "grok-4-fast-reasoning",
+    "grok-4-fast-reasoning-latest",
+    "grok-4-latest",
+    "grok-4.20",
+    "grok-4.20-0309",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.20-multi-agent-latest",
+    "grok-4.20-non-reasoning",
+    "grok-4.20-non-reasoning-latest",
+    "grok-4.20-reasoning-latest",
+    "grok-4.3",
+    "grok-4.3-latest",
+    "grok-4.5",
+    "grok-4.5-latest",
+    "grok-4.6",
+    "grok-code-fast-1",
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-quality",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/aio/models.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 71,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings",
+    "grpc",
+    "image_generation"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/aio/batch.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 254,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/aio/chat.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 494,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "reasoning",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/aio/video.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 701,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "image_generation",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/aio/image.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 370,
+   "endpoints": [],
+   "models": [
+    "grok-imagine",
+    "grok-imagine-image",
+    "grok-imagine-image-2.0"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/aio/client.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 132,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_MANAGEMENT_KEY"
+   ],
+   "features": [
+    "grpc"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/telemetry/config.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 198,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [
+    "XAI_SDK_DISABLE_TRACING"
+   ],
+   "features": [
+    "grpc",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/sync/models.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 68,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings",
+    "grpc",
+    "image_generation"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/sync/batch.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 250,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/sync/chat.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 480,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "reasoning",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/sync/video.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 701,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "image_generation",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/sync/image.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 370,
+   "endpoints": [],
+   "models": [
+    "grok-imagine",
+    "grok-imagine-image",
+    "grok-imagine-image-2.0"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "src/xai_sdk/sync/client.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 112,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_MANAGEMENT_KEY"
+   ],
+   "features": [
+    "grpc"
+   ]
+  },
+  {
+   "path": ".github/workflows/ci.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 44,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": ".github/workflows/auto-tag.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 77,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": ".github/workflows/validate-version-bump.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 66,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": ".github/workflows/release.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 221,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 107,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  }
+ ]
+}

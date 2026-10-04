@@ -1,0 +1,877 @@
+{
+ "fork": "Blockchains/happier",
+ "upstream": "happier-dev/happier",
+ "category": "coding-agent-cli",
+ "stars": 1845,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2026 Happy Coder Contributors Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit ",
+ "pushed_at": "2026-10-03T18:38:48Z",
+ "description": "Web, Desktop & Mobile client and orchestrator for Codex, Claude Code, OpenCode, Pi, Cursor, Grok, Antigravity, Kimi, Augment Code, Qwen, fully end-to-end encrypted",
+ "commit": "45bd83c934f7a00bc3b02f29879d7a91d99445e4",
+ "indexed_at": "2026-10-03T18:48:46Z",
+ "status": "ok",
+ "clone_kb": 753124,
+ "seconds": 44.4,
+ "files_scanned": 20380,
+ "languages": {
+  "TypeScript": 17373,
+  "JavaScript": 1770,
+  "Rust": 34,
+  "Swift": 10,
+  "Kotlin": 10,
+  "Python": 2,
+  "Ruby": 2
+ },
+ "grok_files": 54,
+ "grok_files_by_kind": {
+  "doc": 2,
+  "config": 32,
+  "source": 6,
+  "test": 14
+ },
+ "hosts": {},
+ "endpoints": {},
+ "models": {
+  "grok-4.5": 8,
+  "grok-4.1-fast": 3
+ },
+ "env_vars": {
+  "XAI_API_KEY": 47,
+  "HAPPIER_GROK_PATH": 5,
+  "HAPPIER_E2E_PROVIDER_GROK_BIN": 2,
+  "HAPPIER_GROK_STUB_RECORD_PATH": 2,
+  "HAPPIER_E2E_PROVIDER_GROK": 1,
+  "XAI_API_KEY_METHOD_ID": 1,
+  "GROK_CODE_XAI_API_KEY": 1,
+  "EXPECTED_GROK_PERMISSIONS": 1,
+  "HAPPIER_E2E_PROVIDER_GROK_ACP_STUB": 1
+ },
+ "features": {
+  "mcp": 2,
+  "anthropic_compatible": 1,
+  "tool_calling": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "apps/website/src/data/agents.ts",
+   "start": 1138,
+   "end": 1161,
+   "code": "        // `sessionCapabilities` / `handoff` blocks at :485-490.\n        h1: 'Grok Build CLI from your phone or your desk',\n        standfirst:\n            'xAI\u2019s coding CLI, running on your own computer with your own xAI account. The Happier integration is experimental, and this page says so before you install anything.',\n        lead: [\n            'Grok Build carries the longest list of things Happier cannot do with it, and the list is specific rather than vague: no session listing, no forking, no rollback, no vendor-state handoff. \n            'The quirk that looks alarming and is not: Grok gives Happier no reliable non-interactive way to check a cached login, so the provider page shows \u201cUnknown\u201d for it. That is a missing signal\n            'Two more places the integration is deliberately literal. Models are only the ones the running session advertises: a reasoning-effort control appears for a model that says it has one, no f\n        ],\n        whatItDoes: [\n            'Grok Build is xAI\u2019s coding CLI. `happier grok` runs the `grok` binary in your repository over the Agent Client Protocol, under whichever xAI credentials that computer already has.',\n            'This integration is experimental, and these are the limits: session listing, forking, rewind and vendor-state handoff are not supported for Grok today. The Happier docs page linked below \n        ],\n        faq: [\n            {\n                q: 'What does \"experimental\" mean here?',\n                a: 'It means the integration is shipped and used, and that some of what Happier does with other agents is not wired up for this one. The Happier docs page for Grok Build lists the curr\n            },\n            {\n                q: 'Can Happier fork or rewind a Grok conversation?',\n                a: 'No. Session listing, forking, rollback and vendor-state handoff are not supported for Grok Build in the shipped build, and Happier does not fake them by replaying a transcript into\n            },\n            {\n                q: 'How do I install the CLI?',"
+  },
+  {
+   "path": "apps/cli/src/backends/grok/acp/auth.ts",
+   "start": 2,
+   "end": 25,
+   "code": "  AcpAuthentication,\n  AcpAuthenticationResolverContext,\n  AcpAuthenticationSelection,\n} from '@/agent/acp/AcpAuthentication';\nimport { AcpAuthenticationResolverPublicError } from '@/agent/acp/AcpAuthentication';\n\nconst XAI_API_KEY_METHOD_ID = 'xai.api_key';\nconst GROK_CACHED_METHOD_IDS = new Set(['grok.com', 'cached_token']);\nconst HEADLESS_AUTH_META = Object.freeze({ headless: true });\n\nexport class GrokAcpAuthenticationUnavailableError extends AcpAuthenticationResolverPublicError {\n  constructor() {\n    super({\n      code: 'GROK_ACP_AUTHENTICATION_UNAVAILABLE',\n      safePublicMessage:\n        'Grok authentication is unavailable. Run `grok login` or, on a headless or remote system, `grok login --device-auth`, then retry.',\n    });\n  }\n}\n\nfunction readInitializedDefaultAuthMethodId(\n  initializeMeta: Readonly<Record<string, unknown>> | null,\n): string | null {\n  const value = initializeMeta?.defaultAuthMethodId;"
+  },
+  {
+   "path": "apps/cli/src/backends/grok/acp/backend.ts",
+   "start": 79,
+   "end": 102,
+   "code": "}>): Readonly<{\n  hasXaiApiKey: boolean;\n  unsetInheritedXaiApiKey: boolean;\n}> {\n  const override = params.overrideEnv === undefined\n    ? { found: false, nonBlank: false }\n    : inspectEnvironmentValuePresence(params.overrideEnv, 'XAI_API_KEY', params.platform);\n  const hasXaiApiKey = override.found\n    ? override.nonBlank\n    : inspectEnvironmentValuePresence(params.inheritedEnv, 'XAI_API_KEY', params.platform).nonBlank;\n\n  return {\n    hasXaiApiKey,\n    // AcpBackend removes inherited variants before applying the override so the\n    // Windows child environment observes the same case-insensitive precedence.\n    unsetInheritedXaiApiKey: params.platform === 'win32' && override.found,\n  };\n}\n\nexport function buildGrokAcpBackendOptions(options: GrokBackendOptions): AcpBackendOptions {\n  const processEnv = { ...process.env, ...options.env };\n  const launch = requireProviderCliLaunchSpec('grok', { processEnv });\n  const xaiApiKeyPresence = resolveGrokXaiApiKeyPresence({\n    inheritedEnv: process.env,"
+  },
+  {
+   "path": "apps/cli/src/backends/grok/cli/auth/grokCliAuthSpec.ts",
+   "start": 1,
+   "end": 13,
+   "code": "import { createCatalogCliAuthSpec } from '@/capabilities/cliAuth/createCatalogCliAuthSpec';\nimport type { CliAuthSpec } from '@/capabilities/cliAuth/types';\n\nexport const grokCliAuthSpec: CliAuthSpec = createCatalogCliAuthSpec('grok', {\n  detectAuthStatus: async () => {\n    if (typeof process.env.XAI_API_KEY === 'string' && process.env.XAI_API_KEY.trim().length > 0) {\n      return { state: 'logged_in', method: 'api_key_env', source: 'env' };\n    }\n    // There is no documented non-interactive cached-login status probe. Unknown is\n    // deliberately distinct from logged out; ACP initialize/auth is the authority.\n    return { state: 'unknown', reason: 'unsupported' };\n  },\n});"
+  },
+  {
+   "path": "packages/agents/src/auth.ts",
+   "start": 144,
+   "end": 167,
+   "code": "  grok: {\n    agentId: 'grok',\n    binaryNames: [getProviderCliRuntimeSpec('grok').binaryName],\n    statusCommand: null,\n    parser: 'unknown',\n    backgroundChecks: 'safe',\n    envVars: ['XAI_API_KEY'],\n  },\n  agy: {\n    agentId: 'agy',\n    binaryNames: [getProviderCliRuntimeSpec('agy').binaryName],\n    statusCommand: null,\n    parser: 'unknown',\n    // Interactive `agy` auth is local-login backed; never probe it ambiently.\n    // The managed ACP server surface stays separate from this CLI identity.\n    backgroundChecks: 'manual_only',\n  },\n  fx: {\n    agentId: 'fx',\n    binaryNames: [getProviderCliRuntimeSpec('fx').binaryName],\n    statusCommand: ['status', '--json'],\n    parser: 'unknown',\n    backgroundChecks: 'manual_only',\n    envVars: ['VERCEL_OIDC_TOKEN', 'AI_GATEWAY_API_KEY'],"
+  }
+ ],
+ "files": [
+  {
+   "path": "apps/docs/content/docs/agents/capabilities.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 205,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "apps/docs/content/docs/agents/grok.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 97,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "HAPPIER_GROK_PATH",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/dnt.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 617,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/en.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 972,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/slices/pl/agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/slices/es/agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/slices/ca/agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/slices/zh-Hant/agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/slices/ja/agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/slices/zh-Hans/agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/slices/fr/agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/slices/pt/agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/slices/ru/agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/slices/it/agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/ja.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 954,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/fr.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 954,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/it.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 954,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/zh-Hant.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 954,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/zh-Hans.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 954,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/ca.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 954,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/es.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 954,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/pl.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 954,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/pt.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 954,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/ru.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 954,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/ru.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 274,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/ca.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 260,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/it.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 260,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/zh-Hant.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 260,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/zh-Hans.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 260,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/ja.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 260,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/pl.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 260,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/es.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 274,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/pt.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 260,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/fr.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 260,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/data/agents.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1265,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/stack/.edison/scripts/pal/run-server.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 182,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/cli/src/backends/grok/e2e/providerSpec.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 66,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "HAPPIER_E2E_PROVIDER_GROK",
+    "HAPPIER_E2E_PROVIDER_GROK_BIN",
+    "HAPPIER_GROK_PATH",
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/cli/src/backends/grok/acp/auth.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 65,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY_METHOD_ID"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/cli/src/backends/grok/acp/sessionNotifications.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 259,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/backends/grok/acp/backend.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 132,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/cli/src/backends/grok/acp/backend.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 338,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "GROK_CODE_XAI_API_KEY",
+    "HAPPIER_GROK_PATH",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "apps/cli/src/backends/grok/acp/auth.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 108,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/cli/src/backends/grok/acp/modelControls.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 206,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "apps/cli/src/backends/grok/cli/auth/grokCliAuthSpec.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 13,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/cli/src/backends/grok/cli/auth/grokCliAuthSpec.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 32,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/ui/sources/sync/domains/models/modelOptions.preflight.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 140,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "apps/ui/sources/sync/domains/models/modelOptions.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 655,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/tests/suites/providers/providerSpecs.grok.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 81,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "EXPECTED_GROK_PERMISSIONS",
+    "HAPPIER_E2E_PROVIDER_GROK_BIN",
+    "HAPPIER_GROK_PATH",
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "packages/tests/suites/providers/grokAcpStubProvider.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 307,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast",
+    "grok-4.5"
+   ],
+   "env": [
+    "HAPPIER_GROK_STUB_RECORD_PATH",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/tests/src/testkit/providers/fixtures/grok-acp-stub-provider.mjs",
+   "kind": "test",
+   "lang": "JavaScript",
+   "lines": 396,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast",
+    "grok-4.5"
+   ],
+   "env": [
+    "HAPPIER_GROK_STUB_RECORD_PATH"
+   ],
+   "features": [
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/tests/src/testkit/providers/fixtures/cli-backends/grok_acp_stub/e2e/providerSpec.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 54,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "HAPPIER_E2E_PROVIDER_GROK_ACP_STUB",
+    "HAPPIER_GROK_PATH",
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "packages/tests/src/testkit/providers/scenarios/scenarios.grok.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 385,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/agents/src/auth.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 192,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "packages/agents/src/auth.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 94,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  }
+ ]
+}

@@ -1,0 +1,195 @@
+{
+ "fork": "Blockchains/rust-genai",
+ "upstream": "jeremychone/rust-genai",
+ "category": "gateway-router",
+ "stars": 896,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": null,
+ "pushed_at": "2026-09-27T23:15:43Z",
+ "description": "Rust multiprovider generative AI client (Ollama, OpenAi, Anthropic, Gemini, DeepSeek, ZAI, OpenRouter, FireworksAI, xAI/Grok, Groq,, ...)",
+ "commit": "f928db37c365aa753f68b3267bc174dec78261e6",
+ "indexed_at": "2026-10-03T18:48:23Z",
+ "status": "ok",
+ "clone_kb": 3956,
+ "seconds": 1.7,
+ "files_scanned": 304,
+ "languages": {
+  "Rust": 235
+ },
+ "grok_files": 7,
+ "grok_files_by_kind": {
+  "doc": 1,
+  "test": 1,
+  "example": 2,
+  "source": 3
+ },
+ "hosts": {
+  "api.x.ai": 1
+ },
+ "endpoints": {},
+ "models": {
+  "grok-3-mini": 4,
+  "grok-3": 3,
+  "grok-3-beta": 2,
+  "grok-3-mini-beta": 2,
+  "grok-4": 1,
+  "grok-4.6": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 3,
+  "MODEL_XAI": 1
+ },
+ "features": {
+  "anthropic_compatible": 4,
+  "reasoning": 4,
+  "embeddings": 2,
+  "streaming": 1,
+  "structured_output": 1,
+  "tool_calling": 1,
+  "vision": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "examples/c00-readme.rs",
+   "start": 31,
+   "end": 54,
+   "code": "\t(MODEL_OPENAI, \"OPENAI_API_KEY\"),\n\t(MODEL_ANTHROPIC, \"ANTHROPIC_API_KEY\"),\n\t(MODEL_GEMINI, \"GEMINI_API_KEY\"),\n\t(MODEL_FIREWORKS, \"FIREWORKS_API_KEY\"),\n\t(MODEL_TOGETHER, \"TOGETHER_API_KEY\"),\n\t(MODEL_GROQ, \"GROQ_API_KEY\"),\n\t(MODEL_XAI, \"XAI_API_KEY\"),\n\t(MODEL_DEEPSEEK, \"DEEPSEEK_API_KEY\"),\n\t(MODEL_ZAI, \"ZAI_API_KEY\"),\n\t(MODEL_OLLAMA_CLOUD, \"OLLAMA_API_KEY\"),\n\t(MODEL_ALIYUN, \"ALIYUN_API_KEY\"),\n\t(MODEL_ATLASCLOUD, \"ATLASCLOUD_API_KEY\"),\n\t(MODEL_GITHUB_COPILOT, \"GITHUB_TOKEN\"),\n\t// -- Local models\n\t// (MODEL_OMLX, \"\"),\n\t// (MODEL_OLLAMA, \"\"),\n];\n\n// NOTE: Model to AdapterKind (AI Provider) type mapping rule\n//  - starts_with \"gpt\"      -> OpenAI\n//  - starts_with \"claude\"   -> Anthropic\n//  - starts_with \"command\"  -> Cohere\n//  - starts_with \"gemini\"   -> Gemini\n//  - model in Groq models   -> Groq"
+  },
+  {
+   "path": "src/adapter/adapters/all_adapters.rs",
+   "start": 213,
+   "end": 232,
+   "code": "\n// -- XaiAdapter\npub struct XaiAdapter;\nimpl_pass_through_adapter!(\n\tname: XaiAdapter,\n\tkind: AdapterKind::Xai,\n\tkey_env: Some(\"XAI_API_KEY\"),\n\tendpoint: \"https://api.x.ai/v1/\",\n\tdelegate: OpenAIAdapter,\n);\n\n// endregion: --- Pass-through adapters (with macros)\n\n// region:    --- Tests\n\n#[cfg(test)]\n#[path = \"all_adapters_tests.rs\"]\nmod tests;\n\n// endregion: --- Tests"
+  }
+ ],
+ "files": [
+  {
+   "path": "CHANGELOG.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 632,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-beta",
+    "grok-3-mini-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/tests_p_xai.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 122,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-beta",
+    "grok-3-mini",
+    "grok-3-mini-beta",
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "reasoning",
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/c00-readme.rs",
+   "kind": "example",
+   "lang": "Rust",
+   "lines": 106,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4.6"
+   ],
+   "env": [
+    "MODEL_XAI",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/c99-github-copilot.rs",
+   "kind": "example",
+   "lang": "Rust",
+   "lines": 42,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/adapter/adapters/all_adapters.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 232,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "src/adapter/adapters/openai/adapter_shared.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 642,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "src/adapter/adapters/github_copilot/adapter_impl.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 189,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  }
+ ]
+}

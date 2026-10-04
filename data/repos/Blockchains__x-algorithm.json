@@ -1,0 +1,196 @@
+{
+ "fork": "Blockchains/x-algorithm",
+ "upstream": "xai-org/x-algorithm",
+ "category": "official",
+ "stars": 33489,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-10-03T03:26:57Z",
+ "description": "Algorithm powering the For You feed on X",
+ "commit": "b412112d03f27acbfd668e0cc040abcafa1080c1",
+ "indexed_at": "2026-10-03T18:47:19Z",
+ "status": "ok",
+ "clone_kb": 26616,
+ "seconds": 3.0,
+ "files_scanned": 1933,
+ "languages": {
+  "Scala": 568,
+  "Rust": 535,
+  "Python": 457,
+  "Java": 313,
+  "TypeScript": 7
+ },
+ "grok_files": 5,
+ "grok_files_by_kind": {
+  "source": 4,
+  "doc": 1
+ },
+ "hosts": {},
+ "endpoints": {},
+ "models": {
+  "grok-4-1-fast-hedgehog": 1,
+  "grok-4-1-fast-hedgehog-critical": 1,
+  "grok-4-1-fast-x-algo": 1,
+  "grok-4-1-fast-x-algo-extra": 1,
+  "grok-4-3-internal": 1,
+  "grok-4-3-x-algo": 1,
+  "grok-4-5-x-algo": 1,
+  "grok-4-6-internal": 1,
+  "grok-4-mini": 1,
+  "grok-4-mini-critical": 1,
+  "grok-420-reasoning-internal": 1,
+  "grok-420-reasoning-x-algo": 1,
+  "grok-1": 1,
+  "grok-imagine": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 2,
+  "EAPI_GROK_420_REASONING_INTERNAL": 1,
+  "EAPI_GROK_420_REASONING_X_ALGO": 1,
+  "EAPI_GROK_4_1_FAST_X_ALGO": 1,
+  "EAPI_GROK_4_3_INTERNAL": 1,
+  "EAPI_GROK_4_3_X_ALGO": 1,
+  "EAPI_GROK_4_5_X_ALGO": 1,
+  "EAPI_GROK_4_6_INTERNAL": 1
+ },
+ "features": {
+  "grpc": 3,
+  "reasoning": 2,
+  "vision": 2,
+  "live_search": 1,
+  "tool_calling": 1,
+  "embeddings": 1,
+  "image_generation": 1
+ },
+ "sdk_exports": [
+  {
+   "path": "grox/libs/grok_sampler/eapi_sampler.py",
+   "lang": "Python",
+   "names": [
+    "get_loop_id",
+    "WebSearchDetails",
+    "SampleDetails",
+    "EapiSampler"
+   ]
+  }
+ ],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "grox/libs/grok_sampler/eapi_sampler.py",
+   "start": 5,
+   "end": 28,
+   "code": "from dataclasses import dataclass, field\nfrom asyncio import get_running_loop\n\nimport grpc.aio\nfrom monitor.metrics import Metrics\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.proto import chat_pb2\nfrom xai_sdk.tools import web_search\n\nfrom grok_sampler.config import EapiModelConfig\n\nlogger = logging.getLogger(__name__)\n\nMAX_SEARCH_DOMAINS = 5\n\n\ndef get_loop_id() -> int:\n    return id(get_running_loop())\n\n\ndef _rpc_request_id(error: Exception) -> str | None:\n    if not isinstance(error, grpc.aio.AioRpcError):\n        return None"
+  },
+  {
+   "path": "grox/core/lm/convo.py",
+   "start": 3,
+   "end": 26,
+   "code": "import math\nfrom enum import Enum\nfrom base64 import b64decode, b64encode\nfrom PIL import Image as PILImage\nfrom pydantic import Field, BaseModel, field_validator, field_serializer\n\nfrom xai_sdk.chat import image as xai_image, text as xai_text, system, user, assistant\nfrom xai_sdk.proto import chat_pb2\n\nfrom grox.config.config import grox_config\n\nlogger = logging.getLogger(__name__)\nSEPARATOR_COMMAND = grox_config.prompt_tokens.separator\nSEPARATOR = f\"{SEPARATOR_COMMAND}\\n\\n\"\nTHINKING_CONTROL_END = grox_config.prompt_tokens.thinking_control_end\nTHINKING_CONTROL_START = grox_config.prompt_tokens.thinking_control_start\nSTORYBOARD_COLUMNS = 3\nSTORYBOARD_TILE_SIZE = 448\nNO_THINKING_PROMPT = grox_config.prompt_tokens.no_thinking_prompt\n\nPREVIEW_IMAGE_LABEL = \"[Video Preview Thumbnail]\"\n\nMOTION_REVEAL_DESCRIPTION = (\n    \"Motion-reveal stills for this video follow. They expose content that may be hidden under the visible video \""
+  },
+  {
+   "path": "grox/config/config.py",
+   "start": 47,
+   "end": 70,
+   "code": "        )\n    except (FileNotFoundError, PermissionError):\n        return \"\"\n\n\ndef _read_xai_api_key() -> str:\n    return os.getenv(\"XAI_API_KEY\") or \"\"\n\n\nclass ModelConfig(BaseModel):\n    model_config = _FROZEN\n\n    model_name: str\n    endpoint: str\n    timeout: int = 60\n    max_resp_len: int = 8092\n    temperature: float = 0.7\n    bearer_token: str = Field(default_factory=_read_bearer_token)\n    priority_header: str = \"\"\n    priority: int = 15\n\n\nclass EapiModelConfig(BaseModel):\n    model_config = _FROZEN"
+  }
+ ],
+ "files": [
+  {
+   "path": "grox/libs/grok_sampler/eapi_sampler.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 221,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "grpc",
+    "live_search",
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "grox/core/lm/convo.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 488,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "grpc",
+    "vision"
+   ]
+  },
+  {
+   "path": "grox/config/config.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 296,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-hedgehog",
+    "grok-4-1-fast-hedgehog-critical",
+    "grok-4-1-fast-x-algo",
+    "grok-4-1-fast-x-algo-extra",
+    "grok-4-3-internal",
+    "grok-4-3-x-algo",
+    "grok-4-5-x-algo",
+    "grok-4-6-internal",
+    "grok-4-mini",
+    "grok-4-mini-critical",
+    "grok-420-reasoning-internal",
+    "grok-420-reasoning-x-algo"
+   ],
+   "env": [
+    "EAPI_GROK_420_REASONING_INTERNAL",
+    "EAPI_GROK_420_REASONING_X_ALGO",
+    "EAPI_GROK_4_1_FAST_X_ALGO",
+    "EAPI_GROK_4_3_INTERNAL",
+    "EAPI_GROK_4_3_X_ALGO",
+    "EAPI_GROK_4_5_X_ALGO",
+    "EAPI_GROK_4_6_INTERNAL",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings",
+    "grpc",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "phoenix/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 449,
+   "endpoints": [],
+   "models": [
+    "grok-1"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "grpc"
+   ]
+  },
+  {
+   "path": "phoenix/crates/serving/xai-recsys-proto/src/installed_apps.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 229,
+   "endpoints": [],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  }
+ ]
+}

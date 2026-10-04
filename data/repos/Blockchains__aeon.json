@@ -1,0 +1,1419 @@
+{
+ "fork": "Blockchains/aeon",
+ "upstream": "aeonfun/aeon",
+ "category": "coding-agent-cli",
+ "stars": 760,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2026 Aeon Inc Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom ",
+ "pushed_at": "2026-10-03T16:17:16Z",
+ "description": "The most autonomous AI agent framework: runs unattended on GitHub Actions, self-healing skills, drives Claude Code, Grok, Codex & more. No approval loops. Configure once, forget forever.",
+ "commit": "82015a358d8ca795fbc8a0a5fc781ee8bccbac87",
+ "indexed_at": "2026-10-03T18:48:28Z",
+ "status": "ok",
+ "clone_kb": 36616,
+ "seconds": 6.4,
+ "files_scanned": 636,
+ "languages": {
+  "TypeScript": 169,
+  "JavaScript": 36,
+  "Python": 19
+ },
+ "grok_files": 80,
+ "grok_files_by_kind": {
+  "config": 8,
+  "doc": 28,
+  "source": 22,
+  "test": 19,
+  "example": 3
+ },
+ "hosts": {
+  "api.x.ai": 33
+ },
+ "endpoints": {
+  "/v1/responses": 19,
+  "/v1/chat/completions": 5,
+  "/v1/messages": 2,
+  "/v1/models": 2
+ },
+ "models": {
+  "grok-4.7": 29,
+  "grok-4.5": 11,
+  "grok-4.6": 9,
+  "grok-4.3": 3,
+  "grok-45": 1,
+  "grok-codex-pi-vibe-kimi-fx-cursor-hermes": 1,
+  "grok-4.x": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 70,
+  "XAI_ANTHROPIC_BASE_URL": 1,
+  "GROK_XAI_API_BASE_URL": 1
+ },
+ "features": {
+  "mcp": 13,
+  "anthropic_compatible": 7,
+  "structured_output": 4,
+  "live_search": 3,
+  "reasoning": 3,
+  "streaming": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "apps/mcp-server/src/skill-executor.ts",
+   "start": 151,
+   "end": 174,
+   "code": "  \"GH_GLOBAL\",\n  \"GH_TOKEN\",\n  \"GITHUB_TOKEN\",\n  \"RESEND_API_KEY\",\n  \"RESEND_FROM\",\n  \"RESEND_REPLY_TO\",\n  \"XAI_API_KEY\",\n];\n\nfunction shadowSafeEnv(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {\n  const filtered = { ...env };\n  for (const key of SHADOW_STRIPPED_ENV_VARS) delete filtered[key];\n  return filtered;\n}\n\n// Single-flight queue. spawnSync used to serialize runs by freezing the event\n// loop; moving to async spawn removes that accidental lock, so runs must be\n// serialized explicitly. Every run shares `cwd: repoRoot`, so two concurrent\n// write-mode skills would race the same working tree: `.git/index.lock`\n// collisions on commit, plus interleaved writes to memory/, output/ and\n// cron-state.json. This keeps one skill running at a time; a second tools/call\n// waits its turn instead of corrupting the tree.\nlet runQueue: Promise<unknown> = Promise.resolve();\nfunction enqueue<T>(task: () => Promise<T>): Promise<T> {"
+  },
+  {
+   "path": "apps/dashboard/lib/constants.ts",
+   "start": 17,
+   "end": 40,
+   "code": "// X-account (GROK_CREDENTIALS) login exposes to the grok CLI's --model flag.\n// `grok models` on grok CLI 1.0.46 (verified 2026-10-01) lists grok-4.7 (its\n// default: the flagship reasoning model that powers Grok Build, multi-agent-capable;\n// the grok adapter passes --no-subagents in CI), grok-4.6 and grok-4.5. Only\n// grok-4.7 and grok-4.6 are offered; grok-4.5 stays a workflow_dispatch choice\n// so an existing pin still dispatches and renders via RETIRED_MODEL_LABELS.\n// Older api.x.ai ids (grok-composer-2.5-fast, grok-build, grok-build-0.1,\n// grok-4.3) are model *strings*, NOT valid CLI --model values on the X-account\n// OAuth login: the grok CLI rejects each with \"unknown model id\" (verified live\n// 2026-07-22). They're reachable only via XAI_API_KEY on the gateway path (set\n// the GROK_MODEL repo var), so listing any here would be a dead click.\n// First entry is the default (modelsForHarness(...)[0] on harness switch). Keep this\n// list in sync with the workflow_dispatch `model` choice options in\n// .github/workflows/aeon.yml \u2014 a mismatch 422s at dispatch time.\nexport const GROK_MODELS = [\n  { id: 'grok-4.7', label: 'Grok 4.7' },\n  { id: 'grok-4.6', label: 'Grok 4.6' },\n]\n\n// kimi gets its own list: it bakes the selected id into a generic OpenRouter\n// provider config (`[providers.openrouter] type=openai`), so it drives ANY\n// OpenRouter model, and kimi IS Moonshot, so it runs Moonshot's own Kimi family\n// through OpenRouter (the way vibe runs Mistral and pi runs DeepSeek). Only the\n// latest two are offered: K2.7-code is the default (code-tuned, same price as"
+  },
+  {
+   "path": "apps/dashboard/lib/service-icons.ts",
+   "start": 19,
+   "end": 42,
+   "code": "// service has no favicon (or the request fails) we fall back to a glyph or a\n// monochrome initials badge so every row still carries a mark.\nconst DOMAINS: Record<string, string> = {\n  // Core - Claude-native auth (LLM-gateway domains spread in from the registry)\n  CLAUDE_CODE_OAUTH_TOKEN: 'claude.ai',\n  ANTHROPIC_API_KEY: 'anthropic.com',\n  // Grok Build (grok CLI) X-account OAuth session \u2014 same brand as XAI_API_KEY.\n  GROK_CREDENTIALS: 'x.ai',\n  // Native harness auth. A captured OAuth session carries the same brand as the\n  // provider key it substitutes for, so CODEX_AUTH sits under OpenAI (Codex signs\n  // in with ChatGPT) and KIMI_AUTH under Kimi, its own product domain.\n  CODEX_AUTH: 'openai.com',\n  OPENAI_API_KEY: 'openai.com',\n  KIMI_AUTH: 'kimi.com',\n  MOONSHOT_API_KEY: 'moonshot.ai',\n  CURSOR_API_KEY: 'cursor.com',\n  HERMES_AUTH: 'nousresearch.com',\n  MISTRAL_API_KEY: 'mistral.ai',\n  ...GATEWAY_DOMAINS,\n  // Channels\n  TELEGRAM_BOT_TOKEN: 'telegram.org',\n  TELEGRAM_CHAT_ID: 'telegram.org',\n  TELEGRAM_ALLOWED_USER_ID: 'telegram.org',\n  DISCORD_BOT_TOKEN: 'discord.com',"
+  },
+  {
+   "path": "apps/dashboard/lib/connect-server.ts",
+   "start": 110,
+   "end": 133,
+   "code": "\n// --- Found on this machine (local mode only) ---------------------------------\n\n// Env vars in the dashboard's own process that hold a model key, by name. The\n// secret has the same name.\nexport const FOUND_ENV_KEYS = [\n  'ANTHROPIC_API_KEY', 'OPENROUTER_API_KEY', 'OPENAI_API_KEY', 'XAI_API_KEY',\n  'MISTRAL_API_KEY', 'MOONSHOT_API_KEY', 'CURSOR_API_KEY', 'AI_GATEWAY_API_KEY',\n]\n\nexport interface FoundItem {\n  id: string\n  kind: 'login' | 'env'\n  label: string\n  secret: string\n}\n\n// Logins and env keys on this machine that could connect `harness`. Names\n// only, never values. (A claude setup-token is not stored anywhere readable,\n// so it can't be found.)\nexport function listFound(harness: string): FoundItem[] {\n  if (!isLocal()) return []\n  const home = homedir()\n  const items: FoundItem[] = []"
+  },
+  {
+   "path": "apps/dashboard/lib/secrets-catalog.ts",
+   "start": 10,
+   "end": 33,
+   "code": "// name (verified by a global scan of skills/). Unset builtins still render so\n// the operator can see what's available \u2014 the surface a raw `gh secret list`\n// can't provide. Extracted from app/api/secrets/route.ts so the secrets CLI\n// command and the HTTP route share one definition.\nexport const BUILTIN_SECRETS: Omit<Secret, 'isSet'>[] = [\n  { name: 'CLAUDE_CODE_OAUTH_TOKEN', group: 'Core', description: 'How Claude Code signs in - option 1 of 2. Runs Aeon on your Claude Pro/Max subscription (no per-token billing). Easiest: click AUTH ab\n  { name: 'GROK_CREDENTIALS', group: 'Core', description: 'Grok Build (grok CLI) X-account OAuth session - base64 of your ~/.grok login, captured by \"Connect X account\" in AUTH. Lets the grok harness \n  { name: 'ANTHROPIC_API_KEY', group: 'Core', description: 'How Claude Code signs in - option 2 of 2. A pay-as-you-go Anthropic API key (sk-ant-...) billed via the Console, or any Anthropic-compatible\n  { name: 'BANKR_LLM_KEY', group: 'Core', description: 'Bankr Gateway API key (bk_...) - enable at bankr.bot/api-keys' },\n  { name: 'OPENROUTER_API_KEY', group: 'Core', description: 'OpenRouter API key (sk-or-...) - dual purpose: (1) routes Claude Code through openrouter.ai (a gateway provider), and (2) the shared fallba\n  // Native harness auth - each run-harness harness can use its own provider.\n  // OAuth captures are set by `aeon auth --harness <h>` or the dashboard's\n  // Connect button, which drives the CLI login and stores the captured session.\n  { name: 'CODEX_AUTH', group: 'Core', description: 'Codex (ChatGPT) login captured for CI - a base64 tar of ~/.codex/auth.json. Set it with `aeon auth --harness codex` or the dashboard \"Connect ChatG\n  { name: 'KIMI_AUTH', group: 'Core', description: 'Kimi (Moonshot) device login captured for CI - a base64 tar of ~/.kimi-code/credentials and config.toml. Set it with `aeon auth --harness kimi` or t\n  { name: 'CURSOR_API_KEY', group: 'Core', description: 'Cursor API key for the Cursor CLI harness. Set it here or with `aeon auth --harness cursor --key`; the key is stored as a GitHub Actions secret\n  { name: 'HERMES_AUTH', group: 'Core', description: 'Hermes Nous Portal login captured for CI - a base64 tar of ~/.hermes/auth.json and config.yaml. Set it with `aeon auth --harness hermes` or the da\n  { name: 'GLM_API_KEY', group: 'Core', description: 'Z.AI GLM Coding Plan API key - routes Claude Code at api.z.ai/api/anthropic (the glm gateway). Pick GLM in Authenticate, or set GLM_API_KEY (alias\n  { name: 'HIVEMINDOS_CREDIT_TOKEN', group: 'Core', description: 'HivemindOS Models credit token - routes Claude Code through HivemindOS (the hivemindos gateway), billed to a credit balance instead of\n  { name: 'OPENAI_API_KEY', group: 'Core', description: 'OpenAI API key (sk-...) - API-key auth for the codex harness (alternative to the ChatGPT login) and a provider pi can use. Create at platform.o\n  { name: 'MOONSHOT_API_KEY', group: 'Core', description: 'Moonshot API key - API-key auth for the kimi harness (alternative to the device login). From platform.moonshot.ai' },\n  { name: 'MISTRAL_API_KEY', group: 'Core', description: \"Mistral API key - native auth for the vibe harness (its default provider). vibe's own `vibe` sign-in stores its credential in the OS keychain \n  { name: 'USEPOD_TOKEN', group: 'Core', description: \"UsePod proxy token - routes Claude through UsePod's gateway (token embedded in the base URL). Get one at usepod.ai\" },\n  { name: 'VENICE_API_KEY', group: 'Core', description: 'Venice API key - routes Claude through api.venice.ai via a local translator. Create at venice.ai/settings/api' },"
+  },
+  {
+   "path": "apps/dashboard/lib/gateway-registry.ts",
+   "start": 14,
+   "end": 37,
+   "code": "  // set gateway <provider>`). (UsePod's token is embedded in the base URL by the\n  // workflow, not sent as a header.)\n  usepod: { label: 'UsePod', secretName: 'USEPOD_TOKEN', prefixes: [], domain: 'usepod.ai' },\n  venice: { label: 'Venice', secretName: 'VENICE_API_KEY', prefixes: [], domain: 'venice.ai' },\n  surplus: { label: 'Surplus Intelligence', secretName: 'SURPLUS_API_KEY', prefixes: ['inf_'], domain: 'surplusintelligence.ai' },\n  // Grok (xAI) as a GATEWAY: Claude Code routed at xAI's Anthropic-compatible\n  // api.x.ai. Reuses the XAI_API_KEY secret (xAI keys are prefixed `xai-`). This\n  // is separate from the grok CLI *harness* (harness: grok), which runs the grok\n  // binary itself \u2014 see lib/config.ts Harness + scripts/run-grok.sh.\n  grok: { label: 'Grok (xAI)', secretName: 'XAI_API_KEY', prefixes: ['xai-'], domain: 'x.ai' },\n  // GLM Coding Plan as a GATEWAY: Claude Code routed at Z.AI's Anthropic\n  // endpoint. No distinctive key prefix (dropdown-only, like UsePod/Venice).\n  // Not a harness - there is no glm CLI; harness: glm is a dead name.\n  glm: { label: 'GLM (Z.AI)', secretName: 'GLM_API_KEY', prefixes: [], domain: 'z.ai' },\n  // HivemindOS Models: OpenAI-compatible, billed to a credit balance, bridged\n  // by the claude-code-router sidecar (scripts/llm-gateway.sh). No key prefix,\n  // so it is dropdown-only like UsePod/Venice. Last in the auto cascade.\n  hivemindos: { label: 'HivemindOS Models', secretName: 'HIVEMINDOS_CREDIT_TOKEN', prefixes: [], domain: 'hivemindos.liamvisionary.com' },\n} as const\n\n// The claude gateway cascade is mirrored in harness-adapter/gateways.json\n// (generated from adapters/claude.sh); scripts/tests/test_credential_manifest.sh\n// fails CI when a slug, secret, prefix or label here drifts from it.\n"
+  },
+  {
+   "path": "apps/dashboard/lib/frontmatter.ts",
+   "start": 74,
+   "end": 97,
+   "code": "\n  // `requires:` declares the third-party credentials a skill needs to function.\n  // A list of env-var names; a trailing `?` marks a key as optional (the skill\n  // still runs without it, just degraded / rate-limited). Names reference the\n  // central credential registry surfaced in the dashboard's Settings \u2192 Access\n  // Keys vault. Inline or block form:\n  //   requires: [XAI_API_KEY, COINGECKO_API_KEY?]\n  //   requires:\n  //     - XAI_API_KEY\n  //     - COINGECKO_API_KEY?\n  const requires: SkillKeyRef[] = extractList(block, 'requires')\n    .map(raw => {\n      const optional = raw.endsWith('?')\n      return { key: raw.replace(/\\?$/, '').trim(), optional }\n    })\n    .filter(r => /^[A-Z][A-Z0-9_]+$/.test(r.key))\n\n  // `mcp:` declares the MCP servers a skill needs. Same shape/semantics as\n  // `requires:` (trailing `?` = \"works better with\"), but slugs reference the\n  // MCP catalog (lib/mcp-catalog.ts) surfaced on the dashboard's MCP page.\n  //   mcp: [base, glim?]\n  const mcp: SkillMcpRef[] = extractList(block, 'mcp')\n    .map(raw => {\n      const optional = raw.endsWith('?')"
+  },
+  {
+   "path": "apps/dashboard/app/api/grok-auth/route.ts",
+   "start": 10,
+   "end": 33,
+   "code": "// One-click \"Connect X account\" for the Grok Build (`grok`) harness \u2014 the exact\n// parallel to the Claude subscription flow (app/api/auth: run `claude\n// setup-token`, capture the credential). Because the dashboard runs on the\n// operator's own machine, the route can drive the CLI directly.\n//\n// Two paths:\n//  1. key present \u2192 store it as the XAI_API_KEY secret (API-key auth; also powers\n//     the Grok gateway). No browser flow.\n//  2. no key \u2192 run `grok login --device-auth`. grok opens the verification URL in\n//     the operator's browser ITSELF, so this route must not open it too - doing\n//     both is what made Connect spawn two identical accounts.x.ai tabs. We still\n//     parse the URL out of grok's live output (never hardcoded - xAI rotates the\n//     per-attempt user_code), but only to hand back if the flow fails. On approval\n//     grok writes ~/.grok/auth.json; we tar+base64 that into the GROK_CREDENTIALS\n//     secret, which scripts/run-grok.sh restores into ~/.grok before each run.\n//\n// The credential file is ~/.grok/auth.json (confirmed on grok 0.2.106, mode 0600).\n\nconst GROK_DIR = '.grok'\nconst AUTH_FILE = `${GROK_DIR}/auth.json`\n// Matches both .../oauth2/device?user_code=XXXX and .../oauth2/device/consent?...\nconst DEVICE_URL_RE = /https:\\/\\/accounts\\.x\\.ai\\/oauth2\\/device\\S*/\nconst LOGIN_TIMEOUT_MS = 240_000 // ample time to approve in the browser (< Node's 5-min request cap)\n"
+  },
+  {
+   "path": "apps/dashboard/components/LeftSidebar.tsx",
+   "start": 34,
+   "end": 57,
+   "code": "  // show all of those skills (enabled or not); \"Enabled\" is an opt-in filter,\n  // off by default, to narrow to what's actually on duty.\n  const [enabledOnly, setEnabledOnly] = useState(false)\n\n  // A skill is \"key-blocked\" when it's enabled but a required (non-optional)\n  // credential it declares isn't set AND isn't provided natively by the active\n  // harness (Grok Build covers XAI_API_KEY) - flagged inline so the operator sees\n  // it without opening each skill.\n  const setSecretNames = new Set(secrets.filter(s => s.isSet).map(s => s.name))\n  const missingRequiredKeys = (s: Skill) =>\n    (s.requires ?? []).filter(r => !r.optional && !setSecretNames.has(r.key) && !keyProvidedByHarness(r.key, harness))\n\n  // `categoryFilter` holds a PACK key - the sidebar groups by pack. Picking a\n  // pack reveals ALL its skills (enabled + disabled) so you can switch them on in\n  // context; with no pack selected the roster stays focused on enabled skills.\n  const effectiveEnabledOnly = enabledOnly && !categoryFilter\n  const matchesFilters = (s: Skill) => {\n    if (categoryFilter && (s.pack || 'lab') !== categoryFilter) return false\n    if (skillSearch && !(displayName(s.name).toLowerCase().includes(skillSearch.toLowerCase()) || s.name.includes(skillSearch.toLowerCase()))) return false\n    if (effectiveEnabledOnly && !s.enabled) return false\n    return true\n  }\n  const visibleCount = skills.filter(matchesFilters).length\n"
+  },
+  {
+   "path": "apps/dashboard/components/SkillDetail.tsx",
+   "start": 43,
+   "end": 66,
+   "code": "\n// A single declared credential. The key name and the right-hand action both\n// jump to Settings \u2192 Access Keys, scrolled to this key with its input open \u2014\n// so the operator can paste the value in one click.\nfunction KeyRow({ kref, secret, harness, onGoTo }: { kref: SkillKeyRef; secret?: Secret; harness: string; onGoTo: (name: string) => void }) {\n  const isSet = !!secret?.isSet\n  // The harness may cover this key natively (Grok Build \u2192 XAI_API_KEY). Then the\n  // row reads as satisfied even unset, but the key stays settable as an override\n  // (it's what the Claude harness uses, and it also powers the grok gateway).\n  const providedByHarness = !isSet && keyProvidedByHarness(kref.key, harness)\n  const satisfied = isSet || providedByHarness\n  const desc = secret?.description || 'Third-party credential referenced by this skill.'\n\n  // Status color: satisfied \u2192 green. Missing required \u2192 red. Missing \"works better\" \u2192 muted amber.\n  const dot = satisfied ? 'bg-aeon-green' : kref.optional ? 'bg-aeon-red/60' : 'bg-aeon-red-alert'\n  const tierLabel = kref.optional ? 'Works better' : 'Required'\n  const tierColor = kref.optional ? 'text-aeon-red/80' : 'text-aeon-red'\n  const statusText = isSet ? '\u00b7 set' : providedByHarness ? '\u00b7 covered by Grok Build' : '\u00b7 not set'\n\n  return (\n    <div className=\"px-[var(--space-md)] py-[var(--space-sm)]\">\n      <div className=\"flex items-center justify-between gap-3\">\n        <div className=\"min-w-0\">\n          <div className=\"flex items-center gap-2 flex-wrap\">"
+  },
+  {
+   "path": "apps/cli/src/grok.ts",
+   "start": 28,
+   "end": 39,
+   "code": "  }\n  const archive = execFileSync('tar', ['czf', '-', '-C', home, AUTH_FILE], { maxBuffer: 8 * 1024 * 1024 })\n  ghSecretSet('GROK_CREDENTIALS', archive.toString('base64'))\n  return { secret: 'GROK_CREDENTIALS' }\n}\n\n// XAI_API_KEY is also the Grok gateway secret, so keep the gateway on auto.\nexport async function storeGrokKey(key: string): Promise<{ secret: string }> {\n  ghSecretSet('XAI_API_KEY', key.trim())\n  await syncGatewayProvider()\n  return { secret: 'XAI_API_KEY' }\n}"
+  },
+  {
+   "path": "apps/cli/src/commands/auth.ts",
+   "start": 63,
+   "end": 86,
+   "code": "    catch (e) { fail(e instanceof Error ? e.message : 'failed to copy GitHub token') }\n    return emit(result, () => console.log(c.green('\u2713 ') + `GitHub: copied gh token as ${result.secret}`))\n  }\n  // --- grok: X-account OAuth capture or an xAI key (not in HARNESS_AUTH) ---\n  if (values.harness === 'grok') {\n    const key = (values.key ?? positionals[0] ?? '').trim()\n    if (isDryRun()) return emit({ dryRun: true, harness: 'grok', method: key ? 'api-key' : 'oauth', secret: key ? 'XAI_API_KEY' : 'GROK_CREDENTIALS' }, () =>\n      console.log(c.yellow('dry-run: ') + (key ? 'grok key -> secret XAI_API_KEY' : 'would run `grok login --device-auth` -> secret GROK_CREDENTIALS')))\n    let res: { secret: string }\n    try { res = key ? await storeGrokKey(key) : grokLogin() } catch (e) { fail(e instanceof Error ? e.message : 'grok auth failed') }\n    return emit({ ok: true, harness: 'grok', method: key ? 'api-key' : 'oauth', secret: res.secret }, () =>\n      console.log(c.green('\u2713 ') + `grok: stored as ${res.secret}. Select the harness with \\`aeon config set harness grok\\`.` +\n        (key ? '' : '\\n  The X login rotates its refresh token; set GH_GLOBAL (aeon auth --github) so each run can save the new one.')))\n  }\n\n  // --- Non-Claude harnesses: native OAuth capture or a provider key ---\n  // `--harness claude-code` (or `claude`) falls through to the Claude path below.\n  if (values.harness && !CLAUDE_HARNESS.has(values.harness)) {\n    const harness = values.harness\n    const spec = HARNESS_AUTH[harness]\n    if (!spec) fail(`unknown harness '${harness}'. Native auth is available for: claude-code, ${Object.keys(HARNESS_AUTH).join(', ')}`)\n    const key = (values.key ?? positionals[0] ?? '').trim()\n\n    // A key was given (or the harness only supports keys) \u2192 store it."
+  },
+  {
+   "path": ".github/scripts/iron-config.mjs",
+   "start": 39,
+   "end": 62,
+   "code": "// process.env presence silently drops them (this rejected Langfuse in the first\n// enforce test). Allowing an unused provider host costs ~nothing and covers the\n// whole failover cascade; the credential-blocking job is P5's secrets transform.\nconst gatewayHosts = [\n  \"openrouter.ai\",\n  \"llm.bankr.bot\",\n  \"api.x.ai\",\n  \"ai-gateway.vercel.sh\",\n  \"*.cloud.langfuse.com\", \"cloud.langfuse.com\",  // observability, absent from eyebrowlock\n];\n\n// Per-skill declared egress hosts, as extracted by eyebrow and gated in CI.\nlet lockHosts = [];\ntry {\n  const lock = JSON.parse(readFileSync(\"eyebrowlock.json\", \"utf8\"));\n  const art = (lock.artifacts ?? []).find((a) => a.name === skill);\n  lockHosts = art?.capabilities?.network ?? [];\n} catch { /* missing/unreadable lock is non-fatal: the audit still logs everything */ }\n\nconst domains = [...new Set([...baseline, ...gatewayHosts, ...lockHosts])];\n\nconst config = {\n  // Explicit HTTP(S)_PROXY is used, not DNS interception - disable the DNS\n  // server so proxy_ip is not required."
+  }
+ ],
+ "files": [
+  {
+   "path": "aeon.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 303,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "CHANGELOG.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1267,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "eyebrowlock.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 2672,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "CLAUDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 127,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "AGENTS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 179,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/mcp-server/src/skill-executor.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 376,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "apps/dashboard/lib/constants.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 302,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "live_search"
+   ]
+  },
+  {
+   "path": "apps/dashboard/lib/frontmatter.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 283,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/dashboard/lib/workflow-secrets.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 93,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "apps/dashboard/lib/dispatch.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 47,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-45"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "apps/dashboard/lib/service-icons.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 139,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/dashboard/lib/connect-server.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 163,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/dashboard/lib/constants.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 108,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/dashboard/lib/dispatch.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 75,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "apps/dashboard/lib/secrets-catalog.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 165,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/dashboard/lib/connect-detect.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 299,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/dashboard/lib/auth-provider.test.mjs",
+   "kind": "test",
+   "lang": "JavaScript",
+   "lines": 141,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "apps/dashboard/lib/gateway-registry.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 41,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/dashboard/lib/frontmatter.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 128,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/dashboard/app/api/grok-auth/route.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 113,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/dashboard/components/LeftSidebar.tsx",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 220,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/dashboard/components/SkillDetail.tsx",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 412,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/cli/src/grok.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 39,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/cli/src/commands/auth.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 135,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "scripts/install-harness.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 396,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "scripts/resolve-riva-capabilities.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 25,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "scripts/run-grok.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 227,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "scripts/secretcurl.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 225,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "scripts/resolve-harness.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 247,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "scripts/llm-gateway.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 439,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3",
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_ANTHROPIC_BASE_URL",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "scripts/tests/test_riva_shadow_guard.sh",
+   "kind": "test",
+   "lang": null,
+   "lines": 52,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "scripts/tests/test_fleet_scorecard.mjs",
+   "kind": "test",
+   "lang": "JavaScript",
+   "lines": 89,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "scripts/tests/test_otel_span.sh",
+   "kind": "test",
+   "lang": null,
+   "lines": 73,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "scripts/tests/test_dry_run_dispatch.sh",
+   "kind": "test",
+   "lang": null,
+   "lines": 123,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "scripts/tests/test_harness_adapter_grok.sh",
+   "kind": "test",
+   "lang": null,
+   "lines": 151,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "scripts/tests/test_resolve_harness.sh",
+   "kind": "test",
+   "lang": null,
+   "lines": 277,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "scripts/tests/test_run_grok.sh",
+   "kind": "test",
+   "lang": null,
+   "lines": 166,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "scripts/tests/test_dry_run.sh",
+   "kind": "test",
+   "lang": null,
+   "lines": 62,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "scripts/tests/test_llm_gateway.sh",
+   "kind": "test",
+   "lang": null,
+   "lines": 254,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "scripts/tests/test_secretcurl_xai_retry.sh",
+   "kind": "test",
+   "lang": null,
+   "lines": 38,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "scripts/tests/test_credential_manifest.sh",
+   "kind": "test",
+   "lang": null,
+   "lines": 333,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "scripts/tests/harness_cli_smoke.sh",
+   "kind": "test",
+   "lang": null,
+   "lines": 438,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages"
+   ],
+   "models": [],
+   "env": [
+    "GROK_XAI_API_BASE_URL",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "scripts/tests/skill-scan-fixtures/benign-authcall/SKILL.md",
+   "kind": "test",
+   "lang": null,
+   "lines": 7,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "catalog/skills.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/harnesses.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 385,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-codex-pi-vibe-kimi-fx-cursor-hermes"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "docs/CONFIGURATION.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 357,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/ADK.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 369,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/examples/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 33,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/examples/skill-templates/TEMPLATE.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 109,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/examples/skill-templates/social-monitor/SKILL.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 82,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "harness-adapter/harnesses.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 505,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "harness-adapter/gateways.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 130,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "harness-adapter/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 283,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "harness-adapter/adapters/claude.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 126,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "harness-adapter/adapters/grok.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 220,
+   "endpoints": [],
+   "models": [
+    "grok-4.7",
+    "grok-4.x"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "plugin/skills/aeon/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 439,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "plugin/skills/aeon/references/skill-anatomy.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 141,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "plugin/skills/aeon/references/secrets.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 134,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": ".claude/skills/aeon/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 439,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": ".claude/skills/aeon/references/skill-anatomy.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 141,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": ".claude/skills/aeon/references/secrets.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 134,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": ".github/CONTRIBUTING.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 233,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": ".github/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 264,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": ".github/scripts/iron-config.mjs",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 90,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": ".github/workflows/aeon.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 2365,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "structured_output"
+   ]
+  },
+  {
+   "path": ".github/workflows/messages.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 865,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "skills/bd-radar/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 123,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "skills/token-movers/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 692,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "skills/shiplog/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 244,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "skills/compute-resell/config.example.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 82,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "skills/compute-resell/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 583,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "skills/write-tweet/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 642,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "skills/mention-radar/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 139,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "skills/feature/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 615,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "skills/narrative-tracker/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 157,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "skills/reply-maker/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 373,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "skills/digest/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 203,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "skills/soul-builder/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 277,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "skills/fetch-tweets/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 506,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "skills/last30/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 396,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  }
+ ]
+}

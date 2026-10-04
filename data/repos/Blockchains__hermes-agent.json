@@ -1,0 +1,4004 @@
+{
+ "fork": "Blockchains/hermes-agent",
+ "upstream": "NousResearch/hermes-agent",
+ "category": "agent-framework",
+ "stars": 250951,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2025 Nous Research Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to ",
+ "pushed_at": "2026-10-03T18:40:55Z",
+ "description": "The agent that grows with you",
+ "commit": "343500b3547e12530457c2fda60ec687e25118b4",
+ "indexed_at": "2026-10-03T18:49:49Z",
+ "status": "ok",
+ "clone_kb": 329128,
+ "seconds": 80.7,
+ "files_scanned": 15066,
+ "languages": {
+  "Python": 8037,
+  "TypeScript": 4197,
+  "JavaScript": 272,
+  "Rust": 10,
+  "C#": 2
+ },
+ "grok_files": 219,
+ "grok_files_by_kind": {
+  "source": 52,
+  "test": 109,
+  "doc": 53,
+  "config": 5
+ },
+ "hosts": {
+  "api.x.ai": 76
+ },
+ "endpoints": {
+  "/v1/models": 26,
+  "/v1/responses": 22,
+  "/v1/messages": 11,
+  "/v1/chat/completions": 11,
+  "/v1/audio/transcriptions": 3,
+  "/v1/images/edits": 2,
+  "/v1/images/generations": 2,
+  "/v1/audio/speech": 1,
+  "/v1/embeddings": 1
+ },
+ "models": {
+  "grok-4": 30,
+  "grok-4.6": 30,
+  "grok-4.5": 28,
+  "grok-4.3": 17,
+  "grok-imagine-image": 12,
+  "grok-3": 10,
+  "grok-imagine-image-quality": 8,
+  "grok-4-fast": 6,
+  "grok-code-fast-1": 6,
+  "grok-imagine-video": 6,
+  "grok-4-fast-reasoning": 5,
+  "grok-4.20-0309-reasoning": 5,
+  "grok-4.20": 4,
+  "grok-4.20-multi-agent": 4,
+  "grok-4.20-0309-non-reasoning": 4,
+  "grok-4.20-multi-agent-0309": 4,
+  "grok-imagine-image-pro": 4,
+  "grok-4.7": 4,
+  "grok-imagine-image-2.0": 4,
+  "grok-4-6.html": 3,
+  "grok-4.6.supports_vision": 3,
+  "grok-imagine-video-1.5-2026-05-30": 3,
+  "grok-imagine-video-1.5-preview": 3,
+  "grok-4.x": 2,
+  "grok-code-fast": 2,
+  "grok-4-fast-non-reasoning": 2,
+  "grok-4.20-reasoning": 2,
+  "grok-4.1-fast": 2,
+  "grok-4-0709": 2,
+  "grok-5": 2,
+  "grok-4.6-latest": 2,
+  "grok-4.6.context_length": 2,
+  "grok-4-1-fast-non-reasoning": 2,
+  "grok-imagine-1.5": 2,
+  "grok-4-1-fast-reasoning": 2,
+  "grok-2-image": 2,
+  "grok-2": 1,
+  "grok-2-vision": 1,
+  "grok-3-mini": 1,
+  "grok-2.md": 1,
+  "grok-4.20-0309": 1,
+  "grok-5-preview": 1,
+  "grok-4.7.context_length": 1,
+  "grok-4.20-beta": 1,
+  "grok-imagine-image-3.0": 1,
+  "grok-4-1-fast": 1,
+  "grok-imagine-video-1.5": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 97,
+  "XAI_BASE_URL": 25,
+  "DEFAULT_XAI_OAUTH_BASE_URL": 9,
+  "HERMES_XAI_BASE_URL": 9,
+  "XAI_STT_BASE_URL": 5,
+  "DEFAULT_XAI_BASE_URL": 4,
+  "XAI_ACCESS_TOKEN_REFRESH_SKEW_SECONDS": 3,
+  "XAI_OAUTH_CLIENT_ID": 3,
+  "XAI_OAUTH_SCOPE": 3,
+  "XAI_IMAGE_MODEL": 2,
+  "XAI_OAUTH_DEVICE_CODE_URL": 2,
+  "XAI_OAUTH_DISCOVERY_URL": 2,
+  "DEFAULT_XAI_LANGUAGE": 2,
+  "DEFAULT_XAI_SAMPLE_RATE": 2,
+  "DEFAULT_XAI_VOICE_ID": 2,
+  "XAI_OAUTH_ACCESS_TOKEN": 1,
+  "XAI_VIDEO_EDIT_SCHEMA": 1,
+  "XAI_VIDEO_EXTEND_SCHEMA": 1,
+  "XAI_OAUTH_ISSUER": 1,
+  "HERMES_XAI_REFRESH_TIMEOUT_SECONDS": 1,
+  "MAX_XAI_STORAGE_EXPIRES_AFTER_SECONDS": 1,
+  "SAFE_XAI_STORAGE_EXPIRES_AFTER_SECONDS": 1,
+  "DEFAULT_XAI_AUTO_SPEECH_TAGS": 1,
+  "DEFAULT_XAI_BIT_RATE": 1,
+  "DEFAULT_XAI_SPEED_DEFAULT": 1,
+  "DEFAULT_XAI_SPEED_MAX": 1,
+  "DEFAULT_XAI_SPEED_MIN": 1,
+  "DEFAULT_XAI_TEXT_NORMALIZATION_DEFAULT": 1,
+  "STT_WIRE_XAI": 1,
+  "HAS_XAI": 1
+ },
+ "features": {
+  "anthropic_compatible": 25,
+  "voice_realtime": 17,
+  "reasoning": 16,
+  "vision": 13,
+  "live_search": 10,
+  "mcp": 10,
+  "tool_calling": 9,
+  "image_generation": 8,
+  "streaming": 7,
+  "openai_compatible": 6,
+  "embeddings": 4,
+  "structured_output": 4
+ },
+ "sdk_exports": [
+  {
+   "path": "hermes_cli/auth_xai.py",
+   "lang": "Python",
+   "names": [
+    "refresh_xai_oauth_pure",
+    "resolve_xai_oauth_runtime_credentials"
+   ]
+  },
+  {
+   "path": "hermes_cli/xai_retirement.py",
+   "lang": "Python",
+   "names": [
+    "RetirementIssue",
+    "find_retired_xai_refs",
+    "format_issue",
+    "ApplyResult",
+    "apply_migration"
+   ]
+  },
+  {
+   "path": "tools/xai_http.py",
+   "lang": "Python",
+   "names": [
+    "has_xai_credentials",
+    "hermes_xai_user_agent",
+    "hermes_xai_default_headers",
+    "read_xai_imagine_storage_config",
+    "build_xai_storage_options",
+    "xai_storage_notice_text",
+    "maybe_mark_xai_storage_notice_seen",
+    "resolve_xai_http_credentials"
+   ]
+  },
+  {
+   "path": "plugins/web/xai/provider.py",
+   "lang": "Python",
+   "names": [
+    "XAIWebSearchProvider"
+   ]
+  }
+ ],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "toolsets.py",
+   "start": 79,
+   "end": 102,
+   "code": "    \"web\": _ts(\"Web research and content extraction tools\", [\"web_search\", \"web_extract\"]),\n    \"search\": _ts(\"Web search only (no content extraction/scraping)\", [\"web_search\"]),\n    \"x_search\": _ts(\n        \"Search X (Twitter) posts and threads via xAI's built-in x_search Responses \"\n        \"tool. Read-only public X discovery; use the xurl skill for authenticated X \"\n        \"API reads and account actions. Available when xAI credentials are configured \"\n        \"(SuperGrok OAuth or XAI_API_KEY). Off by default; enable in `hermes tools` \u2192 \"\n        \"X (Twitter) Search.\",\n        [\"x_search\"],\n    ),\n    \"vision\": _ts(\"Image analysis and vision tools\", [\"vision_analyze\"]),\n    \"video\": _ts(\"Video analysis and understanding tools (opt-in, not in default toolset)\", [\"video_analyze\"]),\n    \"image_gen\": _ts(\"Creative generation tools (images)\", [\"image_generate\"]),\n    \"video_gen\": _ts(\n        \"Video generation tools. Single ``video_generate`` tool covers text-to-video \"\n        \"(prompt only) and image-to-video (prompt + image_url), plus \"\n        \"reference-to-video. Provider-specific edit/extend workflows may appear as \"\n        \"separate tools. Configure via ``hermes tools`` \u2192 Video Generation.\",\n        [\"video_generate\", \"xai_video_edit\", \"xai_video_extend\"],\n    ),\n    \"computer_use\": _ts(\n        \"Background desktop control via cua-driver (macOS/Windows/Linux) \u2014 \"\n        \"screenshots, mouse, keyboard, scroll, drag. Does NOT steal the user's cursor \"\n        \"or keyboard focus. Works with any tool-capable model.\","
+  },
+  {
+   "path": "apps/desktop/src/app/settings/constants.ts",
+   "start": 21,
+   "end": 44,
+   "code": "export { BUILTIN_PERSONALITIES } from '@/lib/personalities'\n\nimport { defineFieldCopy } from './field-copy'\nimport type { DesktopConfigSection } from './types'\n\n// Provider group definitions used to fold raw env-var names like\n// ``XAI_API_KEY`` into a single \"xAI\" card with a friendly label, short\n// description, and signup URL. Membership is determined by longest\n// prefix match (see ``providerGroup`` in helpers.ts) so more specific\n// prefixes (``MINIMAX_CN_``) correctly beat their general parents\n// (``MINIMAX_``). New providers should be added here so they get their\n// own card in Settings \u2192 Keys instead of being lumped into \"Other\".\ninterface ProviderPrefix {\n  prefix: string\n  name: string\n  /** Optional one-line tagline shown beneath the group name. */\n  description?: string\n  /** Optional canonical signup/console URL surfaced from the card header. */\n  docsUrl?: string\n  /** Lower numbers float to the top of the providers list. */\n  priority: number\n}\n\nexport const EMPTY_SELECT_VALUE = '__hermes_empty__'"
+  },
+  {
+   "path": "apps/desktop/src/components/onboarding/index.tsx",
+   "start": 109,
+   "end": 132,
+   "code": "    envKey: 'GEMINI_API_KEY',\n    docsUrl: 'https://aistudio.google.com/app/apikey'\n  },\n  {\n    id: 'xai',\n    name: 'xAI Grok',\n    envKey: 'XAI_API_KEY',\n    docsUrl: 'https://console.x.ai/'\n  },\n  {\n    id: 'local',\n    name: 'Local / custom endpoint',\n    envKey: 'OPENAI_BASE_URL',\n    docsUrl: 'https://github.com/NousResearch/hermes-agent#bring-your-own-endpoint',\n    placeholder: 'http://127.0.0.1:8000/v1'\n  }\n]\n\n// Build the FULL API-key provider catalog from the backend model options so the\n// onboarding / Providers key form lists every `api_key` provider `hermes model`\n// knows about \u2014 not just the hand-curated five. Curated entries keep their\n// richer copy + placeholders and float to the top (recommended defaults); every\n// other api_key provider is appended with a generic \"paste {KEY}\" affordance.\n// OAuth / external providers are intentionally excluded here \u2014 they go through"
+  },
+  {
+   "path": "agent/prompt_cache_scope.py",
+   "start": 179,
+   "end": 202,
+   "code": "GROK_AGGREGATOR_MODEL_PREFIXES = (\"x-ai/grok-\", \"xai/grok-\")\n\n\ndef is_slot_keyed_cache_route(provider: Any, model: Any, base_url: Any = \"\") -> bool:\n    \"\"\"True when the cache key selects ONE server-side slot per conversation.\n\n    xAI (``xai``/``xai-oauth``, ``api.x.ai``, or Grok via OpenRouter ``x-ai/grok-*``) pins its\n    prompt cache to the server picked by ``x-grok-conv-id`` / ``prompt_cache_key``: two divergent\n    request streams under one key evict each other. Anthropic, DeepSeek and Gemini caches are\n    content-addressed and OpenAI's ``prompt_cache_key`` only routes over a prefix match, so the\n    shared scope (#109964) stays a win there. Only the OpenRouter profile reads ``cache_scope_id``\n    for the sticky header; other aggregators fronting Grok change only the body key.\n    \"\"\"\n    if str(provider or \"\").strip().lower() in {\"xai\", \"xai-oauth\"}:\n        return True\n    if base_url_hostname(str(base_url or \"\")) == \"api.x.ai\":\n        return True\n    return str(model or \"\").strip().lower().startswith(GROK_AGGREGATOR_MODEL_PREFIXES)\n\n\ndef is_fork_cache_scope(scope: Any) -> bool:\n    \"\"\"True when *scope* is a fork-derived scope (``<scope>::<tag>``).\"\"\"\n    return isinstance(scope, str) and FORK_SCOPE_SEPARATOR in scope\n"
+  },
+  {
+   "path": "agent/client_lifecycle.py",
+   "start": 45,
+   "end": 68,
+   "code": "    (\"api.routermint.com\", lambda self, url: _routermint_headers()),\n    (\"githubcopilot.com\", lambda self, url: _lazy_attr(\"hermes_cli.models\", \"copilot_default_headers\")()),\n    (\"api.kimi.com\", lambda self, url: dict(_lazy_attr(\"agent.auxiliary_client\", \"_AI_GATEWAY_HEADERS\"))),\n    (\"portal.qwen.ai\", lambda self, url: _qwen_portal_headers()),\n    (\"chatgpt.com\", lambda self, url: _lazy_attr(\"agent.codex_headers\", \"codex_cloudflare_headers\")(\n        self._client_kwargs.get(\"api_key\", \"\"), base_url=url)),\n    # Covers provider=xai and provider=xai-oauth (api.x.ai).\n    (\"x.ai\", lambda self, url: _lazy_attr(\"tools.xai_http\", \"hermes_xai_default_headers\")()),\n)\n\n\ndef _reset_slot(cache: dict, *, in_use: bool = False) -> None:\n    cache[\"client\"] = None\n    cache[\"key\"] = None\n    cache[\"poisoned\"] = False\n    cache[\"in_use\"] = in_use\n\n\ndef _valid_credential_pair(api_key: Any, base_url: Any) -> bool:\n    return bool(isinstance(api_key, str) and api_key.strip() and isinstance(base_url, str) and base_url.strip())\n\n\ndef _swap_fallback_clients(agent, fb_client, fb_provider: str, fb_model: str, fb_base_url: str, fb_api_mode: str) -> None:\n    \"\"\"Install the fallback client(s) in place, honoring request_timeout_seconds (None = SDK default).\"\"\""
+  },
+  {
+   "path": "agent/codex_responses_adapter.py",
+   "start": 692,
+   "end": 715,
+   "code": "    hostname = str(getattr(agent, \"_base_url_hostname\", \"\") or \"\").lower() or base_url_hostname(base_url)\n    lower = str(getattr(agent, \"_base_url_lower\", \"\") or base_url).lower()\n    def _host_is(domain: str) -> bool:\n        return hostname == domain or hostname.endswith(\".\" + domain)\n    return ResponsesRouteFlags(\n        is_codex_backend=provider == \"openai-codex\" or (_host_is(\"chatgpt.com\") and \"/backend-api/codex\" in lower),\n        is_xai_responses=provider in {\"xai\", \"xai-oauth\"} or hostname == \"api.x.ai\",\n        is_github_responses=_host_is(\"models.github.ai\") or _host_is(\"githubcopilot.com\"),\n    )\n\n\ndef _native_responses_replay_items(\n    agent: Any, messages: List[Dict[str, Any]]\n) -> Optional[List[Dict[str, Any]]]:\n    \"\"\"Build the native-compaction-eligible wire items, or ``None`` when ineligible.\"\"\"\n    if getattr(agent, \"api_mode\", None) != \"codex_responses\" or not isinstance(messages, list):\n        return None\n    route = classify_responses_route(agent)._asdict()\n    from agent.native_compaction import native_compaction_context_management\n    from agent.fast_mode import effective_request_overrides\n    if not native_compaction_context_management(agent, **route):\n        return None\n    # The wire model may be rewritten per request (fast mode); provenance must match what the transport stamps.\n    effective_model = effective_request_overrides(agent).get(\"model\", getattr(agent, \"model\", None))"
+  },
+  {
+   "path": "agent/agent_init.py",
+   "start": 394,
+   "end": 417,
+   "code": "        agent.api_mode = api_mode\n    elif agent.provider in {\"openai-codex\", \"xai\", \"xai-oauth\"}:\n        agent.api_mode = \"codex_responses\"\n    elif provider_name is None and host == \"chatgpt.com\" and \"/backend-api/codex\" in url:\n        agent.api_mode = \"codex_responses\"\n        agent.provider = \"openai-codex\"\n    elif provider_name is None and host == \"api.x.ai\":\n        agent.api_mode = \"codex_responses\"\n        agent.provider = \"xai\"\n    elif agent.provider == \"anthropic\" or (provider_name is None and host == \"api.anthropic.com\"):\n        agent.api_mode = \"anthropic_messages\"\n        agent.provider = \"anthropic\"\n    elif url.rstrip(\"/\").endswith(\"/anthropic\"):\n        # Third-party Anthropic-compatible endpoints (MiniMax, DashScope) end in /anthropic.\n        agent.api_mode = \"anthropic_messages\"\n    elif agent.provider == \"bedrock\" or (\n        host.startswith(\"bedrock-runtime.\") and base_url_host_matches(url, \"amazonaws.com\")\n    ):\n        agent.api_mode = \"bedrock_converse\"\n    elif agent.provider in {\"nous\", \"nous-portal\", \"nousresearch\"}:\n        # Portal is dual-wire (anthropic/* \u2192 Messages, else chat_completions); covers direct\n        # AIAgent construction without a resolved runtime.\n        from hermes_cli.providers import nous_api_mode\n        agent.api_mode = nous_api_mode(agent.model)"
+  },
+  {
+   "path": "agent/model_metadata.py",
+   "start": 329,
+   "end": 352,
+   "code": "    # The OpenRouter :free variant is capped; the longer key wins.\n    \"glm-5.3\": 1_310_720, \"glm-5.3-flash\": 1_310_720, \"glm-5.3:batch\": 1_048_576, \"glm-5.3:us\": 1_048_576,\n    \"glm-5.3-flash:batch\": 1_048_576, \"glm-5.3-flash:us\": 1_048_576, \"glm-5.3-flashx\": 1_048_576,\n    \"glm-5.2\": 1_048_576, \"glm-5.2:free\": 256_000,\n    \"glm-5.1\": 204_800, \"glm-5-turbo\": 202752, \"glm-5v-turbo\": 202752, \"glm-5\": 204_800,\n    \"glm-4.7-flash\": 202752, \"glm-4.7\": 204_800, \"glm-4.6v\": 131072, \"glm-4.6\": 204_800, \"glm\": 202752,\n    # xAI \u2014 /v1/models returns no context_length, so these prevent probe-down on api.x.ai\n    # custom providers (docs.x.ai). grok-composer(-2.5-fast, Grok Build CLI) is OAuth-only:\n    # 200k usable (the /v1/responses ~262144 input+output budget is a separate limit).\n    # grok-build-latest aliases grok-4.5; grok-4-fast / grok-4.20 also match their\n    # -(non-)reasoning and -multi-agent variants; \"grok\" is the catch-all.\n    \"grok-composer\": 200000, \"grok-build-latest\": 500000, \"grok-build\": 256000, \"grok-code-fast\": 256000,\n    \"grok-2-vision\": 8192, \"grok-4-fast\": 2000000, \"grok-4.20\": 2000000,\n    \"grok-4.6\": 500000, \"grok-4.5\": 500000, \"grok-4.3\": 1000000, \"grok-4\": 256000,\n    \"grok-3\": 131072, \"grok-2\": 131072, \"grok\": 131072,\n    # Kimi \u2014 K3 is 1 Mi (matches the endpoint-scoped override); older Kimi 256K.\n    \"kimi-k3\": 1_048_576, \"kimi\": 262144,\n    # Upstage Solar \u2014 /v1/models returns no context_length. Later generations and new lineups\n    # default to 512K (Upstage /v1/solar/models max_model_len, 2026-09).\n    \"solar-open2\": 262144, \"solar-pro3\": 131072, \"solar-pro2\": 65536, \"solar-mini\": 32768, \"solar-\": 524288,\n    # Tencent Hunyuan (262144 = 256 \u00d7 1024, aligned with OpenRouter live metadata)\n    \"hy4-preview\": 1_048_576, \"hy3-preview\": 262144, \"hy3\": 262144,\n    # \"Ox Alpha\" stealth model (OpenCode Zen / OpenRouter slugs); \"Union Alpha\" stealth model\n    # (OpenRouter ``stealth/union-alpha``, 262144 per /api/v1/models); NVIDIA Nemotron (128K"
+  },
+  {
+   "path": "agent/auxiliary_client.py",
+   "start": 3663,
+   "end": 3686,
+   "code": "\n\n# Ordered (host, provider) tables for inferring a backend from a client base URL.\n_POOL_PROVIDER_BY_HOST = (\n    (\"chatgpt.com\", \"openai-codex\"), (\"openrouter.ai\", \"openrouter\"),\n    (\"inference-api.nousresearch.com\", \"nous\"), (\"api.anthropic.com\", \"anthropic\"),\n    (\"githubcopilot.com\", \"copilot\"), (\"api.kimi.com\", \"kimi-coding\"), (\"api.x.ai\", \"xai-oauth\"),\n)\n_AUTH_REFRESH_PROVIDER_BY_HOST = (\n    (\"api.githubcopilot.com\", \"copilot\"), (\"chatgpt.com\", \"openai-codex\"),\n    (\"api.anthropic.com\", \"anthropic\"), (\"inference-api.nousresearch.com\", \"nous\"),\n    # An aux call that inherits the main xai-oauth route arrives as \"auto\"; without this row the\n    # 403 bad-credentials rung skipped the refresh and benched the only grant (#84845).\n    (\"api.x.ai\", \"xai-oauth\"),\n)\n\n\ndef _provider_for_host(base_url: str, table: Tuple[Tuple[str, str], ...]) -> Optional[str]:\n    \"\"\"First provider in ``table`` whose host matches ``base_url``, else None.\"\"\"\n    for host, provider in table:\n        if base_url_host_matches(base_url, host):\n            return provider\n    return None\n"
+  },
+  {
+   "path": "agent/credential_sources.py",
+   "start": 232,
+   "end": 255,
+   "code": "        description=\"gh auth token / COPILOT_GITHUB_TOKEN / GH_TOKEN\",\n    ),\n    RemovalStep(\n        provider=\"*\", source_id=\"env:\",\n        match_fn=lambda src: src.startswith(\"env:\"),\n        remove_fn=_remove_env_source,\n        description=\"Any env-seeded credential (XAI_API_KEY, DEEPSEEK_API_KEY, etc.)\",\n    ),\n    RemovalStep(\n        provider=\"anthropic\", source_id=\"claude_code\",\n        remove_fn=_suppress_only(\n            \"Suppressed claude_code credential \u2014 it will not be re-seeded.\",\n            \"Note: Claude Code credentials still live in ~/.claude/.credentials.json\",\n            \"Run `hermes auth add anthropic` to re-enable if needed.\",\n        ),\n        description=\"~/.claude/.credentials.json\",\n    ),\n    RemovalStep(\n        provider=\"anthropic\", source_id=\"hermes_pkce\",\n        remove_fn=_remove_hermes_pkce,\n        description=\"~/.hermes/.anthropic_oauth.json\",\n    ),\n    RemovalStep(\n        provider=\"nous\", source_id=\"device_code\","
+  },
+  {
+   "path": "agent/billing_links.py",
+   "start": 42,
+   "end": 65,
+   "code": "# Hosts back the OpenAI-compatible fallback where the slug is a generic bucket but\n# base_url reveals the real upstream. Unknown providers get a readable label, no URL.\n_PROVIDERS: tuple[_Provider, ...] = (\n    _Provider(\"OpenAI\", \"https://platform.openai.com/settings/organization/billing\", (\"openai\",), (\"api.openai.com\",)),\n    _Provider(\"Anthropic\", \"https://console.anthropic.com/settings/billing\", (\"anthropic\",), (\"api.anthropic.com\",)),\n    _Provider(\"OpenRouter\", \"https://openrouter.ai/settings/credits\", (\"openrouter\",), (\"openrouter.ai\",)),\n    _Provider(\"xAI\", \"https://console.x.ai/team/default/billing\", (\"xai\", \"xai-oauth\"), (\"api.x.ai\",)),\n    _Provider(\"DeepSeek\", \"https://platform.deepseek.com/top_up\", (\"deepseek\",), (\"api.deepseek.com\",)),\n    _Provider(\"Groq\", \"https://console.groq.com/settings/billing\", (\"groq\",), (\"api.groq.com\",)),\n    _Provider(\"Mistral\", \"https://console.mistral.ai/billing\", (\"mistral\",), (\"api.mistral.ai\",)),\n    _Provider(\"Together AI\", \"https://api.together.ai/settings/billing\", (\"together\",), (\"api.together.ai\", \"api.together.xyz\")),\n    _Provider(\"Fireworks AI\", \"https://fireworks.ai/account/billing\", (\"fireworks\",), (\"fireworks.ai\",)),\n    _Provider(\"Perplexity\", \"https://www.perplexity.ai/settings/api\", (\"perplexity\",), (\"perplexity.ai\",)),\n    _Provider(\"Google AI\", \"https://aistudio.google.com/app/billing\", (\"google\", \"gemini\"), (\"generativelanguage.googleapis.com\",)),\n    _Provider(\"Cohere\", \"https://dashboard.cohere.com/billing\", (\"cohere\",)),\n    _Provider(\"Moonshot AI\", \"https://platform.moonshot.ai/console/pay\", (\"moonshot\",)),\n    _Provider(\"NVIDIA\", \"https://build.nvidia.com/settings/billing\", (\"nvidia\",)),\n)\n\n_BY_SLUG: dict[str, _Provider] = {slug: p for p in _PROVIDERS for slug in p.slugs}\n\n\ndef is_nous_inference_route(provider: str, base_url: str) -> bool:\n    \"\"\"True when the failing route is the Nous-managed inference gateway.\"\"\""
+  },
+  {
+   "path": "agent/chat_completion_helpers.py",
+   "start": 1378,
+   "end": 1401,
+   "code": "    \"\"\"xAI chat-completions reserves ``tool_search`` and 400s when the bridge declares\n    it (#95003): rename the wire declaration; ``normalize_response`` maps calls back\n    via the transport's ``_last_wire_aliases`` (reset here so a stale map can't\n    reverse-map a name this request never aliased). Deep-copy first (#27907).\"\"\"\n    if transport is not None and hasattr(transport, \"_last_wire_aliases\"):\n        transport._last_wire_aliases = {}\n    is_xai_chat = agent.provider in {\"xai\", \"xai-oauth\"} or agent._base_url_hostname == \"api.x.ai\"\n    if not (is_xai_chat and tools_for_api):\n        return tools_for_api\n    try:\n        import copy as _copy_xai\n        from agent.transports.chat_completions import _rename_tool_search_bridge_for_xai\n        has_bridge = any(\n            (t.get(\"function\") or {}).get(\"name\") == \"tool_search\" for t in tools_for_api if isinstance(t, dict)\n        )\n        if has_bridge:\n            tools_for_api = _copy_xai.deepcopy(tools_for_api)\n            tools_for_api, alias_map = _rename_tool_search_bridge_for_xai(tools_for_api)\n            if transport is not None:\n                transport._last_wire_aliases = alias_map\n    except Exception as exc:\n        logger.warning(\"%s\u26a0\ufe0f Failed to alias tool_search bridge for xAI: %s\", getattr(agent, \"log_prefix\", \"\"), exc)\n    return tools_for_api\n"
+  },
+  {
+   "path": "agent/proxy_sources/iron_proxy.py",
+   "start": 44,
+   "end": 67,
+   "code": "# HTTPS_PROXY semantics use a single CONNECT tunnel, so only the tunnel listener is exposed.\n_DEFAULT_TUNNEL_PORT = 9090\n\n# Hosts allowed by default for AI inference traffic.  Anything else is 403'd.\n_DEFAULT_ALLOWED_HOSTS: Tuple[str, ...] = (\n    \"openrouter.ai\", \"*.openrouter.ai\", \"api.openai.com\", \"api.anthropic.com\", \"generativelanguage.googleapis.com\",\n    \"api.x.ai\", \"api.mistral.ai\", \"api.groq.com\", \"api.together.xyz\", \"api.deepseek.com\", \"inference.nousresearch.com\",\n)\n\n# Provider env-var name -> upstream hosts on which the Authorization Bearer token is swapped.\n_BEARER_PROVIDERS: Dict[str, Tuple[str, ...]] = {\n    \"OPENROUTER_API_KEY\": (\"openrouter.ai\", \"*.openrouter.ai\"), \"OPENAI_API_KEY\": (\"api.openai.com\",),\n    \"GROQ_API_KEY\": (\"api.groq.com\",), \"TOGETHER_API_KEY\": (\"api.together.xyz\",),\n    \"DEEPSEEK_API_KEY\": (\"api.deepseek.com\",), \"MISTRAL_API_KEY\": (\"api.mistral.ai\",),\n    \"XAI_API_KEY\": (\"api.x.ai\",), \"NOUS_API_KEY\": (\"inference.nousresearch.com\",),\n}\n\n# Non-Authorization-header providers (v0.39 ``match_headers`` is case-insensitive).  ``aliases``\n# name the SAME credential and MUST collapse into one mapping: every rule is ``require: true`` and\n# two require-rules on one host would reject each other's requests; the sandbox gets the token\n# under every name.  Authorization is also matched for Anthropic/Azure (SDKs may send Bearer);\n# Gemini's ``?key=<token>`` style is covered by match_query.\n# Providers whose API authenticates with a NON-Authorization header. iron-proxy v0.39's\n# ``secrets.replace.match_headers`` targets arbitrary header names (case-insensitive; confirmed by the"
+  },
+  {
+   "path": "hermes_cli/config_defaults.py",
+   "start": 2437,
+   "end": 2460,
+   "code": "        # A key that is NOT a built-in id declares a custom server (matched before the built-ins):\n        # command: [\"my-ls\", \"--stdio\"]; extensions: [\".ext\"]; optional root_markers: [...],\n        # language_id: \"...\" (didOpen languageId), description: \"...\". Manual install only.\n        \"servers\": {},\n    },\n    # X (Twitter) Search via xAI's x_search Responses tool. Registers when xAI creds exist\n    # (SuperGrok OAuth or XAI_API_KEY) AND the toolset is enabled in `hermes tools`.\n    \"x_search\": {\n        # xAI model for the Responses call; any Grok model with x_search access works.\n        \"model\": \"grok-4.5\",\n        # Reasoning effort for models that support it; null keeps the model default.\n        \"reasoning_effort\": None,\n        # Request timeout in seconds (minimum 30); complex queries can take 60-120s.\n        \"timeout_seconds\": 180,\n        # Retries on 5xx / ReadTimeout / ConnectionError (backoff 1.5x attempt s, cap 5s).\n        \"retries\": 2,\n    },\n    # External secret sources \u2014 pull credentials from secret managers at startup instead of storing\n    # them in ~/.hermes/.env.\n    # Browser credential vault: which login sources browser_vault_list/fill may draw from. The local\n    # encrypted vault (`hermes vault add`, Desktop \u2192 Settings \u2192 Credential Vault) is always on.\n    # External password managers are unlocked per session with a masked master-password prompt;\n    # headless sessions (cron, webhook, API) never prompt and see them as locked.\n    \"vault\": {"
+  },
+  {
+   "path": "hermes_cli/models.py",
+   "start": 1177,
+   "end": 1200,
+   "code": "\n    from agent.model_metadata import is_grok_46_family\n\n    if _is_anthropic_fast_model(model_id):\n        allowed = {\"anthropic\": \"api.anthropic.com\"}\n    elif is_grok_46_family(str(model_id or \"\")):\n        allowed = {\"xai\": \"api.x.ai\"}\n    else:\n        allowed = {\n            \"openai\": \"api.openai.com\",\n            \"openai-api\": \"api.openai.com\",\n            \"openai-codex\": \"chatgpt.com\",\n        }\n    if provider and normalize_provider(provider) not in allowed:\n        return False\n    host = (urlparse(str(base_url or \"\")).hostname or \"\").lower()\n    return not host or host in allowed.values()\n\n\ndef model_supports_ultrafast(model_id: Optional[str]) -> bool:\n    \"\"\"OpenAI Ultrafast (``service_tier: \"ultrafast\"``) is published per model, not per family.\"\"\"\n    from agent.model_metadata import strip_codex_context_variant_suffix\n\n    base = _strip_vendor_prefix(strip_codex_context_variant_suffix(str(model_id or \"\"))).split(\":\")[0]"
+  },
+  {
+   "path": "hermes_cli/auth_constants.py",
+   "start": 67,
+   "end": 90,
+   "code": "ACCESS_TOKEN_REFRESH_SKEW_SECONDS = 120       # refresh 2 min before expiry\nNOUS_INVOKE_JWT_MIN_TTL_SECONDS = ACCESS_TOKEN_REFRESH_SKEW_SECONDS\nDEVICE_AUTH_POLL_INTERVAL_CAP_SECONDS = 1     # poll at most every 1s\nDEVICE_CODE_GRANT_TYPE = \"urn:ietf:params:oauth:grant-type:device_code\"\n_FORM_JSON_HEADERS = {\"Content-Type\": \"application/x-www-form-urlencoded\", \"Accept\": \"application/json\"}\nDEFAULT_CODEX_BASE_URL = \"https://chatgpt.com/backend-api/codex\"\nDEFAULT_XAI_OAUTH_BASE_URL = \"https://api.x.ai/v1\"\nMINIMAX_OAUTH_CLIENT_ID = \"78257093-7e40-4613-99e0-527b14b39113\"\nMINIMAX_OAUTH_SCOPE = \"group_id profile model.completion\"\nMINIMAX_OAUTH_GRANT_TYPE = \"urn:ietf:params:oauth:grant-type:user_code\"\nMINIMAX_OAUTH_GLOBAL_BASE = \"https://api.minimax.io\"\nMINIMAX_OAUTH_CN_BASE = \"https://api.minimaxi.com\"\nMINIMAX_OAUTH_GLOBAL_INFERENCE = \"https://api.minimax.io/anthropic\"\nMINIMAX_OAUTH_CN_INFERENCE = \"https://api.minimaxi.com/anthropic\"\nMINIMAX_OAUTH_REFRESH_SKEW_SECONDS = 60\nDEFAULT_QWEN_BASE_URL = \"https://portal.qwen.ai/v1\"\nDEFAULT_GITHUB_MODELS_BASE_URL = \"https://api.githubcopilot.com\"\nDEFAULT_COPILOT_ACP_BASE_URL = \"acp://copilot\"\nDEFAULT_OLLAMA_CLOUD_BASE_URL = \"https://ollama.com/v1\"\nDEFAULT_ACTUAL_BASE_URL = \"https://api.actual.inc/v1\"\nDEFAULT_ACTUAL_LOCAL_BASE_URL = \"http://127.0.0.1:8080/v1\"\nSTEPFUN_STEP_PLAN_INTL_BASE_URL = \"https://api.stepfun.ai/step_plan/v1\"\nSTEPFUN_STEP_PLAN_CN_BASE_URL = \"https://api.stepfun.com/step_plan/v1\"\nCODEX_OAUTH_CLIENT_ID = \"app_EMoamEEZ73f0CkXaXp7hrann\""
+  },
+  {
+   "path": "hermes_cli/auth.py",
+   "start": 220,
+   "end": 243,
+   "code": "     (\"DASHSCOPE_API_KEY\",), \"DASHSCOPE_BASE_URL\"),\n    (\"alibaba-coding-plan\", \"Alibaba Cloud (Coding Plan)\", \"https://coding-intl.dashscope.aliyuncs.com/v1\",\n     (\"ALIBABA_CODING_PLAN_API_KEY\", \"DASHSCOPE_API_KEY\"), \"ALIBABA_CODING_PLAN_BASE_URL\"),\n    (\"minimax-cn\", \"MiniMax (China)\", \"https://api.minimaxi.com/anthropic\", (\"MINIMAX_CN_API_KEY\",),\n     \"MINIMAX_CN_BASE_URL\"),\n    (\"deepseek\", \"DeepSeek\", \"https://api.deepseek.com/v1\", (\"DEEPSEEK_API_KEY\",), \"DEEPSEEK_BASE_URL\"),\n    (\"xai\", \"xAI\", \"https://api.x.ai/v1\", (\"XAI_API_KEY\",), \"XAI_BASE_URL\"),\n    (\"nvidia\", \"NVIDIA NIM\", \"https://integrate.api.nvidia.com/v1\", (\"NVIDIA_API_KEY\",), \"NVIDIA_BASE_URL\"),\n    (\"ai-gateway\", \"Vercel AI Gateway\", \"https://ai-gateway.vercel.sh/v1\", (\"AI_GATEWAY_API_KEY\",),\n     \"AI_GATEWAY_BASE_URL\"),\n    (\"opencode-zen\", \"OpenCode Zen\", \"https://opencode.ai/zen/v1\", (\"OPENCODE_ZEN_API_KEY\",),\n     \"OPENCODE_ZEN_BASE_URL\"),\n    # OpenCode Go mixes API surfaces by model (GLM/Kimi: OpenAI chat under /v1; MiniMax and\n    # Qwen 3.7: Anthropic Messages under /v1/messages). Keep the base at /v1; api_mode is per-model.\n    (\"opencode-go\", \"OpenCode Go\", \"https://opencode.ai/zen/go/v1\", (\"OPENCODE_GO_API_KEY\",),\n     \"OPENCODE_GO_BASE_URL\"),\n    (\"kilocode\", \"Kilo Code\", \"https://api.kilo.ai/api/gateway\", (\"KILOCODE_API_KEY\",), \"KILOCODE_BASE_URL\"),\n    (\"huggingface\", \"Hugging Face\", \"https://router.huggingface.co/v1\", (\"HF_TOKEN\",), \"HF_BASE_URL\"),\n    (\"xiaomi\", \"Xiaomi MiMo\", \"https://api.xiaomimimo.com/v1\", (\"XIAOMI_API_KEY\",), \"XIAOMI_BASE_URL\"),\n    (\"tencent-tokenhub\", \"Tencent TokenHub\", \"https://tokenhub.tencentmaas.com/v1\", (\"TOKENHUB_API_KEY\",),\n     \"TOKENHUB_BASE_URL\"),\n    (\"tencent-tokenplan\", \"Tencent TokenPlan\", \"https://api.lkeap.cloud.tencent.com/plan/anthropic\",\n     (\"TOKENPLAN_API_KEY\",), \"TOKENPLAN_BASE_URL\"),\n    (\"ollama-cloud\", \"Ollama Cloud\", DEFAULT_OLLAMA_CLOUD_BASE_URL, (\"OLLAMA_API_KEY\",), \"OLLAMA_BASE_URL\"),"
+  },
+  {
+   "path": "hermes_cli/providers.py",
+   "start": 31,
+   "end": 54,
+   "code": "    \"nous\": HermesOverlay(auth_type=\"oauth_device_code\", base_url_override=\"https://inference-api.nousresearch.com/v1\"),\n    \"openai-codex\": HermesOverlay(transport=\"codex_responses\", auth_type=\"oauth_external\",\n                                  base_url_override=\"https://chatgpt.com/backend-api/codex\"),\n    \"openai-api\": HermesOverlay(transport=\"codex_responses\", base_url_override=\"https://api.openai.com/v1\",\n                                base_url_env_var=\"OPENAI_BASE_URL\"),\n    \"xai-oauth\": HermesOverlay(transport=\"codex_responses\", auth_type=\"oauth_external\",\n                               base_url_override=\"https://api.x.ai/v1\", base_url_env_var=\"XAI_BASE_URL\"),\n    \"qwen-oauth\": HermesOverlay(auth_type=\"oauth_external\", base_url_override=\"https://portal.qwen.ai/v1\",\n                                base_url_env_var=\"HERMES_QWEN_BASE_URL\"),\n    \"lmstudio\": HermesOverlay(extra_env_vars=(\"LM_API_KEY\",), base_url_override=\"http://127.0.0.1:1234/v1\",\n                              base_url_env_var=\"LM_BASE_URL\"),\n    \"copilot-acp\": HermesOverlay(transport=\"codex_responses\", auth_type=\"external_process\",\n                                 base_url_override=\"acp://copilot\", base_url_env_var=\"COPILOT_ACP_BASE_URL\"),\n    \"github-copilot\": HermesOverlay(extra_env_vars=(\"COPILOT_GITHUB_TOKEN\", \"GH_TOKEN\")),\n    \"anthropic\": HermesOverlay(transport=\"anthropic_messages\", extra_env_vars=(\"ANTHROPIC_TOKEN\", \"CLAUDE_CODE_OAUTH_TOKEN\")),\n    \"zai\": HermesOverlay(extra_env_vars=(\"GLM_API_KEY\", \"ZAI_API_KEY\", \"Z_AI_API_KEY\"), base_url_env_var=\"GLM_BASE_URL\"),\n    \"kimi-for-coding\": HermesOverlay(base_url_env_var=\"KIMI_BASE_URL\"),\n    \"stepfun\": HermesOverlay(extra_env_vars=(\"STEPFUN_API_KEY\",),\n                             base_url_override=\"https://api.stepfun.ai/step_plan/v1\",\n                             base_url_env_var=\"STEPFUN_BASE_URL\"),\n    \"minimax\": HermesOverlay(transport=\"anthropic_messages\", base_url_env_var=\"MINIMAX_BASE_URL\"),\n    \"minimax-oauth\": HermesOverlay(transport=\"anthropic_messages\", auth_type=\"oauth_external\",\n                                   base_url_override=\"https://api.minimax.io/anthropic\"),\n    \"minimax-cn\": HermesOverlay(transport=\"anthropic_messages\", base_url_env_var=\"MINIMAX_CN_BASE_URL\"),"
+  },
+  {
+   "path": "hermes_cli/auth_xai.py",
+   "start": 322,
+   "end": 345,
+   "code": "        suffix = f\" Response: {detail}\" if detail else \"\"\n        # 403 is almost always a tier/entitlement gate; re-login won't fix it, so use a separate\n        # code and format_auth_error skips the re-authenticate hint.\n        # ``403`` from xAI's token endpoint is almost always a tier / entitlement gate (the OAuth grant\n        # exists but the account isn't on the allowlist for API access). Re-running ``hermes model`` won't\n        # fix that \u2014 surface a separate error code so ``format_auth_error`` doesn't append a misleading\n        # re-authenticate hint, and point users at the ``XAI_API_KEY`` fallback. See #26847.\n        if response.status_code == 403:\n            raise _xai_err(\n                \"xAI token refresh failed with HTTP 403.\" + suffix\n                + \" This OAuth account is not authorized for xAI API\"\n                  \" access \u2014 xAI may be restricting API/OAuth use to\"\n                  \" specific SuperGrok tiers despite the in-app\"\n                  \" subscription being active. Re-logging in won't\"\n                  \" change that; set ``XAI_API_KEY`` and switch to\"\n                  \" ``provider: xai`` (API-key path) if available, or\"\n                  \" upgrade your subscription at https://x.ai/grok.\",\n                \"xai_oauth_tier_denied\", relogin=False,\n            )\n        raise _xai_err(\n            \"xAI token refresh failed.\" + suffix, \"xai_refresh_failed\", relogin=response.status_code in {400, 401},\n        )\n    payload, refreshed_access = _refresh_payload_access_token(\n        response, provider=\"xai-oauth\","
+  },
+  {
+   "path": "hermes_cli/status_auth.py",
+   "start": 46,
+   "end": 69,
+   "code": "\n\n# Values may be a single env var name (str) or a tuple of alternates (first found wins).\n_API_KEYS: dict[str, str | tuple[str, ...]] = {\n    \"OpenRouter\": \"OPENROUTER_API_KEY\", \"OpenAI\": \"OPENAI_API_KEY\",\n    \"Google / Gemini\": (\"GOOGLE_API_KEY\", \"GEMINI_API_KEY\"), \"DeepSeek\": \"DEEPSEEK_API_KEY\",\n    \"xAI / Grok\": \"XAI_API_KEY\", \"NVIDIA NIM\": \"NVIDIA_API_KEY\", \"Z.AI / GLM\": \"GLM_API_KEY\",\n    \"Kimi\": \"KIMI_API_KEY\", \"StepFun Step Plan\": \"STEPFUN_API_KEY\", \"MiniMax\": \"MINIMAX_API_KEY\",\n    \"MiniMax-CN\": \"MINIMAX_CN_API_KEY\", \"DeepInfra\": \"DEEPINFRA_API_KEY\", \"Firecrawl\": \"FIRECRAWL_API_KEY\",\n    \"Tavily\": \"TAVILY_API_KEY\", \"Perplexity\": \"PERPLEXITY_API_KEY\", \"Keenable\": \"KEENABLE_API_KEY\",\n    \"Browser Use\": \"BROWSER_USE_API_KEY\",  # Optional \u2014 local browser works without this\n    \"Browserbase\": \"BROWSERBASE_API_KEY\",  # Optional \u2014 direct credentials only\n    \"FAL\": \"FAL_KEY\", \"ElevenLabs\": \"ELEVENLABS_API_KEY\", \"GitHub\": \"GITHUB_TOKEN\"}\n\n# OAuth detail rows: (label, status key, formatter, gate) \u2014 see _oauth_block.\n_FILE_REFRESH_ROWS = (\n    (\"Auth file:\", \"auth_store\", None, None),\n    (\"Refreshed:\", \"last_refresh\", _format_iso_timestamp, None), (\"Error:\", \"error\", None, False))\n\n_OAUTH_BLOCKS = (\n    # (row name, auth getter, login hint, detail rows)\n    (\"OpenAI Codex\", \"get_codex_auth_status\", \"hermes model\", _FILE_REFRESH_ROWS),\n    (\"Qwen OAuth\", \"get_qwen_auth_status\", \"qwen auth qwen-oauth\", (\n        (\"Auth file:\", \"auth_file\", None, None),"
+  },
+  {
+   "path": "hermes_cli/runtime_provider.py",
+   "start": 84,
+   "end": 107,
+   "code": "# \u2500\u2500 api_mode detection \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n# Hosts that only speak one wire protocol. Mirrors host_mandated_api_mode in hermes_cli/providers.py\n# so the runtime resolver stays in lockstep: api.meta.ai \u2014 prompt caching only on Responses;\n# api.router.com \u2014 /v1/chat/completions is a minimal shim; api.anthropic.com \u2014 native Messages.\n_HOST_MANDATED_API_MODES = {\n    \"api.x.ai\": \"codex_responses\", \"api.meta.ai\": \"codex_responses\", \"api.actual.inc\": \"chat_completions\",\n    \"api.router.com\": \"codex_responses\", \"api.anthropic.com\": \"anthropic_messages\",\n}\n\n# codex_app_server is opt-in: hand the whole turn to a `codex app-server` subprocess (Codex's own\n# tool runtime), gated on `model.openai_runtime == \"codex_app_server\"` AND provider in {openai, openai-codex}.\n_VALID_API_MODES = {\"chat_completions\", \"codex_responses\", \"anthropic_messages\", \"bedrock_converse\", \"codex_app_server\"}\n\n\ndef _detect_api_mode_for_url(base_url: str) -> Optional[str]:\n    \"\"\"Auto-detect api_mode from the resolved base URL, or None. Exact-hostname matches reject\n    lookalike subdomains (api.anthropic.com.attacker.test) and path-segment spoofing\n    (proxy.test/api.anthropic.com/v1). Official OpenAI hosts (incl. us./eu. data-residency hosts)\n    need Responses for GPT-5.x tool calls with reasoning.\n\n    - Direct api.anthropic.com endpoints must use the native Messages API (``/v1/messages``). Anthropic also\n    exposes an OpenAI-compat ``/chat/completions`` shim on the same host, but Pro/Max OAuth subscriptions\n    are only billed against the native Messages route; hitting the shim accounts against a separate \"extra"
+  },
+  {
+   "path": "hermes_cli/tools_config.py",
+   "start": 71,
+   "end": 94,
+   "code": "    (\"file\",            \"\ud83d\udcc1 File Operations\",           \"read, write, patch, search\"),\n    (\"code_execution\",  \"\u26a1 Code Execution\",            \"execute_code\"),\n    (\"vision\",          \"\ud83d\udc41\ufe0f  Vision / Image Analysis\",  \"vision_analyze\"),\n    (\"video\",           \"\ud83c\udfac Video Analysis\",            \"video_analyze (requires video-capable model)\"),\n    (\"image_gen\",       \"\ud83c\udfa8 Image Generation\",          \"image_generate\"),\n    (\"video_gen\",       \"\ud83c\udfac Video Generation\",          \"video_generate (text/image/reference)\"),\n    (\"x_search\",        \"\ud83d\udc26 X (Twitter) Search\",        \"x_search (requires xAI OAuth or XAI_API_KEY)\"),\n    (\"tts\",             \"\ud83d\udd0a Text-to-Speech\",            \"text_to_speech\"),\n    (\"stt\",             \"\ud83c\udf99\ufe0f Speech-to-Text\",           \"voice transcription (gateway voice messages + voice mode)\"),\n    (\"skills\",          \"\ud83d\udcda Skills\",                    \"list, view, manage\"),\n    (\"todo\",            \"\ud83d\udccb Task Planning\",             \"todo_list\"),\n    (\"kanban\",          \"\ud83d\udccc Kanban\",                    \"opt-in task board tools for this platform\"),\n    (\"memory\",          \"\ud83d\udcbe Memory\",                    \"persistent memory across sessions\"),\n    (\"context_engine\",  \"\ud83e\udde9 Context Engine\",            \"runtime tools from the active context engine\"),\n    (\"session_search\",  \"\ud83d\udd0e Session Search\",            \"search past conversations\"),\n    (\"connections\",     \"\ud83d\udd0c Connections\",               \"remote connector tools and account authorization\"),\n    (\"clarify\",         \"\u2753 Clarifying Questions\",      \"clarify\"),\n    (\"delegation\",      \"\ud83d\udc65 Task Delegation\",           \"delegate_task\"),\n    (\"cronjob\",         \"\u23f0 Cron Jobs\",                 \"create/list/update/pause/resume/run, with optional attached skills\"),\n    (\"homeassistant\",    \"\ud83c\udfe0 Home Assistant\",           \"smart home device control\"),\n    (\"spotify\",          \"\ud83c\udfb5 Spotify\",                  \"playback, search, playlists, library\"),\n    (\"discord\",         \"\ud83d\udcac Discord (read/participate)\", \"fetch messages, search members, create thread\"),\n    (\"discord_admin\",   \"\ud83d\udee1\ufe0f  Discord Server Admin\",    \"list channels/roles, pin, assign roles\"),\n    (\"yuanbao\",          \"\ud83e\udd16 Yuanbao\",                  \"group info, member queries, DM\"),"
+  },
+  {
+   "path": "hermes_cli/setup_tts.py",
+   "start": 192,
+   "end": 215,
+   "code": "    return \"xAI Grok OAuth login did not complete. Falling back to Edge TTS.\"\n\n\ndef _xai_api_key_path():\n    api_key = _setup.prompt(\"xAI API key for TTS\", password=True)\n    if api_key:\n        _setup.save_env_value(\"XAI_API_KEY\", api_key)\n        _setup.print_success(\"xAI TTS API key saved\")\n        return None\n    from hermes_constants import display_hermes_home as _dhh\n    return (\"No xAI API key provided for TTS. Configure XAI_API_KEY via hermes setup model \"\n            f\"or {_dhh()}/.env to use xAI TTS. Falling back to Edge TTS.\")\n\n\ndef _tts_xai_step(config: dict) -> str:\n    \"\"\"xAI TTS auth. Order: existing XAI_API_KEY > existing OAuth tokens > offer both\n    paths \u2014 matches runtime, where an explicit key wins over the subscription OAuth\n    bearer (which 403s on metered /v1/tts). See #87045, #113727.\"\"\"\n    if _setup.get_env_value(\"XAI_API_KEY\"):\n        _setup.print_success(\"xAI TTS will use your existing XAI_API_KEY (preferred over xAI Grok OAuth)\")\n    elif _xai_oauth_logged_in_for_setup():\n        _setup.print_success(\"xAI TTS will use your xAI Grok OAuth (SuperGrok / Premium+) credentials\")\n    else:\n        print()"
+  },
+  {
+   "path": "hermes_cli/tools_config_post_setup.py",
+   "start": 198,
+   "end": 221,
+   "code": "    _info_lines(\"Restart Hermes for tracing to take effect.\", \"Verify: hermes plugins list\")\n\n\ndef _post_setup_xai_grok() -> None:\n    \"\"\"Shared xAI credential bootstrap for any picker row that talks to xAI (TTS, STT, Video Gen, x_search\n    \u2026). Accepts a SuperGrok-tier OAuth token (preferred \u2014 billed to the existing subscription) or a raw\n    XAI_API_KEY; the rows declare empty env_vars so the auth UX lives here.\"\"\"\n    try:\n        from hermes_cli.auth import get_xai_oauth_auth_status\n        oauth_logged_in = bool(get_xai_oauth_auth_status().get(\"logged_in\"))\n    except Exception:\n        oauth_logged_in = False\n    if oauth_logged_in:\n        _print_success(\"    xAI will use your xAI Grok OAuth (SuperGrok / Premium+) credentials\")\n        return\n    if get_env_value(\"XAI_API_KEY\"):\n        _print_success(\"    xAI will use your existing XAI_API_KEY\")\n        return\n\n    _print_info(\"    xAI needs credentials. Choose one:\")\n    try:\n        from hermes_cli.setup import prompt_choice, prompt as _setup_prompt\n        from hermes_cli.setup_tts import _run_xai_oauth_login_from_setup\n        from hermes_cli.config import save_env_value"
+  },
+  {
+   "path": "hermes_cli/web_routers/config_env.py",
+   "start": 355,
+   "end": 378,
+   "code": "# on a bad token \u2014 enough to catch a mistyped key before it's persisted.\n# Providers absent here (or local endpoints) are not network-validated; the\n# client treats those as \"unknown\".\n_CREDENTIAL_PROBES: dict[str, tuple[str, str]] = {\n    \"OPENROUTER_API_KEY\": (\"https://openrouter.ai/api/v1/key\", \"bearer\"),\n    \"OPENAI_API_KEY\": (\"https://api.openai.com/v1/models\", \"bearer\"),\n    \"XAI_API_KEY\": (\"https://api.x.ai/v1/models\", \"bearer\"),\n    \"GEMINI_API_KEY\": (\"https://generativelanguage.googleapis.com/v1beta/models\", \"query\"),\n}\n\n\ndef _custom_endpoint_id(raw: str, fallback: str = \"custom\") -> str:\n    slug = re.sub(r\"[^A-Za-z0-9_-]+\", \"-\", coerce_provider_id(raw)).strip(\"-_\").lower()\n    return slug or fallback\n\n\ndef _resolve_custom_endpoint_entry(providers: Any, endpoint_id: str) -> Tuple[Any, Optional[Dict[str, Any]]]:\n    \"\"\"Resolve a custom endpoint id using the stored key first, then its legacy slug.\n\n    The list route hands Desktop the literal ``providers.<key>`` (a v11\u2192v12\n    migration keeps dots/colons from the display name: ``local-127.0.0.1:8283``;\n    hand-written keys keep their case), so that spelling must round-trip\n    unchanged. Slugging is only the compatibility path for callers that still\n    send an unslugged display name."
+  },
+  {
+   "path": "tools/xai_http.py",
+   "start": 6,
+   "end": 29,
+   "code": "import json\nimport os\nimport uuid\nfrom typing import Any, Dict, Optional\n\n\nDEFAULT_XAI_BASE_URL = \"https://api.x.ai/v1\"\nMAX_XAI_STORAGE_EXPIRES_AFTER_SECONDS = 30 * 24 * 60 * 60\nSAFE_XAI_STORAGE_EXPIRES_AFTER_SECONDS = 2 * 24 * 60 * 60\n\n\ndef _dict_get(obj: Any, key: str) -> Any:\n    return obj.get(key) if isinstance(obj, dict) else None\n\n\ndef has_xai_credentials() -> bool:\n    \"\"\"Cheap probe: True when xAI credentials are *likely* usable.\n\n    Deliberately avoids :func:`resolve_xai_http_credentials` (disk locks, OAuth network\n    refresh) \u2014 hot-paint callers and ``WebSearchProvider.is_available()`` must not do network\n    I/O. Checks, fast-to-slow: ``XAI_API_KEY``; ``providers.xai-oauth.tokens.access_token`` in\n    ``auth.json``; any ``credential_pool.xai-oauth`` entry with an ``access_token`` (pool-only\n    multi-account grants never write the providers singleton). Returns False on any exception\n    so a corrupted auth store can't block other availability scans."
+  },
+  {
+   "path": "tools/x_search_tool.py",
+   "start": 1,
+   "end": 21,
+   "code": "#!/usr/bin/env python3\n\"\"\"X Search tool backed by xAI's built-in ``x_search`` Responses API tool.\n\nRegisters when either xAI credential path is available (``XAI_API_KEY`` or ``hermes auth add\nxai-oauth``). At call time an explicit ``XAI_API_KEY`` wins (``prefer_api_key=True``): x_search\nis API-metered and the subscription OAuth bearer answers ``/v1/responses`` without citations.\nDate filters are validated client-side so malformed windows fail fast instead of burning a\nbillable call. Results carry ``degraded``: True when a narrowing filter was active AND xAI\nreturned no citations in either channel (answer came from model knowledge, not the X index).\n\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nimport logging\nimport time\nfrom datetime import date, datetime, timezone\nfrom typing import Any, Dict, List, Optional, Tuple\n\nimport requests\n"
+  },
+  {
+   "path": "tools/transcription_tools.py",
+   "start": 526,
+   "end": 549,
+   "code": "        if reason is not None:\n            return _error_result(reason)\n    return _error_result(\n        \"No STT provider available. Install faster-whisper for free local \"\n        f\"transcription, configure {LOCAL_STT_COMMAND_ENV} or install a local whisper CLI, \"\n        \"set GROQ_API_KEY for free Groq Whisper, set MISTRAL_API_KEY for Mistral \"\n        \"Voxtral Transcribe, configure xAI OAuth or set XAI_API_KEY for xAI Grok STT, \"\n        \"set ELEVENLABS_API_KEY for ElevenLabs Scribe, or set VOICE_TOOLS_OPENAI_KEY \"\n        \"or OPENAI_API_KEY for the OpenAI Whisper API.\")\n\n\ndef transcribe_audio(\n    file_path: str, model: Optional[str] = None, source: Optional[str] = None) -> Dict[str, Any]:\n    \"\"\"Validate, preprocess supported inputs, and dispatch transcription. ``source`` is a caller-surface\n    label (``\"gateway\"``, ``\"voice_mode\"``) forwarded to the ``pre_transcription`` hook only.\"\"\"\n    # Secret-store refusal runs before ANY validation so the error names the real reason.\n    blocked = _read_block_error(file_path)\n    if blocked:\n        return blocked\n    # Cap .silk sources before the decoder runs; for other inputs the upload cap is\n    # provider-scoped in _transcribe_prepared_audio so local whisper can take big files.\n    is_silk = Path(file_path).suffix.lower() == \".silk\"\n    source_error = _validate_audio_source_file(file_path, enforce_size_limit=is_silk)\n    if source_error:"
+  },
+  {
+   "path": "tools/transcription_cloud.py",
+   "start": 253,
+   "end": 276,
+   "code": "    \"\"\"Transcribe via xAI ``POST /v1/stt`` (multipart). Supports ITN, diarization, word timestamps.\"\"\"\n    from hermes_cli.config import get_env_value\n    from tools.transcription_tools import _load_stt_config, _resolve_stt_language\n    from tools.xai_http import resolve_xai_http_credentials\n    if prompt:\n        _log_prompt_unsupported(\"STT provider 'xai'\")\n    # STT is API-billed: prefer the explicit XAI_API_KEY over the xAI OAuth/Grok-subscription\n    # credential, which may be valid for Grok yet hit spending-limit errors on /v1/stt.\n    direct_api_key = str(get_env_value(\"XAI_API_KEY\") or \"\").strip()\n    creds = {\"provider\": \"xai\", \"api_key\": direct_api_key,\n             \"base_url\": str(get_env_value(\"XAI_BASE_URL\") or \"https://api.x.ai/v1\").strip().rstrip(\"/\")\n             } if direct_api_key else resolve_xai_http_credentials()\n    api_key = str(creds.get(\"api_key\") or \"\").strip()\n    if not api_key:\n        return _error_result(\"No xAI credentials found. Configure xAI OAuth in `hermes model` or set XAI_API_KEY\")\n    stt_config = _load_stt_config()\n    xai_config = stt_config.get(\"xai\") or {}\n\n    def _resolve_base_url(resolved_creds: Dict[str, str]) -> str:\n        # OAuth bearers are pinned to the resolver-validated origin; overrides apply to API keys only.\n        url = resolved_creds.get(\"base_url\")\n        if resolved_creds.get(\"provider\") != \"xai-oauth\":\n            url = xai_config.get(\"base_url\") or get_env_value(\"XAI_STT_BASE_URL\") or url\n        return str(url or XAI_STT_BASE_URL).strip().rstrip(\"/\")"
+  },
+  {
+   "path": "tools/tts_streaming.py",
+   "start": 367,
+   "end": 390,
+   "code": "\n    Salvaged from PR #47588 (@Cdddo) and rewritten against the real wire\n    protocol: voice/language/codec/sample_rate ride in the URL query string\n    (the server 400s the bare path at handshake), the client sends\n    ``text.delta`` + ``text.done``, and the server streams JSON\n    ``audio.delta`` envelopes (base64 PCM in ``delta``) until ``audio.done``.\n    Credentials route through ``resolve_xai_http_credentials`` (XAI_API_KEY\n    first, OAuth as fallback), same as the sync ``_generate_xai_tts`` path. The async WS\n    loop runs on a background thread feeding a queue, so ``stream()`` yields\n    chunks as they arrive and works from sync CLI code and from gateway\n    adapters that already run an event loop.\n    \"\"\"\n\n    sample_rate = DEFAULT_XAI_SAMPLE_RATE\n\n    _RECV_TIMEOUT_S = 60  # a sentence of TTS should never gap this long\n\n    @staticmethod\n    def available() -> bool:\n        try:\n            from tools.xai_http import resolve_xai_http_credentials\n            # Same ordering as the sync path: the subscription OAuth bearer\n            # authorizes but 403s on metered TTS, so an explicit key wins (#87045).\n            return bool(str(resolve_xai_http_credentials(prefer_api_key=True).get(\"api_key\") or \"\").strip())"
+  },
+  {
+   "path": "tools/tts_tool_providers.py",
+   "start": 37,
+   "end": 60,
+   "code": "DEFAULT_MISTRAL_TTS_VOICE_ID = \"c69964a6-ab8b-4f8a-9465-ec0925096ec8\"  # Paul - Neutral\nDEFAULT_XAI_VOICE_ID = \"eve\"\nDEFAULT_XAI_LANGUAGE = \"en\"\nDEFAULT_XAI_SAMPLE_RATE = 24000\nDEFAULT_XAI_BIT_RATE = 128000\nDEFAULT_XAI_AUTO_SPEECH_TAGS = False\nDEFAULT_XAI_BASE_URL = \"https://api.x.ai/v1\"\n# xAI `speed` accepts 0.7..1.5 (1.0 = API default, omitted from the payload);\n# `optimize_streaming_latency` is 0/1/2 (>0 trades quality for time-to-first-audio);\n# `text_normalization` speaks numbers/abbreviations/symbols in written form.\nDEFAULT_XAI_SPEED_MIN = 0.7\nDEFAULT_XAI_SPEED_MAX = 1.5\nDEFAULT_XAI_SPEED_DEFAULT = 1.0\nDEFAULT_XAI_OPTIMIZE_STREAMING_LATENCY_DEFAULT = 0\nDEFAULT_XAI_TEXT_NORMALIZATION_DEFAULT = False\nDEFAULT_GEMINI_TTS_MODEL = \"gemini-2.5-flash-preview-tts\"\nDEFAULT_GEMINI_TTS_VOICE = \"Kore\"\nDEFAULT_GEMINI_TTS_BASE_URL = \"https://generativelanguage.googleapis.com/v1beta\"\nDEFAULT_GEMINI_AUDIO_TAGS = False\nGEMINI_AUDIO_TAG_REWRITE_TASK = \"tts_audio_tags\"\nTTS_RESPONSE_BODY_LIMIT_BYTES = 16 * 1024 * 1024\nTTS_RESPONSE_BODY_CHUNK_BYTES = 64 * 1024\n\n_TRUE_WORDS = {\"1\", \"true\", \"yes\", \"on\", \"enabled\"}"
+  },
+  {
+   "path": "tools/transcription_common.py",
+   "start": 25,
+   "end": 48,
+   "code": "LOCAL_STT_COMMAND_ENV = \"HERMES_LOCAL_STT_COMMAND\"\nLOCAL_STT_LANGUAGE_ENV = \"HERMES_LOCAL_STT_LANGUAGE\"\nCOMMON_LOCAL_BIN_DIRS = (\"/opt/homebrew/bin\", \"/usr/local/bin\")\n\nGROQ_BASE_URL = os.getenv(\"GROQ_BASE_URL\", \"https://api.groq.com/openai/v1\")\nOPENAI_BASE_URL = os.getenv(\"STT_OPENAI_BASE_URL\", \"https://api.openai.com/v1\")\nXAI_STT_BASE_URL = os.getenv(\"XAI_STT_BASE_URL\", \"https://api.x.ai/v1\")\nELEVENLABS_STT_BASE_URL = os.getenv(\"ELEVENLABS_STT_BASE_URL\", \"https://api.elevenlabs.io/v1\")\n# DeepInfra STT base URL is resolved via hermes_cli.models.deepinfra_base_url (shared).\n\nSUPPORTED_FORMATS = {\".mp3\", \".mp4\", \".mpeg\", \".mpga\", \".m4a\", \".wav\", \".webm\", \".ogg\", \".oga\", \".opus\", \".aac\", \".flac\", \".caf\"}\nLOCAL_NATIVE_AUDIO_FORMATS = {\".wav\", \".aiff\", \".aif\"}\nMAX_FILE_SIZE = 25 * 1024 * 1024  # 25 MB\n\n# Known model sets for auto-correction\nOPENAI_MODELS = {\"whisper-1\", \"gpt-4o-mini-transcribe\", \"gpt-4o-transcribe\", \"gpt-transcribe\"}\nGROQ_MODELS = {\"whisper-large-v3\", \"whisper-large-v3-turbo\", \"distil-whisper-large-v3-en\"}\n\n# Providers with native handlers. Kept in sync with ``agent.transcription_registry._BUILTIN_NAMES``\n# (a regression test fails on drift); plugins may not register under these names and the\n# dispatcher short-circuits them before command/plugin lookup.\n# The plugin hook from issue #30398-style follow-up rejects plugins registering under any of these names;\n# the dispatcher in ``transcribe_audio`` short-circuits them defensively as well.\nBUILTIN_STT_PROVIDERS = frozenset({"
+  },
+  {
+   "path": "tools/voice_client_config.py",
+   "start": 139,
+   "end": 162,
+   "code": "            return _relay(f\"openai resolution failed: {exc}\")\n        return direct(STT_WIRE_OPENAI, base_url, api_key, section.get(\"model\") or tc.DEFAULT_STT_MODEL)\n    if provider == \"xai\":\n        # API key only: an xAI OAuth bearer refreshes server-side mid-session and\n        # would strand the client on the first 401.\n        from hermes_cli.config import get_env_value\n        api_key = str(get_env_value(\"XAI_API_KEY\") or \"\").strip()\n        if not api_key:\n            return _relay(\"xai oauth (server-managed) or no credentials\")\n        return direct(STT_WIRE_XAI, env_base_url(\"XAI_STT_BASE_URL\", tc.XAI_STT_BASE_URL), api_key, None)\n    if provider == \"elevenlabs\":\n        api_key = tt._resolve_provider_key(\"ELEVENLABS_API_KEY\", \"elevenlabs\")\n        if not api_key:\n            return _relay(\"no credentials\")\n        return direct(STT_WIRE_ELEVENLABS, env_base_url(\"ELEVENLABS_STT_BASE_URL\", tc.ELEVENLABS_STT_BASE_URL),\n                      api_key, section.get(\"model\") or tc.DEFAULT_ELEVENLABS_STT_MODEL)\n    if provider == \"deepinfra\":\n        api_key = tt._resolve_provider_key(\"DEEPINFRA_API_KEY\", \"deepinfra\")\n        if not api_key:\n            return _relay(\"no credentials\")\n        from hermes_cli.models import deepinfra_base_url\n        model = _deepinfra_model(section, \"stt\")\n        if not model:\n            return _relay(\"no deepinfra stt model\")"
+  },
+  {
+   "path": "tools/environments/local_env_policy.py",
+   "start": 21,
+   "end": 44,
+   "code": "    \"OPENAI_ORGANIZATION\", \"OPENROUTER_API_KEY\", \"ANTHROPIC_BASE_URL\",\n    \"ANTHROPIC_API_KEY\", \"ANTHROPIC_TOKEN\", \"LLM_MODEL\", \"GOOGLE_API_KEY\",\n    # Path to a GCP service-account JSON, not a bare key, so OPTIONAL_ENV_VARS\n    # marks it password=False and the registry loop skips it.\n    \"VERTEX_CREDENTIALS_PATH\", \"GOOGLE_APPLICATION_CREDENTIALS\", \"DEEPSEEK_API_KEY\",\n    \"MISTRAL_API_KEY\", \"GROQ_API_KEY\", \"TOGETHER_API_KEY\", \"PERPLEXITY_API_KEY\",\n    \"COHERE_API_KEY\", \"FIREWORKS_API_KEY\", \"XAI_API_KEY\", \"HELICONE_API_KEY\",\n    \"PARALLEL_API_KEY\", \"FIRECRAWL_API_KEY\", \"FIRECRAWL_API_URL\",\n    \"TELEGRAM_HOME_CHANNEL\", \"TELEGRAM_HOME_CHANNEL_NAME\", \"DISCORD_HOME_CHANNEL\",\n    \"DISCORD_HOME_CHANNEL_NAME\", \"DISCORD_REQUIRE_MENTION\",\n    \"DISCORD_FREE_RESPONSE_CHANNELS\", \"DISCORD_AUTO_THREAD\", \"SLACK_HOME_CHANNEL\",\n    \"SLACK_HOME_CHANNEL_NAME\", \"SLACK_ALLOWED_USERS\", \"WHATSAPP_ENABLED\",\n    \"WHATSAPP_MODE\", \"WHATSAPP_ALLOWED_USERS\", \"SIGNAL_HTTP_URL\", \"SIGNAL_ACCOUNT\",\n    \"SIGNAL_ALLOWED_USERS\", \"SIGNAL_GROUP_ALLOWED_USERS\", \"SIGNAL_HOME_CHANNEL\",\n    \"SIGNAL_HOME_CHANNEL_NAME\", \"SIGNAL_IGNORE_STORIES\", \"HASS_TOKEN\", \"HASS_URL\",\n    \"EMAIL_ADDRESS\", \"EMAIL_PASSWORD\", \"EMAIL_IMAP_HOST\", \"EMAIL_SMTP_HOST\",\n    \"EMAIL_HOME_ADDRESS\", \"EMAIL_HOME_ADDRESS_NAME\", \"HERMES_DASHBOARD_SESSION_TOKEN\",\n    \"GATEWAY_ALLOWED_USERS\", \"GH_TOKEN\", \"GITHUB_APP_ID\", \"GITHUB_APP_PRIVATE_KEY_PATH\",\n    \"GITHUB_APP_INSTALLATION_ID\", \"MODAL_TOKEN_ID\", \"MODAL_TOKEN_SECRET\",\n    \"DAYTONA_API_KEY\", \"GATEWAY_RELAY_ID\", \"GATEWAY_RELAY_SECRET\",\n    \"GATEWAY_RELAY_DELIVERY_KEY\", \"VERCEL_OIDC_TOKEN\", \"VERCEL_TOKEN\",\n    \"VERCEL_PROJECT_ID\", \"VERCEL_TEAM_ID\",\n    # Keys the OAuth provider profiles (nous, qwen-oauth) also accept when pasted. The auth\n    # registry mirrors env_vars only for api_key profiles, and discovering the provider plugins"
+  },
+  {
+   "path": "tui_gateway/methods_profiles.py",
+   "start": 59,
+   "end": 82,
+   "code": "\n\ndef _hermes_home_scope(path):\n    \"\"\"Bind ``path``'s full runtime scope (home + secrets + terminal) for the block \u2014 the same\n    composition ``@_profile_scoped`` binds. Home alone is half-bound: under multi-profile hosting\n    every credential read raised ``UnscopedSecretError``, which a best-effort ``_try`` turned into\n    a plausible wrong answer (the toolset snapshot's ``XAI_API_KEY`` probe \u2192 \"every toolset off\",\n    #120726). The launch home maps to None so it keeps its frozen launch env (systemd / ``op run``\n    keys). No external-source hydration: these bodies read and write config, never call a provider.\"\"\"\n    launch = Path(path).resolve() == Path(_hermes_home).resolve()\n    return _session_profile_runtime_scope({\"profile_home\": None if launch else str(path)}, hydrate_secrets=False)\n\n\ndef _resolve_profile(rid, params):\n    \"\"\"``(name, profile_dir, err)``; err = 4063 (name required) / 4064 (not found) response.\"\"\"\n    name = str(params.get(\"name\") or \"\").strip()\n    if not name:\n        return name, None, _err(rid, 4063, \"name required\")\n    from hermes_cli.profiles import get_profile_dir\n    try:\n        profile_dir = Path(get_profile_dir(name))\n    except ValueError:\n        return name, None, _err(rid, 4064, f\"profile '{name}' not found\")\n    if not profile_dir.is_dir():"
+  },
+  {
+   "path": "plugins/model-providers/xai/__init__.py",
+   "start": 2,
+   "end": 13,
+   "code": "\nfrom hermes_cli.version_info import get_version_info\nfrom providers import register_provider\nfrom providers.base import ProviderProfile\n\nxai = ProviderProfile(\n    name=\"xai\", aliases=(\"grok\", \"x-ai\", \"x.ai\"), api_mode=\"codex_responses\", env_vars=(\"XAI_API_KEY\",),\n    base_url=\"https://api.x.ai/v1\", auth_type=\"api_key\",\n    default_headers={\"User-Agent\": f\"Hermes-Agent/{get_version_info().base_version}\"},\n)\n\nregister_provider(xai)"
+  },
+  {
+   "path": "plugins/web/xai/provider.py",
+   "start": 1,
+   "end": 22,
+   "code": "\"\"\"xAI Web Search \u2014 search-only provider backed by Grok's server-side ``web_search`` tool on the\nResponses API (https://docs.x.ai/developers/tools/web-search); Grok is asked for structured JSON\nso rows match every other Hermes web provider. Config: ``web.backend: \"xai\"``; optional ``web.xai``:\n``model`` (default grok-build-0.1), ``allowed_domains`` / ``excluded_domains`` (max 5, mutually\nexclusive), ``timeout`` (default 90s). Auth: Grok OAuth via ``hermes auth``, else XAI_API_KEY.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nimport logging\nimport re\nfrom typing import Any, Dict, List, Optional\n\nfrom plugins.web._common import BaseWebSearchProvider, search_fail as _fail, search_ok, setup_schema, title_hit as _row\nfrom tools.xai_http import has_xai_credentials, hermes_xai_user_agent, resolve_xai_http_credentials\n\nlogger = logging.getLogger(__name__)\n\nDEFAULT_MODEL = \"grok-build-0.1\"\nDEFAULT_TIMEOUT = 90\n_MAX_DOMAIN_FILTERS = 5  # xAI hard cap on allowed_domains / excluded_domains"
+  },
+  {
+   "path": "plugins/video_gen/xai/__init__.py",
+   "start": 1,
+   "end": 22,
+   "code": "\"\"\"xAI Grok-Imagine video generation backend.\n\nText-, image- and reference-to-video through the unified video provider; edit/extend are exposed by\n``tools.xai_video_tools`` via ``run_xai_video_edit`` / ``run_xai_video_extend``. Auth: xAI Grok OAuth tokens\n(preferred \u2014 billed to the user's SuperGrok / X Premium+ subscription) or ``XAI_API_KEY``, both via\n``tools.xai_http.resolve_xai_http_credentials``. With xAI storage enabled the primary ``video`` / ``public_url``\nfields are the stored files-cdn HTTPS link; pass it as ``video_url`` for edit/extend (sent as ``video.url``).\n\"\"\"\n\nfrom __future__ import annotations\n\nimport asyncio\nimport base64\nimport logging\nimport mimetypes\nimport uuid\nfrom contextlib import closing\nfrom pathlib import Path\nfrom typing import Any, Dict, List, Optional, Tuple\n\nimport httpx\n"
+  },
+  {
+   "path": "plugins/image_gen/xai/__init__.py",
+   "start": 61,
+   "end": 84,
+   "code": "_REMOTE_PREFIXES = (\"http://\", \"https://\", \"data:\")\n_FILE_OUTPUT_EXTRA_KEYS = (\n    \"filename\", \"expires_at\", \"public_url_expires_at\", \"public_url_error\", \"storage_error\")\n\n\ndef _base_url(creds: Dict[str, Any]) -> str:\n    return str(creds.get(\"base_url\") or \"https://api.x.ai/v1\").strip().rstrip(\"/\")\n\n\ndef _fetch_live_models(creds: Optional[Dict[str, Any]] = None) -> Dict[str, Dict[str, Any]]:\n    \"\"\"``{model_id: {\"input_modalities\", \"aliases\"}}`` from the live endpoint; raises on failure.\"\"\"\n    if creds is None:\n        creds = resolve_xai_http_credentials()\n    api_key = str(creds.get(\"api_key\") or \"\").strip()\n    if not api_key:\n        raise RuntimeError(\"no xAI credentials\")\n    response = requests.get(\n        f\"{_base_url(creds)}/image-generation-models\",\n        headers={\"Authorization\": f\"Bearer {api_key}\", \"User-Agent\": hermes_xai_user_agent()},\n        timeout=_LIVE_TIMEOUT)\n    response.raise_for_status()\n    payload = response.json()\n    out: Dict[str, Dict[str, Any]] = {}\n    for entry in payload.get(\"models\") or payload.get(\"data\") or []:"
+  }
+ ],
+ "files": [
+  {
+   "path": "toolsets.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 492,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp",
+    "vision"
+   ]
+  },
+  {
+   "path": "hermes_constants.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1411,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "apps/desktop/src/lib/voice-client-direct.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 447,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "openai_compatible",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/desktop/src/app/settings/constants.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 852,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/desktop/src/app/session/hooks/use-model-controls.test.tsx",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 949,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "apps/desktop/src/components/onboarding/index.tsx",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 954,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/desktop/src/components/ui/highlight-matches.test.tsx",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 45,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "apps/desktop/src/store/session.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1793,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "apps/desktop/src/store/profile-agent-activation.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 449,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "agent/prompt_cache_scope.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 243,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "agent/client_lifecycle.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1024,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "vision"
+   ]
+  },
+  {
+   "path": "agent/codex_responses_adapter.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1246,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.x"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "agent/bedrock_adapter.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1284,
+   "endpoints": [],
+   "models": [
+    "grok-4-6.html",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "agent/agent_init.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 2523,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "agent/model_metadata.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 2670,
+   "endpoints": [
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-2",
+    "grok-2-vision",
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-fast",
+    "grok-4.20",
+    "grok-4.20-multi-agent",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-code-fast"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "reasoning",
+    "streaming",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "agent/auxiliary_client.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 8373,
+   "endpoints": [
+    "/v1/messages",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "DEFAULT_XAI_OAUTH_BASE_URL",
+    "HERMES_XAI_BASE_URL",
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "agent/reasoning_timeouts.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 82,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.20-reasoning",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "agent/credential_sources.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 294,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "agent/billing_links.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 96,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "agent/chat_completion_helpers.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 4122,
+   "endpoints": [
+    "/v1/messages"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "streaming",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "agent/proxy_sources/iron_proxy.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 959,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "optional-skills/devops/inference-sh-cli/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 156,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "optional-skills/devops/inference-sh-cli/references/cli-reference.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 104,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "optional-skills/devops/inference-sh-cli/references/app-discovery.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 112,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "optional-skills/mlops/training/unsloth/references/llms.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 82,
+   "endpoints": [],
+   "models": [
+    "grok-2.md"
+   ],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "optional-skills/security/godmode/scripts/godmode_race.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 530,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4",
+    "grok-4-fast",
+    "grok-4.1-fast",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "optional-skills/security/godmode/references/jailbreak-templates.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 128,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "optional-skills/autonomous-ai-agents/grok/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 308,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "tests/test_base_url_hostname.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 120,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/agent/test_model_metadata.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2054,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-fast",
+    "grok-4.20",
+    "grok-4.3",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "openai_compatible",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/agent/test_thinking_timeout_guidance.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 150,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/agent/test_run_agent.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 7012,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "mcp",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/agent/test_prompt_cache_scope.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 535,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/agent/test_auxiliary_client.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 5568,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-3",
+    "grok-4.20-multi-agent",
+    "grok-4.6"
+   ],
+   "env": [
+    "DEFAULT_XAI_OAUTH_BASE_URL",
+    "HERMES_XAI_BASE_URL",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/agent/test_bedrock_context_cache.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 246,
+   "endpoints": [],
+   "models": [
+    "grok-4-6.html",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/agent/test_image_corrupt_recovery.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 428,
+   "endpoints": [],
+   "models": [
+    "grok-5"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/agent/test_bedrock_adapter.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1688,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "streaming",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/agent/test_switch_model_rollback.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 180,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/agent/test_native_compaction.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 741,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/agent/test_auxiliary_auto_route_xai_oauth_refresh.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 24,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/agent/test_switch_model_fallback_prune.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 109,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/agent/test_file_mutation_verifier.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 321,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/agent/test_responses_watchdog_accommodations.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 154,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "tests/agent/test_auxiliary_reasoning_catalog_floor.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 101,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/agent/test_usage_pricing.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 904,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/agent/test_codex_ttfb_watchdog.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 681,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/agent/test_backend_identity.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 130,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/agent/test_fast_mode_auto.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 196,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "tests/agent/test_codex_xai_oauth_recovery.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 631,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "openai_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/agent/test_system_prompt_switch_invalidation.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 162,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/agent/test_stream_stale_breaker_reset.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 187,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/agent/test_auxiliary_client_xai_oauth_recovery.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 121,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "tests/agent/test_codex_responses_adapter.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1049,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.20",
+    "grok-4.x"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/agent/test_token_guard_session_source.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 60,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/agent/test_multiplex_base_url_scope.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 66,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "HERMES_XAI_BASE_URL",
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/agent/test_review_fork_cache_scope.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 55,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/agent/test_declared_conversation_scope.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 809,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/agent/test_provider_fallback.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 547,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "tests/agent/test_run_agent_codex_responses.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2732,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/agent/test_auxiliary_auto_never_guesses_provider.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 59,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/agent/transports/test_router_codex_efforts.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 235,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/agent/transports/test_codex_transport.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2017,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-3",
+    "grok-4",
+    "grok-4-fast",
+    "grok-4.20-0309",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.6-latest",
+    "grok-code-fast"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/e2e/core/live/_helpers.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 379,
+   "endpoints": [],
+   "models": [
+    "grok-4.20",
+    "grok-4.20-0309-reasoning",
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/e2e/core/providers/_catalog_helpers.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 381,
+   "endpoints": [
+    "/v1/messages",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_proxy.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 557,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings",
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_auth_store_windows_encoding.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 311,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/hermes_cli/test_xai_curated_models.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 52,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/hermes_cli/test_xai_model_flow.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 77,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/hermes_cli/test_custom_opencode_family_runtime.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 79,
+   "endpoints": [
+    "/v1/messages",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_web_server.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 5848,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_auth_placeholder_rejection.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 66,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_xai_retirement.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 108,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4",
+    "grok-4.3",
+    "grok-code-fast-1",
+    "grok-imagine-image-pro",
+    "grok-imagine-image-quality"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_cli_fallback_chain_hot_reload.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 56,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/hermes_cli/test_models_detect_vendor_ownership.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 39,
+   "endpoints": [],
+   "models": [
+    "grok-5-preview"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_runtime_provider_resolution.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2285,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_doctor.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1610,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "live_search"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_model_validation.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 982,
+   "endpoints": [
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_session_system_prompt_dedup.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 310,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_xiaomi_provider.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 208,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/hermes_cli/test_setup_tts_xai_oauth.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 103,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_config_dotted_key_names.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 326,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.6.context_length",
+    "grok-4.6.supports_vision",
+    "grok-4.7",
+    "grok-4.7.context_length"
+   ],
+   "env": [],
+   "features": [
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_auth_commands.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1076,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_detect_api_mode_for_url.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 60,
+   "endpoints": [
+    "/v1/messages"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_user_providers_model_switch.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 727,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_model_picker_filter.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 62,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_arcee_provider.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 118,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/hermes_cli/test_list_picker_providers.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 291,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/hermes_cli/test_model_switch_configured_provider_routing.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 255,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_migrate_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 297,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.3",
+    "grok-code-fast-1",
+    "grok-imagine-image-pro"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_tencent_tokenhub_provider.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 176,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/hermes_cli/test_model_alias_credentials.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 758,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_profile_listing_cache.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 86,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_auth_xai_oauth_provider.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 912,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [
+    "DEFAULT_XAI_OAUTH_BASE_URL",
+    "HERMES_XAI_BASE_URL",
+    "XAI_BASE_URL"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/hermes_cli/test_fast_command.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 301,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.6-latest"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/hermes_cli/test_inventory_reasoning_caps.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 158,
+   "endpoints": [],
+   "models": [
+    "grok-5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/_fixtures/env_filter.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 331,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/tools/test_web_providers_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 562,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "HERMES_XAI_BASE_URL",
+    "XAI_API_KEY",
+    "XAI_OAUTH_ACCESS_TOKEN"
+   ],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "tests/tools/test_transcription_tools.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1668,
+   "endpoints": [
+    "/v1/audio/transcriptions"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_STT_BASE_URL"
+   ],
+   "features": [
+    "openai_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/tools/test_xai_http_credentials.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 236,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "HERMES_XAI_BASE_URL",
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "live_search",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "tests/tools/test_local_env_blocklist.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1583,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/tools/test_tts_xai_speech_tags.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 265,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "openai_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/tools/test_transcription_dotenv_fallback.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 190,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_STT_BASE_URL"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/tools/test_tts_dotenv_fallback.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 197,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/tools/test_tts_gemini.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 229,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/tools/test_tts_response_body_cap.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 59,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/tools/test_web_tools_config.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1035,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "tests/tools/test_tts_streaming.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1227,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "openai_compatible",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/tools/test_voice_credential_pool_resolution.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 194,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/tools/test_x_search_tool.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 358,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "HERMES_XAI_BASE_URL",
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "live_search",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "tests/tools/test_voice_client_config.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 210,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/tools/test_stt_language_resolution.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 99,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/tools/test_video_generation_tool_surface_matrix.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 258,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_VIDEO_EDIT_SCHEMA",
+    "XAI_VIDEO_EXTEND_SCHEMA"
+   ],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/tools/test_tts_piper.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 230,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/hermes_state/test_hermes_state.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 6785,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/cron/test_scheduler.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2646,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/cron/test_cron_multiplex_desktop_ticker_scope.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 304,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/cron/test_cron_reasoning_effort.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 196,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/cron/test_cron_pinned_job_fallback.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 178,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/providers/test_provider_profiles.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 170,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/tui_gateway/test_fallback_chain_hot_reload.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 83,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/tui_gateway/test_stream_interrupt_recovery_orphan.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 52,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/tui_gateway/test_profiles_describe_secret_scope.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 77,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "tests/plugins/tts/check_parity_vs_main.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 328,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/plugins/transcription/check_parity_vs_main.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 431,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/plugins/web/test_web_search_provider_plugins.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 300,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "tests/plugins/video_gen/test_xai_plugin.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 48,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "tests/plugins/video_gen/test_fal_plugin.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 652,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-1.5",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/plugins/video_gen/test_xai_plugin_integration.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 170,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/plugins/image_gen/test_xai_provider.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 489,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-3.0",
+    "grok-imagine-image-quality"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_IMAGE_MODEL"
+   ],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/gateway/test_session_api.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1398,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/gateway/test_discord_model_picker_partition.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 157,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/gateway/test_status_command.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 767,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "hermes_cli/config_defaults.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 3198,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "hermes_cli/models.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 2929,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "hermes_cli/auth_constants.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 181,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "DEFAULT_XAI_OAUTH_BASE_URL",
+    "XAI_ACCESS_TOKEN_REFRESH_SKEW_SECONDS",
+    "XAI_OAUTH_CLIENT_ID",
+    "XAI_OAUTH_DEVICE_CODE_URL",
+    "XAI_OAUTH_DISCOVERY_URL",
+    "XAI_OAUTH_ISSUER",
+    "XAI_OAUTH_SCOPE"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "hermes_cli/auth.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 2501,
+   "endpoints": [
+    "/v1/messages"
+   ],
+   "models": [],
+   "env": [
+    "DEFAULT_XAI_OAUTH_BASE_URL",
+    "XAI_ACCESS_TOKEN_REFRESH_SKEW_SECONDS",
+    "XAI_API_KEY",
+    "XAI_BASE_URL",
+    "XAI_OAUTH_CLIENT_ID",
+    "XAI_OAUTH_SCOPE"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "hermes_cli/config.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 4249,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.6.context_length",
+    "grok-4.6.supports_vision"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "mcp",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "hermes_cli/models_catalog_static.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 613,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4",
+    "grok-4-1-fast",
+    "grok-4-fast",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "hermes_cli/models_detect.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 97,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "hermes_cli/providers.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 582,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "hermes_cli/auth_xai.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 582,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "DEFAULT_XAI_OAUTH_BASE_URL",
+    "HERMES_XAI_BASE_URL",
+    "HERMES_XAI_REFRESH_TIMEOUT_SECONDS",
+    "XAI_ACCESS_TOKEN_REFRESH_SKEW_SECONDS",
+    "XAI_API_KEY",
+    "XAI_BASE_URL",
+    "XAI_OAUTH_CLIENT_ID",
+    "XAI_OAUTH_DEVICE_CODE_URL",
+    "XAI_OAUTH_DISCOVERY_URL",
+    "XAI_OAUTH_SCOPE"
+   ],
+   "features": []
+  },
+  {
+   "path": "hermes_cli/runtime_provider_custom.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 590,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "hermes_cli/model_setup_flows.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1191,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [
+    "DEFAULT_XAI_OAUTH_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "hermes_cli/xai_retirement.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 179,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.3",
+    "grok-code-fast-1",
+    "grok-imagine-image-pro",
+    "grok-imagine-image-quality"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "hermes_cli/status_auth.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 205,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "hermes_cli/runtime_provider.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1139,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "DEFAULT_XAI_OAUTH_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "hermes_cli/tools_config.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1141,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "image_generation",
+    "live_search",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "hermes_cli/setup_tts.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 273,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "hermes_cli/tools_config_post_setup.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 439,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "hermes_cli/web_routers/config_env.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1077,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tools/xai_http.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 229,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "DEFAULT_XAI_BASE_URL",
+    "DEFAULT_XAI_OAUTH_BASE_URL",
+    "HERMES_XAI_BASE_URL",
+    "MAX_XAI_STORAGE_EXPIRES_AFTER_SECONDS",
+    "SAFE_XAI_STORAGE_EXPIRES_AFTER_SECONDS",
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "tools/x_search_tool.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 343,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "DEFAULT_XAI_BASE_URL",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tools/transcription_tools.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 573,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tools/image_generation_catalog.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 398,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "live_search",
+    "vision"
+   ]
+  },
+  {
+   "path": "tools/transcription_cloud.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 469,
+   "endpoints": [
+    "/v1/audio/transcriptions"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL",
+    "XAI_STT_BASE_URL"
+   ],
+   "features": [
+    "openai_compatible",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tools/tts_streaming.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 525,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "DEFAULT_XAI_LANGUAGE",
+    "DEFAULT_XAI_SAMPLE_RATE",
+    "DEFAULT_XAI_VOICE_ID",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "openai_compatible",
+    "streaming",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tools/tts_tool_providers.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 617,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "DEFAULT_XAI_AUTO_SPEECH_TAGS",
+    "DEFAULT_XAI_BASE_URL",
+    "DEFAULT_XAI_BIT_RATE",
+    "DEFAULT_XAI_LANGUAGE",
+    "DEFAULT_XAI_SAMPLE_RATE",
+    "DEFAULT_XAI_SPEED_DEFAULT",
+    "DEFAULT_XAI_SPEED_MAX",
+    "DEFAULT_XAI_SPEED_MIN",
+    "DEFAULT_XAI_TEXT_NORMALIZATION_DEFAULT",
+    "DEFAULT_XAI_VOICE_ID",
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "streaming",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tools/transcription_common.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 103,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_STT_BASE_URL"
+   ],
+   "features": []
+  },
+  {
+   "path": "tools/voice_client_config.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 247,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "STT_WIRE_XAI",
+    "XAI_API_KEY",
+    "XAI_STT_BASE_URL"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tools/environments/local_env_policy.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 386,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/integrations/index.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 126,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/integrations/providers.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1714,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-3",
+    "grok-4",
+    "grok-4-fast-reasoning",
+    "grok-code-fast-1",
+    "grok-imagine-image-pro"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "live_search",
+    "reasoning",
+    "structured_output",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/developer-guide/model-provider-plugin.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 608,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "reasoning",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/developer-guide/context-compression-and-caching.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 747,
+   "endpoints": [],
+   "models": [
+    "grok-4-6.html",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "website/docs/developer-guide/relay-shared-metrics.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 766,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings",
+    "live_search",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/developer-guide/streaming-tts.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 99,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/guides/xai-grok-oauth.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 243,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.6",
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-quality",
+    "grok-imagine-video",
+    "grok-imagine-video-1.5-2026-05-30",
+    "grok-imagine-video-1.5-preview"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "image_generation",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/reference/environment-variables.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 977,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/reference/toolsets-reference.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 172,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp",
+    "vision"
+   ]
+  },
+  {
+   "path": "website/docs/reference/slash-commands.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 336,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/reference/cli-commands.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 2043,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.6",
+    "grok-4.6.supports_vision",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/reference/tools-reference.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 406,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/getting-started/quickstart.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 396,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/user-guide/configuring-models.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 424,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages"
+   ],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "website/docs/user-guide/configuration.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 3105,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "mcp",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/user-guide/egress/iron-proxy.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 577,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "website/docs/user-guide/skills/optional/devops/devops-inference-sh-cli.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 173,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "website/docs/user-guide/skills/optional/autonomous-ai-agents/autonomous-ai-agents-grok.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 326,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "website/docs/user-guide/features/mixture-of-agents.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 259,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "website/docs/user-guide/features/tts.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 766,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "embeddings",
+    "openai_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/user-guide/features/fallback-providers.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 463,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "website/docs/user-guide/features/image-generation.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 408,
+   "endpoints": [
+    "/v1/images/edits",
+    "/v1/images/generations"
+   ],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-quality"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "website/docs/user-guide/features/tools.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 265,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "website/docs/user-guide/features/built-in-plugins.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 377,
+   "endpoints": [],
+   "models": [
+    "grok-2-image"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/user-guide/features/plugins.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 987,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/docs/user-guide/features/x-search.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 167,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.20-multi-agent",
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "website/docs/user-guide/features/web-search.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 533,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "website/static/api/model-catalog.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 460,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/integrations/nous-portal.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 272,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/integrations/providers.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1433,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4-1-fast-reasoning"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/model-provider-plugin.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 267,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/xai-grok-oauth.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 243,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.6",
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-quality",
+    "grok-imagine-video",
+    "grok-imagine-video-1.5-2026-05-30",
+    "grok-imagine-video-1.5-preview"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "image_generation",
+    "live_search",
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/environment-variables.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 677,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/toolsets-reference.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 162,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp",
+    "vision"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/slash-commands.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 272,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/tools-reference.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 261,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/configuring-models.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 239,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/configuration.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1757,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "mcp",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/devops/devops-inference-sh-cli.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 173,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/tts.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 467,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "openai_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/fallback-providers.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 409,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/tools.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 226,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/built-in-plugins.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 281,
+   "endpoints": [],
+   "models": [
+    "grok-2-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/plugins.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 371,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/x-search.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 147,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.20-multi-agent",
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/web-search.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 426,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "tui_gateway/methods_profiles.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 753,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "plugins/model-providers/xai/__init__.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 13,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "plugins/web/xai/plugin.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 7,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "plugins/web/xai/provider.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 260,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "plugins/video_gen/xai/plugin.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 7,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "plugins/video_gen/xai/__init__.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 320,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video",
+    "grok-imagine-video-1.5",
+    "grok-imagine-video-1.5-2026-05-30",
+    "grok-imagine-video-1.5-preview"
+   ],
+   "env": [
+    "DEFAULT_XAI_BASE_URL",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "plugins/video_gen/fal/__init__.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 431,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-1.5",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "plugins/image_gen/xai/plugin.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 7,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "plugins/image_gen/xai/__init__.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 345,
+   "endpoints": [
+    "/v1/images/edits",
+    "/v1/images/generations"
+   ],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-quality"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_IMAGE_MODEL"
+   ],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "plugins/image_gen/openrouter/__init__.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 834,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image-quality"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": ".github/workflows/live-providers.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 137,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "HAS_XAI",
+    "LIVE_XAI_API_KEY",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "skills/autonomous-ai-agents/hermes-agent/references/providers-and-models.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 74,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "skills/autonomous-ai-agents/hermes-agent/references/delegate-task-concurrency-diagnosis.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 99,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  }
+ ]
+}

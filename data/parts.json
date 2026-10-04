@@ -1,0 +1,5590 @@
+[
+{
+"repo": "Blockchains/GoModel",
+"upstream": "ENTERPILOT/GoModel",
+"license": "MIT",
+"stars": 1210,
+"category": "gateway-router",
+"commit": "d26539f9ce0bae9709b9e58a5b32167e7cb6b20a",
+"id": "Blockchains/GoModel#repo",
+"type": "repo-surface",
+"languages": [
+"Go",
+"JavaScript",
+"Svelte",
+"Python"
+],
+"capabilities": [
+"anthropic_compatible",
+"embeddings",
+"image_generation",
+"reasoning",
+"streaming",
+"tool_calling",
+"voice_realtime"
+],
+"models": [
+"grok-3-mini",
+"grok-4.3",
+"grok-3",
+"grok-4.6",
+"grok-imagine-image",
+"grok-4.5",
+"grok-4.20-0309-non-reasoning",
+"grok-2",
+"grok-2-image",
+"grok-imagine",
+"grok-4.20-0309-reasoning",
+"grok-4.20-multi-agent-0309",
+"grok-4.7",
+"grok-imagine-video",
+"grok-4.20",
+"grok-imagine-image-2.0",
+"grok-imagine-image-quality",
+"grok-imagine-video-1.5",
+"grok-4.5-latest",
+"grok-imagine-image-2026-03-02"
+],
+"endpoints": [
+"/v1/models",
+"/v1/chat/completions",
+"/v1/responses",
+"/v1/embeddings",
+"/v1/messages",
+"/v1/realtime",
+"/v1/images/generations",
+"/v1/audio/speech",
+"/v1/audio/transcriptions",
+"/v1/batches",
+"/v1/images/edits",
+"/v1/files"
+],
+"env_vars": [
+"XAI_API_KEY",
+"XAI_MODELS",
+"QA_XAI_OK",
+"XAI_BASE_URL"
+],
+"grok_files": 48,
+"description": "AI gateway / AI control plane / AI proxy written in Go. Unified OpenAI-compatible and Anthropic-compatible API for OpenAI, Anthropic, Gemini, Groq, xAI, Ollama, vLLM and more. A LiteLLM alternative with observability, guardrails, streaming, cost tracking, intelligent routing, sticky sessions, failover, real-time logs and usage tracking. Prod ready."
+},
+{
+"repo": "Blockchains/GoModel",
+"upstream": "ENTERPILOT/GoModel",
+"license": "MIT",
+"stars": 1210,
+"category": "gateway-router",
+"commit": "d26539f9ce0bae9709b9e58a5b32167e7cb6b20a",
+"id": "Blockchains/GoModel#internal/providers/xai/realtime.go:7",
+"type": "code-snippet",
+"path": "internal/providers/xai/realtime.go",
+"lang": "Go",
+"start": 7,
+"end": 30,
+"capabilities": [
+"voice_realtime"
+],
+"models": [],
+"endpoints": [
+"/v1/realtime"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/GoModel/blob/d26539f9ce0bae9709b9e58a5b32167e7cb6b20a/internal/providers/xai/realtime.go#L7-L30"
+},
+{
+"repo": "Blockchains/GoModel",
+"upstream": "ENTERPILOT/GoModel",
+"license": "MIT",
+"stars": 1210,
+"category": "gateway-router",
+"commit": "d26539f9ce0bae9709b9e58a5b32167e7cb6b20a",
+"id": "Blockchains/GoModel#internal/providers/xai/xai.go:25",
+"type": "code-snippet",
+"path": "internal/providers/xai/xai.go",
+"lang": "Go",
+"start": 25,
+"end": 48,
+"capabilities": [
+"embeddings",
+"image_generation",
+"reasoning",
+"tool_calling",
+"voice_realtime"
+],
+"models": [
+"grok-2",
+"grok-2-image",
+"grok-3",
+"grok-3-mini",
+"grok-4",
+"grok-4.20",
+"grok-4.5",
+"grok-4.6"
+],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/GoModel/blob/d26539f9ce0bae9709b9e58a5b32167e7cb6b20a/internal/providers/xai/xai.go#L25-L48"
+},
+{
+"repo": "Blockchains/GoModel",
+"upstream": "ENTERPILOT/GoModel",
+"license": "MIT",
+"stars": 1210,
+"category": "gateway-router",
+"commit": "d26539f9ce0bae9709b9e58a5b32167e7cb6b20a",
+"id": "Blockchains/GoModel#cmd/recordapi/main.go:65",
+"type": "code-snippet",
+"path": "cmd/recordapi/main.go",
+"lang": "Go",
+"start": 65,
+"end": 88,
+"capabilities": [
+"anthropic_compatible",
+"embeddings",
+"streaming"
+],
+"models": [],
+"endpoints": [
+"/v1/chat/completions",
+"/v1/embeddings",
+"/v1/models",
+"/v1/responses"
+],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/GoModel/blob/d26539f9ce0bae9709b9e58a5b32167e7cb6b20a/cmd/recordapi/main.go#L65-L88"
+},
+{
+"repo": "Blockchains/OpenMausBot",
+"upstream": "milind-soni/OpenMausBot",
+"license": "Apache-2.0",
+"stars": 3990,
+"category": "app",
+"commit": "4d9890fea806d4160f230a5d3ce1542300f3e1b9",
+"id": "Blockchains/OpenMausBot#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript",
+"Kotlin",
+"JavaScript",
+"Swift"
+],
+"capabilities": [
+"anthropic_compatible",
+"image_generation",
+"mcp",
+"openai_compatible",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling",
+"voice_realtime"
+],
+"models": [
+"grok-4.7",
+"grok-4.6",
+"grok-4.5",
+"grok-4",
+"grok-3-mini",
+"grok-imagine-image-2.0",
+"grok-4-fast",
+"grok-5",
+"grok-99",
+"grok-3-mini-actual"
+],
+"endpoints": [
+"/v1/models",
+"/v1/images/generations",
+"/v1/messages"
+],
+"env_vars": [
+"XAI_API_KEY",
+"FAKE_GROK_RETRY_SCALE",
+"FAKE_ACP_GROK_VERSION",
+"STATIC_GROK_MODELS",
+"XAI_API_INSTANCE",
+"OMB_XAI_TTS_API"
+],
+"grok_files": 44,
+"description": "Open-source Grok Bot alternative with a virtual machine that bots can use"
+},
+{
+"repo": "Blockchains/OpenMausBot",
+"upstream": "milind-soni/OpenMausBot",
+"license": "Apache-2.0",
+"stars": 3990,
+"category": "app",
+"commit": "4d9890fea806d4160f230a5d3ce1542300f3e1b9",
+"id": "Blockchains/OpenMausBot#electron/workspace-credentials.mjs:5",
+"type": "code-snippet",
+"path": "electron/workspace-credentials.mjs",
+"lang": "JavaScript",
+"start": 5,
+"end": 28,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/OpenMausBot/blob/4d9890fea806d4160f230a5d3ce1542300f3e1b9/electron/workspace-credentials.mjs#L5-L28"
+},
+{
+"repo": "Blockchains/OpenMausBot",
+"upstream": "milind-soni/OpenMausBot",
+"license": "Apache-2.0",
+"stars": 3990,
+"category": "app",
+"commit": "4d9890fea806d4160f230a5d3ce1542300f3e1b9",
+"id": "Blockchains/OpenMausBot#electron/diagnostics.mjs:9",
+"type": "code-snippet",
+"path": "electron/diagnostics.mjs",
+"lang": "JavaScript",
+"start": 9,
+"end": 32,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/OpenMausBot/blob/4d9890fea806d4160f230a5d3ce1542300f3e1b9/electron/diagnostics.mjs#L9-L32"
+},
+{
+"repo": "Blockchains/OpenMausBot",
+"upstream": "milind-soni/OpenMausBot",
+"license": "Apache-2.0",
+"stars": 3990,
+"category": "app",
+"commit": "4d9890fea806d4160f230a5d3ce1542300f3e1b9",
+"id": "Blockchains/OpenMausBot#server/avatar-image.ts:144",
+"type": "code-snippet",
+"path": "server/avatar-image.ts",
+"lang": "TypeScript",
+"start": 144,
+"end": 167,
+"capabilities": [
+"image_generation",
+"streaming",
+"structured_output"
+],
+"models": [
+"grok-imagine-image-2.0"
+],
+"endpoints": [
+"/v1/images/generations"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/OpenMausBot/blob/4d9890fea806d4160f230a5d3ce1542300f3e1b9/server/avatar-image.ts#L144-L167"
+},
+{
+"repo": "Blockchains/OpenMausBot",
+"upstream": "milind-soni/OpenMausBot",
+"license": "Apache-2.0",
+"stars": 3990,
+"category": "app",
+"commit": "4d9890fea806d4160f230a5d3ce1542300f3e1b9",
+"id": "Blockchains/OpenMausBot#server/provider-key-check.ts:15",
+"type": "code-snippet",
+"path": "server/provider-key-check.ts",
+"lang": "TypeScript",
+"start": 15,
+"end": 38,
+"capabilities": [
+"anthropic_compatible"
+],
+"models": [],
+"endpoints": [
+"/v1/models"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/OpenMausBot/blob/4d9890fea806d4160f230a5d3ce1542300f3e1b9/server/provider-key-check.ts#L15-L38"
+},
+{
+"repo": "Blockchains/OpenMausBot",
+"upstream": "milind-soni/OpenMausBot",
+"license": "Apache-2.0",
+"stars": 3990,
+"category": "app",
+"commit": "4d9890fea806d4160f230a5d3ce1542300f3e1b9",
+"id": "Blockchains/OpenMausBot#server/config.ts:1072",
+"type": "code-snippet",
+"path": "server/config.ts",
+"lang": "TypeScript",
+"start": 1072,
+"end": 1095,
+"capabilities": [
+"anthropic_compatible",
+"mcp",
+"structured_output",
+"voice_realtime"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_INSTANCE",
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/OpenMausBot/blob/4d9890fea806d4160f230a5d3ce1542300f3e1b9/server/config.ts#L1072-L1095"
+},
+{
+"repo": "Blockchains/OpenMausBot",
+"upstream": "milind-soni/OpenMausBot",
+"license": "Apache-2.0",
+"stars": 3990,
+"category": "app",
+"commit": "4d9890fea806d4160f230a5d3ce1542300f3e1b9",
+"id": "Blockchains/OpenMausBot#server/tts/grok.ts:1",
+"type": "code-snippet",
+"path": "server/tts/grok.ts",
+"lang": "TypeScript",
+"start": 1,
+"end": 22,
+"capabilities": [
+"voice_realtime"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"OMB_XAI_TTS_API"
+],
+"url": "https://github.com/Blockchains/OpenMausBot/blob/4d9890fea806d4160f230a5d3ce1542300f3e1b9/server/tts/grok.ts#L1-L22"
+},
+{
+"repo": "Blockchains/OpenMausBot",
+"upstream": "milind-soni/OpenMausBot",
+"license": "Apache-2.0",
+"stars": 3990,
+"category": "app",
+"commit": "4d9890fea806d4160f230a5d3ce1542300f3e1b9",
+"id": "Blockchains/OpenMausBot#server/model-catalog/presets.ts:144",
+"type": "code-snippet",
+"path": "server/model-catalog/presets.ts",
+"lang": "TypeScript",
+"start": 144,
+"end": 167,
+"capabilities": [
+"anthropic_compatible"
+],
+"models": [],
+"endpoints": [
+"/v1/messages"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/OpenMausBot/blob/4d9890fea806d4160f230a5d3ce1542300f3e1b9/server/model-catalog/presets.ts#L144-L167"
+},
+{
+"repo": "Blockchains/OpenMausBot",
+"upstream": "milind-soni/OpenMausBot",
+"license": "Apache-2.0",
+"stars": 3990,
+"category": "app",
+"commit": "4d9890fea806d4160f230a5d3ce1542300f3e1b9",
+"id": "Blockchains/OpenMausBot#server/drivers/grok.ts:1",
+"type": "code-snippet",
+"path": "server/drivers/grok.ts",
+"lang": "TypeScript",
+"start": 1,
+"end": 24,
+"capabilities": [
+"openai_compatible",
+"reasoning"
+],
+"models": [
+"grok-3-mini",
+"grok-4",
+"grok-4-fast",
+"grok-4.7"
+],
+"endpoints": [],
+"env_vars": [
+"FAKE_GROK_RETRY_SCALE",
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/OpenMausBot/blob/4d9890fea806d4160f230a5d3ce1542300f3e1b9/server/drivers/grok.ts#L1-L24"
+},
+{
+"repo": "Blockchains/OpenMausBot",
+"upstream": "milind-soni/OpenMausBot",
+"license": "Apache-2.0",
+"stars": 3990,
+"category": "app",
+"commit": "4d9890fea806d4160f230a5d3ce1542300f3e1b9",
+"id": "Blockchains/OpenMausBot#server/drivers/acp/grok.ts:418",
+"type": "code-snippet",
+"path": "server/drivers/acp/grok.ts",
+"lang": "TypeScript",
+"start": 418,
+"end": 441,
+"capabilities": [
+"mcp",
+"structured_output",
+"tool_calling"
+],
+"models": [
+"grok-4.5",
+"grok-4.6",
+"grok-4.7"
+],
+"endpoints": [],
+"env_vars": [
+"STATIC_GROK_MODELS",
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/OpenMausBot/blob/4d9890fea806d4160f230a5d3ce1542300f3e1b9/server/drivers/acp/grok.ts#L418-L441"
+},
+{
+"repo": "Blockchains/OpenMausBot",
+"upstream": "milind-soni/OpenMausBot",
+"license": "Apache-2.0",
+"stars": 3990,
+"category": "app",
+"commit": "4d9890fea806d4160f230a5d3ce1542300f3e1b9",
+"id": "Blockchains/OpenMausBot#server/testing/fake-acp-cli.ts:253",
+"type": "code-snippet",
+"path": "server/testing/fake-acp-cli.ts",
+"lang": "TypeScript",
+"start": 253,
+"end": 276,
+"capabilities": [
+"mcp",
+"structured_output",
+"tool_calling"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"FAKE_ACP_GROK_VERSION",
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/OpenMausBot/blob/4d9890fea806d4160f230a5d3ce1542300f3e1b9/server/testing/fake-acp-cli.ts#L253-L276"
+},
+{
+"repo": "Blockchains/aeon",
+"upstream": "aeonfun/aeon",
+"license": "MIT",
+"stars": 760,
+"category": "coding-agent-cli",
+"commit": "82015a358d8ca795fbc8a0a5fc781ee8bccbac87",
+"id": "Blockchains/aeon#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript",
+"JavaScript",
+"Python"
+],
+"capabilities": [
+"anthropic_compatible",
+"live_search",
+"mcp",
+"reasoning",
+"streaming",
+"structured_output"
+],
+"models": [
+"grok-4.7",
+"grok-4.5",
+"grok-4.6",
+"grok-4.3",
+"grok-45",
+"grok-codex-pi-vibe-kimi-fx-cursor-hermes",
+"grok-4.x"
+],
+"endpoints": [
+"/v1/responses",
+"/v1/chat/completions",
+"/v1/messages",
+"/v1/models"
+],
+"env_vars": [
+"XAI_API_KEY",
+"XAI_ANTHROPIC_BASE_URL",
+"GROK_XAI_API_BASE_URL"
+],
+"grok_files": 80,
+"description": "The most autonomous AI agent framework: runs unattended on GitHub Actions, self-healing skills, drives Claude Code, Grok, Codex & more. No approval loops. Configure once, forget forever."
+},
+{
+"repo": "Blockchains/aeon",
+"upstream": "aeonfun/aeon",
+"license": "MIT",
+"stars": 760,
+"category": "coding-agent-cli",
+"commit": "82015a358d8ca795fbc8a0a5fc781ee8bccbac87",
+"id": "Blockchains/aeon#apps/mcp-server/src/skill-executor.ts:151",
+"type": "code-snippet",
+"path": "apps/mcp-server/src/skill-executor.ts",
+"lang": "TypeScript",
+"start": 151,
+"end": 174,
+"capabilities": [
+"mcp",
+"structured_output"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/aeon/blob/82015a358d8ca795fbc8a0a5fc781ee8bccbac87/apps/mcp-server/src/skill-executor.ts#L151-L174"
+},
+{
+"repo": "Blockchains/aeon",
+"upstream": "aeonfun/aeon",
+"license": "MIT",
+"stars": 760,
+"category": "coding-agent-cli",
+"commit": "82015a358d8ca795fbc8a0a5fc781ee8bccbac87",
+"id": "Blockchains/aeon#apps/dashboard/lib/constants.ts:17",
+"type": "code-snippet",
+"path": "apps/dashboard/lib/constants.ts",
+"lang": "TypeScript",
+"start": 17,
+"end": 40,
+"capabilities": [
+"anthropic_compatible",
+"live_search"
+],
+"models": [
+"grok-4.3",
+"grok-4.5",
+"grok-4.6",
+"grok-4.7"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/aeon/blob/82015a358d8ca795fbc8a0a5fc781ee8bccbac87/apps/dashboard/lib/constants.ts#L17-L40"
+},
+{
+"repo": "Blockchains/aeon",
+"upstream": "aeonfun/aeon",
+"license": "MIT",
+"stars": 760,
+"category": "coding-agent-cli",
+"commit": "82015a358d8ca795fbc8a0a5fc781ee8bccbac87",
+"id": "Blockchains/aeon#apps/dashboard/lib/service-icons.ts:19",
+"type": "code-snippet",
+"path": "apps/dashboard/lib/service-icons.ts",
+"lang": "TypeScript",
+"start": 19,
+"end": 42,
+"capabilities": [
+"anthropic_compatible",
+"mcp"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/aeon/blob/82015a358d8ca795fbc8a0a5fc781ee8bccbac87/apps/dashboard/lib/service-icons.ts#L19-L42"
+},
+{
+"repo": "Blockchains/aeon",
+"upstream": "aeonfun/aeon",
+"license": "MIT",
+"stars": 760,
+"category": "coding-agent-cli",
+"commit": "82015a358d8ca795fbc8a0a5fc781ee8bccbac87",
+"id": "Blockchains/aeon#apps/dashboard/lib/connect-server.ts:110",
+"type": "code-snippet",
+"path": "apps/dashboard/lib/connect-server.ts",
+"lang": "TypeScript",
+"start": 110,
+"end": 133,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/aeon/blob/82015a358d8ca795fbc8a0a5fc781ee8bccbac87/apps/dashboard/lib/connect-server.ts#L110-L133"
+},
+{
+"repo": "Blockchains/aeon",
+"upstream": "aeonfun/aeon",
+"license": "MIT",
+"stars": 760,
+"category": "coding-agent-cli",
+"commit": "82015a358d8ca795fbc8a0a5fc781ee8bccbac87",
+"id": "Blockchains/aeon#apps/dashboard/lib/secrets-catalog.ts:10",
+"type": "code-snippet",
+"path": "apps/dashboard/lib/secrets-catalog.ts",
+"lang": "TypeScript",
+"start": 10,
+"end": 33,
+"capabilities": [
+"anthropic_compatible",
+"mcp"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/aeon/blob/82015a358d8ca795fbc8a0a5fc781ee8bccbac87/apps/dashboard/lib/secrets-catalog.ts#L10-L33"
+},
+{
+"repo": "Blockchains/aeon",
+"upstream": "aeonfun/aeon",
+"license": "MIT",
+"stars": 760,
+"category": "coding-agent-cli",
+"commit": "82015a358d8ca795fbc8a0a5fc781ee8bccbac87",
+"id": "Blockchains/aeon#apps/dashboard/lib/gateway-registry.ts:14",
+"type": "code-snippet",
+"path": "apps/dashboard/lib/gateway-registry.ts",
+"lang": "TypeScript",
+"start": 14,
+"end": 37,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/aeon/blob/82015a358d8ca795fbc8a0a5fc781ee8bccbac87/apps/dashboard/lib/gateway-registry.ts#L14-L37"
+},
+{
+"repo": "Blockchains/aeon",
+"upstream": "aeonfun/aeon",
+"license": "MIT",
+"stars": 760,
+"category": "coding-agent-cli",
+"commit": "82015a358d8ca795fbc8a0a5fc781ee8bccbac87",
+"id": "Blockchains/aeon#apps/dashboard/lib/frontmatter.ts:74",
+"type": "code-snippet",
+"path": "apps/dashboard/lib/frontmatter.ts",
+"lang": "TypeScript",
+"start": 74,
+"end": 97,
+"capabilities": [
+"mcp"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/aeon/blob/82015a358d8ca795fbc8a0a5fc781ee8bccbac87/apps/dashboard/lib/frontmatter.ts#L74-L97"
+},
+{
+"repo": "Blockchains/aeon",
+"upstream": "aeonfun/aeon",
+"license": "MIT",
+"stars": 760,
+"category": "coding-agent-cli",
+"commit": "82015a358d8ca795fbc8a0a5fc781ee8bccbac87",
+"id": "Blockchains/aeon#apps/dashboard/app/api/grok-auth/route.ts:10",
+"type": "code-snippet",
+"path": "apps/dashboard/app/api/grok-auth/route.ts",
+"lang": "TypeScript",
+"start": 10,
+"end": 33,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/aeon/blob/82015a358d8ca795fbc8a0a5fc781ee8bccbac87/apps/dashboard/app/api/grok-auth/route.ts#L10-L33"
+},
+{
+"repo": "Blockchains/aeon",
+"upstream": "aeonfun/aeon",
+"license": "MIT",
+"stars": 760,
+"category": "coding-agent-cli",
+"commit": "82015a358d8ca795fbc8a0a5fc781ee8bccbac87",
+"id": "Blockchains/aeon#apps/dashboard/components/LeftSidebar.tsx:34",
+"type": "code-snippet",
+"path": "apps/dashboard/components/LeftSidebar.tsx",
+"lang": "TypeScript",
+"start": 34,
+"end": 57,
+"capabilities": [
+"mcp"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/aeon/blob/82015a358d8ca795fbc8a0a5fc781ee8bccbac87/apps/dashboard/components/LeftSidebar.tsx#L34-L57"
+},
+{
+"repo": "Blockchains/aeon",
+"upstream": "aeonfun/aeon",
+"license": "MIT",
+"stars": 760,
+"category": "coding-agent-cli",
+"commit": "82015a358d8ca795fbc8a0a5fc781ee8bccbac87",
+"id": "Blockchains/aeon#apps/dashboard/components/SkillDetail.tsx:43",
+"type": "code-snippet",
+"path": "apps/dashboard/components/SkillDetail.tsx",
+"lang": "TypeScript",
+"start": 43,
+"end": 66,
+"capabilities": [
+"live_search",
+"mcp"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/aeon/blob/82015a358d8ca795fbc8a0a5fc781ee8bccbac87/apps/dashboard/components/SkillDetail.tsx#L43-L66"
+},
+{
+"repo": "Blockchains/agtx",
+"upstream": "fynnfluegge/agtx",
+"license": "Apache-2.0",
+"stars": 1698,
+"category": "coding-agent-cli",
+"commit": "8ae68682f10b05ad77a8d1b307569946d871f814",
+"id": "Blockchains/agtx#repo",
+"type": "repo-surface",
+"languages": [
+"Rust",
+"JavaScript",
+"Python"
+],
+"capabilities": [
+"anthropic_compatible",
+"mcp"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"grok_files": 3,
+"description": "\ud83c\udfc4\ud83c\udffc\u200d\u2642\ufe0f The blackboard for coding agents - agentic development environment for claude code, codex, cursor, opencode, grok and more."
+},
+{
+"repo": "Blockchains/agtx",
+"upstream": "fynnfluegge/agtx",
+"license": "Apache-2.0",
+"stars": 1698,
+"category": "coding-agent-cli",
+"commit": "8ae68682f10b05ad77a8d1b307569946d871f814",
+"id": "Blockchains/agtx#benchmark/swebench/benchmark.py:942",
+"type": "code-snippet",
+"path": "benchmark/swebench/benchmark.py",
+"lang": "Python",
+"start": 942,
+"end": 965,
+"capabilities": [
+"anthropic_compatible",
+"mcp"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/agtx/blob/8ae68682f10b05ad77a8d1b307569946d871f814/benchmark/swebench/benchmark.py#L942-L965"
+},
+{
+"repo": "Blockchains/agtx",
+"upstream": "fynnfluegge/agtx",
+"license": "Apache-2.0",
+"stars": 1698,
+"category": "coding-agent-cli",
+"commit": "8ae68682f10b05ad77a8d1b307569946d871f814",
+"id": "Blockchains/agtx#src/agent/spec.rs:723",
+"type": "code-snippet",
+"path": "src/agent/spec.rs",
+"lang": "Rust",
+"start": 723,
+"end": 746,
+"capabilities": [
+"anthropic_compatible",
+"mcp"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/agtx/blob/8ae68682f10b05ad77a8d1b307569946d871f814/src/agent/spec.rs#L723-L746"
+},
+{
+"repo": "Blockchains/airi",
+"upstream": "moeru-ai/airi",
+"license": "MIT",
+"stars": 49973,
+"category": "chat-ui",
+"commit": "7684415927147a8f64bb442ff0069c33816efedd",
+"id": "Blockchains/airi#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript",
+"Vue",
+"C#",
+"JavaScript"
+],
+"capabilities": [
+"openai_compatible"
+],
+"models": [
+"grok-4.5",
+"grok-4.6"
+],
+"endpoints": [],
+"env_vars": [],
+"grok_files": 6,
+"description": "\ud83d\udc96\ud83e\uddf8 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported."
+},
+{
+"repo": "Blockchains/airi",
+"upstream": "moeru-ai/airi",
+"license": "MIT",
+"stars": 49973,
+"category": "chat-ui",
+"commit": "7684415927147a8f64bb442ff0069c33816efedd",
+"id": "Blockchains/airi#packages/provider-inference/src/providers/cloud/xai/index.ts",
+"type": "sdk-exports",
+"path": "packages/provider-inference/src/providers/cloud/xai/index.ts",
+"lang": "TypeScript",
+"exports": [
+"providerXAI"
+]
+},
+{
+"repo": "Blockchains/airi",
+"upstream": "moeru-ai/airi",
+"license": "MIT",
+"stars": 49973,
+"category": "chat-ui",
+"commit": "7684415927147a8f64bb442ff0069c33816efedd",
+"id": "Blockchains/airi#packages/provider-inference/src/providers/cloud/xai/index.ts:1",
+"type": "code-snippet",
+"path": "packages/provider-inference/src/providers/cloud/xai/index.ts",
+"lang": "TypeScript",
+"start": 1,
+"end": 18,
+"capabilities": [
+"openai_compatible"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/airi/blob/7684415927147a8f64bb442ff0069c33816efedd/packages/provider-inference/src/providers/cloud/xai/index.ts#L1-L18"
+},
+{
+"repo": "Blockchains/askimo",
+"upstream": "askimo-ai/askimo",
+"license": "AGPL-3.0",
+"stars": 511,
+"category": "gateway-router",
+"commit": "6b4d6683182b1665fbad750010332d39e47dd761",
+"id": "Blockchains/askimo#repo",
+"type": "repo-surface",
+"languages": [
+"Kotlin"
+],
+"capabilities": [
+"anthropic_compatible",
+"embeddings",
+"vision"
+],
+"models": [
+"grok-4",
+"grok-3",
+"grok-2-vision",
+"grok-4-fast",
+"grok-vision-beta"
+],
+"endpoints": [],
+"env_vars": [],
+"grok_files": 6,
+"description": "AI desktop app for chat, RAG, Skills, MCP tools, and agents. Support multiple LLMs (Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM, Gemini, OpenRouter)"
+},
+{
+"repo": "Blockchains/askimo",
+"upstream": "askimo-ai/askimo",
+"license": "AGPL-3.0",
+"stars": 511,
+"category": "gateway-router",
+"commit": "6b4d6683182b1665fbad750010332d39e47dd761",
+"id": "Blockchains/askimo#shared/src/main/kotlin/io/askimo/core/providers/xai/XAiSettings.kt:10",
+"type": "code-snippet",
+"path": "shared/src/main/kotlin/io/askimo/core/providers/xai/XAiSettings.kt",
+"lang": "Kotlin",
+"start": 10,
+"end": 33,
+"capabilities": [
+"embeddings"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/askimo/blob/6b4d6683182b1665fbad750010332d39e47dd761/shared/src/main/kotlin/io/askimo/core/providers/xai/XAiSettings.kt#L10-L33"
+},
+{
+"repo": "Blockchains/cc-switch",
+"upstream": "farion1231/cc-switch",
+"license": "MIT",
+"stars": 139771,
+"category": "gateway-router",
+"commit": "ba8c1cd611b172054d2bf4859edef20549f4cf4c",
+"id": "Blockchains/cc-switch#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript",
+"Rust",
+"JavaScript"
+],
+"capabilities": [
+"anthropic_compatible",
+"image_generation",
+"live_search",
+"mcp",
+"openai_compatible",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling",
+"vision"
+],
+"models": [
+"grok-4.5",
+"grok-4.6",
+"grok-4.7",
+"grok-4.5-build",
+"grok-4.6-build",
+"grok-4",
+"grok-4.3",
+"grok-4.5-unsupported",
+"grok-3",
+"grok-3-mini",
+"grok-4-1-fast-non-reasoning",
+"grok-4-1-fast-reasoning",
+"grok-4.20-0309-non-reasoning",
+"grok-4.20-0309-reasoning",
+"grok-code-fast-1",
+"grok-4.10",
+"grok-4.10-build",
+"grok-4.4",
+"grok-4.7-build",
+"grok-4.build"
+],
+"endpoints": [
+"/v1/responses",
+"/v1/messages",
+"/v1/models",
+"/v1/chat/completions",
+"/v1/images/generations",
+"/v1/images/edits"
+],
+"env_vars": [
+"XAI_API_KEY",
+"XAI_API_BASE_URL",
+"XAI_SUPPORTED_TOOL_TYPES",
+"GOOGLE_GENAI_USE_VERTEXAI",
+"MAX_GROK_FILE_BYTES",
+"MY_GROK_DEFAULT_MODEL",
+"MY_XAI_API_KEY",
+"XAI_API_KEY_BACKUP",
+"OPENROUTER_STYLE_GROK_MODEL"
+],
+"grok_files": 77,
+"description": "A cross-platform desktop All-in-One assistant for Claude Code, Codex, OpenCode, OpenClaw, Grok Build & Hermes Agent. Only official website: ccswitch.io"
+},
+{
+"repo": "Blockchains/cc-switch",
+"upstream": "farion1231/cc-switch",
+"license": "MIT",
+"stars": 139771,
+"category": "gateway-router",
+"commit": "ba8c1cd611b172054d2bf4859edef20549f4cf4c",
+"id": "Blockchains/cc-switch#src-tauri/src/grok_config.rs:209",
+"type": "code-snippet",
+"path": "src-tauri/src/grok_config.rs",
+"lang": "Rust",
+"start": 209,
+"end": 232,
+"capabilities": [
+"mcp"
+],
+"models": [
+"grok-4.5"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/cc-switch/blob/ba8c1cd611b172054d2bf4859edef20549f4cf4c/src-tauri/src/grok_config.rs#L209-L232"
+},
+{
+"repo": "Blockchains/cc-switch",
+"upstream": "farion1231/cc-switch",
+"license": "MIT",
+"stars": 139771,
+"category": "gateway-router",
+"commit": "ba8c1cd611b172054d2bf4859edef20549f4cf4c",
+"id": "Blockchains/cc-switch#src-tauri/src/proxy/forwarder.rs:3549",
+"type": "code-snippet",
+"path": "src-tauri/src/proxy/forwarder.rs",
+"lang": "Rust",
+"start": 3549,
+"end": 3572,
+"capabilities": [
+"anthropic_compatible",
+"image_generation",
+"live_search",
+"streaming",
+"structured_output",
+"tool_calling",
+"vision"
+],
+"models": [],
+"endpoints": [
+"/v1/chat/completions",
+"/v1/images/edits",
+"/v1/images/generations",
+"/v1/messages",
+"/v1/responses"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/cc-switch/blob/ba8c1cd611b172054d2bf4859edef20549f4cf4c/src-tauri/src/proxy/forwarder.rs#L3549-L3572"
+},
+{
+"repo": "Blockchains/cc-switch",
+"upstream": "farion1231/cc-switch",
+"license": "MIT",
+"stars": 139771,
+"category": "gateway-router",
+"commit": "ba8c1cd611b172054d2bf4859edef20549f4cf4c",
+"id": "Blockchains/cc-switch#src-tauri/src/proxy/providers/claude.rs:1526",
+"type": "code-snippet",
+"path": "src-tauri/src/proxy/providers/claude.rs",
+"lang": "Rust",
+"start": 1526,
+"end": 1549,
+"capabilities": [
+"anthropic_compatible",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling"
+],
+"models": [
+"grok-4.5"
+],
+"endpoints": [
+"/v1/chat/completions",
+"/v1/messages",
+"/v1/responses"
+],
+"env_vars": [
+"XAI_API_BASE_URL"
+],
+"url": "https://github.com/Blockchains/cc-switch/blob/ba8c1cd611b172054d2bf4859edef20549f4cf4c/src-tauri/src/proxy/providers/claude.rs#L1526-L1549"
+},
+{
+"repo": "Blockchains/cc-switch",
+"upstream": "farion1231/cc-switch",
+"license": "MIT",
+"stars": 139771,
+"category": "gateway-router",
+"commit": "ba8c1cd611b172054d2bf4859edef20549f4cf4c",
+"id": "Blockchains/cc-switch#src-tauri/src/proxy/providers/transform_codex_chat_moonshot_schema.rs:201",
+"type": "code-snippet",
+"path": "src-tauri/src/proxy/providers/transform_codex_chat_moonshot_schema.rs",
+"lang": "Rust",
+"start": 201,
+"end": 224,
+"capabilities": [
+"live_search"
+],
+"models": [],
+"endpoints": [
+"/v1/chat/completions"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/cc-switch/blob/ba8c1cd611b172054d2bf4859edef20549f4cf4c/src-tauri/src/proxy/providers/transform_codex_chat_moonshot_schema.rs#L201-L224"
+},
+{
+"repo": "Blockchains/cc-switch",
+"upstream": "farion1231/cc-switch",
+"license": "MIT",
+"stars": 139771,
+"category": "gateway-router",
+"commit": "ba8c1cd611b172054d2bf4859edef20549f4cf4c",
+"id": "Blockchains/cc-switch#src-tauri/src/proxy/providers/transform_codex_responses_namespace.rs:1",
+"type": "code-snippet",
+"path": "src-tauri/src/proxy/providers/transform_codex_responses_namespace.rs",
+"lang": "Rust",
+"start": 1,
+"end": 23,
+"capabilities": [
+"mcp",
+"streaming",
+"tool_calling"
+],
+"models": [
+"grok-4.5"
+],
+"endpoints": [
+"/v1/responses"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/cc-switch/blob/ba8c1cd611b172054d2bf4859edef20549f4cf4c/src-tauri/src/proxy/providers/transform_codex_responses_namespace.rs#L1-L23"
+},
+{
+"repo": "Blockchains/cc-switch",
+"upstream": "farion1231/cc-switch",
+"license": "MIT",
+"stars": 139771,
+"category": "gateway-router",
+"commit": "ba8c1cd611b172054d2bf4859edef20549f4cf4c",
+"id": "Blockchains/cc-switch#src-tauri/src/proxy/providers/codex.rs:214",
+"type": "code-snippet",
+"path": "src-tauri/src/proxy/providers/codex.rs",
+"lang": "Rust",
+"start": 214,
+"end": 237,
+"capabilities": [
+"anthropic_compatible",
+"live_search",
+"openai_compatible",
+"reasoning",
+"streaming",
+"tool_calling"
+],
+"models": [
+"grok-4.5",
+"grok-4.6"
+],
+"endpoints": [
+"/v1/chat/completions",
+"/v1/messages",
+"/v1/responses"
+],
+"env_vars": [
+"XAI_API_BASE_URL"
+],
+"url": "https://github.com/Blockchains/cc-switch/blob/ba8c1cd611b172054d2bf4859edef20549f4cf4c/src-tauri/src/proxy/providers/codex.rs#L214-L237"
+},
+{
+"repo": "Blockchains/cc-switch",
+"upstream": "farion1231/cc-switch",
+"license": "MIT",
+"stars": 139771,
+"category": "gateway-router",
+"commit": "ba8c1cd611b172054d2bf4859edef20549f4cf4c",
+"id": "Blockchains/cc-switch#src-tauri/src/proxy/providers/mod.rs:46",
+"type": "code-snippet",
+"path": "src-tauri/src/proxy/providers/mod.rs",
+"lang": "Rust",
+"start": 46,
+"end": 69,
+"capabilities": [
+"anthropic_compatible",
+"live_search"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_BASE_URL"
+],
+"url": "https://github.com/Blockchains/cc-switch/blob/ba8c1cd611b172054d2bf4859edef20549f4cf4c/src-tauri/src/proxy/providers/mod.rs#L46-L69"
+},
+{
+"repo": "Blockchains/cc-switch",
+"upstream": "farion1231/cc-switch",
+"license": "MIT",
+"stars": 139771,
+"category": "gateway-router",
+"commit": "ba8c1cd611b172054d2bf4859edef20549f4cf4c",
+"id": "Blockchains/cc-switch#src-tauri/src/proxy/providers/transform_codex_responses_xai_sanitize.rs:1",
+"type": "code-snippet",
+"path": "src-tauri/src/proxy/providers/transform_codex_responses_xai_sanitize.rs",
+"lang": "Rust",
+"start": 1,
+"end": 22,
+"capabilities": [
+"image_generation",
+"live_search",
+"reasoning",
+"streaming",
+"tool_calling"
+],
+"models": [
+"grok-4-fast",
+"grok-4.5",
+"grok-4.5-specific",
+"grok-4.6",
+"grok-4.6-fast",
+"grok-4.7-fast"
+],
+"endpoints": [
+"/v1/responses"
+],
+"env_vars": [
+"XAI_SUPPORTED_TOOL_TYPES"
+],
+"url": "https://github.com/Blockchains/cc-switch/blob/ba8c1cd611b172054d2bf4859edef20549f4cf4c/src-tauri/src/proxy/providers/transform_codex_responses_xai_sanitize.rs#L1-L22"
+},
+{
+"repo": "Blockchains/cc-switch",
+"upstream": "farion1231/cc-switch",
+"license": "MIT",
+"stars": 139771,
+"category": "gateway-router",
+"commit": "ba8c1cd611b172054d2bf4859edef20549f4cf4c",
+"id": "Blockchains/cc-switch#src-tauri/src/mode/controller.rs:1798",
+"type": "code-snippet",
+"path": "src-tauri/src/mode/controller.rs",
+"lang": "Rust",
+"start": 1798,
+"end": 1821,
+"capabilities": [
+"anthropic_compatible",
+"mcp",
+"structured_output"
+],
+"models": [
+"grok-4.5",
+"grok-4.6"
+],
+"endpoints": [
+"/v1/models"
+],
+"env_vars": [
+"GOOGLE_GENAI_USE_VERTEXAI"
+],
+"url": "https://github.com/Blockchains/cc-switch/blob/ba8c1cd611b172054d2bf4859edef20549f4cf4c/src-tauri/src/mode/controller.rs#L1798-L1821"
+},
+{
+"repo": "Blockchains/cc-switch",
+"upstream": "farion1231/cc-switch",
+"license": "MIT",
+"stars": 139771,
+"category": "gateway-router",
+"commit": "ba8c1cd611b172054d2bf4859edef20549f4cf4c",
+"id": "Blockchains/cc-switch#src-tauri/src/deeplink/provider.rs:976",
+"type": "code-snippet",
+"path": "src-tauri/src/deeplink/provider.rs",
+"lang": "Rust",
+"start": 976,
+"end": 999,
+"capabilities": [
+"anthropic_compatible",
+"mcp",
+"reasoning"
+],
+"models": [
+"grok-4.5"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/cc-switch/blob/ba8c1cd611b172054d2bf4859edef20549f4cf4c/src-tauri/src/deeplink/provider.rs#L976-L999"
+},
+{
+"repo": "Blockchains/ccteam",
+"upstream": "firstintent/ccteam",
+"license": "MIT",
+"stars": 627,
+"category": "coding-agent-cli",
+"commit": "3d2960618c28b0a9af43b54834d665dcd5101623",
+"id": "Blockchains/ccteam#repo",
+"type": "repo-surface",
+"languages": [
+"Rust",
+"TypeScript",
+"JavaScript",
+"Python"
+],
+"capabilities": [
+"anthropic_compatible",
+"mcp",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling"
+],
+"models": [
+"grok-4.5",
+"grok-4",
+"grok-code"
+],
+"endpoints": [
+"/v1/models"
+],
+"env_vars": [
+"CCTEAM_GROK_BIN",
+"XAI_API_KEY"
+],
+"grok_files": 15,
+"description": "ccteam turns the coding agents you already run (Claude Code, Codex, Grok, DeepSeek Harness, Kimi, Pi) into one team \u2014 any session can spawn, dispatch, and collect work from any vendor on any machine, while you steer it all from Telegram, Lark, or a browser tab. \u628a\u4f60\u5728\u7528\u7684\u7f16\u7a0b agent \u7f16\u6210\u4e00\u652f\u56e2\u961f,\u8de8\u5382\u5546\u8de8\u673a\u5668\u6d3e\u6d3b,Telegram/\u98de\u4e66/\u7f51\u9875\u7edf\u4e00\u6307\u6325\u3002"
+},
+{
+"repo": "Blockchains/ccteam",
+"upstream": "firstintent/ccteam",
+"license": "MIT",
+"stars": 627,
+"category": "coding-agent-cli",
+"commit": "3d2960618c28b0a9af43b54834d665dcd5101623",
+"id": "Blockchains/ccteam#crates/ccteam-cli/src/doctor.rs:451",
+"type": "code-snippet",
+"path": "crates/ccteam-cli/src/doctor.rs",
+"lang": "Rust",
+"start": 451,
+"end": 474,
+"capabilities": [
+"mcp"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/ccteam/blob/3d2960618c28b0a9af43b54834d665dcd5101623/crates/ccteam-cli/src/doctor.rs#L451-L474"
+},
+{
+"repo": "Blockchains/chatbox",
+"upstream": "chatboxai/chatbox",
+"license": "GPL-3.0",
+"stars": 41933,
+"category": "chat-ui",
+"commit": "0ac6385ae1ff5bf778777826da3c5edcd55b61b8",
+"id": "Blockchains/chatbox#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript",
+"JavaScript"
+],
+"capabilities": [
+"anthropic_compatible",
+"embeddings",
+"mcp",
+"reasoning",
+"tool_calling",
+"voice_realtime"
+],
+"models": [
+"grok-4",
+"grok-4.6",
+"grok-4.5",
+"grok-4.3",
+"grok-4-1-fast",
+"grok-4-fast",
+"grok-4-1-fast-non-reasoning",
+"grok-4-1-fast-reasoning",
+"grok-4.1-fast-non-reasoning",
+"grok-4.20",
+"grok-4.20-0309-non-reasoning",
+"grok-4.20-0309-reasoning",
+"grok-4.20-multi-agent",
+"grok-4.20-multi-agent-0309",
+"grok-imagine-image-2.0"
+],
+"endpoints": [
+"/v1/models"
+],
+"env_vars": [
+"XAI_API_KEY"
+],
+"grok_files": 20,
+"description": "Powerful AI Client"
+},
+{
+"repo": "Blockchains/chatbox",
+"upstream": "chatboxai/chatbox",
+"license": "GPL-3.0",
+"stars": 41933,
+"category": "chat-ui",
+"commit": "0ac6385ae1ff5bf778777826da3c5edcd55b61b8",
+"id": "Blockchains/chatbox#src/shared/providers/definitions/xai.ts:9",
+"type": "code-snippet",
+"path": "src/shared/providers/definitions/xai.ts",
+"lang": "TypeScript",
+"start": 9,
+"end": 32,
+"capabilities": [
+"tool_calling"
+],
+"models": [
+"grok-4",
+"grok-4-1-fast",
+"grok-4-fast",
+"grok-4.3",
+"grok-4.6"
+],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/chatbox/blob/0ac6385ae1ff5bf778777826da3c5edcd55b61b8/src/shared/providers/definitions/xai.ts#L9-L32"
+},
+{
+"repo": "Blockchains/chatbox",
+"upstream": "chatboxai/chatbox",
+"license": "GPL-3.0",
+"stars": 41933,
+"category": "chat-ui",
+"commit": "0ac6385ae1ff5bf778777826da3c5edcd55b61b8",
+"id": "Blockchains/chatbox#src/shared/providers/definitions/models/xai.ts:11",
+"type": "code-snippet",
+"path": "src/shared/providers/definitions/models/xai.ts",
+"lang": "TypeScript",
+"start": 11,
+"end": 32,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/chatbox/blob/0ac6385ae1ff5bf778777826da3c5edcd55b61b8/src/shared/providers/definitions/models/xai.ts#L11-L32"
+},
+{
+"repo": "Blockchains/claude-council",
+"upstream": "hex/claude-council",
+"license": "MIT",
+"stars": 819,
+"category": "gateway-router",
+"commit": "5e4267ceddd7f316d2e508db894141ffe9621950",
+"id": "Blockchains/claude-council#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript",
+"Python"
+],
+"capabilities": [
+"anthropic_compatible",
+"mcp",
+"reasoning",
+"vision",
+"voice_realtime"
+],
+"models": [
+"grok-4.6",
+"grok-3-mini",
+"grok-4",
+"grok-4.3",
+"grok-4.20-reasoning",
+"grok-4.5",
+"grok-4.7",
+"grok-4.x",
+"grok-4.20-non-reasoning-latest"
+],
+"endpoints": [
+"/v1/models",
+"/v1/chat/completions",
+"/v1/responses"
+],
+"env_vars": [
+"XAI_API_KEY"
+],
+"grok_files": 14,
+"description": "Claude Code plugin that asks several AI coding agents the same question and shows their answers side by side. Gemini, OpenAI, Grok, Perplexity, Kimi and any model OpenRouter routes to over API; codex, antigravity, grok, kimi and cursor CLIs on subscription auth; ollama locally. Codex specialists take coding tasks on their own branch (experimental)."
+},
+{
+"repo": "Blockchains/codeg",
+"upstream": "xintaofei/codeg",
+"license": "Apache-2.0",
+"stars": 3787,
+"category": "coding-agent-cli",
+"commit": "98035964c0f3811dc80a5e9291b89cb6c0570fa0",
+"id": "Blockchains/codeg#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript",
+"Rust",
+"Python",
+"JavaScript"
+],
+"capabilities": [
+"anthropic_compatible",
+"mcp",
+"reasoning",
+"structured_output",
+"tool_calling"
+],
+"models": [
+"grok-4.5",
+"grok-0.2.101",
+"grok-4.5-fast",
+"grok-4.6",
+"grok-4-fast",
+"grok-4.20",
+"grok-4.20-0309-reasoning",
+"grok-4.3",
+"grok-7-experimental",
+"grok-code-fast-1"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY",
+"GROK_XAI_API_BASE_URL",
+"XAI_API_BASE_URL",
+"XAI_MODEL"
+],
+"grok_files": 18,
+"description": "Collaborative multi-agent AI coding workspace: aggregate sessions from Claude Code, Codex, OpenCode, Pi, Grok Build, etc. Desktop app, self-hosted server, or Docker."
+},
+{
+"repo": "Blockchains/codeg",
+"upstream": "xintaofei/codeg",
+"license": "Apache-2.0",
+"stars": 3787,
+"category": "coding-agent-cli",
+"commit": "98035964c0f3811dc80a5e9291b89cb6c0570fa0",
+"id": "Blockchains/codeg#src-tauri/src/db/migration/m20260930_000001_agent_setting_drop_adapter_channel.rs:55",
+"type": "code-snippet",
+"path": "src-tauri/src/db/migration/m20260930_000001_agent_setting_drop_adapter_channel.rs",
+"lang": "Rust",
+"start": 55,
+"end": 78,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/codeg/blob/98035964c0f3811dc80a5e9291b89cb6c0570fa0/src-tauri/src/db/migration/m20260930_000001_agent_setting_drop_adapter_channel.rs#L55-L78"
+},
+{
+"repo": "Blockchains/codeg",
+"upstream": "xintaofei/codeg",
+"license": "Apache-2.0",
+"stars": 3787,
+"category": "coding-agent-cli",
+"commit": "98035964c0f3811dc80a5e9291b89cb6c0570fa0",
+"id": "Blockchains/codeg#src-tauri/src/acp/types.rs:1752",
+"type": "code-snippet",
+"path": "src-tauri/src/acp/types.rs",
+"lang": "Rust",
+"start": 1752,
+"end": 1775,
+"capabilities": [
+"mcp",
+"reasoning",
+"tool_calling"
+],
+"models": [
+"grok-4.5"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/codeg/blob/98035964c0f3811dc80a5e9291b89cb6c0570fa0/src-tauri/src/acp/types.rs#L1752-L1775"
+},
+{
+"repo": "Blockchains/codeg",
+"upstream": "xintaofei/codeg",
+"license": "Apache-2.0",
+"stars": 3787,
+"category": "coding-agent-cli",
+"commit": "98035964c0f3811dc80a5e9291b89cb6c0570fa0",
+"id": "Blockchains/codeg#src/components/settings/acp-agent-settings.tsx:244",
+"type": "code-snippet",
+"path": "src/components/settings/acp-agent-settings.tsx",
+"lang": "TypeScript",
+"start": 244,
+"end": 267,
+"capabilities": [
+"anthropic_compatible",
+"reasoning",
+"structured_output"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"GROK_XAI_API_BASE_URL",
+"XAI_API_BASE_URL",
+"XAI_API_KEY",
+"XAI_MODEL"
+],
+"url": "https://github.com/Blockchains/codeg/blob/98035964c0f3811dc80a5e9291b89cb6c0570fa0/src/components/settings/acp-agent-settings.tsx#L244-L267"
+},
+{
+"repo": "Blockchains/codeg",
+"upstream": "xintaofei/codeg",
+"license": "Apache-2.0",
+"stars": 3787,
+"category": "coding-agent-cli",
+"commit": "98035964c0f3811dc80a5e9291b89cb6c0570fa0",
+"id": "Blockchains/codeg#src/components/settings/opencode-connect-dialog.tsx:36",
+"type": "code-snippet",
+"path": "src/components/settings/opencode-connect-dialog.tsx",
+"lang": "TypeScript",
+"start": 36,
+"end": 59,
+"capabilities": [
+"anthropic_compatible",
+"structured_output"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/codeg/blob/98035964c0f3811dc80a5e9291b89cb6c0570fa0/src/components/settings/opencode-connect-dialog.tsx#L36-L59"
+},
+{
+"repo": "Blockchains/community-writer",
+"upstream": "xai-org/community-writer",
+"license": "Apache-2.0",
+"stars": 1,
+"category": "official",
+"commit": "b232e59249a151ef2ee9b7c722db7c9afb62497a",
+"id": "Blockchains/community-writer#repo",
+"type": "repo-surface",
+"languages": [
+"Python"
+],
+"capabilities": [
+"embeddings",
+"grpc",
+"live_search",
+"reasoning",
+"streaming",
+"tool_calling"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"grok_files": 13,
+"description": "Community driven AI writer for Community Notes"
+},
+{
+"repo": "Blockchains/community-writer",
+"upstream": "xai-org/community-writer",
+"license": "Apache-2.0",
+"stars": 1,
+"category": "official",
+"commit": "b232e59249a151ef2ee9b7c722db7c9afb62497a",
+"id": "Blockchains/community-writer#src/note_writer/grok_client.py",
+"type": "sdk-exports",
+"path": "src/note_writer/grok_client.py",
+"lang": "Python",
+"exports": [
+"shorten_image_content",
+"GrokClient"
+]
+},
+{
+"repo": "Blockchains/community-writer",
+"upstream": "xai-org/community-writer",
+"license": "Apache-2.0",
+"stars": 1,
+"category": "official",
+"commit": "b232e59249a151ef2ee9b7c722db7c9afb62497a",
+"id": "Blockchains/community-writer#src/rejectors/screenshot_rejector.py:12",
+"type": "code-snippet",
+"path": "src/rejectors/screenshot_rejector.py",
+"lang": "Python",
+"start": 12,
+"end": 35,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/community-writer/blob/b232e59249a151ef2ee9b7c722db7c9afb62497a/src/rejectors/screenshot_rejector.py#L12-L35"
+},
+{
+"repo": "Blockchains/community-writer",
+"upstream": "xai-org/community-writer",
+"license": "Apache-2.0",
+"stars": 1,
+"category": "official",
+"commit": "b232e59249a151ef2ee9b7c722db7c9afb62497a",
+"id": "Blockchains/community-writer#src/data_models/arena_config.py:316",
+"type": "code-snippet",
+"path": "src/data_models/arena_config.py",
+"lang": "Python",
+"start": 316,
+"end": 339,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/community-writer/blob/b232e59249a151ef2ee9b7c722db7c9afb62497a/src/data_models/arena_config.py#L316-L339"
+},
+{
+"repo": "Blockchains/community-writer",
+"upstream": "xai-org/community-writer",
+"license": "Apache-2.0",
+"stars": 1,
+"category": "official",
+"commit": "b232e59249a151ef2ee9b7c722db7c9afb62497a",
+"id": "Blockchains/community-writer#src/note_writer/grok_client.py:1",
+"type": "code-snippet",
+"path": "src/note_writer/grok_client.py",
+"lang": "Python",
+"start": 1,
+"end": 21,
+"capabilities": [
+"grpc",
+"live_search",
+"reasoning",
+"streaming",
+"tool_calling"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/community-writer/blob/b232e59249a151ef2ee9b7c722db7c9afb62497a/src/note_writer/grok_client.py#L1-L21"
+},
+{
+"repo": "Blockchains/community-writer",
+"upstream": "xai-org/community-writer",
+"license": "Apache-2.0",
+"stars": 1,
+"category": "official",
+"commit": "b232e59249a151ef2ee9b7c722db7c9afb62497a",
+"id": "Blockchains/community-writer#src/utils/init_helpers.py:6",
+"type": "code-snippet",
+"path": "src/utils/init_helpers.py",
+"lang": "Python",
+"start": 6,
+"end": 29,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/community-writer/blob/b232e59249a151ef2ee9b7c722db7c9afb62497a/src/utils/init_helpers.py#L6-L29"
+},
+{
+"repo": "Blockchains/community-writer",
+"upstream": "xai-org/community-writer",
+"license": "Apache-2.0",
+"stars": 1,
+"category": "official",
+"commit": "b232e59249a151ef2ee9b7c722db7c9afb62497a",
+"id": "Blockchains/community-writer#src/utils/log_setup.py:20",
+"type": "code-snippet",
+"path": "src/utils/log_setup.py",
+"lang": "Python",
+"start": 20,
+"end": 42,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/community-writer/blob/b232e59249a151ef2ee9b7c722db7c9afb62497a/src/utils/log_setup.py#L20-L42"
+},
+{
+"repo": "Blockchains/forgecode",
+"upstream": "tailcallhq/forgecode",
+"license": "Apache-2.0",
+"stars": 7638,
+"category": "coding-agent-cli",
+"commit": "937577539c6e1b57b765fad231a802f1cc0d1a11",
+"id": "Blockchains/forgecode#repo",
+"type": "repo-surface",
+"languages": [
+"Rust",
+"TypeScript"
+],
+"capabilities": [
+"anthropic_compatible",
+"reasoning",
+"structured_output",
+"tool_calling"
+],
+"models": [
+"grok-code-fast-1"
+],
+"endpoints": [
+"/v1/chat/completions",
+"/v1/models",
+"/v1/messages",
+"/v1/responses"
+],
+"env_vars": [
+"XAI_API_KEY"
+],
+"grok_files": 5,
+"description": "AI enabled pair programmer for Claude, GPT, O Series, Grok, Deepseek, Gemini and 300+ models"
+},
+{
+"repo": "Blockchains/forgecode",
+"upstream": "tailcallhq/forgecode",
+"license": "Apache-2.0",
+"stars": 7638,
+"category": "coding-agent-cli",
+"commit": "937577539c6e1b57b765fad231a802f1cc0d1a11",
+"id": "Blockchains/forgecode#crates/forge_domain/src/provider.rs:466",
+"type": "code-snippet",
+"path": "crates/forge_domain/src/provider.rs",
+"lang": "Rust",
+"start": 466,
+"end": 489,
+"capabilities": [
+"anthropic_compatible"
+],
+"models": [],
+"endpoints": [
+"/v1/chat/completions",
+"/v1/models"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/forgecode/blob/937577539c6e1b57b765fad231a802f1cc0d1a11/crates/forge_domain/src/provider.rs#L466-L489"
+},
+{
+"repo": "Blockchains/forgecode",
+"upstream": "tailcallhq/forgecode",
+"license": "Apache-2.0",
+"stars": 7638,
+"category": "coding-agent-cli",
+"commit": "937577539c6e1b57b765fad231a802f1cc0d1a11",
+"id": "Blockchains/forgecode#crates/forge_app/src/dto/openai/transformers/pipeline.rs:284",
+"type": "code-snippet",
+"path": "crates/forge_app/src/dto/openai/transformers/pipeline.rs",
+"lang": "Rust",
+"start": 284,
+"end": 307,
+"capabilities": [
+"anthropic_compatible",
+"reasoning",
+"structured_output",
+"tool_calling"
+],
+"models": [],
+"endpoints": [
+"/v1/chat/completions",
+"/v1/messages",
+"/v1/models"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/forgecode/blob/937577539c6e1b57b765fad231a802f1cc0d1a11/crates/forge_app/src/dto/openai/transformers/pipeline.rs#L284-L307"
+},
+{
+"repo": "Blockchains/grok-1",
+"upstream": "xai-org/grok-1",
+"license": "Apache-2.0",
+"stars": 52233,
+"category": "official",
+"commit": "7050ed204b8206bb8645c7b7bbef7252f79561b0",
+"id": "Blockchains/grok-1#repo",
+"type": "repo-surface",
+"languages": [
+"Python"
+],
+"capabilities": [],
+"models": [
+"grok-1",
+"grok-1.git"
+],
+"endpoints": [],
+"env_vars": [],
+"grok_files": 2,
+"description": "Grok open release"
+},
+{
+"repo": "Blockchains/grok-app",
+"upstream": "RongleCat/grok-app",
+"license": "MIT",
+"stars": 1389,
+"category": "coding-agent-cli",
+"commit": "453eb857940bc3f264b037dff74572fe67267d0e",
+"id": "Blockchains/grok-app#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript",
+"Rust",
+"JavaScript",
+"Python"
+],
+"capabilities": [
+"anthropic_compatible",
+"embeddings",
+"image_generation",
+"live_search",
+"mcp",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling",
+"vision",
+"voice_realtime"
+],
+"models": [
+"grok-4.5",
+"grok-4.7",
+"grok-4.6",
+"grok-4",
+"grok-4.7-build-fast",
+"grok-3",
+"grok-2",
+"grok-code",
+"grok-2-vision",
+"grok-3-mini",
+"grok-4-fast",
+"grok-4-latest",
+"grok-4.1",
+"grok-code-fast-1",
+"grok-0.2.111-macos-aarch64",
+"grok-0.2.111-macos-x86_64",
+"grok-codebase-idx",
+"grok-imagine-saved",
+"grok-2-vision-1212",
+"grok-3-mini-fast"
+],
+"endpoints": [
+"/v1/models",
+"/v1/responses",
+"/v1/realtime",
+"/v1/audio/transcriptions",
+"/v1/messages"
+],
+"env_vars": [
+"XAI_API_KEY",
+"PROVIDER_MODE_GROK_BUILD_PROXY",
+"OFFICIAL_GROK_API_BACKEND",
+"OFFICIAL_GROK_BASE_URL",
+"LEGACY_XAI_AUTH_SCOPE",
+"XAI_BUILD_AUTH_SCOPE",
+"XAI_OAUTH_CLIENT_ID",
+"XAI_OAUTH_ISSUER"
+],
+"grok_files": 92,
+"description": "Open-source Grok App \u2014 desktop workbench (GUI) for the local Grok Build CLI: sessions, projects, media, automations. Tauri 2."
+},
+{
+"repo": "Blockchains/grok-app",
+"upstream": "RongleCat/grok-app",
+"license": "MIT",
+"stars": 1389,
+"category": "coding-agent-cli",
+"commit": "453eb857940bc3f264b037dff74572fe67267d0e",
+"id": "Blockchains/grok-app#src-tauri/src/voice_auth.rs:19",
+"type": "code-snippet",
+"path": "src-tauri/src/voice_auth.rs",
+"lang": "Rust",
+"start": 19,
+"end": 42,
+"capabilities": [
+"voice_realtime"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/grok-app/blob/453eb857940bc3f264b037dff74572fe67267d0e/src-tauri/src/voice_auth.rs#L19-L42"
+},
+{
+"repo": "Blockchains/grok-app",
+"upstream": "RongleCat/grok-app",
+"license": "MIT",
+"stars": 1389,
+"category": "coding-agent-cli",
+"commit": "453eb857940bc3f264b037dff74572fe67267d0e",
+"id": "Blockchains/grok-app#src-tauri/src/models_aux.rs:647",
+"type": "code-snippet",
+"path": "src-tauri/src/models_aux.rs",
+"lang": "Rust",
+"start": 647,
+"end": 670,
+"capabilities": [
+"live_search",
+"vision"
+],
+"models": [
+"grok-4",
+"grok-4.5",
+"grok-4.7"
+],
+"endpoints": [],
+"env_vars": [
+"OFFICIAL_GROK_API_BACKEND",
+"OFFICIAL_GROK_BASE_URL"
+],
+"url": "https://github.com/Blockchains/grok-app/blob/453eb857940bc3f264b037dff74572fe67267d0e/src-tauri/src/models_aux.rs#L647-L670"
+},
+{
+"repo": "Blockchains/grok-app",
+"upstream": "RongleCat/grok-app",
+"license": "MIT",
+"stars": 1389,
+"category": "coding-agent-cli",
+"commit": "453eb857940bc3f264b037dff74572fe67267d0e",
+"id": "Blockchains/grok-app#src-tauri/src/wsl_backend.rs:577",
+"type": "code-snippet",
+"path": "src-tauri/src/wsl_backend.rs",
+"lang": "Rust",
+"start": 577,
+"end": 600,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/grok-app/blob/453eb857940bc3f264b037dff74572fe67267d0e/src-tauri/src/wsl_backend.rs#L577-L600"
+},
+{
+"repo": "Blockchains/grok-app",
+"upstream": "RongleCat/grok-app",
+"license": "MIT",
+"stars": 1389,
+"category": "coding-agent-cli",
+"commit": "453eb857940bc3f264b037dff74572fe67267d0e",
+"id": "Blockchains/grok-app#src-tauri/src/acp_client.rs:5968",
+"type": "code-snippet",
+"path": "src-tauri/src/acp_client.rs",
+"lang": "Rust",
+"start": 5968,
+"end": 5991,
+"capabilities": [
+"live_search",
+"mcp",
+"reasoning",
+"structured_output",
+"tool_calling"
+],
+"models": [
+"grok-4.5",
+"grok-4.6"
+],
+"endpoints": [
+"/v1/models",
+"/v1/responses"
+],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/grok-app/blob/453eb857940bc3f264b037dff74572fe67267d0e/src-tauri/src/acp_client.rs#L5968-L5991"
+},
+{
+"repo": "Blockchains/grok-app",
+"upstream": "RongleCat/grok-app",
+"license": "MIT",
+"stars": 1389,
+"category": "coding-agent-cli",
+"commit": "453eb857940bc3f264b037dff74572fe67267d0e",
+"id": "Blockchains/grok-app#src-tauri/src/voice_host.rs:1",
+"type": "code-snippet",
+"path": "src-tauri/src/voice_host.rs",
+"lang": "Rust",
+"start": 1,
+"end": 22,
+"capabilities": [
+"voice_realtime"
+],
+"models": [],
+"endpoints": [
+"/v1/realtime"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/grok-app/blob/453eb857940bc3f264b037dff74572fe67267d0e/src-tauri/src/voice_host.rs#L1-L22"
+},
+{
+"repo": "Blockchains/grok-app",
+"upstream": "RongleCat/grok-app",
+"license": "MIT",
+"stars": 1389,
+"category": "coding-agent-cli",
+"commit": "453eb857940bc3f264b037dff74572fe67267d0e",
+"id": "Blockchains/grok-app#src-tauri/src/voice_stt.rs:1",
+"type": "code-snippet",
+"path": "src-tauri/src/voice_stt.rs",
+"lang": "Rust",
+"start": 1,
+"end": 21,
+"capabilities": [
+"voice_realtime"
+],
+"models": [],
+"endpoints": [
+"/v1/audio/transcriptions"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/grok-app/blob/453eb857940bc3f264b037dff74572fe67267d0e/src-tauri/src/voice_stt.rs#L1-L21"
+},
+{
+"repo": "Blockchains/grok-app",
+"upstream": "RongleCat/grok-app",
+"license": "MIT",
+"stars": 1389,
+"category": "coding-agent-cli",
+"commit": "453eb857940bc3f264b037dff74572fe67267d0e",
+"id": "Blockchains/grok-app#src-tauri/src/acp_client/spawn_flags.rs:733",
+"type": "code-snippet",
+"path": "src-tauri/src/acp_client/spawn_flags.rs",
+"lang": "Rust",
+"start": 733,
+"end": 756,
+"capabilities": [
+"live_search",
+"reasoning"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/grok-app/blob/453eb857940bc3f264b037dff74572fe67267d0e/src-tauri/src/acp_client/spawn_flags.rs#L733-L756"
+},
+{
+"repo": "Blockchains/grok-app",
+"upstream": "RongleCat/grok-app",
+"license": "MIT",
+"stars": 1389,
+"category": "coding-agent-cli",
+"commit": "453eb857940bc3f264b037dff74572fe67267d0e",
+"id": "Blockchains/grok-app#src-tauri/src/account/build_oauth.rs:628",
+"type": "code-snippet",
+"path": "src-tauri/src/account/build_oauth.rs",
+"lang": "Rust",
+"start": 628,
+"end": 651,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"LEGACY_XAI_AUTH_SCOPE",
+"XAI_BUILD_AUTH_SCOPE",
+"XAI_OAUTH_CLIENT_ID",
+"XAI_OAUTH_ISSUER"
+],
+"url": "https://github.com/Blockchains/grok-app/blob/453eb857940bc3f264b037dff74572fe67267d0e/src-tauri/src/account/build_oauth.rs#L628-L651"
+},
+{
+"repo": "Blockchains/grok-app",
+"upstream": "RongleCat/grok-app",
+"license": "MIT",
+"stars": 1389,
+"category": "coding-agent-cli",
+"commit": "453eb857940bc3f264b037dff74572fe67267d0e",
+"id": "Blockchains/grok-app#src-tauri/src/commands/doctor_p1.rs:690",
+"type": "code-snippet",
+"path": "src-tauri/src/commands/doctor_p1.rs",
+"lang": "Rust",
+"start": 690,
+"end": 713,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/grok-app/blob/453eb857940bc3f264b037dff74572fe67267d0e/src-tauri/src/commands/doctor_p1.rs#L690-L713"
+},
+{
+"repo": "Blockchains/grok-build",
+"upstream": "xai-org/grok-build",
+"license": "Apache-2.0",
+"stars": 27210,
+"category": "official",
+"commit": "2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8",
+"id": "Blockchains/grok-build#repo",
+"type": "repo-surface",
+"languages": [
+"Rust",
+"JavaScript",
+"Python",
+"Kotlin"
+],
+"capabilities": [
+"anthropic_compatible",
+"embeddings",
+"grpc",
+"image_generation",
+"live_search",
+"mcp",
+"openai_compatible",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling",
+"vision",
+"voice_realtime"
+],
+"models": [
+"grok-4",
+"grok-4.5",
+"grok-3",
+"grok-4.6",
+"grok-3-fast",
+"grok-4.7",
+"grok-imagine-image-quality",
+"grok-code-extension",
+"grok-4.3",
+"grok-code-fast-1",
+"grok-imagine-image",
+"grok-4.20",
+"grok-0.1.181",
+"grok-4.7-build",
+"grok-0.1.138",
+"grok-0.1.139",
+"grok-0.1.140",
+"grok-0.1.141",
+"grok-0.1.150",
+"grok-1"
+],
+"endpoints": [
+"/v1/models",
+"/v1/responses",
+"/v1/chat/completions",
+"/v1/tokenize-text",
+"/v1/messages",
+"/v1/api-key",
+"/v1/videos",
+"/v1/videos/generations"
+],
+"env_vars": [
+"XAI_API_KEY",
+"GROK_XAI_API_BASE_URL",
+"GROK_CODE_XAI_API_KEY",
+"XAI_API_KEY_METHOD_ID",
+"XAI_OAUTH2_ISSUER",
+"LEGACY_XAI_API_KEY_ENV_VAR",
+"XAI_API_KEY_ENV_VAR",
+"LC_GROK_OSC52_SINK",
+"XAI_IMAGINE_EDIT_MODEL",
+"XAI_OAUTH2_LOCAL_ISSUER"
+],
+"grok_files": 289,
+"description": "SpaceXAI's coding agent harness and TUI. Fullscreen, mouse interactive, extensible."
+},
+{
+"repo": "Blockchains/grok-build",
+"upstream": "xai-org/grok-build",
+"license": "Apache-2.0",
+"stars": 27210,
+"category": "official",
+"commit": "2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8",
+"id": "Blockchains/grok-build#crates/codegen/xai-grok-login/src/side_call_bearer_tests.rs:49",
+"type": "code-snippet",
+"path": "crates/codegen/xai-grok-login/src/side_call_bearer_tests.rs",
+"lang": "Rust",
+"start": 49,
+"end": 72,
+"capabilities": [
+"image_generation"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"GROK_CODE_XAI_API_KEY",
+"XAI_API_KEY",
+"XAI_OAUTH2_ISSUER"
+],
+"url": "https://github.com/Blockchains/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-login/src/side_call_bearer_tests.rs#L49-L72"
+},
+{
+"repo": "Blockchains/grok-build",
+"upstream": "xai-org/grok-build",
+"license": "Apache-2.0",
+"stars": 27210,
+"category": "official",
+"commit": "2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8",
+"id": "Blockchains/grok-build#crates/codegen/xai-grok-login/src/side_call_bearer.rs:8",
+"type": "code-snippet",
+"path": "crates/codegen/xai-grok-login/src/side_call_bearer.rs",
+"lang": "Rust",
+"start": 8,
+"end": 31,
+"capabilities": [
+"voice_realtime"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-login/src/side_call_bearer.rs#L8-L31"
+},
+{
+"repo": "Blockchains/grok-build",
+"upstream": "xai-org/grok-build",
+"license": "Apache-2.0",
+"stars": 27210,
+"category": "official",
+"commit": "2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8",
+"id": "Blockchains/grok-build#crates/codegen/xai-grok-login/src/manager_tests.rs:3107",
+"type": "code-snippet",
+"path": "crates/codegen/xai-grok-login/src/manager_tests.rs",
+"lang": "Rust",
+"start": 3107,
+"end": 3130,
+"capabilities": [
+"embeddings",
+"mcp",
+"voice_realtime"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"GROK_CODE_XAI_API_KEY",
+"XAI_API_KEY",
+"XAI_OAUTH2_ISSUER"
+],
+"url": "https://github.com/Blockchains/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-login/src/manager_tests.rs#L3107-L3130"
+},
+{
+"repo": "Blockchains/grok-build",
+"upstream": "xai-org/grok-build",
+"license": "Apache-2.0",
+"stars": 27210,
+"category": "official",
+"commit": "2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8",
+"id": "Blockchains/grok-build#crates/codegen/xai-grok-login/src/api_key_probe.rs:221",
+"type": "code-snippet",
+"path": "crates/codegen/xai-grok-login/src/api_key_probe.rs",
+"lang": "Rust",
+"start": 221,
+"end": 244,
+"capabilities": [],
+"models": [],
+"endpoints": [
+"/v1/api-key"
+],
+"env_vars": [
+"GROK_XAI_API_BASE_URL"
+],
+"url": "https://github.com/Blockchains/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-login/src/api_key_probe.rs#L221-L244"
+},
+{
+"repo": "Blockchains/grok-build",
+"upstream": "xai-org/grok-build",
+"license": "Apache-2.0",
+"stars": 27210,
+"category": "official",
+"commit": "2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8",
+"id": "Blockchains/grok-build#crates/codegen/xai-grok-login/src/device_code.rs:23",
+"type": "code-snippet",
+"path": "crates/codegen/xai-grok-login/src/device_code.rs",
+"lang": "Rust",
+"start": 23,
+"end": 46,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-login/src/device_code.rs#L23-L46"
+},
+{
+"repo": "Blockchains/grok-build",
+"upstream": "xai-org/grok-build",
+"license": "Apache-2.0",
+"stars": 27210,
+"category": "official",
+"commit": "2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8",
+"id": "Blockchains/grok-build#crates/codegen/xai-grok-login/src/flow.rs:860",
+"type": "code-snippet",
+"path": "crates/codegen/xai-grok-login/src/flow.rs",
+"lang": "Rust",
+"start": 860,
+"end": 883,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"GROK_CODE_XAI_API_KEY",
+"XAI_API_KEY",
+"XAI_OAUTH2_ISSUER"
+],
+"url": "https://github.com/Blockchains/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-login/src/flow.rs#L860-L883"
+},
+{
+"repo": "Blockchains/grok-build",
+"upstream": "xai-org/grok-build",
+"license": "Apache-2.0",
+"stars": 27210,
+"category": "official",
+"commit": "2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8",
+"id": "Blockchains/grok-build#crates/codegen/xai-grok-login/src/auth_method.rs:7",
+"type": "code-snippet",
+"path": "crates/codegen/xai-grok-login/src/auth_method.rs",
+"lang": "Rust",
+"start": 7,
+"end": 30,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"GROK_CODE_XAI_API_KEY",
+"LEGACY_XAI_API_KEY_ENV_VAR",
+"XAI_API_KEY",
+"XAI_API_KEY_ENV_VAR"
+],
+"url": "https://github.com/Blockchains/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-login/src/auth_method.rs#L7-L30"
+},
+{
+"repo": "Blockchains/grok-build",
+"upstream": "xai-org/grok-build",
+"license": "Apache-2.0",
+"stars": 27210,
+"category": "official",
+"commit": "2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8",
+"id": "Blockchains/grok-build#crates/codegen/xai-grok-login/src/config.rs:43",
+"type": "code-snippet",
+"path": "crates/codegen/xai-grok-login/src/config.rs",
+"lang": "Rust",
+"start": 43,
+"end": 66,
+"capabilities": [
+"structured_output"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY",
+"XAI_OAUTH2_ISSUER",
+"XAI_OAUTH2_LOCAL_ISSUER"
+],
+"url": "https://github.com/Blockchains/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-login/src/config.rs#L43-L66"
+},
+{
+"repo": "Blockchains/grok-build",
+"upstream": "xai-org/grok-build",
+"license": "Apache-2.0",
+"stars": 27210,
+"category": "official",
+"commit": "2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8",
+"id": "Blockchains/grok-build#crates/codegen/xai-grok-login/src/credential_provider.rs:886",
+"type": "code-snippet",
+"path": "crates/codegen/xai-grok-login/src/credential_provider.rs",
+"lang": "Rust",
+"start": 886,
+"end": 909,
+"capabilities": [
+"embeddings"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-login/src/credential_provider.rs#L886-L909"
+},
+{
+"repo": "Blockchains/grok-build",
+"upstream": "xai-org/grok-build",
+"license": "Apache-2.0",
+"stars": 27210,
+"category": "official",
+"commit": "2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8",
+"id": "Blockchains/grok-build#crates/codegen/xai-grok-login/src/auth_provider_tests.rs:739",
+"type": "code-snippet",
+"path": "crates/codegen/xai-grok-login/src/auth_provider_tests.rs",
+"lang": "Rust",
+"start": 739,
+"end": 762,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"GROK_CODE_XAI_API_KEY",
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-login/src/auth_provider_tests.rs#L739-L762"
+},
+{
+"repo": "Blockchains/grok-cli",
+"upstream": "superagent-ai/grok-cli",
+"license": "MIT",
+"stars": 3486,
+"category": "coding-agent-cli",
+"commit": "fb97af83f06dca873281d60168430f06c8de6324",
+"id": "Blockchains/grok-cli#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript"
+],
+"capabilities": [
+"image_generation",
+"live_search",
+"mcp",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling",
+"vision",
+"voice_realtime"
+],
+"models": [
+"grok-4.3",
+"grok-4.20-non-reasoning",
+"grok-4.20-multi-agent-0309",
+"grok-3-mini",
+"grok-code-fast-1",
+"grok-imagine-image",
+"grok-3",
+"grok-4-1-fast",
+"grok-4.20-multi-agent",
+"grok-4.20-multi-agent-beta",
+"grok-4.20-0309-non-reasoning",
+"grok-imagine-video",
+"grok-4-0709",
+"grok-4-1-fast-reasoning",
+"grok-3-mini-fast",
+"grok-4-1-fast-non-reasoning",
+"grok-4-fast",
+"grok-4-fast-non-reasoning",
+"grok-4-fast-reasoning",
+"grok-4.20-0309-reasoning"
+],
+"endpoints": [],
+"env_vars": [
+"DEFAULT_GROK_STT_BASE_URL"
+],
+"grok_files": 27,
+"description": "An open-source coding agent for the Grok API"
+},
+{
+"repo": "Blockchains/grok-cli",
+"upstream": "superagent-ai/grok-cli",
+"license": "MIT",
+"stars": 3486,
+"category": "coding-agent-cli",
+"commit": "fb97af83f06dca873281d60168430f06c8de6324",
+"id": "Blockchains/grok-cli#src/grok/batch.ts:1",
+"type": "code-snippet",
+"path": "src/grok/batch.ts",
+"lang": "TypeScript",
+"start": 1,
+"end": 20,
+"capabilities": [
+"reasoning",
+"structured_output",
+"tool_calling",
+"vision"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/grok-cli/blob/fb97af83f06dca873281d60168430f06c8de6324/src/grok/batch.ts#L1-L20"
+},
+{
+"repo": "Blockchains/grok-cli",
+"upstream": "superagent-ai/grok-cli",
+"license": "MIT",
+"stars": 3486,
+"category": "coding-agent-cli",
+"commit": "fb97af83f06dca873281d60168430f06c8de6324",
+"id": "Blockchains/grok-cli#src/grok/client.ts:1",
+"type": "code-snippet",
+"path": "src/grok/client.ts",
+"lang": "TypeScript",
+"start": 1,
+"end": 18,
+"capabilities": [
+"reasoning"
+],
+"models": [
+"grok-4.20-non-reasoning"
+],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/grok-cli/blob/fb97af83f06dca873281d60168430f06c8de6324/src/grok/client.ts#L1-L18"
+},
+{
+"repo": "Blockchains/grok-cli",
+"upstream": "superagent-ai/grok-cli",
+"license": "MIT",
+"stars": 3486,
+"category": "coding-agent-cli",
+"commit": "fb97af83f06dca873281d60168430f06c8de6324",
+"id": "Blockchains/grok-cli#src/utils/settings.ts:311",
+"type": "code-snippet",
+"path": "src/utils/settings.ts",
+"lang": "TypeScript",
+"start": 311,
+"end": 334,
+"capabilities": [
+"reasoning",
+"structured_output",
+"voice_realtime"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/grok-cli/blob/fb97af83f06dca873281d60168430f06c8de6324/src/utils/settings.ts#L311-L334"
+},
+{
+"repo": "Blockchains/grok-cli",
+"upstream": "superagent-ai/grok-cli",
+"license": "MIT",
+"stars": 3486,
+"category": "coding-agent-cli",
+"commit": "fb97af83f06dca873281d60168430f06c8de6324",
+"id": "Blockchains/grok-cli#src/audio/stt/grok-stt.ts:1",
+"type": "code-snippet",
+"path": "src/audio/stt/grok-stt.ts",
+"lang": "TypeScript",
+"start": 1,
+"end": 21,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"DEFAULT_GROK_STT_BASE_URL"
+],
+"url": "https://github.com/Blockchains/grok-cli/blob/fb97af83f06dca873281d60168430f06c8de6324/src/audio/stt/grok-stt.ts#L1-L21"
+},
+{
+"repo": "Blockchains/grok-cli",
+"upstream": "superagent-ai/grok-cli",
+"license": "MIT",
+"stars": 3486,
+"category": "coding-agent-cli",
+"commit": "fb97af83f06dca873281d60168430f06c8de6324",
+"id": "Blockchains/grok-cli#pkg:grok-dev",
+"type": "package",
+"path": "package.json",
+"ecosystem": "npm",
+"name": "grok-dev",
+"version": "1.1.7"
+},
+{
+"repo": "Blockchains/grok-prompts",
+"upstream": "xai-org/grok-prompts",
+"license": "AGPL-3.0",
+"stars": 4502,
+"category": "official",
+"commit": "a7c186f5ccac95875c0041aed60398f6ecb6d6c7",
+"id": "Blockchains/grok-prompts#repo",
+"type": "repo-surface",
+"languages": [],
+"capabilities": [],
+"models": [
+"grok-4-0709",
+"grok-4-fast",
+"grok-code-fast-1"
+],
+"endpoints": [],
+"env_vars": [],
+"grok_files": 1,
+"description": "Prompts for our Grok chat assistant and the `@grok` bot on X."
+},
+{
+"repo": "Blockchains/hapi",
+"upstream": "tiann/hapi",
+"license": "AGPL-3.0",
+"stars": 5174,
+"category": "coding-agent-cli",
+"commit": "86c88df93baf5d1f738dd4b202078bdf6dec376e",
+"id": "Blockchains/hapi#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript",
+"Swift",
+"Kotlin",
+"JavaScript"
+],
+"capabilities": [
+"reasoning"
+],
+"models": [
+"grok-4.5",
+"grok-4.6",
+"grok-4.6-high",
+"grok-4.5-medium",
+"grok-4.5-high-fast",
+"grok-4.5-medium-fast",
+"grok-4",
+"grok-4.5-high",
+"grok-4.5-low",
+"grok-4.5-low-fast",
+"grok-4.6-low",
+"grok-4.6-high-fast",
+"grok-4-20"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"grok_files": 31,
+"description": "App for Codex / Claude Code / Pi / OpenCode / Kimi Code / Grok Build, vibe coding anytime, anywhere"
+},
+{
+"repo": "Blockchains/hapi",
+"upstream": "tiann/hapi",
+"license": "AGPL-3.0",
+"stars": 5174,
+"category": "coding-agent-cli",
+"commit": "86c88df93baf5d1f738dd4b202078bdf6dec376e",
+"id": "Blockchains/hapi#cli/src/grok/utils/grokBackend.ts:54",
+"type": "code-snippet",
+"path": "cli/src/grok/utils/grokBackend.ts",
+"lang": "TypeScript",
+"start": 54,
+"end": 77,
+"capabilities": [],
+"models": [
+"grok-4.5"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/hapi/blob/86c88df93baf5d1f738dd4b202078bdf6dec376e/cli/src/grok/utils/grokBackend.ts#L54-L77"
+},
+{
+"repo": "Blockchains/happier",
+"upstream": "happier-dev/happier",
+"license": "MIT",
+"stars": 1845,
+"category": "coding-agent-cli",
+"commit": "45bd83c934f7a00bc3b02f29879d7a91d99445e4",
+"id": "Blockchains/happier#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript",
+"JavaScript",
+"Rust",
+"Swift"
+],
+"capabilities": [
+"anthropic_compatible",
+"mcp",
+"tool_calling"
+],
+"models": [
+"grok-4.5",
+"grok-4.1-fast"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY",
+"HAPPIER_GROK_PATH",
+"HAPPIER_E2E_PROVIDER_GROK_BIN",
+"HAPPIER_GROK_STUB_RECORD_PATH",
+"HAPPIER_E2E_PROVIDER_GROK",
+"XAI_API_KEY_METHOD_ID",
+"GROK_CODE_XAI_API_KEY",
+"EXPECTED_GROK_PERMISSIONS",
+"HAPPIER_E2E_PROVIDER_GROK_ACP_STUB"
+],
+"grok_files": 54,
+"description": "Web, Desktop & Mobile client and orchestrator for Codex, Claude Code, OpenCode, Pi, Cursor, Grok, Antigravity, Kimi, Augment Code, Qwen, fully end-to-end encrypted"
+},
+{
+"repo": "Blockchains/happier",
+"upstream": "happier-dev/happier",
+"license": "MIT",
+"stars": 1845,
+"category": "coding-agent-cli",
+"commit": "45bd83c934f7a00bc3b02f29879d7a91d99445e4",
+"id": "Blockchains/happier#apps/website/src/data/agents.ts:1138",
+"type": "code-snippet",
+"path": "apps/website/src/data/agents.ts",
+"lang": "TypeScript",
+"start": 1138,
+"end": 1161,
+"capabilities": [
+"anthropic_compatible",
+"mcp",
+"tool_calling"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/happier/blob/45bd83c934f7a00bc3b02f29879d7a91d99445e4/apps/website/src/data/agents.ts#L1138-L1161"
+},
+{
+"repo": "Blockchains/happier",
+"upstream": "happier-dev/happier",
+"license": "MIT",
+"stars": 1845,
+"category": "coding-agent-cli",
+"commit": "45bd83c934f7a00bc3b02f29879d7a91d99445e4",
+"id": "Blockchains/happier#apps/cli/src/backends/grok/acp/auth.ts:2",
+"type": "code-snippet",
+"path": "apps/cli/src/backends/grok/acp/auth.ts",
+"lang": "TypeScript",
+"start": 2,
+"end": 25,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY_METHOD_ID"
+],
+"url": "https://github.com/Blockchains/happier/blob/45bd83c934f7a00bc3b02f29879d7a91d99445e4/apps/cli/src/backends/grok/acp/auth.ts#L2-L25"
+},
+{
+"repo": "Blockchains/happier",
+"upstream": "happier-dev/happier",
+"license": "MIT",
+"stars": 1845,
+"category": "coding-agent-cli",
+"commit": "45bd83c934f7a00bc3b02f29879d7a91d99445e4",
+"id": "Blockchains/happier#apps/cli/src/backends/grok/acp/backend.ts:79",
+"type": "code-snippet",
+"path": "apps/cli/src/backends/grok/acp/backend.ts",
+"lang": "TypeScript",
+"start": 79,
+"end": 102,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/happier/blob/45bd83c934f7a00bc3b02f29879d7a91d99445e4/apps/cli/src/backends/grok/acp/backend.ts#L79-L102"
+},
+{
+"repo": "Blockchains/happier",
+"upstream": "happier-dev/happier",
+"license": "MIT",
+"stars": 1845,
+"category": "coding-agent-cli",
+"commit": "45bd83c934f7a00bc3b02f29879d7a91d99445e4",
+"id": "Blockchains/happier#apps/cli/src/backends/grok/cli/auth/grokCliAuthSpec.ts:1",
+"type": "code-snippet",
+"path": "apps/cli/src/backends/grok/cli/auth/grokCliAuthSpec.ts",
+"lang": "TypeScript",
+"start": 1,
+"end": 13,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/happier/blob/45bd83c934f7a00bc3b02f29879d7a91d99445e4/apps/cli/src/backends/grok/cli/auth/grokCliAuthSpec.ts#L1-L13"
+},
+{
+"repo": "Blockchains/happier",
+"upstream": "happier-dev/happier",
+"license": "MIT",
+"stars": 1845,
+"category": "coding-agent-cli",
+"commit": "45bd83c934f7a00bc3b02f29879d7a91d99445e4",
+"id": "Blockchains/happier#packages/agents/src/auth.ts:144",
+"type": "code-snippet",
+"path": "packages/agents/src/auth.ts",
+"lang": "TypeScript",
+"start": 144,
+"end": 167,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/happier/blob/45bd83c934f7a00bc3b02f29879d7a91d99445e4/packages/agents/src/auth.ts#L144-L167"
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#repo",
+"type": "repo-surface",
+"languages": [
+"Python",
+"TypeScript",
+"JavaScript",
+"Rust"
+],
+"capabilities": [
+"anthropic_compatible",
+"embeddings",
+"image_generation",
+"live_search",
+"mcp",
+"openai_compatible",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling",
+"vision",
+"voice_realtime"
+],
+"models": [
+"grok-4",
+"grok-4.6",
+"grok-4.5",
+"grok-4.3",
+"grok-imagine-image",
+"grok-3",
+"grok-imagine-image-quality",
+"grok-4-fast",
+"grok-code-fast-1",
+"grok-imagine-video",
+"grok-4-fast-reasoning",
+"grok-4.20-0309-reasoning",
+"grok-4.20",
+"grok-4.20-multi-agent",
+"grok-4.20-0309-non-reasoning",
+"grok-4.20-multi-agent-0309",
+"grok-imagine-image-pro",
+"grok-4.7",
+"grok-imagine-image-2.0",
+"grok-4-6.html"
+],
+"endpoints": [
+"/v1/models",
+"/v1/responses",
+"/v1/messages",
+"/v1/chat/completions",
+"/v1/audio/transcriptions",
+"/v1/images/edits",
+"/v1/images/generations",
+"/v1/audio/speech",
+"/v1/embeddings"
+],
+"env_vars": [
+"XAI_API_KEY",
+"XAI_BASE_URL",
+"DEFAULT_XAI_OAUTH_BASE_URL",
+"HERMES_XAI_BASE_URL",
+"XAI_STT_BASE_URL",
+"DEFAULT_XAI_BASE_URL",
+"XAI_ACCESS_TOKEN_REFRESH_SKEW_SECONDS",
+"XAI_OAUTH_CLIENT_ID",
+"XAI_OAUTH_SCOPE",
+"XAI_IMAGE_MODEL"
+],
+"grok_files": 219,
+"description": "The agent that grows with you"
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#hermes_cli/auth_xai.py",
+"type": "sdk-exports",
+"path": "hermes_cli/auth_xai.py",
+"lang": "Python",
+"exports": [
+"refresh_xai_oauth_pure",
+"resolve_xai_oauth_runtime_credentials"
+]
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#hermes_cli/xai_retirement.py",
+"type": "sdk-exports",
+"path": "hermes_cli/xai_retirement.py",
+"lang": "Python",
+"exports": [
+"RetirementIssue",
+"find_retired_xai_refs",
+"format_issue",
+"ApplyResult",
+"apply_migration"
+]
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#tools/xai_http.py",
+"type": "sdk-exports",
+"path": "tools/xai_http.py",
+"lang": "Python",
+"exports": [
+"has_xai_credentials",
+"hermes_xai_user_agent",
+"hermes_xai_default_headers",
+"read_xai_imagine_storage_config",
+"build_xai_storage_options",
+"xai_storage_notice_text",
+"maybe_mark_xai_storage_notice_seen",
+"resolve_xai_http_credentials"
+]
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#plugins/web/xai/provider.py",
+"type": "sdk-exports",
+"path": "plugins/web/xai/provider.py",
+"lang": "Python",
+"exports": [
+"XAIWebSearchProvider"
+]
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#toolsets.py:79",
+"type": "code-snippet",
+"path": "toolsets.py",
+"lang": "Python",
+"start": 79,
+"end": 102,
+"capabilities": [
+"live_search",
+"mcp",
+"vision"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/hermes-agent/blob/343500b3547e12530457c2fda60ec687e25118b4/toolsets.py#L79-L102"
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#apps/desktop/src/app/settings/constants.ts:21",
+"type": "code-snippet",
+"path": "apps/desktop/src/app/settings/constants.ts",
+"lang": "TypeScript",
+"start": 21,
+"end": 44,
+"capabilities": [
+"anthropic_compatible",
+"mcp",
+"reasoning",
+"tool_calling",
+"voice_realtime"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/hermes-agent/blob/343500b3547e12530457c2fda60ec687e25118b4/apps/desktop/src/app/settings/constants.ts#L21-L44"
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#apps/desktop/src/components/onboarding/index.tsx:109",
+"type": "code-snippet",
+"path": "apps/desktop/src/components/onboarding/index.tsx",
+"lang": "TypeScript",
+"start": 109,
+"end": 132,
+"capabilities": [],
+"models": [],
+"endpoints": [
+"/v1/models"
+],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/hermes-agent/blob/343500b3547e12530457c2fda60ec687e25118b4/apps/desktop/src/components/onboarding/index.tsx#L109-L132"
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#agent/prompt_cache_scope.py:179",
+"type": "code-snippet",
+"path": "agent/prompt_cache_scope.py",
+"lang": "Python",
+"start": 179,
+"end": 202,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/hermes-agent/blob/343500b3547e12530457c2fda60ec687e25118b4/agent/prompt_cache_scope.py#L179-L202"
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#agent/client_lifecycle.py:45",
+"type": "code-snippet",
+"path": "agent/client_lifecycle.py",
+"lang": "Python",
+"start": 45,
+"end": 68,
+"capabilities": [
+"anthropic_compatible",
+"openai_compatible",
+"vision"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/hermes-agent/blob/343500b3547e12530457c2fda60ec687e25118b4/agent/client_lifecycle.py#L45-L68"
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#agent/codex_responses_adapter.py:692",
+"type": "code-snippet",
+"path": "agent/codex_responses_adapter.py",
+"lang": "Python",
+"start": 692,
+"end": 715,
+"capabilities": [
+"image_generation",
+"live_search",
+"mcp",
+"reasoning",
+"tool_calling",
+"vision"
+],
+"models": [
+"grok-4.x"
+],
+"endpoints": [
+"/v1/responses"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/hermes-agent/blob/343500b3547e12530457c2fda60ec687e25118b4/agent/codex_responses_adapter.py#L692-L715"
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#agent/agent_init.py:394",
+"type": "code-snippet",
+"path": "agent/agent_init.py",
+"lang": "Python",
+"start": 394,
+"end": 417,
+"capabilities": [
+"anthropic_compatible",
+"mcp",
+"reasoning",
+"streaming",
+"tool_calling",
+"voice_realtime"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/hermes-agent/blob/343500b3547e12530457c2fda60ec687e25118b4/agent/agent_init.py#L394-L417"
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#agent/model_metadata.py:329",
+"type": "code-snippet",
+"path": "agent/model_metadata.py",
+"lang": "Python",
+"start": 329,
+"end": 352,
+"capabilities": [
+"anthropic_compatible",
+"embeddings",
+"reasoning",
+"streaming",
+"tool_calling",
+"vision",
+"voice_realtime"
+],
+"models": [
+"grok-2",
+"grok-2-vision",
+"grok-3",
+"grok-3-mini",
+"grok-4",
+"grok-4-fast",
+"grok-4.20",
+"grok-4.20-multi-agent",
+"grok-4.3",
+"grok-4.5"
+],
+"endpoints": [
+"/v1/models",
+"/v1/responses"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/hermes-agent/blob/343500b3547e12530457c2fda60ec687e25118b4/agent/model_metadata.py#L329-L352"
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#agent/auxiliary_client.py:3663",
+"type": "code-snippet",
+"path": "agent/auxiliary_client.py",
+"lang": "Python",
+"start": 3663,
+"end": 3686,
+"capabilities": [
+"anthropic_compatible",
+"openai_compatible",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling",
+"vision",
+"voice_realtime"
+],
+"models": [
+"grok-4.3"
+],
+"endpoints": [
+"/v1/messages",
+"/v1/models"
+],
+"env_vars": [
+"DEFAULT_XAI_OAUTH_BASE_URL",
+"HERMES_XAI_BASE_URL",
+"XAI_API_KEY",
+"XAI_BASE_URL"
+],
+"url": "https://github.com/Blockchains/hermes-agent/blob/343500b3547e12530457c2fda60ec687e25118b4/agent/auxiliary_client.py#L3663-L3686"
+},
+{
+"repo": "Blockchains/hermes-agent",
+"upstream": "NousResearch/hermes-agent",
+"license": "MIT",
+"stars": 250951,
+"category": "agent-framework",
+"commit": "343500b3547e12530457c2fda60ec687e25118b4",
+"id": "Blockchains/hermes-agent#agent/credential_sources.py:232",
+"type": "code-snippet",
+"path": "agent/credential_sources.py",
+"lang": "Python",
+"start": 232,
+"end": 255,
+"capabilities": [
+"anthropic_compatible"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/hermes-agent/blob/343500b3547e12530457c2fda60ec687e25118b4/agent/credential_sources.py#L232-L255"
+},
+{
+"repo": "Blockchains/opencode",
+"upstream": "anomalyco/opencode",
+"license": "MIT",
+"stars": 211613,
+"category": "coding-agent-cli",
+"commit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
+"id": "Blockchains/opencode#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript",
+"JavaScript"
+],
+"capabilities": [
+"anthropic_compatible",
+"mcp",
+"openai_compatible",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling"
+],
+"models": [
+"grok-4.6",
+"grok-4.7",
+"grok-4.5",
+"grok-4",
+"grok-code",
+"grok-3-mini",
+"grok-4.3"
+],
+"endpoints": [
+"/v1/chat/completions",
+"/v1/models",
+"/v1/responses",
+"/v1/messages"
+],
+"env_vars": [
+"XAI_API_KEY"
+],
+"grok_files": 65,
+"description": "The open source coding agent."
+},
+{
+"repo": "Blockchains/opencode",
+"upstream": "anomalyco/opencode",
+"license": "MIT",
+"stars": 211613,
+"category": "coding-agent-cli",
+"commit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
+"id": "Blockchains/opencode#packages/opencode/src/provider/provider.ts:154",
+"type": "code-snippet",
+"path": "packages/opencode/src/provider/provider.ts",
+"lang": "TypeScript",
+"start": 154,
+"end": 177,
+"capabilities": [
+"anthropic_compatible",
+"openai_compatible",
+"reasoning",
+"streaming",
+"structured_output"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/opencode/blob/907b3bc518fa48e90e8ec24dd327d13eee71c36c/packages/opencode/src/provider/provider.ts#L154-L177"
+},
+{
+"repo": "Blockchains/opencode",
+"upstream": "anomalyco/opencode",
+"license": "MIT",
+"stars": 211613,
+"category": "coding-agent-cli",
+"commit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
+"id": "Blockchains/opencode#packages/opencode/src/provider/transform.ts:73",
+"type": "code-snippet",
+"path": "packages/opencode/src/provider/transform.ts",
+"lang": "TypeScript",
+"start": 73,
+"end": 96,
+"capabilities": [
+"anthropic_compatible",
+"mcp",
+"openai_compatible",
+"reasoning",
+"tool_calling"
+],
+"models": [
+"grok-3-mini"
+],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/opencode/blob/907b3bc518fa48e90e8ec24dd327d13eee71c36c/packages/opencode/src/provider/transform.ts#L73-L96"
+},
+{
+"repo": "Blockchains/opencode",
+"upstream": "anomalyco/opencode",
+"license": "MIT",
+"stars": 211613,
+"category": "coding-agent-cli",
+"commit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
+"id": "Blockchains/opencode#packages/opencode/src/plugin/xai.ts:214",
+"type": "code-snippet",
+"path": "packages/opencode/src/plugin/xai.ts",
+"lang": "TypeScript",
+"start": 214,
+"end": 237,
+"capabilities": [
+"structured_output"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/opencode/blob/907b3bc518fa48e90e8ec24dd327d13eee71c36c/packages/opencode/src/plugin/xai.ts#L214-L237"
+},
+{
+"repo": "Blockchains/opencode",
+"upstream": "anomalyco/opencode",
+"license": "MIT",
+"stars": 211613,
+"category": "coding-agent-cli",
+"commit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
+"id": "Blockchains/opencode#packages/opencode/src/session/message-v2.ts:150",
+"type": "code-snippet",
+"path": "packages/opencode/src/session/message-v2.ts",
+"lang": "TypeScript",
+"start": 150,
+"end": 173,
+"capabilities": [
+"anthropic_compatible",
+"structured_output",
+"tool_calling"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/opencode/blob/907b3bc518fa48e90e8ec24dd327d13eee71c36c/packages/opencode/src/session/message-v2.ts#L150-L173"
+},
+{
+"repo": "Blockchains/opencode",
+"upstream": "anomalyco/opencode",
+"license": "MIT",
+"stars": 211613,
+"category": "coding-agent-cli",
+"commit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
+"id": "Blockchains/opencode#packages/llm/script/recording-cost-report.ts:57",
+"type": "code-snippet",
+"path": "packages/llm/script/recording-cost-report.ts",
+"lang": "TypeScript",
+"start": 57,
+"end": 80,
+"capabilities": [
+"anthropic_compatible",
+"structured_output"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/opencode/blob/907b3bc518fa48e90e8ec24dd327d13eee71c36c/packages/llm/script/recording-cost-report.ts#L57-L80"
+},
+{
+"repo": "Blockchains/opencode",
+"upstream": "anomalyco/opencode",
+"license": "MIT",
+"stars": 211613,
+"category": "coding-agent-cli",
+"commit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
+"id": "Blockchains/opencode#packages/llm/script/setup-recording-env.ts:97",
+"type": "code-snippet",
+"path": "packages/llm/script/setup-recording-env.ts",
+"lang": "TypeScript",
+"start": 97,
+"end": 120,
+"capabilities": [
+"anthropic_compatible",
+"structured_output"
+],
+"models": [],
+"endpoints": [
+"/v1/chat/completions",
+"/v1/models"
+],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/opencode/blob/907b3bc518fa48e90e8ec24dd327d13eee71c36c/packages/llm/script/setup-recording-env.ts#L97-L120"
+},
+{
+"repo": "Blockchains/opencode",
+"upstream": "anomalyco/opencode",
+"license": "MIT",
+"stars": 211613,
+"category": "coding-agent-cli",
+"commit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
+"id": "Blockchains/opencode#packages/llm/src/providers/openai-compatible-profile.ts:9",
+"type": "code-snippet",
+"path": "packages/llm/src/providers/openai-compatible-profile.ts",
+"lang": "TypeScript",
+"start": 9,
+"end": 20,
+"capabilities": [
+"openai_compatible"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/opencode/blob/907b3bc518fa48e90e8ec24dd327d13eee71c36c/packages/llm/src/providers/openai-compatible-profile.ts#L9-L20"
+},
+{
+"repo": "Blockchains/opencode",
+"upstream": "anomalyco/opencode",
+"license": "MIT",
+"stars": 211613,
+"category": "coding-agent-cli",
+"commit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
+"id": "Blockchains/opencode#packages/llm/src/providers/xai.ts:11",
+"type": "code-snippet",
+"path": "packages/llm/src/providers/xai.ts",
+"lang": "TypeScript",
+"start": 11,
+"end": 34,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/opencode/blob/907b3bc518fa48e90e8ec24dd327d13eee71c36c/packages/llm/src/providers/xai.ts#L11-L34"
+},
+{
+"repo": "Blockchains/opencode",
+"upstream": "anomalyco/opencode",
+"license": "MIT",
+"stars": 211613,
+"category": "coding-agent-cli",
+"commit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
+"id": "Blockchains/opencode#packages/core/src/v1/config/provider-options.ts:150",
+"type": "code-snippet",
+"path": "packages/core/src/v1/config/provider-options.ts",
+"lang": "TypeScript",
+"start": 150,
+"end": 173,
+"capabilities": [
+"anthropic_compatible",
+"reasoning"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/opencode/blob/907b3bc518fa48e90e8ec24dd327d13eee71c36c/packages/core/src/v1/config/provider-options.ts#L150-L173"
+},
+{
+"repo": "Blockchains/opencode",
+"upstream": "anomalyco/opencode",
+"license": "MIT",
+"stars": 211613,
+"category": "coding-agent-cli",
+"commit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
+"id": "Blockchains/opencode#packages/core/src/plugin/provider/xai.ts:4",
+"type": "code-snippet",
+"path": "packages/core/src/plugin/provider/xai.ts",
+"lang": "TypeScript",
+"start": 4,
+"end": 22,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/opencode/blob/907b3bc518fa48e90e8ec24dd327d13eee71c36c/packages/core/src/plugin/provider/xai.ts#L4-L22"
+},
+{
+"repo": "Blockchains/opencode",
+"upstream": "anomalyco/opencode",
+"license": "MIT",
+"stars": 211613,
+"category": "coding-agent-cli",
+"commit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
+"id": "Blockchains/opencode#pkg:opencode",
+"type": "package",
+"path": "package.json",
+"ecosystem": "npm",
+"name": "opencode",
+"version": null
+},
+{
+"repo": "Blockchains/opencodex",
+"upstream": "lidge-jun/opencodex",
+"license": "MIT",
+"stars": 16867,
+"category": "gateway-router",
+"commit": "249462bf570555aad103957025eea96f7489c7eb",
+"id": "Blockchains/opencodex#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript",
+"JavaScript",
+"Swift",
+"Rust"
+],
+"capabilities": [
+"anthropic_compatible",
+"embeddings",
+"grpc",
+"image_generation",
+"live_search",
+"mcp",
+"openai_compatible",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling",
+"vision",
+"voice_realtime"
+],
+"models": [
+"grok-4.6",
+"grok-4.5",
+"grok-4.7",
+"grok-4.3",
+"grok-4.20-multi-agent-0309",
+"grok-4.20-0309-reasoning",
+"grok-4.20-0309-non-reasoning",
+"grok-4.7-build-fast",
+"grok-4.5-fast",
+"grok-4",
+"grok-4-5",
+"grok-imagine-image-quality",
+"grok-imagine-video",
+"grok-4.6-high",
+"grok-4-7",
+"grok-4.6-fast",
+"grok-4-6",
+"grok-4-fast",
+"grok-4.7-fast",
+"grok-3"
+],
+"endpoints": [
+"/v1/responses",
+"/v1/models",
+"/v1/chat/completions",
+"/v1/messages",
+"/v1/images/generations",
+"/v1/images/edits",
+"/v1/realtime",
+"/v1/audio/transcriptions",
+"/v1/language-models"
+],
+"env_vars": [
+"XAI_API_KEY",
+"XAI_GROK_CLI_BASE_URL",
+"XAI_MODELS",
+"XAI_GROK_CLIENT_VERSION",
+"XAI_OAUTH_DISCOVERY_URL",
+"XAI_CONV_ID_HEADER",
+"XAI_RESPONSES_OPT_IN_MODELS",
+"XAI_OAUTH_FAST_MODELS",
+"XAI_OAUTH_FAST_VARIANT_IDS",
+"XAI_PROVIDER"
+],
+"grok_files": 698,
+"description": "Universal provider proxy for OpenAI Codex & Claude Code \u2014 use any LLM (Claude, Gemini, Grok, DeepSeek, Ollama\u2026) with Codex CLI, App, SDK, and Claude Code"
+},
+{
+"repo": "Blockchains/opencodex",
+"upstream": "lidge-jun/opencodex",
+"license": "MIT",
+"stars": 16867,
+"category": "gateway-router",
+"commit": "249462bf570555aad103957025eea96f7489c7eb",
+"id": "Blockchains/opencodex#src/web-search/xai-executor.ts:1",
+"type": "code-snippet",
+"path": "src/web-search/xai-executor.ts",
+"lang": "TypeScript",
+"start": 1,
+"end": 21,
+"capabilities": [
+"live_search",
+"streaming",
+"structured_output",
+"tool_calling"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_RESPONSES_ORIGIN"
+],
+"url": "https://github.com/Blockchains/opencodex/blob/249462bf570555aad103957025eea96f7489c7eb/src/web-search/xai-executor.ts#L1-L21"
+},
+{
+"repo": "Blockchains/opencodex",
+"upstream": "lidge-jun/opencodex",
+"license": "MIT",
+"stars": 16867,
+"category": "gateway-router",
+"commit": "249462bf570555aad103957025eea96f7489c7eb",
+"id": "Blockchains/opencodex#src/web-search/loop.ts:742",
+"type": "code-snippet",
+"path": "src/web-search/loop.ts",
+"lang": "TypeScript",
+"start": 742,
+"end": 765,
+"capabilities": [
+"anthropic_compatible",
+"live_search",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/opencodex/blob/249462bf570555aad103957025eea96f7489c7eb/src/web-search/loop.ts#L742-L765"
+},
+{
+"repo": "Blockchains/opencodex",
+"upstream": "lidge-jun/opencodex",
+"license": "MIT",
+"stars": 16867,
+"category": "gateway-router",
+"commit": "249462bf570555aad103957025eea96f7489c7eb",
+"id": "Blockchains/opencodex#src/providers/xai-transport.ts:4",
+"type": "code-snippet",
+"path": "src/providers/xai-transport.ts",
+"lang": "TypeScript",
+"start": 4,
+"end": 27,
+"capabilities": [
+"live_search"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_CONV_ID_HEADER",
+"XAI_GROK_CLIENT_VERSION",
+"XAI_GROK_CLI_BASE_URL",
+"XAI_GROK_CLI_HEADERS",
+"XAI_GROK_COMPATIBILITY",
+"XAI_RESPONSES_HOSTS"
+],
+"url": "https://github.com/Blockchains/opencodex/blob/249462bf570555aad103957025eea96f7489c7eb/src/providers/xai-transport.ts#L4-L27"
+},
+{
+"repo": "Blockchains/opencodex",
+"upstream": "lidge-jun/opencodex",
+"license": "MIT",
+"stars": 16867,
+"category": "gateway-router",
+"commit": "249462bf570555aad103957025eea96f7489c7eb",
+"id": "Blockchains/opencodex#src/providers/registry/entries-core.ts:220",
+"type": "code-snippet",
+"path": "src/providers/registry/entries-core.ts",
+"lang": "TypeScript",
+"start": 220,
+"end": 243,
+"capabilities": [
+"anthropic_compatible",
+"embeddings",
+"reasoning",
+"structured_output",
+"tool_calling",
+"vision",
+"voice_realtime"
+],
+"models": [
+"grok-4-5",
+"grok-4-6",
+"grok-4-7",
+"grok-4.20-0309-non-reasoning",
+"grok-4.20-0309-reasoning",
+"grok-4.20-multi-agent-0309",
+"grok-4.20-multi-agent-beta-latest",
+"grok-4.3",
+"grok-4.5",
+"grok-4.6"
+],
+"endpoints": [
+"/v1/chat/completions",
+"/v1/messages",
+"/v1/models",
+"/v1/responses"
+],
+"env_vars": [
+"XAI_MODELS"
+],
+"url": "https://github.com/Blockchains/opencodex/blob/249462bf570555aad103957025eea96f7489c7eb/src/providers/registry/entries-core.ts#L220-L243"
+},
+{
+"repo": "Blockchains/opencodex",
+"upstream": "lidge-jun/opencodex",
+"license": "MIT",
+"stars": 16867,
+"category": "gateway-router",
+"commit": "249462bf570555aad103957025eea96f7489c7eb",
+"id": "Blockchains/opencodex#src/server/request-log.ts:1813",
+"type": "code-snippet",
+"path": "src/server/request-log.ts",
+"lang": "TypeScript",
+"start": 1813,
+"end": 1836,
+"capabilities": [
+"anthropic_compatible",
+"reasoning",
+"streaming",
+"structured_output"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/opencodex/blob/249462bf570555aad103957025eea96f7489c7eb/src/server/request-log.ts#L1813-L1836"
+},
+{
+"repo": "Blockchains/opencodex",
+"upstream": "lidge-jun/opencodex",
+"license": "MIT",
+"stars": 16867,
+"category": "gateway-router",
+"commit": "249462bf570555aad103957025eea96f7489c7eb",
+"id": "Blockchains/opencodex#src/server/images.ts:470",
+"type": "code-snippet",
+"path": "src/server/images.ts",
+"lang": "TypeScript",
+"start": 470,
+"end": 493,
+"capabilities": [
+"image_generation",
+"structured_output",
+"vision"
+],
+"models": [
+"grok-imagine-image-quality"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_IMAGE_BRIDGE_MODEL"
+],
+"url": "https://github.com/Blockchains/opencodex/blob/249462bf570555aad103957025eea96f7489c7eb/src/server/images.ts#L470-L493"
+},
+{
+"repo": "Blockchains/opencodex",
+"upstream": "lidge-jun/opencodex",
+"license": "MIT",
+"stars": 16867,
+"category": "gateway-router",
+"commit": "249462bf570555aad103957025eea96f7489c7eb",
+"id": "Blockchains/opencodex#src/server/responses/policy-refusal.ts:25",
+"type": "code-snippet",
+"path": "src/server/responses/policy-refusal.ts",
+"lang": "TypeScript",
+"start": 25,
+"end": 48,
+"capabilities": [
+"streaming"
+],
+"models": [
+"grok-4.6"
+],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/opencodex/blob/249462bf570555aad103957025eea96f7489c7eb/src/server/responses/policy-refusal.ts#L25-L48"
+},
+{
+"repo": "Blockchains/opencodex",
+"upstream": "lidge-jun/opencodex",
+"license": "MIT",
+"stars": 16867,
+"category": "gateway-router",
+"commit": "249462bf570555aad103957025eea96f7489c7eb",
+"id": "Blockchains/opencodex#src/images/plan.ts:21",
+"type": "code-snippet",
+"path": "src/images/plan.ts",
+"lang": "TypeScript",
+"start": 21,
+"end": 44,
+"capabilities": [
+"image_generation",
+"mcp"
+],
+"models": [
+"grok-imagine-image-quality",
+"grok-imagine-video"
+],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/opencodex/blob/249462bf570555aad103957025eea96f7489c7eb/src/images/plan.ts#L21-L44"
+},
+{
+"repo": "Blockchains/opencodex",
+"upstream": "lidge-jun/opencodex",
+"license": "MIT",
+"stars": 16867,
+"category": "gateway-router",
+"commit": "249462bf570555aad103957025eea96f7489c7eb",
+"id": "Blockchains/opencodex#src/adapters/xai-tool-schema.ts:1",
+"type": "code-snippet",
+"path": "src/adapters/xai-tool-schema.ts",
+"lang": "TypeScript",
+"start": 1,
+"end": 24,
+"capabilities": [
+"tool_calling"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_MAX_ROOT_VARIANTS",
+"XAI_MAX_SCHEMA_DEPTH",
+"XAI_MAX_SCHEMA_NODES",
+"XAI_VARIANT_MERGE_KEYS"
+],
+"url": "https://github.com/Blockchains/opencodex/blob/249462bf570555aad103957025eea96f7489c7eb/src/adapters/xai-tool-schema.ts#L1-L24"
+},
+{
+"repo": "Blockchains/opencodex",
+"upstream": "lidge-jun/opencodex",
+"license": "MIT",
+"stars": 16867,
+"category": "gateway-router",
+"commit": "249462bf570555aad103957025eea96f7489c7eb",
+"id": "Blockchains/opencodex#src/adapters/xai-web-search.ts:49",
+"type": "code-snippet",
+"path": "src/adapters/xai-web-search.ts",
+"lang": "TypeScript",
+"start": 49,
+"end": 72,
+"capabilities": [
+"live_search",
+"tool_calling"
+],
+"models": [
+"grok-4.6",
+"grok-4.7"
+],
+"endpoints": [
+"/v1/responses"
+],
+"env_vars": [
+"XAI_SEARCH_TOOL"
+],
+"url": "https://github.com/Blockchains/opencodex/blob/249462bf570555aad103957025eea96f7489c7eb/src/adapters/xai-web-search.ts#L49-L72"
+},
+{
+"repo": "Blockchains/py-gpt",
+"upstream": "szczyglis-dev/py-gpt",
+"license": "MIT",
+"stars": 1968,
+"category": "chat-ui",
+"commit": "016da1c48e363f76e619de6e9e1b068960047976",
+"id": "Blockchains/py-gpt#repo",
+"type": "repo-surface",
+"languages": [
+"Python",
+"JavaScript"
+],
+"capabilities": [
+"anthropic_compatible",
+"embeddings",
+"grpc",
+"image_generation",
+"live_search",
+"mcp",
+"reasoning",
+"streaming",
+"tool_calling",
+"vision",
+"voice_realtime"
+],
+"models": [
+"grok-3",
+"grok-4.7",
+"grok-imagine-image",
+"grok-4.5",
+"grok-4.6",
+"grok-imagine-video",
+"grok-4",
+"grok-4.5-latest",
+"grok-4.3",
+"grok-imagine-image-quality-latest",
+"grok-imagine-video-1.5",
+"grok-2-vision",
+"grok-3-mini",
+"grok-3-mini-fast",
+"grok-2-image-1212",
+"grok-99",
+"grok-imagine-image-3",
+"grok-2-vision-latest",
+"grok-3-fast",
+"grok-4-1-fast-non-reasoning"
+],
+"endpoints": [
+"/v1/realtime",
+"/v1/responses"
+],
+"env_vars": [
+"XAI_SDK",
+"XAI_API_KEY",
+"IMAGE_XAI_AVAILABLE_ASPECT_RATIOS",
+"DEFAULT_GROK_VIDEO_MODEL",
+"DEFAULT_GROK_IMAGE_MODEL",
+"XAI_API_BASE"
+],
+"grok_files": 69,
+"description": "Desktop AI Assistant powered by GPT-6, GPT-5, Gemini, Claude, Grok, Ollama, DeepSeek, Perplexity, and more - chat, agents, tools, MCP, plugins, RAG, vision, voice, image and video generation, speech synthesis and speech recognition, web search, memory, presets, canvas, assistants, themes, computer use. Windows, Linux, and Mac."
+},
+{
+"repo": "Blockchains/py-gpt",
+"upstream": "szczyglis-dev/py-gpt",
+"license": "MIT",
+"stars": 1968,
+"category": "chat-ui",
+"commit": "016da1c48e363f76e619de6e9e1b068960047976",
+"id": "Blockchains/py-gpt#src/pygpt_net/provider/audio_output/xai_tts.py",
+"type": "sdk-exports",
+"path": "src/pygpt_net/provider/audio_output/xai_tts.py",
+"lang": "Python",
+"exports": [
+"XAITextToSpeech"
+]
+},
+{
+"repo": "Blockchains/py-gpt",
+"upstream": "szczyglis-dev/py-gpt",
+"license": "MIT",
+"stars": 1968,
+"category": "chat-ui",
+"commit": "016da1c48e363f76e619de6e9e1b068960047976",
+"id": "Blockchains/py-gpt#src/pygpt_net/provider/audio_input/xai_grok_voice.py",
+"type": "sdk-exports",
+"path": "src/pygpt_net/provider/audio_input/xai_grok_voice.py",
+"lang": "Python",
+"exports": [
+"XAIGrokVoiceAudioInput"
+]
+},
+{
+"repo": "Blockchains/py-gpt",
+"upstream": "szczyglis-dev/py-gpt",
+"license": "MIT",
+"stars": 1968,
+"category": "chat-ui",
+"commit": "016da1c48e363f76e619de6e9e1b068960047976",
+"id": "Blockchains/py-gpt#src/pygpt_net/controller/chat/stream_worker.py:103",
+"type": "code-snippet",
+"path": "src/pygpt_net/controller/chat/stream_worker.py",
+"lang": "Python",
+"start": 103,
+"end": 126,
+"capabilities": [
+"anthropic_compatible",
+"streaming",
+"tool_calling",
+"voice_realtime"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_SDK"
+],
+"url": "https://github.com/Blockchains/py-gpt/blob/016da1c48e363f76e619de6e9e1b068960047976/src/pygpt_net/controller/chat/stream_worker.py#L103-L126"
+},
+{
+"repo": "Blockchains/py-gpt",
+"upstream": "szczyglis-dev/py-gpt",
+"license": "MIT",
+"stars": 1968,
+"category": "chat-ui",
+"commit": "016da1c48e363f76e619de6e9e1b068960047976",
+"id": "Blockchains/py-gpt#src/pygpt_net/provider/api/x_ai/vision.py:29",
+"type": "code-snippet",
+"path": "src/pygpt_net/provider/api/x_ai/vision.py",
+"lang": "Python",
+"start": 29,
+"end": 52,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/py-gpt/blob/016da1c48e363f76e619de6e9e1b068960047976/src/pygpt_net/provider/api/x_ai/vision.py#L29-L52"
+},
+{
+"repo": "Blockchains/py-gpt",
+"upstream": "szczyglis-dev/py-gpt",
+"license": "MIT",
+"stars": 1968,
+"category": "chat-ui",
+"commit": "016da1c48e363f76e619de6e9e1b068960047976",
+"id": "Blockchains/py-gpt#src/pygpt_net/provider/api/x_ai/store.py:45",
+"type": "code-snippet",
+"path": "src/pygpt_net/provider/api/x_ai/store.py",
+"lang": "Python",
+"start": 45,
+"end": 68,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/py-gpt/blob/016da1c48e363f76e619de6e9e1b068960047976/src/pygpt_net/provider/api/x_ai/store.py#L45-L68"
+},
+{
+"repo": "Blockchains/py-gpt",
+"upstream": "szczyglis-dev/py-gpt",
+"license": "MIT",
+"stars": 1968,
+"category": "chat-ui",
+"commit": "016da1c48e363f76e619de6e9e1b068960047976",
+"id": "Blockchains/py-gpt#src/pygpt_net/provider/api/x_ai/chat.py:22",
+"type": "code-snippet",
+"path": "src/pygpt_net/provider/api/x_ai/chat.py",
+"lang": "Python",
+"start": 22,
+"end": 45,
+"capabilities": [
+"live_search",
+"mcp",
+"reasoning",
+"streaming",
+"tool_calling",
+"vision",
+"voice_realtime"
+],
+"models": [
+"grok-2-vision-latest"
+],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/py-gpt/blob/016da1c48e363f76e619de6e9e1b068960047976/src/pygpt_net/provider/api/x_ai/chat.py#L22-L45"
+},
+{
+"repo": "Blockchains/py-gpt",
+"upstream": "szczyglis-dev/py-gpt",
+"license": "MIT",
+"stars": 1968,
+"category": "chat-ui",
+"commit": "016da1c48e363f76e619de6e9e1b068960047976",
+"id": "Blockchains/py-gpt#src/pygpt_net/provider/api/x_ai/stream.py:296",
+"type": "code-snippet",
+"path": "src/pygpt_net/provider/api/x_ai/stream.py",
+"lang": "Python",
+"start": 296,
+"end": 319,
+"capabilities": [
+"live_search",
+"reasoning",
+"tool_calling",
+"vision"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/py-gpt/blob/016da1c48e363f76e619de6e9e1b068960047976/src/pygpt_net/provider/api/x_ai/stream.py#L296-L319"
+},
+{
+"repo": "Blockchains/py-gpt",
+"upstream": "szczyglis-dev/py-gpt",
+"license": "MIT",
+"stars": 1968,
+"category": "chat-ui",
+"commit": "016da1c48e363f76e619de6e9e1b068960047976",
+"id": "Blockchains/py-gpt#src/pygpt_net/provider/api/x_ai/video.py:27",
+"type": "code-snippet",
+"path": "src/pygpt_net/provider/api/x_ai/video.py",
+"lang": "Python",
+"start": 27,
+"end": 50,
+"capabilities": [
+"image_generation",
+"streaming",
+"vision"
+],
+"models": [
+"grok-imagine-video-1.5"
+],
+"endpoints": [],
+"env_vars": [
+"DEFAULT_GROK_VIDEO_MODEL"
+],
+"url": "https://github.com/Blockchains/py-gpt/blob/016da1c48e363f76e619de6e9e1b068960047976/src/pygpt_net/provider/api/x_ai/video.py#L27-L50"
+},
+{
+"repo": "Blockchains/py-gpt",
+"upstream": "szczyglis-dev/py-gpt",
+"license": "MIT",
+"stars": 1968,
+"category": "chat-ui",
+"commit": "016da1c48e363f76e619de6e9e1b068960047976",
+"id": "Blockchains/py-gpt#src/pygpt_net/provider/api/x_ai/tools.py:11",
+"type": "code-snippet",
+"path": "src/pygpt_net/provider/api/x_ai/tools.py",
+"lang": "Python",
+"start": 11,
+"end": 34,
+"capabilities": [
+"voice_realtime"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/py-gpt/blob/016da1c48e363f76e619de6e9e1b068960047976/src/pygpt_net/provider/api/x_ai/tools.py#L11-L34"
+},
+{
+"repo": "Blockchains/py-gpt",
+"upstream": "szczyglis-dev/py-gpt",
+"license": "MIT",
+"stars": 1968,
+"category": "chat-ui",
+"commit": "016da1c48e363f76e619de6e9e1b068960047976",
+"id": "Blockchains/py-gpt#src/pygpt_net/provider/api/x_ai/remote_tools.py:15",
+"type": "code-snippet",
+"path": "src/pygpt_net/provider/api/x_ai/remote_tools.py",
+"lang": "Python",
+"start": 15,
+"end": 38,
+"capabilities": [
+"live_search",
+"mcp",
+"streaming"
+],
+"models": [
+"grok-3"
+],
+"endpoints": [
+"/v1/responses"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/py-gpt/blob/016da1c48e363f76e619de6e9e1b068960047976/src/pygpt_net/provider/api/x_ai/remote_tools.py#L15-L38"
+},
+{
+"repo": "Blockchains/py-gpt",
+"upstream": "szczyglis-dev/py-gpt",
+"license": "MIT",
+"stars": 1968,
+"category": "chat-ui",
+"commit": "016da1c48e363f76e619de6e9e1b068960047976",
+"id": "Blockchains/py-gpt#src/pygpt_net/provider/api/x_ai/__init__.py:95",
+"type": "code-snippet",
+"path": "src/pygpt_net/provider/api/x_ai/__init__.py",
+"lang": "Python",
+"start": 95,
+"end": 118,
+"capabilities": [
+"grpc",
+"live_search",
+"reasoning",
+"streaming",
+"tool_calling",
+"voice_realtime"
+],
+"models": [
+"grok-3",
+"grok-4"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY",
+"XAI_SDK"
+],
+"url": "https://github.com/Blockchains/py-gpt/blob/016da1c48e363f76e619de6e9e1b068960047976/src/pygpt_net/provider/api/x_ai/__init__.py#L95-L118"
+},
+{
+"repo": "Blockchains/py-gpt",
+"upstream": "szczyglis-dev/py-gpt",
+"license": "MIT",
+"stars": 1968,
+"category": "chat-ui",
+"commit": "016da1c48e363f76e619de6e9e1b068960047976",
+"id": "Blockchains/py-gpt#src/pygpt_net/provider/api/x_ai/responses.py:21",
+"type": "code-snippet",
+"path": "src/pygpt_net/provider/api/x_ai/responses.py",
+"lang": "Python",
+"start": 21,
+"end": 44,
+"capabilities": [
+"reasoning",
+"streaming",
+"tool_calling",
+"voice_realtime"
+],
+"models": [
+"grok-3",
+"grok-4.5-latest"
+],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/py-gpt/blob/016da1c48e363f76e619de6e9e1b068960047976/src/pygpt_net/provider/api/x_ai/responses.py#L21-L44"
+},
+{
+"repo": "Blockchains/py-gpt",
+"upstream": "szczyglis-dev/py-gpt",
+"license": "MIT",
+"stars": 1968,
+"category": "chat-ui",
+"commit": "016da1c48e363f76e619de6e9e1b068960047976",
+"id": "Blockchains/py-gpt#pkg:pygpt-net",
+"type": "package",
+"path": "pyproject.toml",
+"ecosystem": "pypi",
+"name": "pygpt-net",
+"version": "2.8.38"
+},
+{
+"repo": "Blockchains/rust-genai",
+"upstream": "jeremychone/rust-genai",
+"license": "Apache-2.0",
+"stars": 896,
+"category": "gateway-router",
+"commit": "f928db37c365aa753f68b3267bc174dec78261e6",
+"id": "Blockchains/rust-genai#repo",
+"type": "repo-surface",
+"languages": [
+"Rust"
+],
+"capabilities": [
+"anthropic_compatible",
+"embeddings",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling",
+"vision"
+],
+"models": [
+"grok-3-mini",
+"grok-3",
+"grok-3-beta",
+"grok-3-mini-beta",
+"grok-4",
+"grok-4.6"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY",
+"MODEL_XAI"
+],
+"grok_files": 7,
+"description": "Rust multiprovider generative AI client (Ollama, OpenAi, Anthropic, Gemini, DeepSeek, ZAI, OpenRouter, FireworksAI, xAI/Grok, Groq,, ...)"
+},
+{
+"repo": "Blockchains/rust-genai",
+"upstream": "jeremychone/rust-genai",
+"license": "Apache-2.0",
+"stars": 896,
+"category": "gateway-router",
+"commit": "f928db37c365aa753f68b3267bc174dec78261e6",
+"id": "Blockchains/rust-genai#examples/c00-readme.rs:31",
+"type": "code-snippet",
+"path": "examples/c00-readme.rs",
+"lang": "Rust",
+"start": 31,
+"end": 54,
+"capabilities": [
+"anthropic_compatible",
+"reasoning"
+],
+"models": [
+"grok-3-mini",
+"grok-4.6"
+],
+"endpoints": [],
+"env_vars": [
+"MODEL_XAI",
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/rust-genai/blob/f928db37c365aa753f68b3267bc174dec78261e6/examples/c00-readme.rs#L31-L54"
+},
+{
+"repo": "Blockchains/rust-genai",
+"upstream": "jeremychone/rust-genai",
+"license": "Apache-2.0",
+"stars": 896,
+"category": "gateway-router",
+"commit": "f928db37c365aa753f68b3267bc174dec78261e6",
+"id": "Blockchains/rust-genai#src/adapter/adapters/all_adapters.rs:213",
+"type": "code-snippet",
+"path": "src/adapter/adapters/all_adapters.rs",
+"lang": "Rust",
+"start": 213,
+"end": 232,
+"capabilities": [
+"anthropic_compatible",
+"embeddings"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/rust-genai/blob/f928db37c365aa753f68b3267bc174dec78261e6/src/adapter/adapters/all_adapters.rs#L213-L232"
+},
+{
+"repo": "Blockchains/x-algorithm",
+"upstream": "xai-org/x-algorithm",
+"license": "Apache-2.0",
+"stars": 33489,
+"category": "official",
+"commit": "b412112d03f27acbfd668e0cc040abcafa1080c1",
+"id": "Blockchains/x-algorithm#repo",
+"type": "repo-surface",
+"languages": [
+"Scala",
+"Rust",
+"Python",
+"Java"
+],
+"capabilities": [
+"embeddings",
+"grpc",
+"image_generation",
+"live_search",
+"reasoning",
+"tool_calling",
+"vision"
+],
+"models": [
+"grok-4-1-fast-hedgehog",
+"grok-4-1-fast-hedgehog-critical",
+"grok-4-1-fast-x-algo",
+"grok-4-1-fast-x-algo-extra",
+"grok-4-3-internal",
+"grok-4-3-x-algo",
+"grok-4-5-x-algo",
+"grok-4-6-internal",
+"grok-4-mini",
+"grok-4-mini-critical",
+"grok-420-reasoning-internal",
+"grok-420-reasoning-x-algo",
+"grok-1",
+"grok-imagine"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY",
+"EAPI_GROK_420_REASONING_INTERNAL",
+"EAPI_GROK_420_REASONING_X_ALGO",
+"EAPI_GROK_4_1_FAST_X_ALGO",
+"EAPI_GROK_4_3_INTERNAL",
+"EAPI_GROK_4_3_X_ALGO",
+"EAPI_GROK_4_5_X_ALGO",
+"EAPI_GROK_4_6_INTERNAL"
+],
+"grok_files": 5,
+"description": "Algorithm powering the For You feed on X"
+},
+{
+"repo": "Blockchains/x-algorithm",
+"upstream": "xai-org/x-algorithm",
+"license": "Apache-2.0",
+"stars": 33489,
+"category": "official",
+"commit": "b412112d03f27acbfd668e0cc040abcafa1080c1",
+"id": "Blockchains/x-algorithm#grox/libs/grok_sampler/eapi_sampler.py",
+"type": "sdk-exports",
+"path": "grox/libs/grok_sampler/eapi_sampler.py",
+"lang": "Python",
+"exports": [
+"get_loop_id",
+"WebSearchDetails",
+"SampleDetails",
+"EapiSampler"
+]
+},
+{
+"repo": "Blockchains/x-algorithm",
+"upstream": "xai-org/x-algorithm",
+"license": "Apache-2.0",
+"stars": 33489,
+"category": "official",
+"commit": "b412112d03f27acbfd668e0cc040abcafa1080c1",
+"id": "Blockchains/x-algorithm#grox/libs/grok_sampler/eapi_sampler.py:5",
+"type": "code-snippet",
+"path": "grox/libs/grok_sampler/eapi_sampler.py",
+"lang": "Python",
+"start": 5,
+"end": 28,
+"capabilities": [
+"grpc",
+"live_search",
+"reasoning",
+"tool_calling",
+"vision"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/x-algorithm/blob/b412112d03f27acbfd668e0cc040abcafa1080c1/grox/libs/grok_sampler/eapi_sampler.py#L5-L28"
+},
+{
+"repo": "Blockchains/x-algorithm",
+"upstream": "xai-org/x-algorithm",
+"license": "Apache-2.0",
+"stars": 33489,
+"category": "official",
+"commit": "b412112d03f27acbfd668e0cc040abcafa1080c1",
+"id": "Blockchains/x-algorithm#grox/core/lm/convo.py:3",
+"type": "code-snippet",
+"path": "grox/core/lm/convo.py",
+"lang": "Python",
+"start": 3,
+"end": 26,
+"capabilities": [
+"grpc",
+"vision"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/x-algorithm/blob/b412112d03f27acbfd668e0cc040abcafa1080c1/grox/core/lm/convo.py#L3-L26"
+},
+{
+"repo": "Blockchains/x-algorithm",
+"upstream": "xai-org/x-algorithm",
+"license": "Apache-2.0",
+"stars": 33489,
+"category": "official",
+"commit": "b412112d03f27acbfd668e0cc040abcafa1080c1",
+"id": "Blockchains/x-algorithm#grox/config/config.py:47",
+"type": "code-snippet",
+"path": "grox/config/config.py",
+"lang": "Python",
+"start": 47,
+"end": 70,
+"capabilities": [
+"embeddings",
+"grpc",
+"reasoning"
+],
+"models": [
+"grok-4-1-fast-hedgehog",
+"grok-4-1-fast-hedgehog-critical",
+"grok-4-1-fast-x-algo",
+"grok-4-1-fast-x-algo-extra",
+"grok-4-3-internal",
+"grok-4-3-x-algo",
+"grok-4-5-x-algo",
+"grok-4-6-internal",
+"grok-4-mini",
+"grok-4-mini-critical"
+],
+"endpoints": [],
+"env_vars": [
+"EAPI_GROK_420_REASONING_INTERNAL",
+"EAPI_GROK_420_REASONING_X_ALGO",
+"EAPI_GROK_4_1_FAST_X_ALGO",
+"EAPI_GROK_4_3_INTERNAL",
+"EAPI_GROK_4_3_X_ALGO",
+"EAPI_GROK_4_5_X_ALGO",
+"EAPI_GROK_4_6_INTERNAL",
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/x-algorithm/blob/b412112d03f27acbfd668e0cc040abcafa1080c1/grox/config/config.py#L47-L70"
+},
+{
+"repo": "Blockchains/xai-cookbook",
+"upstream": "xai-org/xai-cookbook",
+"license": "xAI Beta Testing License (MIT-style, official)",
+"stars": 591,
+"category": "official",
+"commit": "a9bb07acd488d9b619806607e880ded8268ba640",
+"id": "Blockchains/xai-cookbook#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript",
+"Kotlin",
+"Swift",
+"Python"
+],
+"capabilities": [
+"streaming",
+"structured_output",
+"tool_calling",
+"voice_realtime"
+],
+"models": [
+"grok-4.7"
+],
+"endpoints": [
+"/v1/realtime"
+],
+"env_vars": [
+"XAI_API_KEY",
+"XAI_REALTIME_URL"
+],
+"grok_files": 42,
+"description": "A collection of pragmatic, real-world examples guiding you from basic to advanced use of xAI's Grok APIs."
+},
+{
+"repo": "Blockchains/xai-cookbook",
+"upstream": "xai-org/xai-cookbook",
+"license": "xAI Beta Testing License (MIT-style, official)",
+"stars": 591,
+"category": "official",
+"commit": "a9bb07acd488d9b619806607e880ded8268ba640",
+"id": "Blockchains/xai-cookbook#examples/voice-agent-webrtc/server/src/index.ts:48",
+"type": "code-snippet",
+"path": "examples/voice-agent-webrtc/server/src/index.ts",
+"lang": "TypeScript",
+"start": 48,
+"end": 71,
+"capabilities": [
+"structured_output",
+"voice_realtime"
+],
+"models": [],
+"endpoints": [
+"/v1/realtime"
+],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/xai-cookbook/blob/a9bb07acd488d9b619806607e880ded8268ba640/examples/voice-agent-webrtc/server/src/index.ts#L48-L71"
+},
+{
+"repo": "Blockchains/xai-cookbook",
+"upstream": "xai-org/xai-cookbook",
+"license": "xAI Beta Testing License (MIT-style, official)",
+"stars": 591,
+"category": "official",
+"commit": "a9bb07acd488d9b619806607e880ded8268ba640",
+"id": "Blockchains/xai-cookbook#examples/voice-agent-phone/xai/global.d.ts:1",
+"type": "code-snippet",
+"path": "examples/voice-agent-phone/xai/global.d.ts",
+"lang": "TypeScript",
+"start": 1,
+"end": 8,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/xai-cookbook/blob/a9bb07acd488d9b619806607e880ded8268ba640/examples/voice-agent-phone/xai/global.d.ts#L1-L8"
+},
+{
+"repo": "Blockchains/xai-cookbook",
+"upstream": "xai-org/xai-cookbook",
+"license": "xAI Beta Testing License (MIT-style, official)",
+"stars": 591,
+"category": "official",
+"commit": "a9bb07acd488d9b619806607e880ded8268ba640",
+"id": "Blockchains/xai-cookbook#examples/voice-agent-phone/xai/src/index.ts:8",
+"type": "code-snippet",
+"path": "examples/voice-agent-phone/xai/src/index.ts",
+"lang": "TypeScript",
+"start": 8,
+"end": 31,
+"capabilities": [
+"structured_output",
+"tool_calling",
+"voice_realtime"
+],
+"models": [],
+"endpoints": [
+"/v1/realtime"
+],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/xai-cookbook/blob/a9bb07acd488d9b619806607e880ded8268ba640/examples/voice-agent-phone/xai/src/index.ts#L8-L31"
+},
+{
+"repo": "Blockchains/xai-cookbook",
+"upstream": "xai-org/xai-cookbook",
+"license": "xAI Beta Testing License (MIT-style, official)",
+"stars": 591,
+"category": "official",
+"commit": "a9bb07acd488d9b619806607e880ded8268ba640",
+"id": "Blockchains/xai-cookbook#examples/voice-agent-web/client/src/hooks/useWebSocket.ts:4",
+"type": "code-snippet",
+"path": "examples/voice-agent-web/client/src/hooks/useWebSocket.ts",
+"lang": "TypeScript",
+"start": 4,
+"end": 27,
+"capabilities": [
+"structured_output",
+"voice_realtime"
+],
+"models": [],
+"endpoints": [
+"/v1/realtime"
+],
+"env_vars": [
+"XAI_REALTIME_URL"
+],
+"url": "https://github.com/Blockchains/xai-cookbook/blob/a9bb07acd488d9b619806607e880ded8268ba640/examples/voice-agent-web/client/src/hooks/useWebSocket.ts#L4-L27"
+},
+{
+"repo": "Blockchains/xai-cookbook",
+"upstream": "xai-org/xai-cookbook",
+"license": "xAI Beta Testing License (MIT-style, official)",
+"stars": 591,
+"category": "official",
+"commit": "a9bb07acd488d9b619806607e880ded8268ba640",
+"id": "Blockchains/xai-cookbook#examples/voice-agent-web/xai/backend-nodejs/src/index.ts:46",
+"type": "code-snippet",
+"path": "examples/voice-agent-web/xai/backend-nodejs/src/index.ts",
+"lang": "TypeScript",
+"start": 46,
+"end": 69,
+"capabilities": [
+"voice_realtime"
+],
+"models": [],
+"endpoints": [
+"/v1/realtime"
+],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/xai-cookbook/blob/a9bb07acd488d9b619806607e880ded8268ba640/examples/voice-agent-web/xai/backend-nodejs/src/index.ts#L46-L69"
+},
+{
+"repo": "Blockchains/xai-cookbook",
+"upstream": "xai-org/xai-cookbook",
+"license": "xAI Beta Testing License (MIT-style, official)",
+"stars": 591,
+"category": "official",
+"commit": "a9bb07acd488d9b619806607e880ded8268ba640",
+"id": "Blockchains/xai-cookbook#examples/voice-agent-web/xai/backend-python/main.py:18",
+"type": "code-snippet",
+"path": "examples/voice-agent-web/xai/backend-python/main.py",
+"lang": "Python",
+"start": 18,
+"end": 41,
+"capabilities": [
+"voice_realtime"
+],
+"models": [],
+"endpoints": [
+"/v1/realtime"
+],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/xai-cookbook/blob/a9bb07acd488d9b619806607e880ded8268ba640/examples/voice-agent-web/xai/backend-python/main.py#L18-L41"
+},
+{
+"repo": "Blockchains/xai-cookbook",
+"upstream": "xai-org/xai-cookbook",
+"license": "xAI Beta Testing License (MIT-style, official)",
+"stars": 591,
+"category": "official",
+"commit": "a9bb07acd488d9b619806607e880ded8268ba640",
+"id": "Blockchains/xai-cookbook#examples/voice-agent-web/openai/backend-nodejs/src/index.ts:46",
+"type": "code-snippet",
+"path": "examples/voice-agent-web/openai/backend-nodejs/src/index.ts",
+"lang": "TypeScript",
+"start": 46,
+"end": 69,
+"capabilities": [
+"voice_realtime"
+],
+"models": [],
+"endpoints": [
+"/v1/realtime"
+],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/xai-cookbook/blob/a9bb07acd488d9b619806607e880ded8268ba640/examples/voice-agent-web/openai/backend-nodejs/src/index.ts#L46-L69"
+},
+{
+"repo": "Blockchains/xai-cookbook",
+"upstream": "xai-org/xai-cookbook",
+"license": "xAI Beta Testing License (MIT-style, official)",
+"stars": 591,
+"category": "official",
+"commit": "a9bb07acd488d9b619806607e880ded8268ba640",
+"id": "Blockchains/xai-cookbook#examples/voice-agent-web/openai/backend-python/main.py:15",
+"type": "code-snippet",
+"path": "examples/voice-agent-web/openai/backend-python/main.py",
+"lang": "Python",
+"start": 15,
+"end": 38,
+"capabilities": [
+"voice_realtime"
+],
+"models": [],
+"endpoints": [
+"/v1/realtime"
+],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/xai-cookbook/blob/a9bb07acd488d9b619806607e880ded8268ba640/examples/voice-agent-web/openai/backend-python/main.py#L15-L38"
+},
+{
+"repo": "Blockchains/xai-cookbook",
+"upstream": "xai-org/xai-cookbook",
+"license": "xAI Beta Testing License (MIT-style, official)",
+"stars": 591,
+"category": "official",
+"commit": "a9bb07acd488d9b619806607e880ded8268ba640",
+"id": "Blockchains/xai-cookbook#examples/voice-agent-mobile/kotlin/app/src/main/java/ai/x/voiceapiandroidexample/AuthService.kt:6",
+"type": "code-snippet",
+"path": "examples/voice-agent-mobile/kotlin/app/src/main/java/ai/x/voiceapiandroidexample/AuthService.kt",
+"lang": "Kotlin",
+"start": 6,
+"end": 13,
+"capabilities": [
+"voice_realtime"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/xai-cookbook/blob/a9bb07acd488d9b619806607e880ded8268ba640/examples/voice-agent-mobile/kotlin/app/src/main/java/ai/x/voiceapiandroidexample/AuthService.kt#L6-L13"
+},
+{
+"repo": "Blockchains/xai-cookbook",
+"upstream": "xai-org/xai-cookbook",
+"license": "xAI Beta Testing License (MIT-style, official)",
+"stars": 591,
+"category": "official",
+"commit": "a9bb07acd488d9b619806607e880ded8268ba640",
+"id": "Blockchains/xai-cookbook#examples/voice-agent-mobile/kotlin/app/src/main/java/ai/x/voiceapiandroidexample/VoiceViewModel.kt:139",
+"type": "code-snippet",
+"path": "examples/voice-agent-mobile/kotlin/app/src/main/java/ai/x/voiceapiandroidexample/VoiceViewModel.kt",
+"lang": "Kotlin",
+"start": 139,
+"end": 162,
+"capabilities": [
+"voice_realtime"
+],
+"models": [],
+"endpoints": [
+"/v1/realtime"
+],
+"env_vars": [],
+"url": "https://github.com/Blockchains/xai-cookbook/blob/a9bb07acd488d9b619806607e880ded8268ba640/examples/voice-agent-mobile/kotlin/app/src/main/java/ai/x/voiceapiandroidexample/VoiceViewModel.kt#L139-L162"
+},
+{
+"repo": "Blockchains/xai-proto",
+"upstream": "xai-org/xai-proto",
+"license": "Apache-2.0",
+"stars": 150,
+"category": "official",
+"commit": "065692d0455244b0d5f0ccf9c05f8b98ff4618cd",
+"id": "Blockchains/xai-proto#repo",
+"type": "repo-surface",
+"languages": [],
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"grok_files": 1,
+"description": "Public protobuf definitions for xAI's gRPC APIs"
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#repo",
+"type": "repo-surface",
+"languages": [
+"Python"
+],
+"capabilities": [
+"embeddings",
+"grpc",
+"image_generation",
+"live_search",
+"mcp",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling",
+"vision",
+"voice_realtime"
+],
+"models": [
+"grok-4.20-non-reasoning",
+"grok-4.20",
+"grok-imagine-image",
+"grok-3",
+"grok-imagine-video",
+"grok-4.3",
+"grok-imagine-video-1.5",
+"grok-3-latest",
+"grok-imagine-image-2.0",
+"grok-2-image",
+"grok-4.5",
+"grok-4.6",
+"grok-4-fast",
+"grok-4.20-0309",
+"grok-4.20-multi-agent",
+"grok-4.3-latest",
+"grok-4.5-latest",
+"grok-imagine-image-quality",
+"grok-2",
+"grok-3-beta"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY",
+"XAI_MANAGEMENT_KEY",
+"XAI_SDK_DISABLE_TRACING",
+"XAI_MANAGEMENT_API_KEY"
+],
+"grok_files": 102,
+"description": "The official Python SDK for the xAI API"
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#src/xai_sdk/chat.py",
+"type": "sdk-exports",
+"path": "src/xai_sdk/chat.py",
+"lang": "Python",
+"exports": [
+"BaseClient",
+"BaseChat",
+"user",
+"assistant",
+"system",
+"developer",
+"tool_result",
+"tool",
+"required_tool",
+"text",
+"image",
+"file",
+"file",
+"file",
+"file",
+"Chunk",
+"CompletionOutputChunk",
+"ImageGenerationOutput",
+"Response",
+"CompactContextResponse"
+]
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#src/xai_sdk/video.py",
+"type": "sdk-exports",
+"path": "src/xai_sdk/video.py",
+"lang": "Python",
+"exports": [
+"VideoGenerationError",
+"BaseClient",
+"VideoResponse",
+"convert_video_aspect_ratio_to_pb",
+"convert_video_resolution_to_pb"
+]
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#src/xai_sdk/tools.py",
+"type": "sdk-exports",
+"path": "src/xai_sdk/tools.py",
+"lang": "Python",
+"exports": [
+"web_search",
+"x_search",
+"code_execution",
+"image_generation",
+"collections_search",
+"mcp",
+"get_tool_call_type"
+]
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#src/xai_sdk/client.py",
+"type": "sdk-exports",
+"path": "src/xai_sdk/client.py",
+"lang": "Python",
+"exports": [
+"BaseClient",
+"create_channel_credentials"
+]
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#src/xai_sdk/search.py",
+"type": "sdk-exports",
+"path": "src/xai_sdk/search.py",
+"lang": "Python",
+"exports": [
+"SearchParameters",
+"web_source",
+"news_source",
+"x_source",
+"rss_source"
+]
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#src/xai_sdk/aio/models.py",
+"type": "sdk-exports",
+"path": "src/xai_sdk/aio/models.py",
+"lang": "Python",
+"exports": [
+"Client"
+]
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#src/xai_sdk/aio/batch.py",
+"type": "sdk-exports",
+"path": "src/xai_sdk/aio/batch.py",
+"lang": "Python",
+"exports": [
+"Client"
+]
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#src/xai_sdk/aio/chat.py",
+"type": "sdk-exports",
+"path": "src/xai_sdk/aio/chat.py",
+"lang": "Python",
+"exports": [
+"Client",
+"Chat"
+]
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#src/xai_sdk/aio/video.py",
+"type": "sdk-exports",
+"path": "src/xai_sdk/aio/video.py",
+"lang": "Python",
+"exports": [
+"Client"
+]
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#src/xai_sdk/aio/image.py",
+"type": "sdk-exports",
+"path": "src/xai_sdk/aio/image.py",
+"lang": "Python",
+"exports": [
+"Client",
+"ImageResponse"
+]
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#src/xai_sdk/aio/client.py",
+"type": "sdk-exports",
+"path": "src/xai_sdk/aio/client.py",
+"lang": "Python",
+"exports": [
+"Client"
+]
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#src/xai_sdk/telemetry/config.py",
+"type": "sdk-exports",
+"path": "src/xai_sdk/telemetry/config.py",
+"lang": "Python",
+"exports": [
+"Telemetry",
+"get_tracer",
+"should_disable_sensitive_attributes"
+]
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#examples/aio/models.py:1",
+"type": "code-snippet",
+"path": "examples/aio/models.py",
+"lang": "Python",
+"start": 1,
+"end": 23,
+"capabilities": [
+"embeddings",
+"image_generation"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/xai-sdk-python/blob/1d9e1dffc9a0521ede0e6bc7f2b906177b940d34/examples/aio/models.py#L1-L23"
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#examples/aio/inline_files_chat.py:2",
+"type": "code-snippet",
+"path": "examples/aio/inline_files_chat.py",
+"lang": "Python",
+"start": 2,
+"end": 25,
+"capabilities": [
+"streaming"
+],
+"models": [
+"grok-4.20"
+],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/xai-sdk-python/blob/1d9e1dffc9a0521ede0e6bc7f2b906177b940d34/examples/aio/inline_files_chat.py#L2-L25"
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#examples/aio/server_side_tools.py:1",
+"type": "code-snippet",
+"path": "examples/aio/server_side_tools.py",
+"lang": "Python",
+"start": 1,
+"end": 21,
+"capabilities": [
+"live_search",
+"streaming",
+"tool_calling"
+],
+"models": [
+"grok-4.20"
+],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/xai-sdk-python/blob/1d9e1dffc9a0521ede0e6bc7f2b906177b940d34/examples/aio/server_side_tools.py#L1-L21"
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#examples/aio/image_generation_tool.py:6",
+"type": "code-snippet",
+"path": "examples/aio/image_generation_tool.py",
+"lang": "Python",
+"start": 6,
+"end": 29,
+"capabilities": [
+"image_generation",
+"live_search",
+"streaming",
+"tool_calling",
+"vision"
+],
+"models": [
+"grok-4.5"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/xai-sdk-python/blob/1d9e1dffc9a0521ede0e6bc7f2b906177b940d34/examples/aio/image_generation_tool.py#L6-L29"
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#examples/aio/auth.py:1",
+"type": "code-snippet",
+"path": "examples/aio/auth.py",
+"lang": "Python",
+"start": 1,
+"end": 19,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/xai-sdk-python/blob/1d9e1dffc9a0521ede0e6bc7f2b906177b940d34/examples/aio/auth.py#L1-L19"
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#examples/aio/image_multi_reference_editing.py:11",
+"type": "code-snippet",
+"path": "examples/aio/image_multi_reference_editing.py",
+"lang": "Python",
+"start": 11,
+"end": 34,
+"capabilities": [
+"image_generation",
+"vision"
+],
+"models": [
+"grok-imagine-image"
+],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/xai-sdk-python/blob/1d9e1dffc9a0521ede0e6bc7f2b906177b940d34/examples/aio/image_multi_reference_editing.py#L11-L34"
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#examples/aio/structured_outputs.py:1",
+"type": "code-snippet",
+"path": "examples/aio/structured_outputs.py",
+"lang": "Python",
+"start": 1,
+"end": 23,
+"capabilities": [
+"structured_output"
+],
+"models": [
+"grok-4.20"
+],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/xai-sdk-python/blob/1d9e1dffc9a0521ede0e6bc7f2b906177b940d34/examples/aio/structured_outputs.py#L1-L23"
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#examples/aio/collections_tool.py:1",
+"type": "code-snippet",
+"path": "examples/aio/collections_tool.py",
+"lang": "Python",
+"start": 1,
+"end": 22,
+"capabilities": [
+"streaming",
+"tool_calling"
+],
+"models": [
+"grok-4.20"
+],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/xai-sdk-python/blob/1d9e1dffc9a0521ede0e6bc7f2b906177b940d34/examples/aio/collections_tool.py#L1-L22"
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#examples/aio/files.py:4",
+"type": "code-snippet",
+"path": "examples/aio/files.py",
+"lang": "Python",
+"start": 4,
+"end": 27,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/xai-sdk-python/blob/1d9e1dffc9a0521ede0e6bc7f2b906177b940d34/examples/aio/files.py#L4-L27"
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#examples/aio/compaction.py:1",
+"type": "code-snippet",
+"path": "examples/aio/compaction.py",
+"lang": "Python",
+"start": 1,
+"end": 20,
+"capabilities": [],
+"models": [
+"grok-4.3"
+],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/xai-sdk-python/blob/1d9e1dffc9a0521ede0e6bc7f2b906177b940d34/examples/aio/compaction.py#L1-L20"
+},
+{
+"repo": "Blockchains/xai-sdk-python",
+"upstream": "xai-org/xai-sdk-python",
+"license": "Apache-2.0",
+"stars": 583,
+"category": "official",
+"commit": "1d9e1dffc9a0521ede0e6bc7f2b906177b940d34",
+"id": "Blockchains/xai-sdk-python#pkg:xai-sdk",
+"type": "package",
+"path": "pyproject.toml",
+"ecosystem": "pypi",
+"name": "xai-sdk",
+"version": null
+},
+{
+"repo": "Blockchains/xai-sdk-ts",
+"upstream": "xai-org/xai-sdk-ts",
+"license": "Apache-2.0",
+"stars": 46,
+"category": "official",
+"commit": "0092a5f7f313ed092ea1326ae147c22981165e82",
+"id": "Blockchains/xai-sdk-ts#repo",
+"type": "repo-surface",
+"languages": [
+"TypeScript",
+"JavaScript"
+],
+"capabilities": [
+"anthropic_compatible",
+"embeddings",
+"image_generation",
+"live_search",
+"mcp",
+"reasoning",
+"streaming",
+"structured_output",
+"tool_calling",
+"vision",
+"voice_realtime"
+],
+"models": [
+"grok-4.6",
+"grok-imagine-image-2.0",
+"grok-imagine-video",
+"grok-imagine-video-1.5",
+"grok-imagine-image",
+"grok-4.7",
+"grok-4",
+"grok-4.3",
+"grok-4.20",
+"grok-imagine-video-1.5-preview",
+"grok-imagine-video-released-after-this-sdk",
+"grok-imagine-image-released-after-this-sdk",
+"grok-4.6-latest",
+"grok-4.20-0309-non-reasoning",
+"grok-4.20-0309-reasoning",
+"grok-4.20-multi-agent-0309",
+"grok-4.5",
+"grok-imagine-image-quality",
+"grok-3",
+"grok-4-latest"
+],
+"endpoints": [
+"/v1/responses",
+"/v1/files",
+"/v1/models",
+"/v1/api-key",
+"/v1/image-generation-models",
+"/v1/images/edits",
+"/v1/images/generations",
+"/v1/language-models",
+"/v1/tokenize-text",
+"/v1/videos",
+"/v1/videos/generations",
+"/v1/realtime",
+"/v1/batches",
+"/v1/chat/completions",
+"/v1/completions",
+"/v1/messages"
+],
+"env_vars": [
+"XAI_API_KEY",
+"XAI_DEBUG",
+"XAI_MODELS_URL",
+"XAI_TEST_IMAGES",
+"XAI_TEST_IMAGE_MODEL",
+"XAI_TEST_MAX_COST_USD",
+"XAI_TEST_MAX_OUTPUT_TOKENS",
+"XAI_TEST_MODEL"
+],
+"grok_files": 34,
+"description": "The official TypeScript SDK for the SpaceXAI API"
+},
+{
+"repo": "Blockchains/xai-sdk-ts",
+"upstream": "xai-org/xai-sdk-ts",
+"license": "Apache-2.0",
+"stars": 46,
+"category": "official",
+"commit": "0092a5f7f313ed092ea1326ae147c22981165e82",
+"id": "Blockchains/xai-sdk-ts#scripts/test-live.mjs:1",
+"type": "code-snippet",
+"path": "scripts/test-live.mjs",
+"lang": "JavaScript",
+"start": 1,
+"end": 20,
+"capabilities": [
+"image_generation",
+"streaming"
+],
+"models": [
+"grok-4.6",
+"grok-imagine-image"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY",
+"XAI_TEST_IMAGES",
+"XAI_TEST_IMAGE_MODEL",
+"XAI_TEST_MAX_COST_USD",
+"XAI_TEST_MAX_OUTPUT_TOKENS",
+"XAI_TEST_MODEL"
+],
+"url": "https://github.com/Blockchains/xai-sdk-ts/blob/0092a5f7f313ed092ea1326ae147c22981165e82/scripts/test-live.mjs#L1-L20"
+},
+{
+"repo": "Blockchains/xai-sdk-ts",
+"upstream": "xai-org/xai-sdk-ts",
+"license": "Apache-2.0",
+"stars": 46,
+"category": "official",
+"commit": "0092a5f7f313ed092ea1326ae147c22981165e82",
+"id": "Blockchains/xai-sdk-ts#src/constants.ts:1",
+"type": "code-snippet",
+"path": "src/constants.ts",
+"lang": "TypeScript",
+"start": 1,
+"end": 20,
+"capabilities": [
+"image_generation",
+"live_search",
+"tool_calling"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [],
+"url": "https://github.com/Blockchains/xai-sdk-ts/blob/0092a5f7f313ed092ea1326ae147c22981165e82/src/constants.ts#L1-L20"
+},
+{
+"repo": "Blockchains/xai-sdk-ts",
+"upstream": "xai-org/xai-sdk-ts",
+"license": "Apache-2.0",
+"stars": 46,
+"category": "official",
+"commit": "0092a5f7f313ed092ea1326ae147c22981165e82",
+"id": "Blockchains/xai-sdk-ts#src/env.ts:31",
+"type": "code-snippet",
+"path": "src/env.ts",
+"lang": "TypeScript",
+"start": 31,
+"end": 54,
+"capabilities": [],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY",
+"XAI_DEBUG"
+],
+"url": "https://github.com/Blockchains/xai-sdk-ts/blob/0092a5f7f313ed092ea1326ae147c22981165e82/src/env.ts#L31-L54"
+},
+{
+"repo": "Blockchains/xai-sdk-ts",
+"upstream": "xai-org/xai-sdk-ts",
+"license": "Apache-2.0",
+"stars": 46,
+"category": "official",
+"commit": "0092a5f7f313ed092ea1326ae147c22981165e82",
+"id": "Blockchains/xai-sdk-ts#src/client.ts:51",
+"type": "code-snippet",
+"path": "src/client.ts",
+"lang": "TypeScript",
+"start": 51,
+"end": 74,
+"capabilities": [
+"voice_realtime"
+],
+"models": [],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/xai-sdk-ts/blob/0092a5f7f313ed092ea1326ae147c22981165e82/src/client.ts#L51-L74"
+},
+{
+"repo": "Blockchains/xai-sdk-ts",
+"upstream": "xai-org/xai-sdk-ts",
+"license": "Apache-2.0",
+"stars": 46,
+"category": "official",
+"commit": "0092a5f7f313ed092ea1326ae147c22981165e82",
+"id": "Blockchains/xai-sdk-ts#src/types.ts:479",
+"type": "code-snippet",
+"path": "src/types.ts",
+"lang": "TypeScript",
+"start": 479,
+"end": 502,
+"capabilities": [
+"image_generation",
+"live_search",
+"streaming",
+"structured_output",
+"tool_calling",
+"vision",
+"voice_realtime"
+],
+"models": [
+"grok-imagine-image-2.0"
+],
+"endpoints": [],
+"env_vars": [
+"XAI_API_KEY"
+],
+"url": "https://github.com/Blockchains/xai-sdk-ts/blob/0092a5f7f313ed092ea1326ae147c22981165e82/src/types.ts#L479-L502"
+},
+{
+"repo": "Blockchains/xai-sdk-ts",
+"upstream": "xai-org/xai-sdk-ts",
+"license": "Apache-2.0",
+"stars": 46,
+"category": "official",
+"commit": "0092a5f7f313ed092ea1326ae147c22981165e82",
+"id": "Blockchains/xai-sdk-ts#pkg:@xai-official/sdk",
+"type": "package",
+"path": "package.json",
+"ecosystem": "npm",
+"name": "@xai-official/sdk",
+"version": "0.2.1"
+}
+]

@@ -1,0 +1,99 @@
+{
+ "fork": "Blockchains/agtx",
+ "upstream": "fynnfluegge/agtx",
+ "category": "coding-agent-cli",
+ "stars": 1698,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-10-02T12:36:16Z",
+ "description": "\ud83c\udfc4\ud83c\udffc\u200d\u2642\ufe0f The blackboard for coding agents - agentic development environment for claude code, codex, cursor, opencode, grok and more.",
+ "commit": "8ae68682f10b05ad77a8d1b307569946d871f814",
+ "indexed_at": "2026-10-03T18:48:05Z",
+ "status": "ok",
+ "clone_kb": 5436,
+ "seconds": 1.7,
+ "files_scanned": 169,
+ "languages": {
+  "Rust": 75,
+  "JavaScript": 5,
+  "Python": 5
+ },
+ "grok_files": 3,
+ "grok_files_by_kind": {
+  "doc": 1,
+  "source": 2
+ },
+ "hosts": {},
+ "endpoints": {},
+ "models": {},
+ "env_vars": {
+  "XAI_API_KEY": 3
+ },
+ "features": {
+  "anthropic_compatible": 2,
+  "mcp": 2
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "benchmark/swebench/benchmark.py",
+   "start": 942,
+   "end": 965,
+   "code": "        f\"IS_SANDBOX=1 \"\n        f\"CONDA_DEFAULT_ENV=testbed \"\n        f\"CONDA_PREFIX=/opt/miniconda3/envs/testbed \"\n        f\"PATH={testbed_bin}:/opt/miniconda3/bin:/home/bench/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\n    )\n    # Pass through API keys that agents read from the environment (only when set\n    # on the host). Grok uses XAI_API_KEY when ~/.grok/auth.json is absent.\n    passthrough_env = {\n        k: v for k in (\"XAI_API_KEY\", \"ANTHROPIC_API_KEY\") if (v := os.environ.get(k))\n    }\n    for key, val in passthrough_env.items():\n        env_prefix += f\" {key}={shlex.quote(val)}\"\n    subprocess.run(\n        [\"docker\", \"exec\", \"-d\", container_id,\n         \"tmux\", \"new-session\", \"-d\", \"-s\", slug,\n         f\"env {env_prefix} agtx /testbed\"],\n        check=True,\n        capture_output=not verbose,\n    )\n    # Also set them in the agtx tmux server global env so windows created later\n    # (e.g. after a phase transition) also inherit the correct PATH.\n    time.sleep(3)\n    for key, val in [\n        (\"HOME\", \"/home/bench\"),"
+  },
+  {
+   "path": "src/agent/spec.rs",
+   "start": 723,
+   "end": 746,
+   "code": "        name: \"grok\",\n        binary: \"grok\",\n        description: \"xAI's Grok Build CLI\",\n        co_author: \"Grok <noreply@x.ai>\",\n        // The grok README names this one for exactly this purpose: \"For CI or\n        // headless environments, use an API key from console.x.ai:\n        // export XAI_API_KEY=...\". The clearest headless story of any agent here.\n        api_key_env: &[\"XAI_API_KEY\"],\n        env: &[],\n        // `--trust` also ungates the repo-local `.grok/config.toml` MCP server\n        // and suppresses the directory-trust dialog.\n        base_args: &[\"--yolo\", \"--trust\"],\n        prompt_form: PromptForm::Argv,\n        // Verified against Grok 4.6: `grok --yolo --trust '/agtx-plan <id>\\n\\n<task>'`\n        // delivered the prompt at launch, the skill ran, and `--trust` meant no\n        // dialog appeared at all.\n        launch_prompt_verified: true,\n        resume: ResumeArgs::Append(&[\"--continue\"]),\n        headless_args: &[\"-p\"],\n        skill_dir: Some((\".grok/skills\", \"\")),\n        skill_layout: SkillLayout::SkillDir,\n        skill_scan_dir: Some(\".grok/skills\"),\n        command_syntax: CommandSyntax::Hyphen,\n        mcp_config: Some(McpConfigKind::GrokTomlMerge),"
+  }
+ ],
+ "files": [
+  {
+   "path": "benchmark/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 541,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "benchmark/swebench/benchmark.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 2152,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "src/agent/spec.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1061,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  }
+ ]
+}

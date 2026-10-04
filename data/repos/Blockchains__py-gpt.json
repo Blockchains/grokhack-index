@@ -1,0 +1,1426 @@
+{
+ "fork": "Blockchains/py-gpt",
+ "upstream": "szczyglis-dev/py-gpt",
+ "category": "chat-ui",
+ "stars": 1968,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2022-2026 Marcin Szczygli\u0144ski GitHub: https://github.com/szczyglis-dev/py-gpt Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, an",
+ "pushed_at": "2026-10-03T03:25:20Z",
+ "description": "Desktop AI Assistant powered by GPT-6, GPT-5, Gemini, Claude, Grok, Ollama, DeepSeek, Perplexity, and more - chat, agents, tools, MCP, plugins, RAG, vision, voice, image and video generation, speech synthesis and speech recognition, web search, memory, presets, canvas, assistants, themes, computer use. Windows, Linux, and Mac.",
+ "commit": "016da1c48e363f76e619de6e9e1b068960047976",
+ "indexed_at": "2026-10-03T18:48:28Z",
+ "status": "ok",
+ "clone_kb": 100616,
+ "seconds": 26.3,
+ "files_scanned": 3886,
+ "languages": {
+  "Python": 2187,
+  "JavaScript": 835
+ },
+ "grok_files": 69,
+ "grok_files_by_kind": {
+  "config": 28,
+  "doc": 4,
+  "test": 7,
+  "source": 30
+ },
+ "hosts": {
+  "api.x.ai": 34
+ },
+ "endpoints": {
+  "/v1/realtime": 3,
+  "/v1/responses": 1
+ },
+ "models": {
+  "grok-3": 12,
+  "grok-4.7": 6,
+  "grok-imagine-image": 6,
+  "grok-4.5": 5,
+  "grok-4.6": 5,
+  "grok-imagine-video": 5,
+  "grok-4": 5,
+  "grok-4.5-latest": 5,
+  "grok-4.3": 4,
+  "grok-imagine-image-quality-latest": 4,
+  "grok-imagine-video-1.5": 4,
+  "grok-2-vision": 3,
+  "grok-3-mini": 2,
+  "grok-3-mini-fast": 2,
+  "grok-2-image-1212": 2,
+  "grok-99": 1,
+  "grok-imagine-image-3": 1,
+  "grok-2-vision-latest": 1,
+  "grok-3-fast": 1,
+  "grok-4-1-fast-non-reasoning": 1,
+  "grok-4-1-fast-reasoning": 1,
+  "grok-4-fast-non-reasoning": 1,
+  "grok-4-fast-reasoning": 1,
+  "grok-4.3-latest": 1,
+  "grok-4.6-latest": 1,
+  "grok-imagine-image-2": 1,
+  "grok-imagine-image-quality": 1
+ },
+ "env_vars": {
+  "XAI_SDK": 4,
+  "XAI_API_KEY": 4,
+  "IMAGE_XAI_AVAILABLE_ASPECT_RATIOS": 2,
+  "DEFAULT_GROK_VIDEO_MODEL": 1,
+  "DEFAULT_GROK_IMAGE_MODEL": 1,
+  "XAI_API_BASE": 1
+ },
+ "features": {
+  "voice_realtime": 11,
+  "tool_calling": 10,
+  "anthropic_compatible": 9,
+  "live_search": 9,
+  "reasoning": 8,
+  "streaming": 6,
+  "image_generation": 6,
+  "vision": 5,
+  "embeddings": 4,
+  "mcp": 2,
+  "grpc": 2
+ },
+ "sdk_exports": [
+  {
+   "path": "src/pygpt_net/provider/audio_output/xai_tts.py",
+   "lang": "Python",
+   "names": [
+    "XAITextToSpeech"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/audio_input/xai_grok_voice.py",
+   "lang": "Python",
+   "names": [
+    "XAIGrokVoiceAudioInput"
+   ]
+  }
+ ],
+ "packages": [
+  {
+   "path": "pyproject.toml",
+   "ecosystem": "pypi",
+   "name": "pygpt-net",
+   "version": "2.8.38"
+  }
+ ],
+ "snippets": [
+  {
+   "path": "src/pygpt_net/controller/chat/stream_worker.py",
+   "start": 103,
+   "end": 126,
+   "code": "    reasoning_kind: Optional[str] = None\n    reasoning_raw: bool = False\n    reasoning_open: bool = False\n    reasoning_enabled: bool = True\n\n    # --- XAI SDK only ---\n    xai_last_response: Any = None  # holds final response from xai_sdk.chat.stream()\n\n\nclass StreamWorker(QRunnable):\n    __slots__ = (\"signals\", \"ctx\", \"window\", \"stream\")\n\n    def __init__(self, ctx: CtxItem, window, parent=None):\n        super().__init__()\n        self.signals = WorkerSignals()\n        self.ctx = ctx\n        self.window = window\n        self.stream = None\n\n    @Slot()\n    def run(self):\n        ctx = self.ctx\n        win = self.window\n        core = win.core"
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/vision.py",
+   "start": 29,
+   "end": 52,
+   "code": "        self.urls: List[str] = []\n        self.input_tokens = 0\n        self.allowed_mimes = {\"image/jpeg\", \"image/png\"}\n\n    def build_images_for_chat(self, attachments: Optional[Dict[str, AttachmentItem]]) -> List[str]:\n        \"\"\"\n        Build image inputs for xai_sdk.chat.image(...).\n        Returns list of image sources (URLs or data: URIs).\n\n        :param attachments: Attachments dict (id -> AttachmentItem)\n        :return: List of image sources\n        \"\"\"\n        import base64\n\n        images: List[str] = []\n        self.attachments = {}\n        self.urls = []\n\n        if not attachments:\n            return images\n\n        for id_, att in (attachments or {}).items():\n            try:\n                if att.path and self.window.core.api.xai.vision.is_image(att.path):"
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/store.py",
+   "start": 45,
+   "end": 68,
+   "code": "    # -----------------------------\n    # Common helpers\n    # -----------------------------\n\n    def get_client(self):\n        \"\"\"\n        Get xAI client (xai_sdk.Client or OpenAI-compatible client).\n        Requires management_api_key.\n        \"\"\"\n        management_api_key = self.window.core.llm.get_config(\"x_ai\", \"management_api_key\")\n        if management_api_key:\n            return self.window.core.api.xai.get_client(management_api_key=management_api_key)\n        return self.window.core.api.xai.get_client()\n\n    def log(self, msg: str, callback: Optional[callable] = None):\n        if callback is not None:\n            callback(msg)\n        else:\n            print(msg)\n\n    def _download_dir(self, ctx=None) -> str:\n        \"\"\"\n        Resolve target download directory (uses download.dir if set).\n        \"\"\""
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/chat.py",
+   "start": 22,
+   "end": 45,
+   "code": "from pygpt_net.item.ctx import CtxItem\nfrom pygpt_net.item.model import ModelItem\nfrom pygpt_net.provider.api.reasoning import (\n    ensure_reasoning_metadata, is_realtime_reasoning_enabled, store_reasoning,\n)\n\nfrom xai_sdk.chat import system as xsystem, user as xuser, assistant as xassistant, image as ximage\n\n\nclass Chat:\n    def __init__(self, window=None):\n        \"\"\"\n        Chat wrapper for xAI: SDK for plain chat, HTTP for tools/search/stream/vision.\n\n        :param window: Window instance\n        \"\"\"\n        self.window = window\n        self.input_tokens = 0\n        self.allowed_mimes = {\"image/jpeg\", \"image/png\"}\n        self.default_image_max_bytes = 10 * 1024 * 1024  # 10 MiB default\n\n    # ---------- SEND ----------\n\n    def send(self, context: BridgeContext, extra: Optional[Dict[str, Any]] = None):"
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/stream.py",
+   "start": 296,
+   "end": 319,
+   "code": "            except Exception:\n                pass\n    except Exception:\n        pass\n\n\ndef process_xai_sdk_chunk(ctx, core, state, item) -> Optional[str]:\n    \"\"\"\n    xAI SDK native streaming chunk.\n\n    :param ctx: Chat context\n    :param core: Core controller\n    :param state: Chat state\n    :param item: Incoming streaming chunk; supports:\n                 - tuple(response, chunk) [old/new SDK style]\n                 - chunk object with .delta/.content/.tool_calls/.tool_outputs/.citations\n                 - dict/SimpleNamespace with OpenAI-like choices[0].delta.content\n                 - dict event style with root 'delta' or 'message'\n    :return: Extracted text delta or None\n    \"\"\"\n    response = None\n    chunk = None\n    try:\n        if isinstance(item, (list, tuple)) and len(item) == 2:"
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/video.py",
+   "start": 27,
+   "end": 50,
+   "code": "\nDEFAULT_GROK_VIDEO_MODEL=\"grok-imagine-video-1.5\"\n\nclass Video:\n    \"\"\"\n    xAI Grok Imagine video generation wrapper.\n    Uses xai_sdk Client.video.generate(...) with automatic polling.\n    \"\"\"\n\n    def __init__(self, window=None):\n        self.window = window\n        self.worker: Optional[VideoWorker] = None\n\n    def generate(\n            self,\n            context: BridgeContext,\n            extra: Optional[Dict[str, Any]] = None,\n            sync: bool = True,\n    ) -> bool:\n        \"\"\"\n        Generate video(s) using xAI Video API.\n\n        :param context: BridgeContext with prompt, model, attachments\n        :param extra: extra parameters:"
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/tools.py",
+   "start": 11,
+   "end": 34,
+   "code": "\nimport json\nfrom typing import List, Any, Optional\n\n# xAI SDK client-side tool descriptor\ntry:\n    from xai_sdk.chat import tool as x_tool\nexcept Exception:\n    x_tool = None\n\n\nclass Tools:\n    def __init__(self, window=None):\n        \"\"\"\n        Tools mapper for xAI.\n\n        - prepare(): legacy OpenAI-compatible dicts (kept for compatibility if needed).\n        - prepare_sdk_tools(): xAI SDK client-side tool descriptors for Chat Responses.\n        - prepare_realtime(): Realtime/WebSocket-compatible function tools.\n\n        :param window: Window instance\n        \"\"\"\n        self.window = window\n"
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/remote_tools.py",
+   "start": 15,
+   "end": 38,
+   "code": "from typing import Optional, Dict, Any, List\n\nfrom pygpt_net.item.model import ModelItem\n\n# xAI server-side tools\ntry:\n    from xai_sdk.tools import web_search as x_web_search\n    from xai_sdk.tools import x_search as x_x_search\n    from xai_sdk.tools import code_execution as x_code_execution\n    from xai_sdk.tools import mcp as x_mcp\n    from xai_sdk.tools import collections_search as x_collections_search\nexcept Exception:\n    x_web_search = None\n    x_x_search = None\n    x_code_execution = None\n    x_mcp = None\n    x_collections_search = None\n\n\nclass Remote:\n    def __init__(self, window=None):\n        \"\"\"\n        Live Search builder for xAI (old, grok-3):\n        - Returns a dict with 'sdk' (X-only toggle) and 'http' (full search_parameters)."
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/__init__.py",
+   "start": 95,
+   "end": 118,
+   "code": "            model: ModelItem = None,\n            management_api_key=None\n    ):\n        \"\"\"\n        Get or create xAI client.\n\n        - Reads api_key from config or XAI_API_KEY env.\n        - Caches the client instance.\n\n        :param mode: One of MODE_*\n        :param model: ModelItem (optional, not used currently)\n        :param management_api_key: Override API key (for management calls)\n        :return: xai_sdk.Client\n        \"\"\"\n        import xai_sdk\n\n        cfg = self.window.core.config\n        api_key = self.window.core.llm.get_config(\"x_ai\", \"api_key\") or os.environ.get(\"XAI_API_KEY\") or \"\"\n        timeout = self.window.core.llm.get_config(\"x_ai\", \"timeout\")  # optional\n        proxy = cfg.get(\"api_proxy\") or \"\"\n        if not cfg.get(\"api_proxy.enabled\"):\n            proxy = \"\"\n\n        kwargs: Dict[str, Any] = {}"
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/responses.py",
+   "start": 21,
+   "end": 44,
+   "code": "from pygpt_net.item.model import ModelItem\nfrom pygpt_net.provider.api.reasoning import (\n    ensure_reasoning_metadata, is_realtime_reasoning_enabled, store_reasoning,\n)\n\n# xAI SDK chat helpers (system/user/assistant/image) for message building\nfrom xai_sdk.chat import (\n    system as xsystem,\n    user as xuser,\n    assistant as xassistant,\n    image as ximage,\n    file as xfile,\n    tool_result as xtool_result\n)\n\n# get_tool_call_type helps filter client-side vs server-side tools\ntry:\n    from xai_sdk.tools import get_tool_call_type as x_get_tool_call_type\nexcept Exception:\n    x_get_tool_call_type = None\n\n\nclass Responses:\n    def __init__(self, window=None):"
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/realtime/client.py",
+   "start": 54,
+   "end": 77,
+   "code": "    - The official Realtime API does not expose a documented server-side \"resume\" for closed WS sessions.\n      We still persist the server-provided handle (session or conversation id) and surface it via ctx.extra[\"rt_session_id\"].\n      If opts.rt_session_id is provided and differs from the current in-memory handle, we reset the connection and attempt\n      to reconnect with a \"session_id\" query parameter. If that fails, we fall back to the standard URL.\n    \"\"\"\n\n    WS_URL = \"wss://api.x.ai/v1/realtime\"\n\n    def __init__(self, window=None, debug: bool = False):\n        \"\"\"\n        xAI Realtime API client\n\n        :param window: Window instance\n        :param debug: Enable debug logging\n        \"\"\"\n        self.window = window\n        self.debug = debug\n\n        # WebSocket and session state (lives on the owner loop)\n        self.ws: Optional[websockets.WebSocketClientProtocol] = None\n        self._rx_task: Optional[asyncio.Task] = None\n        self._running: bool = False\n        self._transport_error_reported: bool = False\n"
+  },
+  {
+   "path": "src/pygpt_net/provider/audio_output/xai_tts.py",
+   "start": 107,
+   "end": 130,
+   "code": "        instructions = self.plugin.get_option_value(\"xai_tts_instructions\") or \"\"\n        container = (self.plugin.get_option_value(\"xai_tts_file_container\") or \"wav\").strip().lower()\n        if container not in (\"wav\", \"raw\"):\n            container = \"wav\"\n\n        region = (self.plugin.get_option_value(\"xai_tts_region\") or \"\").strip()\n        host = f\"{region}.api.x.ai\" if region else \"api.x.ai\"\n        ws_uri = f\"wss://{host}/v1/realtime\"\n\n        out_path = self.prepare_output_path(\".wav\" if container == \"wav\" else \".raw\")\n\n        result_queue: queue.Queue[Tuple[bool, Optional[str], Optional[bytes]]] = queue.Queue()\n\n        def _runner():\n            loop = asyncio.new_event_loop()\n            try:\n                asyncio.set_event_loop(loop)\n                ok, err, pcm = loop.run_until_complete(\n                    self._synthesize_async(\n                        ws_uri=ws_uri,\n                        api_key=api_key,\n                        input_text=text,\n                        voice=voice,\n                        sample_rate=sample_rate,"
+  },
+  {
+   "path": "src/pygpt_net/provider/audio_input/xai_grok_voice.py",
+   "start": 96,
+   "end": 119,
+   "code": "        api_key = self._get_api_key()\n        if not api_key:\n            raise RuntimeError(\"xAI API key is not set. Please configure it in settings.\")\n\n        # Resolve endpoint (optionally regionalized)\n        region = (self.plugin.get_option_value(\"xai_voice_region\") or \"\").strip()\n        host = f\"{region}.api.x.ai\" if region else \"api.x.ai\"\n        ws_uri = f\"wss://{host}/v1/realtime\"\n\n        # Read options\n        prompt = self.plugin.get_option_value(\"xai_voice_system_prompt\") or self.PROMPT_TRANSCRIBE\n        sr_opt = str(self.plugin.get_option_value(\"xai_voice_audio_sample_rate\") or \"16000\").strip()\n        try:\n            sample_rate = max(8000, int(sr_opt))\n        except Exception:\n            sample_rate = 16000\n\n        chunk_ms_opt = str(self.plugin.get_option_value(\"xai_voice_chunk_ms\") or \"200\").strip()\n        try:\n            chunk_ms = max(20, int(chunk_ms_opt))\n        except Exception:\n            chunk_ms = 200\n\n        # Compute chunk size for 16-bit mono PCM"
+  },
+  {
+   "path": "src/pygpt_net/provider/llms/base.py",
+   "start": 473,
+   "end": 496,
+   "code": "    def get_openai_compatible_env_names(self) -> tuple[List[str], List[str]]:\n        \"\"\"Return common API key/base ENV names accepted by a provider.\"\"\"\n        key_names = [\"OPENAI_API_KEY\"]\n        base_names = [\"OPENAI_API_BASE\"]\n        provider_names = {\n            \"deepseek_api\": ([\"DEEPSEEK_API_KEY\"], [\"DEEPSEEK_API_BASE\"]),\n            \"x_ai\": ([\"XAI_API_KEY\"], [\"XAI_API_BASE\"]),\n            \"perplexity\": ([\"PERPLEXITY_API_KEY\", \"PPLX_API_KEY\"], [\"PERPLEXITY_API_BASE\"]),\n            \"open_router\": ([\"OPENROUTER_API_KEY\"], [\"OPENROUTER_API_BASE\"]),\n            \"huggingface_router\": ([\"HF_TOKEN\", \"HUGGING_FACE_HUB_TOKEN\"], [\"HF_INFERENCE_ENDPOINT\"]),\n            \"forge\": ([\"FORGE_API_KEY\"], [\"FORGE_API_BASE\"]),\n            \"edenai\": ([\"EDENAI_API_KEY\"], [\"EDENAI_API_BASE\"]),\n        }\n        extra_keys, extra_bases = provider_names.get(self.id, ([], []))\n        return [*extra_keys, *key_names], [*extra_bases, *base_names]\n\n    def prepare_openai_compatible_args(\n            self,\n            window,\n            model: ModelItem,\n            options: Optional[dict] = None,\n    ) -> dict:\n        \"\"\"Resolve LlamaIndex args with normal PyGPT provider defaults.\n"
+  },
+  {
+   "path": "src/pygpt_net/provider/llms/x_ai/provider.py",
+   "start": 138,
+   "end": 161,
+   "code": "            )\n            return BaseXAIEmbedding(**try_args)\n        except TypeError:\n            # goto gRPC\n            pass\n\n        # 2) Fallback: gRPC (xai_sdk)\n        def _build_xai_grpc_client(api_key: str, proxy_url: Optional[str], timeout_val: Optional[float]):\n            import os\n            import xai_sdk\n            kwargs = {\"api_key\": api_key}\n            if timeout_val is not None:\n                kwargs[\"timeout\"] = timeout_val\n\n            # channel_options - 'grpc.http_proxy'\n            if proxy_url:\n                try:\n                    kwargs[\"channel_options\"] = [(\"grpc.http_proxy\", proxy_url)]\n                except TypeError:\n                    # ENV\n                    os.environ[\"grpc_proxy\"] = proxy_url\n\n            try:\n                return xai_sdk.Client(**kwargs)"
+  },
+  {
+   "path": "src/pygpt_net/provider/llms/x_ai/config.py",
+   "start": 14,
+   "end": 37,
+   "code": "        \"openai_compatible\": True,\n        \"settings\": {\n            \"api_key\": {\n                \"type\": \"str\", \"default\": \"\", \"secret\": True,\n                \"urls\": {\"API Keys\": \"https://console.x.ai\"},\n            },\n            \"api_base\": {\"type\": \"str\", \"default\": \"https://api.x.ai/v1\"},\n            \"extra\": {\n                \"management_api_key\": {\n                    \"type\": \"str\", \"default\": \"\", \"secret\": True,\n                    \"label\": \"settings.api_key_management.xai\",\n                    \"desc\": \"settings.api_key_management.xai.desc\",\n                    \"use_locale\": True,\n                    \"urls\": {\"API Keys\": \"https://console.x.ai\"},\n                },\n                \"native\": {\n                    \"type\": \"bool\", \"default\": True,\n                    \"label\": \"settings.api_native_xai\",\n                    \"desc\": \"settings.api_native_xai.desc\",\n                    \"use_locale\": True,\n                },\n            },\n        },\n        \"remote_tools\": {"
+  },
+  {
+   "path": "src/pygpt_net/provider/llms/x_ai/llama_index/embedding.py",
+   "start": 9,
+   "end": 32,
+   "code": "# Updated Date: 2025.08.26 19:00:00                  #\n# ================================================== #\n\nimport asyncio\nfrom typing import Any, List, Optional\n\nimport xai_sdk\nfrom llama_index.core.embeddings import BaseEmbedding\n\n\nclass XAIEmbedding(BaseEmbedding):\n    \"\"\"\n    LlamaIndex xAI Embedding SDK wrapper.\n    \"\"\"\n\n    def __init__(\n        self,\n        model_name: str,\n        api_key: Optional[str] = None,\n        api_host: str = \"api.x.ai\",\n        **kwargs: Any,\n    ) -> None:\n        super().__init__(model_name=model_name, **kwargs)\n        self._api_key = api_key"
+  },
+  {
+   "path": "src/pygpt_net/provider/core/config/patches/patch_before_2_6_42.py",
+   "start": 1831,
+   "end": 1854,
+   "code": "                print(\"Migrating config from < 2.5.19...\")\n                if 'api_use_responses' not in data:\n                    data[\"api_use_responses\"] = True\n                if 'api_key_xai' not in data:\n                    data[\"api_key_xai\"] = \"\"\n                if 'api_endpoint_xai' not in data:\n                    data[\"api_endpoint_xai\"] = \"https://api.x.ai/v1\"\n                updated = True\n\n            # < 2.5.20\n            if old < parse_version(\"2.5.20\"):\n                print(\"Migrating config from < 2.5.20...\")\n                if 'api_endpoint_deepseek' not in data:\n                    data[\"api_endpoint_deepseek\"] = \"https://api.deepseek.com/v1\"\n                if 'api_endpoint_google' not in data:\n                    data[\"api_endpoint_google\"] = \"https://generativelanguage.googleapis.com/v1beta/openai\"\n                if \"mode\" in data and \"mode\" == \"langchain\":  # deprecated mode\n                    data[\"mode\"] = \"chat\"\n                updated = True\n\n            # < 2.5.21\n            if old < parse_version(\"2.5.21\"):\n                print(\"Migrating config from < 2.5.21...\")\n                updated = True"
+  },
+  {
+   "path": "src/pygpt_net/provider/core/config/patches/patch_before_2_8_33.py",
+   "start": 36,
+   "end": 59,
+   "code": "    \"api_key_hugging_face\": \"\",\n    \"api_endpoint_hugging_face\": \"https://router.huggingface.co/v1\",\n    \"api_key_deepseek\": \"\",\n    \"api_endpoint_deepseek\": \"https://api.deepseek.com/v1\",\n    \"api_key_xai\": \"\",\n    \"api_key_management_xai\": \"\",\n    \"api_endpoint_xai\": \"https://api.x.ai/v1\",\n    \"api_native_xai\": True,\n    \"api_azure_endpoint\": \"https://<your-resource-name>.openai.azure.com/\",\n    \"api_azure_version\": \"2023-07-01-preview\",\n    \"api_key_perplexity\": \"\",\n    \"api_endpoint_perplexity\": \"https://api.perplexity.ai\",\n    \"api_key_mistral\": \"\",\n    \"api_endpoint_mistral\": \"https://api.mistral.ai/v1\",\n    \"api_key_voyage\": \"\",\n    \"api_key_open_router\": \"\",\n    \"api_endpoint_open_router\": \"https://openrouter.ai/api/v1\",\n    \"api_key_forge\": \"\",\n    \"api_endpoint_forge\": \"https://api.forge.tensorblock.co/v1\",\n    \"api_key_edenai\": \"\",\n    \"api_endpoint_edenai\": \"https://api.edenai.run/v3\",\n    \"api_key_jev\": \"\",\n    \"api_endpoint_jev\": \"https://api.typesafe.ai\",\n}"
+  },
+  {
+   "path": "src/pygpt_net/core/types/chunk.py",
+   "start": 20,
+   "end": 27,
+   "code": "    API_COMPLETION = \"api_completion\"  # OpenAI Completions\n    LANGCHAIN_CHAT = \"langchain_chat\"  # LangChain chat (deprecated)\n    LLAMA_CHAT = \"llama_chat\"  # LlamaIndex chat\n    GOOGLE = \"google\"  # Google SDK\n    GOOGLE_INTERACTIONS_API = \"api_google_interactions\"  # Google SDK, deep research - interactions API\n    ANTHROPIC = \"anthropic\"  # Anthropic SDK\n    XAI_SDK = \"xai_sdk\"  # xAI SDK\n    RAW = \"raw\"  # Raw string fallback"
+  },
+  {
+   "path": "src/pygpt_net/ui/dialog/about.py",
+   "start": 63,
+   "end": 86,
+   "code": "            from google.genai import __version__ as google_genai_version\n            versions['Google SDK'] = google_genai_version\n        except Exception:\n            versions['Google SDK'] = '-'\n\n        try:\n            from xai_sdk import __version__ as xai_sdk_version\n            versions['xAI SDK'] = xai_sdk_version\n        except Exception:\n            versions['xAI SDK'] = '-'\n\n        safe_emit(self.signals, 'result', versions)\n\n\nclass About:\n\n    COPYRIGHT_YEARS = \"2022-2026\"\n    VERSION_KEYS = (\n        'Python',\n        'OpenAI SDK',\n        'LlamaIndex',\n        'Anthropic SDK',\n        'Google SDK',\n        'xAI SDK',"
+  }
+ ],
+ "files": [
+  {
+   "path": "pyproject.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 142,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "grpc",
+    "mcp"
+   ]
+  },
+  {
+   "path": "requirements.txt",
+   "kind": "doc",
+   "lang": null,
+   "lines": 385,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "grpc"
+   ]
+  },
+  {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 2665,
+   "endpoints": [],
+   "models": [
+    "grok-2-vision",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-imagine-image",
+    "grok-imagine-image-quality-latest",
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "CHANGELOG.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 3672,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4",
+    "grok-imagine-image",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/controller/chat/test_controller_chat_stream_worker.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 126,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_SDK"
+   ],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/provider/llms/test_agent_factories.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 157,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4.5-latest"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/provider/llms/test_remote_tools_config.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 254,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-99"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/provider/core/model/test_patch_2_8_38.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 22,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/core/types/test_core_image_resolution_maps.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 49,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image-3"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "tests/core/types/test_reasoning.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 77,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/core/attachments/test_native.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 181,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/CHANGELOG.txt",
+   "kind": "doc",
+   "lang": null,
+   "lines": 3681,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4",
+    "grok-imagine-image",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/controller/chat/stream_worker.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 674,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_SDK"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/vision.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 117,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/store.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 617,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/chat.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1332,
+   "endpoints": [],
+   "models": [
+    "grok-2-vision-latest"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/stream.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 779,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/video.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 428,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [
+    "DEFAULT_GROK_VIDEO_MODEL"
+   ],
+   "features": [
+    "image_generation",
+    "streaming",
+    "vision"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/tools.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 222,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/image.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 439,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image-quality-latest"
+   ],
+   "env": [
+    "DEFAULT_GROK_IMAGE_MODEL",
+    "IMAGE_XAI_AVAILABLE_ASPECT_RATIOS"
+   ],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/remote_tools.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 570,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/__init__.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 468,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_SDK"
+   ],
+   "features": [
+    "grpc",
+    "live_search",
+    "reasoning",
+    "streaming",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/responses.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 586,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4.5-latest"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/api/x_ai/realtime/client.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1973,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "live_search",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/audio_output/xai_tts.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 322,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/audio_input/xai_grok_voice.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 390,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/llms/base.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 690,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_BASE",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/llms/x_ai/provider.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 184,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings",
+    "grpc",
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/llms/x_ai/config.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 329,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/llms/x_ai/agents.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 119,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4.5-latest"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/llms/x_ai/llama_index/embedding.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 71,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/core/model/patch.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 74,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/pygpt_net/provider/core/model/compat.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 140,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/core/model/patches/patch_before_2_6_42.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 795,
+   "endpoints": [],
+   "models": [
+    "grok-2-image-1212",
+    "grok-2-vision",
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/core/model/patches/patch_before_2_8_32.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 852,
+   "endpoints": [],
+   "models": [
+    "grok-2-image-1212",
+    "grok-3",
+    "grok-3-fast",
+    "grok-4",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.3",
+    "grok-4.3-latest",
+    "grok-4.5",
+    "grok-4.5-latest",
+    "grok-4.6",
+    "grok-imagine-image",
+    "grok-imagine-image-quality-latest",
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/core/config/patches/patch_before_2_6_42.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 2355,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/provider/core/config/patches/patch_before_2_8_33.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 240,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.da.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.sk.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.he.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.hu.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.tr.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.zh.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2559,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.uk.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2559,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.pl.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2563,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.it.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2559,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.ko.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.bg.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.fi.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.es.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2560,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.de.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2559,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.en.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2641,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.sv.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.ar.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.nl.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.ja.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.pt.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.cs.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.hi.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.fr.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2559,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.no.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.ro.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/locale/locale.ru.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 2630,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/data/config/models.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 2452,
+   "endpoints": [],
+   "models": [
+    "grok-2-vision",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-imagine-image",
+    "grok-imagine-image-quality-latest",
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "reasoning",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/core/types/chunk.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 27,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_SDK"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/core/types/reasoning.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 237,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.5-latest",
+    "grok-4.6",
+    "grok-4.6-latest",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/core/types/image.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 266,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-2",
+    "grok-imagine-image-quality"
+   ],
+   "env": [
+    "IMAGE_XAI_AVAILABLE_ASPECT_RATIOS"
+   ],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "src/pygpt_net/core/bridge/worker.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 304,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/pygpt_net/ui/dialog/about.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 263,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  }
+ ]
+}
