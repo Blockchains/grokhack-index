@@ -2,7 +2,7 @@
 
 Nightly index of the **Grok / xAI integration surface** of every open-source project listed in
 [Blockchains/awesome-grokhack](https://github.com/Blockchains/awesome-grokhack) (forked into [github.com/Blockchains](https://github.com/Blockchains)).
-Search UI: **https://blockchains.github.io/grokhack-index/** · used by [grokhack.com /forge](https://grokhack.com/forge) via [grokhack-forge](https://github.com/Blockchains/grokhack-forge).
+Search UI: **https://blockchains.github.io/grokhack-index/** · used by the [grokhack-forge](https://github.com/Blockchains/grokhack-forge) composer.
 
 ## What is extracted (from real file contents, per repo)
 A file counts as Grok/xAI surface only if it contains an anchor: `api.x.ai`, `XAI_API_KEY`, `GROK_API_KEY`, `xai-sdk`/`xai_sdk`, `@ai-sdk/xai`,
@@ -35,3 +35,19 @@ python3 indexer/check.py data
 ```
 
 Code snippets remain under their projects' licences (shown on each part); the indexer and this README are MIT.
+
+## Configuration
+
+No keys are needed to search the published index. To rebuild it:
+
+| Variable | Required | Purpose |
+|---|---|---|
+| `GH_CLONE_TOKEN` | no | Token used by `indexer/grokindex.py` for authenticated clones (higher rate limits) |
+| `FORK_SYNC_TOKEN` (repo secret) | no | Used by the nightly workflow as `GH_TOKEN` when set |
+
+## Contributing
+
+Issues and pull requests are welcome. Please read the [contributing guide](https://github.com/Blockchains/.github/blob/main/CONTRIBUTING.md), [code of conduct](https://github.com/Blockchains/.github/blob/main/CODE_OF_CONDUCT.md) and [security policy](https://github.com/Blockchains/.github/blob/main/SECURITY.md) first.
+
+---
+Built by Blockchain Lab — [blockchainlab.com](https://blockchainlab.com/?utm_source=github&utm_medium=readme&utm_campaign=grokhack-index)
