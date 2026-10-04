@@ -36,6 +36,42 @@ python3 indexer/check.py data
 
 Code snippets remain under their projects' licences (shown on each part); the indexer and this README are MIT.
 
+<!-- blocks:start -->
+## Use as a building block
+
+> **For AI agents and builders:** read [`AGENTS.md`](AGENTS.md) (setup, commands, structure, rules), [`llms.txt`](llms.txt) (doc map) and the machine-readable [`blocks.json`](blocks.json) ([schema](https://github.com/Blockchains/.github/blob/main/docs/BLOCKS-SCHEMA.md)). How all Blockchains blocks fit together: **[Build with Blocks](https://github.com/Blockchains/.github/blob/main/docs/BUILD-WITH-BLOCKS.md)** · org catalogue: [https://blockchains.github.io/blocks.json](https://blockchains.github.io/blocks.json).
+
+**What it exports**
+
+| Export | Type | Install / access |
+|---|---|---|
+| `data/parts.json` | http | `composable parts: repo-surface, sdk-exports, code-snippet, package` |
+| `data/repos/<owner>__<repo>.json` | file | `one shard per fork` |
+| `indexer/search.py` | cli | `python3 indexer/search.py "streaming tool calling typescript" --data data` |
+| `search UI` | web | `https://blockchains.github.io/grokhack-index/` |
+
+**Minimal example** (run on 2026-10-04)
+
+```bash
+git clone --depth 1 https://github.com/Blockchains/grokhack-index && cd grokhack-index
+python3 indexer/search.py "streaming tool calling typescript" --data data | head
+curl -s https://blockchains.github.io/grokhack-index/data/parts.json | jq '[.[] | select(.type=="package")] | .[:3]'
+```
+
+**Inputs → outputs**
+
+- In: `repos.json` (file) from awesome-grokhack grok-forge.json; `query` (string) for search.py
+- Out: `parts` (JSON); `stats` (JSON) repos per endpoint/model/feature/env var; `search-index` (JSON) token → part positions
+
+**Composes with**
+
+- [Blockchains/awesome-grokhack](https://github.com/Blockchains/awesome-grokhack): source repo list
+- [Blockchains/grokhack-forge](https://github.com/Blockchains/grokhack-forge): consumes parts to compose apps
+- [Blockchains/grok-tools-chat](https://github.com/Blockchains/grok-tools-chat): parts recorded in its PARTS.md
+
+**Versioning & stability:** `beta`. Rebuilt nightly (02:41 UTC); shards for repos dropped from awesome-grokhack are removed on the next run. Part fields are additive.
+<!-- blocks:end -->
+
 ## Configuration
 
 No keys are needed to search the published index. To rebuild it:

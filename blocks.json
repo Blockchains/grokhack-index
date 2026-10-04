@@ -1,0 +1,96 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Blockchains/.github/main/docs/blocks.schema.json",
+  "schema_version": "1.0",
+  "name": "grokhack-index",
+  "repo": "Blockchains/grokhack-index",
+  "summary": "Nightly index of the Grok/xAI integration surface (endpoints, models, features, env vars, SDK exports, packages, code snippets with commit-pinned URLs) across the forks listed in awesome-grokhack, with a static search UI and an inverted index.",
+  "kind": [
+    "index",
+    "dataset",
+    "cli"
+  ],
+  "stability": "beta",
+  "license": "MIT",
+  "homepage": "https://blockchains.github.io/grokhack-index/",
+  "entrypoints": [
+    {
+      "type": "http",
+      "name": "data/parts.json",
+      "ref": "https://blockchains.github.io/grokhack-index/data/parts.json",
+      "usage": "composable parts: repo-surface, sdk-exports, code-snippet, package"
+    },
+    {
+      "type": "file",
+      "name": "data/repos/<owner>__<repo>.json",
+      "ref": "data/repos/",
+      "usage": "one shard per fork"
+    },
+    {
+      "type": "cli",
+      "name": "indexer/search.py",
+      "ref": "indexer/search.py",
+      "usage": "python3 indexer/search.py \"streaming tool calling typescript\" --data data"
+    },
+    {
+      "type": "web",
+      "name": "search UI",
+      "ref": "docs/index.html",
+      "usage": "https://blockchains.github.io/grokhack-index/"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "repos.json",
+      "type": "file",
+      "description": "from awesome-grokhack grok-forge.json"
+    },
+    {
+      "name": "query",
+      "type": "string",
+      "description": "for search.py"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "parts",
+      "type": "JSON"
+    },
+    {
+      "name": "stats",
+      "type": "JSON",
+      "description": "repos per endpoint/model/feature/env var"
+    },
+    {
+      "name": "search-index",
+      "type": "JSON",
+      "description": "token → part positions"
+    }
+  ],
+  "deps": [
+    "python>=3.10 (stdlib only)"
+  ],
+  "compatible_with": [
+    {
+      "repo": "Blockchains/awesome-grokhack",
+      "how": "source repo list"
+    },
+    {
+      "repo": "Blockchains/grokhack-forge",
+      "how": "consumes parts to compose apps"
+    },
+    {
+      "repo": "Blockchains/grok-tools-chat",
+      "how": "parts recorded in its PARTS.md"
+    }
+  ],
+  "tests": {
+    "command": "python3 indexer/check.py data",
+    "ci": ".github/workflows/ci.yml",
+    "network": false
+  },
+  "docs": {
+    "readme": "README.md",
+    "agents": "AGENTS.md",
+    "llms": "llms.txt"
+  }
+}
