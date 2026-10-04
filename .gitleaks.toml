@@ -3,8 +3,13 @@
 [extend]
 useDefault = true
 
+# Obvious test-fixture placeholders from upstream unit tests (e.g. "xai-test-key-123", "sk-or-test-key-123") are
+# allowed by an anchored pattern; anything else that looks like a real key still fails.
 # Environment-variable NAMES (all caps + underscores, e.g. XAI_API_KEY, EAPI_GROK_..._MODEL) are indexed as config surface; they are not secrets.
 [allowlist]
 description = "upper-case env var identifiers"
 regexTarget = "secret"
-regexes = ['''^[A-Z][A-Z0-9_]{2,}$''']
+regexes = [
+  '''^[A-Z][A-Z0-9_]{2,}$''',
+  '''(?i)^[a-z]{2,4}(-[a-z]{2,4})?-test-([a-z]+-)*key(-[0-9]+)?$''',
+]
