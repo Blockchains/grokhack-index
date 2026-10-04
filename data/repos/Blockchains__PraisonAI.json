@@ -1,0 +1,739 @@
+{
+ "fork": "Blockchains/PraisonAI",
+ "upstream": "MervinPraison/PraisonAI",
+ "category": "agent-framework",
+ "stars": 9133,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to",
+ "pushed_at": "2026-10-04T08:36:00Z",
+ "description": "PraisonAI \ud83e\udd9e \u2014 Hire a 24/7 AI Workforce. Stop writing boilerplate and start shipping autonomous self-improving agents that research, plan, code, and execute tasks. Deployed in 5 lines of code with built-in memory, RAG, and support for 100+ LLMs.",
+ "commit": "e49b254509c3eaca45a688daccf046a270fd382c",
+ "indexed_at": "2026-10-04T16:53:17Z",
+ "status": "ok",
+ "clone_kb": 148348,
+ "seconds": 46.1,
+ "files_scanned": 6409,
+ "languages": {
+  "Python": 4876,
+  "TypeScript": 846,
+  "Rust": 102,
+  "JavaScript": 72,
+  "Kotlin": 5,
+  "Ruby": 1
+ },
+ "grok_files": 48,
+ "grok_files_by_kind": {
+  "example": 29,
+  "config": 3,
+  "test": 7,
+  "source": 9
+ },
+ "hosts": {},
+ "endpoints": {},
+ "models": {
+  "grok-4": 28,
+  "grok-3": 4,
+  "grok-2-latest": 2,
+  "grok-beta": 2,
+  "grok-2": 2,
+  "grok-2-mini": 1,
+  "grok-3-fast": 1,
+  "grok-3-mini": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 14
+ },
+ "features": {
+  "anthropic_compatible": 7,
+  "embeddings": 4,
+  "mcp": 3,
+  "tool_calling": 3,
+  "structured_output": 2,
+  "reasoning": 2,
+  "openai_compatible": 1,
+  "live_search": 1,
+  "streaming": 1,
+  "voice_realtime": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "src/praisonai-code/praisonai_code/cli/commands/auth.py",
+   "start": 51,
+   "end": 74,
+   "code": "            \"google\": (\"GOOGLE_API_KEY\",),\n            \"gemini\": (\"GEMINI_API_KEY\",),\n            \"groq\": (\"GROQ_API_KEY\",),\n            \"openrouter\": (\"OPENROUTER_API_KEY\",),\n            \"mistral\": (\"MISTRAL_API_KEY\",),\n            \"deepseek\": (\"DEEPSEEK_API_KEY\",),\n            \"xai\": (\"XAI_API_KEY\",),\n            \"cohere\": (\"COHERE_API_KEY\",),\n            \"together\": (\"TOGETHER_API_KEY\", \"TOGETHERAI_API_KEY\"),\n            \"perplexity\": (\"PERPLEXITYAI_API_KEY\",),\n            \"fireworks\": (\"FIREWORKS_API_KEY\", \"FIREWORKS_AI_API_KEY\"),\n        }\n\n\n_PROVIDER_ENV_KEYS = _build_provider_env_keys()\n\n\ndef _active_env_var(provider: str) -> Optional[str]:\n    \"\"\"Return the credential env-var a provider is live from, or ``None``.\n\n    Prefers whichever alias the user actually set so providers with multiple\n    spellings resolve the key in effect; falls back to the canonical (first)\n    env-var name when none is set (used only for display of the expected var).\n    \"\"\""
+  },
+  {
+   "path": "src/praisonai-code/praisonai_code/cli/commands/test.py",
+   "start": 590,
+   "end": 613,
+   "code": "    typer.echo(\"\ud83d\udd0c Providers:\")\n    providers = {\n        \"openai\": \"OPENAI_API_KEY\",\n        \"anthropic\": \"ANTHROPIC_API_KEY\",\n        \"google\": \"GOOGLE_API_KEY\",\n        \"ollama\": \"(local service)\",\n        \"grok_xai\": \"XAI_API_KEY\",\n        \"groq\": \"GROQ_API_KEY\",\n        \"cohere\": \"COHERE_API_KEY\",\n    }\n    for provider, env_var in providers.items():\n        status = \"\u2705\" if os.environ.get(env_var.replace(\"(local service)\", \"\")) else \"\u274c\"\n        if env_var == \"(local service)\":\n            status = \"\ud83d\udd27\"\n        typer.echo(f\"  {provider:12} {env_var:25} {status}\")\n    typer.echo(\"\")\n    \n    typer.echo(\"\ud83c\udf10 Environment Variables:\")\n    env_vars = {\n        \"PRAISONAI_TEST_TIER\": os.environ.get(\"PRAISONAI_TEST_TIER\", \"main\"),\n        \"PRAISONAI_ALLOW_NETWORK\": os.environ.get(\"PRAISONAI_ALLOW_NETWORK\", \"0\"),\n        \"PRAISONAI_LIVE_TESTS\": os.environ.get(\"PRAISONAI_LIVE_TESTS\", \"0\"),\n        \"PRAISONAI_TEST_PROVIDERS\": os.environ.get(\"PRAISONAI_TEST_PROVIDERS\", \"openai\"),\n        \"PRAISONAI_LOCAL_SERVICES\": os.environ.get(\"PRAISONAI_LOCAL_SERVICES\", \"0\"),"
+  },
+  {
+   "path": "src/praisonai-code/praisonai_code/llm/catalogue.py",
+   "start": 233,
+   "end": 256,
+   "code": "    \"groq\":       ((\"GROQ_API_KEY\",),                 \"groq/llama-3.3-70b-versatile\",         \"groq/\"),\n    \"cohere\":     ((\"COHERE_API_KEY\",),               \"cohere/command-r\",                     \"cohere/\"),\n    \"openrouter\": ((\"OPENROUTER_API_KEY\",),           \"openrouter/openai/gpt-4o-mini\",        \"openrouter/\"),\n    \"ollama\":     ((\"OLLAMA_HOST\",),                  \"ollama/llama3.2\",                      \"ollama/\"),\n    \"mistral\":    ((\"MISTRAL_API_KEY\",),              \"mistral/mistral-large-latest\",         \"mistral/\"),\n    \"deepseek\":   ((\"DEEPSEEK_API_KEY\",),             \"deepseek/deepseek-chat\",               \"deepseek/\"),\n    \"xai\":        ((\"XAI_API_KEY\",),                  \"xai/grok-2-latest\",                    \"xai/\"),\n    \"together\":   ((\"TOGETHER_API_KEY\", \"TOGETHERAI_API_KEY\"), \"together_ai/meta-llama/Llama-3.3-70B-Instruct-Turbo\", \"together_ai/\"),\n    \"perplexity\": ((\"PERPLEXITYAI_API_KEY\",),         \"perplexity/sonar\",                     \"perplexity/\"),\n    \"fireworks\":  ((\"FIREWORKS_API_KEY\", \"FIREWORKS_AI_API_KEY\"), \"fireworks_ai/accounts/fireworks/models/llama-v3p3-70b-instruct\", \"fireworks_ai/\"),\n}\n\n\ndef provider_env_vars() -> tuple:\n    \"\"\"Return every credential env-var declared in the catalogue (deduped).\"\"\"\n    seen: list = []\n    for env_vars, _model, _prefix in PROVIDER_ENV_CATALOGUE.values():\n        for var in env_vars:\n            if var not in seen:\n                seen.append(var)\n    return tuple(seen)\n\n\ndef provider_for_model(model: str) -> Optional[str]:"
+  },
+  {
+   "path": "src/praisonai/praisonai/integrations/compute_managed_agent.py",
+   "start": 53,
+   "end": 76,
+   "code": "except ValueError:\n    _RELEASE_EXIT_TIMEOUT = 10.0\n\n_KEY_VARS = (\n    \"OPENAI_API_KEY\", \"ANTHROPIC_API_KEY\", \"GEMINI_API_KEY\", \"GOOGLE_API_KEY\",\n    \"GROQ_API_KEY\", \"MISTRAL_API_KEY\", \"COHERE_API_KEY\", \"OPENROUTER_API_KEY\",\n    \"DEEPSEEK_API_KEY\", \"XAI_API_KEY\", \"OPENAI_BASE_URL\", \"OPENAI_API_BASE\",\n)\n\n_RUNNER = r'''\nimport json, sys\n\npayload = json.load(open(\"/tmp/praison_agent.json\"))\ntry:\n    from praisonaiagents import Agent\n\n    kwargs = {k: v for k, v in payload[\"agent\"].items() if v is not None}\n    result = Agent(**kwargs).start(payload[\"prompt\"])\n    out = {\"ok\": True, \"result\": result if isinstance(result, str) else str(result)}\nexcept Exception as exc:                     # noqa: BLE001 - reported, not raised\n    out = {\"ok\": False, \"error\": f\"{type(exc).__name__}: {exc}\"}\n\nsys.stdout.write(\"\\n__PRAISON_RESULT__\" + json.dumps(out) + \"\\n\")\n'''"
+  },
+  {
+   "path": "src/praisonai-sandbox/praisonai_sandbox/compute/docker.py",
+   "start": 22,
+   "end": 45,
+   "code": "#: Environment variables treated as secrets: forwarded into a container so the\n#: agent can reach its model, and scrubbed back out of any image committed from\n#: that container. Keep in step with ComputeManagedAgent._KEY_VARS.\n_FORWARDED_SECRETS = frozenset({\n    \"OPENAI_API_KEY\", \"ANTHROPIC_API_KEY\", \"GEMINI_API_KEY\", \"GOOGLE_API_KEY\",\n    \"GROQ_API_KEY\", \"MISTRAL_API_KEY\", \"COHERE_API_KEY\", \"OPENROUTER_API_KEY\",\n    \"DEEPSEEK_API_KEY\", \"XAI_API_KEY\", \"OPENAI_BASE_URL\", \"OPENAI_API_BASE\",\n    \"E2B_API_KEY\", \"DAYTONA_API_KEY\", \"NOVITA_API_KEY\", \"TENKI_API_KEY\",\n    \"FLY_API_TOKEN\", \"MODAL_TOKEN_ID\", \"MODAL_TOKEN_SECRET\",\n})\n\n# Local image namespace for post-setup captures (``docker commit``).\n_CAPTURE_IMAGE = \"praisonai-env\"\n\n# Registry bookkeeping: {definition_hash: {backend, ref, created_at, last_used}}\n_REGISTRY_DIR = os.path.join(\n    os.path.expanduser(\"~\"), \".praisonai\", \"environments\"\n)\n_REGISTRY_PATH = os.path.join(_REGISTRY_DIR, \"registry.json\")\n\n# Age-based GC default: entries unused for this long are prunable.\n_DEFAULT_MAX_AGE_S = 14 * 24 * 3600\n\n"
+  },
+  {
+   "path": "src/praisonai-ts/src/llm/providers/ai-sdk/types.ts",
+   "start": 263,
+   "end": 286,
+   "code": "  google: { package: '@ai-sdk/google', envKey: 'GOOGLE_API_KEY', modalities: MULTIMODAL, description: 'Google Generative AI (Gemini)' },\n  'google-vertex': { package: '@ai-sdk/google-vertex', envKey: 'GOOGLE_APPLICATION_CREDENTIALS', modalities: MULTIMODAL, description: 'Google Vertex AI' },\n  azure: { package: '@ai-sdk/azure', envKey: 'AZURE_API_KEY', modalities: MULTIMODAL, description: 'Azure OpenAI Service' },\n  'amazon-bedrock': { package: '@ai-sdk/amazon-bedrock', envKey: 'AWS_ACCESS_KEY_ID', modalities: CHAT_EMBED, description: 'Amazon Bedrock' },\n  \n  // === xAI / Grok ===\n  xai: { package: '@ai-sdk/xai', envKey: 'XAI_API_KEY', modalities: { ...CHAT_ONLY, image: true }, description: 'xAI Grok models' },\n  \n  // === Vercel ===\n  vercel: { package: '@ai-sdk/vercel', envKey: 'VERCEL_API_KEY', modalities: CHAT_ONLY, description: 'Vercel AI models' },\n  \n  // === Inference Providers ===\n  groq: { package: '@ai-sdk/groq', envKey: 'GROQ_API_KEY', modalities: CHAT_ONLY, description: 'Groq inference' },\n  fireworks: { package: '@ai-sdk/fireworks', envKey: 'FIREWORKS_API_KEY', modalities: CHAT_EMBED, description: 'Fireworks AI' },\n  togetherai: { package: '@ai-sdk/togetherai', envKey: 'TOGETHER_API_KEY', modalities: CHAT_EMBED, description: 'Together.ai' },\n  deepinfra: { package: '@ai-sdk/deepinfra', envKey: 'DEEPINFRA_API_KEY', modalities: CHAT_EMBED, description: 'DeepInfra' },\n  replicate: { package: '@ai-sdk/replicate', envKey: 'REPLICATE_API_TOKEN', modalities: { ...CHAT_ONLY, image: true }, description: 'Replicate' },\n  baseten: { package: '@ai-sdk/baseten', envKey: 'BASETEN_API_KEY', modalities: CHAT_ONLY, description: 'Baseten' },\n  huggingface: { package: '@ai-sdk/huggingface', envKey: 'HUGGINGFACE_API_KEY', modalities: CHAT_EMBED, description: 'Hugging Face Inference' },\n  \n  // === Model Providers ===\n  mistral: { package: '@ai-sdk/mistral', envKey: 'MISTRAL_API_KEY', modalities: CHAT_EMBED, description: 'Mistral AI' },\n  cohere: { package: '@ai-sdk/cohere', envKey: 'COHERE_API_KEY', modalities: CHAT_EMBED, description: 'Cohere' },\n  deepseek: { package: '@ai-sdk/deepseek', envKey: 'DEEPSEEK_API_KEY', modalities: CHAT_ONLY, description: 'DeepSeek' },"
+  }
+ ],
+ "files": [
+  {
+   "path": "examples/js/providers/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 47,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/python/mcp/xai-mcp.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 9,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest"
+   ],
+   "env": [],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "examples/python/models/grok/grok_personal_finance_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_journalist_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_lead_generation_assistant.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_ai_finance_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 13,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_multimodal_design_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 13,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_multimodal_reasoning_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_basic_example.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 30,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_meeting_productivity_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_travel_planning_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_ai_recruitment_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 13,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_ai_services_agency.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 13,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_data_analysis_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_ai_competitor_intelligence_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 13,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_mental_wellbeing_advisor.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_multi_mcp_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 13,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "examples/python/models/grok/grok_multimodal_coding_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 13,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_music_generator_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_ai_teaching_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 13,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_investment_advisor_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_deep_research_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_startup_trend_analysis_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_customer_support_chatbot.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_medical_imaging_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_ai_game_design_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 13,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_ai_legal_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 13,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/models/grok/grok_health_fitness_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/python/providers/xai/xai_grok_example.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 41,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": ".github/workflows/test-optimized.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 979,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "src/praisonai-code/tests/unit/test_credential_onboarding.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 244,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/praisonai-code/praisonai_code/cli/commands/auth.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 804,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "src/praisonai-code/praisonai_code/cli/commands/test.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 620,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/praisonai-code/praisonai_code/llm/catalogue.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 592,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "src/praisonai-agents/pytest.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 39,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/praisonai-agents/tests/test_web_search.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 269,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/praisonai-agents/tests/unit/thinking/test_reasoning_effort.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 218,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/praisonai-agents/praisonaiagents/llm/model_capabilities.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 641,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-3",
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/praisonai/pytest.ini",
+   "kind": "config",
+   "lang": null,
+   "lines": 42,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/praisonai/praisonai/integrations/compute_managed_agent.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 378,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "src/praisonai/tests/conftest.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 308,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/praisonai/tests/unit/test_setup_test_environment_fixture.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 81,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "src/praisonai/tests/unit/test_xai_fix.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 31,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/praisonai/tests/_pytest_plugins/test_gating.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 431,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "src/praisonai-sandbox/praisonai_sandbox/compute/docker.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 694,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "src/praisonai-ts/src/cli/commands/llm.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 829,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-2-mini"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/praisonai-ts/src/cli/commands/providers.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 398,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/praisonai-ts/src/llm/providers/ai-sdk/types.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 460,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "mcp",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,403 @@
+{
+ "fork": "Blockchains/scira",
+ "upstream": "zaidmukaddam/scira",
+ "category": "app",
+ "stars": 11905,
+ "license_spdx": "AGPL-3.0",
+ "license_text_head": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007 Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/> Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. Preamble The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure coop",
+ "pushed_at": "2026-08-12T22:28:59Z",
+ "description": "Scira (Formerly MiniPerplx) is a minimalistic AI-powered search engine that helps you find information on the internet and cites it too. Powered by Vercel AI SDK!",
+ "commit": "e1692f5bdec7ec3f6482a24e0c6cf9b483d810f9",
+ "indexed_at": "2026-10-04T16:56:49Z",
+ "status": "ok",
+ "clone_kb": 42220,
+ "seconds": 3.3,
+ "files_scanned": 384,
+ "languages": {
+  "TypeScript": 351,
+  "JavaScript": 3,
+  "Python": 1
+ },
+ "grok_files": 15,
+ "grok_files_by_kind": {
+  "doc": 1,
+  "config": 2,
+  "source": 12
+ },
+ "hosts": {
+  "api.x.ai": 1
+ },
+ "endpoints": {
+  "/v1/realtime": 1
+ },
+ "models": {
+  "grok-4-1-fast-non-reasoning": 5,
+  "grok-3": 3,
+  "grok-4-fast": 3,
+  "grok-3-mini": 2,
+  "grok-4": 2,
+  "grok-4-fast-think": 2,
+  "grok-4.20-experimental-beta-0304": 2,
+  "grok-4.20-experimental-beta-0304-thinking": 2,
+  "grok-4-fast-non-reasoning": 2,
+  "grok-4.20-multi-agent-beta-latest": 1,
+  "grok-4-1-fast-reasoning": 1,
+  "grok-4-fast-reasoning": 1,
+  "grok-4.1-fast-reasoning": 1,
+  "grok-4.20-experimental-beta-0304-non-reasoning": 1,
+  "grok-4.20-non-reasoning-latest": 1,
+  "grok-4.20-reasoning-latest": 1,
+  "grok-code-fast-1": 1,
+  "grok-4.20-multi-agent": 1,
+  "grok-2-audio": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 3
+ },
+ "features": {
+  "live_search": 8,
+  "reasoning": 8,
+  "tool_calling": 8,
+  "anthropic_compatible": 4,
+  "structured_output": 3,
+  "streaming": 3,
+  "voice_realtime": 2,
+  "embeddings": 1,
+  "openai_compatible": 1,
+  "vision": 1,
+  "mcp": 1
+ },
+ "sdk_exports": [],
+ "packages": [
+  {
+   "path": "package.json",
+   "ecosystem": "npm",
+   "name": "scira",
+   "version": "0.1.0"
+  }
+ ],
+ "snippets": [
+  {
+   "path": "env/server.ts",
+   "start": 2,
+   "end": 25,
+   "code": "import { createEnv } from '@t3-oss/env-nextjs';\nimport { z } from 'zod';\n\n\nexport const serverEnv = createEnv({\n  server: {\n    XAI_API_KEY: z.string().min(1),\n    OPENAI_API_KEY: z.string().min(1),\n    // ANTHROPIC_API_KEY: z.string().min(1),\n    GROQ_API_KEY: z.string().min(1),\n    GOOGLE_GENERATIVE_AI_API_KEY: z.string().min(1),\n    DAYTONA_API_KEY: z.string().min(1),\n    DATABASE_URL: z.string().min(1),\n    BETTER_AUTH_SECRET: z.string().min(1),\n    GITHUB_CLIENT_ID: z.string().min(1),\n    GITHUB_CLIENT_SECRET: z.string().min(1),\n    GOOGLE_CLIENT_ID: z.string().min(1),\n    GOOGLE_CLIENT_SECRET: z.string().min(1),\n    TWITTER_CLIENT_ID: z.string().min(1),\n    TWITTER_CLIENT_SECRET: z.string().min(1),\n    REDIS_URL: z.string().min(1),\n    UPSTASH_REDIS_REST_URL: z.string().min(1),\n    UPSTASH_REDIS_REST_TOKEN: z.string().min(1),\n    ELEVENLABS_API_KEY: z.string().min(1),"
+  },
+  {
+   "path": "lib/tools/x-search.ts",
+   "start": 1,
+   "end": 21,
+   "code": "import { generateText, tool, stepCountIs } from 'ai';\nimport { z } from 'zod';\nimport { getTweet } from 'react-tweet/api';\nimport { xai } from '@ai-sdk/xai';\nimport { UIMessageStreamWriter } from 'ai';\nimport { ChatMessage } from '@/lib/types';\nimport { all } from 'better-all';\nimport { getBetterAllOptions } from '@/lib/better-all';\n\ninterface CitationSource {\n  sourceType?: string;\n  url?: string;\n}\n\nexport function xSearchTool(dataStream?: UIMessageStreamWriter<ChatMessage>) {\n  return tool({\n    description:\n      'Search X (formerly Twitter) posts using X API with multiple queries for the past 15 days by default otherwise user can specify a date range. If the user gives you a link to a post then put it a\n    inputSchema: z\n      .object({\n        queries: z"
+  },
+  {
+   "path": "lib/tools/extreme-search.ts",
+   "start": 14,
+   "end": 37,
+   "code": "import { scira } from '@/ai/providers';\nimport { ChatMessage } from '../types';\nimport FirecrawlApp from '@mendable/firecrawl-js';\nimport { getTweet } from 'react-tweet/api';\nimport { all } from 'better-all';\nimport { getBetterAllOptions } from '@/lib/better-all';\nimport { xai } from '@ai-sdk/xai';\nimport { PutObjectCommand } from '@aws-sdk/client-s3';\nimport { r2Client, R2_BUCKET_NAME, R2_PUBLIC_URL } from '@/lib/r2';\nimport { nanoid } from 'nanoid';\nimport { VectorStoreIndex, BaseRetriever } from '@vectorstores/core';\nimport { PDFReader } from '@vectorstores/readers/pdf';\nimport { CSVReader } from '@vectorstores/readers/csv';\nimport { DocxReader } from '@vectorstores/readers/docx';\nimport { ExcelReader } from '@vectorstores/excel';\nimport { vercelEmbedding } from '@vectorstores/vercel';\nimport { cohere } from '@ai-sdk/cohere';\nimport { rerank } from 'ai';\nimport { OpenAIResponsesProviderOptions } from '@ai-sdk/openai';\nimport { AnthropicProviderOptions } from '@ai-sdk/anthropic';\nimport { SNAPSHOT_NAME } from '../constants';\nimport { gateway, GatewayProviderOptions } from '@ai-sdk/gateway';\nimport { GoogleGenerativeAIProviderOptions, GoogleLanguageModelOptions } from '@ai-sdk/google';\nimport { TokenClient } from 'tokenc';"
+  },
+  {
+   "path": "ai/providers.ts",
+   "start": 1,
+   "end": 24,
+   "code": "import 'server-only';\nimport { wrapLanguageModel, customProvider, extractReasoningMiddleware, gateway } from 'ai';\n\nimport { createOpenAICompatible } from '@ai-sdk/openai-compatible';\nimport { createOpenAI } from '@ai-sdk/openai';\nimport { createWebSocketFetch } from 'ai-sdk-openai-websocket-fetch';\nimport { xai } from '@ai-sdk/xai';\nimport { groq } from '@ai-sdk/groq';\nimport { mistral } from '@ai-sdk/mistral';\nimport { google } from '@ai-sdk/google';\nimport { baseten } from '@ai-sdk/baseten';\nimport { anthropic } from '@ai-sdk/anthropic';\nimport { cohere } from '@ai-sdk/cohere';\nimport { createOpenRouter } from '@openrouter/ai-sdk-provider';\nimport { createRetryable } from 'ai-retry';\nimport { createWorkersAI } from 'workers-ai-provider';\n\nconst ark = createOpenAICompatible({\n  name: 'ark',\n  baseURL: 'https://ark.ap-southeast.bytepluses.com/api/v3',\n  apiKey: process.env.ARK_API_KEY,\n});\n\nconst sarvam = createOpenAICompatible({"
+  },
+  {
+   "path": "app/api/x-wrapped/route.ts",
+   "start": 1,
+   "end": 19,
+   "code": "import { NextRequest, NextResponse } from 'next/server';\nimport { xai } from '@ai-sdk/xai';\nimport { generateText, Output, stepCountIs } from 'ai';\nimport { z } from 'zod';\nimport { getTweet } from 'react-tweet/api';\nimport { Redis } from '@upstash/redis';\nimport { all } from 'better-all';\nimport { getBetterAllOptions } from '@/lib/better-all';\n\ninterface CitationSource {\n  sourceType?: string;\n  url?: string;\n}\n\ninterface XWrappedData {\n  username: string;\n  displayName?: string;\n  avatarUrl?: string;\n  followersCount?: number;"
+  },
+  {
+   "path": "app/api/xql/route.ts",
+   "start": 14,
+   "end": 37,
+   "code": "import { ChatSDKError } from '@/lib/errors';\n\nimport { markdownJoinerTransform } from '@/lib/parser';\nimport { scira } from '@/ai/providers';\n\nimport { z } from 'zod';\nimport { xai } from '@ai-sdk/xai';\n\nconst xqlTool = tool({\n  description:\n    'Search X posts for recent information and discussions with the ability to filter by X handles, date range, and post engagement metrics.',\n  inputSchema: z\n    .object({\n      query: z.string().describe('The new rephrased natural language query crafted by you.'),\n      startDate: z\n        .string()\n        .describe('The start date of the search in the format YYYY-MM-DD (default to 15 days ago if not specified)'),\n      endDate: z\n        .string()\n        .describe('The end date of the search in the format YYYY-MM-DD (default to today if not specified)'),\n      includeXHandles: z\n        .array(z.string())\n        .max(10)\n        .optional()"
+  },
+  {
+   "path": "app/api/lookout/route.ts",
+   "start": 53,
+   "end": 76,
+   "code": "  trendingMoviesTool,\n  trendingTvTool,\n  textTranslateTool,\n} from '@/lib/tools';\nimport { ChatMessage } from '@/lib/types';\nimport { type UIMessageStreamWriter } from 'ai';\nimport { XaiProviderOptions } from '@ai-sdk/xai';\n\n/**\n * Truncates markdown at a natural paragraph boundary to avoid broken links,\n * incomplete list items, or mid-sentence cuts.\n */\nfunction truncateMarkdown(text: string, maxLength: number): string {\n  if (text.length <= maxLength) return text;\n\n  const softLimit = Math.min(text.length, maxLength + 400);\n\n  function scanUntil(endIndex: number) {\n    let isInInlineCode = false;\n    let isInFence = false;\n    let fenceTickCount = 0;\n\n    let linkTextDepth = 0;\n    let linkUrlDepth = 0;"
+  },
+  {
+   "path": "app/api/raycast/route.ts",
+   "start": 1,
+   "end": 21,
+   "code": "import { webSearchTool } from '@/lib/tools';\nimport { xSearchTool } from '@/lib/tools/x-search';\nimport { convertToModelMessages, customProvider, generateText, stepCountIs } from 'ai';\nimport { xai } from '@ai-sdk/xai';\n\nconst scira = customProvider({\n  languageModels: {\n    'scira-default': xai('grok-4-1-fast-non-reasoning'),\n  },\n});\n\nexport const maxDuration = 800;\n\n// Define separate system prompts for each group\nconst groupSystemPrompts = {\n  web: `You are Scira for Raycast, a powerful AI web search assistant.\n\nToday's Date: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit', weekday: 'short' })}\nCurrent Time: ${new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}\n\n### Core Guidelines:"
+  },
+  {
+   "path": "app/api/search/route.ts",
+   "start": 62,
+   "end": 85,
+   "code": "} from '@/lib/search/server-helpers';\nimport { getCachedCustomInstructionsByUserId, getCachedUserPreferencesByUserId } from '@/lib/user-data-server';\nimport { GoogleGenerativeAIProviderOptions, GoogleLanguageModelOptions } from '@ai-sdk/google';\nimport { unauthenticatedRateLimit, getClientIdentifier } from '@/lib/rate-limit';\nimport { loadConfiguredTools } from '@/lib/search/tool-loader';\nimport { CohereChatModelOptions } from '@ai-sdk/cohere';\nimport { xai } from '@ai-sdk/xai';\n\ninterface CriticalChecksResult {\n  canProceed: boolean;\n  error?: any;\n  isProUser: boolean;\n  isMaxUser: boolean;\n  messageCount?: number;\n  extremeSearchUsage?: number;\n  subscriptionData?: any;\n  shouldBypassLimits?: boolean;\n}\n\ninterface ChatInitializationParams {\n  chatQueryPromise: Promise<any>;\n  lightweightUser: { userId: string; email: string; isProUser: boolean; isMaxUser: boolean } | null;\n  isProUser: boolean;\n  isMaxUser: boolean;"
+  },
+  {
+   "path": "hooks/use-voice-client.ts",
+   "start": 589,
+   "end": 612,
+   "code": "        voice: effectiveVoice,\n        instructions: effectiveInstructions,\n        sampleRate,\n      };\n      isSessionConfiguredRef.current = false;\n\n      const ws = new WebSocket(\"wss://api.x.ai/v1/realtime\", [\n        \"realtime\",\n        `xai-client-secret.${ephemeralToken}`,\n        \"openai-beta.realtime-v1\",\n      ]);\n\n      wsRef.current = ws;\n\n      const CONNECTION_TIMEOUT_MS = 10_000;\n      connectionTimeoutRef.current = setTimeout(() => {\n        if (ws.readyState !== WebSocket.OPEN) {\n          connectionTimeoutRef.current = null;\n          setError(\"Connection timed out. Please try again.\");\n          cleanup();\n        }\n      }, CONNECTION_TIMEOUT_MS);\n\n      ws.onopen = () => {"
+  }
+ ],
+ "files": [
+  {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 246,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": ".env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 75,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "package.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 235,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "env/server.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 64,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "components/searches-page.tsx",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 835,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "lib/tools/x-search.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 300,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "lib/tools/extreme-search.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1963,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "ai/models.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 3015,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-fast",
+    "grok-4-fast-think",
+    "grok-4.20-experimental-beta-0304",
+    "grok-4.20-experimental-beta-0304-thinking",
+    "grok-4.20-multi-agent-beta-latest"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "ai/providers.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 512,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4-fast-think",
+    "grok-4.1-fast-reasoning",
+    "grok-4.20-experimental-beta-0304",
+    "grok-4.20-experimental-beta-0304-non-reasoning",
+    "grok-4.20-experimental-beta-0304-thinking",
+    "grok-4.20-non-reasoning-latest",
+    "grok-4.20-reasoning-latest",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "app/api/x-wrapped/route.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 444,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast",
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "structured_output",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "app/api/xql/route.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 225,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "app/api/lookout/route.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1022,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "live_search",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "app/api/raycast/route.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 108,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "app/api/search/route.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1759,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-multi-agent"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "hooks/use-voice-client.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1101,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [
+    "grok-2-audio"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  }
+ ]
+}

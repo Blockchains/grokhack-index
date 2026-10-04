@@ -1,0 +1,677 @@
+{
+ "fork": "Blockchains/agno",
+ "upstream": "agno-agi/agno",
+ "category": "agent-framework",
+ "stars": 42551,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-10-04T14:37:22Z",
+ "description": "Build, run, and manage agent platforms.",
+ "commit": "3ca74c272fa5017fae4fab234e988378c8f14c63",
+ "indexed_at": "2026-10-04T16:51:10Z",
+ "status": "ok",
+ "clone_kb": 93880,
+ "seconds": 67.7,
+ "files_scanned": 5890,
+ "languages": {
+  "Python": 5023,
+  "TypeScript": 7
+ },
+ "grok_files": 35,
+ "grok_files_by_kind": {
+  "example": 19,
+  "config": 1,
+  "source": 6,
+  "test": 9
+ },
+ "hosts": {
+  "api.x.ai": 4
+ },
+ "endpoints": {
+  "/v1/models": 3,
+  "/v1/responses": 2
+ },
+ "models": {
+  "grok-4.3": 5,
+  "grok-4.1-fast-non-reasoning": 5,
+  "grok-3-mini-fast": 4,
+  "grok-3": 3,
+  "grok-2-vision-latest": 3,
+  "grok-2-latest": 3,
+  "grok-4-1-fast-non-reasoning-latest": 3,
+  "grok-2": 2,
+  "grok-3-mini-beta": 1,
+  "grok-3-beta": 1,
+  "grok-3-mini": 1,
+  "grok-4-0709": 1,
+  "grok-2-vision-1212": 1,
+  "grok-2-1212": 1,
+  "grok-4.20-0309-reasoning": 1,
+  "grok-4": 1,
+  "grok-4.5": 1,
+  "grok-4.6": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 10,
+  "XAI_TOKEN_ENCRYPTION_KEY": 6,
+  "XAI_TOKEN_URL": 3,
+  "XAI_OAUTH_CLIENT_ID": 2,
+  "XAI_OAUTH_SCOPE": 2,
+  "XAI_OAUTH_REFRESH_TOKEN": 1,
+  "XAI_DEVICE_CODE_URL": 1,
+  "XAI_OAUTH_ISSUER": 1
+ },
+ "features": {
+  "tool_calling": 13,
+  "streaming": 10,
+  "reasoning": 9,
+  "structured_output": 5,
+  "live_search": 3,
+  "vision": 3,
+  "anthropic_compatible": 1,
+  "openai_compatible": 1
+ },
+ "sdk_exports": [
+  {
+   "path": "libs/agno/agno/models/xai/oauth.py",
+   "lang": "Python",
+   "names": [
+    "DeviceLoginInfo",
+    "DevicePollStatus",
+    "DevicePollResult",
+    "XAITokenManager"
+   ]
+  },
+  {
+   "path": "libs/agno/agno/models/xai/responses.py",
+   "lang": "Python",
+   "names": [
+    "xAIResponses"
+   ]
+  },
+  {
+   "path": "libs/agno/agno/models/xai/xai.py",
+   "lang": "Python",
+   "names": [
+    "xAI"
+   ]
+  }
+ ],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "libs/agno/agno/models/xai/oauth.py",
+   "start": 26,
+   "end": 49,
+   "code": "XAI_OAUTH_SCOPE = \"openid profile email offline_access grok-cli:access api:access\"\nREFRESH_MARGIN_SECONDS = 300  # fixed margin against the measured 21600s token lifetime\n\n_EXPIRED_LOGIN_MESSAGE = \"The SuperGrok sign-in code expired (30 minutes). Start the login again.\"\n_INVALID_GRANT_MESSAGE = (\n    \"SuperGrok session expired or was revoked. Sign in again (run the device login), \"\n    \"or set XAI_API_KEY to use pay-per-token access.\"\n)\n_UNREADABLE_ROW_MESSAGE = (\n    \"A stored SuperGrok session for user '{user_id}' could not be read (the encryption key may have \"\n    \"changed). Sign in again, or restore the key it was saved with.\"\n)\n_NO_TOKEN_MESSAGE = (\n    \"No SuperGrok token found. Sign in with the device login, or set XAI_API_KEY to use pay-per-token access.\"\n)\n_SYNC_PATH_ASYNC_DB_WARNING = (\n    \"Async database backends need the async token methods (apoll_for_token / aget_access_token). \"\n    \"Falling back to file storage.\"\n)\n\n# Cache for SuperGrok access tokens: {(store scope, provider, user_id, service):\n# (access_token, expires_at)}. Uses double-checked locking: lock-free fast path\n# for cache hits, lock only on cache miss to coordinate token refresh.\n_token_cache: Dict[Tuple[str, str, str, str], Tuple[str, float]] = {}"
+  },
+  {
+   "path": "libs/agno/agno/models/xai/responses.py",
+   "start": 54,
+   "end": 77,
+   "code": "    api_key wins (the credential order in _get_client_params).\n\n    Attributes:\n        id (str): The model id. Defaults to \"grok-4-1-fast-non-reasoning-latest\".\n        name (str): The model name. Defaults to \"xAIResponses\".\n        provider (str): The provider name. Defaults to \"xAI\".\n        api_key (Optional[str]): The API key. Uses XAI_API_KEY env var if not set.\n        base_url (str): The base URL. Defaults to \"https://api.x.ai/v1\".\n        token_provider (Optional[Callable]): Sync callable returning a SuperGrok access token.\n        async_token_provider (Optional[Callable]): Async callable returning a SuperGrok access token.\n        token_manager (Optional[XAITokenManager]): Derives both providers when neither is set.\n        require_user_token (bool): Refuse the shared deployment subscription for an identified\n            user who has not signed in. Defaults to False (identified users fall back to it).\n        reasoning_replay (bool): Replay encrypted reasoning content across turns. Defaults to False.\n    \"\"\"\n\n    id: str = \"grok-4-1-fast-non-reasoning-latest\"\n    name: str = \"xAIResponses\"\n    provider: str = \"xAI\"\n\n    api_key: Optional[str] = None\n    base_url: str = \"https://api.x.ai/v1\"\n\n    # xAI's Responses surface is used statelessly; restate the inherited default explicitly"
+  },
+  {
+   "path": "libs/agno/agno/models/xai/xai.py",
+   "start": 24,
+   "end": 47,
+   "code": "\n    Attributes:\n        id (str): The ID of the language model. Defaults to \"grok-4-1-fast-non-reasoning-latest\".\n        name (str): The name of the API. Defaults to \"xAI\".\n        provider (str): The provider of the API. Defaults to \"xAI\".\n        api_key (Optional[str]): The API key for the xAI API.\n        base_url (Optional[str]): The base URL for the xAI API. Defaults to \"https://api.x.ai/v1\".\n        search_parameters (Optional[Dict[str, Any]]): Search parameters for enabling live search.\n    \"\"\"\n\n    id: str = \"grok-4-1-fast-non-reasoning-latest\"\n    name: str = \"xAI\"\n    provider: str = \"xAI\"\n\n    api_key: Optional[str] = None\n    base_url: str = \"https://api.x.ai/v1\"\n\n    search_parameters: Optional[Dict[str, Any]] = None\n\n    def _get_client_params(self) -> Dict[str, Any]:\n        \"\"\"\n        Returns client parameters for API requests, checking for XAI_API_KEY.\n\n        Returns:"
+  }
+ ],
+ "files": [
+  {
+   "path": "cookbook/90_models/xai/basic.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 38,
+   "endpoints": [],
+   "models": [
+    "grok-2"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/xai/live_search_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 33,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/xai/TEST_LOG.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 73,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "cookbook/90_models/xai/finance_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 126,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini-beta"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/xai/oauth_device_login.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 47,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_TOKEN_ENCRYPTION_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "cookbook/90_models/xai/image_agent_with_memory.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 41,
+   "endpoints": [],
+   "models": [
+    "grok-2-vision-latest"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/xai/oauth_chat_signin.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 69,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_TOKEN_ENCRYPTION_KEY"
+   ],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/xai/reasoning_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 40,
+   "endpoints": [],
+   "models": [
+    "grok-3-beta"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/xai/image_agent.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 38,
+   "endpoints": [],
+   "models": [
+    "grok-2-vision-latest"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/xai/image_agent_bytes.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 49,
+   "endpoints": [],
+   "models": [
+    "grok-2-vision-latest"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/xai/structured_output.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 58,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/xai/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 100,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_TOKEN_ENCRYPTION_KEY"
+   ],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/xai/tool_use.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 30,
+   "endpoints": [],
+   "models": [
+    "grok-2"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/xai/live_search_agent_stream.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 35,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "streaming"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/neosantara/basic.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 38,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/neosantara/structured_output.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 54,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/neosantara/tool_use.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 38,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/cometapi/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 148,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4-0709"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "cookbook/10_reasoning/models/xai/reasoning_effort.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 30,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini-fast"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": ".github/workflows/test_on_release.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 1561,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "scripts/run_model_tests.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 266,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "libs/agno/tests/integration/models/xai/test_multimodal.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 21,
+   "endpoints": [],
+   "models": [
+    "grok-2-vision-1212"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "libs/agno/tests/integration/models/xai/test_tool_use.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 209,
+   "endpoints": [],
+   "models": [
+    "grok-2-1212",
+    "grok-3-mini-fast"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/agno/tests/integration/models/xai/test_basic.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 153,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest",
+    "grok-3-mini-fast"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "libs/agno/tests/integration/models/xai/test_structured_response.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 73,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest",
+    "grok-3-mini-fast"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "libs/agno/tests/integration/models/xai/oauth/test_oauth_live.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 95,
+   "endpoints": [
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_OAUTH_REFRESH_TOKEN",
+    "XAI_TOKEN_ENCRYPTION_KEY",
+    "XAI_TOKEN_URL"
+   ],
+   "features": []
+  },
+  {
+   "path": "libs/agno/tests/unit/models/xai_model/test_oauth_refresh.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 350,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_OAUTH_CLIENT_ID"
+   ],
+   "features": []
+  },
+  {
+   "path": "libs/agno/tests/unit/models/xai_model/test_xai_responses.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1247,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning-latest",
+    "grok-4.20-0309-reasoning",
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "openai_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "libs/agno/tests/unit/models/xai_model/test_oauth_store.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 359,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_OAUTH_SCOPE",
+    "XAI_TOKEN_ENCRYPTION_KEY",
+    "XAI_TOKEN_URL"
+   ],
+   "features": []
+  },
+  {
+   "path": "libs/agno/tests/unit/models/neosantara/test_neosantara.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 51,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "libs/agno/agno/reasoning/openrouter.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 72,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "libs/agno/agno/models/xai/oauth.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 738,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_DEVICE_CODE_URL",
+    "XAI_OAUTH_CLIENT_ID",
+    "XAI_OAUTH_ISSUER",
+    "XAI_OAUTH_SCOPE",
+    "XAI_TOKEN_ENCRYPTION_KEY",
+    "XAI_TOKEN_URL"
+   ],
+   "features": []
+  },
+  {
+   "path": "libs/agno/agno/models/xai/responses.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 673,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning-latest",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "openai_compatible",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/agno/agno/models/xai/xai.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 130,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning-latest"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/agno/agno/models/neosantara/neosantara.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 42,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  }
+ ]
+}

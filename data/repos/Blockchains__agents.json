@@ -1,0 +1,415 @@
+{
+ "fork": "Blockchains/agents",
+ "upstream": "livekit/agents",
+ "category": "voice-realtime",
+ "stars": 14507,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-10-04T15:31:14Z",
+ "description": "A framework for building realtime voice AI agents \ud83e\udd16\ud83c\udf99\ufe0f\ud83d\udcf9 ",
+ "commit": "8d28326212fd2feb141cb68764dbcc438f25d6c1",
+ "indexed_at": "2026-10-04T16:56:16Z",
+ "status": "ok",
+ "clone_kb": 22080,
+ "seconds": 11.9,
+ "files_scanned": 1365,
+ "languages": {
+  "Python": 1098
+ },
+ "grok_files": 15,
+ "grok_files_by_kind": {
+  "example": 2,
+  "doc": 1,
+  "source": 8,
+  "config": 1,
+  "test": 3
+ },
+ "hosts": {
+  "api.x.ai": 8
+ },
+ "endpoints": {
+  "/v1/realtime": 1,
+  "/v1/chat/completions": 1
+ },
+ "models": {
+  "grok-4-1-fast-non-reasoning": 3,
+  "grok-4-1-fast-reasoning": 2,
+  "grok-4.20-0309-non-reasoning": 2,
+  "grok-4.20-0309-reasoning": 2,
+  "grok-4.20-multi-agent-0309": 2,
+  "grok-4.3": 2,
+  "grok-4.5": 2,
+  "grok-3-fast": 2,
+  "grok-2-1212": 1,
+  "grok-2-image-1212": 1,
+  "grok-2-vision-1212": 1,
+  "grok-3": 1,
+  "grok-3-mini": 1,
+  "grok-3-mini-fast": 1,
+  "grok-4-0709": 1,
+  "grok-4-fast-non-reasoning": 1,
+  "grok-4-fast-reasoning": 1,
+  "grok-4.20-multi-agent": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 9,
+  "XAI_WEBSOCKET_URL": 2,
+  "XAI_BASE_URL": 2,
+  "XAI_REST_URL": 1,
+  "XAI_DEFAULT_INPUT_AUDIO_TRANSCRIPTION": 1,
+  "XAI_DEFAULT_MODEL": 1,
+  "XAI_DEFAULT_TURN_DETECTION": 1,
+  "OPENAI_AZURE_AND_XAI": 1
+ },
+ "features": {
+  "voice_realtime": 7,
+  "reasoning": 5,
+  "tool_calling": 5,
+  "streaming": 2,
+  "live_search": 2,
+  "structured_output": 2,
+  "embeddings": 2,
+  "openai_compatible": 1,
+  "image_generation": 1,
+  "vision": 1,
+  "anthropic_compatible": 1
+ },
+ "sdk_exports": [
+  {
+   "path": "livekit-plugins/livekit-plugins-xai/livekit/plugins/xai/stt.py",
+   "lang": "Python",
+   "names": [
+    "STTOptions",
+    "STT",
+    "SpeechStream"
+   ]
+  },
+  {
+   "path": "livekit-plugins/livekit-plugins-xai/livekit/plugins/xai/tts.py",
+   "lang": "Python",
+   "names": [
+    "TTS",
+    "SynthesizeStream"
+   ]
+  },
+  {
+   "path": "livekit-plugins/livekit-plugins-xai/livekit/plugins/xai/responses/llm.py",
+   "lang": "Python",
+   "names": [
+    "LLM"
+   ]
+  },
+  {
+   "path": "livekit-plugins/livekit-plugins-xai/livekit/plugins/xai/realtime/realtime_model.py",
+   "lang": "Python",
+   "names": [
+    "RealtimeModel",
+    "RealtimeSession"
+   ]
+  }
+ ],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "livekit-plugins/livekit-plugins-xai/livekit/plugins/xai/stt.py",
+   "start": 44,
+   "end": 67,
+   "code": "\nfrom ._utils import PeriodicCollector\nfrom .log import logger\nfrom .types import STTLanguages\n\nSAMPLE_RATE = 16000\nXAI_WEBSOCKET_URL = \"wss://api.x.ai/v1/stt\"\nXAI_REST_URL = \"https://api.x.ai/v1/stt\"\n\n\n@dataclass\nclass STTOptions:\n    enable_interim_results: bool\n    sample_rate: int\n    enable_diarization: bool\n    language: STTLanguages | str\n    endpointing: int\n    vad_threshold: NotGivenOr[float] = NOT_GIVEN\n    smart_turn: NotGivenOr[float] = NOT_GIVEN\n    smart_turn_timeout: NotGivenOr[int] = NOT_GIVEN\n    keyterm: NotGivenOr[list[str]] = NOT_GIVEN\n\n\nclass STT(stt.STT):"
+  },
+  {
+   "path": "livekit-plugins/livekit-plugins-xai/livekit/plugins/xai/tts.py",
+   "start": 39,
+   "end": 62,
+   "code": "from .log import logger\nfrom .types import GrokVoices, TTSLanguages\n\nSAMPLE_RATE = 24000\nNUM_CHANNELS = 1\n\nXAI_WEBSOCKET_URL = \"wss://api.x.ai/v1/tts\"\nDEFAULT_VOICE = \"ara\"\n\n\n@dataclass\nclass _TTSOptions:\n    voice: GrokVoices | str\n    language: TTSLanguages | str\n    tokenizer: tokenize.WordTokenizer\n    optimize_streaming_latency: NotGivenOr[int]\n    speed: NotGivenOr[float]\n    text_normalization: NotGivenOr[bool]\n\n\nclass TTS(tts.TTS):\n    def __init__(\n        self,\n        *,"
+  },
+  {
+   "path": "livekit-plugins/livekit-plugins-xai/livekit/plugins/xai/responses/llm.py",
+   "start": 10,
+   "end": 33,
+   "code": ")\nfrom livekit.agents.utils import is_given\nfrom livekit.plugins import openai\n\nfrom ..tools import XAITool\n\nXAI_BASE_URL = \"https://api.x.ai/v1\"\n\n\nclass LLM(openai.responses.LLM):\n    # xAI's server-side tools (web_search, x_search, file_search) subclass XAITool.\n    _provider_tool_type = XAITool\n\n    def __init__(\n        self,\n        *,\n        model: str = \"grok-4-1-fast-non-reasoning\",\n        api_key: str | None = None,\n        base_url: NotGivenOr[str] = NOT_GIVEN,\n        user: NotGivenOr[str] = NOT_GIVEN,\n        temperature: NotGivenOr[float] = NOT_GIVEN,\n        parallel_tool_calls: NotGivenOr[bool] = NOT_GIVEN,\n        tool_choice: NotGivenOr[ToolChoice] = NOT_GIVEN,\n        timeout: httpx.Timeout | None = None,"
+  },
+  {
+   "path": "livekit-plugins/livekit-plugins-xai/livekit/plugins/xai/realtime/realtime_model.py",
+   "start": 45,
+   "end": 68,
+   "code": "from livekit.plugins.openai.realtime.realtime_model import _DiscardedGeneration\n\nfrom ..log import logger\nfrom ..tools import XAITool, _raise_if_xai_tool_reserved_name_conflict\nfrom ..types import GrokRealtimeModels, GrokVoices\n\nXAI_BASE_URL = \"wss://api.x.ai/v1/realtime\"\n\nXAI_DEFAULT_MODEL: GrokRealtimeModels = \"grok-voice-latest\"\n\nXAI_DEFAULT_INPUT_AUDIO_TRANSCRIPTION = AudioTranscription(model=\"grok-transcribe\")\n\nXAI_DEFAULT_TURN_DETECTION = ServerVad(\n    type=\"server_vad\",\n    threshold=0.5,\n    prefix_padding_ms=300,\n    silence_duration_ms=200,\n    create_response=True,\n    interrupt_response=True,\n)\n\n\nclass RealtimeModel(openai.realtime.RealtimeModel):\n    def __init__("
+  },
+  {
+   "path": "livekit-plugins/livekit-plugins-openai/livekit/plugins/openai/llm.py",
+   "start": 406,
+   "end": 429,
+   "code": "\n    @staticmethod\n    def with_x_ai(\n        *,\n        model: str | XAIChatModels = \"grok-3-fast\",\n        api_key: str | None = None,\n        base_url: str = \"https://api.x.ai/v1\",\n        client: openai.AsyncClient | None = None,\n        user: NotGivenOr[str] = NOT_GIVEN,\n        temperature: NotGivenOr[float] = NOT_GIVEN,\n        parallel_tool_calls: NotGivenOr[bool] = NOT_GIVEN,\n        tool_choice: ToolChoice = \"auto\",\n        reasoning_effort: NotGivenOr[ReasoningEffort] = NOT_GIVEN,\n        safety_identifier: NotGivenOr[str] = NOT_GIVEN,\n        prompt_cache_key: NotGivenOr[str] = NOT_GIVEN,\n        top_p: NotGivenOr[float] = NOT_GIVEN,\n    ) -> LLM:\n        \"\"\"\n        Create a new instance of XAI LLM.\n\n        ``api_key`` must be set to your XAI API key, either using the argument or by setting\n        the ``XAI_API_KEY`` environmental variable.\n        \"\"\"\n        api_key = api_key or os.environ.get(\"XAI_API_KEY\")"
+  },
+  {
+   "path": "livekit-agents/livekit/agents/telemetry/trace_types.py",
+   "start": 320,
+   "end": 343,
+   "code": "    \"api.groq.com\": \"groq\",\n    \"api.mistral.ai\": \"mistral_ai\",\n    \"api.moonshot.ai\": \"moonshot_ai\",\n    \"api.moonshot.cn\": \"moonshot_ai\",\n    \"api.openai.com\": \"openai\",\n    \"api.perplexity.ai\": \"perplexity\",\n    \"api.x.ai\": \"x_ai\",\n    \"generativelanguage.googleapis.com\": \"gcp.gemini\",\n}\n\n_PROVIDER_BY_HOST_SUFFIX: tuple[tuple[str, str], ...] = (\n    (\".openai.azure.com\", \"azure.ai.openai\"),\n    (\".services.ai.azure.com\", \"azure.ai.inference\"),\n    (\".aiplatform.googleapis.com\", \"gcp.vertex_ai\"),\n)\n\n_PROVIDER_BY_NAME: dict[str, str] = {\n    \"amazon\": \"aws.bedrock\",\n    \"amazonbedrock\": \"aws.bedrock\",\n    \"anthropic\": \"anthropic\",\n    \"awsbedrock\": \"aws.bedrock\",\n    \"azureaiinference\": \"azure.ai.inference\",\n    \"azureopenai\": \"azure.ai.openai\",\n    \"bedrock\": \"aws.bedrock\","
+  }
+ ],
+ "files": [
+  {
+   "path": "examples/playground.yaml",
+   "kind": "example",
+   "lang": null,
+   "lines": 394,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice_agents/grok/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 81,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "livekit-plugins/livekit-plugins-xai/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 15,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "livekit-plugins/livekit-plugins-xai/livekit/plugins/xai/stt.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 622,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_REST_URL",
+    "XAI_WEBSOCKET_URL"
+   ],
+   "features": []
+  },
+  {
+   "path": "livekit-plugins/livekit-plugins-xai/livekit/plugins/xai/tts.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 381,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_WEBSOCKET_URL"
+   ],
+   "features": [
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "livekit-plugins/livekit-plugins-xai/livekit/plugins/xai/responses/llm.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 54,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "livekit-plugins/livekit-plugins-xai/livekit/plugins/xai/realtime/realtime_model.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 465,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL",
+    "XAI_DEFAULT_INPUT_AUDIO_TRANSCRIPTION",
+    "XAI_DEFAULT_MODEL",
+    "XAI_DEFAULT_TURN_DETECTION"
+   ],
+   "features": [
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "livekit-plugins/livekit-plugins-openai/livekit/plugins/openai/llm.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1074,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-3-fast"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "openai_compatible",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "livekit-plugins/livekit-plugins-openai/livekit/plugins/openai/models.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 314,
+   "endpoints": [],
+   "models": [
+    "grok-2-1212",
+    "grok-2-image-1212",
+    "grok-2-vision-1212",
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-4-0709",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "reasoning",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": ".github/workflows/test-realtime.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 57,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "livekit-agents/livekit/agents/telemetry/trace_types.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 469,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "livekit-agents/livekit/agents/inference/llm.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 614,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/test_ws_handshake_credential_redaction.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 80,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/test_telemetry_gen_ai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 277,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/test_realtime/test_realtime.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 523,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "OPENAI_AZURE_AND_XAI",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "tool_calling",
+    "voice_realtime"
+   ]
+  }
+ ]
+}

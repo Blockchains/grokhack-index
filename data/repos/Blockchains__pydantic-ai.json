@@ -1,0 +1,2713 @@
+{
+ "fork": "Blockchains/pydantic-ai",
+ "upstream": "pydantic/pydantic-ai",
+ "category": "sdk-provider",
+ "stars": 20401,
+ "license_spdx": "MIT",
+ "license_text_head": "The MIT License (MIT) Copyright (c) Pydantic Services Inc. 2024 to present Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Softw",
+ "pushed_at": "2026-10-04T16:08:12Z",
+ "description": "How Python does AI. Agents, realtime voice, image generation, embeddings. Every model, every interface, typed end to end.",
+ "commit": "c68786e9bc525574daa9914b23de05daf9ca4ca0",
+ "indexed_at": "2026-10-04T16:49:16Z",
+ "status": "ok",
+ "clone_kb": 424128,
+ "seconds": 43.2,
+ "files_scanned": 4014,
+ "languages": {
+  "Python": 1699,
+  "TypeScript": 1
+ },
+ "grok_files": 146,
+ "grok_files_by_kind": {
+  "config": 11,
+  "source": 13,
+  "doc": 12,
+  "test": 110
+ },
+ "hosts": {
+  "api.x.ai": 21
+ },
+ "endpoints": {
+  "/v1/chat/completions": 4,
+  "/v1/realtime": 3,
+  "/v1/messages": 3,
+  "/v1/models": 1,
+  "/v1/images/edits": 1,
+  "/v1/images/generations": 1,
+  "/v1/responses": 1
+ },
+ "models": {
+  "grok-4-1-fast-non-reasoning": 40,
+  "grok-4.3": 24,
+  "grok-4-fast-non-reasoning": 18,
+  "grok-4-fast-reasoning": 17,
+  "grok-3-mini": 14,
+  "grok-3": 14,
+  "grok-3-fast": 13,
+  "grok-4.5": 12,
+  "grok-4": 12,
+  "grok-imagine-image": 9,
+  "grok-4.6": 9,
+  "grok-imagine-image-quality": 7,
+  "grok-imagine-image-2.0": 6,
+  "grok-4.3-latest": 6,
+  "grok-4.20-multi-agent": 5,
+  "grok-4.5-latest": 5,
+  "grok-4-1-fast-reasoning": 4,
+  "grok-code-fast-1": 4,
+  "grok-imagine-image-2026-03-02": 3,
+  "grok-imagine-image-pro": 3,
+  "grok-imagine-image-quality-20260403": 3,
+  "grok-imagine-image-quality-latest": 3,
+  "grok-3-mini-fast": 3,
+  "grok-4-0709": 3,
+  "grok-4-1-fast": 3,
+  "grok-4-fast": 3,
+  "grok-4.20": 3,
+  "grok-3-fast-latest": 2,
+  "grok-3-latest": 2,
+  "grok-3-mini-fast-latest": 2,
+  "grok-4-1-fast-non-reasoning-latest": 2,
+  "grok-4-1-fast-reasoning-latest": 2,
+  "grok-4-fast-non-reasoning-latest": 2,
+  "grok-4-fast-reasoning-latest": 2,
+  "grok-4-latest": 2,
+  "grok-4.20-0309": 2,
+  "grok-4.20-0309-non-reasoning": 2,
+  "grok-4.20-0309-reasoning": 2,
+  "grok-4.20-multi-agent-0309": 2,
+  "grok-4.20-multi-agent-latest": 2,
+  "grok-4.20-non-reasoning": 2,
+  "grok-4.20-non-reasoning-latest": 2,
+  "grok-4.20-reasoning-latest": 2,
+  "grok-123": 2,
+  "grok-beta": 2,
+  "grok-4.6-latest": 1,
+  "grok-imagine-image-9": 1,
+  "grok-4.x": 1,
+  "grok-3-mini-always-on": 1,
+  "grok-4.1": 1,
+  "grok-4.7": 1,
+  "grok-4-1-reasoning": 1,
+  "grok-4.20-reasoning": 1,
+  "grok-3-mini-high": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 20,
+  "XAI_NON_REASONING_MODEL": 2,
+  "XAI_REASONING_MODEL": 2,
+  "XAI_BASE_URL": 1,
+  "XAI_PROTO_CASSETTE_RECORD": 1,
+  "XAI_CASSETTE_PATTERNS": 1,
+  "XAI_MANAGEMENT_KEY": 1,
+  "XAI_MODEL": 1
+ },
+ "features": {
+  "reasoning": 5,
+  "live_search": 4,
+  "image_generation": 4,
+  "voice_realtime": 4,
+  "grpc": 3,
+  "structured_output": 3,
+  "anthropic_compatible": 3,
+  "tool_calling": 2,
+  "vision": 2,
+  "openai_compatible": 2,
+  "mcp": 1,
+  "streaming": 1
+ },
+ "sdk_exports": [
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/models/xai.py",
+   "lang": "Python",
+   "names": [
+    "XaiModelSettings",
+    "XaiModel",
+    "XaiStreamedResponse"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/providers/xai.py",
+   "lang": "Python",
+   "names": [
+    "XaiProvider"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/profiles/grok.py",
+   "lang": "Python",
+   "names": [
+    "GrokModelProfile",
+    "grok_model_profile",
+    "grok_realtime_model_profile"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/realtime/xai.py",
+   "lang": "Python",
+   "names": [
+    "map_conversation_event",
+    "XaiRealtimeModelSettings",
+    "map_event",
+    "XaiRealtimeConnection",
+    "XaiRealtimeModel"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/images/_xai_geometry.py",
+   "lang": "Python",
+   "names": [
+    "resolve_xai_geometry",
+    "resolve_xai_dimensions",
+    "resolve_xai_aspect_ratio"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/images/xai.py",
+   "lang": "Python",
+   "names": [
+    "XaiImageGenerationSettings",
+    "XaiImageGenerationModel"
+   ]
+  }
+ ],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/models/xai.py",
+   "start": 71,
+   "end": 94,
+   "code": "from ..tools import ToolDefinition\nfrom ..usage import RequestUsage\nfrom ._tool_choice import resolve_tool_choice, support_tool_forcing, tool_forcing_unavailable_reason\n\ntry:\n    import grpc\n    import xai_sdk.chat as chat_types\n    from xai_sdk import AsyncClient\n    from xai_sdk.chat import assistant, file, image, required_tool, system, tool, tool_result, user\n    from xai_sdk.proto import chat_pb2, sample_pb2, usage_pb2\n    from xai_sdk.tools import code_execution, collections_search, get_tool_call_type, mcp, web_search, x_search\n    from xai_sdk.types.model import ChatModel\nexcept ImportError as _import_error:\n    raise ImportError(\n        'Please install `xai-sdk` to use the xAI model, '\n        'you can use the `xai` optional group \u2014 `pip install \"pydantic-ai-slim[xai]\"`'\n    ) from _import_error\n\n\n_GRPC_STATUS_TO_HTTP: dict[grpc.StatusCode, int] = {\n    grpc.StatusCode.UNAUTHENTICATED: 401,\n    grpc.StatusCode.PERMISSION_DENIED: 403,\n    grpc.StatusCode.NOT_FOUND: 404,\n    grpc.StatusCode.RESOURCE_EXHAUSTED: 429,"
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/providers/xai.py",
+   "start": 10,
+   "end": 33,
+   "code": "from pydantic_ai.providers import Provider\n\nif TYPE_CHECKING:\n    from pydantic_ai.realtime import RealtimeModelProfile\n\ntry:\n    from xai_sdk import AsyncClient\nexcept ImportError as _import_error:\n    raise ImportError(\n        'Please install the `xai-sdk` package to use the xAI provider, '\n        'you can use the `xai` optional group \u2014 `pip install \"pydantic-ai-slim[xai]\"`'\n    ) from _import_error\n\n\nclass _LazyAsyncClient:\n    \"\"\"Wrapper that creates a fresh AsyncClient per event loop.\n\n    gRPC async channels bind to the event loop at creation time. If the client\n    is created outside an async context (e.g. at module level) and later used\n    inside asyncio.run(), the loop will differ, causing RuntimeError.\n    This wrapper defers client creation and recreates it when the loop changes.\n    See https://github.com/grpc/grpc/issues/32480.\n    \"\"\"\n"
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/realtime/xai.py",
+   "start": 1,
+   "end": 20,
+   "code": "\"\"\"xAI Grok Voice realtime API provider for speech-to-speech sessions.\n\nConnects to `wss://api.x.ai/v1/realtime` over a WebSocket. xAI's realtime API is a deliberate clone of\nthe OpenAI Realtime protocol, so this provider reuses the OpenAI codec from\n[`pydantic_ai.realtime.openai`][pydantic_ai.realtime.openai] \u2014 event mapping, session seeding, tool\nconversion, server-VAD config, and the WebSocket connection itself \u2014 and diverges only where xAI does:\n\n- the `session.update` shape (`voice`/`turn_detection` sit at the session top level, not nested under\n  `audio` as on OpenAI's GA surface);\n- input audio transcription, delivered as cumulative\n  `conversation.item.input_audio_transcription.updated` snapshots plus a final `.completed`, rather\n  than OpenAI's incremental `.delta` events (see [`map_event`][pydantic_ai.realtime.xai.map_event]);\n- native conversation resumption when a reconnect policy is configured: the provider-assigned\n  `conversation.id` is reused and its replay burst is suppressed from local history;\n- no output truncation at barge-in: xAI's `conversation.item.truncate` only lands once the response\n  has ended, and unreliably even then, so\n  [`RealtimeModelProfile.supports_output_truncation`][pydantic_ai.realtime.RealtimeModelProfile.supports_output_truncation]\n  is `False` while cancellation-based interruption still works;\n- no text output \u2014 the API has no response-modality control and always speaks \u2014 so\n  [`RealtimeModelProfile.supports_text_output`][pydantic_ai.realtime.RealtimeModelProfile.supports_text_output]"
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/images/_xai_geometry.py",
+   "start": 1,
+   "end": 20,
+   "code": "from dataclasses import dataclass\n\nfrom xai_sdk.types import ImageAspectRatio, ImageResolution\n\nfrom pydantic_ai.exceptions import UserError\n\nfrom ._geometry import prefer_provider_value\nfrom .settings import (\n    ImageDimensions,\n    ImageGenerationAspectRatio,\n    ImageGenerationSettings,\n)\n\n# Keyed by the members of the gRPC `ImageAspectRatio` enum, the only ratio vocabulary the image RPC\n# accepts. The seven portable ratios the enum omits \u2014 `1:4`, `1:8`, `4:1`, `4:5`, `5:4`, `8:1` and\n# `21:9` \u2014 have no wire representation at all, and bumping the `xai-sdk` floor does not add them:\n# 1.19.0, the newest published release, generates the same 13 members as the locked 1.18.0.\n_XAI_GEOMETRIES: dict[ImageAspectRatio, dict[ImageResolution, ImageDimensions]] = {\n    '1:1': {'1k': (1024, 1024), '2k': (2048, 2048)},\n    '3:4': {'1k': (864, 1152), '2k': (1776, 2368)},"
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/images/xai.py",
+   "start": 22,
+   "end": 45,
+   "code": "from .base import ImageGenerationInput, ImageGenerationModel\nfrom .result import GeneratedImage, ImageGenerationResult\nfrom .settings import ImageGenerationSettings\n\ntry:\n    import grpc\n    from xai_sdk import AsyncClient\n    from xai_sdk.aio.image import ImageResponse\n    from xai_sdk.proto import usage_pb2\n    from xai_sdk.types import (\n        ImageAspectRatio as XaiImageAspectRatio,\n        ImageGenerationModel as LatestXaiImageGenerationModelNames,\n        ImageResolution,\n    )\n\n    from pydantic_ai.models.xai import (\n        _GRPC_STATUS_TO_HTTP as _CHAT_GRPC_STATUS_TO_HTTP,  # pyright: ignore[reportPrivateUsage]\n        _map_api_errors,  # pyright: ignore[reportPrivateUsage]\n    )\n\n    from ._xai_geometry import resolve_xai_geometry\nexcept ImportError as _import_error:\n    raise ImportError(\n        'Please install `xai-sdk` to use the xAI image generation model, '"
+  },
+  {
+   "path": "scripts/upload_test_files.py",
+   "start": 46,
+   "end": 69,
+   "code": "\n\nasync def upload_xai() -> None:\n    from openai import AsyncOpenAI\n\n    client = AsyncOpenAI(\n        api_key=os.environ['XAI_API_KEY'],\n        base_url='https://api.x.ai/v1',\n    )\n\n    image_file = await client.files.create(\n        file=ASSETS / 'kiwi.jpg',\n        purpose='assistants',\n    )\n    print(f'  image: {image_file.id}')\n\n    doc_file = await client.files.create(\n        file=ASSETS / 'dummy.pdf',\n        purpose='assistants',\n    )\n    print(f'  document: {doc_file.id}')\n\n\nasync def upload_google() -> None:"
+  }
+ ],
+ "files": [
+  {
+   "path": "pydantic_ai_slim/pyproject.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 176,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/common_tools/x_search.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 115,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/common_tools/image_generation.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 162,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-2026-03-02",
+    "grok-imagine-image-pro",
+    "grok-imagine-image-quality",
+    "grok-imagine-image-quality-20260403",
+    "grok-imagine-image-quality-latest"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/models/xai.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1595,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4.20-multi-agent",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.5-latest",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/models/_known_model_names.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 769,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-fast-latest",
+    "grok-3-latest",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-3-mini-fast-latest",
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-1-fast",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-non-reasoning-latest",
+    "grok-4-1-fast-reasoning",
+    "grok-4-1-fast-reasoning-latest",
+    "grok-4-fast",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-non-reasoning-latest",
+    "grok-4-fast-reasoning",
+    "grok-4-fast-reasoning-latest",
+    "grok-4-latest",
+    "grok-4.20",
+    "grok-4.20-0309",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.20-multi-agent-latest",
+    "grok-4.20-non-reasoning",
+    "grok-4.20-non-reasoning-latest",
+    "grok-4.20-reasoning-latest",
+    "grok-4.3",
+    "grok-4.3-latest",
+    "grok-4.5",
+    "grok-4.5-latest",
+    "grok-4.6",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/providers/github_copilot.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 265,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/providers/xai.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 170,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "grpc",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/.agents/skills/building-pydantic-ai-agents/references/ARCHITECTURE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 265,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/profiles/grok.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 139,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.3",
+    "grok-4.3-latest",
+    "grok-4.5",
+    "grok-4.5-latest",
+    "grok-4.6",
+    "grok-4.6-latest",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/realtime/xai.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 790,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "openai_compatible",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/capabilities/x_search.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 235,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/images/_xai_geometry.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 135,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-2026-03-02",
+    "grok-imagine-image-9",
+    "grok-imagine-image-pro",
+    "grok-imagine-image-quality",
+    "grok-imagine-image-quality-20260403",
+    "grok-imagine-image-quality-latest"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/images/xai.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 422,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-quality"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "grpc",
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "pydantic_ai_slim/pydantic_ai/images/__init__.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 319,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-quality"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": ".github/workflows/pydantic-ai-provider-mapping-sweep.lock.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 1818,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": ".github/workflows/pydantic-ai-ui-security-review.lock.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 1958,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": ".github/workflows/pydantic-ai-bug-hunter.lock.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 1818,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": ".github/workflows/pydantic-ai-stale-issues-finder.lock.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 1801,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": ".github/workflows/pydantic-ai-pr-review.lock.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 2120,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": ".github/workflows/pydantic-ai-roundtrip-sweep.lock.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 1818,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": ".github/workflows/pydantic-ai-regression-detector.lock.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 1818,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": ".github/workflows/pydantic-ai-streaming-resilience-sweep.lock.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 1818,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": ".github/workflows/pydantic-ai-provider-parity-explore.lock.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 1818,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": ".github/workflows/pydantic-ai-docs-drift.lock.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 1816,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": ".github/workflows/shared/network-vendor-domains.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 118,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".agents/skills/add-new-model/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 295,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4",
+    "grok-4.3",
+    "grok-4.3-latest",
+    "grok-4.5",
+    "grok-4.5-latest",
+    "grok-4.x"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "scripts/upload_test_files.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 154,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "tests/conftest.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1457,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "grpc",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/test_images.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 4754,
+   "endpoints": [
+    "/v1/images/edits",
+    "/v1/images/generations"
+   ],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-2026-03-02",
+    "grok-imagine-image-pro",
+    "grok-imagine-image-quality",
+    "grok-imagine-image-quality-20260403",
+    "grok-imagine-image-quality-latest"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "grpc",
+    "image_generation",
+    "openai_compatible",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/test_thinking.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1875,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-3-mini-always-on",
+    "grok-4",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast-non-reasoning",
+    "grok-4.3",
+    "grok-4.3-latest"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/test_capability_image_generation.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2028,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-quality"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/cassette_utils.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 558,
+   "endpoints": [
+    "/v1/messages"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "grpc",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/test_streaming_errors.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1177,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "grpc",
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/test_cassette_utils.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 177,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/test_capability_spec.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 3751,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-fast-latest",
+    "grok-3-latest",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-3-mini-fast-latest",
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-1-fast",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-non-reasoning-latest",
+    "grok-4-1-fast-reasoning",
+    "grok-4-1-fast-reasoning-latest",
+    "grok-4-fast",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-non-reasoning-latest",
+    "grok-4-fast-reasoning",
+    "grok-4-fast-reasoning-latest",
+    "grok-4-latest",
+    "grok-4.20",
+    "grok-4.20-0309",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.20-multi-agent-latest",
+    "grok-4.20-non-reasoning",
+    "grok-4.20-non-reasoning-latest",
+    "grok-4.20-reasoning-latest",
+    "grok-4.3",
+    "grok-4.3-latest",
+    "grok-4.5",
+    "grok-4.5-latest",
+    "grok-4.6",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/test_exceptions.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 507,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "grpc",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/test_tool_failed_wire.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 486,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "grpc",
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/test_capability_combine.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1408,
+   "endpoints": [],
+   "models": [
+    "grok-4.1",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/test_examples.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1909,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/test_fallback_native_factory.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 420,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "live_search",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/test_capability_native_or_local.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2685,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/clai2/cassettes/github_copilot_models.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 1903,
+   "endpoints": [
+    "/v1/messages"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/mock_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 820,
+   "endpoints": [],
+   "models": [
+    "grok-123"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/test_tool_choice_unit.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1272,
+   "endpoints": [],
+   "models": [
+    "grok-3-fast",
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/test_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 6443,
+   "endpoints": [],
+   "models": [
+    "grok-123",
+    "grok-4-1-fast",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-fast",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_NON_REASONING_MODEL",
+    "XAI_REASONING_MODEL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "grpc",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/models/test_model_settings_support.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 753,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/xai_proto_cassettes.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1144,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL",
+    "XAI_PROTO_CASSETTE_RECORD"
+   ],
+   "features": [
+    "grpc",
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/models/test_model.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 715,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/models/test_multimodal_tool_returns.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1599,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [
+    "XAI_CASSETTE_PATTERNS"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "grpc",
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/models/test_tool_choice_matrix.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 525,
+   "endpoints": [],
+   "models": [
+    "grok-3-fast"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "grpc",
+    "live_search",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/test_stream_close.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 280,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/models/test_openrouter.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2482,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_openrouter/test_openrouter_stream_with_native_options.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 222,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_openrouter/test_openrouter_with_native_options.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 82,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/models/cassettes/test_stream_close/test_cancel_recorded_provider_stream[xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 36,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_tool_choice_matrix/test_tool_choice_matrix[none_with_output-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 100,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_tool_choice_matrix/test_tool_choice_matrix[auto-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 137,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_tool_choice_matrix/test_tool_choice_matrix[required-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 64,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_tool_choice_matrix/test_tool_choice_matrix[none-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 100,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_tool_choice_matrix/test_tool_choice_matrix[list_single-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 78,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_tool_choice_matrix/test_tool_choice_matrix[tools_plus_output-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 184,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_builtin_mcp_server_tool.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 317,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_instructions.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 41,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_builtin_mcp_server_tool_stream.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 2047,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_builtin_multiple_tools.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 498,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_builtin_web_search_tool.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 191,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_builtin_code_execution_tool_stream.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 130,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_builtin_web_search_tool_stream.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 1032,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_stream_events_with_reasoning.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 851,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_request_tool_call.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 162,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_image_as_binary_content_input.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 2346,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_web_search_user_location_recorded.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 272,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_thinking_tool_call_grouping_round_trip.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 194,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_system_prompt.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 41,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_image_url_tool_response.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 131,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_request_structured_response_tool_output.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 183,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_builtin_code_execution_tool.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 84,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_builtin_tools_with_custom_tools.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 385,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_xai/test_xai_request_structured_response_native_output.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 151,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[tool_return_content-binary-video-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[direct-binary-video-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[tool_return_content-url_force_download-audio-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_mixed_content_ordering[xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 2453,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[direct-uploaded_file-image-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 189,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[tool_return_content-url_force_download-video-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[direct-url-video-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[direct-url_force_download-document-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 276,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_model_sees_multiple_images[xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 2450,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[tool_return_content-binary-document-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 157,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[direct-url_force_download-image-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 2805,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[tool_return_content-binary-audio-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[direct-uploaded_file-document-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 196,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[tool_return_content-url-video-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[tool_return_content-url-audio-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[tool_return_content-url-image-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 152,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[tool_return_content-uploaded_file-image-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 172,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[tool_return_content-binary-image-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 2454,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[direct-url_force_download-video-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[direct-binary-image-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 2455,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[direct-url-audio-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_tool_media_framing_reaches_the_provider[xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 2452,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[direct-binary-document-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 159,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[direct-url-image-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 158,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[tool_return_content-url_force_download-document-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 213,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[tool_return_content-url-document-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 168,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[direct-url-document-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 220,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[tool_return_content-uploaded_file-document-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 183,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[direct-binary-audio-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[tool_return_content-url_force_download-image-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 2795,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/models/cassettes/test_multimodal_tool_returns/test_multimodal_tool_return_matrix[direct-url_force_download-audio-xai].xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/xai/test_search_tools.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1159,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-4",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-reasoning",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.20",
+    "grok-4.20-multi-agent",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.3-latest",
+    "grok-code-fast-1"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_MANAGEMENT_KEY",
+    "XAI_NON_REASONING_MODEL",
+    "XAI_REASONING_MODEL"
+   ],
+   "features": [
+    "grpc",
+    "live_search",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/xai/test_thinking.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 215,
+   "endpoints": [],
+   "models": [
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-4.3",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/models/xai/test_attachment_search.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 220,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_MODEL"
+   ],
+   "features": [
+    "grpc",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/xai/test_stream_parity.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 110,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "grpc",
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/models/xai/cassettes/test_thinking/test_xai_unified_thinking_false.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 106,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/xai/cassettes/test_thinking/test_xai_unified_thinking.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 155,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini",
+    "grok-3-mini-high"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/xai/cassettes/test_thinking/test_xai_grok_45_thinking.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 44,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/xai/cassettes/test_search_tools/test_xai_builtin_x_search_tool_stream.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 788,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/xai/cassettes/test_search_tools/test_xai_builtin_file_search_tool.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 233,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/xai/cassettes/test_search_tools/test_xai_builtin_x_search_tool.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 404,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/xai/cassettes/test_attachment_search/test_xai_attachment_search_stream.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 1566,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/models/xai/cassettes/test_attachment_search/test_xai_attachment_search_with_output.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 878,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/cassettes/test_images/test_xai_image_edit_binary_image_vcr.xai.yaml",
+   "kind": "test",
+   "lang": null,
+   "lines": 6413,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/providers/test_litellm.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 142,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/providers/test_vercel.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 150,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/providers/test_github_copilot.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 245,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/providers/test_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 150,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/providers/test_github.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 127,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "openai_compatible",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/providers/test_azure.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 597,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "openai_compatible",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/providers/test_provider_names.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 138,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/providers/test_openrouter.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 346,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/profiles/test_resolution_matrix.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2550,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/realtime/conftest.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 543,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/realtime/test_xai_ws.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 628,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/realtime/test_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2149,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "grpc",
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/realtime/test_inference.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 284,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/realtime/ws_cassettes.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 701,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/input.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 405,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "docs/native-tools.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1158,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "live_search",
+    "mcp",
+    "openai_compatible",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/install.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 95,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "mcp",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "docs/image-generation.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 622,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-quality"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "image_generation",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "docs/models/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 284,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-multi-agent",
+    "grok-4.3",
+    "grok-imagine-image"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "grpc",
+    "image_generation",
+    "live_search",
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/realtime/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 118,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/capabilities/x-search.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 30,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search"
+   ]
+  },
+  {
+   "path": "docs/capabilities/overview.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 475,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/capabilities/thinking.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 373,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "reasoning"
+   ]
+  }
+ ]
+}

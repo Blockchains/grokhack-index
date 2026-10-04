@@ -1,0 +1,503 @@
+{
+ "fork": "Blockchains/pipecat",
+ "upstream": "pipecat-ai/pipecat",
+ "category": "voice-realtime",
+ "stars": 16173,
+ "license_spdx": "BSD-2-Clause",
+ "license_text_head": "BSD 2-Clause License Copyright (c) 2024\u20132026, Daily Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. 2. Redistributions in binary form must reproduce the above copyright notice, ",
+ "pushed_at": "2026-10-03T19:41:34Z",
+ "description": "Open Source framework for voice agents, multimodal apps, and realtime AI. Maintained by Daily and the community.",
+ "commit": "c027943125c0ef7ea1b946b6c438032eb8ff0483",
+ "indexed_at": "2026-10-04T16:56:16Z",
+ "status": "ok",
+ "clone_kb": 76700,
+ "seconds": 12.8,
+ "files_scanned": 1742,
+ "languages": {
+  "Python": 1406,
+  "TypeScript": 64,
+  "JavaScript": 17
+ },
+ "grok_files": 21,
+ "grok_files_by_kind": {
+  "config": 2,
+  "example": 10,
+  "test": 1,
+  "source": 6,
+  "doc": 2
+ },
+ "hosts": {
+  "api.x.ai": 4
+ },
+ "endpoints": {
+  "/v1/realtime": 1
+ },
+ "models": {
+  "grok-4.6": 4,
+  "grok-4.20-non-reasoning": 2
+ },
+ "env_vars": {
+  "XAI_API_KEY": 16,
+  "XAI_VOICE_ID": 2,
+  "XAI_TTFS_P99": 1,
+  "XAI_MODEL": 1
+ },
+ "features": {
+  "voice_realtime": 14,
+  "tool_calling": 4,
+  "live_search": 2,
+  "anthropic_compatible": 2,
+  "reasoning": 1,
+  "mcp": 1
+ },
+ "sdk_exports": [
+  {
+   "path": "src/pipecat/services/xai/stt.py",
+   "lang": "Python",
+   "names": [
+    "language_to_xai_stt_language",
+    "XAISTTSettings",
+    "XAISTTService"
+   ]
+  },
+  {
+   "path": "src/pipecat/services/xai/llm.py",
+   "lang": "Python",
+   "names": [
+    "GrokLLMSettings",
+    "GrokLLMService"
+   ]
+  },
+  {
+   "path": "src/pipecat/services/xai/tts.py",
+   "lang": "Python",
+   "names": [
+    "language_to_xai_language",
+    "XAITTSSettings",
+    "XAIHttpTTSService",
+    "XAIWebsocketTTSSettings",
+    "XAITTSService"
+   ]
+  },
+  {
+   "path": "src/pipecat/services/xai/realtime/llm.py",
+   "lang": "Python",
+   "names": [
+    "CurrentAudioResponse",
+    "GrokRealtimeLLMSettings",
+    "GrokRealtimeLLMService"
+   ]
+  }
+ ],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "examples/function-calling/function-calling-grok.py",
+   "start": 80,
+   "end": 103,
+   "code": "    logger.info(\"Starting bot\")\n\n    async with aiohttp.ClientSession() as session:\n        stt = DeepgramSTTService(api_key=os.environ[\"DEEPGRAM_API_KEY\"])\n\n        tts = XAIHttpTTSService(\n            api_key=os.environ[\"XAI_API_KEY\"],\n            aiohttp_session=session,\n            settings=XAIHttpTTSService.Settings(\n                voice=\"eve\",\n            ),\n        )\n\n        llm = GrokLLMService(\n            api_key=os.environ[\"XAI_API_KEY\"],\n            settings=GrokLLMService.Settings(\n                system_instruction=\"You are a helpful assistant in a voice conversation. Your responses will be spoken aloud, so avoid emojis, bullet points, or other formatting that can't be spoken. \n            ),\n        )\n\n        context = LLMContext(tools=[get_current_weather, get_restaurant_recommendation])\n        user_aggregator, assistant_aggregator = LLMContextAggregatorPair(\n            context,\n            user_params=LLMUserAggregatorParams(vad_analyzer=SileroVADAnalyzer()),"
+  },
+  {
+   "path": "examples/persistent-context/persistent-context-grok-realtime.py",
+   "start": 157,
+   "end": 180,
+   "code": "\nWhen the user asks to save or load a conversation, use the appropriate tool.\nRemember, your responses should be short - just one or two sentences usually.\"\"\",\n    )\n\n    llm = GrokRealtimeLLMService(\n        api_key=os.environ[\"XAI_API_KEY\"],\n        session_properties=session_properties,\n    )\n\n    # Register function handlers\n\n    context = LLMContext(\n        [{\"role\": \"developer\", \"content\": \"Say hello!\"}],\n        [\n            get_current_weather,\n            save_conversation,\n            get_saved_conversation_filenames,\n            load_conversation,\n        ],\n    )\n    user_aggregator, assistant_aggregator = LLMContextAggregatorPair(\n        context,\n    )"
+  },
+  {
+   "path": "examples/realtime/realtime-grok-async-tool.py",
+   "start": 99,
+   "end": 122,
+   "code": "\n\nasync def run_bot(transport: BaseTransport, runner_args: RunnerArguments):\n    logger.info(\"Starting bot\")\n\n    llm = GrokRealtimeLLMService(\n        api_key=os.environ[\"XAI_API_KEY\"],\n        settings=GrokRealtimeLLMService.Settings(\n            system_instruction=system_instruction,\n            session_properties=SessionProperties(\n                voice=\"rex\",\n            ),\n        ),\n    )\n\n    context = LLMContext(tools=[get_current_weather])\n    # It appears that Grok Realtime can sometimes be slow to detect the start\n    # of a user's turn; uncomment the below imports and user_params to\n    # enable \"supplemental\" interruptions.\n    # from pipecat.turns.user_start.vad_user_turn_start_strategy import VADUserTurnStartStrategy\n    # from pipecat.audio.vad.silero import SileroVADAnalyzer\n    # from pipecat.turns.user_turn_strategies import UserTurnStrategies\n    # from pipecat.processors.aggregators.llm_response_universal import LLMUserAggregatorParams\n    user_aggregator, assistant_aggregator = LLMContextAggregatorPair("
+  },
+  {
+   "path": "examples/realtime/realtime-grok-locally-driven-turns.py",
+   "start": 132,
+   "end": 155,
+   "code": "        # example drives turn boundaries locally via the SileroVADAnalyzer\n        # wired into the user aggregator below.\n        turn_detection=None,\n    )\n\n    llm = GrokRealtimeLLMService(\n        api_key=os.environ[\"XAI_API_KEY\"],\n        settings=GrokRealtimeLLMService.Settings(\n            system_instruction=\"\"\"You are a helpful and friendly AI assistant powered by Grok.\n\n    You have access to several tools:\n    - Weather information\n    - Current time\n    - Restaurant recommendations\n    - Web search (built-in)\n    - X/Twitter search (built-in)\n\n    Your voice and personality should be warm and engaging. Keep your responses\n    concise and conversational since this is a voice interaction.\n\n    If the user asks about current events or news, use web search.\n    If they ask about what people are saying on social media, use X search.\n\n    Always be helpful and proactive in offering assistance.\"\"\","
+  },
+  {
+   "path": "examples/realtime/realtime-grok.py",
+   "start": 14,
+   "end": 37,
+   "code": "- Built-in voice activity detection (VAD)\n- Built-in and custom voice IDs\n- Built-in tools: web_search, x_search, file_search\n- Custom function calling\n\nRequirements:\n    - XAI_API_KEY environment variable set\n    - uv add \"pipecat-ai[grok]\"\n\nUsage:\n    python 50-grok-realtime.py --transport webrtc\n    python 50-grok-realtime.py --transport daily\n\"\"\"\n\nimport os\nfrom datetime import datetime\n\nfrom dotenv import load_dotenv\nfrom loguru import logger\n\nfrom pipecat.evals.transport import EvalTransportParams\nfrom pipecat.frames.frames import LLMRunFrame\nfrom pipecat.observers.loggers.transcription_log_observer import (\n    TranscriptionLogObserver,"
+  },
+  {
+   "path": "examples/update-settings/llm/llm-grok.py",
+   "start": 62,
+   "end": 85,
+   "code": "        settings=CartesiaTTSService.Settings(\n            voice=\"86e30c1d-714b-4074-a1f2-1cb6b552fb49\",\n        ),\n    )\n\n    llm = GrokLLMService(\n        api_key=os.environ[\"XAI_API_KEY\"],\n        settings=GrokLLMService.Settings(\n            system_instruction=\"You are a helpful assistant in a voice conversation. Your responses will be spoken aloud, so avoid emojis, bullet points, or other formatting that can't be spoken. Resp\n        ),\n    )\n\n    context = LLMContext()\n    user_aggregator, assistant_aggregator = LLMContextAggregatorPair(\n        context,\n        user_params=LLMUserAggregatorParams(vad_analyzer=SileroVADAnalyzer()),\n    )\n\n    pipeline = Pipeline(\n        [\n            transport.input(),\n            stt,\n            user_aggregator,\n            llm,"
+  },
+  {
+   "path": "examples/update-settings/llm/llm-grok-realtime.py",
+   "start": 53,
+   "end": 76,
+   "code": "\n\nasync def run_bot(transport: BaseTransport, runner_args: RunnerArguments):\n    logger.info(\"Starting bot\")\n\n    llm = GrokRealtimeLLMService(\n        api_key=os.environ[\"XAI_API_KEY\"],\n        system_instruction=\"You are a helpful assistant in a voice conversation. Your responses will be spoken aloud, so avoid emojis, bullet points, or other formatting that can't be spoken. Respond \n    )\n\n    context = LLMContext()\n    # It appears that Grok Realtime can sometimes be slow to detect the start\n    # of a user's turn; uncomment the below imports and user_params to\n    # enable \"supplemental\" interruptions.\n    # from pipecat.turns.user_start.vad_user_turn_start_strategy import VADUserTurnStartStrategy\n    # from pipecat.audio.vad.silero import SileroVADAnalyzer\n    # from pipecat.turns.user_turn_strategies import UserTurnStrategies\n    # from pipecat.processors.aggregators.llm_response_universal import LLMUserAggregatorParams\n    user_aggregator, assistant_aggregator = LLMContextAggregatorPair(\n        context,\n        # user_params=LLMUserAggregatorParams(\n        #     vad_analyzer=SileroVADAnalyzer(),\n        #     user_turn_strategies=UserTurnStrategies(start=[VADUserTurnStartStrategy(\n        #         enable_interruptions=True,"
+  },
+  {
+   "path": "examples/voice/voice-xai-http.py",
+   "start": 58,
+   "end": 81,
+   "code": "    logger.info(\"Starting bot\")\n\n    async with aiohttp.ClientSession() as session:\n        stt = DeepgramSTTService(api_key=os.getenv(\"DEEPGRAM_API_KEY\"))\n\n        tts = XAIHttpTTSService(\n            api_key=os.getenv(\"XAI_API_KEY\"),\n            aiohttp_session=session,\n            settings=XAIHttpTTSService.Settings(\n                voice=\"eve\",\n            ),\n        )\n\n        llm = GrokLLMService(\n            api_key=os.getenv(\"XAI_API_KEY\"),\n            settings=GrokLLMService.Settings(\n                system_instruction=\"You are a helpful assistant in a voice conversation. Your responses will be spoken aloud, so avoid emojis, bullet points, or other formatting that can't be spoken. \n            ),\n        )\n\n        context = LLMContext()\n        user_aggregator, assistant_aggregator = LLMContextAggregatorPair(\n            context,\n            user_params=LLMUserAggregatorParams(vad_analyzer=SileroVADAnalyzer()),"
+  },
+  {
+   "path": "examples/voice/voice-xai.py",
+   "start": 55,
+   "end": 78,
+   "code": "\n\nasync def run_bot(transport: BaseTransport, runner_args: RunnerArguments):\n    logger.info(\"Starting bot\")\n\n    async with aiohttp.ClientSession() as session:\n        stt = XAISTTService(api_key=os.environ[\"XAI_API_KEY\"])\n\n        tts = XAITTSService(\n            api_key=os.environ[\"XAI_API_KEY\"],\n            aiohttp_session=session,\n            settings=XAITTSService.Settings(\n                voice=\"eve\",\n            ),\n        )\n\n        llm = GrokLLMService(\n            api_key=os.environ[\"XAI_API_KEY\"],\n            settings=GrokLLMService.Settings(\n                system_instruction=\"You are a helpful assistant in a voice conversation. Your responses will be spoken aloud, so avoid emojis, bullet points, or other formatting that can't be spoken. \n            ),\n        )\n\n        context = LLMContext()"
+  },
+  {
+   "path": "examples/transcription/transcription-xai.py",
+   "start": 58,
+   "end": 81,
+   "code": "\n\nasync def run_bot(transport: BaseTransport, runner_args: RunnerArguments):\n    logger.info(\"Starting bot\")\n\n    stt = XAISTTService(\n        api_key=os.environ[\"XAI_API_KEY\"],\n    )\n\n    tl = TranscriptionLogger()\n\n    vad_processor = VADProcessor(vad_analyzer=SileroVADAnalyzer())\n\n    pipeline = Pipeline([transport.input(), vad_processor, stt, tl, transport.output()])\n\n    worker = PipelineWorker(\n        pipeline,\n        idle_timeout_secs=runner_args.pipeline_idle_timeout_secs,\n        processor_unusable_policy=ProcessorUnusablePolicy.END,\n    )\n\n    runner = WorkerRunner(handle_sigint=runner_args.handle_sigint)\n\n    await runner.add_workers(worker)"
+  },
+  {
+   "path": "src/pipecat/services/xai/stt.py",
+   "start": 102,
+   "end": 125,
+   "code": "\n\nclass XAISTTService(WebsocketSTTService):\n    \"\"\"xAI real-time speech-to-text service.\n\n    Streams audio to xAI's WebSocket STT endpoint and emits interim and final\n    transcription frames. The ``XAI_API_KEY`` is passed directly as a Bearer\n    token on the WebSocket handshake.\n\n    The connection is persistent: audio is streamed continuously and the\n    server emits ``transcript.partial`` events with ``is_final`` and\n    ``speech_final`` flags. Interim results (``is_final=false``) and chunk\n    finals (``is_final=true, speech_final=false``) are pushed as\n    :class:`~pipecat.frames.frames.InterimTranscriptionFrame`. Only the\n    utterance final (``speech_final=true``) is pushed as a\n    :class:`~pipecat.frames.frames.TranscriptionFrame`, because it restates\n    the entire utterance, including the text of every earlier chunk final. If\n    the connection drops mid-session, the base class reconnects automatically.\n    \"\"\"\n\n    Settings = XAISTTSettings\n    _settings: Settings\n\n    def __init__("
+  },
+  {
+   "path": "src/pipecat/services/xai/llm.py",
+   "start": 53,
+   "end": 76,
+   "code": "    _settings: Settings\n\n    def __init__(\n        self,\n        *,\n        api_key: str,\n        base_url: str = \"https://api.x.ai/v1\",\n        model: str | None = None,\n        settings: Settings | None = None,\n        **kwargs,\n    ):\n        \"\"\"Initialize the GrokLLMService with API key and model.\n\n        Args:\n            api_key: The API key for accessing Grok's API.\n            base_url: The base URL for Grok API. Defaults to \"https://api.x.ai/v1\".\n            model: The model identifier to use. Defaults to \"grok-4.20-non-reasoning\".\n\n                .. deprecated:: 0.0.105\n                    Use ``settings=GrokLLMService.Settings(model=...)`` instead.\n                    Will be removed in 2.0.0.\n\n            settings: Runtime-updatable settings. When provided alongside deprecated\n                parameters, ``settings`` values take precedence."
+  },
+  {
+   "path": "src/pipecat/services/xai/tts.py",
+   "start": 6,
+   "end": 29,
+   "code": "\n\"\"\"xAI text-to-speech service implementation.\n\nProvides two TTS services against xAI's voice API:\n\n- :class:`XAIHttpTTSService` uses the batch HTTP endpoint at\n  ``https://api.x.ai/v1/tts``.\n- :class:`XAITTSService` uses the streaming WebSocket endpoint at\n  ``wss://api.x.ai/v1/tts``.\n\nSee https://docs.x.ai/developers/rest-api-reference/inference/voice.\n\"\"\"\n\nimport base64\nimport json\nfrom collections.abc import AsyncGenerator\nfrom dataclasses import dataclass, field\nfrom typing import Any\nfrom urllib.parse import urlencode\n\nimport aiohttp\nfrom loguru import logger\nfrom websockets.protocol import State\n"
+  },
+  {
+   "path": "src/pipecat/services/xai/realtime/llm.py",
+   "start": 211,
+   "end": 234,
+   "code": "    adapter_class = GrokRealtimeLLMAdapter\n\n    def __init__(\n        self,\n        *,\n        api_key: str,\n        base_url: str = \"wss://api.x.ai/v1/realtime\",\n        session_properties: events.SessionProperties | None = None,\n        settings: Settings | None = None,\n        start_audio_paused: bool = False,\n        **kwargs,\n    ):\n        \"\"\"Initialize the Grok Realtime Voice Agent LLM service.\n\n        Args:\n            api_key: xAI API key for authentication.\n            base_url: WebSocket base URL for the realtime API.\n                Defaults to \"wss://api.x.ai/v1/realtime\".\n            session_properties: Configuration properties for the realtime session.\n                If None, uses default SessionProperties with voice \"eve\".\n\n                .. deprecated:: 0.0.105\n                    Use ``settings=GrokRealtimeLLMService.Settings(session_properties=...)``\n                    instead."
+  },
+  {
+   "path": "src/pipecat/cli/registry/service_metadata.py",
+   "start": 1277,
+   "end": 1300,
+   "code": "    \"xai_realtime\": (\n        \"session_properties = SessionProperties(\\n\"\n        '    voice=os.getenv(\"XAI_VOICE_ID\"),\\n'\n        \")\\n\"\n        \"\\n\"\n        \"llm = GrokRealtimeLLMService(\\n\"\n        '    api_key=os.getenv(\"XAI_API_KEY\"),\\n'\n        \"    settings=GrokRealtimeLLMService.Settings(\\n\"\n        \"        session_properties=session_properties,\\n\"\n        f'        system_instruction=\"{DEFAULT_SYSTEM_INSTRUCTION}\",\\n'\n        \"    ),\\n\"\n        \")\"\n    ),\n    \"aws_nova_realtime\": (\n        \"llm = AWSNovaSonicLLMService(\\n\"\n        '    secret_access_key=os.getenv(\"AWS_SECRET_ACCESS_KEY\"),\\n'\n        '    access_key_id=os.getenv(\"AWS_ACCESS_KEY_ID\"),\\n'\n        '    region=os.getenv(\"AWS_REGION\"),\\n'\n        '    session_token=os.getenv(\"AWS_SESSION_TOKEN\"),\\n'\n        \"    settings=AWSNovaSonicLLMService.Settings(\\n\"\n        '        voice=os.getenv(\"AWS_VOICE_ID\"),\\n'\n        f'        system_instruction=\"{DEFAULT_SYSTEM_INSTRUCTION}\",\\n'\n        \"    ),\\n\"\n        \")\""
+  },
+  {
+   "path": "src/pipecat/cli/registry/_configs.py",
+   "start": 89,
+   "end": 112,
+   "code": "        \"WhisperSTTService(\\n\"\n        \"        settings=WhisperSTTService.Settings(\\n\"\n        '            model=os.getenv(\"WHISPER_MODEL\", \"Systran/faster-distil-whisper-medium.en\"),\\n'\n        \"        ),\\n\"\n        \"    )\\n\"\n    ),\n    \"xai_stt\": 'XAISTTService(api_key=os.getenv(\"XAI_API_KEY\"))',\n    # LLM Services\n    \"anthropic_llm\": (\n        \"AnthropicLLMService(\\n\"\n        '        api_key=os.getenv(\"ANTHROPIC_API_KEY\"),\\n'\n        \"        settings=AnthropicLLMService.Settings(\\n\"\n        '            model=os.getenv(\"ANTHROPIC_MODEL\"),\\n'\n        '            system_instruction=\"You are a helpful assistant in a voice conversation. Your responses will be spoken aloud, so avoid emojis, bullet points, or other formatting that can\\'t be sp\n        \"        ),\\n\"\n        \"    )\\n\"\n    ),\n    \"aws_bedrock_llm\": (\n        \"AWSBedrockLLMService(\\n\"\n        '    aws_region=os.getenv(\"AWS_REGION\"),\\n'\n        \"    settings=AWSBedrockLLMService.Settings(\\n\"\n        '        model=os.getenv(\"AWS_BEDROCK_MODEL\"),\\n'\n        '        system_instruction=\"You are a helpful assistant in a voice conversation. Your responses will be spoken aloud, so avoid emojis, bullet points, or other formatting that can\\'t be spoken\n        \"    ),\\n\""
+  }
+ ],
+ "files": [
+  {
+   "path": "env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 273,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/function-calling/function-calling-grok.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 158,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/persistent-context/persistent-context-grok-realtime.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 225,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/realtime/realtime-grok-async-tool.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 181,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/realtime/realtime-grok-locally-driven-turns.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 246,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/realtime/realtime-grok.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 288,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/update-settings/llm/llm-grok.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 137,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/update-settings/llm/llm-grok-realtime.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 156,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice/voice-xai-http.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 136,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice/voice-xai.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 136,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/transcription/transcription-xai.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 100,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/test_llm_token_usage_live.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 391,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "evals/turn-completion/manifest.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 323,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/pipecat/services/xai/stt.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 420,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_TTFS_P99"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pipecat/services/xai/llm.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 155,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/pipecat/services/xai/tts.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 629,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pipecat/services/xai/realtime/llm.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1212,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pipecat/cli/registry/service_metadata.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1322,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_VOICE_ID"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/pipecat/cli/registry/_configs.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 747,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_MODEL",
+    "XAI_VOICE_ID"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "changelog/5559.added.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "changelog/5934.added.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  }
+ ]
+}

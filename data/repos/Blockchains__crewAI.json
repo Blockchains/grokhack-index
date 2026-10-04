@@ -1,0 +1,80 @@
+{
+ "fork": "Blockchains/crewAI",
+ "upstream": "crewAIInc/crewAI",
+ "category": "agent-framework",
+ "stars": 59341,
+ "license_spdx": "MIT",
+ "license_text_head": "Copyright (c) 2025 crewAI, Inc. Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Soft",
+ "pushed_at": "2026-10-03T00:03:55Z",
+ "description": "Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks.",
+ "commit": "738c8e19e35c2888d8e0663bc5cc45c5acf6ac2d",
+ "indexed_at": "2026-10-04T16:54:13Z",
+ "status": "ok",
+ "clone_kb": 597824,
+ "seconds": 273.7,
+ "files_scanned": 31743,
+ "languages": {
+  "Python": 1396,
+  "JavaScript": 3
+ },
+ "grok_files": 3,
+ "grok_files_by_kind": {
+  "source": 3
+ },
+ "hosts": {},
+ "endpoints": {},
+ "models": {
+  "grok-4.3": 1,
+  "grok-4.6": 1
+ },
+ "env_vars": {},
+ "features": {
+  "embeddings": 3,
+  "anthropic_compatible": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [],
+ "files": [
+  {
+   "path": "lib/crewai/src/crewai/rag/embeddings/providers/google/genai_vertex_embedding.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 232,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "lib/crewai/src/crewai/rag/embeddings/providers/google/vertex.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 126,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "lib/crewai/src/crewai/llms/context_window.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 348,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  }
+ ]
+}

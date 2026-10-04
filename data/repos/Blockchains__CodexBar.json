@@ -1,0 +1,210 @@
+{
+ "fork": "Blockchains/CodexBar",
+ "upstream": "steipete/CodexBar",
+ "category": "coding-agent-cli",
+ "stars": 22176,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2026 Peter Steinberger Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons",
+ "pushed_at": "2026-10-04T15:56:43Z",
+ "description": "Show usage stats for OpenAI Codex and Claude Code, without having to login.",
+ "commit": "60c1adbce5c8b1c78dde618878875ddfe4dbac8c",
+ "indexed_at": "2026-10-04T16:54:14Z",
+ "status": "ok",
+ "clone_kb": 91880,
+ "seconds": 35.3,
+ "files_scanned": 3369,
+ "languages": {
+  "Swift": 2903,
+  "JavaScript": 73,
+  "TypeScript": 29,
+  "Python": 19
+ },
+ "grok_files": 12,
+ "grok_files_by_kind": {
+  "source": 1,
+  "doc": 2,
+  "test": 9
+ },
+ "hosts": {
+  "management-api.x.ai": 4
+ },
+ "endpoints": {},
+ "models": {
+  "grok-4.6": 3,
+  "grok-5h": 2,
+  "grok-4": 1,
+  "grok-4-fast": 1,
+  "grok-code-fast-1": 1
+ },
+ "env_vars": {
+  "XAI_MANAGEMENT_API_KEY": 4,
+  "XAI_TEAM_ID": 4
+ },
+ "features": {},
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "Sources/CodexBarCore/Resources/Plugins/xai.js",
+   "start": 1,
+   "end": 21,
+   "code": "defineProvider({\n  id: \"xai\",\n  name: \"xAI\",\n  endpoints: [\"https://management-api.x.ai\"],\n  auth: { type: \"bearer\", secret: \"XAI_MANAGEMENT_API_KEY\" },\n  settings: [\n    { key: \"XAI_MANAGEMENT_API_KEY\", title: \"Management API key\", type: \"secure\" },\n    { key: \"XAI_TEAM_ID\", title: \"Team ID\", type: \"plain\" },\n  ],\n  async fetchUsage(ctx) {\n    const team = ctx.settings.get(\"XAI_TEAM_ID\");\n    if (!team || team.includes(\"/\") || team === \".\" || team === \"..\") {\n      throw ctx.fail.missingCredential(\"Missing or invalid xAI team ID\");\n    }\n    const root = `https://management-api.x.ai/v1/billing/teams/${encodeURIComponent(team)}`;\n    const balanceResponse = await ctx.http.getJSON(`${root}/prepaid/balance`);\n    if (balanceResponse.status === 401 || balanceResponse.status === 403) {\n      throw ctx.fail.authenticationExpired(\n        \"xAI rejected the Management API key. Create one in the xAI Console under Settings > Management Keys; inference API keys are not accepted.\",\n      );\n    }"
+  }
+ ],
+ "files": [
+  {
+   "path": "Sources/CodexBarCore/Resources/Plugins/xai.js",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 113,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_MANAGEMENT_API_KEY",
+    "XAI_TEAM_ID"
+   ],
+   "features": []
+  },
+  {
+   "path": "docs/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 92,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_MANAGEMENT_API_KEY",
+    "XAI_TEAM_ID"
+   ],
+   "features": []
+  },
+  {
+   "path": "docs/providers.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 733,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_MANAGEMENT_API_KEY",
+    "XAI_TEAM_ID"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "Tests/CodexBarTests/OpenRouterUsageStatsTests.swift",
+   "kind": "test",
+   "lang": "Swift",
+   "lines": 886,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "Tests/CodexBarTests/UsageStoreWidgetSnapshotTests.swift",
+   "kind": "test",
+   "lang": "Swift",
+   "lines": 1129,
+   "endpoints": [],
+   "models": [
+    "grok-5h"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "Tests/CodexBarTests/ModelsDevPricingTargetResolverTests.swift",
+   "kind": "test",
+   "lang": "Swift",
+   "lines": 67,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "Tests/CodexBarTests/MenuCardAntigravityTests.swift",
+   "kind": "test",
+   "lang": "Swift",
+   "lines": 742,
+   "endpoints": [],
+   "models": [
+    "grok-5h"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "Tests/CodexBarTests/ShareStatsTests.swift",
+   "kind": "test",
+   "lang": "Swift",
+   "lines": 572,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "Tests/CodexBarTests/GrokTokenSnapshotProjectionTests.swift",
+   "kind": "test",
+   "lang": "Swift",
+   "lines": 209,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "Tests/CodexBarTests/GrokLocalSessionScannerTests.swift",
+   "kind": "test",
+   "lang": "Swift",
+   "lines": 248,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "Tests/CodexBarTests/OpenCodeGoLocalUsageReaderTests.swift",
+   "kind": "test",
+   "lang": "Swift",
+   "lines": 797,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "Tests/CodexBarTests/XAIProviderTests.swift",
+   "kind": "test",
+   "lang": "Swift",
+   "lines": 308,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_MANAGEMENT_API_KEY",
+    "XAI_TEAM_ID"
+   ],
+   "features": []
+  }
+ ]
+}

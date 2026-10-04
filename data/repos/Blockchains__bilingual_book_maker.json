@@ -1,0 +1,437 @@
+{
+ "fork": "Blockchains/bilingual_book_maker",
+ "upstream": "yihong0618/bilingual_book_maker",
+ "category": "app",
+ "stars": 9828,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2023 yihong Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom th",
+ "pushed_at": "2026-09-30T20:24:12Z",
+ "description": "Make bilingual epub books Using AI translate",
+ "commit": "e1027a4823e98f668ef950740b6f805ec30bd3b2",
+ "indexed_at": "2026-10-04T16:56:55Z",
+ "status": "ok",
+ "clone_kb": 12836,
+ "seconds": 4.3,
+ "files_scanned": 280,
+ "languages": {
+  "Python": 177,
+  "Lua": 1
+ },
+ "grok_files": 22,
+ "grok_files_by_kind": {
+  "doc": 13,
+  "config": 2,
+  "source": 4,
+  "test": 3
+ },
+ "hosts": {
+  "api.x.ai": 8
+ },
+ "endpoints": {
+  "/v1/chat/completions": 8,
+  "/v1/messages": 4,
+  "/v1/models": 1
+ },
+ "models": {
+  "grok-4.3": 12
+ },
+ "env_vars": {
+  "BBM_XAI_API_KEY": 14,
+  "XAI_API_KEY": 5,
+  "XAI_API_BASE": 1
+ },
+ "features": {
+  "anthropic_compatible": 1,
+  "structured_output": 1,
+  "voice_realtime": 1
+ },
+ "sdk_exports": [
+  {
+   "path": "book_maker/translator/xai_translator.py",
+   "lang": "Python",
+   "names": [
+    "XAIClient"
+   ]
+  }
+ ],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "book_maker/cli.py",
+   "start": 139,
+   "end": 162,
+   "code": "FORMAT_ENV_KEYS = {\n    \"openai\": (\"BBM_API_KEY\", \"OPENAI_API_KEY\", \"BBM_OPENAI_API_KEY\"),\n    \"anthropic\": (\"BBM_API_KEY\", \"ANTHROPIC_API_KEY\", \"BBM_CLAUDE_API_KEY\"),\n    \"gemini\": (\"BBM_API_KEY\", \"BBM_GOOGLE_GEMINI_KEY\", \"GEMINI_API_KEY\"),\n    \"qwen\": (\"BBM_API_KEY\", \"BBM_QWEN_API_KEY\", \"DASHSCOPE_API_KEY\"),\n    \"groq\": (\"BBM_API_KEY\", \"BBM_GROQ_API_KEY\", \"GROQ_API_KEY\"),\n    \"xai\": (\"BBM_API_KEY\", \"BBM_XAI_API_KEY\", \"XAI_API_KEY\"),\n    \"litellm\": (\"BBM_API_KEY\", \"BBM_LITELLM_API_KEY\", \"LITELLM_MASTER_KEY\"),\n    \"caiyun\": (\"BBM_API_KEY\", \"BBM_CAIYUN_API_KEY\"),\n    \"deepl\": (\"BBM_API_KEY\", \"BBM_DEEPL_API_KEY\"),\n}\n\n# Formats that will not work at all without a credential. The others are\n# public endpoints (google, deeplfree, tencent) or carry their own address\n# instead of a key (customapi).\nFORMATS_REQUIRING_KEY = (\n    \"openai\",\n    \"anthropic\",\n    \"gemini\",\n    \"qwen\",\n    \"groq\",\n    \"xai\",\n    # a proxy on this machine authenticates nobody, and is_local_endpoint\n    # answers that before this list is consulted"
+  },
+  {
+   "path": "book_maker/legacy_cli.py",
+   "start": 46,
+   "end": 69,
+   "code": "    \"gemini\": (\"gemini\", \"gemini-flash-latest\", \"BBM_GOOGLE_GEMINI_KEY\"),\n    \"geminipro\": (\"gemini\", \"gemini-pro-latest\", \"BBM_GOOGLE_GEMINI_KEY\"),\n    \"qwen\": (\"qwen\", \"qwen-mt-turbo\", \"BBM_QWEN_API_KEY\"),\n    \"qwen-mt-turbo\": (\"qwen\", \"qwen-mt-turbo\", \"BBM_QWEN_API_KEY\"),\n    \"qwen-mt-plus\": (\"qwen\", \"qwen-mt-plus\", \"BBM_QWEN_API_KEY\"),\n    \"groq\": (\"groq\", None, \"BBM_GROQ_API_KEY\"),\n    \"xai\": (\"xai\", \"grok-4.3\", \"BBM_XAI_API_KEY\"),\n    # A local sidecar, not an endpoint: no address, no key, and the sidecar\n    # picks its own model, so the format alone is the whole route. `--model\n    # codex` was the old spelling; `--api_format codex` is the modern one and\n    # naming a model still rides on it as `--model <id>`.\n    \"codex\": (\"codex\", None, None),\n}\n\n# Two of those aliases are also real model ids that a live endpoint serves.\n# With an explicit --api_format, that is what they are: `--api_format qwen\n# --model qwen-mt-plus` is a modern command, and so is the same id against a\n# gateway on the openai format. Nothing to rewrite, nothing to apologise for.\n_ALIAS_IS_ALSO_A_MODEL_ID = (\"qwen-mt-turbo\", \"qwen-mt-plus\")\n\n# Aliases that were always a fixed engine rather than a model.\n_MT_FORMATS = {\n    \"google\": \"google\",\n    \"caiyun\": \"caiyun\","
+  },
+  {
+   "path": "book_maker/loader/epub_loader.py",
+   "start": 116,
+   "end": 139,
+   "code": "    \"--openai_key\": \"BBM_OPENAI_API_KEY\",\n    \"--caiyun_key\": \"BBM_CAIYUN_API_KEY\",\n    \"--deepl_key\": \"BBM_DEEPL_API_KEY\",\n    \"--claude_key\": \"BBM_CLAUDE_API_KEY\",\n    \"--gemini_key\": \"BBM_GOOGLE_GEMINI_KEY\",\n    \"--groq_key\": \"BBM_GROQ_API_KEY\",\n    \"--xai_key\": \"BBM_XAI_API_KEY\",\n    \"--orcarouter_key\": \"BBM_ORCAROUTER_API_KEY\",\n    \"--qwen_key\": \"BBM_QWEN_API_KEY\",\n    # --api_key belongs to --provider, whose key variable is named by the\n    # provider entry rather than fixed here; the generic name is a variable\n    # the user exports, which is all the placeholder has to be.\n    \"--api_key\": \"BBM_API_KEY\",\n    # This fork's one key flag. Which variable would have supplied it depends\n    # on the endpoint (FORMAT_ENV_KEYS in cli.py) and a provider entry may\n    # name its own, so the placeholder is the fallback every format accepts.\n    \"--key\": \"BBM_API_KEY\",\n}\n\n\ndef _key_flag_env(flag):\n    \"\"\"The env var standing in for `flag`'s value, or None if it carries no key.\n\n    Exact spellings are not enough: argparse accepts any unambiguous"
+  },
+  {
+   "path": "book_maker/translator/xai_translator.py",
+   "start": 1,
+   "end": 14,
+   "code": "\"\"\"xAI's endpoint.\n\nThe OpenAI shape at api.x.ai, so this is the OpenAI route with that address\nand xAI's key variable. See groq_translator for why no model id is named\nhere.\n\"\"\"\n\nfrom book_maker.translator.chatgptapi_translator import ChatGPTAPI\n\nXAI_API_BASE = \"https://api.x.ai/v1\"\n\n\nclass XAIClient(ChatGPTAPI):\n    DEFAULT_API_BASE = XAI_API_BASE"
+  }
+ ],
+ "files": [
+  {
+   "path": "README-CN.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 767,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "BBM_XAI_API_KEY",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "bbm_providers.example.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 95,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "BBM_XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 866,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "BBM_XAI_API_KEY",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "book_maker/cli.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 3710,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "BBM_XAI_API_KEY",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "book_maker/legacy_cli.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 359,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "BBM_XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "book_maker/loader/epub_loader.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 4239,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "BBM_XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "book_maker/translator/xai_translator.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 14,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_BASE"
+   ],
+   "features": []
+  },
+  {
+   "path": ".agents/skills/bbm-plan/assets/bbm_providers.example.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 95,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "BBM_XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".agents/skills/bbm-plan/references/providers.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 256,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/test_cli.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2192,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "BBM_XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/test_legacy_cli.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 485,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/test_structured_classify.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 901,
+   "endpoints": [
+    "/v1/messages"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "docs/zh/migration.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 38,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/zh/cmd.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 214,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [],
+   "env": [
+    "BBM_XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/zh/model_lang.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 139,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/zh/env_settings.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 57,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "BBM_XAI_API_KEY",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/zh/llm-args.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 250,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "BBM_XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "docs/en/migration.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 54,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/en/cmd.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 226,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [],
+   "env": [
+    "BBM_XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "docs/en/model_lang.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 215,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/en/env_settings.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 75,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "BBM_XAI_API_KEY",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/en/llm-args.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 250,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "BBM_XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "voice_realtime"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,100 @@
+{
+ "fork": "Blockchains/khoj",
+ "upstream": "khoj-ai/khoj",
+ "category": "app",
+ "stars": 37560,
+ "license_spdx": "AGPL-3.0",
+ "license_text_head": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007 Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/> Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. Preamble The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure coop",
+ "pushed_at": "2026-08-02T01:55:40Z",
+ "description": "Your AI second brain. Self-hostable. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI (gpt, claude, gemini, llama, qwen, mistral). Get started - free.",
+ "commit": "ae229ca894c0b80ad84664afcfdde523b5e87057",
+ "indexed_at": "2026-10-04T16:56:34Z",
+ "status": "ok",
+ "clone_kb": 157428,
+ "seconds": 6.9,
+ "files_scanned": 476,
+ "languages": {
+  "Python": 252,
+  "TypeScript": 103,
+  "JavaScript": 20,
+  "Java": 3
+ },
+ "grok_files": 2,
+ "grok_files_by_kind": {
+  "source": 2
+ },
+ "hosts": {
+  "api.x.ai": 1
+ },
+ "endpoints": {},
+ "models": {
+  "grok-3-mini": 2,
+  "grok-4": 2,
+  "grok-3": 1,
+  "grok-3-latest": 1,
+  "grok-3-mini-latest": 1,
+  "grok-4-fast": 1
+ },
+ "env_vars": {},
+ "features": {
+  "reasoning": 2,
+  "anthropic_compatible": 1,
+  "openai_compatible": 1,
+  "streaming": 1,
+  "structured_output": 1,
+  "tool_calling": 1,
+  "vision": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "src/khoj/processor/conversation/openai/utils.py",
+   "start": 894,
+   "end": 917,
+   "code": "    Check if the model is a Twitter reasoning model\n    \"\"\"\n    reasoning_models = \"grok-3-mini\", \"grok-4\"\n    return (\n        any(prefix in model_name.lower() for prefix in reasoning_models)\n        and api_base_url is not None\n        and api_base_url.startswith(\"https://api.x.ai/v1\")\n    )\n\n\ndef is_cerebras_api(api_base_url: str | None = None) -> bool:\n    \"\"\"\n    Check if the model is served over the Cerebras API\n    \"\"\"\n    return api_base_url is not None and api_base_url.startswith(\"https://api.cerebras.ai/v1\")\n\n\ndef is_groq_api(api_base_url: str | None = None) -> bool:\n    \"\"\"\n    Check if the model is served over the Groq API\n    \"\"\"\n    return api_base_url is not None and api_base_url.startswith(\"https://api.groq.com\")\n\n"
+  }
+ ],
+ "files": [
+  {
+   "path": "src/khoj/utils/constants.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 94,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-latest",
+    "grok-3-mini",
+    "grok-3-mini-latest",
+    "grok-4",
+    "grok-4-fast"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/khoj/processor/conversation/openai/utils.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1314,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  }
+ ]
+}

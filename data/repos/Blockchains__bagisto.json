@@ -1,0 +1,91 @@
+{
+ "fork": "Blockchains/bagisto",
+ "upstream": "bagisto/bagisto",
+ "category": "app",
+ "stars": 28206,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright 2010-2025, Webkul Software Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons",
+ "pushed_at": "2026-10-01T09:52:07Z",
+ "description": "Open Source eCommerce & Multi-Vendor Marketplace Platform Built with Laravel for Enterprise-Scale Commerce, Supporting 10M+ SKUs",
+ "commit": "b40f998fa482dcbc99d24dccd4f45a263032100b",
+ "indexed_at": "2026-10-04T16:56:58Z",
+ "status": "ok",
+ "clone_kb": 158208,
+ "seconds": 24.9,
+ "files_scanned": 3158,
+ "languages": {
+  "PHP": 2775,
+  "TypeScript": 263,
+  "JavaScript": 37
+ },
+ "grok_files": 2,
+ "grok_files_by_kind": {
+  "source": 2
+ },
+ "hosts": {},
+ "endpoints": {},
+ "models": {
+  "grok-2-image": 1,
+  "grok-3": 1,
+  "grok-3-mini": 1,
+  "grok-4": 1,
+  "grok-4-1-fast": 1,
+  "grok-imagine-image": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 1
+ },
+ "features": {
+  "anthropic_compatible": 1,
+  "embeddings": 1,
+  "image_generation": 1,
+  "reasoning": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "config/ai.php",
+   "start": 119,
+   "end": 129,
+   "code": "            'driver' => 'voyageai',\n            'key' => env('VOYAGEAI_API_KEY'),\n        ],\n\n        'xai' => [\n            'driver' => 'xai',\n            'key' => env('XAI_API_KEY'),\n        ],\n    ],\n\n];"
+  }
+ ],
+ "files": [
+  {
+   "path": "config/ai.php",
+   "kind": "source",
+   "lang": "PHP",
+   "lines": 129,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "packages/Webkul/MagicAI/src/Enums/Models/XAiModel.php",
+   "kind": "source",
+   "lang": "PHP",
+   "lines": 85,
+   "endpoints": [],
+   "models": [
+    "grok-2-image",
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-1-fast",
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "reasoning"
+   ]
+  }
+ ]
+}

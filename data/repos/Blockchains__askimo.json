@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T04:50:46Z",
  "description": "AI desktop app for chat, RAG, Skills, MCP tools, and agents. Support multiple LLMs (Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM, Gemini, OpenRouter)",
  "commit": "6b4d6683182b1665fbad750010332d39e47dd761",
- "indexed_at": "2026-10-04T14:53:28Z",
+ "indexed_at": "2026-10-04T16:49:34Z",
  "status": "ok",
  "clone_kb": 70808,
- "seconds": 12.2,
+ "seconds": 13.6,
  "files_scanned": 721,
  "languages": {
   "Kotlin": 683

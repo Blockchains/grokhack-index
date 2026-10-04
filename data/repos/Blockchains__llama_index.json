@@ -1,0 +1,148 @@
+{
+ "fork": "Blockchains/llama_index",
+ "upstream": "run-llama/llama_index",
+ "category": "sdk-provider",
+ "stars": 52408,
+ "license_spdx": "MIT",
+ "license_text_head": "The MIT License Copyright (c) Jerry Liu Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom ",
+ "pushed_at": "2026-10-01T18:39:47Z",
+ "description": "LlamaIndex is the document processing platform for AI",
+ "commit": "962940ddc079cc21701d28d1237c84c82a7c5164",
+ "indexed_at": "2026-10-04T16:49:19Z",
+ "status": "ok",
+ "clone_kb": 893224,
+ "seconds": 53.6,
+ "files_scanned": 6436,
+ "languages": {
+  "Python": 3772,
+  "JavaScript": 8
+ },
+ "grok_files": 5,
+ "grok_files_by_kind": {
+  "source": 2,
+  "test": 2,
+  "doc": 1
+ },
+ "hosts": {
+  "api.x.ai": 2
+ },
+ "endpoints": {},
+ "models": {
+  "grok-4-fast-non-reasoning": 3,
+  "grok-4-fast-reasoning": 2,
+  "grok-3-mini": 2,
+  "grok-4": 2,
+  "grok-3": 1,
+  "grok-3-fast": 1,
+  "grok-3-mini-fast": 1,
+  "grok-code-fast-1": 1,
+  "grok-4-0709": 1
+ },
+ "env_vars": {
+  "SKIP_GROK": 1
+ },
+ "features": {
+  "anthropic_compatible": 1,
+  "reasoning": 1,
+  "structured_output": 1,
+  "tool_calling": 1,
+  "vision": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "llama-index-integrations/llms/llama-index-llms-cloudflare-ai-gateway/llama_index/llms/cloudflare_ai_gateway/providers.py",
+   "start": 85,
+   "end": 108,
+   "code": "        regex=r\"^https://api\\.replicate\\.com/\",\n        transform_endpoint=lambda url: url.replace(\"https://api.replicate.com/\", \"\"),\n    ),\n    ProviderConfig(\n        name=\"grok\",\n        regex=r\"^https://api\\.x\\.ai/\",\n        transform_endpoint=lambda url: url.replace(\"https://api.x.ai/\", \"\"),\n    ),\n    ProviderConfig(\n        name=\"azure-openai\",\n        regex=r\"^https://(?P<resource>[^.]+)\\.openai\\.azure\\.com/openai/deployments/(?P<deployment>[^/]+)/(?P<rest>.*)$\",\n        transform_endpoint=transform_azure_endpoint,\n    ),\n]\n\n\ndef messages_to_dict(messages: List[ChatMessage]) -> List[Dict[str, Any]]:\n    \"\"\"Convert ChatMessage objects to dictionary format.\"\"\"\n    result = []\n    for msg in messages:\n        msg_dict = {\n            \"role\": msg.role.value,\n            \"content\": msg.content,\n        }"
+  }
+ ],
+ "files": [
+  {
+   "path": "llama-index-integrations/llms/llama-index-llms-cloudflare-ai-gateway/llama_index/llms/cloudflare_ai_gateway/providers.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 162,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "llama-index-integrations/llms/llama-index-llms-openai-like/tests/test_openai_like_grok.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 87,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning"
+   ],
+   "env": [
+    "SKIP_GROK"
+   ],
+   "features": [
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "llama-index-integrations/llms/llama-index-llms-oci-genai/llama_index/llms/oci_genai/utils.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1094,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-4",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "llama-index-integrations/llms/llama-index-llms-oci-genai/tests/test_oci_genai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 498,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "llama-index-integrations/llms/llama-index-llms-cometapi/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 123,
+   "endpoints": [],
+   "models": [
+    "grok-4-0709"
+   ],
+   "env": [],
+   "features": []
+  }
+ ]
+}

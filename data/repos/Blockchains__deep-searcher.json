@@ -1,0 +1,162 @@
+{
+ "fork": "Blockchains/deep-searcher",
+ "upstream": "zilliztech/deep-searcher",
+ "category": "app",
+ "stars": 8293,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-09-22T10:08:42Z",
+ "description": "Open Source Deep Research Alternative to Reason and Search on Private Data. Written in Python.",
+ "commit": "ddc36db317836bd42302b36f03166bec5324708d",
+ "indexed_at": "2026-10-04T16:56:57Z",
+ "status": "ok",
+ "clone_kb": 28604,
+ "seconds": 2.2,
+ "files_scanned": 208,
+ "languages": {
+  "Python": 156
+ },
+ "grok_files": 6,
+ "grok_files_by_kind": {
+  "config": 1,
+  "doc": 3,
+  "source": 1,
+  "test": 1
+ },
+ "hosts": {
+  "api.x.ai": 2
+ },
+ "endpoints": {},
+ "models": {
+  "grok-2-latest": 3,
+  "grok-4-0709": 1,
+  "grok-4": 1,
+  "grok-1": 1,
+  "grok-3": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 6
+ },
+ "features": {
+  "openai_compatible": 1
+ },
+ "sdk_exports": [
+  {
+   "path": "deepsearcher/llm/xai.py",
+   "lang": "Python",
+   "names": [
+    "XAI"
+   ]
+  }
+ ],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "deepsearcher/llm/xai.py",
+   "start": 22,
+   "end": 45,
+   "code": "        \"\"\"\n        Initialize an X.AI language model client.\n\n        Args:\n            model (str, optional): The model identifier to use. Defaults to \"grok-2-latest\".\n            **kwargs: Additional keyword arguments to pass to the OpenAI client.\n                - api_key: X.AI API key. If not provided, uses XAI_API_KEY environment variable.\n                - base_url: X.AI API base URL. If not provided, defaults to \"https://api.x.ai/v1\".\n        \"\"\"\n        from openai import OpenAI as OpenAI_\n\n        self.model = model\n        if \"api_key\" in kwargs:\n            api_key = kwargs.pop(\"api_key\")\n        else:\n            api_key = os.getenv(\"XAI_API_KEY\")\n        if \"base_url\" in kwargs:\n            base_url = kwargs.pop(\"base_url\")\n        else:\n            base_url = \"https://api.x.ai/v1\"\n        self.client = OpenAI_(api_key=api_key, base_url=base_url, **kwargs)\n\n    def chat(self, messages: List[Dict]) -> ChatResponse:\n        \"\"\""
+  }
+ ],
+ "files": [
+  {
+   "path": "env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 54,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 605,
+   "endpoints": [],
+   "models": [
+    "grok-4-0709"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "deepsearcher/llm/xai.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 63,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest",
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "tests/llm/test_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 165,
+   "endpoints": [],
+   "models": [
+    "grok-1",
+    "grok-2-latest"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "docs/integrations/index.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 77,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "docs/configuration/llm.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 203,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  }
+ ]
+}

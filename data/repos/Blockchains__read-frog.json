@@ -1,0 +1,452 @@
+{
+ "fork": "Blockchains/read-frog",
+ "upstream": "mengxi-ream/read-frog",
+ "category": "app",
+ "stars": 9966,
+ "license_spdx": "GPL-3.0",
+ "license_text_head": "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/> Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. Preamble The GNU General Public License is a free, copyleft license for software and other kinds of works. The licenses for most software and other practical wor",
+ "pushed_at": "2026-10-04T06:22:20Z",
+ "description": "\ud83d\udc38 Read Frog - Language Learning & Translate | \ud83d\udc38 \u966a\u8bfb\u86d9 - \u8bed\u8a00\u5b66\u4e60\u4e0e\u7ffb\u8bd1",
+ "commit": "766b7d335ead6538061853ff3fb3b0a05ec5906c",
+ "indexed_at": "2026-10-04T16:56:58Z",
+ "status": "ok",
+ "clone_kb": 79256,
+ "seconds": 8.9,
+ "files_scanned": 1706,
+ "languages": {
+  "TypeScript": 1462,
+  "JavaScript": 23,
+  "Python": 2
+ },
+ "grok_files": 18,
+ "grok_files_by_kind": {
+  "config": 2,
+  "doc": 1,
+  "source": 5,
+  "test": 10
+ },
+ "hosts": {
+  "api.x.ai": 1
+ },
+ "endpoints": {
+  "/v1/responses": 2
+ },
+ "models": {
+  "grok-3": 8,
+  "grok-4.20-non-reasoning": 5,
+  "grok-4-fast": 4,
+  "grok-4.20-0309-non-reasoning": 4,
+  "grok-4.20-0309-reasoning": 4,
+  "grok-4.20-reasoning": 4,
+  "grok-4.3": 4,
+  "grok-3-fast": 3,
+  "grok-4": 3,
+  "grok-code-fast-1": 3,
+  "grok-2": 2,
+  "grok-2-1212": 2,
+  "grok-2-latest": 2,
+  "grok-2-vision": 2,
+  "grok-2-vision-1212": 2,
+  "grok-2-vision-latest": 2,
+  "grok-3-fast-latest": 2,
+  "grok-3-latest": 2,
+  "grok-3-mini": 2,
+  "grok-3-mini-fast": 2,
+  "grok-3-mini-fast-latest": 2,
+  "grok-3-mini-latest": 2,
+  "grok-4-0709": 2,
+  "grok-4-latest": 2,
+  "grok-beta": 2,
+  "grok-vision-beta": 2,
+  "grok-4-1-fast-non-reasoning": 2,
+  "grok-4-1-fast-reasoning": 2,
+  "grok-4-fast-reasoning": 2,
+  "grok-4-20-non-reasoning": 2,
+  "grok-4-20-reasoning": 2,
+  "grok-4.5": 2,
+  "grok-4.6": 2,
+  "grok-4-1": 1,
+  "grok-4-fast-non-reasoning": 1,
+  "grok-4.20-multi-agent-0309": 1
+ },
+ "env_vars": {
+  "OLD_XAI_GROK_MODEL_REPLACEMENTS": 1,
+  "XAI_GROK_420_0309_NON_REASONING_MODEL": 1,
+  "XAI_GROK_420_0309_REASONING_MODEL": 1
+ },
+ "features": {
+  "anthropic_compatible": 4,
+  "reasoning": 3,
+  "vision": 2,
+  "openai_compatible": 1
+ },
+ "sdk_exports": [],
+ "packages": [
+  {
+   "path": "package.json",
+   "ecosystem": "npm",
+   "name": "@read-frog/extension",
+   "version": "1.50.0"
+  }
+ ],
+ "snippets": [
+  {
+   "path": "src/utils/providers/model.ts",
+   "start": 21,
+   "end": 44,
+   "code": "import { createOpenResponses } from \"@ai-sdk/open-responses\"\nimport { createOpenAI } from \"@ai-sdk/openai\"\nimport { createOpenAICompatible } from \"@ai-sdk/openai-compatible\"\nimport { createPerplexity } from \"@ai-sdk/perplexity\"\nimport { createReplicate } from \"@ai-sdk/replicate\"\nimport { createTogetherAI } from \"@ai-sdk/togetherai\"\nimport { createXai } from \"@ai-sdk/xai\"\nimport { createOllama } from \"ai-sdk-ollama\"\nimport { match } from \"ts-pattern\"\nimport { storage } from \"#imports\"\nimport {\n  DEFAULT_AZURE_API_MODE,\n  isDedicatedLLMProviderConfig,\n  isOpenAICompatibleLLMProviderConfig,\n  isOpenResponsesLLMProviderConfig,\n} from \"@/types/config/provider\"\nimport { compactObject } from \"@/types/utils\"\nimport { getLLMProvidersConfig, getProviderConfigById } from \"../config/helpers\"\nimport { CONFIG_STORAGE_KEY } from \"../constants/config\"\nimport { getProviderHeadersWithOverride } from \"./headers\"\nimport { resolveModelId } from \"./model-id\"\n\nconst DEDICATED_PROVIDER_FACTORY_BY_TYPE = {\n  openai: createOpenAI,"
+  },
+  {
+   "path": "src/utils/constants/providers.ts",
+   "start": 673,
+   "end": 696,
+   "code": "  \"open-responses\": DEFAULT_PROVIDER_CONFIG[\"open-responses\"].url,\n  openai: \"https://api.openai.com/v1\",\n  azure: \"https://<resource>.services.ai.azure.com/openai\",\n  deepseek: \"https://api.deepseek.com\",\n  google: \"https://generativelanguage.googleapis.com/v1beta\",\n  anthropic: \"https://api.anthropic.com/v1\",\n  xai: \"https://api.x.ai/v1\",\n  deeplx: DEFAULT_PROVIDER_CONFIG.deeplx.baseURL,\n  bedrock: \"https://bedrock-runtime.us-east-1.amazonaws.com\",\n  groq: \"https://api.groq.com/openai/v1\",\n  deepinfra: \"https://api.deepinfra.com/v1\",\n  mistral: \"https://api.mistral.ai/v1\",\n  togetherai: \"https://api.together.xyz/v1\",\n  cohere: \"https://api.cohere.com/v2\",\n  fireworks: \"https://api.fireworks.ai/inference/v1\",\n  cerebras: \"https://api.cerebras.ai/v1\",\n  replicate: \"https://api.replicate.com/v1\",\n  perplexity: \"https://api.perplexity.ai\",\n  openrouter: \"https://openrouter.ai/api/v1\",\n  ollama: \"http://127.0.0.1:11434/\",\n  volcengine: DEFAULT_PROVIDER_CONFIG.volcengine.baseURL,\n  minimax: DEFAULT_PROVIDER_CONFIG.minimax.baseURL,\n  alibaba: DEFAULT_PROVIDER_CONFIG.alibaba.baseURL,\n  moonshotai: \"https://api.moonshot.ai/v1\","
+  }
+ ],
+ "files": [
+  {
+   "path": "pnpm-lock.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 13868,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "package.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 231,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".claude/commands/add-provider.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 33,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/utils/providers/model.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 164,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "src/utils/providers/__tests__/model.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 411,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4-fast"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "src/utils/config/migration-scripts/v078-to-v079.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 114,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-2-1212",
+    "grok-2-latest",
+    "grok-2-vision",
+    "grok-2-vision-1212",
+    "grok-2-vision-latest",
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-fast-latest",
+    "grok-3-latest",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-3-mini-fast-latest",
+    "grok-3-mini-latest",
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-latest",
+    "grok-4.20-non-reasoning",
+    "grok-beta",
+    "grok-vision-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "vision"
+   ]
+  },
+  {
+   "path": "src/utils/config/migration-scripts/v079-to-v080.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 102,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-2-1212",
+    "grok-2-latest",
+    "grok-2-vision",
+    "grok-2-vision-1212",
+    "grok-2-vision-latest",
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-fast-latest",
+    "grok-3-latest",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-3-mini-fast-latest",
+    "grok-3-mini-latest",
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-1",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4-latest",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.20-non-reasoning",
+    "grok-4.20-reasoning",
+    "grok-beta",
+    "grok-code-fast-1",
+    "grok-vision-beta"
+   ],
+   "env": [
+    "OLD_XAI_GROK_MODEL_REPLACEMENTS",
+    "XAI_GROK_420_0309_NON_REASONING_MODEL",
+    "XAI_GROK_420_0309_REASONING_MODEL"
+   ],
+   "features": [
+    "reasoning",
+    "vision"
+   ]
+  },
+  {
+   "path": "src/utils/config/__tests__/example/v042.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 501,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/utils/config/__tests__/example/v039.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 478,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/utils/config/__tests__/example/v038.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 469,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/utils/config/__tests__/example/v041.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 501,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/utils/config/__tests__/example/v040.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 498,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/utils/config/__tests__/migration-scripts/v081-to-v082.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 167,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/utils/config/__tests__/migration-scripts/v079-to-v080.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 118,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-non-reasoning",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/utils/config/__tests__/migration-scripts/v078-to-v079.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 118,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/utils/constants/models.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 704,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-20-non-reasoning",
+    "grok-4-20-reasoning",
+    "grok-4-fast",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-non-reasoning",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/utils/constants/providers.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 777,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/utils/constants/__tests__/model.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 583,
+   "endpoints": [],
+   "models": [
+    "grok-4-20-non-reasoning",
+    "grok-4-20-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-non-reasoning",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  }
+ ]
+}

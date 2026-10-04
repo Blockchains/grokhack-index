@@ -1,0 +1,203 @@
+{
+ "fork": "Blockchains/qwen-code",
+ "upstream": "QwenLM/qwen-code",
+ "category": "coding-agent-cli",
+ "stars": 28305,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-10-04T15:56:51Z",
+ "description": "An open-source AI coding agent that lives in your terminal.",
+ "commit": "17c182eda0226844d7af533a52dd3ed8b956ee7b",
+ "indexed_at": "2026-10-04T16:55:08Z",
+ "status": "ok",
+ "clone_kb": 319860,
+ "seconds": 91.1,
+ "files_scanned": 10038,
+ "languages": {
+  "TypeScript": 6630,
+  "Java": 578,
+  "Rust": 402,
+  "JavaScript": 396,
+  "Python": 56,
+  "Kotlin": 19,
+  "C#": 12,
+  "Swift": 4
+ },
+ "grok_files": 8,
+ "grok_files_by_kind": {
+  "config": 2,
+  "test": 4,
+  "source": 2
+ },
+ "hosts": {
+  "api.x.ai": 4
+ },
+ "endpoints": {},
+ "models": {
+  "grok-4.20-0309-non-reasoning": 4,
+  "grok-4.20-0309-reasoning": 4,
+  "grok-4.3": 4,
+  "grok-4.5": 4,
+  "grok-4.20-multi-agent-0309": 3,
+  "grok-4.6": 1,
+  "grok-4.7": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 6
+ },
+ "features": {
+  "anthropic_compatible": 1,
+  "reasoning": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "packages/core/src/telemetry/gen-ai-provider.ts",
+   "start": 32,
+   "end": 55,
+   "code": "  MISTRAL_API_KEY: 'mistral_ai',\n  MODELSCOPE_API_KEY: 'modelscope',\n  MOONSHOT_API_KEY: 'moonshot',\n  OPENAI_API_KEY: 'openai',\n  OPENROUTER_API_KEY: 'openrouter',\n  REQUESTY_API_KEY: 'requesty',\n  XAI_API_KEY: 'x_ai',\n  XIAOMI_MIMO_API_KEY: 'mimo',\n  ZAI_API_KEY: 'z_ai',\n};\n\nfunction isHostOrSubdomain(hostname: string, domain: string): boolean {\n  return hostname === domain || hostname.endsWith(`.${domain}`);\n}\n\nfunction providerFromHostname(hostname: string): string | undefined {\n  if (\n    isHostOrSubdomain(hostname, 'dashscope.aliyuncs.com') ||\n    isHostOrSubdomain(hostname, 'dashscope-intl.aliyuncs.com') ||\n    isHostOrSubdomain(hostname, 'dashscope-us.aliyuncs.com') ||\n    (hostname.startsWith('token-plan.') &&\n      isHostOrSubdomain(hostname, 'maas.aliyuncs.com')) ||\n    hostname.endsWith('.alibaba-inc.com') ||\n    hostname.endsWith('.aliyun-inc.com')"
+  },
+  {
+   "path": "packages/core/src/providers/presets/grok.ts",
+   "start": 4,
+   "end": 27,
+   "code": " * SPDX-License-Identifier: Apache-2.0\n */\n\nimport { AuthType } from '../../core/contentGenerator.js';\nimport type { ProviderConfig } from '../types.js';\n\nexport const GROK_ENV_KEY = 'XAI_API_KEY';\nexport const GROK_BASE_URL = 'https://api.x.ai/v1';\n\nexport const grokProvider: ProviderConfig = {\n  id: 'grok',\n  label: 'Grok (xAI) API Key',\n  description: 'Quick setup for xAI Grok chat & code models',\n  protocol: AuthType.USE_OPENAI,\n  baseUrl: GROK_BASE_URL,\n  envKey: GROK_ENV_KEY,\n  // xAI's API follows the standard OpenAI format. Grok models reason by\n  // default (grok-4.5 exposes an optional reasoning_effort knob, default\n  // high) and have no Qwen-style enable_thinking toggle, so the preset\n  // carries only each model's context window.\n  models: [\n    { id: 'grok-4.5', contextWindowSize: 500000 },\n    { id: 'grok-4.3', contextWindowSize: 1000000 },\n    { id: 'grok-4.20-0309-reasoning', contextWindowSize: 1000000 },"
+  }
+ ],
+ "files": [
+  {
+   "path": ".github/workflows/ci.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 2450,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "scripts/tests/no-ak-integration-ci.test.js",
+   "kind": "test",
+   "lang": "JavaScript",
+   "lines": 992,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/core/src/telemetry/gen-ai-provider.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 213,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/core/src/telemetry/gen-ai-provider.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 188,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/core/src/models/generated/model-registry.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1416,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/core/src/providers/presets/grok.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 36,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/core/src/providers/__tests__/presets/grok.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 109,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/core/src/core/openaiContentGenerator/provider/grok.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 71,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  }
+ ]
+}

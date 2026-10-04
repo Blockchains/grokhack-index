@@ -1,0 +1,410 @@
+{
+ "fork": "Blockchains/pentagi",
+ "upstream": "vxcontrol/pentagi",
+ "category": "app",
+ "stars": 25242,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2025 PentAGI Development Team Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit ",
+ "pushed_at": "2026-10-03T23:20:51Z",
+ "description": "Fully autonomous AI Agents system capable of performing complex penetration testing tasks",
+ "commit": "b611fbebcf55b6deb88ad1fb7bf1f1ce7a357242",
+ "indexed_at": "2026-10-04T16:56:48Z",
+ "status": "ok",
+ "clone_kb": 158104,
+ "seconds": 13.8,
+ "files_scanned": 1533,
+ "languages": {
+  "Go": 761,
+  "TypeScript": 527,
+  "JavaScript": 8
+ },
+ "grok_files": 18,
+ "grok_files_by_kind": {
+  "config": 5,
+  "doc": 2,
+  "test": 5,
+  "example": 1,
+  "source": 5
+ },
+ "hosts": {
+  "api.x.ai": 6
+ },
+ "endpoints": {
+  "/v1/chat/completions": 1,
+  "/v1/responses": 1
+ },
+ "models": {
+  "grok-4.3": 10,
+  "grok-4.20-0309-non-reasoning": 8,
+  "grok-4.6": 5,
+  "grok-4.20-0309-reasoning": 4,
+  "grok-4.5": 4,
+  "grok-4.7": 4,
+  "grok-3": 1,
+  "grok-4-0709": 1,
+  "grok-4-1-fast-reasoning": 1,
+  "grok-4-fast-reasoning": 1,
+  "grok-code-fast-1": 1,
+  "grok-imagine-image-pro": 1,
+  "grok-4.7-latest": 1,
+  "grok-4": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 8,
+  "XAI_PROVIDER": 8,
+  "XAI_SERVER_URL": 8
+ },
+ "features": {
+  "anthropic_compatible": 4,
+  "reasoning": 2,
+  "live_search": 2,
+  "embeddings": 2
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "backend/pkg/config/config.go",
+   "start": 193,
+   "end": 216,
+   "code": "\t// === LLM Provider: Mistral ===\n\tMistralAPIKey    string `env:\"MISTRAL_API_KEY\"`\n\tMistralServerURL string `env:\"MISTRAL_SERVER_URL\" envDefault:\"https://api.mistral.ai/v1\"`\n\tMistralProvider  string `env:\"MISTRAL_PROVIDER\"`\n\n\t// === LLM Provider: xAI (Grok) ===\n\tXAIAPIKey    string `env:\"XAI_API_KEY\"`\n\tXAIServerURL string `env:\"XAI_SERVER_URL\" envDefault:\"https://api.x.ai/v1\"`\n\tXAIProvider  string `env:\"XAI_PROVIDER\"`\n\n\t// === Search Engine: DuckDuckGo ===\n\tDuckDuckGoEnabled    bool   `env:\"DUCKDUCKGO_ENABLED\" envDefault:\"true\"`\n\tDuckDuckGoRegion     string `env:\"DUCKDUCKGO_REGION\"`\n\tDuckDuckGoSafeSearch string `env:\"DUCKDUCKGO_SAFESEARCH\"`\n\tDuckDuckGoTimeRange  string `env:\"DUCKDUCKGO_TIME_RANGE\"`\n\n\t// Sploitus exploit aggregator (https://sploitus.com)\n\t// service under cloudflare protection, IP should have good reputation to avoid being blocked\n\tSploitusEnabled bool `env:\"SPLOITUS_ENABLED\" envDefault:\"false\"`\n\n\t// === Search Engine: Google Custom Search ===\n\tGoogleAPIKey string `env:\"GOOGLE_API_KEY\"`\n\tGoogleCXKey  string `env:\"GOOGLE_CX_KEY\"`\n\tGoogleLRKey  string `env:\"GOOGLE_LR_KEY\" envDefault:\"lang_en\"`"
+  },
+  {
+   "path": "backend/cmd/installer/wizard/locale/locale.go",
+   "start": 749,
+   "end": 772,
+   "code": "\nDefault PentAGI Models:\n\u2022 grok-4.3: planning, the primary agent loop, code, and other tool-using agents\n\u2022 grok-4.20-0309-non-reasoning: simple output, JSON, reflection, and enrichment\n\nAPI Endpoint:\n\u2022 https://api.x.ai/v1 (default)\n\nLiteLLM Integration:\n\u2022 Set Provider Name to 'xai' when using a LiteLLM proxy\n\u2022 Enables model prefix (e.g., xai/grok-4.3) without modifying config.yml\n\u2022 Optional for direct xAI API usage\n\nSetup: Get your API key from https://console.x.ai/`\n\n\tLLMFormCustomHelp = `Configure any OpenAI-compatible API endpoint for maximum flexibility and integration with existing infrastructure.\n\nReady-to-use Configurations:\n\u2022 vLLM deployments: High-throughput on-premises inference with optimal GPU utilization\n\u2022 OpenRouter: Access 200+ models from multiple providers through single API with competitive pricing\n\u2022 DeepInfra: Serverless inference for popular open models with pay-per-use pricing\n\u2022 Together AI, Groq, Fireworks: Alternative cloud providers with specialized performance optimizations\n\u2022 LiteLLM Proxy: Universal gateway to 100+ providers with load balancing and unified interface (use LLM_SERVER_PROVIDER for model prefixing)\n\u2022 Some reasoning models and LLM providers may require preserving reasoning content while using tool calls (LLM_SERVER_PRESERVE_REASONING=true)"
+  },
+  {
+   "path": "backend/cmd/installer/wizard/models/llm_provider_form.go",
+   "start": 1005,
+   "end": 1022,
+   "code": "\t\treturn \"https://dashscope-us.aliyuncs.com/compatible-mode/v1\"\n\tcase LLMProviderMiniMax:\n\t\treturn \"https://api.minimax.io/v1\"\n\tcase LLMProviderMistral:\n\t\treturn \"https://api.mistral.ai/v1\"\n\tcase LLMProviderXAI:\n\t\treturn \"https://api.x.ai/v1\"\n\tcase LLMProviderCustom:\n\t\treturn \"http://llm-server:8000\"\n\tdefault:\n\t\treturn \"\"\n\t}\n}\n\n// Compile-time interface validation\nvar _ BaseScreenModel = (*LLMProviderFormModel)(nil)\nvar _ BaseScreenHandler = (*LLMProviderFormModel)(nil)\nvar _ BaseListHandler = (*LLMProviderFormModel)(nil)"
+  },
+  {
+   "path": "backend/cmd/installer/wizard/controller/controller.go",
+   "start": 2449,
+   "end": 2472,
+   "code": "\t\t\"MINIMAX_API_KEY\":                   locale.EnvDesc_MINIMAX_API_KEY,\n\t\t\"MINIMAX_SERVER_URL\":                locale.EnvDesc_MINIMAX_SERVER_URL,\n\t\t\"MINIMAX_PROVIDER\":                  locale.EnvDesc_MINIMAX_PROVIDER,\n\t\t\"MISTRAL_API_KEY\":                   locale.EnvDesc_MISTRAL_API_KEY,\n\t\t\"MISTRAL_SERVER_URL\":                locale.EnvDesc_MISTRAL_SERVER_URL,\n\t\t\"MISTRAL_PROVIDER\":                  locale.EnvDesc_MISTRAL_PROVIDER,\n\t\t\"XAI_API_KEY\":                       locale.EnvDesc_XAI_API_KEY,\n\t\t\"XAI_SERVER_URL\":                    locale.EnvDesc_XAI_SERVER_URL,\n\t\t\"XAI_PROVIDER\":                      locale.EnvDesc_XAI_PROVIDER,\n\t\t\"LLM_SERVER_URL\":                    locale.EnvDesc_LLM_SERVER_URL,\n\t\t\"LLM_SERVER_KEY\":                    locale.EnvDesc_LLM_SERVER_KEY,\n\t\t\"LLM_SERVER_MODEL\":                  locale.EnvDesc_LLM_SERVER_MODEL,\n\t\t\"LLM_SERVER_CONFIG_PATH\":            locale.EnvDesc_LLM_SERVER_CONFIG_PATH,\n\t\t\"LLM_SERVER_PRESERVE_REASONING\":     locale.EnvDesc_LLM_SERVER_PRESERVE_REASONING,\n\t\t\"LLM_SERVER_API_TYPE\":               locale.EnvDesc_LLM_SERVER_API_TYPE,\n\t\t\"LLM_SERVER_API_VERSION\":            locale.EnvDesc_LLM_SERVER_API_VERSION,\n\t\t\"LLM_SERVER_PROVIDER\":               locale.EnvDesc_LLM_SERVER_PROVIDER,\n\t\t\"LLM_FALLBACK_PROVIDER\":             locale.EnvDesc_LLM_FALLBACK_PROVIDER,\n\n\t\t\"LANGFUSE_LISTEN_IP\":   locale.EnvDesc_LANGFUSE_LISTEN_IP,\n\t\t\"LANGFUSE_LISTEN_PORT\": locale.EnvDesc_LANGFUSE_LISTEN_PORT,\n\t\t\"LANGFUSE_BASE_URL\":    locale.EnvDesc_LANGFUSE_BASE_URL,\n\t\t\"LANGFUSE_PROJECT_ID\":  locale.EnvDesc_LANGFUSE_PROJECT_ID,\n\t\t\"LANGFUSE_PUBLIC_KEY\":  locale.EnvDesc_LANGFUSE_PUBLIC_KEY,"
+  }
+ ],
+ "files": [
+  {
+   "path": "docker-compose.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 311,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_PROVIDER",
+    "XAI_SERVER_URL"
+   ],
+   "features": []
+  },
+  {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 4242,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_PROVIDER",
+    "XAI_SERVER_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": ".env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 623,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_PROVIDER",
+    "XAI_SERVER_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search"
+   ]
+  },
+  {
+   "path": "examples/tests/xai-report.md",
+   "kind": "test",
+   "lang": null,
+   "lines": 551,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "examples/configs/xai.provider.yml",
+   "kind": "example",
+   "lang": null,
+   "lines": 125,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "backend/pkg/providers/catalog_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 1046,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "backend/pkg/providers/xai/config.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 142,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.3",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "backend/pkg/providers/xai/xai_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 148,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "backend/pkg/providers/xai/xai.go",
+   "kind": "source",
+   "lang": "Go",
+   "lines": 79,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "backend/pkg/providers/xai/models.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 85,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4-0709",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-code-fast-1",
+    "grok-imagine-image-pro"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "backend/pkg/config/config.go",
+   "kind": "source",
+   "lang": "Go",
+   "lines": 550,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_PROVIDER",
+    "XAI_SERVER_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "live_search"
+   ]
+  },
+  {
+   "path": "backend/pkg/config/config_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 452,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_PROVIDER",
+    "XAI_SERVER_URL"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "backend/pkg/controller/flow_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 690,
+   "endpoints": [],
+   "models": [
+    "grok-4.7-latest"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "backend/docs/config.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 2236,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_PROVIDER",
+    "XAI_SERVER_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "backend/cmd/installer/files/links/docker-compose.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 311,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_PROVIDER",
+    "XAI_SERVER_URL"
+   ],
+   "features": []
+  },
+  {
+   "path": "backend/cmd/installer/wizard/locale/locale.go",
+   "kind": "source",
+   "lang": "Go",
+   "lines": 2796,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "backend/cmd/installer/wizard/models/llm_provider_form.go",
+   "kind": "source",
+   "lang": "Go",
+   "lines": 1022,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "backend/cmd/installer/wizard/controller/controller.go",
+   "kind": "source",
+   "lang": "Go",
+   "lines": 2951,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_PROVIDER",
+    "XAI_SERVER_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search"
+   ]
+  }
+ ]
+}

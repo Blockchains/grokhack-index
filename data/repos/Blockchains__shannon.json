@@ -1,0 +1,232 @@
+{
+ "fork": "Blockchains/shannon",
+ "upstream": "KeygraphHQ/shannon",
+ "category": "app",
+ "stars": 48571,
+ "license_spdx": "AGPL-3.0",
+ "license_text_head": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007 Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/> Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. Preamble The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure coop",
+ "pushed_at": "2026-10-01T22:17:59Z",
+ "description": "Shannon is an AI pentester for web applications and APIs. It analyzes your source code, identifies attack vectors, and executes real exploits to prove vulnerabilities before they reach production.",
+ "commit": "a14c7944d87b30ed7bfecd4bad06562e24002b01",
+ "indexed_at": "2026-10-04T16:56:31Z",
+ "status": "ok",
+ "clone_kb": 110696,
+ "seconds": 7.0,
+ "files_scanned": 312,
+ "languages": {
+  "TypeScript": 206
+ },
+ "grok_files": 11,
+ "grok_files_by_kind": {
+  "doc": 5,
+  "config": 1,
+  "source": 5
+ },
+ "hosts": {},
+ "endpoints": {},
+ "models": {
+  "grok-4.5": 4,
+  "grok-4-6.pdf": 3,
+  "grok-4-6.sarif": 3,
+  "grok-4.6": 3
+ },
+ "env_vars": {
+  "XAI_API_KEY": 7
+ },
+ "features": {
+  "anthropic_compatible": 5,
+  "streaming": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "apps/cli/src/model-spec.ts",
+   "start": 26,
+   "end": 49,
+   "code": " * Env vars carrying each curated provider's API key, in precedence order. Any one of\n * them satisfies the provider. Mirrors PROVIDER_API_KEY_ENV in apps/worker/src/ai/models.ts.\n */\nexport const PROVIDER_API_KEY_ENV: Readonly<Record<CuratedProviderId, readonly string[]>> = {\n  anthropic: ['ANTHROPIC_API_KEY', 'CLAUDE_CODE_OAUTH_TOKEN'],\n  openai: ['OPENAI_API_KEY'],\n  xai: ['XAI_API_KEY'],\n  'amazon-bedrock': ['AWS_BEARER_TOKEN_BEDROCK'],\n};\n\n/** Additional env vars a curated provider requires beyond its API key. All must be set. */\nexport const PROVIDER_EXTRA_ENV: Readonly<Record<CuratedProviderId, readonly string[]>> = {\n  anthropic: [],\n  openai: [],\n  xai: [],\n  'amazon-bedrock': ['AWS_REGION'],\n};\n\n/** Human-readable credential requirement, used in \"nothing configured\" errors. */\nexport const PROVIDER_CREDENTIAL_HINT: Readonly<Record<CuratedProviderId, string>> = {\n  anthropic: 'ANTHROPIC_API_KEY (or CLAUDE_CODE_OAUTH_TOKEN)',\n  openai: 'OPENAI_API_KEY',\n  xai: 'XAI_API_KEY',\n  'amazon-bedrock': 'AWS_REGION and AWS_BEARER_TOKEN_BEDROCK',"
+  },
+  {
+   "path": "apps/cli/src/config/resolver.ts",
+   "start": 41,
+   "end": 64,
+   "code": "  { env: 'CLAUDE_CODE_OAUTH_TOKEN', toml: 'anthropic.oauth_token', type: 'string' },\n\n  // OpenAI\n  { env: 'OPENAI_API_KEY', toml: 'openai.api_key', type: 'string' },\n\n  // xAI\n  { env: 'XAI_API_KEY', toml: 'xai.api_key', type: 'string' },\n\n  // Bedrock\n  { env: 'AWS_REGION', toml: 'bedrock.region', type: 'string' },\n  { env: 'AWS_BEARER_TOKEN_BEDROCK', toml: 'bedrock.token', type: 'string' },\n\n  // Generic \u2014 credential for any provider Shannon does not curate\n  { env: GENERIC_API_KEY_ENV, toml: 'provider.api_key', type: 'string' },\n] as const;\n\n/** TOML section holding each curated provider's credentials, keyed by provider id. */\nconst PROVIDER_SECTIONS: Readonly<Record<CuratedProviderId, string>> = {\n  anthropic: 'anthropic',\n  openai: 'openai',\n  xai: 'xai',\n  'amazon-bedrock': 'bedrock',\n};\n"
+  },
+  {
+   "path": "apps/worker/src/ai/models.ts",
+   "start": 73,
+   "end": 96,
+   "code": " * its CLI counterpart never reaches the container: the worker looks for a\n * credential the CLI never forwarded, and preflight reports it as absent.\n */\nexport const PROVIDER_API_KEY_ENV: Readonly<Record<CuratedProviderId, readonly string[]>> = {\n  anthropic: ['ANTHROPIC_API_KEY', 'CLAUDE_CODE_OAUTH_TOKEN'],\n  openai: ['OPENAI_API_KEY'],\n  xai: ['XAI_API_KEY'],\n  'amazon-bedrock': ['AWS_BEARER_TOKEN_BEDROCK'],\n};\n\n/** Model used when SHANNON_AI_MODEL is unset. */\nexport const DEFAULT_MODEL_SPEC = 'anthropic:claude-sonnet-4-6';\n\n/** Browsable pi model catalogue \u2014 the source of valid `<provider>:<model-id>` ids. */\nexport const PI_CATALOG_URL = 'https://pi.dev/models';\n\nexport interface ModelSpec {\n  providerId: string;\n  modelId: string;\n}\n\n/**\n * Parse a `<provider>:<model-id>` spec. Splits on the first colon only, so colons\n * inside a model ID survive. The provider id is passed through as given \u2014 pi's"
+  },
+  {
+   "path": "apps/worker/src/services/preflight.ts",
+   "start": 283,
+   "end": 306,
+   "code": "}\n\n/** Credential env var a curated provider reads, for \"credential missing\" messages. */\nconst PROVIDER_CREDENTIAL_HINT: Readonly<Record<CuratedProviderId, string>> = {\n  anthropic: 'ANTHROPIC_API_KEY (or CLAUDE_CODE_OAUTH_TOKEN)',\n  openai: 'OPENAI_API_KEY',\n  xai: 'XAI_API_KEY',\n  'amazon-bedrock': 'AWS_BEARER_TOKEN_BEDROCK and AWS_REGION',\n};\n\n/** Which variable to set when a provider's credential is missing. */\nfunction credentialHint(providerId: string): string {\n  const curated = (PROVIDER_CREDENTIAL_HINT as Record<string, string | undefined>)[providerId];\n  return curated ?? GENERIC_API_KEY_ENV;\n}\n\n/** Human-readable label for which credential path a run is using. */\nfunction describeAuth(providerId: string, baseUrl: string | undefined): string {\n  if (baseUrl) return `custom endpoint (${baseUrl})`;\n  if (piAuthPresent()) return `${providerId} credentials from pi auth.json`;\n  if (providerId === 'amazon-bedrock') return 'Bedrock bearer token';\n  return `${providerId} API key`;\n}\n"
+  }
+ ],
+ "files": [
+  {
+   "path": "llms-full.txt",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1436,
+   "endpoints": [],
+   "models": [
+    "grok-4-6.pdf",
+    "grok-4-6.sarif",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 388,
+   "endpoints": [],
+   "models": [
+    "grok-4-6.pdf",
+    "grok-4-6.sarif"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": ".env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 56,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "CLAUDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 267,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "apps/cli/src/model-spec.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 82,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "apps/cli/src/config/resolver.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 296,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "apps/cli/src/commands/setup.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 357,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "apps/worker/src/ai/models.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 313,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "apps/worker/src/services/preflight.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 579,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/ai-providers.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 345,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/shannon-xbow-aikido-benchmark.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 137,
+   "endpoints": [],
+   "models": [
+    "grok-4-6.pdf",
+    "grok-4-6.sarif"
+   ],
+   "env": [],
+   "features": []
+  }
+ ]
+}

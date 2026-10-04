@@ -1,0 +1,506 @@
+{
+ "fork": "Blockchains/omnigent",
+ "upstream": "omnigent-ai/omnigent",
+ "category": "agent-framework",
+ "stars": 10486,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-10-04T16:03:32Z",
+ "description": "Omnigent is an open-source AI agent framework and meta-harness: orchestrate Claude Code, Codex, Cursor, Pi, and custom agents \u2014 swap harnesses without rewriting, enforce policies and sandboxing, and collaborate in real time from any device.",
+ "commit": "374b07967c5cdfe4476f7fba1b1b66fce98c1ddf",
+ "indexed_at": "2026-10-04T16:53:17Z",
+ "status": "ok",
+ "clone_kb": 157432,
+ "seconds": 47.9,
+ "files_scanned": 5474,
+ "languages": {
+  "Python": 3401,
+  "TypeScript": 1170,
+  "JavaScript": 149,
+  "Swift": 53,
+  "Kotlin": 29,
+  "Rust": 22
+ },
+ "grok_files": 25,
+ "grok_files_by_kind": {
+  "doc": 4,
+  "example": 1,
+  "test": 11,
+  "source": 9
+ },
+ "hosts": {
+  "api.x.ai": 4
+ },
+ "endpoints": {
+  "/v1/responses": 2,
+  "/v1/messages": 1
+ },
+ "models": {
+  "grok-4.5": 5,
+  "grok-4.3": 3,
+  "grok-4.5-high": 1,
+  "grok-2": 1,
+  "grok-4": 1,
+  "grok-3": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 14
+ },
+ "features": {
+  "anthropic_compatible": 5,
+  "mcp": 4,
+  "tool_calling": 3,
+  "embeddings": 2,
+  "live_search": 2,
+  "reasoning": 1,
+  "streaming": 1,
+  "vision": 1,
+  "structured_output": 1,
+  "voice_realtime": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "omnigent/cli.py",
+   "start": 717,
+   "end": 740,
+   "code": "        \"OPENAI_ORG_ID\",\n        \"OPENAI_ORGANIZATION\",\n        \"OPENROUTER_API_KEY\",\n        \"PERPLEXITY_API_KEY\",\n        \"TOGETHER_API_KEY\",\n        \"VOYAGE_API_KEY\",\n        \"XAI_API_KEY\",\n    }\n)\n_LOCAL_DAEMON_ENV_PREFIXES: tuple[str, ...] = (\n    \"ANTHROPIC_DEFAULT_\",\n    \"AZURE_OPENAI_\",\n    \"DATABRICKS_\",\n    \"MLFLOW_\",\n    \"OTEL_\",\n    \"OMNIGENT_\",\n    \"OPENAI_\",\n)\n_HOST_DAEMON_PROXY_ENV_ALLOWLIST: frozenset[str] = frozenset(\n    {\n        \"HTTP_PROXY\",\n        \"HTTPS_PROXY\",\n        \"ALL_PROXY\",\n        \"NO_PROXY\","
+  },
+  {
+   "path": "omnigent/acp_cli_harnesses.py",
+   "start": 86,
+   "end": 109,
+   "code": "\n# Keyed by canonical harness id. Keep keys sorted; each row's registrations\n# derive from here (see the module docstring for the full list).\nACP_CLI_HARNESSES: dict[str, AcpCliHarness] = {\n    # Grok Build (xAI's ``grok`` CLI) drives ``grok agent stdio``. Ships via a\n    # curl installer (not npm) and authenticates through its own ``grok login``\n    # (xAI OAuth, device-code capable) or ``XAI_API_KEY``; Omnigent stores no\n    # credential.\n    \"grok\": AcpCliHarness(\n        install=HarnessInstallSpec(\n            \"Grok Build\",\n            \"grok\",\n            None,\n            login_args=(\"login\", \"--device-auth\"),\n            install_hint=\"curl -fsSL https://x.ai/cli/install.sh | bash\",\n            auth_hint=\"run `grok login --device-auth` (xAI OAuth) or set XAI_API_KEY\",\n        ),\n        args=(\"agent\", \"stdio\"),\n        aliases=(\"grok-build\",),\n    ),\n    # jcode (https://jcode.sh) drives ``jcode acp``. Ships via a curl\n    # installer (not npm) and owns its provider/model config in\n    # ``~/.jcode/config.toml``; Omnigent stores no credential. Its ACP server\n    # ignores ``mcpServers`` in ``session/new`` (session-scoped MCP isn't"
+  },
+  {
+   "path": "omnigent/inner/acp_executor.py",
+   "start": 204,
+   "end": 227,
+   "code": "        ``session/new``. Off by default because a strict agent may reject unknown\n        params; enable per-agent for Qwen-shaped agents that honor it.\n    :param omnigent_mcp: Expose Omnigent's builtin tools to the agent via\n        ``session/new.mcpServers`` (the shared ``serve-mcp`` relay). On by\n        default; the global ``OMNIGENT_ACP_MCP=0`` kill switch also disables it.\n    :param env_passthrough: Environment variable *names* this agent may read at\n        spawn, e.g. ``(\"XAI_API_KEY\",)``. The spawn env is deny-by-default and\n        this executor drives an arbitrary agent, so it cannot infer the family\n        the agent authenticates with \u2014 an agent that reads a variable must name\n        it here (or in ``os_env.sandbox.env_passthrough``) or it starts\n        unauthenticated. Names only; values come from the host environment.\n    :param permission_mode: Omnigent permission stance, e.g. ``\"auto\"``\n        (default) or ``\"bypassPermissions\"``. Only the latter changes anything:\n        it skips the human approval card for a request no policy had an opinion\n        on, matching claude-sdk's ``can_use_tool`` gate. Policy still runs in\n        every mode, so a DENY still blocks and an explicit ASK still prompts.\n    :param inject_system_prompt: Fold the Omnigent system prompt into the first\n        ACP turn (ACP has no dedicated system-prompt field). On by default. Set\n        to ``False`` for agents like Pi forks (``omp``) that fully own their own\n        system prompt: those agents prepend Omnigent's text to the user message,\n        which can confuse their internal Claude model into emitting XML tool-call\n        fragments (``</function></tool_call>``) when there is no MCP relay\n        backing the described tools. Disabling injection leaves the first turn as\n        plain user content and lets the agent's own system prompt take effect"
+  },
+  {
+   "path": "omnigent/onboarding/acp_auth.py",
+   "start": 7,
+   "end": 30,
+   "code": "\n    acp:\n      agents:\n        - {name: Gemini CLI,  command: gemini --experimental-acp}\n        - {name: Claude Code, command: npx -y @zed-industries/claude-code-acp}\n        - {name: Goose,       command: goose acp, model: gpt-5.3}\n        - {name: Grok Build,  command: grok agent stdio, env_passthrough: [XAI_API_KEY]}\n\nEach agent gets a stable ``slug`` derived from its name; a picked\n``acp:<slug>`` (carried in the spec, resolved at spawn) looks the command back up\nhere. Auth is each agent's own \u2014 Omnigent stores no credential, so unlike the\n``providers:`` / ``cursor:`` blocks there is no secret reference. An agent that\nauthenticates from an environment variable names it in ``env_passthrough``\n(names only, never values): the spawn env is deny-by-default, so an undeclared\nvariable does not reach the agent. A dedicated block (not the shared gateway\n``auth:``) keeps these commands from being mis-consumed by the SDK harnesses.\n\nThis module is pure read + settings-builder (mirroring\n:mod:`omnigent.onboarding.cursor_auth`): the CLI orchestrates writes through\n:func:`omnigent.cli._save_global_config` so there is no cli\u2194onboarding cycle.\n\"\"\"\n\nfrom __future__ import annotations\n"
+  },
+  {
+   "path": "omnigent/onboarding/opencode_auth.py",
+   "start": 36,
+   "end": 59,
+   "code": "    (\"openai\", \"OpenAI\", \"OPENAI_API_KEY\"),\n    (\"anthropic\", \"Anthropic\", \"ANTHROPIC_API_KEY\"),\n    (\"google\", \"Google Gemini\", \"GEMINI_API_KEY\"),\n    (\"google\", \"Google Gemini\", \"GOOGLE_GENERATIVE_AI_API_KEY\"),\n    (\"groq\", \"Groq\", \"GROQ_API_KEY\"),\n    (\"openrouter\", \"OpenRouter\", \"OPENROUTER_API_KEY\"),\n    (\"xai\", \"xAI\", \"XAI_API_KEY\"),\n    (\"mistral\", \"Mistral\", \"MISTRAL_API_KEY\"),\n    (\"deepseek\", \"DeepSeek\", \"DEEPSEEK_API_KEY\"),\n    # OpenCode autoloads Bedrock when any of these AWS credential-chain variables\n    # is set; the AWS SDK resolves the actual credential at run time.\n    (\"amazon-bedrock\", \"Amazon Bedrock\", \"AWS_ACCESS_KEY_ID\"),\n    (\"amazon-bedrock\", \"Amazon Bedrock\", \"AWS_SECRET_ACCESS_KEY\"),\n    (\"amazon-bedrock\", \"Amazon Bedrock\", \"AWS_PROFILE\"),\n    (\"amazon-bedrock\", \"Amazon Bedrock\", \"AWS_REGION\"),\n    (\"amazon-bedrock\", \"Amazon Bedrock\", \"AWS_BEARER_TOKEN_BEDROCK\"),\n    (\"amazon-bedrock\", \"Amazon Bedrock\", \"AWS_WEB_IDENTITY_TOKEN_FILE\"),\n    (\"amazon-bedrock\", \"Amazon Bedrock\", \"AWS_CONTAINER_CREDENTIALS_FULL_URI\"),\n    (\"amazon-bedrock\", \"Amazon Bedrock\", \"AWS_CONTAINER_CREDENTIALS_RELATIVE_URI\"),\n)\n\n\ndef opencode_auth_path() -> Path:\n    \"\"\"Return OpenCode's ``auth.json`` path for this process's HOME."
+  },
+  {
+   "path": "omnigent/onboarding/configure_models.py",
+   "start": 202,
+   "end": 225,
+   "code": "# Responses API. ``openai`` / ``anthropic`` are intentionally absent: they use\n# :func:`default_base_url_for_family` (and openai keeps the Responses default).\n_KEY_PROVIDER_ENDPOINT: dict[str, _VendorEndpoint] = {\n    \"openrouter\": _VendorEndpoint(\"https://openrouter.ai/api/v1\", CHAT_WIRE_API),\n    \"groq\": _VendorEndpoint(\"https://api.groq.com/openai/v1\", CHAT_WIRE_API),\n    \"deepseek\": _VendorEndpoint(\"https://api.deepseek.com\", CHAT_WIRE_API),\n    \"xai\": _VendorEndpoint(\"https://api.x.ai/v1\", CHAT_WIRE_API),\n    \"mistral\": _VendorEndpoint(\"https://api.mistral.ai/v1\", CHAT_WIRE_API),\n    \"together_ai\": _VendorEndpoint(\"https://api.together.xyz/v1\", CHAT_WIRE_API),\n    \"fireworks_ai\": _VendorEndpoint(\"https://api.fireworks.ai/inference/v1\", CHAT_WIRE_API),\n}\n\n\ndef key_provider_endpoint(provider: str) -> _VendorEndpoint | None:\n    \"\"\"Return the vendor endpoint + wire for a ``key`` *provider*, if non-default.\n\n    :param provider: A catalog provider id, e.g. ``\"openrouter\"``.\n    :returns: The :class:`_VendorEndpoint` (own base_url + ``wire_api``) for a\n        third-party OpenAI-compatible vendor, or ``None`` for ``openai`` /\n        ``anthropic`` (which use the canonical family base_url and, for\n        openai, the Responses wire default).\n    \"\"\"\n    return _KEY_PROVIDER_ENDPOINT.get(provider)\n"
+  },
+  {
+   "path": "omnigent/onboarding/providers/__init__.py",
+   "start": 1106,
+   "end": 1129,
+   "code": "    \"openai\": \"OPENAI_API_KEY\",\n    \"anthropic\": \"ANTHROPIC_API_KEY\",\n    \"gemini\": \"GEMINI_API_KEY\",\n    \"mistral\": \"MISTRAL_API_KEY\",\n    \"groq\": \"GROQ_API_KEY\",\n    \"deepseek\": \"DEEPSEEK_API_KEY\",\n    \"xai\": \"XAI_API_KEY\",\n    \"openrouter\": \"OPENROUTER_API_KEY\",\n    \"togetherai\": \"TOGETHERAI_API_KEY\",\n    \"cohere\": \"COHERE_API_KEY\",\n    \"ai21\": \"AI21_API_KEY\",\n    \"fireworks_ai\": \"FIREWORKS_AI_API_KEY\",\n    \"perplexity\": \"PERPLEXITYAI_API_KEY\",\n    \"together_ai\": \"TOGETHERAI_API_KEY\",\n    \"replicate\": \"REPLICATE_API_KEY\",\n    \"deepinfra\": \"DEEPINFRA_API_KEY\",\n    \"cloudflare\": \"CLOUDFLARE_API_KEY\",\n    \"huggingface\": \"HUGGINGFACE_API_KEY\",\n    \"cerebras\": \"CEREBRAS_API_KEY\",\n    \"sambanova\": \"SAMBANOVA_API_KEY\",\n    \"novita\": \"NOVITA_API_KEY\",\n}\n\n"
+  },
+  {
+   "path": "omnigent/llms/routing.py",
+   "start": 22,
+   "end": 45,
+   "code": "    \"gemini\": \"https://generativelanguage.googleapis.com/v1beta\",\n    \"bedrock\": None,\n    \"vertex\": None,\n    \"databricks\": None,\n    \"groq\": \"https://api.groq.com/openai/v1\",\n    \"deepseek\": \"https://api.deepseek.com/v1\",\n    \"xai\": \"https://api.x.ai/v1\",\n    \"openrouter\": \"https://openrouter.ai/api/v1\",\n    \"ollama\": \"http://localhost:11434/v1\",\n    \"moonshot\": \"https://api.moonshot.cn/v1\",\n}\n\n_DEFAULT_PROVIDER = \"openai\"\n\n\n@dataclass\nclass RoutedModel:\n    \"\"\"\n    A parsed model string split into provider and model name.\n\n    :param provider: The provider identifier, e.g. ``\"anthropic\"``.\n    :param model: The model name without prefix, e.g.\n        ``\"claude-sonnet-4-20250514\"``.\n    \"\"\""
+  },
+  {
+   "path": "omnigent/llms/adapters/__init__.py",
+   "start": 50,
+   "end": 73,
+   "code": "    # OpenAI-compatible providers \u2014 default base URLs only.\n    # API keys come from connection_params at call time, not env vars.\n    openai_compat_providers = {\n        \"openai\": \"https://api.openai.com/v1\",\n        \"groq\": \"https://api.groq.com/openai/v1\",\n        \"deepseek\": \"https://api.deepseek.com/v1\",\n        \"xai\": \"https://api.x.ai/v1\",\n        \"openrouter\": \"https://openrouter.ai/api/v1\",\n        \"ollama\": \"http://localhost:11434/v1\",\n        \"moonshot\": \"https://api.moonshot.cn/v1\",\n    }\n\n    if provider in openai_compat_providers:\n        base_url = openai_compat_providers[provider]\n        resolved_url = kwargs.get(\"base_url\", base_url)\n        if provider == \"openai\":\n            # OpenAI supports the Responses API natively; use the\n            # subclass that calls /v1/responses directly so reasoning\n            # token events (reasoning_summary_text.delta etc.) flow through.\n            from omnigent.llms.adapters.openai import OpenAIAdapter\n\n            return OpenAIAdapter(base_url=resolved_url)\n        from omnigent.llms.adapters.openai import OpenAICompatibleAdapter\n"
+  }
+ ],
+ "files": [
+  {
+   "path": "CHANGELOG.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1997,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "grpc",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 660,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "examples/polly/agents/cursor/config.yaml",
+   "kind": "example",
+   "lang": null,
+   "lines": 75,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.5-high"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/test_agent_spawn_env_canary.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 354,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/inner/test_acp_executor.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2618,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/e2e/omnigent/test_example_polly.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 466,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/e2e_ui/chat/test_cursor_native_list_models_row.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 332,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/onboarding/test_acp_auth.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 162,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/server/integration/test_sessions_endpoints.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 11868,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/llms/test_routing.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 140,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-4",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search"
+   ]
+  },
+  {
+   "path": "tests/llms/test_responses_to_chat.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 958,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/runtime/test_acp_spawn_env.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 586,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "tests/runtime/test_cursor_spawn_env.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 298,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/cli/test_configure_models.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 3702,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "omnigent/cli.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 13512,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "omnigent/acp_cli_harnesses.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 123,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "omnigent/inner/acp_executor.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1962,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "omnigent/onboarding/acp_auth.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 291,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "omnigent/onboarding/opencode_auth.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 173,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "omnigent/onboarding/configure_models.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1005,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "omnigent/onboarding/providers/__init__.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1191,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "omnigent/onboarding/agent/skills/build-omnigent/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 287,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "omnigent/llms/routing.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 147,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search"
+   ]
+  },
+  {
+   "path": "omnigent/llms/LLMCLIENT.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 341,
+   "endpoints": [
+    "/v1/messages"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "omnigent/llms/adapters/__init__.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 114,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,549 @@
+{
+ "fork": "Blockchains/jcode",
+ "upstream": "1jehuang/jcode",
+ "category": "coding-agent-cli",
+ "stars": 20298,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2025 Jeremy Huang Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to w",
+ "pushed_at": "2026-10-04T05:31:28Z",
+ "description": "High performance coding agent harness written in rust",
+ "commit": "77f4f9d50bb41ae849da9ffaab7ea25e7815e096",
+ "indexed_at": "2026-10-04T16:54:18Z",
+ "status": "ok",
+ "clone_kb": 371476,
+ "seconds": 24.8,
+ "files_scanned": 1955,
+ "languages": {
+  "Rust": 1319,
+  "Python": 143,
+  "Swift": 26,
+  "TypeScript": 21,
+  "JavaScript": 20
+ },
+ "grok_files": 28,
+ "grok_files_by_kind": {
+  "source": 21,
+  "test": 6,
+  "config": 1
+ },
+ "hosts": {
+  "api.x.ai": 1
+ },
+ "endpoints": {
+  "/v1/models": 5,
+  "/v1/chat/completions": 2
+ },
+ "models": {
+  "grok-4.6": 15,
+  "grok-code-fast-1": 12,
+  "grok-4.5": 4,
+  "grok-4.7": 3,
+  "grok-code-fast": 2,
+  "grok-4.3": 2,
+  "grok-4": 1,
+  "grok-4.6-high": 1,
+  "grok-4.6-high-fast": 1,
+  "grok-4.6-low": 1,
+  "grok-4.6-xhigh": 1,
+  "grok-4.7-high": 1,
+  "grok-4.7-high-fast": 1,
+  "grok-4.7-low": 1,
+  "grok-4.6-unknown": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 4,
+  "JCODE_GROK_CLI_VERSION": 2,
+  "XAI_LOGIN_PROVIDER": 1,
+  "XAI_PROFILE": 1
+ },
+ "features": {
+  "anthropic_compatible": 13,
+  "reasoning": 4,
+  "tool_calling": 3,
+  "mcp": 3,
+  "grpc": 3,
+  "embeddings": 3,
+  "streaming": 2,
+  "structured_output": 2,
+  "vision": 1,
+  "image_generation": 1,
+  "voice_realtime": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "crates/jcode-provider-openrouter-runtime/src/lib.rs",
+   "start": 1764,
+   "end": 1787,
+   "code": "        })\n    }\n\n    /// Grok Build subscription over the Grok CLI chat proxy\n    /// (`https://cli-chat-proxy.grok.com/v1`, OpenAI-compatible).\n    ///\n    /// Auth is the Grok CLI OIDC session, not `XAI_API_KEY`. The token is read\n    /// from `auth.json` for every request so refreshes (by Jcode or the Grok\n    /// CLI) are picked up without rebuilding the provider. Jcode owns tools.\n    pub fn new_grok_build_subscription(model: &str) -> Self {\n        let static_models = GROK_BUILD_MODELS\n            .iter()\n            .map(|model| model.to_string())\n            .collect::<Vec<_>>();\n        let static_context_limits = GROK_BUILD_MODELS\n            .iter()\n            .map(|model| {\n                let limit = if model.contains(\"grok-code-fast\") {\n                    256_000\n                } else {\n                    500_000\n                };\n                (model.to_string(), limit)\n            })"
+  },
+  {
+   "path": "crates/jcode-provider-metadata/src/catalog.rs",
+   "start": 349,
+   "end": 372,
+   "code": "    requires_api_key: true,\n};\n\npub const XAI_PROFILE: OpenAiCompatibleProfile = OpenAiCompatibleProfile {\n    id: \"xai\",\n    display_name: \"xAI\",\n    api_base: \"https://api.x.ai/v1\",\n    api_key_env: \"XAI_API_KEY\",\n    env_file: \"xai.env\",\n    setup_url: \"https://docs.x.ai/developers/quickstart\",\n    default_model: Some(\"grok-code-fast-1\"),\n    requires_api_key: true,\n};\n\npub const LMSTUDIO_PROFILE: OpenAiCompatibleProfile = OpenAiCompatibleProfile {\n    id: \"lmstudio\",\n    display_name: \"LM Studio\",\n    api_base: \"http://localhost:1234/v1\",\n    api_key_env: \"LMSTUDIO_API_KEY\",\n    env_file: \"lmstudio.env\",\n    setup_url: \"https://lmstudio.ai/docs/app/api/endpoints/openai\",\n    default_model: None,\n    requires_api_key: false,\n};"
+  },
+  {
+   "path": "crates/jcode-base/src/message.rs",
+   "start": 121,
+   "end": 144,
+   "code": "            r\"(?m)^\\s*(STACKIT_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(GROQ_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(MISTRAL_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(PERPLEXITY_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(TOGETHER_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(DEEPINFRA_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(XAI_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(LMSTUDIO_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(OLLAMA_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(CHUTES_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(CEREBRAS_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(BELVEDIR_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(OPENAI_COMPAT_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(ANTHROPIC_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(OPENAI_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(AZURE_OPENAI_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(CURSOR_API_KEY\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?m)^\\s*(GITHUB_TOKEN\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?im)^\\s*([A-Z][A-Z0-9_]*(?:API_KEY|TOKEN|SECRET|PASSWORD|COOKIE)\\s*=\\s*)[^\\r\\n]+\",\n            r\"(?im)^\\s*(AUTHORIZATION\\s*[:=]\\s*)[^\\r\\n]+\",\n        ])\n    });\n\n    let mut redacted = text.to_string();"
+  },
+  {
+   "path": "crates/jcode-base/src/auth/external.rs",
+   "start": 602,
+   "end": 625,
+   "code": "        \"OPENAI_API_KEY\" => &[\"openai\", \"openai-api\"],\n        \"GEMINI_API_KEY\" => &[\"google\", \"gemini\"],\n        \"MISTRAL_API_KEY\" => &[\"mistral\"],\n        \"GROQ_API_KEY\" => &[\"groq\"],\n        \"CEREBRAS_API_KEY\" => &[\"cerebras\"],\n        \"BELVEDIR_API_KEY\" => &[\"belvedir\"],\n        \"XAI_API_KEY\" => &[\"xai\"],\n        \"OPENROUTER_API_KEY\" => &[\"openrouter\"],\n        \"CONIFER_API_KEY\" => &[\"conifer\"],\n        \"AI_GATEWAY_API_KEY\" => &[\"vercel-ai-gateway\"],\n        \"ZHIPU_API_KEY\" | \"ZAI_API_KEY\" => &[\"zai\"],\n        \"OPENCODE_API_KEY\" => &[\"opencode\"],\n        \"OPENCODE_GO_API_KEY\" => &[\"opencode-go\", \"opencode\"],\n        \"HF_TOKEN\" => &[\"huggingface\"],\n        \"KIMI_API_KEY\" => &[\"kimi-coding\", \"kimi\", \"moonshot\"],\n        \"MINIMAX_API_KEY\" => &[\"minimax\"],\n        \"MINIMAX_CN_API_KEY\" => &[\"minimax-cn\"],\n        \"NEBIUS_API_KEY\" => &[\"nebius\"],\n        \"SCALEWAY_API_KEY\" => &[\"scaleway\"],\n        \"STACKIT_API_KEY\" => &[\"stackit\"],\n        \"TOGETHER_API_KEY\" => &[\"togetherai\", \"together-ai\", \"together\"],\n        \"DEEPINFRA_API_KEY\" => &[\"deepinfra\"],\n        \"FIREWORKS_API_KEY\" => &[\"fireworks\"],\n        \"NOVITA_API_KEY\" => &[\"novita\", \"novita-ai\", \"novita.ai\"],"
+  }
+ ],
+ "files": [
+  {
+   "path": "crates/jcode-provider-openrouter-runtime/src/openrouter_tests.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 3899,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [
+    "JCODE_GROK_CLI_VERSION"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "streaming",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "crates/jcode-provider-openrouter-runtime/src/lib.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 2969,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-code-fast",
+    "grok-code-fast-1"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "crates/jcode-tui/src/tui/ui_header.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1807,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "crates/jcode-tui/src/tui/app/inline_interactive/helpers.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 381,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "crates/jcode-tui/src/tui/app/tests/state_model_poke_03.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 3148,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "crates/jcode-tui/src/tui/app/tests/remote_startup_input_01/part_02.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 652,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "crates/jcode-tui/src/tui/app/tests/remote_startup_input_01/part_01.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 1174,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "crates/jcode-tui/src/tui/app/tests/remote_startup_input_02/part_01.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 2065,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "crates/jcode-tui/src/tui/app/tests/support_failover/part_02.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 833,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "crates/jcode-provider-grok-build-runtime/src/lib.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 369,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "crates/jcode-protocol/src/protocol_tests/misc_events.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 639,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "crates/jcode-provider-metadata/src/catalog.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1342,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_LOGIN_PROVIDER",
+    "XAI_PROFILE"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "crates/jcode-provider-core/src/lib.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1849,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "crates/jcode-provider-core/src/model_names.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 879,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "crates/jcode-provider-core/src/models.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 974,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-code-fast"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "crates/jcode-provider-cursor-runtime/src/lib.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 862,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "crates/jcode-provider-cursor-runtime/src/agent_transport.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1873,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.6-high",
+    "grok-4.6-high-fast",
+    "grok-4.6-low",
+    "grok-4.6-xhigh",
+    "grok-4.7",
+    "grok-4.7-high",
+    "grok-4.7-high-fast",
+    "grok-4.7-low"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "mcp",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "crates/jcode-provider-cursor-runtime/src/cursor_tests.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1108,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "mcp"
+   ]
+  },
+  {
+   "path": "crates/jcode-base/src/provider_catalog_tests.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1360,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.6-unknown"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "crates/jcode-base/src/provider_catalog.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1277,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "crates/jcode-base/src/message.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 437,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "crates/jcode-base/src/auth/external.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 641,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "crates/jcode-base/src/auth/lifecycle.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 2768,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "crates/jcode-base/src/auth/grok_build.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 703,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [
+    "JCODE_GROK_CLI_VERSION"
+   ],
+   "features": []
+  },
+  {
+   "path": "crates/jcode-base/src/provider/cursor.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 36,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "crates/jcode-base/src/provider/tests/catalog_subscription.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 768,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/cli/commands_tests.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1688,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "changelog/v0.89.0.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 36,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "voice_realtime"
+   ]
+  }
+ ]
+}

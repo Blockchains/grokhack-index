@@ -1,0 +1,161 @@
+{
+ "fork": "Blockchains/open-notebook",
+ "upstream": "lfnovo/open-notebook",
+ "category": "app",
+ "stars": 39798,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2024 Luis Novo Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom",
+ "pushed_at": "2026-10-04T12:44:54Z",
+ "description": "An Open Source implementation of Notebook LM with more flexibility and features",
+ "commit": "60e3c2161e9dd32cc6327991b7d4be68f83e6e06",
+ "indexed_at": "2026-10-04T16:56:27Z",
+ "status": "ok",
+ "clone_kb": 11308,
+ "seconds": 2.3,
+ "files_scanned": 560,
+ "languages": {
+  "TypeScript": 254,
+  "Python": 152,
+  "JavaScript": 3
+ },
+ "grok_files": 6,
+ "grok_files_by_kind": {
+  "source": 3,
+  "test": 2,
+  "doc": 1
+ },
+ "hosts": {
+  "api.x.ai": 2
+ },
+ "endpoints": {
+  "/v1/models": 3
+ },
+ "models": {
+  "grok-beta": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 5
+ },
+ "features": {
+  "anthropic_compatible": 3,
+  "embeddings": 3
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "open_notebook/ai/provider_registry.py",
+   "start": 132,
+   "end": 155,
+   "code": "        openai_compat_discovery_url=\"https://api.deepseek.com/models\",\n    ),\n    ProviderSpec(\n        name=\"xai\",\n        display_name=\"xAI (Grok)\",\n        modalities=(\"language\", \"text_to_speech\"),\n        required_env=(\"XAI_API_KEY\",),\n        test_model=\"grok-beta\",\n        docs_url=\"https://console.x.ai/\",\n        openai_compat_discovery_url=\"https://api.x.ai/v1/models\",\n    ),\n    ProviderSpec(\n        name=\"openrouter\",\n        display_name=\"OpenRouter\",\n        modalities=_ALL_MODALITIES,\n        required_env=(\"OPENROUTER_API_KEY\",),\n        test_model=\"openai/gpt-3.5-turbo\",\n        docs_url=\"https://openrouter.ai/keys\",\n        openai_compat_discovery_url=\"https://openrouter.ai/api/v1/models\",\n    ),\n    ProviderSpec(\n        name=\"dashscope\",\n        display_name=\"DashScope (Qwen)\",\n        modalities=_LANGUAGE_ONLY,"
+  },
+  {
+   "path": "open_notebook/ai/key_provider.py",
+   "start": 44,
+   "end": 67,
+   "code": "        \"env_var\": \"MISTRAL_API_KEY\",\n    },\n    \"deepseek\": {\n        \"env_var\": \"DEEPSEEK_API_KEY\",\n    },\n    \"xai\": {\n        \"env_var\": \"XAI_API_KEY\",\n    },\n    \"openrouter\": {\n        \"env_var\": \"OPENROUTER_API_KEY\",\n    },\n    \"voyage\": {\n        \"env_var\": \"VOYAGE_API_KEY\",\n    },\n    \"elevenlabs\": {\n        \"env_var\": \"ELEVENLABS_API_KEY\",\n    },\n    \"deepgram\": {\n        \"env_var\": \"DEEPGRAM_API_KEY\",\n    },\n    # URL-based providers\n    \"ollama\": {\n        \"env_var\": \"OLLAMA_API_BASE\",\n    },"
+  },
+  {
+   "path": "api/routers/models.py",
+   "start": 396,
+   "end": 419,
+   "code": "            \"openai\": \"OPENAI_API_KEY\",\n            \"anthropic\": \"ANTHROPIC_API_KEY\",\n            \"google\": \"GOOGLE_API_KEY\",\n            \"groq\": \"GROQ_API_KEY\",\n            \"mistral\": \"MISTRAL_API_KEY\",\n            \"deepseek\": \"DEEPSEEK_API_KEY\",\n            \"xai\": \"XAI_API_KEY\",\n            \"openrouter\": \"OPENROUTER_API_KEY\",\n            \"voyage\": \"VOYAGE_API_KEY\",\n            \"elevenlabs\": \"ELEVENLABS_API_KEY\",\n            \"deepgram\": \"DEEPGRAM_API_KEY\",\n            \"ollama\": \"OLLAMA_API_BASE\",\n            \"omlx\": \"OMLX_API_BASE\",\n            \"dashscope\": \"DASHSCOPE_API_KEY\",\n            \"minimax\": \"MINIMAX_API_KEY\",\n            \"novita\": \"NOVITA_API_KEY\",\n            \"siliconflow\": \"SILICONFLOW_API_KEY\",\n            \"zai\": \"ZAI_API_KEY\",\n            \"ppq\": \"PPQ_API_KEY\",\n            \"cohere\": \"COHERE_API_KEY\",\n        }\n\n        provider_status = {}\n"
+  }
+ ],
+ "files": [
+  {
+   "path": "open_notebook/ai/provider_registry.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 340,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "open_notebook/ai/key_provider.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 352,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "tests/test_credential_provider_validation.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 233,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/test_model_discovery.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 472,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "api/routers/models.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 849,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "docs/5-CONFIGURATION/environment-reference.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 358,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings"
+   ]
+  }
+ ]
+}

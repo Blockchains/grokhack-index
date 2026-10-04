@@ -1,0 +1,137 @@
+{
+ "fork": "Blockchains/openworker",
+ "upstream": "andrewyng/openworker",
+ "category": "app",
+ "stars": 18422,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2024 Andrew Ng Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom",
+ "pushed_at": "2026-10-04T03:02:02Z",
+ "description": null,
+ "commit": "c54597913f9c73dd0b2eda883daf7d6f725f3339",
+ "indexed_at": "2026-10-04T16:56:46Z",
+ "status": "ok",
+ "clone_kb": 17828,
+ "seconds": 7.9,
+ "files_scanned": 810,
+ "languages": {
+  "Python": 431,
+  "TypeScript": 299,
+  "Rust": 4,
+  "JavaScript": 2
+ },
+ "grok_files": 4,
+ "grok_files_by_kind": {
+  "source": 3,
+  "test": 1
+ },
+ "hosts": {
+  "api.x.ai": 2
+ },
+ "endpoints": {
+  "/v1/chat/completions": 2,
+  "/v1/models": 2,
+  "/v1/responses": 1
+ },
+ "models": {
+  "grok-4.3": 4,
+  "grok-4": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 1
+ },
+ "features": {
+  "tool_calling": 2,
+  "anthropic_compatible": 2,
+  "live_search": 1,
+  "mcp": 1,
+  "reasoning": 1,
+  "openai_compatible": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "coworker/providers/registry.py",
+   "start": 621,
+   "end": 644,
+   "code": "        env_key=\"DASHSCOPE_API_KEY\",\n        endpoint_help=\"Prefilled with Alibaba Model Studio's international endpoint. China (Beijing): https://dashscope.aliyuncs.com/compatible-mode/v1\",\n    ),\n    _compat(\n        \"xai\",\n        \"xAI (Grok)\",\n        base_url=\"https://api.x.ai/v1\",\n        recommended_model=\"grok-4.3\",\n        env_key=\"XAI_API_KEY\",\n    ),\n    _compat(\n        \"mistral\",\n        \"Mistral\",\n        base_url=\"https://api.mistral.ai/v1\",\n        recommended_model=\"mistral-large-latest\",\n        env_key=\"MISTRAL_API_KEY\",\n    ),\n    _compat(\n        \"meta\",\n        \"Meta (Muse Spark)\",\n        base_url=\"https://api.meta.ai/v1\",\n        recommended_model=\"muse-spark-1.1\",\n        env_key=\"META_API_KEY\",\n        endpoint_help=\"Prefilled with the Meta Model API endpoint (public preview, US-only as of 2026-07).\","
+  }
+ ],
+ "files": [
+  {
+   "path": "coworker/server/manager.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 8387,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "coworker/providers/matrix.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 349,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "coworker/providers/registry.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1022,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "tests/test_providers.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 624,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  }
+ ]
+}

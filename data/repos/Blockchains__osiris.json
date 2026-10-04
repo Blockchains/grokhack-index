@@ -1,0 +1,83 @@
+{
+ "fork": "Blockchains/osiris",
+ "upstream": "simplifaisoul/osiris",
+ "category": "app",
+ "stars": 10447,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2026 simplifaisoul Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to ",
+ "pushed_at": "2026-10-03T06:32:37Z",
+ "description": "Open Source Global Intelligence Platform - Real-Time OSINT Dashboard - A Palantir Alternative -                            2nZNHm3Lr9umG3DVrzYwHgktwkuKuJRXqqRqs3ewpump ",
+ "commit": "6431d1a99a59b2e3946764151ebf9bc2fd8af5ce",
+ "indexed_at": "2026-10-04T16:56:57Z",
+ "status": "ok",
+ "clone_kb": 20060,
+ "seconds": 8.2,
+ "files_scanned": 417,
+ "languages": {
+  "TypeScript": 386,
+  "JavaScript": 10
+ },
+ "grok_files": 2,
+ "grok_files_by_kind": {
+  "source": 2
+ },
+ "hosts": {
+  "api.x.ai": 1
+ },
+ "endpoints": {},
+ "models": {
+  "grok-4": 2,
+  "grok-3-mini": 1
+ },
+ "env_vars": {},
+ "features": {
+  "anthropic_compatible": 1,
+  "embeddings": 1,
+  "reasoning": 1,
+  "structured_output": 1,
+  "voice_realtime": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "src/lib/oi/providers.ts",
+   "start": 67,
+   "end": 90,
+   "code": "  {\n    id: 'deepseek', name: 'DeepSeek', wire: 'openai', base: 'https://api.deepseek.com',\n    keyUrl: 'https://platform.deepseek.com/api_keys', keyHint: 'sk-\u2026',\n    defaultModel: 'deepseek-chat', suggested: ['deepseek-chat', 'deepseek-reasoner'], concurrency: 4,\n  },\n  {\n    id: 'xai', name: 'xAI Grok', wire: 'openai', base: 'https://api.x.ai/v1',\n    keyUrl: 'https://console.x.ai', keyHint: 'xai-\u2026',\n    defaultModel: 'grok-3-mini', suggested: ['grok-3-mini', 'grok-4'], concurrency: 4,\n  },\n  {\n    id: 'mistral', name: 'Mistral', wire: 'openai', base: 'https://api.mistral.ai/v1',\n    keyUrl: 'https://console.mistral.ai/api-keys', keyHint: '32 characters',\n    defaultModel: 'mistral-small-latest', suggested: ['mistral-small-latest', 'mistral-medium-latest', 'mistral-large-latest'], concurrency: 3,\n  },\n  {\n    // Alibaba Cloud's international endpoint: the Qwen models MiroFish recommends.\n    id: 'qwen', name: 'Qwen (Alibaba Cloud)', wire: 'openai', base: 'https://dashscope-intl.aliyuncs.com/compatible-mode/v1',\n    keyUrl: 'https://modelstudio.console.alibabacloud.com/', keyHint: 'sk-\u2026',\n    defaultModel: 'qwen-plus', suggested: ['qwen-plus', 'qwen-max', 'qwen-turbo'], concurrency: 4,\n  },\n  {\n    // Scripted answers for development and tests: the whole pipeline, no key, no cost. Never offered in production.\n    id: 'demo', name: 'Demo (scripted, dev only)', wire: 'demo', base: '',"
+  }
+ ],
+ "files": [
+  {
+   "path": "src/lib/oi/models.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 153,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/lib/oi/providers.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 476,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "reasoning",
+    "structured_output",
+    "voice_realtime"
+   ]
+  }
+ ]
+}

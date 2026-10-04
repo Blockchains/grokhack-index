@@ -1,0 +1,214 @@
+{
+ "fork": "Blockchains/OpenMontage",
+ "upstream": "calesthio/OpenMontage",
+ "category": "app",
+ "stars": 62980,
+ "license_spdx": "AGPL-3.0",
+ "license_text_head": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007 Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/> Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. Preamble The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure coop",
+ "pushed_at": "2026-10-03T16:28:55Z",
+ "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
+ "commit": "9327439db69021ab4b0e2776729bf3b58fdb5a87",
+ "indexed_at": "2026-10-04T16:56:38Z",
+ "status": "ok",
+ "clone_kb": 166212,
+ "seconds": 13.9,
+ "files_scanned": 1887,
+ "languages": {
+  "Python": 539,
+  "TypeScript": 73,
+  "JavaScript": 52
+ },
+ "grok_files": 8,
+ "grok_files_by_kind": {
+  "doc": 5,
+  "config": 1,
+  "source": 2
+ },
+ "hosts": {
+  "api.x.ai": 3
+ },
+ "endpoints": {
+  "/v1/images/edits": 1,
+  "/v1/images/generations": 1,
+  "/v1/videos": 1,
+  "/v1/videos/generations": 1
+ },
+ "models": {
+  "grok-imagine-image": 3,
+  "grok-imagine-video": 3
+ },
+ "env_vars": {
+  "XAI_API_KEY": 8
+ },
+ "features": {
+  "image_generation": 2,
+  "vision": 2
+ },
+ "sdk_exports": [
+  {
+   "path": "tools/graphics/grok_image.py",
+   "lang": "Python",
+   "names": [
+    "GrokImage"
+   ]
+  },
+  {
+   "path": "tools/video/grok_video.py",
+   "lang": "Python",
+   "names": [
+    "GrokVideo"
+   ]
+  }
+ ],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "tools/graphics/grok_image.py",
+   "start": 53,
+   "end": 76,
+   "code": "    execution_mode = ExecutionMode.SYNC\n    determinism = Determinism.STOCHASTIC\n    runtime = ToolRuntime.API\n\n    dependencies = []\n    install_instructions = (\n        \"Set XAI_API_KEY to your xAI API key.\\n\"\n        \"  Get one from the xAI developer console\"\n    )\n    agent_skills = [\"grok-media\"]\n\n    capabilities = [\n        \"generate_image\",\n        \"edit_image\",\n        \"text_to_image\",\n        \"image_to_image\",\n        \"style_transfer\",\n    ]\n    supports = {\n        \"image_edit\": True,\n        \"multiple_outputs\": True,\n        \"aspect_ratio\": True,\n        \"resolution\": True,\n        \"reference_image\": True,"
+  },
+  {
+   "path": "tools/video/grok_video.py",
+   "start": 56,
+   "end": 79,
+   "code": "    execution_mode = ExecutionMode.SYNC\n    determinism = Determinism.STOCHASTIC\n    runtime = ToolRuntime.API\n\n    dependencies = []\n    install_instructions = (\n        \"Set XAI_API_KEY to your xAI API key.\\n\"\n        \"  Get one from the xAI developer console\"\n    )\n    agent_skills = [\"grok-media\", \"ai-video-gen\"]\n\n    capabilities = [\"text_to_video\", \"image_to_video\", \"reference_to_video\"]\n    supports = {\n        \"text_to_video\": True,\n        \"image_to_video\": True,\n        \"reference_to_video\": True,\n        \"reference_image\": True,\n        \"multiple_reference_images\": True,\n        \"native_audio\": True,\n        \"lip_sync\": True,\n        \"cinematic_quality\": True,\n    }\n    best_for = [\n        \"cinematic clips with native synchronized audio (dialogue, SFX, music)\","
+  }
+ ],
+ "files": [
+  {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 786,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": ".env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 151,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "README_zh-CN.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 679,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tools/graphics/grok_image.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 296,
+   "endpoints": [
+    "/v1/images/edits",
+    "/v1/images/generations"
+   ],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "tools/video/grok_video.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 303,
+   "endpoints": [
+    "/v1/videos",
+    "/v1/videos/generations"
+   ],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": ".agents/skills/grok-media/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 131,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-video"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "docs/ARCHITECTURE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 527,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "image_generation"
+   ]
+  },
+  {
+   "path": "docs/PROVIDERS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1502,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-video"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "vision",
+    "voice_realtime"
+   ]
+  }
+ ]
+}

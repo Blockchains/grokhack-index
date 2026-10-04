@@ -1,0 +1,363 @@
+{
+ "fork": "Blockchains/compound-engineering-plugin",
+ "upstream": "EveryInc/compound-engineering-plugin",
+ "category": "coding-agent-cli",
+ "stars": 25389,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2025 Every Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the",
+ "pushed_at": "2026-10-02T09:55:48Z",
+ "description": "Official Compound Engineering plugin for Claude Code, Codex, Cursor, and more",
+ "commit": "9af474a70e7f2a844338519ad9e92aafbd92d4fb",
+ "indexed_at": "2026-10-04T16:53:53Z",
+ "status": "ok",
+ "clone_kb": 28820,
+ "seconds": 15.3,
+ "files_scanned": 1401,
+ "languages": {
+  "TypeScript": 283,
+  "JavaScript": 74,
+  "Python": 39,
+  "Ruby": 6
+ },
+ "grok_files": 18,
+ "grok_files_by_kind": {
+  "test": 5,
+  "source": 5,
+  "doc": 8
+ },
+ "hosts": {},
+ "endpoints": {},
+ "models": {
+  "grok-4.7-xhigh": 10,
+  "grok-4.7": 7,
+  "grok-4.6": 6,
+  "grok-4.6-build": 3,
+  "grok-429-stub-counter": 2,
+  "grok-529-stub-counter": 2,
+  "grok-4.6-high": 2,
+  "grok-4": 2,
+  "grok-4.5": 2,
+  "grok-4.5-high": 2
+ },
+ "env_vars": {
+  "M_GROK_CURSOR": 5,
+  "M_GROK": 4
+ },
+ "features": {
+  "reasoning": 4,
+  "anthropic_compatible": 3,
+  "mcp": 3,
+  "structured_output": 3,
+  "voice_realtime": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [],
+ "files": [
+  {
+   "path": "tests/skills/ce-code-review-cross-model-routes.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 2094,
+   "endpoints": [],
+   "models": [
+    "grok-4.7",
+    "grok-4.7-xhigh",
+    "grok-429-stub-counter",
+    "grok-529-stub-counter"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/skills/ce-doc-review-cross-model-routes.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1581,
+   "endpoints": [],
+   "models": [
+    "grok-4.7",
+    "grok-4.7-xhigh",
+    "grok-429-stub-counter",
+    "grok-529-stub-counter"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/skills/ce-work-unit-workspace-init.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 874,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.6-high",
+    "grok-4.7-xhigh"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/skills/ce-pov-cross-model-routes.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 736,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.7",
+    "grok-4.7-xhigh"
+   ],
+   "env": [],
+   "features": [
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/skills/ce-work-cross-model-routes.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1114,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.6-high",
+    "grok-4.7-xhigh"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "skills/ce-doc-review/scripts/cross-model-doc-review.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 1283,
+   "endpoints": [],
+   "models": [
+    "grok-4.7",
+    "grok-4.7-xhigh"
+   ],
+   "env": [
+    "M_GROK",
+    "M_GROK_CURSOR"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "skills/ce-doc-review/references/cross-model-review.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 185,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "M_GROK",
+    "M_GROK_CURSOR"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "skills/ce-pov/scripts/cross-model-pov.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 982,
+   "endpoints": [],
+   "models": [
+    "grok-4.7",
+    "grok-4.7-xhigh"
+   ],
+   "env": [
+    "M_GROK",
+    "M_GROK_CURSOR"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "skills/ce-code-review/scripts/cross-model-adversarial-review.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 1304,
+   "endpoints": [],
+   "models": [
+    "grok-4.7",
+    "grok-4.7-xhigh"
+   ],
+   "env": [
+    "M_GROK",
+    "M_GROK_CURSOR"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "skills/ce-work/scripts/unit_workspace_state.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1060,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.7-xhigh"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "skills/ce-work/scripts/cross-model-work.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 1002,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.7",
+    "grok-4.7-xhigh"
+   ],
+   "env": [
+    "M_GROK_CURSOR"
+   ],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "docs/plans/ce-code-review-reviewer-consolidation-and-standards-file.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 195,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/plans/2026-07-13-002-feat-code-review-cross-model-provider-port-plan.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 246,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.5-high"
+   ],
+   "env": [],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "docs/plans/2026-08-21-phase-loaded-skill-kernels-eval-report.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 362,
+   "endpoints": [],
+   "models": [
+    "grok-4.6-build"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "docs/plans/2026-07-09-003-feat-doc-review-cross-model-plan.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 351,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.5-high"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "mcp",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "docs/solutions/skill-design/size-driven-skill-restructure.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 99,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.6-build"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/solutions/skill-design/prose-cannot-validate-caller-control-data-byte-for-byte.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 116,
+   "endpoints": [],
+   "models": [
+    "grok-4.6-build"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "docs/solutions/integration-issues/grok-camelcase-structuredoutput-and-nonfinal-peer-position.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 55,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "structured_output",
+    "voice_realtime"
+   ]
+  }
+ ]
+}

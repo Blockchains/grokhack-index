@@ -1,0 +1,204 @@
+{
+ "fork": "Blockchains/hermes-desktop",
+ "upstream": "fathah/hermes-desktop",
+ "category": "chat-ui",
+ "stars": 14355,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2026 github.com/fathah Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons",
+ "pushed_at": "2026-09-24T14:32:35Z",
+ "description": "Desktop Companion for Hermes Agent",
+ "commit": "2ed89070bc6c9e8231a37bb55df8a7722a3776b8",
+ "indexed_at": "2026-10-04T16:55:37Z",
+ "status": "ok",
+ "clone_kb": 52172,
+ "seconds": 9.2,
+ "files_scanned": 914,
+ "languages": {
+  "TypeScript": 794,
+  "JavaScript": 26,
+  "Python": 1
+ },
+ "grok_files": 9,
+ "grok_files_by_kind": {
+  "test": 4,
+  "source": 5
+ },
+ "hosts": {},
+ "endpoints": {
+  "/v1/models": 2
+ },
+ "models": {
+  "grok-4.3": 4,
+  "grok-4.20-0309-non-reasoning": 1,
+  "grok-4.20-0309-reasoning": 1,
+  "grok-4.20-multi-agent-0309": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 5
+ },
+ "features": {
+  "anthropic_compatible": 4,
+  "structured_output": 3,
+  "voice_realtime": 1,
+  "reasoning": 1,
+  "mcp": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "src/renderer/src/constants.ts",
+   "start": 235,
+   "end": 258,
+   "code": "    },\n    {\n      id: \"xai\",\n      name: \"constants.xaiName\",\n      desc: \"constants.xaiDesc\",\n      tag: \"\",\n      envKey: \"XAI_API_KEY\",\n      url: \"https://console.x.ai\",\n      placeholder: \"xai-...\",\n      configProvider: \"xai\",\n      baseUrl: \"\",\n      needsKey: true,\n    },\n    {\n      id: \"xiaomi\",\n      name: \"Xiaomi MiMo\",\n      desc: \"MiMo models\",\n      tag: \"\",\n      envKey: \"XIAOMI_API_KEY\",\n      url: \"https://platform.xiaomimimo.com\",\n      placeholder: \"sk-...\",\n      configProvider: \"xiaomi\",\n      baseUrl: \"https://api.xiaomimimo.com/v1\",\n      needsKey: true,"
+  },
+  {
+   "path": "src/main/config-health.ts",
+   "start": 593,
+   "end": 616,
+   "code": "  {\n    source: \"env\",\n    field: \"PERPLEXITY_API_KEY\",\n    label: \"PERPLEXITY_API_KEY (.env)\",\n  },\n  { source: \"env\", field: \"GOOGLE_API_KEY\", label: \"GOOGLE_API_KEY (.env)\" },\n  { source: \"env\", field: \"XAI_API_KEY\", label: \"XAI_API_KEY (.env)\" },\n  { source: \"env\", field: \"NOUS_API_KEY\", label: \"NOUS_API_KEY (.env)\" },\n  { source: \"env\", field: \"HF_TOKEN\", label: \"HF_TOKEN (.env)\" },\n  { source: \"env\", field: \"CUSTOM_API_KEY\", label: \"CUSTOM_API_KEY (.env)\" },\n  // config.yaml fields \u2014 the model-specific ones, including the\n  // `api_key` field that issue #384 was hitting.\n  {\n    source: \"config\",\n    field: \"model.provider\",\n    label: \"model.provider (config.yaml)\",\n  },\n  {\n    source: \"config\",\n    field: \"model.default\",\n    label: \"model.default (config.yaml)\",\n  },\n  {\n    source: \"config\","
+  },
+  {
+   "path": "src/main/installer.ts",
+   "start": 350,
+   "end": 373,
+   "code": "  openrouter: \"OPENROUTER_API_KEY\",\n  anthropic: \"ANTHROPIC_API_KEY\",\n  openai: \"OPENAI_API_KEY\",\n  \"ollama-cloud\": \"OLLAMA_API_KEY\",\n  aimlapi: \"AIMLAPI_API_KEY\",\n  google: \"GOOGLE_API_KEY\",\n  xai: \"XAI_API_KEY\",\n  groq: \"GROQ_API_KEY\",\n  deepseek: \"DEEPSEEK_API_KEY\",\n  together: \"TOGETHER_API_KEY\",\n  fireworks: \"FIREWORKS_API_KEY\",\n  cerebras: \"CEREBRAS_API_KEY\",\n  mistral: \"MISTRAL_API_KEY\",\n  perplexity: \"PERPLEXITY_API_KEY\",\n  huggingface: \"HF_TOKEN\",\n  hf: \"HF_TOKEN\",\n  // DashScope: `alibaba` is the canonical agent slug; the rest are the\n  // agent's own aliases for it (models.py PROVIDER_ALIASES) \u2014 including\n  // `qwen`, which every pre-#825 desktop config stored. Only `qwen-oauth`\n  // is the Qwen Portal OAuth provider.\n  alibaba: \"DASHSCOPE_API_KEY\",\n  dashscope: \"DASHSCOPE_API_KEY\",\n  qwen: \"DASHSCOPE_API_KEY\",\n  aliyun: \"DASHSCOPE_API_KEY\","
+  }
+ ],
+ "files": [
+  {
+   "path": "tests/constants.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 371,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/office-env.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 285,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/install-gate-providers.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 108,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/oauth-model-discovery.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 156,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/renderer/src/constants.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1379,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/main/config-health.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1093,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "src/main/model-discovery.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 695,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "src/main/default-models.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 98,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/main/installer.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1583,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "structured_output"
+   ]
+  }
+ ]
+}

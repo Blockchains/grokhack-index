@@ -1,0 +1,551 @@
+{
+ "fork": "Blockchains/OpenMAIC",
+ "upstream": "THU-MAIC/OpenMAIC",
+ "category": "app",
+ "stars": 39932,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2026 THU-MAIC Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom ",
+ "pushed_at": "2026-10-04T14:45:27Z",
+ "description": "Open Multi-Agent Interactive Classroom \u2014 Get an immersive, multi-agent learning experience in just one click",
+ "commit": "636fab0d7edee5e7c2694117c38ece8f623573f9",
+ "indexed_at": "2026-10-04T16:56:49Z",
+ "status": "ok",
+ "clone_kb": 222780,
+ "seconds": 25.3,
+ "files_scanned": 3301,
+ "languages": {
+  "TypeScript": 2918,
+  "JavaScript": 100
+ },
+ "grok_files": 21,
+ "grok_files_by_kind": {
+  "config": 1,
+  "source": 6,
+  "test": 8,
+  "doc": 6
+ },
+ "hosts": {
+  "api.x.ai": 7
+ },
+ "endpoints": {
+  "/v1/videos": 2,
+  "/v1/videos/generations": 1,
+  "/v1/images/generations": 1,
+  "/v1/chat/completions": 1
+ },
+ "models": {
+  "grok-4.5": 11,
+  "grok-4.6": 11,
+  "grok-imagine-video": 10,
+  "grok-4.20-reasoning": 9,
+  "grok-4.3": 9,
+  "grok-imagine-image": 9,
+  "grok-4-1-fast-reasoning": 8,
+  "grok-4.20-multi-agent": 8,
+  "grok-4-1-fast-non-reasoning": 8,
+  "grok-4.20": 8,
+  "grok-code-fast-1": 8,
+  "grok-imagine-image-pro": 8
+ },
+ "env_vars": {
+  "VIDEO_GROK_API_KEY": 4,
+  "VIDEO_GROK_ENABLED": 4,
+  "IMAGE_GROK": 3,
+  "VIDEO_GROK": 3,
+  "IMAGE_GROK_API_KEY": 2,
+  "VIDEO_GROK_BASE_URL": 2,
+  "IMAGE_GROK_BASE_URL": 1
+ },
+ "features": {
+  "image_generation": 4,
+  "anthropic_compatible": 2,
+  "reasoning": 2,
+  "structured_output": 2,
+  "openai_compatible": 1,
+  "streaming": 1,
+  "tool_calling": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "lib/ai/providers.ts",
+   "start": 1314,
+   "end": 1337,
+   "code": "  },\n\n  grok: {\n    id: 'grok',\n    name: 'Grok',\n    type: 'openai',\n    defaultBaseUrl: 'https://api.x.ai/v1',\n    requiresApiKey: true,\n    icon: '/logos/grok.svg',\n    models: [\n      {\n        id: 'grok-4.6',\n        name: 'Grok 4.6',\n        contextWindow: 500000,\n        outputWindow: 500000,\n        capabilities: {\n          streaming: true,\n          tools: true,\n          vision: true,\n          thinking: {\n            toggleable: false,\n            budgetAdjustable: true,\n            defaultEnabled: true,\n          },"
+  },
+  {
+   "path": "lib/media/image-providers.ts",
+   "start": 120,
+   "end": 143,
+   "code": "    supportedAspectRatios: ['16:9', '4:3', '1:1', '9:16'],\n  },\n  'grok-image': {\n    id: 'grok-image',\n    name: 'Grok Image (xAI)',\n    requiresApiKey: true,\n    defaultBaseUrl: 'https://api.x.ai/v1',\n    models: [\n      { id: 'grok-imagine-image', name: 'Grok Imagine Image' },\n      { id: 'grok-imagine-image-pro', name: 'Grok Imagine Image Pro' },\n    ],\n    supportedAspectRatios: ['16:9', '4:3', '1:1', '9:16'],\n  },\n  'comfyui-image': {\n    id: 'comfyui-image',\n    name: 'ComfyUI Image',\n    requiresApiKey: false,\n    defaultBaseUrl: 'http://localhost:8188',\n    // No static models here \u2014 real selectable workflows are discovered at\n    // runtime from GET /api/comfyui-workflows (files in public/) and picked\n    // in Settings. A placeholder id like \"comfyui-image\" doesn't correspond\n    // to any real workflow file, so resolveSelectedModel() would resolve it\n    // to a dead path the first time this provider became active (#P2).\n    // With models: [], imageModelId resolves to '' when this provider is"
+  },
+  {
+   "path": "lib/media/video-providers.ts",
+   "start": 115,
+   "end": 138,
+   "code": "    maxDuration: 10,\n  },\n  'grok-video': {\n    id: 'grok-video',\n    name: 'Grok Video (xAI)',\n    requiresApiKey: true,\n    defaultBaseUrl: 'https://api.x.ai/v1',\n    models: [{ id: 'grok-imagine-video', name: 'Grok Imagine Video' }],\n    supportedAspectRatios: ['16:9', '1:1', '9:16'],\n    supportedDurations: [6],\n    maxDuration: 6,\n  },\n  happyhorse: {\n    id: 'happyhorse',\n    name: 'HappyHorse',\n    requiresApiKey: true,\n    defaultBaseUrl: 'https://dashscope.aliyuncs.com',\n    models: [{ id: 'happyhorse-1.0-t2v', name: 'HappyHorse 1.0 T2V' }],\n    supportedAspectRatios: ['16:9', '9:16', '1:1', '4:3', '3:4'],\n    supportedDurations: [5, 10, 15],\n    supportedResolutions: ['720p', '1080p'],\n    maxDuration: 15,\n  },\n  'openrouter-video': {"
+  },
+  {
+   "path": "lib/media/adapters/grok-video-adapter.ts",
+   "start": 25,
+   "end": 48,
+   "code": "import { probeAuth } from '../probe-auth';\nimport { runPolledTask, type PolledTaskControl } from '../polled-task';\nimport { assertNotRedirected } from '../redirect-guard';\nimport { requireModel } from '../require-model';\n\nconst DEFAULT_MODEL = 'grok-imagine-video';\nconst DEFAULT_BASE_URL = 'https://api.x.ai/v1';\nconst POLL_INTERVAL_MS = 10_000; // 10 seconds\nconst MAX_POLL_ATTEMPTS = 60; // 10 minutes max\n\n/** Dimension defaults per aspect ratio */\nfunction getDimensions(aspectRatio?: string): {\n  width: number;\n  height: number;\n} {\n  switch (aspectRatio) {\n    case '9:16':\n      return { width: 720, height: 1280 };\n    case '1:1':\n      return { width: 1080, height: 1080 };\n    case '4:3':\n      return { width: 1024, height: 768 };\n    default:\n      return { width: 1280, height: 720 }; // 16:9"
+  },
+  {
+   "path": "lib/media/adapters/grok-image-adapter.ts",
+   "start": 1,
+   "end": 22,
+   "code": "/**\n * Grok (xAI) Image Generation Adapter\n *\n * Uses OpenAI-compatible synchronous API format.\n * Endpoint: https://api.x.ai/v1/images/generations\n *\n * Supported models:\n * - grok-imagine-image      (standard, $0.02/image)\n * - grok-imagine-image-pro  (pro quality, $0.07/image)\n *\n * Authentication: Bearer token via Authorization header\n *\n * API docs: https://docs.x.ai/developers/rest-api-reference/inference/images\n */\n\nimport type {\n  ImageGenerationConfig,\n  ImageGenerationOptions,\n  ImageGenerationResult,\n} from '../types';\nimport { mediaFetchFor } from '../media-fetch';\nimport { probeAuth } from '../probe-auth';"
+  }
+ ],
+ "files": [
+  {
+   "path": ".env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 743,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [
+    "IMAGE_GROK_API_KEY",
+    "IMAGE_GROK_BASE_URL",
+    "VIDEO_GROK_API_KEY",
+    "VIDEO_GROK_BASE_URL",
+    "VIDEO_GROK_ENABLED"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "lib/ai/model-metadata.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 538,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-reasoning",
+    "grok-4.20-multi-agent",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "lib/ai/providers.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 2820,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4.20",
+    "grok-4.20-multi-agent",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "lib/media/image-providers.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 268,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-pro"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "lib/media/video-providers.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 269,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "lib/media/adapters/grok-video-adapter.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 235,
+   "endpoints": [
+    "/v1/videos",
+    "/v1/videos/generations"
+   ],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "lib/media/adapters/grok-image-adapter.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 130,
+   "endpoints": [
+    "/v1/images/generations"
+   ],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-pro"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/ai/thinking-config.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 449,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-reasoning",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/ai/openai-provider.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1030,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/ai/model-metadata.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 92,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4.20",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/server/provider-config.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1195,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "IMAGE_GROK",
+    "IMAGE_GROK_API_KEY",
+    "VIDEO_GROK",
+    "VIDEO_GROK_API_KEY",
+    "VIDEO_GROK_BASE_URL",
+    "VIDEO_GROK_ENABLED"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/server/capability-force-off-routes.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 327,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "IMAGE_GROK",
+    "VIDEO_GROK",
+    "VIDEO_GROK_API_KEY",
+    "VIDEO_GROK_ENABLED"
+   ],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "tests/agent-runtime/generate-media-force-off.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 149,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [
+    "IMAGE_GROK",
+    "VIDEO_GROK",
+    "VIDEO_GROK_API_KEY",
+    "VIDEO_GROK_ENABLED"
+   ],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "tests/media/video-polled-adapters.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 717,
+   "endpoints": [
+    "/v1/videos"
+   ],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/media/grok-image-adapter.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 91,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/docs/content/docs/supported-models.zh-cn.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 139,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4.20",
+    "grok-4.20-multi-agent",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-code-fast-1",
+    "grok-imagine-image",
+    "grok-imagine-image-pro",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/docs/content/docs/supported-models.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 139,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4.20",
+    "grok-4.20-multi-agent",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-code-fast-1",
+    "grok-imagine-image",
+    "grok-imagine-image-pro",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/docs/content/docs/supported-models.ru.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 139,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4.20",
+    "grok-4.20-multi-agent",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-code-fast-1",
+    "grok-imagine-image",
+    "grok-imagine-image-pro",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/docs/content/docs/supported-models.zh-tw.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 139,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4.20",
+    "grok-4.20-multi-agent",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-code-fast-1",
+    "grok-imagine-image",
+    "grok-imagine-image-pro",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/docs/content/docs/supported-models.ja.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 139,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4.20",
+    "grok-4.20-multi-agent",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-code-fast-1",
+    "grok-imagine-image",
+    "grok-imagine-image-pro",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/docs/content/docs/supported-models.ar.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 139,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4.20",
+    "grok-4.20-multi-agent",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-code-fast-1",
+    "grok-imagine-image",
+    "grok-imagine-image-pro",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "reasoning",
+    "voice_realtime"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,644 @@
+{
+ "fork": "Blockchains/goose",
+ "upstream": "aaif-goose/goose",
+ "category": "coding-agent-cli",
+ "stars": 54938,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-10-02T17:36:13Z",
+ "description": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM",
+ "commit": "591edd47cf2cfea4957d720c607cf2a4def8673d",
+ "indexed_at": "2026-10-04T16:53:38Z",
+ "status": "ok",
+ "clone_kb": 662956,
+ "seconds": 21.1,
+ "files_scanned": 2011,
+ "languages": {
+  "TypeScript": 593,
+  "Rust": 588,
+  "JavaScript": 56,
+  "Python": 25,
+  "Kotlin": 7
+ },
+ "grok_files": 29,
+ "grok_files_by_kind": {
+  "doc": 2,
+  "config": 9,
+  "test": 4,
+  "source": 14
+ },
+ "hosts": {
+  "api.x.ai": 5
+ },
+ "endpoints": {
+  "/v1/chat/completions": 3,
+  "/v1/models": 2,
+  "/v1/responses": 1
+ },
+ "models": {
+  "grok-3": 6,
+  "grok-code-fast-1": 6,
+  "grok-4.5": 5,
+  "grok-3-mini": 4,
+  "grok-4": 3,
+  "grok-4-fast-reasoning": 3,
+  "grok-4.3": 3,
+  "grok-4-0709": 3,
+  "grok-4.20-0309-non-reasoning": 3,
+  "grok-3-fast": 2,
+  "grok-4.20-multi-agent": 2,
+  "grok-4.20-0309-reasoning": 2,
+  "grok-4-1-fast-reasoning": 2,
+  "grok-4-fast-non-reasoning": 2,
+  "grok-4.20": 2,
+  "grok-4-5": 1,
+  "grok-4.6": 1,
+  "grok-4.5-high": 1,
+  "grok-2-vision": 1,
+  "grok-2-vision-1212": 1,
+  "grok-2-vision-latest": 1,
+  "grok-3-beta": 1,
+  "grok-3-fast-beta": 1,
+  "grok-3-fast-latest": 1,
+  "grok-3-latest": 1,
+  "grok-3-mini-beta": 1,
+  "grok-3-mini-fast": 1,
+  "grok-3-mini-fast-beta": 1,
+  "grok-3-mini-fast-latest": 1,
+  "grok-3-mini-latest": 1,
+  "grok-4-1-fast-non-reasoning": 1,
+  "grok-4-fast": 1,
+  "grok-4-fast-non": 1,
+  "grok-4-fast-non-reasoning-latest": 1,
+  "grok-4-fast-reasoning-latest": 1,
+  "grok-4-latest": 1,
+  "grok-4.1-fast": 1,
+  "grok-4.1-fast-non": 1,
+  "grok-code-fast": 1,
+  "grok-code-fast-1-0825": 1,
+  "grok-imagine-image": 1,
+  "grok-imagine-image-pro": 1,
+  "grok-imagine-video": 1,
+  "grok-2": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 10,
+  "XAI_HOST": 5,
+  "XAI_DEFAULT_MODEL": 3,
+  "XAI_API_HOST": 2,
+  "XAI_DOC_URL": 1,
+  "XAI_PROVIDER_NAME": 1,
+  "XAI_AUTH_STATE": 1,
+  "XAI_OAUTH_DOC_URL": 1,
+  "XAI_OAUTH_PROVIDER_NAME": 1,
+  "XAI_OAUTH_TOKEN": 1
+ },
+ "features": {
+  "anthropic_compatible": 8,
+  "streaming": 6,
+  "reasoning": 6,
+  "tool_calling": 4,
+  "structured_output": 3,
+  "embeddings": 1,
+  "voice_realtime": 1,
+  "mcp": 1,
+  "vision": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "crates/goose-providers/src/openai_compatible.rs",
+   "start": 27,
+   "end": 50,
+   "code": "use crate::model::ModelConfig;\nuse crate::request_log::{start_log, LoggerHandleExt, RequestLogHandle};\nuse rmcp::model::Tool;\n\npub struct OpenAiCompatibleProvider {\n    name: String,\n    /// Client targeted at the base URL (e.g. `https://api.x.ai/v1`)\n    api_client: ApiClient,\n    /// Path prefix prepended to `chat/completions` (e.g. `\"deployments/{name}/\"` for Azure).\n    completions_prefix: String,\n    supports_streaming: bool,\n}\n\nimpl OpenAiCompatibleProvider {\n    pub fn new(name: String, api_client: ApiClient, completions_prefix: String) -> Self {\n        Self {\n            name,\n            api_client,\n            completions_prefix,\n            supports_streaming: true,\n        }\n    }\n\n    pub fn with_supports_streaming(mut self, supports_streaming: bool) -> Self {"
+  },
+  {
+   "path": "crates/goose/src/providers/xai.rs",
+   "start": 2,
+   "end": 25,
+   "code": "use super::base::{ConfigKey, ProviderDef, ProviderMetadata};\nuse super::openai_compatible::OpenAiCompatibleProvider;\nuse anyhow::Result;\nuse futures::future::BoxFuture;\n\nconst XAI_PROVIDER_NAME: &str = \"xai\";\npub const XAI_API_HOST: &str = \"https://api.x.ai/v1\";\npub const XAI_DEFAULT_MODEL: &str = \"grok-4.5\";\n\npub const XAI_DOC_URL: &str = \"https://docs.x.ai/docs/overview\";\n\npub struct XaiProvider;\n\npub fn xai_known_model_info() -> Vec<goose_providers::base::ModelInfo> {\n    goose_providers::base::known_models_from_registry(XAI_PROVIDER_NAME)\n}\n\nimpl goose_providers::base::ProviderDescriptor for XaiProvider {\n    fn metadata() -> ProviderMetadata {\n        ProviderMetadata::with_models(\n            XAI_PROVIDER_NAME,\n            \"xAI\",\n            \"Grok models from xAI, including reasoning and multimodal capabilities\",\n            XAI_DEFAULT_MODEL,"
+  },
+  {
+   "path": "crates/goose/src/providers/xai_oauth.rs",
+   "start": 692,
+   "end": 715,
+   "code": "            format!(\"Bearer {}\", token_data.access_token),\n        ))\n    }\n}\n\n/// Delegating Provider that forwards chat/stream/etc. to an inner\n/// `OpenAiCompatibleProvider` pointed at `https://api.x.ai/v1`, but overrides\n/// `configure_oauth` so the desktop \"Sign in\" button (and any other caller of\n/// `Provider::configure_oauth`) drives the loopback / device-code flow.\n#[derive(serde::Serialize)]\npub struct XaiOAuthProvider {\n    #[serde(skip)]\n    inner: OpenAiCompatibleProvider,\n    #[serde(skip)]\n    auth_provider: Arc<XaiOAuthAuthProvider>,\n}\n\nimpl XaiOAuthProvider {\n    pub async fn cleanup() -> Result<()> {\n        TokenCache::new().clear();\n        Ok(())\n    }\n}\n"
+  }
+ ],
+ "files": [
+  {
+   "path": "documentation/blog/2025-08-27-get-started-for-free-with-tetrate/index.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 80,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "documentation/docs/getting-started/providers.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1688,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-mini"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_HOST"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": ".github/workflows/create-version-bump-pr.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 101,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": ".github/workflows/patch-release.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 94,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": ".github/workflows/minor-release.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 71,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": ".github/workflows/pr-smoke-test.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 245,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "ui/desktop/tests/integration/test_providers_lib.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 425,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "crates/goose-providers/src/openrouter.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1387,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "crates/goose-providers/src/openai_compatible.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 455,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "crates/goose-providers/src/openrouter_format.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 374,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "crates/goose-providers/src/declarative/definitions/aimlapi.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 57,
+   "endpoints": [],
+   "models": [
+    "grok-4-5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "crates/goose-providers/src/declarative/definitions/opper.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 30,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "crates/goose-providers/src/declarative/definitions/vercel_ai_gateway.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 169,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4",
+    "grok-4-fast-reasoning",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "crates/goose-providers/src/declarative/definitions/orcarouter.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 31,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "crates/goose-provider-types/src/canonical.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 366,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4-0709",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "crates/goose-provider-types/src/base.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1177,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-multi-agent",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "crates/goose-provider-types/src/model.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1063,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.5",
+    "grok-4.5-high"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "crates/goose-provider-types/src/canonical/name_builder.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 629,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "crates/goose-provider-types/src/canonical/data/canonical_mapping_report.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 5273,
+   "endpoints": [],
+   "models": [
+    "grok-2-vision",
+    "grok-2-vision-1212",
+    "grok-2-vision-latest",
+    "grok-3",
+    "grok-3-beta",
+    "grok-3-fast",
+    "grok-3-fast-beta",
+    "grok-3-fast-latest",
+    "grok-3-latest",
+    "grok-3-mini",
+    "grok-3-mini-beta",
+    "grok-3-mini-fast",
+    "grok-3-mini-fast-beta",
+    "grok-3-mini-fast-latest",
+    "grok-3-mini-latest",
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast",
+    "grok-4-fast-non",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-non-reasoning-latest",
+    "grok-4-fast-reasoning",
+    "grok-4-fast-reasoning-latest",
+    "grok-4-latest",
+    "grok-4.1-fast",
+    "grok-4.1-fast-non",
+    "grok-code-fast",
+    "grok-code-fast-1",
+    "grok-code-fast-1-0825",
+    "grok-imagine-image",
+    "grok-imagine-image-pro",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "reasoning",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "crates/goose-provider-types/src/formats/openai.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 5899,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4-0709",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.20",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent",
+    "grok-4.3",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "crates/goose-local-inference/src/llamacpp/mod.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 779,
+   "endpoints": [],
+   "models": [
+    "grok-2"
+   ],
+   "env": [],
+   "features": [
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "crates/goose-cli/src/scenario_tests/provider_configs.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 108,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "crates/goose/tests/providers.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 989,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_DEFAULT_MODEL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "crates/goose/tests/acp_secret_cache_invalidation_test.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 260,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_HOST"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "crates/goose/tests/acp_custom_provider_methods_test.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 766,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_HOST"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "crates/goose/src/providers/xai.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 90,
+   "endpoints": [],
+   "models": [
+    "grok-4.20",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_HOST",
+    "XAI_API_KEY",
+    "XAI_DEFAULT_MODEL",
+    "XAI_DOC_URL",
+    "XAI_HOST",
+    "XAI_PROVIDER_NAME"
+   ],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "crates/goose/src/providers/githubcopilot.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1504,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "crates/goose/src/providers/xai_oauth.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1008,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_HOST",
+    "XAI_AUTH_STATE",
+    "XAI_DEFAULT_MODEL",
+    "XAI_HOST",
+    "XAI_OAUTH_DOC_URL",
+    "XAI_OAUTH_PROVIDER_NAME",
+    "XAI_OAUTH_TOKEN"
+   ],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "crates/goose/src/bin/build_canonical_models.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 541,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  }
+ ]
+}

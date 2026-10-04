@@ -1,0 +1,462 @@
+{
+ "fork": "Blockchains/Memori",
+ "upstream": "MemoriLabs/Memori",
+ "category": "agent-framework",
+ "stars": 17067,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity granting the License. \"Legal Entity\" shall mean the union o",
+ "pushed_at": "2026-10-03T01:33:14Z",
+ "description": "Memori is agent-native memory infrastructure. A LLM-agnostic layer that turns agent execution and conversation into structured, persistent state for production systems. Built for enterprise, Memori works with the data infrastructure you already run, no rip-and-replace, and deploys across managed cloud, single-tenant cloud, VPC, and on-premises.",
+ "commit": "574b1ea3e876f100ef82c37817d603eb7e258e59",
+ "indexed_at": "2026-10-04T16:52:29Z",
+ "status": "ok",
+ "clone_kb": 10316,
+ "seconds": 5.1,
+ "files_scanned": 648,
+ "languages": {
+  "Python": 303,
+  "TypeScript": 104,
+  "Rust": 52,
+  "JavaScript": 7
+ },
+ "grok_files": 26,
+ "grok_files_by_kind": {
+  "config": 4,
+  "test": 15,
+  "source": 3,
+  "doc": 4
+ },
+ "hosts": {
+  "api.x.ai": 5
+ },
+ "endpoints": {},
+ "models": {
+  "grok-4": 4,
+  "grok-3": 4,
+  "grok-beta": 3,
+  "grok-2-latest": 2
+ },
+ "env_vars": {
+  "XAI_API_KEY": 12,
+  "XAI_BASE_URL": 2,
+  "XAI_LLM_PROVIDER": 2
+ },
+ "features": {
+  "grpc": 3,
+  "anthropic_compatible": 2,
+  "streaming": 1,
+  "tool_calling": 1
+ },
+ "sdk_exports": [
+  {
+   "path": "memori/llm/_xai_wrappers.py",
+   "lang": "Python",
+   "names": [
+    "XAiWrappers"
+   ]
+  }
+ ],
+ "packages": [
+  {
+   "path": "pyproject.toml",
+   "ecosystem": "pypi",
+   "name": "memori",
+   "version": "3.3.7"
+  }
+ ],
+ "snippets": [
+  {
+   "path": "memori/llm/_xai_wrappers.py",
+   "start": 86,
+   "end": 109,
+   "code": "            )\n\n        return self.config.cache.conversation_id is not None\n\n    def inject_conversation_history(self, kwargs):\n        \"\"\"Inject conversation history into messages using XAI message format.\"\"\"\n        from xai_sdk.chat import assistant, user\n\n        if self.config.cache.conversation_id is None:\n            if not self._ensure_cached_conversation_id():\n                return kwargs\n\n        messages = self.config.storage.driver.conversation.messages.read(\n            self.config.cache.conversation_id\n        )\n        if len(messages) == 0:\n            return kwargs\n\n        xai_messages = []\n        for message in messages:\n            role = message.get(\"role\", \"\")\n            content = message.get(\"content\", \"\")\n            if role == \"user\":\n                xai_messages.append(user(content))"
+  },
+  {
+   "path": "memori/llm/pipelines/conversation_injection.py",
+   "start": 113,
+   "end": 136,
+   "code": "            for m in _sanitize_history_for_openai_compat(messages)\n            if m.get(\"role\") != \"system\"\n        ]\n        kwargs[\"messages\"] = filtered_messages + kwargs[\"messages\"]\n        return kwargs, len(filtered_messages)\n    elif llm_is_xai(config.framework.provider, config.llm.provider):\n        from xai_sdk.chat import assistant, user\n\n        xai_messages = []\n        for message in messages:\n            role = message.get(\"role\", \"\")\n            content = message.get(\"content\", \"\")\n            if role == \"user\":\n                xai_messages.append(user(content))\n            elif role == \"assistant\":\n                xai_messages.append(assistant(content))\n\n        kwargs[\"messages\"] = xai_messages + kwargs[\"messages\"]\n        return kwargs, len(xai_messages)\n    elif llm_is_google(\n        config.framework.provider, config.llm.provider\n    ) or agno_is_google(config.framework.provider, config.llm.provider):\n        contents = []\n        for message in messages:"
+  },
+  {
+   "path": "memori/llm/clients/direct.py",
+   "start": 243,
+   "end": 266,
+   "code": "        from memori.llm._xai_wrappers import XAiWrappers\n\n        if not hasattr(client, \"chat\"):\n            raise RuntimeError(\"client provided is not instance of xAI\")\n\n        try:\n            import xai_sdk\n\n            client_version = xai_sdk.__version__\n        except (ImportError, AttributeError):\n            client_version = None\n\n        if not hasattr(client, \"_memori_installed\"):\n            if hasattr(client.chat, \"completions\"):\n                client.beta._chat_completions_parse = client.beta.chat.completions.parse\n                client.chat._completions_create = client.chat.completions.create\n\n                self.config.framework.provider = _provider\n                self.config.llm.provider = XAI_LLM_PROVIDER\n                self.config.llm.provider_sdk_version = client_version\n\n                self._wrap_method(\n                    client.beta.chat.completions,\n                    \"parse\","
+  }
+ ],
+ "files": [
+  {
+   "path": "pyproject.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 192,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "grpc"
+   ]
+  },
+  {
+   "path": ".env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 13,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/workflows/integration.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 206,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/workflows/publish.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 322,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/test_llm_auto_registration.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 298,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/integration/conftest.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 394,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "tests/integration/cloud/test_cloud_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 267,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "openai_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/integration/providers/test_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 579,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "openai_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/memory/augmentation/test_aa_payload_unit.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 624,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/llm/test_llm_xai_wrappers.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 395,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/llm/test_llm_deprecation_warnings.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 165,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/llm/test_llm_provider_sdk_version.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 270,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/llm/providers/azure_openai/test_azure_openai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 207,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/llm/clients/oss/xai/async_stream.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 115,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/llm/clients/oss/xai/async.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 97,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/llm/clients/oss/xai/sync.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 57,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/llm/clients/oss/agno/xai_streaming.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 63,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/llm/clients/oss/agno/xai_async.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 60,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/llm/clients/oss/agno/xai_sync.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 53,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "memori/llm/_xai_wrappers.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 337,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_LLM_PROVIDER"
+   ],
+   "features": [
+    "grpc",
+    "streaming"
+   ]
+  },
+  {
+   "path": "memori/llm/pipelines/conversation_injection.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 226,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "grpc",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "memori/llm/clients/direct.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 384,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_LLM_PROVIDER"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "grpc"
+   ]
+  },
+  {
+   "path": "docs/memori-byodb/llm/agno.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 155,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/memori-byodb/llm/xai-grok.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 112,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "openai_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/memori-cloud/llm/agno.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 135,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/memori-cloud/llm/xai-grok.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 92,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "streaming"
+   ]
+  }
+ ]
+}

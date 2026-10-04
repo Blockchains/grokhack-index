@@ -1,0 +1,327 @@
+{
+ "fork": "Blockchains/Vision-Agents",
+ "upstream": "GetStream/Vision-Agents",
+ "category": "voice-realtime",
+ "stars": 8151,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-10-04T05:16:46Z",
+ "description": "Open Vision Agents by Stream. Build voice and vision agents quickly with any model or video provider. Uses Stream's edge network for ultra-low latency.",
+ "commit": "902db86438aab03fb64aa7e6ea3afdcc867a3e80",
+ "indexed_at": "2026-10-04T16:56:24Z",
+ "status": "ok",
+ "clone_kb": 246948,
+ "seconds": 8.2,
+ "files_scanned": 794,
+ "languages": {
+  "Python": 550
+ },
+ "grok_files": 14,
+ "grok_files_by_kind": {
+  "config": 3,
+  "doc": 1,
+  "source": 3,
+  "example": 4,
+  "test": 3
+ },
+ "hosts": {
+  "api.x.ai": 3
+ },
+ "endpoints": {
+  "/v1/realtime": 2
+ },
+ "models": {
+  "grok-4-latest": 2,
+  "grok-4": 1,
+  "grok-4-fast-non-reasoning": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 13
+ },
+ "features": {
+  "voice_realtime": 6,
+  "live_search": 3,
+  "tool_calling": 2,
+  "streaming": 1,
+  "reasoning": 1
+ },
+ "sdk_exports": [
+  {
+   "path": "plugins/xai/vision_agents/plugins/xai/llm.py",
+   "lang": "Python",
+   "names": [
+    "XAILLM"
+   ]
+  },
+  {
+   "path": "plugins/xai/vision_agents/plugins/xai/tts.py",
+   "lang": "Python",
+   "names": [
+    "XAITTS"
+   ]
+  },
+  {
+   "path": "plugins/xai/vision_agents/plugins/xai/xai_realtime.py",
+   "lang": "Python",
+   "names": [
+    "XAIRealtime"
+   ]
+  }
+ ],
+ "packages": [
+  {
+   "path": "plugins/xai/pyproject.toml",
+   "ecosystem": "pypi",
+   "name": "vision-agents-plugins-xai",
+   "version": null
+  }
+ ],
+ "snippets": [
+  {
+   "path": "plugins/xai/vision_agents/plugins/xai/llm.py",
+   "start": 3,
+   "end": 26,
+   "code": "import time\nfrom typing import Any, AsyncIterator\n\nfrom vision_agents.core.edge.types import Participant\nfrom vision_agents.core.llm.llm import LLM, LLMResponseDelta, LLMResponseFinal\nfrom vision_agents.core.llm.llm_types import NormalizedToolCallItem, ToolSchema\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.aio.chat import Chat\nfrom xai_sdk.chat import Response, system, tool, tool_result, user\n\nlogger = logging.getLogger(__name__)\n\n\nclass XAILLM(LLM):\n    \"\"\"\n    The XAILLM class provides full/native access to the xAI SDK methods.\n    It only standardizes the minimal feature set that's needed for the agent integration.\n\n    The agent requires that we standardize:\n    - sharing instructions\n    - keeping conversation history\n    - response normalization\n\n    Notes on the xAI integration"
+  },
+  {
+   "path": "plugins/xai/vision_agents/plugins/xai/tts.py",
+   "start": 49,
+   "end": 72,
+   "code": "                  <slow>text</slow>  <fast>text</fast>\n                  <soft>text</soft>  <loud>text</loud>\n                  <high-pitch>text</high-pitch>  <low-pitch>text</low-pitch>\n                  <sing>text</sing>\n    \"\"\"\n\n    BASE_URL = \"https://api.x.ai/v1/tts\"\n\n    def __init__(\n        self,\n        api_key: Optional[str] = None,\n        voice: Voice = \"eve\",\n        language: str = \"en\",\n        codec: Codec = \"pcm\",\n        sample_rate: SampleRate = 24000,\n        bit_rate: Optional[int] = None,\n        base_url: Optional[str] = None,\n        session: Optional[aiohttp.ClientSession] = None,\n    ) -> None:\n        \"\"\"Initialize the xAI TTS service.\n\n        Args:\n            api_key: xAI API key. Falls back to XAI_API_KEY env var.\n            voice: Voice to use. One of \"eve\", \"ara\", \"leo\", \"rex\", \"sal\"."
+  },
+  {
+   "path": "plugins/xai/vision_agents/plugins/xai/xai_realtime.py",
+   "start": 23,
+   "end": 46,
+   "code": "from getstream.video.rtc.track_util import PcmData\nfrom vision_agents.core.edge.types import Participant\nfrom vision_agents.core.llm import realtime\nfrom vision_agents.core.llm.llm import LLMResponseDelta, LLMResponseFinal\nfrom vision_agents.core.llm.llm_types import ToolSchema\nfrom websockets.asyncio.client import ClientConnection\nfrom xai_sdk import AsyncClient\n\nlogger = logging.getLogger(__name__)\n\nDEFAULT_MODEL = \"grok-voice-think-fast-2.0\"\nDEFAULT_VOICE = \"ara\"\nWEBSOCKET_URL = \"wss://api.x.ai/v1/realtime\"\nEPHEMERAL_TOKEN_URL = \"https://api.x.ai/v1/realtime/client_secrets\"\n\n# xAI's realtime model emits PCM at 24 kHz natively. Declaring a higher rate\n# here causes the SDK-level PcmData to be tagged with the wrong rate, which\n# then plays back at 2x speed and drains the buffer after ~1-2 seconds. The\n# downstream audio pipeline resamples to the WebRTC track's rate as needed.\nDEFAULT_SAMPLE_RATE = 24000\n\n\ndef _should_reconnect(exc: Exception) -> bool:\n    \"\"\"Determine if the connection should be reconnected based on the exception.\"\"\""
+  },
+  {
+   "path": "plugins/xai/example/xai_realtime_example.py",
+   "start": 7,
+   "end": 30,
+   "code": "The agent uses xAI's realtime WebSocket API for:\n- Low-latency voice conversations\n- Server-side voice activity detection (VAD)\n- Natural voice responses using xAI's voice options\n\nRequirements:\n- XAI_API_KEY environment variable\n- STREAM_API_KEY and STREAM_API_SECRET environment variables\n\"\"\"\n\nimport asyncio\nimport logging\n\nfrom dotenv import load_dotenv\nfrom vision_agents.core import Agent, Runner, User\nfrom vision_agents.core.agents import AgentLauncher\nfrom vision_agents.plugins import getstream, xai\n\nlogger = logging.getLogger(__name__)\n\nload_dotenv()\n\n\nasync def create_agent(**kwargs) -> Agent:"
+  },
+  {
+   "path": "plugins/xai/example/xai_conference_companion_example.py",
+   "start": 13,
+   "end": 36,
+   "code": "- get_my_schedule():              what's next on the agenda\n- find_attendees_by_interest():   local fuzzy search by interest topic\n\nPlus xAI's built-in x_search and web_search, enabled by default on xai.Realtime.\n\nRequirements:\n- XAI_API_KEY environment variable\n- STREAM_API_KEY and STREAM_API_SECRET environment variables\n\"\"\"\n\nimport asyncio\nimport functools\nimport logging\nfrom typing import Any, Awaitable, Callable, Optional\n\nfrom dotenv import load_dotenv\nfrom vision_agents.core import Agent, Runner, User\nfrom vision_agents.core.agents import AgentLauncher\nfrom vision_agents.plugins import getstream, xai\n\nlogger = logging.getLogger(__name__)\n\nload_dotenv()\n"
+  },
+  {
+   "path": "plugins/xai/example/xai_tts_customer_support_example.py",
+   "start": 2,
+   "end": 25,
+   "code": "\nA voice agent that handles customer support for a SaaS product.\nUses the 'rex' voice (confident, clear) for a professional support experience,\nbacked by Grok for the LLM.\n\nRequirements (environment variables):\n    XAI_API_KEY          \u2014 xAI / Grok API key (used for both LLM and TTS)\n    DEEPGRAM_API_KEY     \u2014 Deepgram STT key\n    STREAM_API_KEY       \u2014 Stream API key\n    STREAM_API_SECRET    \u2014 Stream API secret\n\"\"\"\n\nimport asyncio\nimport logging\n\nfrom dotenv import load_dotenv\nfrom vision_agents.core import Agent, Runner, User\nfrom vision_agents.core.agents import AgentLauncher\nfrom vision_agents.plugins import deepgram, getstream, smart_turn, xai\n\nlogger = logging.getLogger(__name__)\n\nload_dotenv()\n"
+  }
+ ],
+ "files": [
+  {
+   "path": "plugins/xai/pyproject.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 45,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "plugins/xai/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 261,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "streaming",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "plugins/xai/.env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 10,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "plugins/xai/vision_agents/plugins/xai/llm.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 272,
+   "endpoints": [],
+   "models": [
+    "grok-4-latest"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "plugins/xai/vision_agents/plugins/xai/tts.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 289,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "plugins/xai/vision_agents/plugins/xai/xai_realtime.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 698,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "plugins/xai/example/xai_realtime_example.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 66,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "plugins/xai/example/xai_conference_companion_example.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 277,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "plugins/xai/example/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 115,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "plugins/xai/example/xai_tts_customer_support_example.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 103,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "plugins/xai/tests/test_xai_llm.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 52,
+   "endpoints": [],
+   "models": [
+    "grok-4-latest"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "plugins/xai/tests/test_xai_tts.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 145,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "plugins/xai/tests/test_xai_realtime.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 191,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": ".github/workflows/run_tests.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 119,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  }
+ ]
+}

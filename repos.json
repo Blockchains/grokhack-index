@@ -12,7 +12,7 @@
   "fork": "Blockchains/x-algorithm",
   "upstream": "xai-org/x-algorithm",
   "category": "official",
-  "stars": 33505,
+  "stars": 33506,
   "license": "Apache-2.0",
   "pushed_at": "2026-10-03T03:26:57Z",
   "description": "Algorithm powering the For You feed on X"
@@ -21,7 +21,7 @@
   "fork": "Blockchains/grok-build",
   "upstream": "xai-org/grok-build",
   "category": "official",
-  "stars": 27217,
+  "stars": 27218,
   "license": "Apache-2.0",
   "pushed_at": "2026-09-29T16:57:13Z",
   "description": "SpaceXAI's coding agent harness and TUI. Fullscreen, mouse interactive, extensible."
@@ -75,7 +75,7 @@
   "fork": "Blockchains/xai-sdk-ts",
   "upstream": "xai-org/xai-sdk-ts",
   "category": "official",
-  "stars": 51,
+  "stars": 52,
   "license": "Apache-2.0",
   "pushed_at": "2026-10-02T22:13:59Z",
   "description": "The official TypeScript SDK for the SpaceXAI API"
@@ -93,45 +93,99 @@
   "fork": "Blockchains/langchain",
   "upstream": "langchain-ai/langchain",
   "category": "sdk-provider",
-  "stars": 147434,
+  "stars": 147435,
   "license": "MIT",
   "pushed_at": "2026-10-04T10:17:02Z",
   "description": "The agent engineering platform."
  },
  {
+  "fork": "Blockchains/llama_index",
+  "upstream": "run-llama/llama_index",
+  "category": "sdk-provider",
+  "stars": 52408,
+  "license": "MIT",
+  "pushed_at": "2026-10-01T18:39:47Z",
+  "description": "LlamaIndex is the document processing platform for AI"
+ },
+ {
+  "fork": "Blockchains/dspy",
+  "upstream": "stanfordnlp/dspy",
+  "category": "sdk-provider",
+  "stars": 38499,
+  "license": "MIT",
+  "pushed_at": "2026-10-04T13:04:27Z",
+  "description": "DSPy: The framework for programming\u2014not prompting\u2014language models"
+ },
+ {
   "fork": "Blockchains/ai",
   "upstream": "vercel/ai",
   "category": "sdk-provider",
-  "stars": 27116,
+  "stars": 27118,
   "license": "Apache-2.0",
   "pushed_at": "2026-10-04T14:49:42Z",
   "description": "The AI Toolkit for TypeScript. From the creators of Next.js, the AI SDK is a free open-source library for building AI-powered applications and agents "
  },
  {
+  "fork": "Blockchains/pydantic-ai",
+  "upstream": "pydantic/pydantic-ai",
+  "category": "sdk-provider",
+  "stars": 20401,
+  "license": "MIT",
+  "pushed_at": "2026-10-04T16:08:12Z",
+  "description": "How Python does AI. Agents, realtime voice, image generation, embeddings. Every model, every interface, typed end to end."
+ },
+ {
+  "fork": "Blockchains/langchainjs",
+  "upstream": "langchain-ai/langchainjs",
+  "category": "sdk-provider",
+  "stars": 18246,
+  "license": "MIT",
+  "pushed_at": "2026-10-03T01:41:53Z",
+  "description": "The agent engineering platform"
+ },
+ {
+  "fork": "Blockchains/instructor",
+  "upstream": "567-labs/instructor",
+  "category": "sdk-provider",
+  "stars": 13974,
+  "license": "MIT",
+  "pushed_at": "2026-10-01T00:54:50Z",
+  "description": "structured outputs for llms "
+ },
+ {
   "fork": "Blockchains/cc-switch",
   "upstream": "farion1231/cc-switch",
   "category": "gateway-router",
-  "stars": 139947,
+  "stars": 139968,
   "license": "MIT",
-  "pushed_at": "2026-10-04T12:12:51Z",
+  "pushed_at": "2026-10-04T15:50:40Z",
   "description": "A cross-platform desktop All-in-One assistant for Claude Code, Codex, OpenCode, OpenClaw, Grok Build & Hermes Agent. Only official website: ccswitch.io"
  },
  {
   "fork": "Blockchains/OmniRoute",
   "upstream": "diegosouzapw/OmniRoute",
   "category": "gateway-router",
-  "stars": 72848,
+  "stars": 72867,
   "license": "MIT",
   "pushed_at": "2026-10-02T18:26:57Z",
   "description": "Never stop coding. Free MIT AI gateway: one endpoint, 359 providers (150+ free), 1200+ models Kimi, Claude, GPT, Gemini, GLM, DeepSeek, MiniMax. Works with Claude Code, Codex, Cursor, OpenCode, Cline & Copilot. Quota-aware auto-fallback, RTK+Caveman compression saves 15-95% tokens, MCP/A2A, Desktop/PWA. Built by hundreds of contributors"
  },
  {
+  "fork": "Blockchains/litellm",
+  "upstream": "BerriAI/litellm",
+  "category": "gateway-router",
+  "stars": 60122,
+  "license": "MIT (enterprise/ dir excluded)",
+  "pushed_at": "2026-10-04T16:19:31Z",
+  "description": "The fastest, litest AI Gateway. Rust core with Python SDK. Call 100+ LLM APIs in OpenAI (or native) format with cost tracking, guardrails, load balancing, and logging [Bedrock, Azure, OpenAI, Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM]"
+ },
+ {
   "fork": "Blockchains/opencodex",
   "upstream": "lidge-jun/opencodex",
   "category": "gateway-router",
-  "stars": 16907,
+  "stars": 16910,
   "license": "MIT",
-  "pushed_at": "2026-10-04T14:49:09Z",
+  "pushed_at": "2026-10-04T16:15:59Z",
   "description": "Universal provider proxy for OpenAI Codex & Claude Code \u2014 use any LLM (Claude, Gemini, Grok, DeepSeek, Ollama\u2026) with Codex CLI, App, SDK, and Claude Code"
  },
  {
@@ -140,7 +194,7 @@
   "category": "gateway-router",
   "stars": 1212,
   "license": "MIT",
-  "pushed_at": "2026-10-04T06:56:14Z",
+  "pushed_at": "2026-10-04T15:56:58Z",
   "description": "AI gateway / AI control plane / AI proxy written in Go. Unified OpenAI-compatible and Anthropic-compatible API for OpenAI, Anthropic, Gemini, Groq, xAI, Ollama, vLLM and more. A LiteLLM alternative with observability, guardrails, streaming, cost tracking, intelligent routing, sticky sessions, failover, real-time logs and usage tracking. Prod ready."
  },
  {
@@ -156,7 +210,7 @@
   "fork": "Blockchains/claude-council",
   "upstream": "hex/claude-council",
   "category": "gateway-router",
-  "stars": 826,
+  "stars": 827,
   "license": "MIT",
   "pushed_at": "2026-10-01T13:16:08Z",
   "description": "Claude Code plugin that asks several AI coding agents the same question and shows their answers side by side. Gemini, OpenAI, Grok, Perplexity, Kimi and any model OpenRouter routes to over API; codex, antigravity, grok, kimi and cursor CLIs on subscription auth; ollama locally. Codex specialists take coding tasks on their own branch (experimental)."
@@ -174,16 +228,16 @@
   "fork": "Blockchains/hermes-agent",
   "upstream": "NousResearch/hermes-agent",
   "category": "agent-framework",
-  "stars": 251123,
+  "stars": 251145,
   "license": "MIT",
-  "pushed_at": "2026-10-04T14:49:45Z",
+  "pushed_at": "2026-10-04T15:26:47Z",
   "description": "The agent that grows with you"
  },
  {
   "fork": "Blockchains/browser-use",
   "upstream": "browser-use/browser-use",
   "category": "agent-framework",
-  "stars": 117116,
+  "stars": 117120,
   "license": "MIT",
   "pushed_at": "2026-10-03T00:06:08Z",
   "description": "Agents that use the browser."
@@ -192,7 +246,7 @@
   "fork": "Blockchains/TradingAgents",
   "upstream": "TauricResearch/TradingAgents",
   "category": "agent-framework",
-  "stars": 109719,
+  "stars": 109730,
   "license": "Apache-2.0",
   "pushed_at": "2026-10-03T21:30:10Z",
   "description": "TradingAgents: Multi-Agents LLM Financial Trading Framework"
@@ -201,25 +255,124 @@
   "fork": "Blockchains/mem0",
   "upstream": "mem0ai/mem0",
   "category": "agent-framework",
-  "stars": 66558,
+  "stars": 66563,
   "license": "Apache-2.0",
   "pushed_at": "2026-10-01T20:07:39Z",
   "description": "The Memory Layer for AI Agents - Drop-in memory infrastructure for AI agents and apps. Context that persists. Built for production."
  },
  {
+  "fork": "Blockchains/crewAI",
+  "upstream": "crewAIInc/crewAI",
+  "category": "agent-framework",
+  "stars": 59341,
+  "license": "MIT",
+  "pushed_at": "2026-10-03T00:03:55Z",
+  "description": "Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks."
+ },
+ {
+  "fork": "Blockchains/agno",
+  "upstream": "agno-agi/agno",
+  "category": "agent-framework",
+  "stars": 42551,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-10-04T14:37:22Z",
+  "description": "Build, run, and manage agent platforms."
+ },
+ {
+  "fork": "Blockchains/agentscope",
+  "upstream": "agentscope-ai/agentscope",
+  "category": "agent-framework",
+  "stars": 32752,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-09-30T09:47:13Z",
+  "description": "Build and run agents you can see, understand and trust."
+ },
+ {
+  "fork": "Blockchains/mastra",
+  "upstream": "mastra-ai/mastra",
+  "category": "agent-framework",
+  "stars": 28552,
+  "license": "Apache-2.0 (ee/ dirs excluded)",
+  "pushed_at": "2026-10-04T14:06:34Z",
+  "description": "Mastra is the modern TypeScript framework for AI-powered applications and agents."
+ },
+ {
+  "fork": "Blockchains/skyvern",
+  "upstream": "Skyvern-AI/skyvern",
+  "category": "agent-framework",
+  "stars": 23131,
+  "license": "AGPL-3.0",
+  "pushed_at": "2026-10-04T16:16:15Z",
+  "description": "Automate browser based workflows with AI"
+ },
+ {
+  "fork": "Blockchains/camel",
+  "upstream": "camel-ai/camel",
+  "category": "agent-framework",
+  "stars": 17811,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-09-30T04:46:03Z",
+  "description": "\ud83d\udc2b CAMEL: The first and the best multi-agent framework. Finding the Scaling Law of Agents. https://www.camel-ai.org"
+ },
+ {
+  "fork": "Blockchains/Memori",
+  "upstream": "MemoriLabs/Memori",
+  "category": "agent-framework",
+  "stars": 17067,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-10-03T01:33:14Z",
+  "description": "Memori is agent-native memory infrastructure. A LLM-agnostic layer that turns agent execution and conversation into structured, persistent state for production systems. Built for enterprise, Memori works with the data infrastructure you already run, no rip-and-replace, and deploys across managed cloud, single-tenant cloud, VPC, and on-premises."
+ },
+ {
+  "fork": "Blockchains/PentestGPT",
+  "upstream": "GreyDGL/PentestGPT",
+  "category": "agent-framework",
+  "stars": 15710,
+  "license": "MIT",
+  "pushed_at": "2026-07-14T12:58:31Z",
+  "description": "Automated Penetration Testing Agentic Framework Powered by Large Language Models"
+ },
+ {
+  "fork": "Blockchains/omnigent",
+  "upstream": "omnigent-ai/omnigent",
+  "category": "agent-framework",
+  "stars": 10486,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-10-04T16:03:32Z",
+  "description": "Omnigent is an open-source AI agent framework and meta-harness: orchestrate Claude Code, Codex, Cursor, Pi, and custom agents \u2014 swap harnesses without rewriting, enforce policies and sandboxing, and collaborate in real time from any device."
+ },
+ {
+  "fork": "Blockchains/mobilerun",
+  "upstream": "droidrun/mobilerun",
+  "category": "agent-framework",
+  "stars": 9570,
+  "license": "MIT",
+  "pushed_at": "2026-10-02T12:21:57Z",
+  "description": "Automate your mobile devices with natural language commands - an LLM agnostic mobile Agent \ud83e\udd16"
+ },
+ {
+  "fork": "Blockchains/PraisonAI",
+  "upstream": "MervinPraison/PraisonAI",
+  "category": "agent-framework",
+  "stars": 9133,
+  "license": "MIT",
+  "pushed_at": "2026-10-04T08:36:00Z",
+  "description": "PraisonAI \ud83e\udd9e \u2014 Hire a 24/7 AI Workforce. Stop writing boilerplate and start shipping autonomous self-improving agents that research, plan, code, and execute tasks. Deployed in 5 lines of code with built-in memory, RAG, and support for 100+ LLMs."
+ },
+ {
   "fork": "Blockchains/opencode",
   "upstream": "anomalyco/opencode",
   "category": "coding-agent-cli",
-  "stars": 211703,
+  "stars": 211716,
   "license": "MIT",
-  "pushed_at": "2026-10-04T13:59:29Z",
+  "pushed_at": "2026-10-04T15:23:54Z",
   "description": "The open source coding agent."
  },
  {
   "fork": "Blockchains/pi",
   "upstream": "earendil-works/pi",
   "category": "coding-agent-cli",
-  "stars": 112367,
+  "stars": 112385,
   "license": "MIT",
   "pushed_at": "2026-10-04T00:44:54Z",
   "description": "AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI"
@@ -228,10 +381,109 @@
   "fork": "Blockchains/cline",
   "upstream": "cline/cline",
   "category": "coding-agent-cli",
-  "stars": 69829,
+  "stars": 69834,
   "license": "Apache-2.0",
   "pushed_at": "2026-10-03T03:04:24Z",
   "description": "Autonomous coding agent as an SDK, IDE extension, or CLI assistant."
+ },
+ {
+  "fork": "Blockchains/goose",
+  "upstream": "aaif-goose/goose",
+  "category": "coding-agent-cli",
+  "stars": 54938,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-10-02T17:36:13Z",
+  "description": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM"
+ },
+ {
+  "fork": "Blockchains/continue",
+  "upstream": "continuedev/continue",
+  "category": "coding-agent-cli",
+  "stars": 36111,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-10-04T09:28:06Z",
+  "description": "open-source coding agent"
+ },
+ {
+  "fork": "Blockchains/oh-my-pi",
+  "upstream": "can1357/oh-my-pi",
+  "category": "coding-agent-cli",
+  "stars": 34265,
+  "license": "MIT",
+  "pushed_at": "2026-10-04T16:17:24Z",
+  "description": "\u2325 Coding agent with the IDE wired in. Built by Stencil Labs."
+ },
+ {
+  "fork": "Blockchains/qwen-code",
+  "upstream": "QwenLM/qwen-code",
+  "category": "coding-agent-cli",
+  "stars": 28305,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-10-04T15:56:51Z",
+  "description": "An open-source AI coding agent that lives in your terminal."
+ },
+ {
+  "fork": "Blockchains/kilocode",
+  "upstream": "Kilo-Org/kilocode",
+  "category": "coding-agent-cli",
+  "stars": 27491,
+  "license": "MIT",
+  "pushed_at": "2026-10-04T09:00:13Z",
+  "description": "Kilo is the all-in-one agentic engineering platform. Build, ship, and iterate faster with the most popular open source coding agent."
+ },
+ {
+  "fork": "Blockchains/compound-engineering-plugin",
+  "upstream": "EveryInc/compound-engineering-plugin",
+  "category": "coding-agent-cli",
+  "stars": 25389,
+  "license": "MIT",
+  "pushed_at": "2026-10-02T09:55:48Z",
+  "description": "Official Compound Engineering plugin for Claude Code, Codex, Cursor, and more"
+ },
+ {
+  "fork": "Blockchains/CodexBar",
+  "upstream": "steipete/CodexBar",
+  "category": "coding-agent-cli",
+  "stars": 22176,
+  "license": "MIT",
+  "pushed_at": "2026-10-04T15:56:43Z",
+  "description": "Show usage stats for OpenAI Codex and Claude Code, without having to login."
+ },
+ {
+  "fork": "Blockchains/jcode",
+  "upstream": "1jehuang/jcode",
+  "category": "coding-agent-cli",
+  "stars": 20298,
+  "license": "MIT",
+  "pushed_at": "2026-10-04T05:31:28Z",
+  "description": "High performance coding agent harness written in rust"
+ },
+ {
+  "fork": "Blockchains/claudian",
+  "upstream": "YishenTu/claudian",
+  "category": "coding-agent-cli",
+  "stars": 15579,
+  "license": "MIT",
+  "pushed_at": "2026-10-04T16:13:12Z",
+  "description": "An Obsidian plugin that embeds Claude Code/Codex as an AI collaborator in your vault"
+ },
+ {
+  "fork": "Blockchains/MiMo-Code",
+  "upstream": "XiaomiMiMo/MiMo-Code",
+  "category": "coding-agent-cli",
+  "stars": 13598,
+  "license": "MIT",
+  "pushed_at": "2026-10-03T11:46:21Z",
+  "description": "MiMo Code: Where Models and Agents Co-Evolve"
+ },
+ {
+  "fork": "Blockchains/aicommits",
+  "upstream": "Nutlope/aicommits",
+  "category": "coding-agent-cli",
+  "stars": 9104,
+  "license": "MIT",
+  "pushed_at": "2026-09-05T08:40:26Z",
+  "description": "A CLI that writes your git commit messages for you with AI"
  },
  {
   "fork": "Blockchains/forgecode",
@@ -246,7 +498,7 @@
   "fork": "Blockchains/hapi",
   "upstream": "tiann/hapi",
   "category": "coding-agent-cli",
-  "stars": 5177,
+  "stars": 5178,
   "license": "AGPL-3.0",
   "pushed_at": "2026-09-27T21:54:01Z",
   "description": "App for Codex / Claude Code / Pi / OpenCode / Kimi Code / Grok Build, vibe coding anytime, anywhere"
@@ -264,7 +516,7 @@
   "fork": "Blockchains/grok-cli",
   "upstream": "superagent-ai/grok-cli",
   "category": "coding-agent-cli",
-  "stars": 3486,
+  "stars": 3485,
   "license": "MIT",
   "pushed_at": "2026-07-06T14:05:33Z",
   "description": "An open-source coding agent for the Grok API"
@@ -273,9 +525,9 @@
   "fork": "Blockchains/happier",
   "upstream": "happier-dev/happier",
   "category": "coding-agent-cli",
-  "stars": 1854,
+  "stars": 1856,
   "license": "MIT",
-  "pushed_at": "2026-10-04T14:38:34Z",
+  "pushed_at": "2026-10-04T15:02:26Z",
   "description": "Web, Desktop & Mobile client and orchestrator for Codex, Claude Code, OpenCode, Pi, Cursor, Grok, Antigravity, Kimi, Augment Code, Qwen, fully end-to-end encrypted"
  },
  {
@@ -291,7 +543,7 @@
   "fork": "Blockchains/grok-app",
   "upstream": "RongleCat/grok-app",
   "category": "coding-agent-cli",
-  "stars": 1391,
+  "stars": 1392,
   "license": "MIT",
   "pushed_at": "2026-10-04T14:00:31Z",
   "description": "Open-source Grok App \u2014 desktop workbench (GUI) for the local Grok Build CLI: sessions, projects, media, automations. Tauri 2."
@@ -302,7 +554,7 @@
   "category": "coding-agent-cli",
   "stars": 763,
   "license": "MIT",
-  "pushed_at": "2026-10-03T21:37:45Z",
+  "pushed_at": "2026-10-04T15:17:27Z",
   "description": "The most autonomous AI agent framework: runs unattended on GitHub Actions, self-healing skills, drives Claude Code, Grok, Codex & more. No approval loops. Configure once, forget forever."
  },
  {
@@ -311,7 +563,7 @@
   "category": "coding-agent-cli",
   "stars": 631,
   "license": "MIT",
-  "pushed_at": "2026-10-03T20:05:48Z",
+  "pushed_at": "2026-10-04T16:14:47Z",
   "description": "ccteam turns the coding agents you already run (Claude Code, Codex, Grok, DeepSeek Harness, Kimi, Pi) into one team \u2014 any session can spawn, dispatch, and collect work from any vendor on any machine, while you steer it all from Telegram, Lark, or a browser tab. \u628a\u4f60\u5728\u7528\u7684\u7f16\u7a0b agent \u7f16\u6210\u4e00\u652f\u56e2\u961f,\u8de8\u5382\u5546\u8de8\u673a\u5668\u6d3e\u6d3b,Telegram/\u98de\u4e66/\u7f51\u9875\u7edf\u4e00\u6307\u6325\u3002"
  },
  {
@@ -333,22 +585,58 @@
   "description": "Stop renting your intelligence. Own it with AnythingLLM. Everything you need for a powerful local-first agent experience "
  },
  {
+  "fork": "Blockchains/cherry-studio",
+  "upstream": "CherryHQ/cherry-studio",
+  "category": "chat-ui",
+  "stars": 52361,
+  "license": "AGPL-3.0",
+  "pushed_at": "2026-10-04T12:52:09Z",
+  "description": "AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs"
+ },
+ {
   "fork": "Blockchains/airi",
   "upstream": "moeru-ai/airi",
   "category": "chat-ui",
-  "stars": 50020,
+  "stars": 50022,
   "license": "MIT",
   "pushed_at": "2026-10-04T14:28:02Z",
   "description": "\ud83d\udc96\ud83e\uddf8 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported."
  },
  {
+  "fork": "Blockchains/LibreChat",
+  "upstream": "LibreChat-AI/LibreChat",
+  "category": "chat-ui",
+  "stars": 45255,
+  "license": "MIT",
+  "pushed_at": "2026-10-04T16:19:03Z",
+  "description": "Enhanced ChatGPT Clone: Features Agents, MCP, Skills, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active"
+ },
+ {
   "fork": "Blockchains/chatbox",
   "upstream": "chatboxai/chatbox",
   "category": "chat-ui",
-  "stars": 41937,
+  "stars": 41938,
   "license": "GPL-3.0",
   "pushed_at": "2026-09-24T14:09:13Z",
   "description": "Powerful AI Client"
+ },
+ {
+  "fork": "Blockchains/AionUi",
+  "upstream": "iOfficeAI/AionUi",
+  "category": "chat-ui",
+  "stars": 33308,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-09-09T07:57:01Z",
+  "description": "Open-source 24/7 Cowork app for OpenClaw, Hermes, Claude Code, Codex, OpenCode and 20+ more CLI Agent | Customize your assistants | Team them up\uff5cStar if you like it!"
+ },
+ {
+  "fork": "Blockchains/hermes-desktop",
+  "upstream": "fathah/hermes-desktop",
+  "category": "chat-ui",
+  "stars": 14355,
+  "license": "MIT",
+  "pushed_at": "2026-09-24T14:32:35Z",
+  "description": "Desktop Companion for Hermes Agent"
  },
  {
   "fork": "Blockchains/py-gpt",
@@ -360,19 +648,64 @@
   "description": "Desktop AI Assistant powered by GPT-6, GPT-5, Gemini, Claude, Grok, Ollama, DeepSeek, Perplexity, and more - chat, agents, tools, MCP, plugins, RAG, vision, voice, image and video generation, speech synthesis and speech recognition, web search, memory, presets, canvas, assistants, themes, computer use. Windows, Linux, and Mac."
  },
  {
+  "fork": "Blockchains/mlflow",
+  "upstream": "mlflow/mlflow",
+  "category": "observability-eval",
+  "stars": 28252,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-10-04T15:40:58Z",
+  "description": "The open source AI engineering platform for agents, LLMs, and ML models. MLflow enables teams of all sizes to debug, evaluate, monitor, and optimize production-quality AI applications while controlling costs and managing access to models and data."
+ },
+ {
+  "fork": "Blockchains/promptfoo",
+  "upstream": "promptfoo/promptfoo",
+  "category": "observability-eval",
+  "stars": 25699,
+  "license": "MIT",
+  "pushed_at": "2026-10-04T13:21:58Z",
+  "description": "Test your prompts, agents, and RAGs. Red teaming/pentesting/vulnerability scanning for AI. Compare performance of GPT, Claude, Gemini, DeepSeek, and more. Simple declarative configs with command line and CI/CD integration.  Used by OpenAI and Anthropic."
+ },
+ {
+  "fork": "Blockchains/pipecat",
+  "upstream": "pipecat-ai/pipecat",
+  "category": "voice-realtime",
+  "stars": 16173,
+  "license": "BSD-2-Clause",
+  "pushed_at": "2026-10-03T19:41:34Z",
+  "description": "Open Source framework for voice agents, multimodal apps, and realtime AI. Maintained by Daily and the community."
+ },
+ {
+  "fork": "Blockchains/agents",
+  "upstream": "livekit/agents",
+  "category": "voice-realtime",
+  "stars": 14507,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-10-04T15:31:14Z",
+  "description": "A framework for building realtime voice AI agents \ud83e\udd16\ud83c\udf99\ufe0f\ud83d\udcf9 "
+ },
+ {
+  "fork": "Blockchains/Vision-Agents",
+  "upstream": "GetStream/Vision-Agents",
+  "category": "voice-realtime",
+  "stars": 8151,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-10-04T05:16:46Z",
+  "description": "Open Vision Agents by Stream. Build voice and vision agents quickly with any model or video provider. Uses Stream's edge network for ultra-low latency."
+ },
+ {
   "fork": "Blockchains/firecrawl",
   "upstream": "firecrawl/firecrawl",
   "category": "app",
-  "stars": 188480,
+  "stars": 188510,
   "license": "AGPL-3.0",
-  "pushed_at": "2026-10-03T18:46:17Z",
+  "pushed_at": "2026-10-04T15:03:46Z",
   "description": "Supercharge your AI agents with data from the web and beyond. Building the library for superintelligence. \ud83d\udd25"
  },
  {
   "fork": "Blockchains/MoneyPrinterTurbo",
   "upstream": "harry0703/MoneyPrinterTurbo",
   "category": "app",
-  "stars": 128375,
+  "stars": 128400,
   "license": "MIT",
   "pushed_at": "2026-10-04T06:48:17Z",
   "description": "\u5229\u7528 AI \u5927\u6a21\u578b\u548c\u81ea\u52a8\u5316\u5de5\u4f5c\u6d41\uff0c\u6839\u636e\u4e3b\u9898\u6216\u5173\u952e\u8bcd\u4e00\u952e\u751f\u6210\u9ad8\u6e05\u77ed\u89c6\u9891\u3002Generate HD short videos from a topic or keyword with an automated AI workflow."
@@ -381,16 +714,187 @@
   "fork": "Blockchains/ai-hedge-fund",
   "upstream": "virattt/ai-hedge-fund",
   "category": "app",
-  "stars": 63854,
+  "stars": 63857,
   "license": "MIT",
   "pushed_at": "2026-10-02T14:19:04Z",
   "description": "An AI Hedge Fund Team"
  },
  {
+  "fork": "Blockchains/OpenMontage",
+  "upstream": "calesthio/OpenMontage",
+  "category": "app",
+  "stars": 62980,
+  "license": "AGPL-3.0",
+  "pushed_at": "2026-10-03T16:28:55Z",
+  "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio."
+ },
+ {
+  "fork": "Blockchains/shannon",
+  "upstream": "KeygraphHQ/shannon",
+  "category": "app",
+  "stars": 48571,
+  "license": "AGPL-3.0",
+  "pushed_at": "2026-10-01T22:17:59Z",
+  "description": "Shannon is an AI pentester for web applications and APIs. It analyzes your source code, identifies attack vectors, and executes real exploits to prove vulnerabilities before they reach production."
+ },
+ {
+  "fork": "Blockchains/DeepTutor",
+  "upstream": "HKUDS/DeepTutor",
+  "category": "app",
+  "stars": 40782,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-10-04T13:35:33Z",
+  "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/."
+ },
+ {
+  "fork": "Blockchains/OpenMAIC",
+  "upstream": "THU-MAIC/OpenMAIC",
+  "category": "app",
+  "stars": 39932,
+  "license": "MIT",
+  "pushed_at": "2026-10-04T14:45:27Z",
+  "description": "Open Multi-Agent Interactive Classroom \u2014 Get an immersive, multi-agent learning experience in just one click"
+ },
+ {
+  "fork": "Blockchains/open-notebook",
+  "upstream": "lfnovo/open-notebook",
+  "category": "app",
+  "stars": 39798,
+  "license": "MIT",
+  "pushed_at": "2026-10-04T12:44:54Z",
+  "description": "An Open Source implementation of Notebook LM with more flexibility and features"
+ },
+ {
+  "fork": "Blockchains/khoj",
+  "upstream": "khoj-ai/khoj",
+  "category": "app",
+  "stars": 37560,
+  "license": "AGPL-3.0",
+  "pushed_at": "2026-08-02T01:55:40Z",
+  "description": "Your AI second brain. Self-hostable. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI (gpt, claude, gemini, llama, qwen, mistral). Get started - free."
+ },
+ {
+  "fork": "Blockchains/Open-Generative-AI",
+  "upstream": "Anil-matcha/Open-Generative-AI",
+  "category": "app",
+  "stars": 29612,
+  "license": "MIT",
+  "pushed_at": "2026-10-03T09:39:02Z",
+  "description": "Unrestricted Open-source alternative to AI video platforms \u2014 Free AI image & video generation studio with 600+ models (Flux, Midjourney, Kling, Sora, Veo). No content filters. Self-hosted, MIT licensed."
+ },
+ {
+  "fork": "Blockchains/bagisto",
+  "upstream": "bagisto/bagisto",
+  "category": "app",
+  "stars": 28206,
+  "license": "MIT",
+  "pushed_at": "2026-10-01T09:52:07Z",
+  "description": "Open Source eCommerce & Multi-Vendor Marketplace Platform Built with Laravel for Enterprise-Scale Commerce, Supporting 10M+ SKUs"
+ },
+ {
+  "fork": "Blockchains/pentagi",
+  "upstream": "vxcontrol/pentagi",
+  "category": "app",
+  "stars": 25242,
+  "license": "MIT",
+  "pushed_at": "2026-10-03T23:20:51Z",
+  "description": "Fully autonomous AI Agents system capable of performing complex penetration testing tasks"
+ },
+ {
+  "fork": "Blockchains/openworker",
+  "upstream": "andrewyng/openworker",
+  "category": "app",
+  "stars": 18422,
+  "license": "MIT",
+  "pushed_at": "2026-10-04T03:02:02Z",
+  "description": null
+ },
+ {
+  "fork": "Blockchains/LangBot",
+  "upstream": "langbot-app/LangBot",
+  "category": "app",
+  "stars": 18002,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-10-03T05:03:06Z",
+  "description": "Production-grade platform for building agentic IM bots - \u751f\u4ea7\u7ea7\u591a\u5e73\u53f0\u667a\u80fd\u673a\u5668\u4eba\u5f00\u53d1\u5e73\u53f0/ Agent\u3001\u77e5\u8bc6\u5e93\u7f16\u6392\u3001\u63d2\u4ef6\u7cfb\u7edf / Bots for Discord / Slack / LINE / Telegram / WeChat(\u4f01\u4e1a\u5fae\u4fe1, \u4f01\u5fae\u667a\u80fd\u673a\u5668\u4eba, \u516c\u4f17\u53f7) / \u98de\u4e66 / \u9489\u9489 / QQ / Matrix e.g. Integrated with ChatGPT(GPT), DeepSeek, Dify, n8n, Langflow, Coze, Claude, Gemini, GLM, Ollama, SiliconFlow, Moonshot, openclaw / hermes agent, deerflow"
+ },
+ {
+  "fork": "Blockchains/scira",
+  "upstream": "zaidmukaddam/scira",
+  "category": "app",
+  "stars": 11905,
+  "license": "AGPL-3.0",
+  "pushed_at": "2026-08-12T22:28:59Z",
+  "description": "Scira (Formerly MiniPerplx) is a minimalistic AI-powered search engine that helps you find information on the internet and cites it too. Powered by Vercel AI SDK!"
+ },
+ {
+  "fork": "Blockchains/brigade",
+  "upstream": "spinabot/brigade",
+  "category": "app",
+  "stars": 11250,
+  "license": "MIT",
+  "pushed_at": "2026-10-03T08:46:07Z",
+  "description": "Brigade \u2014 Your personal intelligence, built enterprise-grade"
+ },
+ {
+  "fork": "Blockchains/VidBee",
+  "upstream": "nexmoe/VidBee",
+  "category": "app",
+  "stars": 10749,
+  "license": "MIT",
+  "pushed_at": "2026-09-30T02:09:27Z",
+  "description": "Download video and audio from  YouTube ,  TikTok ,  Twitter ,  Instagram ,  Facebook ,  Twitch ,  Bilibili , and 1000+ sites\u2014or import local media. Create searchable transcripts on your computer, then summarize, translate, or ask questions with your preferred AI provider."
+ },
+ {
+  "fork": "Blockchains/osiris",
+  "upstream": "simplifaisoul/osiris",
+  "category": "app",
+  "stars": 10447,
+  "license": "MIT",
+  "pushed_at": "2026-10-03T06:32:37Z",
+  "description": "Open Source Global Intelligence Platform - Real-Time OSINT Dashboard - A Palantir Alternative -                            2nZNHm3Lr9umG3DVrzYwHgktwkuKuJRXqqRqs3ewpump "
+ },
+ {
+  "fork": "Blockchains/read-frog",
+  "upstream": "mengxi-ream/read-frog",
+  "category": "app",
+  "stars": 9966,
+  "license": "GPL-3.0",
+  "pushed_at": "2026-10-04T06:22:20Z",
+  "description": "\ud83d\udc38 Read Frog - Language Learning & Translate | \ud83d\udc38 \u966a\u8bfb\u86d9 - \u8bed\u8a00\u5b66\u4e60\u4e0e\u7ffb\u8bd1"
+ },
+ {
+  "fork": "Blockchains/bilingual_book_maker",
+  "upstream": "yihong0618/bilingual_book_maker",
+  "category": "app",
+  "stars": 9828,
+  "license": "MIT",
+  "pushed_at": "2026-09-30T20:24:12Z",
+  "description": "Make bilingual epub books Using AI translate"
+ },
+ {
+  "fork": "Blockchains/deep-searcher",
+  "upstream": "zilliztech/deep-searcher",
+  "category": "app",
+  "stars": 8293,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-09-22T10:08:42Z",
+  "description": "Open Source Deep Research Alternative to Reason and Search on Private Data. Written in Python."
+ },
+ {
+  "fork": "Blockchains/xget",
+  "upstream": "xixu-me/xget",
+  "category": "app",
+  "stars": 8196,
+  "license": "AGPL-3.0",
+  "pushed_at": "2026-10-04T10:07:53Z",
+  "description": "Ultra-high-performance, secure, all-in-one acceleration engine for developer resources"
+ },
+ {
   "fork": "Blockchains/OpenMausBot",
   "upstream": "milind-soni/OpenMausBot",
   "category": "app",
-  "stars": 4022,
+  "stars": 4027,
   "license": "Apache-2.0",
   "pushed_at": "2026-10-04T14:20:31Z",
   "description": "Open-source Grok Bot alternative with a virtual machine that bots can use"

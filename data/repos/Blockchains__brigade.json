@@ -1,0 +1,211 @@
+{
+ "fork": "Blockchains/brigade",
+ "upstream": "spinabot/brigade",
+ "category": "app",
+ "stars": 11250,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2026 Spinabot Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom ",
+ "pushed_at": "2026-10-03T08:46:07Z",
+ "description": "Brigade \u2014 Your personal intelligence, built enterprise-grade",
+ "commit": "4c2a18fba9a7224fbddd07557ad3933866f60495",
+ "indexed_at": "2026-10-04T16:56:58Z",
+ "status": "ok",
+ "clone_kb": 73640,
+ "seconds": 10.3,
+ "files_scanned": 1540,
+ "languages": {
+  "TypeScript": 1399,
+  "JavaScript": 20,
+  "Python": 5
+ },
+ "grok_files": 8,
+ "grok_files_by_kind": {
+  "source": 5,
+  "test": 2,
+  "doc": 1
+ },
+ "hosts": {
+  "api.x.ai": 4
+ },
+ "endpoints": {
+  "/v1/models": 2,
+  "/v1/audio/transcriptions": 1,
+  "/v1/audio/speech": 1,
+  "/v1/files": 1,
+  "/v1/videos": 1,
+  "/v1/videos/generations": 1
+ },
+ "models": {
+  "grok-code": 1,
+  "grok-imagine-video": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 3
+ },
+ "features": {
+  "anthropic_compatible": 2,
+  "structured_output": 2,
+  "voice_realtime": 2,
+  "openai_compatible": 2,
+  "image_generation": 1,
+  "vision": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "src/providers/catalog.ts",
+   "start": 232,
+   "end": 255,
+   "code": "\t},\n\t{\n\t\tid: \"xai\",\n\t\tname: \"xAI\",\n\t\tdescription: \"Grok models\",\n\t\tkeyUrl: \"https://console.x.ai\",\n\t\tenvVar: \"XAI_API_KEY\",\n\t\tbilling: \"metered\",\n\t},\n\t{\n\t\tid: \"deepseek\",\n\t\tname: \"DeepSeek\",\n\t\tdescription: \"Cheap reasoning models\",\n\t\tkeyUrl: \"https://platform.deepseek.com/api_keys\",\n\t\tenvVar: \"DEEPSEEK_API_KEY\",\n\t\tbilling: \"metered\",\n\t},\n\t{\n\t\tid: \"mistral\",\n\t\tname: \"Mistral\",\n\t\tdescription: \"European, strong open-weight roots\",\n\t\tkeyUrl: \"https://console.mistral.ai/api-keys\",\n\t\tenvVar: \"MISTRAL_API_KEY\",\n\t\tbilling: \"metered\","
+  },
+  {
+   "path": "src/providers/validate-key.ts",
+   "start": 102,
+   "end": 125,
+   "code": "\t\t\treturn {\n\t\t\t\turl: \"https://api.cerebras.ai/v1/models\",\n\t\t\t\tinit: { method: \"GET\", headers: { Authorization: `Bearer ${apiKey}` } },\n\t\t\t};\n\t\tcase \"xai\":\n\t\t\treturn {\n\t\t\t\turl: \"https://api.x.ai/v1/models\",\n\t\t\t\tinit: { method: \"GET\", headers: { Authorization: `Bearer ${apiKey}` } },\n\t\t\t};\n\t\tcase \"deepseek\":\n\t\t\treturn {\n\t\t\t\turl: \"https://api.deepseek.com/v1/models\",\n\t\t\t\tinit: { method: \"GET\", headers: { Authorization: `Bearer ${apiKey}` } },\n\t\t\t};\n\t\tcase \"mistral\":\n\t\t\treturn {\n\t\t\t\turl: \"https://api.mistral.ai/v1/models\",\n\t\t\t\tinit: { method: \"GET\", headers: { Authorization: `Bearer ${apiKey}` } },\n\t\t\t};\n\t\tdefault:\n\t\t\treturn null;\n\t}\n}\n"
+  },
+  {
+   "path": "src/agents/tools/transcribe-audio-tool.ts",
+   "start": 469,
+   "end": 492,
+   "code": "\tlanguage?: string;\n\tsignal?: AbortSignal;\n}): Promise<string> {\n\tconst fd = new FormData();\n\tfd.append(\"file\", new Blob([p.audio.bytes], { type: p.audio.mime }), `audio.${p.audio.extension}`);\n\tif (p.language) fd.append(\"language\", p.language);\n\tconst res = await p.fetchFn(\"https://api.x.ai/v1/stt\", {\n\t\tmethod: \"POST\",\n\t\theaders: { Authorization: `Bearer ${p.apiKey}` },\n\t\tbody: fd,\n\t\tsignal: withTimeout(p.signal, REQUEST_TIMEOUT_MS),\n\t});\n\tif (!res.ok) throw new Error(`HTTP ${res.status} ${(await safeText(res)).slice(0, 200)}`);\n\tconst body = (await res.json()) as { text?: string };\n\treturn body.text ?? \"\";\n}\n\n/** ElevenLabs `/v1/speech-to-text` \u2014 multipart `{ file, model_id }`, `xi-api-key`; response `{text}`. */\nasync function transcribeElevenLabs(p: {\n\tfetchFn: typeof fetch;\n\tapiKey: string;\n\tmodel: string;\n\taudio: TranscribeSource;\n\tsignal?: AbortSignal;"
+  },
+  {
+   "path": "src/agents/tools/generate-speech-tool.ts",
+   "start": 392,
+   "end": 415,
+   "code": "\tfetchFn: typeof fetch;\n\tapiKey: string;\n\tvoice: string;\n\ttext: string;\n\tsignal?: AbortSignal;\n}): Promise<{ bytes: Buffer; extension: string }> {\n\tconst res = await p.fetchFn(\"https://api.x.ai/v1/tts\", {\n\t\tmethod: \"POST\",\n\t\theaders: { Authorization: `Bearer ${p.apiKey}`, \"Content-Type\": \"application/json\" },\n\t\tbody: JSON.stringify({ text: p.text, voice_id: p.voice, language: \"en\" }),\n\t\tsignal: withTimeout(p.signal, REQUEST_TIMEOUT_MS),\n\t});\n\tif (!res.ok) throw new Error(`HTTP ${res.status} ${(await safeText(res)).slice(0, 200)}`);\n\treturn { bytes: Buffer.from(await res.arrayBuffer()), extension: \"mp3\" };\n}\n\n/** Wrap raw 16-bit mono little-endian PCM in a minimal WAV (RIFF) container. */\nexport function wrapPcmAsWav(pcm: Buffer, sampleRate: number, channels = 1, bitsPerSample = 16): Buffer {\n\tconst byteRate = (sampleRate * channels * bitsPerSample) / 8;\n\tconst blockAlign = (channels * bitsPerSample) / 8;\n\tconst header = Buffer.alloc(44);\n\theader.write(\"RIFF\", 0);\n\theader.writeUInt32LE(36 + pcm.length, 4);\n\theader.write(\"WAVE\", 8);"
+  },
+  {
+   "path": "src/agents/tools/generate-video-tool.ts",
+   "start": 491,
+   "end": 514,
+   "code": "\tconst body: Record<string, unknown> = { model: p.model, prompt: p.prompt };\n\tif (p.imageDataUrl) body.image = { url: p.imageDataUrl };\n\tif (p.durationSeconds !== undefined) body.duration = p.durationSeconds;\n\tif (p.aspectRatio) body.aspect_ratio = p.aspectRatio;\n\tif (p.resolution) body.resolution = p.resolution;\n\n\tconst res = await p.fetchFn(\"https://api.x.ai/v1/videos/generations\", {\n\t\tmethod: \"POST\",\n\t\theaders: { Authorization: `Bearer ${p.apiKey}`, \"Content-Type\": \"application/json\" },\n\t\tbody: JSON.stringify(body),\n\t\tsignal: withTimeout(p.signal, REQUEST_TIMEOUT_MS),\n\t});\n\tif (!res.ok) throw new Error(`HTTP ${res.status} ${(await safeText(res)).slice(0, 200)}`);\n\tconst submit = (await safeJson(res)) as { request_id?: string };\n\tconst id = submit.request_id;\n\tif (!id) throw new Error(\"xAI video submit returned no request_id.\");\n\n\tconst url = await pollUntil(\n\t\tasync () => {\n\t\t\tconst r = await p.fetchFn(`https://api.x.ai/v1/videos/${encodeURIComponent(id)}`, {\n\t\t\t\theaders: { Authorization: `Bearer ${p.apiKey}` },\n\t\t\t\tsignal: withTimeout(p.signal, REQUEST_TIMEOUT_MS),\n\t\t\t});\n\t\t\tif (!r.ok) throw new Error(`HTTP ${r.status} ${(await safeText(r)).slice(0, 200)}`);"
+  }
+ ],
+ "files": [
+  {
+   "path": "src/providers/catalog.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 426,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/providers/catalog.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 159,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/providers/validate-key.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 233,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/agents/github-copilot-routing.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 482,
+   "endpoints": [],
+   "models": [
+    "grok-code"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "src/agents/tools/transcribe-audio-tool.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 765,
+   "endpoints": [
+    "/v1/audio/transcriptions"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/agents/tools/generate-speech-tool.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 485,
+   "endpoints": [
+    "/v1/audio/speech"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "openai_compatible",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/agents/tools/generate-video-tool.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1154,
+   "endpoints": [
+    "/v1/files",
+    "/v1/videos",
+    "/v1/videos/generations"
+   ],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "openai_compatible",
+    "vision"
+   ]
+  },
+  {
+   "path": "skills/summarize/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 87,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  }
+ ]
+}

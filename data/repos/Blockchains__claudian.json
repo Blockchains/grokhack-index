@@ -1,0 +1,381 @@
+{
+ "fork": "Blockchains/claudian",
+ "upstream": "YishenTu/claudian",
+ "category": "coding-agent-cli",
+ "stars": 15579,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2025 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Softw",
+ "pushed_at": "2026-10-04T16:13:12Z",
+ "description": "An Obsidian plugin that embeds Claude Code/Codex as an AI collaborator in your vault",
+ "commit": "5bb335e73936e626cb1ffd6be54195133a87a517",
+ "indexed_at": "2026-10-04T16:54:26Z",
+ "status": "ok",
+ "clone_kb": 32836,
+ "seconds": 13.2,
+ "files_scanned": 1137,
+ "languages": {
+  "TypeScript": 1039,
+  "JavaScript": 34
+ },
+ "grok_files": 22,
+ "grok_files_by_kind": {
+  "test": 21,
+  "source": 1
+ },
+ "hosts": {},
+ "endpoints": {},
+ "models": {
+  "grok-4.5": 11,
+  "grok-code-fast-1": 7,
+  "grok-4.6": 5,
+  "grok-4": 5,
+  "grok-4.7": 4,
+  "grok-4.20-0309-non-reasoning": 2,
+  "grok-3": 2,
+  "grok-4-heavy": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 3
+ },
+ "features": {},
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [],
+ "files": [
+  {
+   "path": "tests/fixtures/providers/grok/runtime/models-list-byok.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 55,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/fixtures/providers/grok/runtime/GrokModelCatalogProcess.mjs",
+   "kind": "test",
+   "lang": "JavaScript",
+   "lines": 51,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/fixtures/providers/grok/runtime/models-list.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 76,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/integration/main.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 4807,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/integration/features/chat/tabs/TabForking.grok.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 118,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/integration/features/chat/side-chat/SideChatNative.grok.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 106,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/integration/providers/grok/ToolRendererCompatibility.dom.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 578,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/integration/providers/grok/runtime/GrokModelCatalogService.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 142,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/integration/providers/grok/runtime/GrokModels.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 107,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/helpers/features/chat/ProviderForkTestHarness.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 139,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/app/settings/ClaudianSettingsStorage.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1050,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/unit/providers/grok/env/GrokSettingsReconciler.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 210,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4.5",
+    "grok-code-fast-1"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/providers/grok/execution/GrokSessionModelMetadata.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 119,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/providers/grok/execution/GrokExecutionNativeConnection.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 210,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/providers/grok/execution/GrokExecutionBackend.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 2698,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/providers/grok/app/GrokWorkspaceServices.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 226,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/providers/grok/ui/GrokChatUIConfig.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 369,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4-heavy",
+    "grok-4.5",
+    "grok-4.7",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/providers/grok/ui/GrokSettingsTab.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 536,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/providers/grok/history/GrokHistoryStore.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 873,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/providers/grok/runtime/GrokModelCatalogService.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 258,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/providers/grok/runtime/GrokRuntimeEnvironment.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 68,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "src/providers/grok/ui/GrokSettingsTab.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 180,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": []
+  }
+ ]
+}

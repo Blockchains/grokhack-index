@@ -1,0 +1,221 @@
+{
+ "fork": "Blockchains/skyvern",
+ "upstream": "Skyvern-AI/skyvern",
+ "category": "agent-framework",
+ "stars": 23131,
+ "license_spdx": "AGPL-3.0",
+ "license_text_head": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007 Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/> Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. Preamble The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure coop",
+ "pushed_at": "2026-10-04T16:16:15Z",
+ "description": "Automate browser based workflows with AI",
+ "commit": "90ed94ac25c367940d9a00e48f43f58a47a2e54a",
+ "indexed_at": "2026-10-04T16:52:27Z",
+ "status": "ok",
+ "clone_kb": 635764,
+ "seconds": 60.8,
+ "files_scanned": 5225,
+ "languages": {
+  "Python": 2540,
+  "TypeScript": 2166,
+  "JavaScript": 43
+ },
+ "grok_files": 7,
+ "grok_files_by_kind": {
+  "config": 1,
+  "source": 4,
+  "test": 1,
+  "doc": 1
+ },
+ "hosts": {
+  "api.x.ai": 3
+ },
+ "endpoints": {
+  "/v1/chat/completions": 1,
+  "/v1/responses": 1
+ },
+ "models": {
+  "grok-4.5": 3
+ },
+ "env_vars": {
+  "ENABLE_XAI": 6,
+  "XAI_API_KEY": 6,
+  "XAI_GROK_4_5": 5,
+  "XAI_API_BASE": 4,
+  "XAI_REASONING_EFFORT": 4,
+  "XAI_GROK_4_5_CONTEXT_WINDOW": 1,
+  "XAI_GROK_4_5_MAX_OUTPUT_TOKENS": 1,
+  "XAI_GROK_4_5_MODEL": 1
+ },
+ "features": {
+  "anthropic_compatible": 4,
+  "mcp": 2,
+  "tool_calling": 2,
+  "streaming": 1,
+  "live_search": 1,
+  "reasoning": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "skyvern/config.py",
+   "start": 520,
+   "end": 543,
+   "code": "    OPENAI_API_KEY: str | None = None\n    GPT5_REASONING_EFFORT: str | None = \"medium\"\n    # Pinned on every GPT-6 Luna key; high matches the gpt-5.6-luna key Task V3 serves (OPENAI_GPT5_6_LUNA_HIGH).\n    GPT6_LUNA_REASONING_EFFORT: str = \"high\"\n    OPENAI_CUA_MODEL: str = \"computer-use-preview\"\n    # xAI\n    XAI_API_KEY: str | None = None\n    XAI_API_BASE: str = \"https://api.x.ai/v1\"\n    XAI_REASONING_EFFORT: str | None = \"medium\"\n    # ANTHROPIC\n    ANTHROPIC_API_KEY: str | None = None\n    ANTHROPIC_CUA_LLM_KEY: str = \"ANTHROPIC_CLAUDE4.6_SONNET\"\n    # Task V3 native engine (skyvern-3.0) model; empty falls back to LLM_KEY. Cloud pins the validated model.\n    TASK_V3_LLM_KEY: str = \"\"\n    # Forbid no-tool \"narration\" turns in the Task V3 loop. Only takes effect where the resolved\n    # model declares tool_choice support; the NO_TOOL_CALL_NUDGE fallback stays either way.\n    TASK_V3_TOOL_CHOICE_REQUIRED: bool = False\n    # Fraction of Task V3 runs (keyed by workflow run, else task) that persist their last pre-submit\n    # page frames as artifacts. Instrumentation sampling, not a traffic knob; 0 disables.\n    TASK_V3_PRE_SUBMIT_CAPTURE_SAMPLE_RATE: float = 0.25\n    # Kill switch for the tier-1 semantic commit read (SKY-15322): decisive-accept-only ARIA/value\n    # probe consulted before the shape heuristics, which remain the fallback either way.\n    TASK_V3_SEMANTIC_COMMIT_VERIFY: bool = True\n    # Press a sub-pixel date segment through the layer painted over it, and route month/year and"
+  },
+  {
+   "path": "skyvern/forge/sdk/api/llm/config_registry.py",
+   "start": 74,
+   "end": 97,
+   "code": "    )\n\n\ndef _build_xai_grok_4_5_config() -> LLMConfig:\n    return LLMConfig(\n        XAI_GROK_4_5_MODEL,\n        [\"XAI_API_KEY\"],\n        supports_vision=True,\n        add_assistant_prefix=False,\n        max_completion_tokens=XAI_GROK_4_5_MAX_OUTPUT_TOKENS,\n        temperature=settings.LLM_CONFIG_TEMPERATURE,\n        reasoning_effort=settings.XAI_REASONING_EFFORT or None,\n        litellm_params=LiteLLMParams(\n            api_key=settings.XAI_API_KEY,\n            api_base=settings.XAI_API_BASE,\n            api_version=None,\n            model_info={\"model_name\": XAI_GROK_4_5_MODEL},\n        ),\n    )\n\n\nclass LLMConfigRegistry:\n    _configs: dict[str, LLMRouterConfig | LLMConfig] = {}\n    _config_issues: dict[str, LLMConfigRegistrationIssue] = {}"
+  },
+  {
+   "path": "skyvern/cli/doctor.py",
+   "start": 484,
+   "end": 507,
+   "code": "    class _ProviderCheck(TypedDict):\n        enable: str\n        key: str | tuple[str, ...] | None\n\n    providers: dict[str, _ProviderCheck] = {\n        \"OPENAI\": {\"enable\": \"ENABLE_OPENAI\", \"key\": \"OPENAI_API_KEY\"},\n        \"XAI\": {\"enable\": \"ENABLE_XAI\", \"key\": \"XAI_API_KEY\"},\n        \"ANTHROPIC\": {\"enable\": \"ENABLE_ANTHROPIC\", \"key\": \"ANTHROPIC_API_KEY\"},\n        \"GEMINI\": {\"enable\": \"ENABLE_GEMINI\", \"key\": \"GEMINI_API_KEY\"},\n        \"AZURE\": {\"enable\": \"ENABLE_AZURE\", \"key\": \"AZURE_API_KEY\"},\n        \"BEDROCK\": {\"enable\": \"ENABLE_BEDROCK\", \"key\": None},\n        \"OLLAMA\": {\"enable\": \"ENABLE_OLLAMA\", \"key\": None},\n        \"OPENROUTER\": {\"enable\": \"ENABLE_OPENROUTER\", \"key\": \"OPENROUTER_API_KEY\"},\n        \"GROQ\": {\"enable\": \"ENABLE_GROQ\", \"key\": \"GROQ_API_KEY\"},\n        \"OPENAI_COMPATIBLE\": {\n            \"enable\": \"ENABLE_OPENAI_COMPATIBLE\",\n            # config_registry.py requires all three to register the provider.\n            \"key\": (\"OPENAI_COMPATIBLE_API_KEY\", \"OPENAI_COMPATIBLE_MODEL_NAME\", \"OPENAI_COMPATIBLE_API_BASE\"),\n        },\n    }\n\n    enabled = []\n    missing_key = []\n    for name, cfg in providers.items():"
+  },
+  {
+   "path": "skyvern/cli/llm_setup.py",
+   "start": 45,
+   "end": 68,
+   "code": "        resolved_env_path.touch()\n        defaults = {\n            \"ENV\": \"local\",\n            \"ENABLE_OPENAI\": \"false\",\n            \"OPENAI_API_KEY\": \"\",\n            \"ENABLE_XAI\": \"false\",\n            \"XAI_API_KEY\": \"\",\n            \"ENABLE_ANTHROPIC\": \"false\",\n            \"ANTHROPIC_API_KEY\": \"\",\n            \"ENABLE_AZURE\": \"false\",\n            \"AZURE_DEPLOYMENT\": \"\",\n            \"AZURE_API_KEY\": \"\",\n            \"AZURE_API_BASE\": \"\",\n            \"AZURE_API_VERSION\": \"\",\n            \"ENABLE_AZURE_GPT4O_MINI\": \"false\",\n            \"AZURE_GPT4O_MINI_DEPLOYMENT\": \"\",\n            \"AZURE_GPT4O_MINI_API_KEY\": \"\",\n            \"AZURE_GPT4O_MINI_API_BASE\": \"\",\n            \"AZURE_GPT4O_MINI_API_VERSION\": \"\",\n            \"ENABLE_GEMINI\": \"false\",\n            \"GEMINI_API_KEY\": \"\",\n            \"LLM_KEY\": \"\",\n            \"SECONDARY_LLM_KEY\": \"\",\n            \"BROWSER_STREAMING_MODE\": \"cdp\","
+  }
+ ],
+ "files": [
+  {
+   "path": ".env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 307,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "ENABLE_XAI",
+    "XAI_API_BASE",
+    "XAI_API_KEY",
+    "XAI_GROK_4_5",
+    "XAI_REASONING_EFFORT"
+   ],
+   "features": []
+  },
+  {
+   "path": "skyvern/config.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1372,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "ENABLE_XAI",
+    "XAI_API_BASE",
+    "XAI_API_KEY",
+    "XAI_GROK_4_5",
+    "XAI_REASONING_EFFORT"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "skyvern/forge/sdk/api/llm/config_registry.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 2622,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "ENABLE_XAI",
+    "XAI_API_BASE",
+    "XAI_API_KEY",
+    "XAI_GROK_4_5",
+    "XAI_GROK_4_5_CONTEXT_WINDOW",
+    "XAI_GROK_4_5_MAX_OUTPUT_TOKENS",
+    "XAI_GROK_4_5_MODEL",
+    "XAI_REASONING_EFFORT"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "skyvern/cli/doctor.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1949,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "ENABLE_XAI",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "skyvern/cli/llm_setup.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 290,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "ENABLE_XAI",
+    "XAI_API_KEY",
+    "XAI_GROK_4_5"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/unit/test_api_handler_factory.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 3449,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/developers/self-hosted/llm-configuration.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 647,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "ENABLE_XAI",
+    "XAI_API_BASE",
+    "XAI_API_KEY",
+    "XAI_GROK_4_5",
+    "XAI_REASONING_EFFORT"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  }
+ ]
+}
