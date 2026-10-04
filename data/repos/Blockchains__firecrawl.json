@@ -1,0 +1,306 @@
+{
+ "fork": "Blockchains/firecrawl",
+ "upstream": "firecrawl/firecrawl",
+ "category": "app",
+ "stars": 188480,
+ "license_spdx": "AGPL-3.0",
+ "license_text_head": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007 Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/> Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. Preamble The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure coop",
+ "pushed_at": "2026-10-03T18:46:17Z",
+ "description": "Supercharge your AI agents with data from the web and beyond. Building the library for superintelligence. \ud83d\udd25",
+ "commit": "4244638a7041bae8b99bdd42e3c44520f9e62da1",
+ "indexed_at": "2026-10-04T14:55:57Z",
+ "status": "ok",
+ "clone_kb": 89716,
+ "seconds": 14.6,
+ "files_scanned": 1828,
+ "languages": {
+  "TypeScript": 1022,
+  "Python": 193,
+  "Java": 97,
+  "PHP": 76,
+  "C#": 42,
+  "Ruby": 36,
+  "Rust": 29,
+  "Go": 20
+ },
+ "grok_files": 14,
+ "grok_files_by_kind": {
+  "example": 1,
+  "config": 2,
+  "source": 7,
+  "test": 4
+ },
+ "hosts": {
+  "api.x.ai": 2
+ },
+ "endpoints": {
+  "/v1/chat/completions": 1,
+  "/v1/responses": 1
+ },
+ "models": {
+  "grok-4-1-fast-non-reasoning": 4,
+  "grok-beta": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 8,
+  "XAI_RESPONSES_MODEL": 1,
+  "HAS_XAI": 1
+ },
+ "features": {
+  "structured_output": 2,
+  "reasoning": 2,
+  "tool_calling": 2,
+  "grpc": 1,
+  "mcp": 1,
+  "live_search": 1,
+  "anthropic_compatible": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "examples/grok_web_crawler/grok_web_crawler.py",
+   "start": 23,
+   "end": 46,
+   "code": "\n# Initialize the FirecrawlApp\napp = FirecrawlApp(api_key=firecrawl_api_key)\n\n# Function to make Grok API calls\ndef grok_completion(prompt):\n    url = \"https://api.x.ai/v1/chat/completions\"\n    headers = {\n        \"Content-Type\": \"application/json\",\n        \"Authorization\": f\"Bearer {grok_api_key}\"\n    }\n    data = {\n        \"messages\": [\n            {\n                \"role\": \"system\",\n                \"content\": \"You are a helpful assistant.\"\n            },\n            {\n                \"role\": \"user\",\n                \"content\": prompt\n            }\n        ],\n        \"model\": \"grok-beta\",\n        \"stream\": False,"
+  },
+  {
+   "path": "apps/api/src/config.ts",
+   "start": 180,
+   "end": 203,
+   "code": "  S2S_FIRECRAWL_INTEGRATIONS_TO_FIRECRAWL_API_KEY: emptyStringAsUndefined(\n    z.string().trim().min(1),\n  ),\n  OPENAI_API_KEY: z.string().optional(),\n  OPENAI_BASE_URL: z.string().optional(),\n  OPENROUTER_API_KEY: z.string().optional(),\n  XAI_API_KEY: z.string().optional(),\n  LLAMAPARSE_API_KEY: z.string().optional(),\n  STRIPE_SECRET_KEY: z.string().optional(),\n  AUTUMN_SECRET_KEY: z.string().optional(),\n  RESEND_API_KEY: z.string().optional(),\n  PREVIEW_TOKEN: z.string().optional(),\n  SEARCH_PREVIEW_TOKEN: z.string().optional(),\n  SEARCH_SERVICE_API_SECRET: z.string().optional(),\n  SEARCH_FEEDBACK_MAX_AGE_SEC: z.coerce.number().int().positive().default(120),\n  SEARCH_FEEDBACK_DAILY_CAP_CREDITS: z.coerce\n    .number()\n    .int()\n    .nonnegative()\n    .default(100),\n  FEEDBACK_MAX_AGE_SEC: z.coerce.number().int().positive().default(120),\n  FEEDBACK_DAILY_CAP_CREDITS: z.coerce.number().int().nonnegative().default(50),\n  FEEDBACK_REFUND_ENABLED: z.stringbool().default(true),\n"
+  },
+  {
+   "path": "apps/api/src/scraper/scrapeURL/error.ts",
+   "start": 10,
+   "end": 33,
+   "code": "}\n\nexport class XTwitterConfigurationError extends TransportableError {\n  constructor() {\n    super(\n      \"SCRAPE_X_TWITTER_CONFIGURATION_ERROR\",\n      \"X/Twitter scraping requires XAI_API_KEY to be configured.\",\n    );\n  }\n\n  serialize() {\n    return super.serialize();\n  }\n\n  static deserialize(\n    _: ErrorCodes,\n    data: ReturnType<typeof this.prototype.serialize>,\n  ) {\n    const x = new XTwitterConfigurationError();\n    x.stack = data.stack;\n    return x;\n  }\n}\n"
+  },
+  {
+   "path": "apps/api/src/scraper/scrapeURL/engines/index.ts",
+   "start": 73,
+   "end": 96,
+   "code": "const useWikipedia =\n  config.WIKIPEDIA_ENTERPRISE_USERNAME !== undefined &&\n  config.WIKIPEDIA_ENTERPRISE_USERNAME !== \"\" &&\n  config.WIKIPEDIA_ENTERPRISE_PASSWORD !== undefined &&\n  config.WIKIPEDIA_ENTERPRISE_PASSWORD !== \"\";\nconst useXTwitter =\n  (config.XAI_API_KEY !== undefined && config.XAI_API_KEY !== \"\") ||\n  config.USE_DB_AUTHENTICATION === true;\n\nconst engines: Engine[] = [\n  ...(useXTwitter ? [\"x-twitter\" as const] : []),\n  ...(useWikipedia ? [\"wikipedia\" as const] : []),\n  ...(useIndex ? [\"index\" as const, \"index;documents\" as const] : []),\n  ...(useFireEngine\n    ? [\n        \"fire-engine;chrome-cdp\" as const,\n        \"fire-engine;chrome-cdp;stealth\" as const,\n        \"fire-engine(retry);chrome-cdp\" as const,\n        \"fire-engine(retry);chrome-cdp;stealth\" as const,\n        \"fire-engine;tlsclient\" as const,\n        \"fire-engine;tlsclient;stealth\" as const,\n      ]\n    : []),\n  ...(usePlaywright ? [\"playwright\" as const] : []),"
+  },
+  {
+   "path": "apps/api/src/scraper/scrapeURL/engines/x-twitter/index.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from \"@ai-sdk/xai\";\nimport { generateText, jsonSchema, Output, type GenerateTextResult } from \"ai\";\nimport { config } from \"../../../../config\";\nimport { withUsageTelemetry } from \"../../../../lib/ai-usage-telemetry\";\nimport {\n  xSearchCost,\n  xSearchUsageFromResponseBody,\n} from \"../../../../lib/xai-x-search\";\nimport { Meta } from \"../..\";\nimport { EngineScrapeResult } from \"..\";\nimport { EngineError, XTwitterConfigurationError } from \"../../error\";\nimport { safeMarkdownToHtml } from \"../pdf/markdownToHtml\";\nimport { calculateCost } from \"../../transformers/llmExtract\";\nimport {\n  isXTwitterUrl,\n  parseXTwitterUrl,\n  type XTwitterPostUrl,\n  type XTwitterProfileUrl,"
+  },
+  {
+   "path": "apps/api/src/lib/xai-x-search.ts",
+   "start": 19,
+   "end": 42,
+   "code": "  return typeof value === \"number\" && Number.isFinite(value) && value >= 0\n    ? Math.trunc(value)\n    : INVALID;\n}\n\n// The Responses API reports fetched items under\n// `usage.server_side_tool_usage_details`. `@ai-sdk/xai` drops that block when\n// it parses usage, so read it from the raw response body.\nexport function xSearchUsageFromResponseBody(\n  body: unknown,\n): XSearchUsage | undefined {\n  const details = (body as any)?.usage?.server_side_tool_usage_details;\n  if (typeof details !== \"object\" || details === null) {\n    return undefined;\n  }\n  if (!(\"x_posts_fetched\" in details) && !(\"x_users_fetched\" in details)) {\n    return undefined;\n  }\n  const posts = count(details.x_posts_fetched);\n  const profiles = count(details.x_users_fetched);\n  if (posts === INVALID || profiles === INVALID) {\n    logger.warn(\"Unreadable X Search item counts in xAI usage\", {\n      module: \"xai-x-search\",\n      x_posts_fetched: details.x_posts_fetched,"
+  },
+  {
+   "path": "apps/api/src/services/monitoring/store.ts",
+   "start": 196,
+   "end": 219,
+   "code": "  options: MonitorTarget[\"scrapeOptions\"],\n): number {\n  // Mirrors the engine router (scrapeURL/engines/index.ts): the engine exists\n  // only with an xAI key or DB auth, lockdown serves from the index alone, and\n  // a browser profile routes around it.\n  const engineEnabled =\n    (config.XAI_API_KEY !== undefined && config.XAI_API_KEY !== \"\") ||\n    config.USE_DB_AUTHENTICATION === true;\n  if (!engineEnabled || options?.lockdown || options?.profile) return 0;\n  return isXTwitterUrl(url) ? X_TWITTER_POSTPROCESSOR_CREDIT_BONUS : 0;\n}\n\nfunction estimateTargetBaseCredits(\n  target: MonitorTarget,\n  judgeEnabled: boolean = false,\n): number {\n  const creditsPerPage = estimateBaseCreditsPerPage(target.scrapeOptions);\n  if (target.type === \"scrape\") {\n    return target.urls.reduce(\n      (sum, url) =>\n        sum + creditsPerPage + xTwitterSurcharge(url, target.scrapeOptions),\n      0,\n    );\n  }"
+  }
+ ],
+ "files": [
+  {
+   "path": "examples/grok_web_crawler/grok_web_crawler.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 150,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "apps/api/pnpm-lock.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 8768,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "grpc"
+   ]
+  },
+  {
+   "path": "apps/api/package.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 168,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "apps/api/src/config.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 680,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "grpc",
+    "mcp",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "apps/api/src/scraper/scrapeURL/error.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 877,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/api/src/scraper/scrapeURL/engines/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1120,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/api/src/scraper/scrapeURL/engines/x-twitter/index.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 412,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "apps/api/src/scraper/scrapeURL/engines/x-twitter/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 609,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_RESPONSES_MODEL"
+   ],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/api/src/scraper/scrapeURL/transformers/llmExtract.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1658,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/api/src/lib/ai-usage-telemetry.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 384,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "live_search",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/api/src/lib/xai-x-search.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 55,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "apps/api/src/services/monitoring/store.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 617,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/api/src/services/monitoring/store.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1461,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/api/src/__tests__/snips/lib.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 145,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "HAS_XAI",
+    "XAI_API_KEY"
+   ],
+   "features": []
+  }
+ ]
+}

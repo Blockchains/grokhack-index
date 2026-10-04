@@ -2,32 +2,32 @@
  "fork": "Blockchains/happier",
  "upstream": "happier-dev/happier",
  "category": "coding-agent-cli",
- "stars": 1845,
+ "stars": 1854,
  "license_spdx": "MIT",
  "license_text_head": "MIT License Copyright (c) 2026 Happy Coder Contributors Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit ",
- "pushed_at": "2026-10-03T18:38:48Z",
+ "pushed_at": "2026-10-04T14:38:34Z",
  "description": "Web, Desktop & Mobile client and orchestrator for Codex, Claude Code, OpenCode, Pi, Cursor, Grok, Antigravity, Kimi, Augment Code, Qwen, fully end-to-end encrypted",
  "commit": "45bd83c934f7a00bc3b02f29879d7a91d99445e4",
- "indexed_at": "2026-10-03T18:48:46Z",
+ "indexed_at": "2026-10-04T14:56:15Z",
  "status": "ok",
- "clone_kb": 753124,
- "seconds": 44.4,
+ "clone_kb": 752724,
+ "seconds": 81.8,
  "files_scanned": 20380,
  "languages": {
   "TypeScript": 17373,
   "JavaScript": 1770,
   "Rust": 34,
-  "Swift": 10,
   "Kotlin": 10,
+  "Swift": 10,
   "Python": 2,
   "Ruby": 2
  },
  "grok_files": 54,
  "grok_files_by_kind": {
-  "doc": 2,
+  "test": 14,
   "config": 32,
   "source": 6,
-  "test": 14
+  "doc": 2
  },
  "hosts": {},
  "endpoints": {},
@@ -87,32 +87,29 @@
  ],
  "files": [
   {
-   "path": "apps/docs/content/docs/agents/capabilities.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 205,
+   "path": "apps/ui/sources/sync/domains/models/modelOptions.preflight.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 140,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
+   "models": [
+    "grok-4.5"
    ],
-   "features": [
-    "anthropic_compatible"
-   ]
+   "env": [],
+   "features": []
   },
   {
-   "path": "apps/docs/content/docs/agents/grok.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 97,
+   "path": "apps/ui/sources/sync/domains/models/modelOptions.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 655,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "HAPPIER_GROK_PATH",
-    "XAI_API_KEY"
+   "models": [
+    "grok-4.5"
    ],
+   "env": [],
    "features": [
-    "mcp"
+    "reasoning"
    ]
   },
   {
@@ -161,48 +158,6 @@
    ]
   },
   {
-   "path": "apps/website/src/i18n/generated/slices/es/agents.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 1,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp"
-   ]
-  },
-  {
-   "path": "apps/website/src/i18n/generated/slices/ca/agents.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 1,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp"
-   ]
-  },
-  {
-   "path": "apps/website/src/i18n/generated/slices/zh-Hant/agents.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 1,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp"
-   ]
-  },
-  {
    "path": "apps/website/src/i18n/generated/slices/ja/agents.json",
    "kind": "config",
    "lang": null,
@@ -217,7 +172,35 @@
    ]
   },
   {
-   "path": "apps/website/src/i18n/generated/slices/zh-Hans/agents.json",
+   "path": "apps/website/src/i18n/generated/slices/es/agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/slices/ru/agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/slices/zh-Hant/agents.json",
    "kind": "config",
    "lang": null,
    "lines": 1,
@@ -259,7 +242,21 @@
    ]
   },
   {
-   "path": "apps/website/src/i18n/generated/slices/ru/agents.json",
+   "path": "apps/website/src/i18n/generated/slices/zh-Hans/agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/generated/slices/ca/agents.json",
    "kind": "config",
    "lang": null,
    "lines": 1,
@@ -287,23 +284,7 @@
    ]
   },
   {
-   "path": "apps/website/src/i18n/messages/overlays/ja.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 954,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "apps/website/src/i18n/messages/overlays/fr.json",
+   "path": "apps/website/src/i18n/messages/overlays/zh-Hans.json",
    "kind": "config",
    "lang": null,
    "lines": 954,
@@ -335,38 +316,6 @@
    ]
   },
   {
-   "path": "apps/website/src/i18n/messages/overlays/zh-Hant.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 954,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "apps/website/src/i18n/messages/overlays/zh-Hans.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 954,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "voice_realtime"
-   ]
-  },
-  {
    "path": "apps/website/src/i18n/messages/overlays/ca.json",
    "kind": "config",
    "lang": null,
@@ -383,23 +332,7 @@
    ]
   },
   {
-   "path": "apps/website/src/i18n/messages/overlays/es.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 954,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "apps/website/src/i18n/messages/overlays/pl.json",
+   "path": "apps/website/src/i18n/messages/overlays/ja.json",
    "kind": "config",
    "lang": null,
    "lines": 954,
@@ -431,6 +364,22 @@
    ]
   },
   {
+   "path": "apps/website/src/i18n/messages/overlays/pl.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 954,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
    "path": "apps/website/src/i18n/messages/overlays/ru.json",
    "kind": "config",
    "lang": null,
@@ -447,10 +396,128 @@
    ]
   },
   {
+   "path": "apps/website/src/i18n/messages/overlays/fr.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 954,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/zh-Hant.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 954,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/es.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 954,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/pt.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 260,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/es.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 274,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
    "path": "apps/website/src/i18n/messages/overlays/.parts/ru.agents.json",
    "kind": "config",
    "lang": null,
    "lines": 274,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/zh-Hans.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 260,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/pl.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 260,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/website/src/i18n/messages/overlays/.parts/ja.agents.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 260,
    "endpoints": [],
    "models": [],
    "env": [
@@ -490,76 +557,6 @@
   },
   {
    "path": "apps/website/src/i18n/messages/overlays/.parts/zh-Hant.agents.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 260,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp"
-   ]
-  },
-  {
-   "path": "apps/website/src/i18n/messages/overlays/.parts/zh-Hans.agents.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 260,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp"
-   ]
-  },
-  {
-   "path": "apps/website/src/i18n/messages/overlays/.parts/ja.agents.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 260,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp"
-   ]
-  },
-  {
-   "path": "apps/website/src/i18n/messages/overlays/.parts/pl.agents.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 260,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp"
-   ]
-  },
-  {
-   "path": "apps/website/src/i18n/messages/overlays/.parts/es.agents.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 274,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp"
-   ]
-  },
-  {
-   "path": "apps/website/src/i18n/messages/overlays/.parts/pt.agents.json",
    "kind": "config",
    "lang": null,
    "lines": 260,
@@ -644,20 +641,6 @@
    "features": []
   },
   {
-   "path": "apps/cli/src/backends/grok/acp/sessionNotifications.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 259,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "tool_calling"
-   ]
-  },
-  {
    "path": "apps/cli/src/backends/grok/acp/backend.ts",
    "kind": "source",
    "lang": "TypeScript",
@@ -685,6 +668,20 @@
    ],
    "features": [
     "reasoning"
+   ]
+  },
+  {
+   "path": "apps/cli/src/backends/grok/acp/sessionNotifications.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 259,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
    ]
   },
   {
@@ -740,42 +737,54 @@
    "features": []
   },
   {
-   "path": "apps/ui/sources/sync/domains/models/modelOptions.preflight.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 140,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "apps/ui/sources/sync/domains/models/modelOptions.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 655,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/tests/suites/providers/providerSpecs.grok.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 81,
+   "path": "apps/docs/content/docs/agents/grok.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 97,
    "endpoints": [],
    "models": [],
    "env": [
-    "EXPECTED_GROK_PERMISSIONS",
-    "HAPPIER_E2E_PROVIDER_GROK_BIN",
     "HAPPIER_GROK_PATH",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "apps/docs/content/docs/agents/capabilities.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 205,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/agents/src/auth.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 192,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "packages/agents/src/auth.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 94,
+   "endpoints": [],
+   "models": [],
+   "env": [
     "XAI_API_KEY"
    ],
    "features": []
@@ -794,6 +803,37 @@
     "HAPPIER_GROK_STUB_RECORD_PATH",
     "XAI_API_KEY"
    ],
+   "features": [
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/tests/suites/providers/providerSpecs.grok.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 81,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "EXPECTED_GROK_PERMISSIONS",
+    "HAPPIER_E2E_PROVIDER_GROK_BIN",
+    "HAPPIER_GROK_PATH",
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "packages/tests/src/testkit/providers/scenarios/scenarios.grok.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 385,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast",
+    "grok-4.5"
+   ],
+   "env": [],
    "features": [
     "reasoning",
     "structured_output"
@@ -829,46 +869,6 @@
    "env": [
     "HAPPIER_E2E_PROVIDER_GROK_ACP_STUB",
     "HAPPIER_GROK_PATH",
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "packages/tests/src/testkit/providers/scenarios/scenarios.grok.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 385,
-   "endpoints": [],
-   "models": [
-    "grok-4.1-fast",
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "packages/agents/src/auth.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 192,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "packages/agents/src/auth.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 94,
-   "endpoints": [],
-   "models": [],
-   "env": [
     "XAI_API_KEY"
    ],
    "features": []

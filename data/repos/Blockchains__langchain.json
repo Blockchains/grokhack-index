@@ -1,0 +1,719 @@
+{
+ "fork": "Blockchains/langchain",
+ "upstream": "langchain-ai/langchain",
+ "category": "sdk-provider",
+ "stars": 147434,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) LangChain, Inc. Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to who",
+ "pushed_at": "2026-10-04T10:17:02Z",
+ "description": "The agent engineering platform.",
+ "commit": "57236d55d9ffc8634bda987861e6fce460aff268",
+ "indexed_at": "2026-10-04T14:53:10Z",
+ "status": "ok",
+ "clone_kb": 72244,
+ "seconds": 40.4,
+ "files_scanned": 2863,
+ "languages": {
+  "Python": 2615,
+  "JavaScript": 2
+ },
+ "grok_files": 38,
+ "grok_files_by_kind": {
+  "config": 13,
+  "doc": 4,
+  "source": 12,
+  "test": 9
+ },
+ "hosts": {
+  "api.x.ai": 2
+ },
+ "endpoints": {
+  "/v1/chat/completions": 2,
+  "/v1/responses": 1
+ },
+ "models": {
+  "grok-4": 6,
+  "grok-4.3": 5,
+  "grok-3": 3,
+  "grok-3-mini": 3,
+  "grok-4.20-0309-non-reasoning": 3,
+  "grok-4.20-0309-reasoning": 3,
+  "grok-4-fast-reasoning": 3,
+  "grok-4-0709": 2,
+  "grok-4-fast-non-reasoning": 2,
+  "grok-code-fast": 2,
+  "grok-4.5": 2,
+  "grok-4.6": 2,
+  "grok-4.7": 2,
+  "grok-imagine-image": 2,
+  "grok-imagine-video": 2,
+  "grok-2": 1,
+  "grok-4.20-multi-agent-0309": 1,
+  "grok-imagine-image-quality": 1,
+  "grok-imagine-video-1.5": 1,
+  "grok-code-fast-1": 1,
+  "grok-4.20": 1,
+  "grok-4.20-multi-agent": 1,
+  "grok-beta": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 5,
+  "XAI_API_BASE": 2
+ },
+ "features": {
+  "structured_output": 7,
+  "anthropic_compatible": 6,
+  "streaming": 5,
+  "openai_compatible": 3,
+  "reasoning": 3,
+  "tool_calling": 3,
+  "image_generation": 2,
+  "live_search": 2,
+  "embeddings": 1,
+  "mcp": 1,
+  "vision": 1,
+  "voice_realtime": 1
+ },
+ "sdk_exports": [
+  {
+   "path": "libs/partners/xai/langchain_xai/chat_models.py",
+   "lang": "Python",
+   "names": [
+    "ChatXAI"
+   ]
+  },
+  {
+   "path": "libs/partners/xai/langchain_xai/__init__.py",
+   "lang": "Python",
+   "names": [
+    "ChatXAI",
+    "__version__"
+   ]
+  },
+  {
+   "path": "libs/partners/xai/scripts/check_version.py",
+   "lang": "Python",
+   "names": [
+    "get_pyproject_version",
+    "get_version_py_version",
+    "main"
+   ]
+  }
+ ],
+ "packages": [
+  {
+   "path": "libs/partners/xai/pyproject.toml",
+   "ecosystem": "pypi",
+   "name": "langchain-xai",
+   "version": "1.3.0"
+  }
+ ],
+ "snippets": [
+  {
+   "path": "libs/partners/openai/langchain_openai/chat_models/base.py",
+   "start": 1381,
+   "end": 1404,
+   "code": "\n    @model_validator(mode=\"after\")\n    def _set_openai_chat_version(self) -> Self:\n        \"\"\"Set package version in metadata.\n\n        Note: Subclasses that inherit from `BaseChatOpenAI` (e.g.\n        `ChatDeepSeek`, `ChatXAI`) must use a **unique** validator name\n        (e.g. `_set_deepseek_version`) instead of overriding this one. Pydantic\n        replaces same-named `model_validator` methods rather than chaining them,\n        so reusing `_set_openai_chat_version` would silently drop the parent's\n        `langchain-openai` version entry.\n        \"\"\"\n        self._add_version(\"langchain-openai\", __version__)\n        return self\n\n    @model_validator(mode=\"after\")\n    def _infer_use_responses_api(self) -> Self:\n        \"\"\"Expose unconditional instance-level Responses API routing.\"\"\"\n        if self.use_responses_api is None and self._use_responses_api({}):\n            self.use_responses_api = True\n        return self\n\n    @model_validator(mode=\"after\")\n    def validate_environment(self) -> Self:"
+  },
+  {
+   "path": "libs/partners/xai/langchain_xai/chat_models.py",
+   "start": 55,
+   "end": 78,
+   "code": "    families. Dropping a `stop` the API would reject degrades more gracefully\n    than letting the request fail outright.\n    \"\"\"\n    return model_name.startswith((\"grok-3\", \"grok-4\")) or \"grok-code-fast\" in model_name\n\n\nclass ChatXAI(BaseChatOpenAI):  # type: ignore[override]\n    r\"\"\"ChatXAI chat model.\n\n    Refer to [xAI's documentation](https://docs.x.ai/docs/api-reference#chat-completions)\n    for more nuanced details on the API's behavior and supported parameters.\n\n    Setup:\n        Install `langchain-xai` and set environment variable `XAI_API_KEY`.\n\n        ```bash\n        pip install -U langchain-xai\n        export XAI_API_KEY=\"your-api-key\"\n        ```\n\n    Key init args \u2014 completion params:\n        model:\n            Name of model to use.\n        temperature:"
+  },
+  {
+   "path": "libs/partners/xai/langchain_xai/__init__.py",
+   "start": 1,
+   "end": 9,
+   "code": "\"\"\"LangChain integration with xAI.\"\"\"\n\nfrom langchain_xai._version import __version__\nfrom langchain_xai.chat_models import ChatXAI\n\n__all__ = [\n    \"ChatXAI\",\n    \"__version__\",\n]"
+  },
+  {
+   "path": "libs/langchain/langchain_classic/chat_models/base.py",
+   "start": 499,
+   "end": 522,
+   "code": "    if model_provider == \"ibm\":\n        _check_pkg(\"langchain_ibm\", \"ChatWatsonx\")\n        from langchain_ibm import ChatWatsonx\n\n        return ChatWatsonx(model_id=model, **kwargs)\n    if model_provider == \"xai\":\n        _check_pkg(\"langchain_xai\", \"ChatXAI\")\n        from langchain_xai import ChatXAI\n\n        return ChatXAI(model=model, **kwargs)\n    if model_provider == \"perplexity\":\n        _check_pkg(\"langchain_perplexity\", \"ChatPerplexity\")\n        from langchain_perplexity import ChatPerplexity\n\n        return ChatPerplexity(model=model, **kwargs)\n    if model_provider == \"upstage\":\n        _check_pkg(\"langchain_upstage\", \"ChatUpstage\")\n        from langchain_upstage import ChatUpstage\n\n        return ChatUpstage(model=model, **kwargs)\n    supported = \", \".join(_SUPPORTED_PROVIDERS)\n    msg = (\n        f\"Unsupported {model_provider=}.\\n\\nSupported model providers are: {supported}\"\n    )"
+  },
+  {
+   "path": "libs/core/langchain_core/load/mapping.py",
+   "start": 275,
+   "end": 298,
+   "code": "    ),\n    (\"langchain_openrouter\", \"chat_models\", \"ChatOpenRouter\"): (\n        \"langchain_openrouter\",\n        \"chat_models\",\n        \"ChatOpenRouter\",\n    ),\n    (\"langchain_xai\", \"chat_models\", \"ChatXAI\"): (\n        \"langchain_xai\",\n        \"chat_models\",\n        \"ChatXAI\",\n    ),\n    (\"langchain_baseten\", \"chat_models\", \"ChatBaseten\"): (\n        \"langchain_baseten\",\n        \"chat_models\",\n        \"ChatBaseten\",\n    ),\n    (\"langchain\", \"chat_models\", \"fireworks\", \"ChatFireworks\"): (\n        \"langchain_fireworks\",\n        \"chat_models\",\n        \"ChatFireworks\",\n    ),\n    (\"langchain\", \"chat_models\", \"google_palm\", \"ChatGooglePalm\"): (\n        \"langchain\",\n        \"chat_models\","
+  },
+  {
+   "path": "libs/langchain_v1/langchain/agents/factory.py",
+   "start": 625,
+   "end": 648,
+   "code": "\ndef _is_openai_compatible_model(model: BaseChatModel) -> bool:\n    \"\"\"Check if a model inherits from `BaseChatOpenAI`.\n\n    Used to redundantly set `strict=True` on tools when `response_format` is\n    provided, as older versions of `langchain-openai` do not auto-set it.\n    Covers `ChatOpenAI`, `ChatDeepSeek`, `ChatXAI`, etc.\n\n    Args:\n        model: The chat model to check.\n\n    Returns:\n        `True` if the model inherits from `BaseChatOpenAI`, `False` otherwise.\n    \"\"\"\n    try:\n        base_chat_openai = importlib.import_module(\"langchain_openai.chat_models.base\")\n    except ImportError:\n        return False\n    return isinstance(model, base_chat_openai.BaseChatOpenAI)\n\n\ndef _handle_structured_output_error(\n    exception: Exception,\n    response_format: ResponseFormat[Any],"
+  },
+  {
+   "path": "libs/langchain_v1/langchain/chat_models/base.py",
+   "start": 92,
+   "end": 115,
+   "code": "    \"ollama\": (\"langchain_ollama\", \"ChatOllama\", _call),\n    \"openai\": (\"langchain_openai\", \"ChatOpenAI\", _call),\n    \"openrouter\": (\"langchain_openrouter\", \"ChatOpenRouter\", _call),\n    \"perplexity\": (\"langchain_perplexity\", \"ChatPerplexity\", _call),\n    \"together\": (\"langchain_together\", \"ChatTogether\", _call),\n    \"upstage\": (\"langchain_upstage\", \"ChatUpstage\", _call),\n    \"xai\": (\"langchain_xai\", \"ChatXAI\", _call),\n}\n\"\"\"Registry mapping provider names to their import configuration.\n\nEach entry maps a provider key to a tuple of:\n\n- `module_path`: The Python module path containing the chat model class.\n\n    This may be a submodule (e.g., `'langchain_azure_ai.chat_models'`) if the class is\n    not exported from the package root.\n- `class_name`: The name of the chat model class to import.\n- `creator_func`: A callable that instantiates the class with provided kwargs.\n\n!!! note\n\n    This dict is not exhaustive of all providers supported by LangChain, but is\n    meant to cover the most popular ones and serve as a template for adding more\n    providers in the future. If a provider is not in this dict, it can still be"
+  }
+ ],
+ "files": [
+  {
+   "path": ".pre-commit-config.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 215,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "openwiki/chat-models.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 834,
+   "endpoints": [],
+   "models": [
+    "grok-2"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "openwiki/model-initialization.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 636,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": ".github/ISSUE_TEMPLATE/bug-report.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 165,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/ISSUE_TEMPLATE/feature-request.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 167,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/ISSUE_TEMPLATE/task.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 121,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/ISSUE_TEMPLATE/privileged.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 50,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/workflows/_release.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 920,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/workflows/refresh_model_profiles.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 159,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/workflows/auto-label-by-package.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 117,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/workflows/integration_tests.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 411,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "libs/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 36,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "libs/partners/openai/langchain_openai/chat_models/base.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 5654,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "live_search",
+    "mcp",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "libs/partners/xai/pyproject.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 128,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "libs/partners/xai/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 37,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "libs/partners/xai/langchain_xai/chat_models.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 799,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-fast-non-reasoning",
+    "grok-4.20-0309-non-reasoning",
+    "grok-code-fast"
+   ],
+   "env": [
+    "XAI_API_BASE",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/partners/xai/langchain_xai/__init__.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 9,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "libs/partners/xai/langchain_xai/_version.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 3,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "libs/partners/xai/langchain_xai/data/_profiles.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 298,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-imagine-image",
+    "grok-imagine-image-quality",
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "libs/partners/xai/langchain_xai/data/profile_augmentations.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "libs/partners/xai/scripts/check_version.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 65,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "libs/partners/xai/tests/unit_tests/test_chat_models_standard.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 35,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "libs/partners/xai/tests/unit_tests/test_secrets.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 9,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "libs/partners/xai/tests/unit_tests/test_imports.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 7,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "libs/partners/xai/tests/unit_tests/test_chat_models.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 370,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.3",
+    "grok-code-fast",
+    "grok-code-fast-1"
+   ],
+   "env": [
+    "XAI_API_BASE"
+   ],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "libs/partners/xai/tests/unit_tests/__init__.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 3,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "libs/partners/xai/tests/integration_tests/test_chat_models_standard.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 82,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/partners/xai/tests/integration_tests/test_chat_models.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 141,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "libs/partners/openrouter/langchain_openrouter/data/_profiles.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 8696,
+   "endpoints": [],
+   "models": [
+    "grok-4.20",
+    "grok-4.20-multi-agent",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "libs/langchain/pyproject.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 228,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "grpc"
+   ]
+  },
+  {
+   "path": "libs/langchain/langchain_classic/chat_models/base.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1068,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "libs/core/langchain_core/load/load.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 828,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "libs/core/langchain_core/load/mapping.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1097,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "libs/langchain_v1/pyproject.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 192,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "libs/langchain_v1/langchain/agents/factory.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 2164,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/langchain_v1/langchain/chat_models/base.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1079,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "libs/langchain_v1/tests/unit_tests/agents/test_response_format.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1115,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-reasoning",
+    "grok-4.3",
+    "grok-imagine-image",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/langchain_v1/tests/unit_tests/chat_models/test_chat_models.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 442,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,7830 @@
+{
+ "fork": "Blockchains/OmniRoute",
+ "upstream": "diegosouzapw/OmniRoute",
+ "category": "gateway-router",
+ "stars": 72848,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2026 diegosouzapw Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to w",
+ "pushed_at": "2026-10-02T18:26:57Z",
+ "description": "Never stop coding. Free MIT AI gateway: one endpoint, 359 providers (150+ free), 1200+ models Kimi, Claude, GPT, Gemini, GLM, DeepSeek, MiniMax. Works with Claude Code, Codex, Cursor, OpenCode, Cline & Copilot. Quota-aware auto-fallback, RTK+Caveman compression saves 15-95% tokens, MCP/A2A, Desktop/PWA. Built by hundreds of contributors",
+ "commit": "23a11484862b3bb589a55e85b00e4ac53ffeb234",
+ "indexed_at": "2026-10-04T14:56:13Z",
+ "status": "ok",
+ "clone_kb": 913840,
+ "seconds": 222.4,
+ "files_scanned": 23370,
+ "languages": {
+  "TypeScript": 11720,
+  "JavaScript": 543,
+  "Python": 6,
+  "PHP": 1
+ },
+ "grok_files": 464,
+ "grok_files_by_kind": {
+  "doc": 270,
+  "source": 75,
+  "test": 117,
+  "config": 2
+ },
+ "hosts": {
+  "api.x.ai": 151
+ },
+ "endpoints": {
+  "/v1/models": 243,
+  "/v1/chat/completions": 236,
+  "/v1/responses": 95,
+  "/v1/batches": 72,
+  "/v1/embeddings": 69,
+  "/v1/audio/transcriptions": 68,
+  "/v1/audio/speech": 67,
+  "/v1/messages": 11,
+  "/v1/images/generations": 7,
+  "/v1/images/edits": 3,
+  "/v1/videos/generations": 3,
+  "/v1/videos": 2,
+  "/v1/files": 1
+ },
+ "models": {
+  "grok-4.3": 88,
+  "grok-imagine": 76,
+  "grok-4.20-0309-reasoning": 72,
+  "grok-4.20-0309-non-reasoning": 71,
+  "grok-4.20-multi-agent-0309": 71,
+  "grok-4.6": 66,
+  "grok-4.5": 42,
+  "grok-4.7": 27,
+  "grok-4": 16,
+  "grok-3": 15,
+  "grok-4.5-high": 7,
+  "grok-imagine-video": 6,
+  "grok-4.5-medium": 6,
+  "grok-4-fast": 6,
+  "grok-4-6": 5,
+  "grok-2-1212": 5,
+  "grok-3-mini": 4,
+  "grok-4.20": 4,
+  "grok-4.20-reasoning": 4,
+  "grok-4.6-low": 4,
+  "grok-4.6-medium": 4,
+  "grok-4.1-fast": 4,
+  "grok-4.x": 4,
+  "grok-4.5-fast-high": 3,
+  "grok-4.5-fast-medium": 3,
+  "grok-4.5-fast-xhigh": 3,
+  "grok-4.5-high-fast": 3,
+  "grok-4.5-xhigh": 3,
+  "grok-4-1-fast-non-reasoning": 3,
+  "grok-4-1-fast-reasoning": 3,
+  "grok-4.6-fast-high": 3,
+  "grok-imagine-image": 3,
+  "grok-imagine-image-quality": 3,
+  "grok-4.20-non-reasoning": 3,
+  "grok-4.5-low": 3,
+  "grok-4.6-xhigh": 3,
+  "grok-420-computer-use-sa": 3,
+  "grok-4-20": 3,
+  "grok-4-3": 3,
+  "grok-1": 3,
+  "grok-4.5-medium-fast": 2,
+  "grok-4.5-xhigh-fast": 2,
+  "grok-4-fast-non-reasoning": 2,
+  "grok-4.6-fast": 2,
+  "grok-4.6-high": 2,
+  "grok-4.6-high-fast": 2,
+  "grok-4.6-xhigh-fast": 2,
+  "grok-4-heavy": 2,
+  "grok-4.1-expert": 2,
+  "grok-code-fast-1": 2,
+  "grok-4.7-low": 2,
+  "grok-4.20-beta": 1,
+  "grok-4.6-low-fast": 1,
+  "grok-4.6-medium-fast": 1,
+  "grok-4-3-thinking-1129": 1,
+  "grok-4.20-heavy": 1,
+  "grok-4.3-high": 1,
+  "grok-4.8": 1,
+  "grok-4.20-0309-reasoning-high": 1,
+  "grok-1.mp4": 1
+ },
+ "env_vars": {
+  "XAI_OAUTH_LIVE_MODEL_DISCOVERY": 71,
+  "XAI_API_KEY": 4,
+  "NGROK_AUTHTOKEN": 3,
+  "OMNIROUTE_GROK_TLS_GRACE_MS": 3,
+  "OMNIROUTE_GROK_TLS_TIMEOUT_MS": 3,
+  "MAXAI_REGISTRY_MODELS": 2,
+  "XAI_OAUTH_CONFIG": 2,
+  "XAI_MODELS_CONFIG": 2,
+  "MAXAI_REQUEST_QUEUE_MAX_WAIT_MS": 1,
+  "VERTEX_XAI_MODELS": 1,
+  "MAXAI_DEFAULT_CONTEXT": 1,
+  "MAXAI_MODELS": 1,
+  "SENSITIVE_GROK_UPSTREAM_ERROR": 1,
+  "XAI_API_PROVIDERS": 1,
+  "XAI_MODELS_URL": 1,
+  "XAI_OAUTH_SEED_IDS": 1,
+  "XAI_SEED_IDS": 1,
+  "XAI_CHAT_HISTORY_LIMIT": 1,
+  "LEGACY_GROK_ALIASES": 1,
+  "XAI_OAUTH": 1,
+  "XAI_CHAT_OAUTH_TEST_CONFIG": 1
+ },
+ "features": {
+  "tool_calling": 26,
+  "reasoning": 20,
+  "anthropic_compatible": 19,
+  "structured_output": 12,
+  "image_generation": 10,
+  "streaming": 10,
+  "mcp": 6,
+  "embeddings": 6,
+  "vision": 5,
+  "live_search": 3,
+  "grpc": 1,
+  "openai_compatible": 1,
+  "voice_realtime": 1
+ },
+ "sdk_exports": [
+  {
+   "path": "open-sse/config/providers/registry/grok-cli/index.ts",
+   "lang": "TypeScript",
+   "names": [
+    "grok_cliProvider"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/xai/index.ts",
+   "lang": "TypeScript",
+   "names": [
+    "xaiProvider",
+    "xai_oauthProvider"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/grok-web/index.ts",
+   "lang": "TypeScript",
+   "names": [
+    "grok_webProvider"
+   ]
+  }
+ ],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "open-sse/handlers/videoGeneration/xaiGrokImagineHandler.ts",
+   "start": 36,
+   "end": 59,
+   "code": "  if (typeof body.aspect_ratio === \"string\") payload.aspect_ratio = body.aspect_ratio;\n  if (typeof body.resolution === \"string\") payload.resolution = body.resolution;\n  return payload;\n}\n\n/** POST the create-job request; resolves to the request_id or a ready error message. */\nasync function createXaiVideoJob({\n  baseUrl,\n  token,\n  payload,\n  log,\n}: {\n  baseUrl: string;\n  token: string;\n  payload: Record<string, unknown>;\n  log?: XaiVideoLog | null;\n}): Promise<{ requestId?: string; error?: string }> {\n  const createRes = await fetch(`${baseUrl}/generations`, {\n    method: \"POST\",\n    headers: {\n      Authorization: `Bearer ${token}`,\n      \"Content-Type\": \"application/json\",\n    },\n    body: JSON.stringify(payload),"
+  },
+  {
+   "path": "open-sse/handlers/search/xSearch.ts",
+   "start": 1,
+   "end": 21,
+   "code": "/**\n * SuperGrok / xAI X Search for POST /v1/search.\n *\n * This is Grok's server-side `x_search` tool on api.x.ai \u2014 not web search,\n * and not the X Developer Platform MCP at api.x.com/mcp.\n */\n\nimport type { SearchProviderConfig } from \"../../config/searchRegistry.ts\";\n\nexport const X_SEARCH_PROVIDER_ID = \"x-search\";\nexport const DEFAULT_X_SEARCH_MODEL = \"grok-4.6\";\nexport const X_SEARCH_RESPONSES_URL = \"https://api.x.ai/v1/responses\";\n\nexport interface XSearchParams {\n  query: string;\n  maxResults: number;\n  token?: string;\n  timeRange?: string;\n  domainFilter?: string[];\n  providerOptions?: Record<string, unknown>;\n  providerSpecificData?: Record<string, unknown>;"
+  },
+  {
+   "path": "open-sse/config/videoRegistry.ts",
+   "start": 403,
+   "end": 426,
+   "code": "\n  xai: {\n    id: \"xai\",\n    // xAI Grok Imagine async video-generation API. Reuses the stored xai\n    // provider Bearer apiKey (same credential the image-generation \"xai\"\n    // entry in imageRegistry.ts already uses) \u2014 no separate credential flow.\n    baseUrl: \"https://api.x.ai/v1/videos\",\n    statusUrl: \"https://api.x.ai/v1/videos\",\n    authType: \"apikey\",\n    authHeader: \"bearer\",\n    format: \"xai-video\",\n    models: [{ id: \"grok-imagine-video\", name: \"Grok Imagine Video\" }],\n  },\n\n  // UC (uncensored.com) video generation. One handler (handleUcVideoGeneration)\n  // serves BOTH surfaces, picking by credential: PERSONA web (un-metered, Clerk\n  // JWT -> internal.chatuncensored.ai/{text,image}_to_video + moveinwater result\n  // CDN HEAD poll 403->200) and uc-direct REST (metered, X-api-key ->\n  // api.uncensored.com, async submit + status poll). authType is \"apikey\" so the\n  // route resolves credentials for the metered path; the persona path pulls its\n  // durable Clerk credential out of providerSpecificData inside the handler.\n  uc: {\n    id: \"uc\",\n    baseUrl: \"https://internal.chatuncensored.ai/image_to_video\","
+  },
+  {
+   "path": "open-sse/config/searchRegistry.ts",
+   "start": 352,
+   "end": 375,
+   "code": "\n  // SuperGrok / xAI server-side X Search. Not web search. Explicit provider or\n  // search_type \"x\" only \u2014 never auto-selected for generic web queries.\n  \"x-search\": {\n    id: \"x-search\",\n    name: \"X Search (Grok)\",\n    baseUrl: \"https://api.x.ai/v1/responses\",\n    method: \"POST\",\n    authType: \"apikey\",\n    authHeader: \"bearer\",\n    costPerQuery: 0,\n    freeMonthlyQuota: 0,\n    searchTypes: [\"x\"],\n    defaultMaxResults: 5,\n    maxMaxResults: 20,\n    timeoutMs: 60_000,\n    cacheTTLMs: 5 * 60 * 1000,\n  },\n\n  // Direct X API search through Xquik. Keep it fallback-only so the existing\n  // SuperGrok provider remains the default for search_type \"x\".\n  \"xquik-search\": {\n    id: \"xquik-search\",\n    name: \"Xquik X Search\","
+  },
+  {
+   "path": "open-sse/config/imageRegistry.ts",
+   "start": 308,
+   "end": 331,
+   "code": "    // models pass any size through.\n    supportedSizes: [\"1024x1024\", \"1024x1536\", \"1536x1024\", \"1024x1792\", \"1792x1024\"],\n  },\n\n  xai: {\n    id: \"xai\",\n    baseUrl: \"https://api.x.ai/v1/images/generations\",\n    authType: \"apikey\",\n    authHeader: \"bearer\",\n    format: \"openai\",\n    models: [\n      { id: \"grok-imagine-image-quality\", name: \"Grok Imagine Image Quality\" },\n      { id: \"grok-imagine-image\", name: \"Grok Imagine Image\" },\n    ],\n    supportedSizes: [\"1024x1024\", \"2048x2048\"],\n  },\n\n  \"vercel-ai-gateway\": {\n    id: \"vercel-ai-gateway\",\n    alias: \"vag\",\n    baseUrl: \"https://ai-gateway.vercel.sh/v1/images/generations\",\n    authType: \"apikey\",\n    authHeader: \"bearer\",\n    format: \"openai\","
+  },
+  {
+   "path": "open-sse/config/providers/registry/xai/index.ts",
+   "start": 3,
+   "end": 26,
+   "code": "\nexport const xaiProvider: RegistryEntry = {\n  id: \"xai\",\n  alias: \"xai\",\n  format: \"openai\",\n  executor: \"xai\",\n  baseUrl: \"https://api.x.ai/v1/chat/completions\",\n  // Port of decolua/9router#2439 (author: @ryanngit): xAI ships a native\n  // `/v1/responses` endpoint alongside `/v1/chat/completions`. Consumed by\n  // XaiExecutor.buildUrl (open-sse/executors/xai.ts) for models tagged\n  // targetFormat: \"openai-responses\" below.\n  responsesBaseUrl: \"https://api.x.ai/v1/responses\",\n  reasoningTransport: \"opaque\",\n  authType: \"apikey\",\n  authHeader: \"bearer\",\n  passthroughModels: true,\n  models: [\n    {\n      id: \"grok-4.6\",\n      name: \"Grok 4.6\",\n      contextLength: 500000,\n      supportsReasoning: true,\n      supportedThinkingEfforts: [\"low\", \"medium\", \"high\", \"xhigh\"],\n      supportsVision: true,"
+  },
+  {
+   "path": "scripts/check/check-env-doc-sync.mjs",
+   "start": 266,
+   "end": 289,
+   "code": "  \"FIREWORKS_API_KEY\",\n  \"GROQ_API_KEY\",\n  \"MISTRAL_API_KEY\",\n  \"NEBIUS_API_KEY\",\n  \"PERPLEXITY_API_KEY\",\n  \"TOGETHER_API_KEY\",\n  \"XAI_API_KEY\",\n  \"QIANFAN_API_KEY\",\n  \"CURSOR_PROTOBUF_DEBUG\",\n  \"CLI_COMPAT_KIRO\",\n  \"CLI_KIMI_CODING_BIN\",\n  \"CLI_ROO_BIN\",\n  \"IFLOW_OAUTH_CLIENT_ID\",\n  \"IFLOW_OAUTH_CLIENT_SECRET\",\n  // Source-code constants accidentally captured by the doc regex.\n  \"CLI_COMPAT_OMITTED_PROVIDER_IDS\",\n  // The stream-recovery tuning object in open-sse/config/constants.ts (`STREAM_RECOVERY.HOLDBACK_MS`\n  // etc.) \u2014 documented for reference; the real operator-facing env vars are STREAM_RECOVERY_ENABLED /\n  // STREAM_RECOVERY_MIDSTREAM_ENABLED (both in .env.example). The bare prefix is not an env var.\n  \"STREAM_RECOVERY\",\n  // Sample default values that look like SHOUTY_NAMES (not env vars).\n  \"CHANGEME\",\n  // Legacy aliases \u2014 present in docs as \"would be aliases\" but read-only\n  // through their canonical names today."
+  },
+  {
+   "path": "src/shared/constants/featureFlagDefinitions.ts",
+   "start": 944,
+   "end": 967,
+   "code": "    warningLevel: \"info\",\n  },\n  {\n    key: \"XAI_OAUTH_LIVE_MODEL_DISCOVERY\",\n    label: \"xAI OAuth Live Model Discovery\",\n    description:\n      \"Fetch the live xAI model catalog for xai-oauth connections from https://api.x.ai/v1/models using the OAuth bearer token, instead of the frozen static seed. On by default. Set the flag to false \n    descriptionI18nKey: \"featureFlagXaiOauthLiveModelDiscoveryDescription\",\n    category: \"runtime\",\n    defaultValue: \"true\",\n    type: \"boolean\",\n    requiresRestart: false,\n    warningLevel: \"caution\",\n  },\n  {\n    key: \"DB_HEALTHCHECK_STARTUP_DEFERRED_ENABLED\",\n    label: \"DB Health Check: Defer Startup Scan\",\n    description:\n      \"Run the startup DB integrity/health check after the server starts accepting requests (via setImmediate) instead of blocking startup until it completes. Off by default: startup blocks on the che\n    descriptionI18nKey: \"featureFlagDbHealthcheckStartupDeferredEnabledDescription\",\n    category: \"health\",\n    defaultValue: \"false\",\n    type: \"boolean\",\n    requiresRestart: false,"
+  },
+  {
+   "path": "src/shared/constants/providers/oauth.ts",
+   "start": 29,
+   "end": 52,
+   "code": "    subscriptionRisk: true,\n    riskNoticeVariant: \"oauth\",\n    // Render xAI OAuth through the unified xAI dashboard card. Keep this\n    // catalog entry addressable for existing routes and stored connections.\n    hiddenFromDashboard: true,\n    authHint:\n      \"Sign in with xAI to use api.x.ai models such as Grok 4.5. This is separate from Grok Build JWT sessions, which use cli-chat-proxy.grok.com and grok-build model aliases.\",\n  },\n  openference: {\n    id: \"openference\",\n    serviceKinds: [\"llm\"],\n    alias: \"of\",\n    name: \"Openference\",\n    icon: \"openference\",\n    color: \"#6366F1\",\n    textIcon: \"OF\",\n    website: \"https://openference.com\",\n    hasFree: true,\n    freeNote:\n      \"Free tier: includes Qwen3.8 27b and Llama 3.2 3B \u2014 see openference.com/pricing for current terms\",\n    authHint:\n      \"Sign in with your Openference account to route requests through api.openference.com. Includes free-tier access to Qwen3.8 27b and Llama 3.2 3B \u2014 see openference.com/pricing for current plan ter\n  },\n  \"grok-cli\": {"
+  },
+  {
+   "path": "src/lib/oauth/constants/oauth.ts",
+   "start": 144,
+   "end": 167,
+   "code": "  callbackHost: \"127.0.0.1\",\n};\n\n// xAI API OAuth Configuration (Authorization Code Flow with PKCE)\n// This intentionally uses a separate provider from Grok Build: both use the\n// public Grok CLI OAuth client, but their inference endpoints and model\n// entitlements differ (`api.x.ai` vs `cli-chat-proxy.grok.com`).\nexport const XAI_OAUTH_CONFIG = {\n  clientId: resolvePublicCred(\"grok_id\", \"GROK_OAUTH_CLIENT_ID\"),\n  authorizeUrl: \"https://auth.x.ai/oauth2/authorize\",\n  tokenUrl: \"https://auth.x.ai/oauth2/token\",\n  scope: \"openid profile email offline_access grok-cli:access api:access\",\n  codeChallengeMethod: \"S256\",\n  loopbackPort: 56121,\n  callbackPath: \"/callback\",\n  callbackHost: \"127.0.0.1\",\n};\n\n// Openference OAuth Configuration (Authorization Code Flow with PKCE)\nexport const OPENFERENCE_CONFIG = {\n  clientId: resolvePublicCred(\"openference_id\"),\n  authorizeUrl: \"https://openference.com/app/oauth/authorize\",\n  tokenUrl: \"https://openference.com/oauth/token\",\n  userinfoUrl: \"https://openference.com/oauth/userinfo\","
+  },
+  {
+   "path": "src/lib/providers/validation/searchProviders.ts",
+   "start": 180,
+   "end": 203,
+   "code": "      method: \"POST\",\n      headers: { \"Content-Type\": \"application/json\", Authorization: `Bearer ${apiKey}` },\n      body: JSON.stringify({ query: \"test\", max_results: 1 }),\n    },\n  }),\n  \"x-search\": (apiKey) => ({\n    url: \"https://api.x.ai/v1/responses\",\n    init: {\n      method: \"POST\",\n      headers: { \"Content-Type\": \"application/json\", Authorization: `Bearer ${apiKey}` },\n      body: JSON.stringify({\n        model: \"grok-4.6\",\n        stream: false,\n        input: \"test\",\n        tools: [{ type: \"x_search\" }],\n      }),\n    },\n  }),\n  \"xquik-search\": (apiKey) => ({\n    url: \"https://xquik.com/api/v1/x/tweets/search?q=test&limit=1\",\n    init: {\n      method: \"GET\",\n      headers: { Accept: \"application/json\", \"x-api-key\": apiKey },\n    },"
+  },
+  {
+   "path": "src/app/api/providers/[id]/models/discovery/providerModelsConfig.ts",
+   "start": 422,
+   "end": 445,
+   "code": "  }\n  if (/^grok-imagine-video/i.test(id)) return { ...model, supportedEndpoints: [\"videos\"] };\n  return model;\n}\n\nexport const XAI_MODELS_CONFIG: ProviderModelsConfigEntry = {\n  url: \"https://api.x.ai/v1/models\",\n  method: \"GET\",\n  headers: { \"Content-Type\": \"application/json\" },\n  authHeader: \"Authorization\",\n  authPrefix: \"Bearer \",\n  parseResponse: (data) => {\n    const models = data.data || data.models || [];\n    return Array.isArray(models) ? models.map(tagXaiMediaModel) : models;\n  },\n};\n\n/**\n * Resolve the live-discovery config for xai-oauth when the\n * XAI_OAUTH_LIVE_MODEL_DISCOVERY flag is on, or `undefined` when it is off\n * (or its resolution throws) so the caller falls back to the frozen static\n * seed \u2014 the flag defaults to \"true\" and fails closed on any error.\n */\nexport function getXaiOauthLiveModelsConfig(): ProviderModelsConfigEntry | undefined {"
+  }
+ ],
+ "files": [
+  {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1745,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "open-sse/handlers/imageGeneration.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 3332,
+   "endpoints": [
+    "/v1/images/edits",
+    "/v1/images/generations",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "open-sse/handlers/videoGeneration/xaiGrokImagineHandler.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 243,
+   "endpoints": [
+    "/v1/videos/generations"
+   ],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/handlers/mediaGeneration/fal.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 402,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "open-sse/handlers/search/xSearch.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 189,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/utils/cursorAgentProtobuf.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1621,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.5-fast-high",
+    "grok-4.5-fast-medium",
+    "grok-4.5-fast-xhigh",
+    "grok-4.5-high",
+    "grok-4.5-high-fast",
+    "grok-4.5-medium",
+    "grok-4.5-medium-fast",
+    "grok-4.5-xhigh",
+    "grok-4.5-xhigh-fast"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "grpc",
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/services/notionWebFallbackModels.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 144,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "open-sse/services/githubCopilotModels.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 325,
+   "endpoints": [
+    "/v1/messages"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "open-sse/services/quotaTextCooldowns.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 193,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/services/combo.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1143,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "open-sse/services/rateLimitManager.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1327,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-reasoning",
+    "grok-4.5"
+   ],
+   "env": [
+    "MAXAI_REQUEST_QUEUE_MAX_WAIT_MS"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "open-sse/services/promptqlModels.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 213,
+   "endpoints": [],
+   "models": [
+    "grok-4-6",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "open-sse/services/providerCostData.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 74,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/services/openrouterFreeWindow.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 297,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/services/conolModels.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 308,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/services/accountFallback/sharedWalletCredits.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 39,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/services/autoCombo/taskFitness.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 581,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "open-sse/services/autoCombo/scoresAs.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 85,
+   "endpoints": [],
+   "models": [
+    "grok-4.6-fast",
+    "grok-4.6-fast-high"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/services/autoCombo/__tests__/fitness-table-hygiene-11503.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 98,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/services/autoCombo/__tests__/scoresAs-11489.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 90,
+   "endpoints": [],
+   "models": [
+    "grok-4.6-fast",
+    "grok-4.6-fast-high"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/config/videoRegistry.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 519,
+   "endpoints": [
+    "/v1/images/generations",
+    "/v1/models",
+    "/v1/videos",
+    "/v1/videos/generations"
+   ],
+   "models": [
+    "grok-imagine",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "open-sse/config/searchRegistry.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 552,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings",
+    "live_search"
+   ]
+  },
+  {
+   "path": "open-sse/config/providerModels.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 449,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/config/imageRegistry.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1114,
+   "endpoints": [
+    "/v1/images/generations",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-quality"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/config/freeModelCatalog.data.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 568,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-2-1212",
+    "grok-3",
+    "grok-3-mini",
+    "grok-4.20",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "open-sse/config/vertexModels.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 106,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.6"
+   ],
+   "env": [
+    "VERTEX_XAI_MODELS"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/api-airforce/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 57,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-2-1212",
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/github/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 290,
+   "endpoints": [
+    "/v1/messages"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/tinycms/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 51,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/config/providers/registry/opencode/go/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 378,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.5-high",
+    "grok-4.5-low",
+    "grok-4.5-medium"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/opencode/zen/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 188,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/kie/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 31,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4-6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/config/providers/registry/kie/models.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 40,
+   "endpoints": [],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/kie/imageModels.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 52,
+   "endpoints": [],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/blackbox/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 36,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/config/providers/registry/uc-direct/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 148,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4-6",
+    "grok-4.20-beta",
+    "grok-4.3",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/grok-cli/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 72,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/lmarena/directModels.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 737,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.5",
+    "grok-imagine-image-quality"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/orcarouter/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 88,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/inner-ai/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 43,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/cursor/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 287,
+   "endpoints": [],
+   "models": [
+    "grok-4.6-high",
+    "grok-4.6-high-fast",
+    "grok-4.6-low",
+    "grok-4.6-low-fast",
+    "grok-4.6-medium",
+    "grok-4.6-medium-fast",
+    "grok-4.6-xhigh",
+    "grok-4.6-xhigh-fast"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/config/providers/registry/t3-web/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 45,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/xai/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 81,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/navy/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 30,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/bazaarlink/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 48,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/config/providers/registry/grok-web/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 18,
+   "endpoints": [],
+   "models": [
+    "grok-420-computer-use-sa"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/cline/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 156,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/zenmux/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 87,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.1-fast"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/bluesminds/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 39,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/config/providers/registry/perplexity/web/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 25,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/cheaperinference/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 253,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/images/generations",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/cheaperinference/imageModels.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 34,
+   "endpoints": [
+    "/v1/images/edits",
+    "/v1/images/generations",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "open-sse/config/providers/registry/devin/catalog.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 150,
+   "endpoints": [],
+   "models": [
+    "grok-4-6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "open-sse/executors/opencode.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1455,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "open-sse/executors/cursor.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1806,
+   "endpoints": [],
+   "models": [
+    "grok-4.5-high"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "open-sse/executors/grok-web.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1147,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4-3-thinking-1129",
+    "grok-4-heavy",
+    "grok-4.1-expert",
+    "grok-4.1-fast",
+    "grok-4.20",
+    "grok-4.20-heavy",
+    "grok-4.3",
+    "grok-420-computer-use-sa"
+   ],
+   "env": [],
+   "features": [
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/executors/xai.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 194,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-3",
+    "grok-4",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.3-high"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "open-sse/executors/base/reasoningEffort.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 670,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "open-sse/executors/perplexity-web/protocol.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1002,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/executors/uc/catalog.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 174,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4-20",
+    "grok-4-3",
+    "grok-4.x"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "open-sse/executors/maxai/catalog.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 76,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4.5"
+   ],
+   "env": [
+    "MAXAI_DEFAULT_CONTEXT",
+    "MAXAI_MODELS",
+    "MAXAI_REGISTRY_MODELS"
+   ],
+   "features": [
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "config/release/changelog-reconciliations.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 671,
+   "endpoints": [
+    "/v1/audio/transcriptions",
+    "/v1/batches",
+    "/v1/chat/completions",
+    "/v1/files",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-imagine"
+   ],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "grpc",
+    "image_generation",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "config/quality/file-size-baseline.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 779,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/images/edits",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-2-1212",
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "scripts/check/check-env-doc-sync.mjs",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 495,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "tests/fixtures/grok-web-stream-error-boundary-child.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 518,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4.1-fast"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/integration/cli-settings-grok-build.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 384,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/grok-cli-web-search-tool-args.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 62,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/zed-provider.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 470,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/unit/cheaperinference-image-models.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 53,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/images/generations"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "tests/unit/grok-cli-proxy-selection.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 28,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/unit/grok-cli-free-usage-429.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 200,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/x-search-provider.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 184,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/unit/openrouter-free-window-wiring-6842.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 240,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/provider-models-discovery-split.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 906,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.7",
+    "grok-4.8"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/grok-cli-root-union-refs.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 346,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/provider-plugin-manifest.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 399,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages"
+   ],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-registry-claude-families.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 196,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.6-high-fast",
+    "grok-4.6-low",
+    "grok-4.6-xhigh",
+    "grok-4.6-xhigh-fast"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/xai-oauth-provider.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 114,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_OAUTH_CONFIG"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/unit/uc-capabilities.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 264,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4-3"
+   ],
+   "env": [],
+   "features": [
+    "structured_output",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/unit/executor-xai.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 142,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-0309-reasoning-high",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/native-codex-turn-pin-short-lockout.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 384,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.6-medium"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/video-fal-grok.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 123,
+   "endpoints": [],
+   "models": [
+    "grok-1",
+    "grok-1.mp4",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/unit/grok-cli-strip-params.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 101,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-extra-exec.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 179,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-streaming.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 428,
+   "endpoints": [],
+   "models": [
+    "grok-4.5-high",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/stream-failure-after-output-no-model-lockout.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 302,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/grok-cli-foreign-reasoning.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 123,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/blackbox.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 60,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/vercel-gateway-models-fetch-4249.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 124,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/unit/grok-web.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 2859,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4-heavy",
+    "grok-4.1-expert",
+    "grok-4.1-fast",
+    "grok-4.20",
+    "grok-420-computer-use-sa"
+   ],
+   "env": [
+    "SENSITIVE_GROK_UPSTREAM_ERROR"
+   ],
+   "features": [
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/executor-vertex-extended.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 573,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/executor-xai-chat-to-responses-10165.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 46,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/unit/perplexity-agent-provider.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 276,
+   "endpoints": [
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.20-multi-agent",
+    "grok-4.20-non-reasoning",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/flagship-0day-discovery.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 184,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/unit/models-catalog-combo-metadata.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 700,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.6",
+    "grok-4.6-dynamic-first",
+    "grok-4.6-dynamic-second",
+    "grok-4.6-unknown-efforts"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/unit/auto-pool-skip-non-chat-models.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 122,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.7",
+    "grok-4.x",
+    "grok-imagine",
+    "grok-imagine-image",
+    "grok-imagine-image-quality",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [
+    "XAI_MODELS_CONFIG"
+   ],
+   "features": [
+    "embeddings",
+    "image_generation"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-composer-kv-toolcall-race.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 401,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/xai-oauth-test-supported.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 56,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/cursor-mini-swe-exec.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 86,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/noauth-sibling-compat-override-7620.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 98,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/grok-cli-additional-tools.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 237,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/perplexity-web-model-mappings.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 57,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/openrouter-free-tier-1000-day.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 164,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/grok-cli-responses-compat.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 214,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/unit/grok-cli-passthrough-responses-format.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 40,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-4.7-build-fast",
+    "grok-4.99"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/auth-grok-cli-402-shared-wallet.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 186,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/model-not-found-must-not-poison-credential.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 113,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/grok-cli-reasoning-strip-6288.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 206,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-grok-effort-aliases.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 50,
+   "endpoints": [],
+   "models": [
+    "grok-4.7",
+    "grok-4.7-high",
+    "grok-4.7-low"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/model-endpoint-policy.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 153,
+   "endpoints": [
+    "/v1/images/generations",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation"
+   ]
+  },
+  {
+   "path": "tests/unit/probe-10268-structural-503.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 76,
+   "endpoints": [],
+   "models": [
+    "grok-4.5-fast-high"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/unit/video-xai-grok-imagine.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 236,
+   "endpoints": [
+    "/v1/videos",
+    "/v1/videos/generations"
+   ],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/unit/responses-usage-trailing-6906.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 197,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-held-read-range.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 93,
+   "endpoints": [],
+   "models": [
+    "grok-4.6-medium"
+   ],
+   "env": [],
+   "features": [
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/xai-agent-tools-passthrough.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 394,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.20-0309-reasoning"
+   ],
+   "env": [
+    "XAI_API_PROVIDERS"
+   ],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/xai-oauth-discovery.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 124,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_MODELS_URL",
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY",
+    "XAI_OAUTH_SEED_IDS",
+    "XAI_SEED_IDS"
+   ],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/grok-build-object-efforts.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 71,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/provider-sweep-live-discovery.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 157,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-2-1212",
+    "grok-3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/t28-model-catalog-updates.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 183,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/devin-cli-catalog.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 125,
+   "endpoints": [],
+   "models": [
+    "grok-4-5-high",
+    "grok-4-6-xhigh"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/unit/pricingSync.modal.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 54,
+   "endpoints": [],
+   "models": [
+    "grok-2"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "tests/unit/executor-notion-web.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 851,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-git-diff-exec.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 148,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/grok-cli-namespace-custom-tools.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 120,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-agent-tool-calls.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 643,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/cheaperinference-provider-registration.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 110,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "tests/unit/github-copilot-model-discovery.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 227,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-stream-driver-end-stream.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 81,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/apikey-disable-non-public-effort-variant.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 118,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-1",
+    "grok-4.5",
+    "grok-4.5-low",
+    "grok-4.6",
+    "grok-4.6-high",
+    "grok-4.6-low",
+    "grok-4.6-xhigh",
+    "grok-9-low"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/opencode-go-effort-aliases-8353.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 287,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.5-high",
+    "grok-4.5-low",
+    "grok-4.5-max",
+    "grok-4.5-medium"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/provider-models-config.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 259,
+   "endpoints": [
+    "/v1/messages"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/grok-cli-vision-capability.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 20,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/unit/model-token-limit-catalog.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 281,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/oauth-401-backoff.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 172,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/unit/clinepass-provider.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 344,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/provider-tinycms-web.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 282,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/reasoning-routing.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 441,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/stream-responses-upstream-call-log-content.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 113,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/arena-elo-sync.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 957,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.6-fast-high"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-available-models.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 171,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "grpc"
+   ]
+  },
+  {
+   "path": "tests/unit/xai-message-cap.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 194,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_CHAT_HISTORY_LIMIT"
+   ],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-model-effort-suffix-7289.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 114,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-high",
+    "grok-4.5",
+    "grok-4.5-high",
+    "grok-4.5-high-fast",
+    "grok-4.5-medium"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/grok-build-config.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 165,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/unit/vertex-xai-models.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 142,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-reasoning",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/xai-translators.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 599,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.3",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-exec-envelope-metadata.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 257,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-pi-exec.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 257,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/stream-readiness-policy.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 385,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-effort-forwarding.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 125,
+   "endpoints": [],
+   "models": [
+    "grok-4.7",
+    "grok-4.7-low"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/grok-cli-namespace-tools.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 325,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/grok-cli-reasoning-null-content.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 85,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/catalog-helpers-extraction.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 275,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "tests/unit/apikey-disable-non-public-provider-alias.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 152,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-1",
+    "grok-4.6",
+    "grok-4.6-low"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/cursor-conversation-cache.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 275,
+   "endpoints": [],
+   "models": [
+    "grok-4.6-medium"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-catalog-combo-compat.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 48,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.5-fast-high",
+    "grok-4.5-fast-medium",
+    "grok-4.5-fast-xhigh",
+    "grok-4.5-high",
+    "grok-4.5-high-fast",
+    "grok-4.5-medium",
+    "grok-4.5-medium-fast",
+    "grok-4.5-xhigh",
+    "grok-4.5-xhigh-fast"
+   ],
+   "env": [
+    "LEGACY_GROK_ALIASES"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/unit/homolog-provider-tiers.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 24,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/unit/t25-provider-validation-modelid-fallback.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 163,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/uc.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 731,
+   "endpoints": [],
+   "models": [
+    "grok-4-20",
+    "grok-4-3"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-provider-catalog-route.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 43,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/vertex-model-metadata.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 183,
+   "endpoints": [],
+   "models": [
+    "grok-4-20",
+    "grok-4.20-non-reasoning",
+    "grok-4.20-reasoning",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/grok-web-cloudflare-classification.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 350,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/translator-openai-to-cursor.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 252,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/unit/grok-cli-function-call-output-sanitize-7611.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 88,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/chatcore-plugin-onresponse.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 281,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-stream-driver-diagnostics.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 59,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/xai-exact-cost-2453.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 164,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/cline-model-format-11099.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 39,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/vertex-models-route.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 309,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/unit/keepalive-threshold.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 137,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/unit/vertex-publisher-models-parser.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 163,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/unit/github-copilot-discovery-token.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 77,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.x"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/grok-cli-custom-tools.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 693,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/unit/cursor-agent-models.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 300,
+   "endpoints": [],
+   "models": [
+    "grok-4.5-fast-medium",
+    "grok-4.5-fast-xhigh",
+    "grok-4.5-medium",
+    "grok-4.5-xhigh"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/combo/combo-target-exhaustion.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1087,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/unit/services/fal.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 359,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output",
+    "vision"
+   ]
+  },
+  {
+   "path": "tests/unit/ui/GrokBuildToolCard.test.tsx",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 264,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/snapshots/provider/translate-path.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 6660,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "src/shared/utils/classify429.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 484,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "src/shared/constants/featureFlagDefinitions.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 970,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/shared/constants/pricing/oauth-subscriptions.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 521,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/shared/constants/pricing/frontier-labs.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 423,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4-0709",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/shared/constants/pricing/inference-hosts.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 492,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/shared/constants/pricing/devin.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 142,
+   "endpoints": [],
+   "models": [
+    "grok-4-6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/shared/constants/providers/oauth.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 325,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/shared/constants/providers/apikey/gateways.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1544,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "src/lib/oauth/constants/oauth.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 529,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH",
+    "XAI_OAUTH_CONFIG"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "src/lib/providerModels/cursorAutoCatalog.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 132,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/lib/providers/validation/searchProviders.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 266,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/lib/providers/xai/thinking.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 129,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/app/(dashboard)/dashboard/providers/[id]/__tests__/useModelImportHandlers.test.tsx",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 418,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "src/app/api/providers/[id]/models/route.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 2431,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.x"
+   ],
+   "env": [
+    "MAXAI_REGISTRY_MODELS"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "mcp",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/app/api/providers/[id]/models/discovery/providerModelsConfig.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 871,
+   "endpoints": [
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-imagine-image",
+    "grok-imagine-video"
+   ],
+   "env": [
+    "XAI_MODELS_CONFIG",
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/app/api/providers/[id]/models/discovery/providerSets.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 115,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-2-1212",
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "src/app/api/providers/[id]/test/oauthTestConfig.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 344,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_CHAT_OAUTH_TEST_CONFIG"
+   ],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "src/sse/services/authTerminalStatus.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 115,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/i18n/el/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1744,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/el/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1345,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/el/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 295,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/el/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/zh-TW/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1734,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/zh-TW/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1342,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/zh-TW/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 284,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/zh-TW/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/zh-TW/docs/reference/ENVIRONMENT.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1781,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/chat/completions",
+    "/v1/embeddings",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "NGROK_AUTHTOKEN",
+    "OMNIROUTE_GROK_TLS_GRACE_MS",
+    "OMNIROUTE_GROK_TLS_TIMEOUT_MS",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "vision"
+   ]
+  },
+  {
+   "path": "docs/i18n/zh-CN/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1734,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/zh-CN/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1345,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/zh-CN/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 281,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/zh-CN/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/zh-CN/docs/reference/ENVIRONMENT.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1776,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/chat/completions",
+    "/v1/embeddings",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "NGROK_AUTHTOKEN",
+    "OMNIROUTE_GROK_TLS_GRACE_MS",
+    "OMNIROUTE_GROK_TLS_TIMEOUT_MS",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "vision"
+   ]
+  },
+  {
+   "path": "docs/i18n/tr/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1684,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/tr/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1350,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/tr/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 296,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/tr/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/ml/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1736,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/ml/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1346,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/ml/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 276,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/ml/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/vi/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/vi/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1346,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/vi/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 287,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/vi/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/bn/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/bn/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1344,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/bn/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 297,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/bn/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/uz/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/uz/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1349,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/uz/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 298,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/uz/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/ka/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1733,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/ka/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1346,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/ka/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 293,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/ka/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/hy/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/hy/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1346,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/hy/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 279,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/hy/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/ta/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1743,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/ta/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1349,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/ta/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 299,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/ta/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/ar/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/ar/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1346,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/ar/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 294,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/ar/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/pa/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/pa/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1342,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/pa/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 283,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/pa/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/te/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/te/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1350,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/te/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 294,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/te/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/am/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1734,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/am/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1346,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/am/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 292,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/am/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/hi/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1744,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/hi/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1343,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/hi/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 262,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/hi/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/pl/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1744,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/pl/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1352,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/pl/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 298,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/pl/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/th/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/th/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1345,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/th/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 288,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/th/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/lt/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1751,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/lt/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1347,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/lt/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 290,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/lt/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/ja/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/ja/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1325,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/ja/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 263,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/ja/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search"
+   ]
+  },
+  {
+   "path": "docs/i18n/km/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/km/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1346,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/km/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 279,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/km/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/es/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/es/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1345,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/es/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 295,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/es/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/no/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1744,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/no/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1347,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/no/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 291,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/no/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/bs/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1750,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/bs/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1347,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/bs/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 293,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/bs/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/az/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/az/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1346,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/az/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 292,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/az/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/ru/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/ru/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1326,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/ru/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 297,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/ru/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/hr/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1749,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/hr/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1347,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/hr/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 289,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/hr/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/mr/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/mr/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1343,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/mr/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 288,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/mr/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/ms/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/ms/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1345,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/ms/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 292,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/ms/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/mt/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/mt/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1343,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/mt/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 278,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/mt/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/ur/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1738,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/ur/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1347,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/ur/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 297,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/ur/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/pt-BR/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/pt-BR/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1347,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/pt-BR/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 297,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/pt-BR/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/ga/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1751,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/ga/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1334,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/ga/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 288,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/ga/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/ha/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/ha/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1348,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/ha/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 290,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/ha/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/or/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/or/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1347,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/or/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 276,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/or/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/yo/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1743,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/yo/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1344,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/yo/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 287,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/yo/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/phi/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/phi/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1345,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/phi/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 295,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/phi/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/id/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1732,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/id/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1345,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/id/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 290,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/id/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/de/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1744,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/de/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1326,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/de/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 298,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/de/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/fi/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1744,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/fi/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1345,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/fi/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 294,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/fi/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/ko/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1734,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/ko/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1348,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/ko/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 278,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/ko/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search"
+   ]
+  },
+  {
+   "path": "docs/i18n/ig/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/ig/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1347,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/ig/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 288,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/ig/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/fr/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/fr/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1349,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/fr/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 294,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/fr/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/pt/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/pt/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1346,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/pt/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 283,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/pt/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/he/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/he/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1345,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/he/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 286,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/he/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/lv/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/lv/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1345,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/lv/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 294,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/lv/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/hu/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1735,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/hu/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1345,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/hu/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 273,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/hu/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/et/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1752,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/et/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1346,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/et/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 296,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/et/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/sl/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1750,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/sl/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1346,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/sl/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 297,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/sl/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/cs/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1743,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/cs/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1347,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/cs/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 297,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/i18n/cs/docs/reference/PROVIDER_REFERENCE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 454,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "live_search",
+    "mcp"
+   ]
+  },
+  {
+   "path": "docs/i18n/bg/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1743,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/i18n/bg/docs/guides/USER_GUIDE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1346,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/i18n/bg/docs/reference/FEATURE_FLAGS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 295,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_OAUTH_LIVE_MODEL_DISCOVERY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  }
+ ]
+}

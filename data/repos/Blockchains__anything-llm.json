@@ -1,0 +1,265 @@
+{
+ "fork": "Blockchains/anything-llm",
+ "upstream": "Mintplex-Labs/anything-llm",
+ "category": "chat-ui",
+ "stars": 66708,
+ "license_spdx": "MIT",
+ "license_text_head": "The MIT License Copyright (c) Mintplex Labs Inc. Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons",
+ "pushed_at": "2026-10-04T01:30:10Z",
+ "description": "Stop renting your intelligence. Own it with AnythingLLM. Everything you need for a powerful local-first agent experience ",
+ "commit": "feb04ca0a57cda6d0b3a69c62578f0af44d388fc",
+ "indexed_at": "2026-10-04T14:55:42Z",
+ "status": "ok",
+ "clone_kb": 110028,
+ "seconds": 24.0,
+ "files_scanned": 1407,
+ "languages": {
+  "JavaScript": 1261,
+  "TypeScript": 21,
+  "Python": 3
+ },
+ "grok_files": 11,
+ "grok_files_by_kind": {
+  "config": 2,
+  "source": 9
+ },
+ "hosts": {
+  "api.x.ai": 4
+ },
+ "endpoints": {
+  "/v1/models": 1
+ },
+ "models": {
+  "grok-beta": 7,
+  "grok-4.3": 1
+ },
+ "env_vars": {
+  "XAI_LLM_API_KEY": 7,
+  "XAI_LLM_MODEL_PREF": 4
+ },
+ "features": {
+  "anthropic_compatible": 7,
+  "openai_compatible": 4,
+  "streaming": 3,
+  "vision": 2,
+  "mcp": 1,
+  "reasoning": 1,
+  "tool_calling": 1,
+  "embeddings": 1,
+  "voice_realtime": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "server/utils/agents/aibitat/providers/xai.js",
+   "start": 16,
+   "end": 39,
+   "code": "  model;\n\n  constructor(config = {}) {\n    const { model = \"grok-4.3\" } = config;\n    super();\n    const client = new OpenAI({\n      baseURL: \"https://api.x.ai/v1\",\n      apiKey: process.env.XAI_LLM_API_KEY,\n    });\n\n    this.providerTag = \"xai\";\n    this._client = client;\n    this.model = model;\n    this.verbose = true;\n  }\n\n  get client() {\n    return this._client;\n  }\n\n  get supportsAgentStreaming() {\n    return true;\n  }\n"
+  },
+  {
+   "path": "server/utils/agents/aibitat/providers/ai-provider.js",
+   "start": 371,
+   "end": 394,
+   "code": "          apiKey: process.env.DEEPSEEK_API_KEY ?? null,\n          ...config,\n        });\n      case \"xai\":\n        return new ChatOpenAI({\n          configuration: {\n            baseURL: \"https://api.x.ai/v1\",\n          },\n          apiKey: process.env.XAI_LLM_API_KEY ?? null,\n          ...config,\n        });\n      case \"zai\":\n        return new ChatOpenAI({\n          configuration: {\n            baseURL: \"https://api.z.ai/api/paas/v4\",\n          },\n          apiKey: process.env.ZAI_API_KEY ?? null,\n          ...config,\n        });\n      case \"novita\":\n        return new ChatOpenAI({\n          configuration: {\n            baseURL: \"https://api.novita.ai/v3/openai\",\n          },"
+  },
+  {
+   "path": "server/utils/helpers/customModels.js",
+   "start": 841,
+   "end": 864,
+   "code": "  const { OpenAI: OpenAIApi } = require(\"openai\");\n  const apiKey =\n    _apiKey === true\n      ? process.env.XAI_LLM_API_KEY\n      : _apiKey || process.env.XAI_LLM_API_KEY || null;\n  const openai = new OpenAIApi({\n    baseURL: \"https://api.x.ai/v1\",\n    apiKey,\n  });\n  const models = await openai.models\n    .list()\n    .then((results) => results.data)\n    .catch((e) => {\n      console.error(`XAI:listModels`, e.message);\n      return [\n        {\n          created: 1725148800,\n          id: \"grok-beta\",\n          object: \"model\",\n          owned_by: \"xai\",\n        },\n      ];\n    });\n"
+  },
+  {
+   "path": "server/utils/AiProviders/xai/index.js",
+   "start": 16,
+   "end": 39,
+   "code": "    if (!process.env.XAI_LLM_API_KEY)\n      throw new Error(\"No xAI API key was set.\");\n    this.className = \"XAiLLM\";\n    const { OpenAI: OpenAIApi } = require(\"openai\");\n\n    this.openai = new OpenAIApi({\n      baseURL: \"https://api.x.ai/v1\",\n      apiKey: process.env.XAI_LLM_API_KEY,\n    });\n    this.model =\n      modelPreference || process.env.XAI_LLM_MODEL_PREF || \"grok-beta\";\n    this.limits = {\n      history: this.promptWindowLimit() * 0.15,\n      system: this.promptWindowLimit() * 0.15,\n      user: this.promptWindowLimit() * 0.7,\n    };\n\n    this.embedder = embedder ?? new NativeEmbedder();\n    this.log(\n      `Initialized ${this.model} with context window ${this.promptWindowLimit()}`\n    );\n  }\n\n  log(text, ...args) {"
+  }
+ ],
+ "files": [
+  {
+   "path": "server/.env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 595,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [
+    "XAI_LLM_API_KEY",
+    "XAI_LLM_MODEL_PREF"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "mcp"
+   ]
+  },
+  {
+   "path": "server/utils/agents/index.js",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 1013,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [
+    "XAI_LLM_API_KEY",
+    "XAI_LLM_MODEL_PREF"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "server/utils/agents/aibitat/providers/xai.js",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 159,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_LLM_API_KEY"
+   ],
+   "features": [
+    "openai_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "server/utils/agents/aibitat/providers/ai-provider.js",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 917,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_LLM_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "streaming",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "server/utils/helpers/customModels.js",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 1752,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [
+    "XAI_LLM_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "openai_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "server/utils/AiProviders/xai/index.js",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 208,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [
+    "XAI_LLM_API_KEY",
+    "XAI_LLM_MODEL_PREF"
+   ],
+   "features": [
+    "openai_compatible",
+    "streaming",
+    "vision"
+   ]
+  },
+  {
+   "path": "server/utils/AiProviders/modelMap/legacy.js",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 162,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docker/.env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 584,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [
+    "XAI_LLM_API_KEY",
+    "XAI_LLM_MODEL_PREF"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "mcp"
+   ]
+  },
+  {
+   "path": "frontend/src/hooks/useGetProvidersModels.js",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 93,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "frontend/src/pages/GeneralSettings/LLMPreference/index.jsx",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 590,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "frontend/src/pages/OnboardingFlow/Steps/LLMPreference/index.jsx",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 486,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  }
+ ]
+}

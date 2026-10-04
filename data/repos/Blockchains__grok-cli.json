@@ -8,10 +8,10 @@
  "pushed_at": "2026-07-06T14:05:33Z",
  "description": "An open-source coding agent for the Grok API",
  "commit": "fb97af83f06dca873281d60168430f06c8de6324",
- "indexed_at": "2026-10-03T18:48:03Z",
+ "indexed_at": "2026-10-04T14:54:53Z",
  "status": "ok",
- "clone_kb": 2828,
- "seconds": 1.6,
+ "clone_kb": 2824,
+ "seconds": 2.4,
  "files_scanned": 164,
  "languages": {
   "TypeScript": 146
@@ -30,18 +30,19 @@
  "models": {
   "grok-4.3": 10,
   "grok-4.20-non-reasoning": 8,
-  "grok-4.20-multi-agent-0309": 5,
   "grok-3-mini": 5,
+  "grok-4.20-multi-agent-0309": 5,
   "grok-code-fast-1": 4,
+  "grok-4-1-fast": 3,
+  "grok-4.20-multi-agent-beta": 3,
   "grok-imagine-image": 3,
   "grok-3": 3,
-  "grok-4-1-fast": 3,
   "grok-4.20-multi-agent": 3,
-  "grok-4.20-multi-agent-beta": 3,
-  "grok-4.20-0309-non-reasoning": 2,
-  "grok-imagine-video": 2,
   "grok-4-0709": 2,
   "grok-4-1-fast-reasoning": 2,
+  "grok-imagine-video": 2,
+  "grok-4.20-0309-non-reasoning": 2,
+  "grok-4-special-test": 1,
   "grok-3-mini-fast": 1,
   "grok-4-1-fast-non-reasoning": 1,
   "grok-4-fast": 1,
@@ -51,8 +52,7 @@
   "grok-4.20-beta": 1,
   "grok-4.20-beta-0309": 1,
   "grok-beta": 1,
-  "grok-code-fast": 1,
-  "grok-4-special-test": 1
+  "grok-code-fast": 1
  },
  "env_vars": {
   "DEFAULT_GROK_STT_BASE_URL": 1
@@ -65,8 +65,8 @@
   "mcp": 2,
   "vision": 2,
   "image_generation": 2,
-  "live_search": 1,
-  "voice_realtime": 1
+  "voice_realtime": 1,
+  "live_search": 1
  },
  "sdk_exports": [],
  "packages": [
@@ -79,18 +79,6 @@
  ],
  "snippets": [
   {
-   "path": "src/grok/batch.ts",
-   "start": 1,
-   "end": 20,
-   "code": "import process from \"node:process\";\n\nconst DEFAULT_BASE_URL = \"https://api.x.ai/v1\";\nconst DEFAULT_INITIAL_POLL_MS = 2_000;\nconst DEFAULT_MAX_POLL_MS = 30_000;\nconst DEFAULT_TIMEOUT_MS = 10 * 60_000;\nconst DEFAULT_BATCH_PAGE_SIZE = 100;\nconst DEFAULT_RATE_LIMIT_RETRIES = 5;\n\nexport interface BatchClientOptions {\n  apiKey: string;\n  baseURL?: string;\n  signal?: AbortSignal;\n}\n\nexport interface BatchState {\n  num_requests: number;\n  num_pending: number;\n  num_success: number;\n  num_error: number;"
-  },
-  {
-   "path": "src/grok/client.ts",
-   "start": 1,
-   "end": 18,
-   "code": "import { createXai } from \"@ai-sdk/xai\";\nimport { generateText } from \"ai\";\nimport type { ModelInfo, ReasoningEffort } from \"../types/index\";\nimport { getReasoningEffortForModel } from \"../utils/settings\";\nimport { getEffectiveReasoningEffort, getModelInfo, normalizeModelId } from \"./models\";\n\nexport type XaiProvider = ReturnType<typeof createXai>;\nexport type XaiChatModel = ReturnType<XaiProvider>;\nexport type XaiResponsesModel = ReturnType<XaiProvider[\"responses\"]>;\nexport type GrokRuntimeModel = XaiChatModel | XaiResponsesModel;\n\nconst DEFAULT_TITLE_MODEL = \"grok-4.20-non-reasoning\";\nconst DEFAULT_RECAP_MODEL = \"grok-4.20-non-reasoning\";\n\ninterface GeneratedTextResult {\n  modelId: string;\n  usage?: {\n    totalTokens?: number;"
-  },
-  {
    "path": "src/utils/settings.ts",
    "start": 311,
    "end": 334,
@@ -101,9 +89,47 @@
    "start": 1,
    "end": 21,
    "code": "import { readFile } from \"fs/promises\";\nimport path from \"path\";\n\nexport const DEFAULT_GROK_STT_BASE_URL = \"https://api.x.ai/v1\";\n\nexport interface GrokSttEngineConfig {\n  apiKey: string;\n  baseURL?: string;\n  language?: string;\n}\n\nexport interface GrokSttTranscriptionInput {\n  audioPath: string;\n  fileName?: string;\n  mimeType?: string;\n}\n\nexport interface GrokSttWord {\n  text: string;\n  start: number;\n  end: number;"
+  },
+  {
+   "path": "src/grok/client.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { createXai } from \"@ai-sdk/xai\";\nimport { generateText } from \"ai\";\nimport type { ModelInfo, ReasoningEffort } from \"../types/index\";\nimport { getReasoningEffortForModel } from \"../utils/settings\";\nimport { getEffectiveReasoningEffort, getModelInfo, normalizeModelId } from \"./models\";\n\nexport type XaiProvider = ReturnType<typeof createXai>;\nexport type XaiChatModel = ReturnType<XaiProvider>;\nexport type XaiResponsesModel = ReturnType<XaiProvider[\"responses\"]>;\nexport type GrokRuntimeModel = XaiChatModel | XaiResponsesModel;\n\nconst DEFAULT_TITLE_MODEL = \"grok-4.20-non-reasoning\";\nconst DEFAULT_RECAP_MODEL = \"grok-4.20-non-reasoning\";\n\ninterface GeneratedTextResult {\n  modelId: string;\n  usage?: {\n    totalTokens?: number;"
+  },
+  {
+   "path": "src/grok/batch.ts",
+   "start": 1,
+   "end": 20,
+   "code": "import process from \"node:process\";\n\nconst DEFAULT_BASE_URL = \"https://api.x.ai/v1\";\nconst DEFAULT_INITIAL_POLL_MS = 2_000;\nconst DEFAULT_MAX_POLL_MS = 30_000;\nconst DEFAULT_TIMEOUT_MS = 10 * 60_000;\nconst DEFAULT_BATCH_PAGE_SIZE = 100;\nconst DEFAULT_RATE_LIMIT_RETRIES = 5;\n\nexport interface BatchClientOptions {\n  apiKey: string;\n  baseURL?: string;\n  signal?: AbortSignal;\n}\n\nexport interface BatchState {\n  num_requests: number;\n  num_pending: number;\n  num_success: number;\n  num_error: number;"
   }
  ],
  "files": [
+  {
+   "path": "CHANGELOG.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 154,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "AGENTS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 30,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
   {
    "path": "README.md",
    "kind": "doc",
@@ -123,22 +149,6 @@
    ]
   },
   {
-   "path": "CHANGELOG.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 154,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "mcp",
-    "reasoning",
-    "voice_realtime"
-   ]
-  },
-  {
    "path": ".env.example",
    "kind": "config",
    "lang": null,
@@ -147,16 +157,6 @@
    "models": [
     "grok-4.3"
    ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "AGENTS.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 30,
-   "endpoints": [],
-   "models": [],
    "env": [],
    "features": []
   },
@@ -186,64 +186,6 @@
    ]
   },
   {
-   "path": "src/agent/agent.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 2830,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "mcp",
-    "reasoning",
-    "streaming",
-    "structured_output",
-    "tool_calling",
-    "vision"
-   ]
-  },
-  {
-   "path": "src/agent/recap.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 158,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-non-reasoning",
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "src/agent/batch-mode.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 130,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "src/agent/vision-input.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 59,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "vision"
-   ]
-  },
-  {
    "path": "src/tools/computer.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -252,6 +194,40 @@
    "models": [],
    "env": [],
    "features": []
+  },
+  {
+   "path": "src/utils/settings.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 671,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "reasoning",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/utils/subagents-settings.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 79,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4-1-fast",
+    "grok-4-special-test",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.20-multi-agent-beta",
+    "grok-4.3",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
   },
   {
    "path": "src/storage/sessions.test.ts",
@@ -283,194 +259,19 @@
    ]
   },
   {
-   "path": "src/grok/batch.ts",
+   "path": "src/ui/app.tsx",
    "kind": "source",
    "lang": "TypeScript",
-   "lines": 405,
+   "lines": 5862,
    "endpoints": [],
    "models": [],
    "env": [],
    "features": [
+    "mcp",
     "reasoning",
+    "streaming",
     "structured_output",
-    "tool_calling",
-    "vision"
-   ]
-  },
-  {
-   "path": "src/grok/models.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 48,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-mini",
-    "grok-4-1-fast",
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.20-multi-agent",
-    "grok-4.20-multi-agent-0309",
-    "grok-4.20-multi-agent-beta",
-    "grok-4.20-non-reasoning",
-    "grok-4.3",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "src/grok/media.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 138,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image",
-    "grok-imagine-video"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "src/grok/client.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 140,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "src/grok/media.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 398,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image",
-    "grok-imagine-video"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "src/grok/tools.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 1007,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "live_search",
-    "reasoning",
     "tool_calling"
-   ]
-  },
-  {
-   "path": "src/grok/models.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 117,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-mini",
-    "grok-3-mini-fast",
-    "grok-4-0709",
-    "grok-4-1-fast",
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-1-fast-reasoning",
-    "grok-4-fast",
-    "grok-4-fast-non-reasoning",
-    "grok-4-fast-reasoning",
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.20-0309-reasoning",
-    "grok-4.20-beta",
-    "grok-4.20-beta-0309",
-    "grok-4.20-multi-agent",
-    "grok-4.20-multi-agent-0309",
-    "grok-4.20-multi-agent-beta",
-    "grok-4.20-non-reasoning",
-    "grok-4.3",
-    "grok-beta",
-    "grok-code-fast",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "src/grok/client.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 154,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-mini",
-    "grok-4-0709",
-    "grok-4-1-fast-reasoning",
-    "grok-4.20-multi-agent",
-    "grok-4.20-multi-agent-0309",
-    "grok-4.20-non-reasoning",
-    "grok-4.3",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "openai_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "src/utils/subagents-settings.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 79,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini",
-    "grok-4-1-fast",
-    "grok-4-special-test",
-    "grok-4.20-multi-agent-0309",
-    "grok-4.20-multi-agent-beta",
-    "grok-4.3",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "src/utils/settings.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 671,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "reasoning",
-    "structured_output",
-    "voice_realtime"
    ]
   },
   {
@@ -509,18 +310,217 @@
    "features": []
   },
   {
-   "path": "src/ui/app.tsx",
+   "path": "src/agent/batch-mode.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 130,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/agent/agent.ts",
    "kind": "source",
    "lang": "TypeScript",
-   "lines": 5862,
+   "lines": 2830,
    "endpoints": [],
-   "models": [],
+   "models": [
+    "grok-4.3"
+   ],
    "env": [],
    "features": [
     "mcp",
     "reasoning",
     "streaming",
     "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "src/agent/recap.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 158,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/agent/vision-input.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 59,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "vision"
+   ]
+  },
+  {
+   "path": "src/grok/client.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 154,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4-0709",
+    "grok-4-1-fast-reasoning",
+    "grok-4.20-multi-agent",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.20-non-reasoning",
+    "grok-4.3",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "openai_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/grok/client.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 140,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/grok/media.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 138,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "src/grok/models.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 117,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-4-0709",
+    "grok-4-1-fast",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-beta",
+    "grok-4.20-beta-0309",
+    "grok-4.20-multi-agent",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.20-multi-agent-beta",
+    "grok-4.20-non-reasoning",
+    "grok-4.3",
+    "grok-beta",
+    "grok-code-fast",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/grok/batch.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 405,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "reasoning",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "src/grok/media.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 398,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "src/grok/models.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 48,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4-1-fast",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-multi-agent",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.20-multi-agent-beta",
+    "grok-4.20-non-reasoning",
+    "grok-4.3",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/grok/tools.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1007,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "live_search",
+    "reasoning",
     "tool_calling"
    ]
   }

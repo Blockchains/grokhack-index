@@ -93,10 +93,19 @@
   "fork": "Blockchains/langchain",
   "upstream": "langchain-ai/langchain",
   "category": "sdk-provider",
-  "stars": 147433,
+  "stars": 147434,
   "license": "MIT",
   "pushed_at": "2026-10-04T10:17:02Z",
   "description": "The agent engineering platform."
+ },
+ {
+  "fork": "Blockchains/ai",
+  "upstream": "vercel/ai",
+  "category": "sdk-provider",
+  "stars": 27116,
+  "license": "Apache-2.0",
+  "pushed_at": "2026-10-04T14:49:42Z",
+  "description": "The AI Toolkit for TypeScript. From the creators of Next.js, the AI SDK is a free open-source library for building AI-powered applications and agents "
  },
  {
   "fork": "Blockchains/cc-switch",
@@ -111,7 +120,7 @@
   "fork": "Blockchains/OmniRoute",
   "upstream": "diegosouzapw/OmniRoute",
   "category": "gateway-router",
-  "stars": 72847,
+  "stars": 72848,
   "license": "MIT",
   "pushed_at": "2026-10-02T18:26:57Z",
   "description": "Never stop coding. Free MIT AI gateway: one endpoint, 359 providers (150+ free), 1200+ models Kimi, Claude, GPT, Gemini, GLM, DeepSeek, MiniMax. Works with Claude Code, Codex, Cursor, OpenCode, Cline & Copilot. Quota-aware auto-fallback, RTK+Caveman compression saves 15-95% tokens, MCP/A2A, Desktop/PWA. Built by hundreds of contributors"
@@ -327,7 +336,7 @@
   "fork": "Blockchains/airi",
   "upstream": "moeru-ai/airi",
   "category": "chat-ui",
-  "stars": 50019,
+  "stars": 50020,
   "license": "MIT",
   "pushed_at": "2026-10-04T14:28:02Z",
   "description": "\ud83d\udc96\ud83e\uddf8 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported."
@@ -354,7 +363,7 @@
   "fork": "Blockchains/firecrawl",
   "upstream": "firecrawl/firecrawl",
   "category": "app",
-  "stars": 188479,
+  "stars": 188480,
   "license": "AGPL-3.0",
   "pushed_at": "2026-10-03T18:46:17Z",
   "description": "Supercharge your AI agents with data from the web and beyond. Building the library for superintelligence. \ud83d\udd25"
@@ -363,10 +372,19 @@
   "fork": "Blockchains/MoneyPrinterTurbo",
   "upstream": "harry0703/MoneyPrinterTurbo",
   "category": "app",
-  "stars": 128374,
+  "stars": 128375,
   "license": "MIT",
   "pushed_at": "2026-10-04T06:48:17Z",
   "description": "\u5229\u7528 AI \u5927\u6a21\u578b\u548c\u81ea\u52a8\u5316\u5de5\u4f5c\u6d41\uff0c\u6839\u636e\u4e3b\u9898\u6216\u5173\u952e\u8bcd\u4e00\u952e\u751f\u6210\u9ad8\u6e05\u77ed\u89c6\u9891\u3002Generate HD short videos from a topic or keyword with an automated AI workflow."
+ },
+ {
+  "fork": "Blockchains/ai-hedge-fund",
+  "upstream": "virattt/ai-hedge-fund",
+  "category": "app",
+  "stars": 63854,
+  "license": "MIT",
+  "pushed_at": "2026-10-02T14:19:04Z",
+  "description": "An AI Hedge Fund Team"
  },
  {
   "fork": "Blockchains/OpenMausBot",

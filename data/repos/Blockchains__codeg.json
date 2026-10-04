@@ -2,16 +2,16 @@
  "fork": "Blockchains/codeg",
  "upstream": "xintaofei/codeg",
  "category": "coding-agent-cli",
- "stars": 3787,
+ "stars": 3789,
  "license_spdx": "Apache-2.0",
  "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
  "pushed_at": "2026-10-03T06:20:25Z",
  "description": "Collaborative multi-agent AI coding workspace: aggregate sessions from Claude Code, Codex, OpenCode, Pi, Grok Build, etc. Desktop app, self-hosted server, or Docker.",
  "commit": "98035964c0f3811dc80a5e9291b89cb6c0570fa0",
- "indexed_at": "2026-10-03T18:48:02Z",
+ "indexed_at": "2026-10-04T14:54:55Z",
  "status": "ok",
- "clone_kb": 159184,
- "seconds": 21.5,
+ "clone_kb": 159144,
+ "seconds": 31.8,
  "files_scanned": 2096,
  "languages": {
   "TypeScript": 1385,
@@ -22,8 +22,8 @@
  "grok_files": 18,
  "grok_files_by_kind": {
   "source": 6,
-  "test": 2,
-  "config": 10
+  "config": 10,
+  "test": 2
  },
  "hosts": {
   "api.x.ai": 11
@@ -58,16 +58,16 @@
  "packages": [],
  "snippets": [
   {
-   "path": "src-tauri/src/db/migration/m20260930_000001_agent_setting_drop_adapter_channel.rs",
-   "start": 55,
-   "end": 78,
-   "code": "        let rows: [(i64, Option<&str>, Option<&str>); 8] = [\n            // The key alone: the map ends up empty, stored as NULL.\n            (1, Some(r#\"{\"CODEG_ADAPTER_CHANNEL\":\"latest\"}\"#), None),\n            // The key next to real env: only the key goes.\n            (\n                2,\n                Some(r#\"{\"XAI_API_KEY\":\"abc\",\"CODEG_ADAPTER_CHANNEL\":\"latest\"}\"#),\n                Some(r#\"{\"XAI_API_KEY\":\"abc\"}\"#),\n            ),\n            // An empty value still counts as the key being present.\n            (3, Some(r#\"{\"CODEG_ADAPTER_CHANNEL\":\"\"}\"#), None),\n            // No key: untouched, formatting included.\n            (\n                4,\n                Some(r#\"{\"XAI_API_KEY\": \"abc\"}\"#),\n                Some(r#\"{\"XAI_API_KEY\": \"abc\"}\"#),\n            ),\n            (5, None, None),\n            (6, Some(\"not json\"), Some(\"not json\")),\n            (\n                7,\n                Some(r#\"[\"CODEG_ADAPTER_CHANNEL\"]\"#),\n                Some(r#\"[\"CODEG_ADAPTER_CHANNEL\"]\"#),\n            ),"
-  },
-  {
    "path": "src-tauri/src/acp/types.rs",
    "start": 1752,
    "end": 1775,
    "code": "    /// on read (see `migrate_grok_permission_mode`).\n    pub permission_mode: Option<String>,\n    /// The codeg-managed custom model id: the `[model.<id>]` block whose id\n    /// equals `[models].default`. `None` when there is no such managed block.\n    pub custom_model_id: Option<String>,\n    /// `[model.<id>].base_url` \u2014 the custom endpoint. `None` \u21d2 Grok's official\n    /// xAI API (`https://api.x.ai/v1`).\n    pub custom_base_url: Option<String>,\n    /// `[model.<id>].api_key` \u2014 inline key scoped to the custom endpoint\n    /// (distinct from the global `XAI_API_KEY` env credential).\n    pub custom_api_key: Option<String>,\n    /// `[model.<id>].api_backend` \u2014 chat_completions | responses | messages.\n    pub custom_api_backend: Option<String>,\n    /// `[model.<id>].context_window` \u2014 context size in tokens.\n    pub custom_context_window: Option<i64>,\n    /// `[session].auto_compact_threshold_percent` \u2014 auto-compact trigger, 0\u2013100\n    /// (Grok's default is 85).\n    pub auto_compact_threshold_percent: Option<i64>,\n}\n\n/// The structured-control values the Grok settings panel sends on save. Each\n/// `Some(value)` sets the corresponding key; each `None` removes it. Merged\n/// (format-preserving, via `toml_edit`) onto the current on-disk config.toml so\n/// unmanaged keys/comments are preserved. camelCase on the wire to match the"
+  },
+  {
+   "path": "src-tauri/src/db/migration/m20260930_000001_agent_setting_drop_adapter_channel.rs",
+   "start": 55,
+   "end": 78,
+   "code": "        let rows: [(i64, Option<&str>, Option<&str>); 8] = [\n            // The key alone: the map ends up empty, stored as NULL.\n            (1, Some(r#\"{\"CODEG_ADAPTER_CHANNEL\":\"latest\"}\"#), None),\n            // The key next to real env: only the key goes.\n            (\n                2,\n                Some(r#\"{\"XAI_API_KEY\":\"abc\",\"CODEG_ADAPTER_CHANNEL\":\"latest\"}\"#),\n                Some(r#\"{\"XAI_API_KEY\":\"abc\"}\"#),\n            ),\n            // An empty value still counts as the key being present.\n            (3, Some(r#\"{\"CODEG_ADAPTER_CHANNEL\":\"\"}\"#), None),\n            // No key: untouched, formatting included.\n            (\n                4,\n                Some(r#\"{\"XAI_API_KEY\": \"abc\"}\"#),\n                Some(r#\"{\"XAI_API_KEY\": \"abc\"}\"#),\n            ),\n            (5, None, None),\n            (6, Some(\"not json\"), Some(\"not json\")),\n            (\n                7,\n                Some(r#\"[\"CODEG_ADAPTER_CHANNEL\"]\"#),\n                Some(r#\"[\"CODEG_ADAPTER_CHANNEL\"]\"#),\n            ),"
   },
   {
    "path": "src/components/settings/acp-agent-settings.tsx",
@@ -83,18 +83,6 @@
   }
  ],
  "files": [
-  {
-   "path": "src-tauri/src/db/migration/m20260930_000001_agent_setting_drop_adapter_channel.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 110,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
   {
    "path": "src-tauri/src/acp/types.rs",
    "kind": "source",
@@ -112,6 +100,18 @@
     "reasoning",
     "tool_calling"
    ]
+  },
+  {
+   "path": "src-tauri/src/db/migration/m20260930_000001_agent_setting_drop_adapter_channel.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 110,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
   },
   {
    "path": "src-tauri/src/parsers/grok.rs",
@@ -155,21 +155,7 @@
    ]
   },
   {
-   "path": "src/contexts/acp-connections-context.test.tsx",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 6772,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/i18n/messages/ar.json",
+   "path": "src/i18n/messages/ja.json",
    "kind": "config",
    "lang": null,
    "lines": 6843,
@@ -205,7 +191,7 @@
    ]
   },
   {
-   "path": "src/i18n/messages/ja.json",
+   "path": "src/i18n/messages/pt.json",
    "kind": "config",
    "lang": null,
    "lines": 6843,
@@ -241,43 +227,7 @@
    ]
   },
   {
-   "path": "src/i18n/messages/zh-TW.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 6843,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
    "path": "src/i18n/messages/ko.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 6843,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/i18n/messages/es.json",
    "kind": "config",
    "lang": null,
    "lines": 6843,
@@ -313,6 +263,42 @@
    ]
   },
   {
+   "path": "src/i18n/messages/zh-TW.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 6843,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/ar.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 6843,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
    "path": "src/i18n/messages/en.json",
    "kind": "config",
    "lang": null,
@@ -331,7 +317,7 @@
    ]
   },
   {
-   "path": "src/i18n/messages/pt.json",
+   "path": "src/i18n/messages/es.json",
    "kind": "config",
    "lang": null,
    "lines": 6843,
@@ -346,6 +332,21 @@
     "mcp",
     "reasoning",
     "tool_calling"
+   ]
+  },
+  {
+   "path": "src/components/settings/acp-agent-settings.test.tsx",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 2352,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "reasoning",
+    "structured_output"
    ]
   },
   {
@@ -381,18 +382,17 @@
    ]
   },
   {
-   "path": "src/components/settings/acp-agent-settings.test.tsx",
+   "path": "src/contexts/acp-connections-context.test.tsx",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 2352,
+   "lines": 6772,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
+   "models": [
+    "grok-4.5"
    ],
+   "env": [],
    "features": [
-    "reasoning",
-    "structured_output"
+    "tool_calling"
    ]
   }
  ]

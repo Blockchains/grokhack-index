@@ -2,16 +2,16 @@
  "fork": "Blockchains/GoModel",
  "upstream": "ENTERPILOT/GoModel",
  "category": "gateway-router",
- "stars": 1210,
+ "stars": 1212,
  "license_spdx": "MIT",
  "license_text_head": "MIT License Copyright (c) 2025 ENTERPILOT Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to who",
- "pushed_at": "2026-10-03T18:31:08Z",
+ "pushed_at": "2026-10-04T06:56:14Z",
  "description": "AI gateway / AI control plane / AI proxy written in Go. Unified OpenAI-compatible and Anthropic-compatible API for OpenAI, Anthropic, Gemini, Groq, xAI, Ollama, vLLM and more. A LiteLLM alternative with observability, guardrails, streaming, cost tracking, intelligent routing, sticky sessions, failover, real-time logs and usage tracking. Prod ready.",
  "commit": "d26539f9ce0bae9709b9e58a5b32167e7cb6b20a",
- "indexed_at": "2026-10-03T18:48:21Z",
+ "indexed_at": "2026-10-04T14:53:16Z",
  "status": "ok",
- "clone_kb": 54788,
- "seconds": 16.5,
+ "clone_kb": 54816,
+ "seconds": 27.3,
  "files_scanned": 2171,
  "languages": {
   "Go": 1593,
@@ -21,10 +21,10 @@
  },
  "grok_files": 48,
  "grok_files_by_kind": {
+  "config": 1,
   "test": 29,
-  "source": 6,
   "doc": 12,
-  "config": 1
+  "source": 6
  },
  "hosts": {
   "api.x.ai": 8
@@ -34,8 +34,8 @@
   "/v1/chat/completions": 12,
   "/v1/responses": 12,
   "/v1/embeddings": 8,
-  "/v1/messages": 8,
   "/v1/realtime": 8,
+  "/v1/messages": 8,
   "/v1/images/generations": 7,
   "/v1/audio/speech": 6,
   "/v1/audio/transcriptions": 6,
@@ -45,15 +45,15 @@
  },
  "models": {
   "grok-3-mini": 17,
-  "grok-4.3": 9,
   "grok-3": 9,
+  "grok-4.3": 9,
   "grok-4.6": 6,
   "grok-imagine-image": 6,
   "grok-4.5": 5,
   "grok-4.20-0309-non-reasoning": 4,
-  "grok-2": 4,
-  "grok-2-image": 4,
   "grok-imagine": 4,
+  "grok-2-image": 4,
+  "grok-2": 4,
   "grok-4.20-0309-reasoning": 3,
   "grok-4.20-multi-agent-0309": 3,
   "grok-4.7": 3,
@@ -101,28 +101,34 @@
   "grok-imagine-image-quality-latest": 1,
   "grok-imagine-video-1.5-2026-05-30": 1,
   "grok-imagine-video-1.5-preview": 1,
-  "grok-4.3-fast": 1,
-  "grok-4": 1,
-  "grok-2-1212": 1
+  "grok-2-1212": 1,
+  "grok-2-mini": 1,
+  "grok-4.10": 1
  },
  "env_vars": {
   "XAI_API_KEY": 7,
   "XAI_MODELS": 3,
-  "QA_XAI_OK": 1,
-  "XAI_BASE_URL": 1
+  "XAI_BASE_URL": 1,
+  "QA_XAI_OK": 1
  },
  "features": {
   "embeddings": 3,
   "image_generation": 3,
   "tool_calling": 3,
-  "voice_realtime": 2,
-  "reasoning": 2,
   "anthropic_compatible": 2,
-  "streaming": 2
+  "streaming": 2,
+  "voice_realtime": 2,
+  "reasoning": 2
  },
  "sdk_exports": [],
  "packages": [],
  "snippets": [
+  {
+   "path": "cmd/recordapi/main.go",
+   "start": 65,
+   "end": 88,
+   "code": "\t\tbaseURL:     \"https://api.groq.com/openai\",\n\t\tenvKey:      \"GROQ_API_KEY\",\n\t\tauthHeader:  \"Authorization\",\n\t\tcontentType: \"application/json\",\n\t},\n\t\"xai\": {\n\t\tbaseURL:     \"https://api.x.ai\",\n\t\tenvKey:      \"XAI_API_KEY\",\n\t\tauthHeader:  \"Authorization\",\n\t\tcontentType: \"application/json\",\n\t},\n\t\"kimicode\": {\n\t\tbaseURL:     \"https://api.kimi.com/coding\",\n\t\tenvKey:      \"KIMICODE_API_KEY\",\n\t\tauthHeader:  \"Authorization\",\n\t\tcontentType: \"application/json\",\n\t},\n\t\"oracle\": {\n\t\tbaseURLEnv:  \"ORACLE_BASE_URL\",\n\t\tenvKey:      \"ORACLE_API_KEY\",\n\t\tauthHeader:  \"Authorization\",\n\t\tcontentType: \"application/json\",\n\t},\n}"
+  },
   {
    "path": "internal/providers/xai/realtime.go",
    "start": 7,
@@ -134,15 +140,67 @@
    "start": 25,
    "end": 48,
    "code": "\tDiscovery: providers.DiscoveryConfig{\n\t\tDefaultBaseURL: defaultBaseURL,\n\t},\n}\n\nconst (\n\tdefaultBaseURL   = \"https://api.x.ai/v1\"\n\tgrokConvIDHeader = \"X-Grok-Conv-Id\"\n)\n\n// Provider implements the core.Provider interface for xAI. The API is\n// OpenAI-compatible, so transport goes through the shared compatible\n// provider; xAI's only chat quirk is the conversation affinity header\n// (X-Grok-Conv-Id), injected via the ChatRequestHeaders hook. Methods are\n// delegated explicitly (and batch/files via facet surfaces) rather than\n// embedding the full compatible provider, because xAI's upstream lacks\n// parts of the full OpenAI surface (audio, passthrough, response\n// lifecycle management) and embedding cannot subtract methods.\ntype Provider struct {\n\t*openai.BatchSurface\n\t*openai.FileSurface\n\tcompat *openai.CompatibleProvider\n\tkeys   *providers.Keyring // retained to inject auth on the realtime websocket target\n}"
-  },
-  {
-   "path": "cmd/recordapi/main.go",
-   "start": 65,
-   "end": 88,
-   "code": "\t\tbaseURL:     \"https://api.groq.com/openai\",\n\t\tenvKey:      \"GROQ_API_KEY\",\n\t\tauthHeader:  \"Authorization\",\n\t\tcontentType: \"application/json\",\n\t},\n\t\"xai\": {\n\t\tbaseURL:     \"https://api.x.ai\",\n\t\tenvKey:      \"XAI_API_KEY\",\n\t\tauthHeader:  \"Authorization\",\n\t\tcontentType: \"application/json\",\n\t},\n\t\"kimicode\": {\n\t\tbaseURL:     \"https://api.kimi.com/coding\",\n\t\tenvKey:      \"KIMICODE_API_KEY\",\n\t\tauthHeader:  \"Authorization\",\n\t\tcontentType: \"application/json\",\n\t},\n\t\"oracle\": {\n\t\tbaseURLEnv:  \"ORACLE_BASE_URL\",\n\t\tenvKey:      \"ORACLE_API_KEY\",\n\t\tauthHeader:  \"Authorization\",\n\t\tcontentType: \"application/json\",\n\t},\n}"
   }
  ],
  "files": [
+  {
+   "path": "config/config.example.yaml",
+   "kind": "config",
+   "lang": null,
+   "lines": 836,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings",
+    "/v1/models",
+    "/v1/realtime",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "grpc",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "config/config_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 1756,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL",
+    "XAI_MODELS"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/e2e/manage-release-e2e-stack.sh",
+   "kind": "test",
+   "lang": null,
+   "lines": 549,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_MODELS"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "voice_realtime"
+   ]
+  },
   {
    "path": "tests/e2e/release-e2e-scenarios.md",
    "kind": "test",
@@ -182,21 +240,17 @@
    ]
   },
   {
-   "path": "tests/e2e/manage-release-e2e-stack.sh",
+   "path": "tests/contract/xai_test.go",
    "kind": "test",
-   "lang": null,
-   "lines": 549,
+   "lang": "Go",
+   "lines": 137,
    "endpoints": [],
    "models": [
-    "grok-4.3"
+    "grok-3-mini"
    ],
-   "env": [
-    "XAI_MODELS"
-   ],
+   "env": [],
    "features": [
-    "anthropic_compatible",
-    "mcp",
-    "voice_realtime"
+    "reasoning"
    ]
   },
   {
@@ -215,30 +269,28 @@
    ]
   },
   {
-   "path": "tests/contract/xai_test.go",
-   "kind": "test",
-   "lang": "Go",
-   "lines": 137,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "tests/contract/testdata/golden/xai/responses.golden.json",
+   "path": "tests/contract/testdata/golden/xai/models.golden.json",
    "kind": "test",
    "lang": null,
-   "lines": 52,
+   "lines": 407,
    "endpoints": [],
    "models": [
-    "grok-3-mini"
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-quality",
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
    ],
    "env": [],
    "features": [
+    "image_generation",
     "reasoning"
    ]
   },
@@ -272,20 +324,6 @@
    ]
   },
   {
-   "path": "tests/contract/testdata/golden/xai/chat_completion_stream.golden.json",
-   "kind": "test",
-   "lang": null,
-   "lines": 4401,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
    "path": "tests/contract/testdata/golden/xai/chat_completion.golden.json",
    "kind": "test",
    "lang": null,
@@ -300,28 +338,44 @@
    ]
   },
   {
-   "path": "tests/contract/testdata/golden/xai/models.golden.json",
+   "path": "tests/contract/testdata/golden/xai/responses.golden.json",
    "kind": "test",
    "lang": null,
-   "lines": 407,
+   "lines": 52,
    "endpoints": [],
    "models": [
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.20-0309-reasoning",
-    "grok-4.20-multi-agent-0309",
-    "grok-4.3",
-    "grok-4.5",
-    "grok-4.6",
-    "grok-4.7",
-    "grok-imagine-image",
-    "grok-imagine-image-2.0",
-    "grok-imagine-image-quality",
-    "grok-imagine-video",
-    "grok-imagine-video-1.5"
+    "grok-3-mini"
    ],
    "env": [],
    "features": [
-    "image_generation",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/contract/testdata/golden/xai/chat_completion_stream.golden.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 4401,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/contract/testdata/xai/chat_completion_stream.txt",
+   "kind": "test",
+   "lang": null,
+   "lines": 587,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
     "reasoning"
    ]
   },
@@ -340,10 +394,40 @@
    ]
   },
   {
-   "path": "tests/contract/testdata/xai/chat_completion_stream.txt",
+   "path": "tests/contract/testdata/xai/responses.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 81,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/contract/testdata/xai/responses_stream.txt",
    "kind": "test",
    "lang": null,
    "lines": 587,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/contract/testdata/xai/chat_completion.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 38,
    "endpoints": [],
    "models": [
     "grok-3-mini"
@@ -408,344 +492,6 @@
    ]
   },
   {
-   "path": "tests/contract/testdata/xai/responses.json",
-   "kind": "test",
-   "lang": null,
-   "lines": 81,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "tests/contract/testdata/xai/chat_completion.json",
-   "kind": "test",
-   "lang": null,
-   "lines": 38,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "tests/contract/testdata/xai/responses_stream.txt",
-   "kind": "test",
-   "lang": null,
-   "lines": 587,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "internal/providers/router_image_edits_test.go",
-   "kind": "test",
-   "lang": "Go",
-   "lines": 128,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "image_generation"
-   ]
-  },
-  {
-   "path": "internal/providers/realtime_url_test.go",
-   "kind": "test",
-   "lang": "Go",
-   "lines": 172,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "openai_compatible",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "internal/providers/config_test.go",
-   "kind": "test",
-   "lang": "Go",
-   "lines": 1609,
-   "endpoints": [],
-   "models": [
-    "grok-3"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "internal/providers/bedrockmantle/config_test.go",
-   "kind": "test",
-   "lang": "Go",
-   "lines": 95,
-   "endpoints": [
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-4.3-fast"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "internal/providers/bedrockmantle/routing.go",
-   "kind": "source",
-   "lang": "Go",
-   "lines": 47,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "internal/providers/xai/realtime.go",
-   "kind": "source",
-   "lang": "Go",
-   "lines": 76,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "internal/providers/xai/images_test.go",
-   "kind": "test",
-   "lang": "Go",
-   "lines": 87,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "internal/providers/xai/xai.go",
-   "kind": "source",
-   "lang": "Go",
-   "lines": 312,
-   "endpoints": [],
-   "models": [
-    "grok-2",
-    "grok-2-image",
-    "grok-3",
-    "grok-3-mini",
-    "grok-4",
-    "grok-4.20",
-    "grok-4.5",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "embeddings",
-    "image_generation",
-    "reasoning",
-    "tool_calling",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "internal/providers/xai/realtime_test.go",
-   "kind": "test",
-   "lang": "Go",
-   "lines": 77,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "internal/providers/xai/models_test.go",
-   "kind": "test",
-   "lang": "Go",
-   "lines": 107,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.5",
-    "grok-4.5-latest",
-    "grok-imagine-image",
-    "grok-imagine-image-2026-03-02",
-    "grok-imagine-video"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "internal/providers/xai/xai_test.go",
-   "kind": "test",
-   "lang": "Go",
-   "lines": 711,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [
-    "grok-2",
-    "grok-2-1212",
-    "grok-2-mini",
-    "grok-3",
-    "grok-3-mini",
-    "grok-4.10",
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.20-0309-reasoning",
-    "grok-4.20-multi-agent-0309",
-    "grok-4.3",
-    "grok-4.5",
-    "grok-4.6",
-    "grok-4.6-latest",
-    "grok-4.7",
-    "grok-4.foo",
-    "grok-99-new"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "internal/usage/extractor_test.go",
-   "kind": "test",
-   "lang": "Go",
-   "lines": 1007,
-   "endpoints": [
-    "/v1/batches",
-    "/v1/chat/completions",
-    "/v1/embeddings",
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "embeddings",
-    "streaming"
-   ]
-  },
-  {
-   "path": "internal/usage/cost.go",
-   "kind": "source",
-   "lang": "Go",
-   "lines": 773,
-   "endpoints": [],
-   "models": [
-    "grok-imagine"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "image_generation",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "internal/usage/cost_test.go",
-   "kind": "test",
-   "lang": "Go",
-   "lines": 878,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "internal/usage/stream_observer_test.go",
-   "kind": "test",
-   "lang": "Go",
-   "lines": 776,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/messages",
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "internal/gateway/batch_usage_test.go",
-   "kind": "test",
-   "lang": "Go",
-   "lines": 135,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "internal/core/types.go",
-   "kind": "source",
-   "lang": "Go",
-   "lines": 548,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-imagine"
-   ],
-   "env": [],
-   "features": [
-    "embeddings",
-    "image_generation",
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
    "path": "docs/TESTING_STRATEGY.md",
    "kind": "doc",
    "lang": null,
@@ -792,156 +538,6 @@
     "tool_calling",
     "vision",
     "voice_realtime"
-   ]
-  },
-  {
-   "path": "docs/about/benchmark-tools/compare.sh",
-   "kind": "doc",
-   "lang": null,
-   "lines": 295,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "docs/providers/xai.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 77,
-   "endpoints": [
-    "/v1/images/generations"
-   ],
-   "models": [
-    "grok-2",
-    "grok-2-image",
-    "grok-3",
-    "grok-3-mini",
-    "grok-4.20",
-    "grok-4.6"
-   ],
-   "env": [
-    "XAI_API_KEY",
-    "XAI_MODELS"
-   ],
-   "features": [
-    "image_generation",
-    "openai_compatible",
-    "reasoning",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "docs/providers/oracle.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 165,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/models"
-   ],
-   "models": [
-    "grok-3"
-   ],
-   "env": [],
-   "features": [
-    "openai_compatible"
-   ]
-  },
-  {
-   "path": "docs/providers/overview.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 391,
-   "endpoints": [
-    "/v1/audio/speech",
-    "/v1/audio/transcriptions",
-    "/v1/embeddings",
-    "/v1/messages",
-    "/v1/models",
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-3",
-    "grok-4.6"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "mcp",
-    "reasoning",
-    "streaming",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "docs/snippets/provider-credentials-note.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 9,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "docs/advanced/images-api.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 288,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/images/edits",
-    "/v1/images/generations",
-    "/v1/models"
-   ],
-   "models": [
-    "grok-2-image",
-    "grok-imagine-image"
-   ],
-   "env": [],
-   "features": [
-    "embeddings",
-    "image_generation",
-    "openai_compatible",
-    "streaming",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "docs/advanced/anthropic-messages-api.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 306,
-   "endpoints": [
-    "/v1/batches",
-    "/v1/chat/completions",
-    "/v1/messages",
-    "/v1/models",
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-2",
-    "grok-3",
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "live_search",
-    "reasoning",
-    "streaming",
-    "structured_output",
-    "tool_calling"
    ]
   },
   {
@@ -1003,6 +599,177 @@
    ]
   },
   {
+   "path": "docs/advanced/anthropic-messages-api.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 306,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-2",
+    "grok-3",
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/advanced/images-api.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 288,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/images/edits",
+    "/v1/images/generations",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-2-image",
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "openai_compatible",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "docs/providers/overview.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 391,
+   "endpoints": [
+    "/v1/audio/speech",
+    "/v1/audio/transcriptions",
+    "/v1/embeddings",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-3",
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/providers/oracle.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 165,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "docs/providers/xai.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 77,
+   "endpoints": [
+    "/v1/images/generations"
+   ],
+   "models": [
+    "grok-2",
+    "grok-2-image",
+    "grok-3",
+    "grok-3-mini",
+    "grok-4.20",
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_MODELS"
+   ],
+   "features": [
+    "image_generation",
+    "openai_compatible",
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/snippets/provider-credentials-note.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 9,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "docs/about/benchmark-tools/compare.sh",
+   "kind": "doc",
+   "lang": null,
+   "lines": 295,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "cmd/recordapi/main.go",
+   "kind": "source",
+   "lang": "Go",
+   "lines": 558,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "streaming"
+   ]
+  },
+  {
    "path": "cmd/gomodel/docs/docs.go",
    "kind": "doc",
    "lang": "Go",
@@ -1039,65 +806,298 @@
    ]
   },
   {
-   "path": "cmd/recordapi/main.go",
-   "kind": "source",
+   "path": "internal/providers/realtime_url_test.go",
+   "kind": "test",
    "lang": "Go",
-   "lines": 558,
+   "lines": 172,
    "endpoints": [
-    "/v1/chat/completions",
-    "/v1/embeddings",
-    "/v1/models",
-    "/v1/responses"
+    "/v1/realtime"
    ],
    "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
+   "env": [],
    "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "streaming"
+    "openai_compatible",
+    "voice_realtime"
    ]
   },
   {
-   "path": "config/config.example.yaml",
-   "kind": "config",
-   "lang": null,
-   "lines": 836,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/embeddings",
-    "/v1/models",
-    "/v1/realtime",
-    "/v1/responses"
+   "path": "internal/providers/router_image_edits_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 128,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
    ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation"
+   ]
+  },
+  {
+   "path": "internal/providers/config_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 1609,
+   "endpoints": [],
    "models": [
     "grok-3"
    ],
    "env": [],
    "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "grpc",
-    "mcp",
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "internal/providers/xai/models_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 107,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.5",
+    "grok-4.5-latest",
+    "grok-imagine-image",
+    "grok-imagine-image-2026-03-02",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "internal/providers/xai/xai_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 711,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-2",
+    "grok-2-1212",
+    "grok-2-mini",
+    "grok-3",
+    "grok-3-mini",
+    "grok-4.10",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.6-latest",
+    "grok-4.7",
+    "grok-4.foo",
+    "grok-99-new"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "internal/providers/xai/images_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 87,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "internal/providers/xai/realtime.go",
+   "kind": "source",
+   "lang": "Go",
+   "lines": 76,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
     "voice_realtime"
    ]
   },
   {
-   "path": "config/config_test.go",
+   "path": "internal/providers/xai/xai.go",
+   "kind": "source",
+   "lang": "Go",
+   "lines": 312,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-2-image",
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4.20",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "internal/providers/xai/realtime_test.go",
    "kind": "test",
    "lang": "Go",
-   "lines": 1756,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY",
-    "XAI_BASE_URL",
-    "XAI_MODELS"
+   "lines": 77,
+   "endpoints": [
+    "/v1/realtime"
    ],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "internal/providers/bedrockmantle/config_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 95,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.3-fast"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "internal/providers/bedrockmantle/routing.go",
+   "kind": "source",
+   "lang": "Go",
+   "lines": 47,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "internal/core/types.go",
+   "kind": "source",
+   "lang": "Go",
+   "lines": 548,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "internal/usage/cost_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 878,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "internal/usage/cost.go",
+   "kind": "source",
+   "lang": "Go",
+   "lines": 773,
+   "endpoints": [],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "internal/usage/stream_observer_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 776,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
    "features": [
     "anthropic_compatible"
    ]
+  },
+  {
+   "path": "internal/usage/extractor_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 1007,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/chat/completions",
+    "/v1/embeddings",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "streaming"
+   ]
+  },
+  {
+   "path": "internal/gateway/batch_usage_test.go",
+   "kind": "test",
+   "lang": "Go",
+   "lines": 135,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
   }
  ]
 }

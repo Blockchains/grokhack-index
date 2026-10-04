@@ -2,16 +2,16 @@
  "fork": "Blockchains/claude-council",
  "upstream": "hex/claude-council",
  "category": "gateway-router",
- "stars": 819,
+ "stars": 826,
  "license_spdx": "MIT",
  "license_text_head": "MIT License Copyright (c) 2025-2026 hex Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom ",
  "pushed_at": "2026-10-01T13:16:08Z",
  "description": "Claude Code plugin that asks several AI coding agents the same question and shows their answers side by side. Gemini, OpenAI, Grok, Perplexity, Kimi and any model OpenRouter routes to over API; codex, antigravity, grok, kimi and cursor CLIs on subscription auth; ollama locally. Codex specialists take coding tasks on their own branch (experimental).",
  "commit": "5e4267ceddd7f316d2e508db894141ffe9621950",
- "indexed_at": "2026-10-03T18:48:22Z",
+ "indexed_at": "2026-10-04T14:53:17Z",
  "status": "ok",
- "clone_kb": 6480,
- "seconds": 1.3,
+ "clone_kb": 6476,
+ "seconds": 2.7,
  "files_scanned": 170,
  "languages": {
   "TypeScript": 30,
@@ -20,8 +20,8 @@
  "grok_files": 14,
  "grok_files_by_kind": {
   "doc": 6,
-  "source": 7,
-  "test": 1
+  "test": 1,
+  "source": 7
  },
  "hosts": {
   "api.x.ai": 2
@@ -35,11 +35,11 @@
   "grok-4.6": 5,
   "grok-3-mini": 2,
   "grok-4": 2,
-  "grok-4.3": 1,
   "grok-4.20-reasoning": 1,
   "grok-4.5": 1,
   "grok-4.7": 1,
   "grok-4.x": 1,
+  "grok-4.3": 1,
   "grok-4.20-non-reasoning-latest": 1
  },
  "env_vars": {
@@ -47,38 +47,15 @@
  },
  "features": {
   "anthropic_compatible": 2,
-  "mcp": 1,
+  "voice_realtime": 1,
   "reasoning": 1,
   "vision": 1,
-  "voice_realtime": 1
+  "mcp": 1
  },
  "sdk_exports": [],
  "packages": [],
  "snippets": [],
  "files": [
-  {
-   "path": "README.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 1001,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini",
-    "grok-4",
-    "grok-4.3",
-    "grok-4.6"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "reasoning",
-    "structured_output",
-    "voice_realtime"
-   ]
-  },
   {
    "path": "CHANGELOG.md",
    "kind": "doc",
@@ -109,6 +86,29 @@
    ]
   },
   {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1001,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4",
+    "grok-4.3",
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
    "path": "TESTING.md",
    "kind": "doc",
    "lang": null,
@@ -126,15 +126,15 @@
    ]
   },
   {
-   "path": "scripts/query-council.sh",
-   "kind": "source",
-   "lang": null,
-   "lines": 1078,
+   "path": "mods/council-pane/tests/view.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 285,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
+   "models": [
+    "grok-4.6"
    ],
+   "env": [],
    "features": []
   },
   {
@@ -153,38 +153,29 @@
    "features": []
   },
   {
-   "path": "scripts/providers/grok-cli.sh",
+   "path": "scripts/query-council.sh",
    "kind": "source",
    "lang": null,
-   "lines": 93,
+   "lines": 1078,
    "endpoints": [],
    "models": [],
    "env": [
     "XAI_API_KEY"
    ],
-   "features": [
-    "mcp"
-   ]
+   "features": []
   },
   {
-   "path": "scripts/providers/grok.sh",
+   "path": "scripts/lib/model_fallback.sh",
    "kind": "source",
    "lang": null,
-   "lines": 141,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
+   "lines": 91,
+   "endpoints": [],
    "models": [
-    "grok-3-mini",
-    "grok-4",
-    "grok-4.20-non-reasoning-latest"
+    "grok-4.6"
    ],
-   "env": [
-    "XAI_API_KEY"
-   ],
+   "env": [],
    "features": [
-    "reasoning",
-    "vision"
+    "anthropic_compatible"
    ]
   },
   {
@@ -215,46 +206,39 @@
    "features": []
   },
   {
-   "path": "scripts/lib/model_fallback.sh",
+   "path": "scripts/providers/grok.sh",
    "kind": "source",
    "lang": null,
-   "lines": 91,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
+   "lines": 141,
+   "endpoints": [
+    "/v1/chat/completions"
    ],
-   "env": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4",
+    "grok-4.20-non-reasoning-latest"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
    "features": [
-    "anthropic_compatible"
+    "reasoning",
+    "vision"
    ]
   },
   {
-   "path": "docs/ARCHITECTURE.md",
-   "kind": "doc",
+   "path": "scripts/providers/grok-cli.sh",
+   "kind": "source",
    "lang": null,
-   "lines": 757,
+   "lines": 93,
    "endpoints": [],
    "models": [],
    "env": [
     "XAI_API_KEY"
    ],
    "features": [
-    "anthropic_compatible",
-    "structured_output",
-    "vision"
+    "mcp"
    ]
-  },
-  {
-   "path": "mods/council-pane/tests/view.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 285,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": []
   },
   {
    "path": "skills/provider-integration/SKILL.md",
@@ -282,6 +266,22 @@
    "env": [],
    "features": [
     "structured_output"
+   ]
+  },
+  {
+   "path": "docs/ARCHITECTURE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 757,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output",
+    "vision"
    ]
   }
  ]

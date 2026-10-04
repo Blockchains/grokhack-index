@@ -2,16 +2,16 @@
  "fork": "Blockchains/ccteam",
  "upstream": "firstintent/ccteam",
  "category": "coding-agent-cli",
- "stars": 627,
+ "stars": 631,
  "license_spdx": "MIT",
  "license_text_head": "MIT License Copyright (c) 2026 FirstIntent Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to wh",
- "pushed_at": "2026-09-25T07:12:18Z",
+ "pushed_at": "2026-10-03T20:05:48Z",
  "description": "ccteam turns the coding agents you already run (Claude Code, Codex, Grok, DeepSeek Harness, Kimi, Pi) into one team \u2014 any session can spawn, dispatch, and collect work from any vendor on any machine, while you steer it all from Telegram, Lark, or a browser tab. \u628a\u4f60\u5728\u7528\u7684\u7f16\u7a0b agent \u7f16\u6210\u4e00\u652f\u56e2\u961f,\u8de8\u5382\u5546\u8de8\u673a\u5668\u6d3e\u6d3b,Telegram/\u98de\u4e66/\u7f51\u9875\u7edf\u4e00\u6307\u6325\u3002",
  "commit": "3d2960618c28b0a9af43b54834d665dcd5101623",
- "indexed_at": "2026-10-03T18:48:28Z",
+ "indexed_at": "2026-10-04T14:55:17Z",
  "status": "ok",
  "clone_kb": 28392,
- "seconds": 5.9,
+ "seconds": 12.6,
  "files_scanned": 786,
  "languages": {
   "Rust": 437,
@@ -40,8 +40,8 @@
  "features": {
   "mcp": 4,
   "reasoning": 4,
-  "anthropic_compatible": 2,
   "tool_calling": 2,
+  "anthropic_compatible": 2,
   "streaming": 1,
   "structured_output": 1
  },
@@ -56,6 +56,48 @@
   }
  ],
  "files": [
+  {
+   "path": "crates/ccteam-cli/tests/doctor_readiness_test.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 490,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "CCTEAM_GROK_BIN",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "crates/ccteam-cli/tests/doctor_progress_test.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 197,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "CCTEAM_GROK_BIN",
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "crates/ccteam-cli/src/doctor.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1127,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
   {
    "path": "crates/ccteam-harness/tests/grok_acp_test.rs",
    "kind": "test",
@@ -113,23 +155,6 @@
    "features": []
   },
   {
-   "path": "crates/ccteam-harness/src/execution/grok_acp/spawn_spec.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 222,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [
-    "CCTEAM_GROK_BIN"
-   ],
-   "features": [
-    "mcp",
-    "reasoning"
-   ]
-  },
-  {
    "path": "crates/ccteam-harness/src/execution/grok_acp/mod.rs",
    "kind": "source",
    "lang": "Rust",
@@ -145,17 +170,19 @@
    ]
   },
   {
-   "path": "crates/ccteam-harness/src/execution/acp/protocol.rs",
+   "path": "crates/ccteam-harness/src/execution/grok_acp/spawn_spec.rs",
    "kind": "source",
    "lang": "Rust",
-   "lines": 869,
+   "lines": 222,
    "endpoints": [],
    "models": [
     "grok-4.5"
    ],
-   "env": [],
+   "env": [
+    "CCTEAM_GROK_BIN"
+   ],
    "features": [
-    "anthropic_compatible",
+    "mcp",
     "reasoning"
    ]
   },
@@ -175,45 +202,18 @@
    ]
   },
   {
-   "path": "crates/ccteam-cli/tests/doctor_progress_test.rs",
-   "kind": "test",
-   "lang": "Rust",
-   "lines": 197,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "CCTEAM_GROK_BIN",
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "crates/ccteam-cli/tests/doctor_readiness_test.rs",
-   "kind": "test",
-   "lang": "Rust",
-   "lines": 490,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "CCTEAM_GROK_BIN",
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp"
-   ]
-  },
-  {
-   "path": "crates/ccteam-cli/src/doctor.rs",
+   "path": "crates/ccteam-harness/src/execution/acp/protocol.rs",
    "kind": "source",
    "lang": "Rust",
-   "lines": 1127,
+   "lines": 869,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
+   "models": [
+    "grok-4.5"
    ],
+   "env": [],
    "features": [
-    "mcp"
+    "anthropic_compatible",
+    "reasoning"
    ]
   },
   {

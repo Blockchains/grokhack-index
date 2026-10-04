@@ -2,16 +2,16 @@
  "fork": "Blockchains/cc-switch",
  "upstream": "farion1231/cc-switch",
  "category": "gateway-router",
- "stars": 139771,
+ "stars": 139947,
  "license_spdx": "MIT",
  "license_text_head": "MIT License Copyright (c) 2025 Jason Young Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to wh",
- "pushed_at": "2026-10-03T16:17:56Z",
+ "pushed_at": "2026-10-04T12:12:51Z",
  "description": "A cross-platform desktop All-in-One assistant for Claude Code, Codex, OpenCode, OpenClaw, Grok Build & Hermes Agent. Only official website: ccswitch.io",
  "commit": "ba8c1cd611b172054d2bf4859edef20549f4cf4c",
- "indexed_at": "2026-10-03T18:47:32Z",
+ "indexed_at": "2026-10-04T14:52:47Z",
  "status": "ok",
- "clone_kb": 83120,
- "seconds": 14.1,
+ "clone_kb": 83112,
+ "seconds": 16.4,
  "files_scanned": 1170,
  "languages": {
   "TypeScript": 603,
@@ -45,13 +45,6 @@
   "grok-4": 3,
   "grok-4.3": 3,
   "grok-4.5-unsupported": 1,
-  "grok-3": 1,
-  "grok-3-mini": 1,
-  "grok-4-1-fast-non-reasoning": 1,
-  "grok-4-1-fast-reasoning": 1,
-  "grok-4.20-0309-non-reasoning": 1,
-  "grok-4.20-0309-reasoning": 1,
-  "grok-code-fast-1": 1,
   "grok-4.10": 1,
   "grok-4.10-build": 1,
   "grok-4.4": 1,
@@ -64,17 +57,24 @@
   "grok-4.7-fast": 1,
   "grok-1": 1,
   "grok-6-future-alias": 1,
+  "grok-3": 1,
+  "grok-3-mini": 1,
+  "grok-4-1-fast-non-reasoning": 1,
+  "grok-4-1-fast-reasoning": 1,
+  "grok-4.20-0309-non-reasoning": 1,
+  "grok-4.20-0309-reasoning": 1,
+  "grok-code-fast-1": 1,
   "grok-4-5": 1
  },
  "env_vars": {
   "XAI_API_KEY": 14,
   "XAI_API_BASE_URL": 3,
   "XAI_SUPPORTED_TOOL_TYPES": 1,
-  "GOOGLE_GENAI_USE_VERTEXAI": 1,
-  "MAX_GROK_FILE_BYTES": 1,
   "MY_GROK_DEFAULT_MODEL": 1,
   "MY_XAI_API_KEY": 1,
   "XAI_API_KEY_BACKUP": 1,
+  "MAX_GROK_FILE_BYTES": 1,
+  "GOOGLE_GENAI_USE_VERTEXAI": 1,
   "OPENROUTER_STYLE_GROK_MODEL": 1
  },
  "features": {
@@ -111,10 +111,22 @@
    "code": "                .expect(\"managed auth placeholder\")\n                .strategy,\n            AuthStrategy::XaiOAuth\n        );\n        assert_eq!(\n            adapter.build_url(super::super::XAI_API_BASE_URL, \"/v1/messages?beta=1\"),\n            \"https://api.x.ai/v1/responses?beta=1\"\n        );\n\n        let transformed = transform_claude_request_for_api_format(\n            json!({\n                \"model\": \"grok-4.5\",\n                \"max_tokens\": 2048,\n                \"thinking\": { \"type\": \"enabled\", \"budget_tokens\": 20000 },\n                \"messages\": [{ \"role\": \"user\", \"content\": \"hello\" }]\n            }),\n            &provider,\n            \"openai_responses\",\n            None,\n            None,\n        )\n        .unwrap();\n        assert_eq!(transformed[\"reasoning\"][\"effort\"], json!(\"high\"));\n        assert_eq!("
   },
   {
+   "path": "src-tauri/src/proxy/providers/codex.rs",
+   "start": 214,
+   "end": 237,
+   "code": "/// `422 unknown variant \"namespace\"`. xAI also rejects root `oneOf`/`anyOf`\n/// function schemas (notably `mcp__codex_app__automation_update`). The\n/// Chat/Anthropic transform paths already unwrap namespaces, so this only\n/// fires on native Responses passthrough.\n///\n/// Covers managed xAI OAuth *and* API-key providers whose live upstream is\n/// `api.x.ai` with `wire_api = \"responses\"`. See farion1231/cc-switch#6815.\npub fn provider_needs_responses_namespace_flatten(provider: &Provider) -> bool {\n    provider.is_xai_oauth() || provider_is_xai_native_responses(provider)\n}\n\n/// True when this Codex provider talks native Responses to first-party xAI\n/// (`api.x.ai`), including API-key Grok cards that are not `xai_oauth`.\nfn provider_is_xai_native_responses(provider: &Provider) -> bool {\n    let config_text = provider\n        .settings_config\n        .get(\"config\")\n        .and_then(|v| v.as_str())\n        .unwrap_or(\"\");\n\n    let Some(wire_api) = extract_codex_wire_api_from_toml(config_text) else {\n        return false;\n    };\n    if !wire_api.eq_ignore_ascii_case(\"responses\") {"
+  },
+  {
    "path": "src-tauri/src/proxy/providers/transform_codex_chat_moonshot_schema.rs",
    "start": 201,
    "end": 224,
    "code": "            \" https://api.moonshot.cn/v1/chat/completions \",\n        ] {\n            assert!(upstream_requires_ref_sibling_all_of(url), \"{url}\");\n        }\n        for url in [\n            \"https://api.openai.com/v1\",\n            \"https://api.x.ai/v1\",\n            \"https://kimi-relay.example.com/v1\",\n            \"https://api.kimi.com.evil.net/v1\",\n            \"https://notmoonshot.cn/v1\",\n            \"api.moonshot.cn/v1\",\n            \"\",\n        ] {\n            assert!(!upstream_requires_ref_sibling_all_of(url), \"{url}\");\n        }\n    }\n\n    #[test]\n    fn wraps_ref_siblings_in_properties_and_defs() {\n        let mut schema = desktop_like_schema();\n        assert_eq!(wrap_ref_siblings(&mut schema), 2);\n        assert_eq!(\n            schema,\n            json!({"
+  },
+  {
+   "path": "src-tauri/src/proxy/providers/transform_codex_responses_xai_sanitize.rs",
+   "start": 1,
+   "end": 22,
+   "code": "//! xAI (Grok) native Responses compatibility for Codex Desktop.\n//!\n//! Codex 0.142+ sends `wire_api=\"responses\"` requests carrying a handful of\n//! OpenAI-backend-private fields and tool carriers that xAI's strict\n//! `api.x.ai/v1/responses` serde parser rejects (HTTP 400/422). cc-switch's\n//! Chat/Anthropic transforms already drop these on the way through, but the\n//! *native* Responses passthrough forwards the body verbatim, so we scrub them\n//! here.\n//!\n//! Request-side [`sanitize_xai_responses_request`] is a faithful port of\n//! sub2api's `patchGrokResponsesBody`\n//! (`backend/internal/service/openai_gateway_grok.go`) plus the #6815 schema\n//! collapse for root `oneOf`/`anyOf` function parameters. Field removal and\n//! that schema rewrite stay in that function. Collaboration `agent_message`\n//! items and return-path whole-float tool argument rewrites are separate\n//! entry points so they cannot be mistaken for \"just delete a field\". Gated on\n//! [`super::codex::provider_needs_responses_namespace_flatten`], which covers\n//! xAI OAuth *and* API-key cards whose live upstream is `api.x.ai` Responses.\n//!\n//! Run request sanitizers *after* namespace flattening: by then Codex's\n//! `namespace` tools are already lifted to top-level `function` tools, so the\n//! tool-type whitelist below keeps them instead of dropping them."
   },
   {
    "path": "src-tauri/src/proxy/providers/transform_codex_responses_namespace.rs",
@@ -123,22 +135,16 @@
    "code": "//! Codex `namespace` tool flattening for native Responses upstreams.\n//!\n//! Codex 0.142+ declares its plugin/MCP tools with a private Responses\n//! extension shape \u2014 `{\"type\":\"namespace\",\"name\":\"mcp__x__\",\"tools\":[\u2026]}` plus\n//! `tool_search` \u2014 that the OpenAI ChatGPT backend understands but strict\n//! third-party gateways (e.g. xAI's `api.x.ai/v1/responses`) reject with\n//! `422 unknown variant \"namespace\"`. cc-switch's Chat/Anthropic transforms\n//! already unwrap these, but the *native* Responses passthrough sends them\n//! verbatim.\n//!\n//! This module implements the request-side flatten + response-side restore for\n//! that native path, mirroring the proven design of sub2api\n//! (`pkg/apicompat/responses_namespace.go`):\n//!\n//! - **Request**: lift every `namespace` child into a top-level `function` tool\n//!   whose name is the deterministic flat name `<namespace>__<child>` (with the\n//!   same sha256 truncation used by the Chat path, so both layers agree), then\n//!   rewrite namespace-qualified `function_call` items in the replayed `input`\n//!   history to the flat name and drop a `namespace`-typed `tool_choice`.\n//! - **Response**: restore the flat `function_call` names back to\n//!   `{name, namespace}` so the Codex client can match the call against its own\n//!   namespaced tool registry (streaming and non-streaming).\n//!"
   },
   {
-   "path": "src-tauri/src/proxy/providers/codex.rs",
-   "start": 214,
-   "end": 237,
-   "code": "/// `422 unknown variant \"namespace\"`. xAI also rejects root `oneOf`/`anyOf`\n/// function schemas (notably `mcp__codex_app__automation_update`). The\n/// Chat/Anthropic transform paths already unwrap namespaces, so this only\n/// fires on native Responses passthrough.\n///\n/// Covers managed xAI OAuth *and* API-key providers whose live upstream is\n/// `api.x.ai` with `wire_api = \"responses\"`. See farion1231/cc-switch#6815.\npub fn provider_needs_responses_namespace_flatten(provider: &Provider) -> bool {\n    provider.is_xai_oauth() || provider_is_xai_native_responses(provider)\n}\n\n/// True when this Codex provider talks native Responses to first-party xAI\n/// (`api.x.ai`), including API-key Grok cards that are not `xai_oauth`.\nfn provider_is_xai_native_responses(provider: &Provider) -> bool {\n    let config_text = provider\n        .settings_config\n        .get(\"config\")\n        .and_then(|v| v.as_str())\n        .unwrap_or(\"\");\n\n    let Some(wire_api) = extract_codex_wire_api_from_toml(config_text) else {\n        return false;\n    };\n    if !wire_api.eq_ignore_ascii_case(\"responses\") {"
-  },
-  {
    "path": "src-tauri/src/proxy/providers/mod.rs",
    "start": 46,
    "end": 69,
    "code": "\nuse crate::app_config::AppType;\nuse crate::provider::Provider;\nuse serde::{Deserialize, Serialize};\n\npub const CHATGPT_CODEX_BASE_URL: &str = \"https://chatgpt.com/backend-api/codex\";\npub const XAI_API_BASE_URL: &str = \"https://api.x.ai/v1\";\n\n// \u516c\u5f00\u5bfc\u51fa\npub use adapter::ProviderAdapter;\npub use auth::{AuthInfo, AuthStrategy};\npub use claude::{\n    claude_api_format_needs_transform, get_claude_api_format,\n    normalize_anthropic_messages_for_provider, transform_claude_request_for_api_format,\n    ClaudeAdapter,\n};\npub use codex::CodexAdapter;\npub use codex::{\n    apply_codex_chat_upstream_model, apply_codex_upstream_model, codex_provider_upstream_model,\n    codex_stack_upstream_rejects_web_search, inject_codex_chat_prompt_cache_key,\n    is_codex_official_provider, provider_needs_responses_late_arguments_repair,\n    provider_needs_responses_namespace_flatten, resolve_codex_catalog_tool_profile,\n    resolve_codex_chat_reasoning_config, should_convert_codex_responses_to_anthropic,\n    should_convert_codex_responses_to_chat, strip_codex_hosted_web_search,"
   },
   {
-   "path": "src-tauri/src/proxy/providers/transform_codex_responses_xai_sanitize.rs",
-   "start": 1,
-   "end": 22,
-   "code": "//! xAI (Grok) native Responses compatibility for Codex Desktop.\n//!\n//! Codex 0.142+ sends `wire_api=\"responses\"` requests carrying a handful of\n//! OpenAI-backend-private fields and tool carriers that xAI's strict\n//! `api.x.ai/v1/responses` serde parser rejects (HTTP 400/422). cc-switch's\n//! Chat/Anthropic transforms already drop these on the way through, but the\n//! *native* Responses passthrough forwards the body verbatim, so we scrub them\n//! here.\n//!\n//! Request-side [`sanitize_xai_responses_request`] is a faithful port of\n//! sub2api's `patchGrokResponsesBody`\n//! (`backend/internal/service/openai_gateway_grok.go`) plus the #6815 schema\n//! collapse for root `oneOf`/`anyOf` function parameters. Field removal and\n//! that schema rewrite stay in that function. Collaboration `agent_message`\n//! items and return-path whole-float tool argument rewrites are separate\n//! entry points so they cannot be mistaken for \"just delete a field\". Gated on\n//! [`super::codex::provider_needs_responses_namespace_flatten`], which covers\n//! xAI OAuth *and* API-key cards whose live upstream is `api.x.ai` Responses.\n//!\n//! Run request sanitizers *after* namespace flattening: by then Codex's\n//! `namespace` tools are already lifted to top-level `function` tools, so the\n//! tool-type whitelist below keeps them instead of dropping them."
+   "path": "src-tauri/src/services/env_checker.rs",
+   "start": 44,
+   "end": 67,
+   "code": "        \"codex\" => vec![EnvKeyword::Prefix(\"OPENAI\")],\n        \"gemini\" => vec![\n            EnvKeyword::Prefix(\"GEMINI\"),\n            EnvKeyword::Prefix(\"GOOGLE_GEMINI\"),\n        ],\n        \"grokbuild\" | \"grok\" => vec![\n            EnvKeyword::Exact(\"XAI_API_KEY\"),\n            EnvKeyword::Exact(\"GROK_DEFAULT_MODEL\"),\n        ],\n        _ => vec![],\n    }\n}\n\nfn matches_env_keyword(name: &str, keywords: &[EnvKeyword]) -> bool {\n    let upper_name = name.to_uppercase();\n    keywords.iter().any(|keyword| match keyword {\n        EnvKeyword::Exact(name) => upper_name == *name,\n        EnvKeyword::Prefix(prefix) => upper_name.starts_with(prefix),\n    })\n}\n\n/// Check system environment variables (Windows Registry or Unix env)\n#[cfg(target_os = \"windows\")]\nfn check_system_env(keywords: &[EnvKeyword]) -> Result<Vec<EnvConflict>, String> {"
   },
   {
    "path": "src-tauri/src/mode/controller.rs",
@@ -153,22 +159,10 @@
    "code": "\n    /// deeplink \u540c\u65f6\u58f0\u660e `api_key` \u4e0e `env_key` \u65f6\uff0c\u5bfc\u5165\u7ed3\u679c\u53ea\u4fdd\u7559\u7528\u6237\u53ef\u89c1\u7684\n    /// `api_key`\uff1a\u65e2\u4e0d\u80fd\u5e26\u4e0a\u89e3\u6790\u540e\u7684\u660e\u6587\u73af\u5883\u53d8\u91cf\uff0c\u4e5f\u4e0d\u80fd\u628a `env_key` \u8fd9\u4e2a\u95f4\u63a5\n    /// \u5f15\u7528\u672c\u8eab\u5199\u8fdb\u4f9b\u5e94\u5546\u914d\u7f6e\u3002\n    ///\n    /// \u540e\u8005\u5bb9\u6613\u88ab\u8bef\u5f53\u6210\u300c\u5e94\u8be5\u8865\u4e0a\u7684\u529f\u80fd\u300d\uff0c\u4f46\u6070\u6070\u4e0d\u80fd\u8865\uff1adeeplink \u662f\u4e0d\u53ef\u4fe1\u8f93\u5165\uff0c\n    /// \u653b\u51fb\u8005\u53ef\u4ee5\u8ba9 `env_key` \u6307\u5411 `XAI_API_KEY`\u3001`base_url` \u6307\u5411\u81ea\u5df1\u7684\u670d\u52a1\u5668\u3002\n    /// \u5bc6\u94a5\u867d\u7136\u5bfc\u5165\u65f6\u6ca1\u843d\u76d8\uff0c\u5374\u4f1a\u5728\u8f6c\u53d1/\u7528\u91cf\u67e5\u8be2\u8c03\u7528 `extract_credentials` \u65f6\n    /// \u88ab\u73b0\u573a\u89e3\u6790\u5e76\u53d1\u7ed9\u653b\u51fb\u8005\u2014\u2014\u7b49\u4e8e\u628a\u5df2\u4fee\u6389\u7684\u6cc4\u9732\u6362\u6210\u5ef6\u8fdf\u89e6\u53d1\u7684\u7248\u672c\u3002\n    /// \u624b\u5de5\u5efa\u4f9b\u5e94\u5546\u7684\u8868\u5355\u8def\u5f84\u4e0d\u53d7\u5f71\u54cd\uff0c\u90a3\u91cc\u7684 env_key \u662f\u7528\u6237\u81ea\u5df1\u8f93\u5165\u7684\u3002\n    #[test]\n    #[serial_test::serial]\n    fn grokbuild_deeplink_never_carries_env_key_or_resolved_secret() {\n        let original = std::env::var_os(\"CC_SWITCH_DEEPLINK_ENV_PROBE\");\n        std::env::set_var(\"CC_SWITCH_DEEPLINK_ENV_PROBE\", \"secret-must-not-leak\");\n\n        let mut request = DeepLinkImportRequest {\n            resource: \"provider\".to_string(),\n            app: Some(\"grokbuild\".to_string()),\n            name: Some(\"Attacker\".to_string()),\n            ..Default::default()\n        };\n        let config = serde_json::json!({\n            \"config\": concat!("
   },
   {
-   "path": "src-tauri/src/services/env_checker.rs",
-   "start": 44,
-   "end": 67,
-   "code": "        \"codex\" => vec![EnvKeyword::Prefix(\"OPENAI\")],\n        \"gemini\" => vec![\n            EnvKeyword::Prefix(\"GEMINI\"),\n            EnvKeyword::Prefix(\"GOOGLE_GEMINI\"),\n        ],\n        \"grokbuild\" | \"grok\" => vec![\n            EnvKeyword::Exact(\"XAI_API_KEY\"),\n            EnvKeyword::Exact(\"GROK_DEFAULT_MODEL\"),\n        ],\n        _ => vec![],\n    }\n}\n\nfn matches_env_keyword(name: &str, keywords: &[EnvKeyword]) -> bool {\n    let upper_name = name.to_uppercase();\n    keywords.iter().any(|keyword| match keyword {\n        EnvKeyword::Exact(name) => upper_name == *name,\n        EnvKeyword::Prefix(prefix) => upper_name.starts_with(prefix),\n    })\n}\n\n/// Check system environment variables (Windows Registry or Unix env)\n#[cfg(target_os = \"windows\")]\nfn check_system_env(keywords: &[EnvKeyword]) -> Result<Vec<EnvConflict>, String> {"
-  },
-  {
    "path": "src/components/providers/forms/modelMetadataFill.ts",
    "start": 169,
    "end": 192,
    "code": "        : isAntLing\n          ? \"ant-ling\"\n          : isOpenRouter\n            ? \"openrouter\"\n            : \"openai\";\n  const detectedEffort =\n    !is([\"xai\"], [\"api.x.ai\"]) &&\n    !isZai &&\n    !is([\"moonshotai\", \"moonshotai-cn\"], [\"api.moonshot.\"]) &&\n    !isTogether &&\n    !is([\"cloudflare-ai-gateway\"], [\"gateway.ai.cloudflare.com\"]) &&\n    !is([\"nvidia\"], [\"integrate.api.nvidia.com\"]) &&\n    !isAntLing;\n  return {\n    format:\n      typeof compat.thinkingFormat === \"string\"\n        ? compat.thinkingFormat\n        : detectedFormat,\n    effort:\n      typeof compat.supportsReasoningEffort === \"boolean\"\n        ? compat.supportsReasoningEffort\n        : detectedEffort,\n  };\n}"
-  },
-  {
-   "path": "src/config/claudeProviderPresets.ts",
-   "start": 1812,
-   "end": 1835,
-   "code": "  {\n    name: \"xAI (Grok)\",\n    websiteUrl: \"https://x.ai/grok\",\n    settingsConfig: {\n      env: {\n        // The proxy enforces both this origin and the Responses wire format.\n        ANTHROPIC_BASE_URL: \"https://api.x.ai/v1\",\n        ANTHROPIC_MODEL: \"grok-4.5\",\n        ANTHROPIC_DEFAULT_HAIKU_MODEL: \"grok-4.5\",\n        ANTHROPIC_DEFAULT_SONNET_MODEL: \"grok-4.5\",\n        ANTHROPIC_DEFAULT_OPUS_MODEL: \"grok-4.5\",\n      },\n    },\n    category: \"third_party\",\n    apiFormat: \"openai_responses\",\n    providerType: \"xai_oauth\",\n    requiresOAuth: true,\n    icon: \"xai\",\n    iconColor: \"#000000\",\n  },\n  {\n    name: \"Nvidia\",\n    websiteUrl: \"https://build.nvidia.com\",\n    apiKeyUrl: \"https://build.nvidia.com/settings/api-keys\","
   },
   {
    "path": "src/config/grokBuildProviderPresets.ts",
@@ -181,6 +175,12 @@
    "start": 1000,
    "end": 1023,
    "code": "    iconColor: \"#000000\",\n  },\n  {\n    name: \"xAI (Grok)\",\n    websiteUrl: \"https://x.ai/grok\",\n    category: \"third_party\",\n    baseUrl: \"https://api.x.ai/v1\",\n    mode: \"proxy\",\n    apiFormat: \"openai_responses\",\n    providerType: \"xai_oauth\",\n    requiresOAuth: true,\n    modelRoutes: brandedRoutes(\"grok-4.5\", \"grok-4.5\", \"grok-4.5\"),\n    icon: \"xai\",\n    iconColor: \"#000000\",\n  },\n  {\n    name: \"DeepSeek\",\n    websiteUrl: \"https://platform.deepseek.com\",\n    category: \"cn_official\",\n    baseUrl: \"https://api.deepseek.com/anthropic\",\n    mode: \"proxy\",\n    apiFormat: \"anthropic\",\n    // supports1m\uff1a\u4e24\u4e2a\u6863\u4f4d\u9489\u7684\u90fd\u662f 1M \u7a97\u53e3\u6a21\u578b\uff08\u672c\u4ed3 Codex catalog \u8bb0\n    // deepseek-v4-pro / deepseek-flash \u5747 1048576\uff1bhaiku \u6863\u7684"
+  },
+  {
+   "path": "src/config/claudeProviderPresets.ts",
+   "start": 1812,
+   "end": 1835,
+   "code": "  {\n    name: \"xAI (Grok)\",\n    websiteUrl: \"https://x.ai/grok\",\n    settingsConfig: {\n      env: {\n        // The proxy enforces both this origin and the Responses wire format.\n        ANTHROPIC_BASE_URL: \"https://api.x.ai/v1\",\n        ANTHROPIC_MODEL: \"grok-4.5\",\n        ANTHROPIC_DEFAULT_HAIKU_MODEL: \"grok-4.5\",\n        ANTHROPIC_DEFAULT_SONNET_MODEL: \"grok-4.5\",\n        ANTHROPIC_DEFAULT_OPUS_MODEL: \"grok-4.5\",\n      },\n    },\n    category: \"third_party\",\n    apiFormat: \"openai_responses\",\n    providerType: \"xai_oauth\",\n    requiresOAuth: true,\n    icon: \"xai\",\n    iconColor: \"#000000\",\n  },\n  {\n    name: \"Nvidia\",\n    websiteUrl: \"https://build.nvidia.com\",\n    apiKeyUrl: \"https://build.nvidia.com/settings/api-keys\","
   },
   {
    "path": "src/config/codexProviderPresets.ts",
@@ -228,86 +228,6 @@
    ]
   },
   {
-   "path": "tests/utils/deepLinkConfigPreview.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 146,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "tests/components/AddProviderDialog.test.tsx",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 430,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "tests/components/GrokBuildProviderForm.test.tsx",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 303,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "tests/components/EditProviderDialog.test.tsx",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 519,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "structured_output"
-   ]
-  },
-  {
-   "path": "tests/config/xaiOauthProviderPresets.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 117,
-   "endpoints": [],
-   "models": [
-    "grok-4.5",
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "tests/config/codexReasoningLevelPresets.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 233,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
    "path": "src-tauri/tests/mcp_commands.rs",
    "kind": "test",
    "lang": "Rust",
@@ -320,21 +240,6 @@
    "features": [
     "mcp",
     "streaming"
-   ]
-  },
-  {
-   "path": "src-tauri/tests/provider_service.rs",
-   "kind": "test",
-   "lang": "Rust",
-   "lines": 3600,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "mcp"
    ]
   },
   {
@@ -353,10 +258,10 @@
    ]
   },
   {
-   "path": "src-tauri/tests/golden/codex_red_lines.rs",
+   "path": "src-tauri/tests/provider_service.rs",
    "kind": "test",
    "lang": "Rust",
-   "lines": 856,
+   "lines": 3600,
    "endpoints": [],
    "models": [
     "grok-4.5"
@@ -364,21 +269,8 @@
    "env": [],
    "features": [
     "anthropic_compatible",
-    "live_search",
     "mcp"
    ]
-  },
-  {
-   "path": "src-tauri/tests/golden/file_modes.rs",
-   "kind": "test",
-   "lang": "Rust",
-   "lines": 183,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": []
   },
   {
    "path": "src-tauri/tests/golden/import_rows.rs",
@@ -394,6 +286,34 @@
     "anthropic_compatible",
     "mcp",
     "reasoning"
+   ]
+  },
+  {
+   "path": "src-tauri/tests/golden/file_modes.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 183,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src-tauri/tests/golden/codex_red_lines.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 856,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "mcp"
    ]
   },
   {
@@ -434,33 +354,6 @@
    ],
    "features": [
     "mcp"
-   ]
-  },
-  {
-   "path": "src-tauri/src/database/schema.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 3929,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-mini",
-    "grok-4",
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-1-fast-reasoning",
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.20-0309-reasoning",
-    "grok-4.3",
-    "grok-4.5",
-    "grok-4.5-build",
-    "grok-4.6",
-    "grok-4.7",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "mcp",
-    "reasoning"
    ]
   },
   {
@@ -512,20 +405,6 @@
    ]
   },
   {
-   "path": "src-tauri/src/proxy/providers/transform_codex_chat_moonshot_schema.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 397,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "live_search"
-   ]
-  },
-  {
    "path": "src-tauri/src/proxy/providers/transform_responses.rs",
    "kind": "source",
    "lang": "Rust",
@@ -543,6 +422,46 @@
     "streaming",
     "tool_calling",
     "vision"
+   ]
+  },
+  {
+   "path": "src-tauri/src/proxy/providers/codex.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 2355,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_API_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src-tauri/src/proxy/providers/transform_codex_chat_moonshot_schema.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 397,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "live_search"
    ]
   },
   {
@@ -576,65 +495,6 @@
    ]
   },
   {
-   "path": "src-tauri/src/proxy/providers/transform_codex_responses_namespace.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 492,
-   "endpoints": [
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "mcp",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src-tauri/src/proxy/providers/codex.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 2355,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/messages",
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-4.5",
-    "grok-4.6"
-   ],
-   "env": [
-    "XAI_API_BASE_URL"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "live_search",
-    "openai_compatible",
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src-tauri/src/proxy/providers/mod.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 551,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_BASE_URL"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "live_search"
-   ]
-  },
-  {
    "path": "src-tauri/src/proxy/providers/transform_codex_responses_xai_sanitize.rs",
    "kind": "source",
    "lang": "Rust",
@@ -662,6 +522,39 @@
    ]
   },
   {
+   "path": "src-tauri/src/proxy/providers/transform_codex_responses_namespace.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 492,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src-tauri/src/proxy/providers/mod.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 551,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "live_search"
+   ]
+  },
+  {
    "path": "src-tauri/src/proxy/usage/logger.rs",
    "kind": "source",
    "lang": "Rust",
@@ -674,98 +567,20 @@
    "features": []
   },
   {
-   "path": "src-tauri/src/live/project/grok.rs",
+   "path": "src-tauri/src/services/env_checker.rs",
    "kind": "source",
    "lang": "Rust",
-   "lines": 492,
+   "lines": 235,
    "endpoints": [],
-   "models": [
-    "grok-4.5",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "mcp",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "src-tauri/src/live/patch/mod.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 262,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "src-tauri/src/mode/controller.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 6545,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.5",
-    "grok-4.6"
-   ],
+   "models": [],
    "env": [
-    "GOOGLE_GENAI_USE_VERTEXAI"
+    "MY_GROK_DEFAULT_MODEL",
+    "MY_XAI_API_KEY",
+    "XAI_API_KEY",
+    "XAI_API_KEY_BACKUP"
    ],
    "features": [
-    "anthropic_compatible",
-    "mcp",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "src-tauri/src/mode/state.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 513,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "src-tauri/src/deeplink/tests.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 995,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "mcp"
-   ]
-  },
-  {
-   "path": "src-tauri/src/deeplink/provider.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 1192,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "reasoning"
+    "anthropic_compatible"
    ]
   },
   {
@@ -814,23 +629,6 @@
    "features": []
   },
   {
-   "path": "src-tauri/src/services/env_checker.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 235,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "MY_GROK_DEFAULT_MODEL",
-    "MY_XAI_API_KEY",
-    "XAI_API_KEY",
-    "XAI_API_KEY_BACKUP"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
    "path": "src-tauri/src/services/provider/grok_editor.rs",
    "kind": "source",
    "lang": "Rust",
@@ -847,22 +645,447 @@
    ]
   },
   {
-   "path": "docs/release-notes/v3.20.0-en.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 394,
-   "endpoints": [
-    "/v1/messages"
+   "path": "src-tauri/src/mode/state.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 513,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
    ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src-tauri/src/mode/controller.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 6545,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [
+    "GOOGLE_GENAI_USE_VERTEXAI"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "src-tauri/src/live/project/grok.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 492,
+   "endpoints": [],
    "models": [
     "grok-4.5",
     "grok-4.6"
    ],
    "env": [],
    "features": [
+    "live_search",
+    "mcp",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "src-tauri/src/live/patch/mod.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 262,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src-tauri/src/database/schema.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 3929,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.5-build",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src-tauri/src/deeplink/provider.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1192,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
     "anthropic_compatible",
     "mcp",
     "reasoning"
+   ]
+  },
+  {
+   "path": "src-tauri/src/deeplink/tests.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 995,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "tests/components/AddProviderDialog.test.tsx",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 430,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/components/GrokBuildProviderForm.test.tsx",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 303,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/components/EditProviderDialog.test.tsx",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 519,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/utils/deepLinkConfigPreview.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 146,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/config/codexReasoningLevelPresets.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 233,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/config/xaiOauthProviderPresets.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 117,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/i18n/locales/ja.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 4549,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/i18n/locales/zh.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 4549,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/i18n/locales/zh-TW.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 4550,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/i18n/locales/en.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 4549,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/components/providers/forms/CodexFormFields.tsx",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1740,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/components/providers/forms/modelMetadataFill.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 242,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "src/utils/grokBuildConfig.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 166,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/utils/grokBuildConfig.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 142,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "src/config/piThinkingProfiles.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 395,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/config/grokBuildProviderPresets.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 608,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "OPENROUTER_STYLE_GROK_MODEL"
+   ],
+   "features": []
+  },
+  {
+   "path": "src/config/piModelCatalog.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 826,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/config/grokBuildProviderPresets.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 77,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/config/claudeDesktopProviderPresets.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1686,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/config/claudeProviderPresets.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 2037,
+   "endpoints": [
+    "/v1/messages",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/config/codexProviderPresets.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 3486,
+   "endpoints": [
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4-5",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling"
    ]
   },
   {
@@ -887,6 +1110,119 @@
    ]
   },
   {
+   "path": "docs/release-notes/v3.18.0-ja.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 331,
+   "endpoints": [
+    "/v1/messages",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "docs/release-notes/v3.19.1-zh.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 369,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/release-notes/v3.19.0-zh.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 353,
+   "endpoints": [],
+   "models": [
+    "grok-4.5-build"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings",
+    "mcp",
+    "streaming",
+    "structured_output",
+    "vision"
+   ]
+  },
+  {
+   "path": "docs/release-notes/v3.20.0-en.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 394,
+   "endpoints": [
+    "/v1/messages"
+   ],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "docs/release-notes/v3.19.0-en.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 353,
+   "endpoints": [],
+   "models": [
+    "grok-4.5-build"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings",
+    "mcp",
+    "streaming",
+    "structured_output",
+    "vision"
+   ]
+  },
+  {
+   "path": "docs/release-notes/v3.18.0-zh.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 331,
+   "endpoints": [
+    "/v1/messages",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp",
+    "reasoning"
+   ]
+  },
+  {
    "path": "docs/release-notes/v3.20.4-zh.md",
    "kind": "doc",
    "lang": null,
@@ -905,6 +1241,44 @@
     "mcp",
     "reasoning",
     "vision"
+   ]
+  },
+  {
+   "path": "docs/release-notes/v3.20.2-zh.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 342,
+   "endpoints": [
+    "/v1/images/generations"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/release-notes/v3.20.2-ja.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 342,
+   "endpoints": [
+    "/v1/images/generations"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "mcp",
+    "tool_calling"
    ]
   },
   {
@@ -947,39 +1321,7 @@
    ]
   },
   {
-   "path": "docs/release-notes/v3.19.1-zh.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 369,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "live_search",
-    "mcp",
-    "streaming"
-   ]
-  },
-  {
-   "path": "docs/release-notes/v3.19.1-en.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 369,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "live_search",
-    "mcp",
-    "streaming"
-   ]
-  },
-  {
-   "path": "docs/release-notes/v3.20.2-zh.md",
+   "path": "docs/release-notes/v3.20.2-en.md",
    "kind": "doc",
    "lang": null,
    "lines": 342,
@@ -995,25 +1337,6 @@
     "image_generation",
     "mcp",
     "tool_calling"
-   ]
-  },
-  {
-   "path": "docs/release-notes/v3.18.0-zh.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 331,
-   "endpoints": [
-    "/v1/messages",
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "reasoning"
    ]
   },
   {
@@ -1036,61 +1359,54 @@
    ]
   },
   {
-   "path": "docs/release-notes/v3.19.0-zh.md",
+   "path": "docs/release-notes/v3.19.1-en.md",
    "kind": "doc",
    "lang": null,
-   "lines": 353,
+   "lines": 369,
    "endpoints": [],
-   "models": [
-    "grok-4.5-build"
-   ],
+   "models": [],
    "env": [
     "XAI_API_KEY"
    ],
    "features": [
-    "embeddings",
+    "live_search",
     "mcp",
-    "streaming",
-    "structured_output",
-    "vision"
+    "streaming"
    ]
   },
   {
-   "path": "docs/release-notes/v3.20.2-en.md",
+   "path": "docs/release-notes/v3.19.1-ja.md",
    "kind": "doc",
    "lang": null,
-   "lines": 342,
+   "lines": 369,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "mcp",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/release-notes/v3.20.0-ja.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 394,
    "endpoints": [
-    "/v1/images/generations"
+    "/v1/messages"
    ],
    "models": [
-    "grok-4.5"
+    "grok-4.5",
+    "grok-4.6"
    ],
    "env": [],
    "features": [
     "anthropic_compatible",
-    "image_generation",
     "mcp",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "docs/release-notes/v3.20.2-ja.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 342,
-   "endpoints": [
-    "/v1/images/generations"
-   ],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "image_generation",
-    "mcp",
-    "tool_calling"
+    "reasoning"
    ]
   },
   {
@@ -1115,95 +1431,6 @@
    ]
   },
   {
-   "path": "docs/release-notes/v3.18.0-ja.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 331,
-   "endpoints": [
-    "/v1/messages",
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "docs/release-notes/v3.20.0-ja.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 394,
-   "endpoints": [
-    "/v1/messages"
-   ],
-   "models": [
-    "grok-4.5",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "docs/release-notes/v3.19.1-ja.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 369,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "live_search",
-    "mcp",
-    "streaming"
-   ]
-  },
-  {
-   "path": "docs/release-notes/v3.19.0-en.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 353,
-   "endpoints": [],
-   "models": [
-    "grok-4.5-build"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "embeddings",
-    "mcp",
-    "streaming",
-    "structured_output",
-    "vision"
-   ]
-  },
-  {
-   "path": "docs/user-manual/zh/1-getting-started/1.5-settings.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 392,
-   "endpoints": [
-    "/v1/models",
-    "/v1/responses"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "mcp"
-   ]
-  },
-  {
    "path": "docs/user-manual/zh/5-faq/5.4-env-conflict.md",
    "kind": "doc",
    "lang": null,
@@ -1216,34 +1443,7 @@
    "features": []
   },
   {
-   "path": "docs/user-manual/en/1-getting-started/1.5-settings.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 392,
-   "endpoints": [
-    "/v1/models",
-    "/v1/responses"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "mcp"
-   ]
-  },
-  {
-   "path": "docs/user-manual/en/5-faq/5.4-env-conflict.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 110,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "docs/user-manual/ja/1-getting-started/1.5-settings.md",
+   "path": "docs/user-manual/zh/1-getting-started/1.5-settings.md",
    "kind": "doc",
    "lang": null,
    "lines": 392,
@@ -1270,245 +1470,45 @@
    "features": []
   },
   {
-   "path": "src/i18n/locales/ja.json",
-   "kind": "config",
+   "path": "docs/user-manual/ja/1-getting-started/1.5-settings.md",
+   "kind": "doc",
    "lang": null,
-   "lines": 4549,
+   "lines": 392,
    "endpoints": [
-    "/v1/models"
+    "/v1/models",
+    "/v1/responses"
    ],
-   "models": [
-    "grok-4.5"
-   ],
+   "models": [],
    "env": [],
    "features": [
-    "anthropic_compatible",
-    "mcp",
-    "reasoning",
-    "streaming",
-    "tool_calling"
+    "mcp"
    ]
   },
   {
-   "path": "src/i18n/locales/zh-TW.json",
-   "kind": "config",
+   "path": "docs/user-manual/en/5-faq/5.4-env-conflict.md",
+   "kind": "doc",
    "lang": null,
-   "lines": 4550,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/i18n/locales/zh.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 4549,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/i18n/locales/en.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 4549,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/utils/grokBuildConfig.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 166,
+   "lines": 110,
    "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "src/utils/grokBuildConfig.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 142,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
+   "models": [],
    "env": [
     "XAI_API_KEY"
    ],
    "features": []
   },
   {
-   "path": "src/components/providers/forms/CodexFormFields.tsx",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 1740,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "src/components/providers/forms/modelMetadataFill.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 242,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "src/config/piModelCatalog.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 826,
-   "endpoints": [],
-   "models": [
-    "grok-4.3",
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "src/config/grokBuildProviderPresets.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 77,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "src/config/piThinkingProfiles.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 395,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "src/config/claudeProviderPresets.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 2037,
+   "path": "docs/user-manual/en/1-getting-started/1.5-settings.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 392,
    "endpoints": [
-    "/v1/messages",
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "src/config/grokBuildProviderPresets.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 608,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [
-    "OPENROUTER_STYLE_GROK_MODEL"
-   ],
-   "features": []
-  },
-  {
-   "path": "src/config/claudeDesktopProviderPresets.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 1686,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "src/config/codexProviderPresets.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 3486,
-   "endpoints": [
-    "/v1/messages",
     "/v1/models",
     "/v1/responses"
    ],
-   "models": [
-    "grok-4-5",
-    "grok-4.5",
-    "grok-4.6",
-    "grok-4.7"
-   ],
+   "models": [],
    "env": [],
    "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "tool_calling"
+    "mcp"
    ]
   }
  ]

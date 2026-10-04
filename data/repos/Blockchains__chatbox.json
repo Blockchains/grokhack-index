@@ -2,16 +2,16 @@
  "fork": "Blockchains/chatbox",
  "upstream": "chatboxai/chatbox",
  "category": "chat-ui",
- "stars": 41933,
+ "stars": 41937,
  "license_spdx": "GPL-3.0",
  "license_text_head": "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/> Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. Preamble The GNU General Public License is a free, copyleft license for software and other kinds of works. The licenses for most software and other practical wor",
  "pushed_at": "2026-09-24T14:09:13Z",
  "description": "Powerful AI Client",
  "commit": "0ac6385ae1ff5bf778777826da3c5edcd55b61b8",
- "indexed_at": "2026-10-03T18:47:40Z",
+ "indexed_at": "2026-10-04T14:55:41Z",
  "status": "ok",
- "clone_kb": 47996,
- "seconds": 21.2,
+ "clone_kb": 47992,
+ "seconds": 8.7,
  "files_scanned": 1691,
  "languages": {
   "TypeScript": 1558,
@@ -19,9 +19,9 @@
  },
  "grok_files": 20,
  "grok_files_by_kind": {
-  "doc": 1,
   "test": 8,
-  "source": 11
+  "source": 11,
+  "doc": 1
  },
  "hosts": {
   "api.x.ai": 2
@@ -31,20 +31,20 @@
  },
  "models": {
   "grok-4": 6,
-  "grok-4.6": 6,
   "grok-4.5": 6,
+  "grok-4.6": 6,
   "grok-4.3": 5,
   "grok-4-1-fast": 4,
   "grok-4-fast": 4,
   "grok-4-1-fast-non-reasoning": 2,
   "grok-4-1-fast-reasoning": 1,
   "grok-4.1-fast-non-reasoning": 1,
+  "grok-imagine-image-2.0": 1,
   "grok-4.20": 1,
   "grok-4.20-0309-non-reasoning": 1,
   "grok-4.20-0309-reasoning": 1,
   "grok-4.20-multi-agent": 1,
-  "grok-4.20-multi-agent-0309": 1,
-  "grok-imagine-image-2.0": 1
+  "grok-4.20-multi-agent-0309": 1
  },
  "env_vars": {
   "XAI_API_KEY": 1
@@ -75,18 +75,20 @@
  ],
  "files": [
   {
-   "path": "docs/technical/reasoning-control.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 208,
+   "path": "test/integration/model-provider/model-provider.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 149,
    "endpoints": [],
    "models": [
-    "grok-4"
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning"
    ],
    "env": [],
    "features": [
     "anthropic_compatible",
     "reasoning",
+    "streaming",
     "tool_calling"
    ]
   },
@@ -113,32 +115,15 @@
    ]
   },
   {
-   "path": "test/integration/model-provider/model-provider.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 149,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-1-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/shared/providers/definitions/vercel-ai-gateway.ts",
+   "path": "src/shared/utils/reasoning-control.ts",
    "kind": "source",
    "lang": "TypeScript",
-   "lines": 255,
+   "lines": 1046,
    "endpoints": [],
    "models": [
-    "grok-4.1-fast-non-reasoning",
-    "grok-4.6"
+    "grok-4",
+    "grok-4-1-fast",
+    "grok-4-fast"
    ],
    "env": [],
    "features": [
@@ -148,18 +133,24 @@
    ]
   },
   {
-   "path": "src/shared/providers/definitions/opencode-go.test.ts",
+   "path": "src/shared/utils/reasoning-control.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 131,
+   "lines": 1209,
    "endpoints": [],
    "models": [
+    "grok-4",
+    "grok-4-1-fast",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-fast",
+    "grok-4.3",
     "grok-4.5"
    ],
    "env": [],
    "features": [
     "anthropic_compatible",
-    "streaming"
+    "reasoning",
+    "tool_calling"
    ]
   },
   {
@@ -172,6 +163,22 @@
    ],
    "models": [
     "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/shared/providers/definitions/openrouter.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 230,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.6"
    ],
    "env": [],
    "features": [
@@ -194,6 +201,23 @@
    "env": [],
    "features": [
     "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/shared/providers/definitions/vercel-ai-gateway.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 255,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast-non-reasoning",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
     "tool_calling"
    ]
   },
@@ -246,19 +270,18 @@
    ]
   },
   {
-   "path": "src/shared/providers/definitions/openrouter.ts",
-   "kind": "source",
+   "path": "src/shared/providers/definitions/opencode-go.test.ts",
+   "kind": "test",
    "lang": "TypeScript",
-   "lines": 230,
+   "lines": 131,
    "endpoints": [],
    "models": [
-    "grok-4.3",
-    "grok-4.6"
+    "grok-4.5"
    ],
    "env": [],
    "features": [
     "anthropic_compatible",
-    "tool_calling"
+    "streaming"
    ]
   },
   {
@@ -272,41 +295,19 @@
    "features": []
   },
   {
-   "path": "src/shared/utils/reasoning-control.test.ts",
+   "path": "src/shared/model-registry/transform.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 1209,
+   "lines": 161,
    "endpoints": [],
    "models": [
-    "grok-4",
-    "grok-4-1-fast",
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-fast",
-    "grok-4.3",
-    "grok-4.5"
+    "grok-imagine-image-2.0"
    ],
    "env": [],
    "features": [
     "anthropic_compatible",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/shared/utils/reasoning-control.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 1046,
-   "endpoints": [],
-   "models": [
-    "grok-4",
-    "grok-4-1-fast",
-    "grok-4-fast"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
+    "image_generation",
+    "structured_output",
     "tool_calling"
    ]
   },
@@ -336,20 +337,16 @@
    ]
   },
   {
-   "path": "src/shared/model-registry/transform.test.ts",
-   "kind": "test",
+   "path": "src/renderer/i18n/changelogs/changelog_zh_Hant.ts",
+   "kind": "source",
    "lang": "TypeScript",
-   "lines": 161,
+   "lines": 649,
    "endpoints": [],
-   "models": [
-    "grok-imagine-image-2.0"
-   ],
+   "models": [],
    "env": [],
    "features": [
-    "anthropic_compatible",
-    "image_generation",
-    "structured_output",
-    "tool_calling"
+    "embeddings",
+    "mcp"
    ]
   },
   {
@@ -379,19 +376,6 @@
    ]
   },
   {
-   "path": "src/renderer/i18n/changelogs/changelog_zh_Hant.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 649,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "embeddings",
-    "mcp"
-   ]
-  },
-  {
    "path": "src/renderer/stores/session/agent-harness.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -406,6 +390,22 @@
     "live_search",
     "reasoning",
     "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/technical/reasoning-control.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 208,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
     "tool_calling"
    ]
   }

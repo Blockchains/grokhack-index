@@ -2,16 +2,16 @@
  "fork": "Blockchains/xai-cookbook",
  "upstream": "xai-org/xai-cookbook",
  "category": "official",
- "stars": 591,
+ "stars": 592,
  "license_spdx": "xAI Beta Testing License (MIT-style, official)",
  "license_text_head": "Beta Testing License Copyright (c) 2025 X.AI LLC Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons",
  "pushed_at": "2026-10-02T01:53:01Z",
  "description": "A collection of pragmatic, real-world examples guiding you from basic to advanced use of xAI's Grok APIs.",
  "commit": "a9bb07acd488d9b619806607e880ded8268ba640",
- "indexed_at": "2026-10-03T18:47:18Z",
+ "indexed_at": "2026-10-04T14:52:30Z",
  "status": "ok",
- "clone_kb": 3836,
- "seconds": 1.5,
+ "clone_kb": 3832,
+ "seconds": 1.3,
  "files_scanned": 163,
  "languages": {
   "TypeScript": 42,
@@ -42,60 +42,12 @@
  "features": {
   "voice_realtime": 27,
   "structured_output": 5,
-  "tool_calling": 1,
-  "streaming": 1
+  "streaming": 1,
+  "tool_calling": 1
  },
  "sdk_exports": [],
  "packages": [],
  "snippets": [
-  {
-   "path": "examples/voice-agent-webrtc/server/src/index.ts",
-   "start": 48,
-   "end": 71,
-   "code": "  next();\n});\n\napp.use(express.json());\n\n// Configuration\nconst XAI_API_KEY = process.env.XAI_API_KEY || \"\";\nconst API_URL = process.env.API_URL || \"wss://api.x.ai/v1/realtime\";\nconst PORT = process.env.PORT || \"8000\";\nconst INSTRUCTIONS = process.env.INSTRUCTIONS || \"You are a helpful voice assistant. You are speaking to a user in real-time over audio. Keep your responses conversational and concise since they will \nconst VOICE = process.env.VOICE || \"ara\";\n\n// Initialize session manager\nconst sessionManager = new SessionManager();\n\n// Store active peer connections\nconst peerConnections = new Map<string, RTCPeerManager>();\n\n// ========================================\n// REST API Endpoints\n// ========================================\n\napp.get(\"/\", (req, res) => {\n  res.json({"
-  },
-  {
-   "path": "examples/voice-agent-phone/xai/global.d.ts",
-   "start": 1,
-   "end": 8,
-   "code": "declare namespace NodeJS {\n  export interface ProcessEnv {\n    API_URL: string;\n    XAI_API_KEY: string;\n    HOSTNAME: string;\n    PORT?: string;\n  }\n}"
-  },
-  {
-   "path": "examples/voice-agent-phone/xai/src/index.ts",
-   "start": 8,
-   "end": 31,
-   "code": "const { app } = ExpressWs(express());\napp.use(express.urlencoded({ extended: true })).use(express.json());\n\n// ========================================\n// Configuration\n// ========================================\nconst XAI_API_KEY = process.env.XAI_API_KEY || \"\";\nconst API_URL = process.env.API_URL || \"wss://api.x.ai/v1/realtime\";\n// Feature flags\nconst ENABLE_TOOLS = process.env.ENABLE_TOOLS !== \"false\"; // Default: enabled\n\n// Clean event logging - just event names, no emojis\nfunction logEvent(callId: string, eventType: string, extra?: string) {\n  if (extra) {\n    console.log(`[${callId}] ${eventType}`);\n    console.log(`  ${extra}`);\n  } else {\n    console.log(`[${callId}] ${eventType}`);\n  }\n}\n\n// Helper to generate cryptographically secure IDs\nfunction generateSecureId(prefix: string): string {\n  return `${prefix}_${crypto.randomBytes(16).toString('hex')}`;"
-  },
-  {
-   "path": "examples/voice-agent-web/client/src/hooks/useWebSocket.ts",
-   "start": 4,
-   "end": 27,
-   "code": " */\n\nimport { useEffect, useRef, useState, useCallback } from \"react\";\nimport type { Message, DebugLogEntry } from \"../types/messages\";\n\nconst API_BASE_URL = import.meta.env.VITE_API_BASE_URL || \"http://localhost:8000\";\nconst XAI_REALTIME_URL = \"wss://api.x.ai/v1/realtime\";\n\ninterface UseWebSocketReturn {\n  isConnected: boolean;\n  connect: (sampleRate: number) => Promise<void>;\n  disconnect: () => void;\n  sendMessage: (message: Message) => void;\n  debugLogs: DebugLogEntry[];\n  clearLogs: () => void;\n  provider: string | null;\n}\n\ninterface SessionResponse {\n  client_secret: {\n    value: string;\n    expires_at: number;\n  };\n  voice: string;"
-  },
-  {
-   "path": "examples/voice-agent-web/xai/backend-nodejs/src/index.ts",
-   "start": 46,
-   "end": 69,
-   "code": "  message: 'Too many session creation requests, please try again later.'\n});\n\napp.use(limiter);\n\n// Configuration\nconst XAI_API_KEY = process.env.XAI_API_KEY || \"\";\nconst PORT = process.env.PORT || \"8000\";\nconst INSTRUCTIONS = process.env.INSTRUCTIONS || \"You are a helpful voice assistant. You are speaking to a user in real-time over audio. Keep your responses conversational and concise since they will \nconst VOICE = process.env.VOICE || \"ara\";\n\n// ========================================\n// REST API Endpoints\n// ========================================\n\napp.get(\"/\", (req, res) => {\n  res.json({\n    service: \"XAI Voice Web Backend (Node.js)\",\n    provider: \"XAI\",\n    version: \"1.0.0\",\n    status: \"running\",\n    endpoints: {\n      health: \"/health\",\n      session: \"/session\","
-  },
-  {
-   "path": "examples/voice-agent-web/xai/backend-python/main.py",
-   "start": 18,
-   "end": 41,
-   "code": "from slowapi.errors import RateLimitExceeded\n\n# Load environment variables\nload_dotenv()\n\n# Configuration\nXAI_API_KEY = os.getenv(\"XAI_API_KEY\")\nPORT = int(os.getenv(\"PORT\", \"8000\"))\nSESSION_REQUEST_URL = \"https://api.x.ai/v1/realtime/client_secrets\"\n\n# Voice and instructions for frontend configuration\nVOICE = os.getenv(\"VOICE\", \"ara\")\nINSTRUCTIONS = os.getenv(\n    \"INSTRUCTIONS\",\n    \"You are a helpful voice assistant. You are speaking to a user in real-time over audio. Keep your responses conversational and concise since they will be spoken aloud.\",\n)\n\n# CORS Configuration\nALLOWED_ORIGINS = os.getenv(\n    \"ALLOWED_ORIGINS\",\n    \"http://localhost:3000,http://localhost:5173,http://localhost:8080\",\n).split(\",\")\n\n# FastAPI app"
-  },
-  {
-   "path": "examples/voice-agent-web/openai/backend-nodejs/src/index.ts",
-   "start": 46,
-   "end": 69,
-   "code": "  message: 'Too many session creation requests, please try again later.'\n});\n\napp.use(limiter);\n\n// Configuration\nconst OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.XAI_API_KEY || \"\";\nconst PORT = process.env.PORT || \"8000\";\nconst INSTRUCTIONS = process.env.INSTRUCTIONS || \"You are a helpful voice assistant. You are speaking to a user in real-time over audio. Keep your responses conversational and concise since they will \nconst VOICE = process.env.VOICE || \"ara\";\n\n// ========================================\n// REST API Endpoints\n// ========================================\n\napp.get(\"/\", (req, res) => {\n  res.json({\n    service: \"XAI Voice Web Backend (Node.js)\",\n    provider: \"XAI\",\n    version: \"2.0.0\",\n    status: \"running\",\n    endpoints: {\n      health: \"/health\",\n      session: \"/session\","
-  },
-  {
-   "path": "examples/voice-agent-web/openai/backend-python/main.py",
-   "start": 15,
-   "end": 38,
-   "code": "from fastapi.middleware.cors import CORSMiddleware\n\n# Load environment variables\nload_dotenv()\n\n# Configuration\nOPENAI_API_KEY = os.getenv(\"OPENAI_API_KEY\") or os.getenv(\"XAI_API_KEY\")\nPORT = int(os.getenv(\"PORT\", \"8000\"))\nSESSION_REQUEST_URL = \"https://api.x.ai/v1/realtime/client_secrets\"\n\n# Voice and instructions for frontend configuration\nVOICE = os.getenv(\"VOICE\", \"ara\")\nINSTRUCTIONS = os.getenv(\n    \"INSTRUCTIONS\",\n    \"You are a helpful voice assistant. You are speaking to a user in real-time over audio. Keep your responses conversational and concise since they will be spoken aloud.\",\n)\n\n# CORS Configuration\nALLOWED_ORIGINS = os.getenv(\n    \"ALLOWED_ORIGINS\",\n    \"http://localhost:3000,http://localhost:5173,http://localhost:8080\",\n).split(\",\")\n\n# FastAPI app"
-  },
   {
    "path": "examples/voice-agent-mobile/kotlin/app/src/main/java/ai/x/voiceapiandroidexample/AuthService.kt",
    "start": 6,
@@ -115,6 +67,24 @@
    "code": "//  Created by ege on 3/3/26.\n//\n\nimport SwiftUI\n\nstruct ContentView: View {\n    @AppStorage(\"XAI_API_KEY\") private var storedKey: String?\n\n    private var hasAPIKey: Bool {\n        if let env = ProcessInfo.processInfo.environment[\"XAI_API_KEY\"], !env.isEmpty { return true }\n        if let key = storedKey, !key.isEmpty { return true }\n        return false\n    }\n\n    var body: some View {\n        NavigationStack {\n            List {\n                Section {\n                    NavigationLink(\"Text to Speech\") {\n                        TextToSpeechView()\n                    }\n                    .disabled(!hasAPIKey)\n\n                    NavigationLink(\"Voice Agent\") {"
   },
   {
+   "path": "examples/voice-agent-mobile/swift/VoiceTesterApp/VoiceAgent/VoiceAgentConversation.swift",
+   "start": 67,
+   "end": 90,
+   "code": "        sessionId = id\n        connectionState = .connecting\n        timeline = []\n        log(\"Session \\(id.uuidString.prefix(8)) \u2014 voice: \\(voiceID.rawValue)\")\n\n        // 1. Connect WebSocket (must exist before audio engine captures it).\n        guard let apiKey = ProcessInfo.processInfo.environment[\"XAI_API_KEY\"]\n                ?? UserDefaults.standard.string(forKey: \"XAI_API_KEY\") else {\n            log(\"\u26a0\ufe0f XAI_API_KEY not found in env or UserDefaults\")\n            connectionState = .error(\"XAI_API_KEY not set\")\n            return\n        }\n        webSocket.delegate = self\n        webSocket.connect(apiKey: apiKey, log: { [weak self] in self?.log($0) })\n\n        // 2. Start audio engine (mic + playback).\n        //    The mic callback fires on the audio render thread with base64 PCM.\n        //    We send it as a raw JSON string to avoid JSONSerialization overhead.\n        let ws = self.webSocket\n        let logs = audioEngine.start(echoCancellation: true) { base64 in\n            let json = #\"{\"type\":\"input_audio_buffer.append\",\"audio\":\"\\#(base64)\"}\"#\n            ws.sendRaw(json)\n        }\n        logs.forEach { log($0) }"
+  },
+  {
+   "path": "examples/voice-agent-mobile/swift/VoiceTesterApp/VoiceAgent/VoiceAgentWebSocket.swift",
+   "start": 1,
+   "end": 22,
+   "code": "//\n//  VoiceAgentWebSocket.swift\n//  VoiceTesterApp\n//\n//  WebSocket client for the xAI Voice Agent API (wss://api.x.ai/v1/realtime).\n//  Handles connection lifecycle, authentication via Sec-WebSocket-Protocol,\n//  JSON send/receive, and delegate-based open/close/error callbacks.\n//\n\nimport Foundation\n\n/// Events emitted by the WebSocket to its owner.\nprotocol VoiceAgentWebSocketDelegate: AnyObject {\n    @MainActor func webSocketDidOpen()\n    @MainActor func webSocketDidClose(code: Int, reason: String?)\n    @MainActor func webSocketDidFail(error: String, httpStatus: Int?)\n    @MainActor func webSocketDidReceive(json: [String: Any], type: String)\n}\n\n@MainActor\nfinal class VoiceAgentWebSocket {\n"
+  },
+  {
+   "path": "examples/voice-agent-mobile/swift/VoiceTesterApp/Auth/APIKeysView.swift",
+   "start": 5,
+   "end": 28,
+   "code": "//  Created by ege on 3/3/26.\n//\n\nimport SwiftUI\n\nstruct APIKeysView: View {\n    private static let userDefaultsKey = \"XAI_API_KEY\"\n\n    @State private var draft = \"\"\n    @State private var savedKey: String?\n    @State private var showKey = false\n    @State private var copied = false\n\n    var body: some View {\n        Form {\n            Section {\n                if let savedKey {\n                    HStack {\n                        Text(showKey ? savedKey : maskedKey(savedKey))\n                            .font(.system(.body, design: .monospaced))\n                            .lineLimit(1)\n                            .truncationMode(.middle)\n\n                        Spacer()"
+  },
+  {
    "path": "examples/voice-agent-mobile/swift/VoiceTesterApp/TextToSpeech/TextToSpeechView.swift",
    "start": 123,
    "end": 146,
@@ -127,22 +97,52 @@
    "code": "//  StreamingTTSView.swift\n//  VoiceTesterApp\n//\n//  Streaming TTS over WebSocket.\n//\n//  Flow:\n//    1. Connect  wss://api.x.ai/v1/tts?voice=\u2026&codec=pcm&sample_rate=24000\n//    2. Send     {\"type\":\"text.delta\",\"delta\":\"\u2026\"}  (one or more)\n//    3. Send     {\"type\":\"text.done\"}\n//    4. Receive  {\"type\":\"audio.delta\",\"delta\":\"<base64 PCM>\"}  (many)\n//    5. Receive  {\"type\":\"audio.done\"}\n//\n\nimport AVFoundation\nimport SwiftUI\nimport Combine\n\n// MARK: - View\n\nstruct StreamingTTSView: View {\n    @State private var inputText = \"Hello! This is the streaming text to speech API. Words are sent incrementally and audio streams back in real time.\"\n    @State private var voiceID: VoiceID = .eve\n    @State private var language: TTSLanguage = .en\n    @StateObject private var streamer = StreamingTTSStreamer()"
   },
   {
-   "path": "examples/voice-agent-mobile/swift/VoiceTesterApp/VoiceAgent/VoiceAgentWebSocket.swift",
+   "path": "examples/voice-agent-web/openai/backend-nodejs/src/index.ts",
+   "start": 46,
+   "end": 69,
+   "code": "  message: 'Too many session creation requests, please try again later.'\n});\n\napp.use(limiter);\n\n// Configuration\nconst OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.XAI_API_KEY || \"\";\nconst PORT = process.env.PORT || \"8000\";\nconst INSTRUCTIONS = process.env.INSTRUCTIONS || \"You are a helpful voice assistant. You are speaking to a user in real-time over audio. Keep your responses conversational and concise since they will \nconst VOICE = process.env.VOICE || \"ara\";\n\n// ========================================\n// REST API Endpoints\n// ========================================\n\napp.get(\"/\", (req, res) => {\n  res.json({\n    service: \"XAI Voice Web Backend (Node.js)\",\n    provider: \"XAI\",\n    version: \"2.0.0\",\n    status: \"running\",\n    endpoints: {\n      health: \"/health\",\n      session: \"/session\","
+  },
+  {
+   "path": "examples/voice-agent-web/openai/backend-python/main.py",
+   "start": 15,
+   "end": 38,
+   "code": "from fastapi.middleware.cors import CORSMiddleware\n\n# Load environment variables\nload_dotenv()\n\n# Configuration\nOPENAI_API_KEY = os.getenv(\"OPENAI_API_KEY\") or os.getenv(\"XAI_API_KEY\")\nPORT = int(os.getenv(\"PORT\", \"8000\"))\nSESSION_REQUEST_URL = \"https://api.x.ai/v1/realtime/client_secrets\"\n\n# Voice and instructions for frontend configuration\nVOICE = os.getenv(\"VOICE\", \"ara\")\nINSTRUCTIONS = os.getenv(\n    \"INSTRUCTIONS\",\n    \"You are a helpful voice assistant. You are speaking to a user in real-time over audio. Keep your responses conversational and concise since they will be spoken aloud.\",\n)\n\n# CORS Configuration\nALLOWED_ORIGINS = os.getenv(\n    \"ALLOWED_ORIGINS\",\n    \"http://localhost:3000,http://localhost:5173,http://localhost:8080\",\n).split(\",\")\n\n# FastAPI app"
+  },
+  {
+   "path": "examples/voice-agent-web/xai/backend-nodejs/src/index.ts",
+   "start": 46,
+   "end": 69,
+   "code": "  message: 'Too many session creation requests, please try again later.'\n});\n\napp.use(limiter);\n\n// Configuration\nconst XAI_API_KEY = process.env.XAI_API_KEY || \"\";\nconst PORT = process.env.PORT || \"8000\";\nconst INSTRUCTIONS = process.env.INSTRUCTIONS || \"You are a helpful voice assistant. You are speaking to a user in real-time over audio. Keep your responses conversational and concise since they will \nconst VOICE = process.env.VOICE || \"ara\";\n\n// ========================================\n// REST API Endpoints\n// ========================================\n\napp.get(\"/\", (req, res) => {\n  res.json({\n    service: \"XAI Voice Web Backend (Node.js)\",\n    provider: \"XAI\",\n    version: \"1.0.0\",\n    status: \"running\",\n    endpoints: {\n      health: \"/health\",\n      session: \"/session\","
+  },
+  {
+   "path": "examples/voice-agent-web/xai/backend-python/main.py",
+   "start": 18,
+   "end": 41,
+   "code": "from slowapi.errors import RateLimitExceeded\n\n# Load environment variables\nload_dotenv()\n\n# Configuration\nXAI_API_KEY = os.getenv(\"XAI_API_KEY\")\nPORT = int(os.getenv(\"PORT\", \"8000\"))\nSESSION_REQUEST_URL = \"https://api.x.ai/v1/realtime/client_secrets\"\n\n# Voice and instructions for frontend configuration\nVOICE = os.getenv(\"VOICE\", \"ara\")\nINSTRUCTIONS = os.getenv(\n    \"INSTRUCTIONS\",\n    \"You are a helpful voice assistant. You are speaking to a user in real-time over audio. Keep your responses conversational and concise since they will be spoken aloud.\",\n)\n\n# CORS Configuration\nALLOWED_ORIGINS = os.getenv(\n    \"ALLOWED_ORIGINS\",\n    \"http://localhost:3000,http://localhost:5173,http://localhost:8080\",\n).split(\",\")\n\n# FastAPI app"
+  },
+  {
+   "path": "examples/voice-agent-web/client/src/hooks/useWebSocket.ts",
+   "start": 4,
+   "end": 27,
+   "code": " */\n\nimport { useEffect, useRef, useState, useCallback } from \"react\";\nimport type { Message, DebugLogEntry } from \"../types/messages\";\n\nconst API_BASE_URL = import.meta.env.VITE_API_BASE_URL || \"http://localhost:8000\";\nconst XAI_REALTIME_URL = \"wss://api.x.ai/v1/realtime\";\n\ninterface UseWebSocketReturn {\n  isConnected: boolean;\n  connect: (sampleRate: number) => Promise<void>;\n  disconnect: () => void;\n  sendMessage: (message: Message) => void;\n  debugLogs: DebugLogEntry[];\n  clearLogs: () => void;\n  provider: string | null;\n}\n\ninterface SessionResponse {\n  client_secret: {\n    value: string;\n    expires_at: number;\n  };\n  voice: string;"
+  },
+  {
+   "path": "examples/voice-agent-phone/xai/global.d.ts",
    "start": 1,
-   "end": 22,
-   "code": "//\n//  VoiceAgentWebSocket.swift\n//  VoiceTesterApp\n//\n//  WebSocket client for the xAI Voice Agent API (wss://api.x.ai/v1/realtime).\n//  Handles connection lifecycle, authentication via Sec-WebSocket-Protocol,\n//  JSON send/receive, and delegate-based open/close/error callbacks.\n//\n\nimport Foundation\n\n/// Events emitted by the WebSocket to its owner.\nprotocol VoiceAgentWebSocketDelegate: AnyObject {\n    @MainActor func webSocketDidOpen()\n    @MainActor func webSocketDidClose(code: Int, reason: String?)\n    @MainActor func webSocketDidFail(error: String, httpStatus: Int?)\n    @MainActor func webSocketDidReceive(json: [String: Any], type: String)\n}\n\n@MainActor\nfinal class VoiceAgentWebSocket {\n"
+   "end": 8,
+   "code": "declare namespace NodeJS {\n  export interface ProcessEnv {\n    API_URL: string;\n    XAI_API_KEY: string;\n    HOSTNAME: string;\n    PORT?: string;\n  }\n}"
   },
   {
-   "path": "examples/voice-agent-mobile/swift/VoiceTesterApp/VoiceAgent/VoiceAgentConversation.swift",
-   "start": 67,
-   "end": 90,
-   "code": "        sessionId = id\n        connectionState = .connecting\n        timeline = []\n        log(\"Session \\(id.uuidString.prefix(8)) \u2014 voice: \\(voiceID.rawValue)\")\n\n        // 1. Connect WebSocket (must exist before audio engine captures it).\n        guard let apiKey = ProcessInfo.processInfo.environment[\"XAI_API_KEY\"]\n                ?? UserDefaults.standard.string(forKey: \"XAI_API_KEY\") else {\n            log(\"\u26a0\ufe0f XAI_API_KEY not found in env or UserDefaults\")\n            connectionState = .error(\"XAI_API_KEY not set\")\n            return\n        }\n        webSocket.delegate = self\n        webSocket.connect(apiKey: apiKey, log: { [weak self] in self?.log($0) })\n\n        // 2. Start audio engine (mic + playback).\n        //    The mic callback fires on the audio render thread with base64 PCM.\n        //    We send it as a raw JSON string to avoid JSONSerialization overhead.\n        let ws = self.webSocket\n        let logs = audioEngine.start(echoCancellation: true) { base64 in\n            let json = #\"{\"type\":\"input_audio_buffer.append\",\"audio\":\"\\#(base64)\"}\"#\n            ws.sendRaw(json)\n        }\n        logs.forEach { log($0) }"
+   "path": "examples/voice-agent-phone/xai/src/index.ts",
+   "start": 8,
+   "end": 31,
+   "code": "const { app } = ExpressWs(express());\napp.use(express.urlencoded({ extended: true })).use(express.json());\n\n// ========================================\n// Configuration\n// ========================================\nconst XAI_API_KEY = process.env.XAI_API_KEY || \"\";\nconst API_URL = process.env.API_URL || \"wss://api.x.ai/v1/realtime\";\n// Feature flags\nconst ENABLE_TOOLS = process.env.ENABLE_TOOLS !== \"false\"; // Default: enabled\n\n// Clean event logging - just event names, no emojis\nfunction logEvent(callId: string, eventType: string, extra?: string) {\n  if (extra) {\n    console.log(`[${callId}] ${eventType}`);\n    console.log(`  ${extra}`);\n  } else {\n    console.log(`[${callId}] ${eventType}`);\n  }\n}\n\n// Helper to generate cryptographically secure IDs\nfunction generateSecureId(prefix: string): string {\n  return `${prefix}_${crypto.randomBytes(16).toString('hex')}`;"
   },
   {
-   "path": "examples/voice-agent-mobile/swift/VoiceTesterApp/Auth/APIKeysView.swift",
-   "start": 5,
-   "end": 28,
-   "code": "//  Created by ege on 3/3/26.\n//\n\nimport SwiftUI\n\nstruct APIKeysView: View {\n    private static let userDefaultsKey = \"XAI_API_KEY\"\n\n    @State private var draft = \"\"\n    @State private var savedKey: String?\n    @State private var showKey = false\n    @State private var copied = false\n\n    var body: some View {\n        Form {\n            Section {\n                if let savedKey {\n                    HStack {\n                        Text(showKey ? savedKey : maskedKey(savedKey))\n                            .font(.system(.body, design: .monospaced))\n                            .lineLimit(1)\n                            .truncationMode(.middle)\n\n                        Spacer()"
+   "path": "examples/voice-agent-webrtc/server/src/index.ts",
+   "start": 48,
+   "end": 71,
+   "code": "  next();\n});\n\napp.use(express.json());\n\n// Configuration\nconst XAI_API_KEY = process.env.XAI_API_KEY || \"\";\nconst API_URL = process.env.API_URL || \"wss://api.x.ai/v1/realtime\";\nconst PORT = process.env.PORT || \"8000\";\nconst INSTRUCTIONS = process.env.INSTRUCTIONS || \"You are a helpful voice assistant. You are speaking to a user in real-time over audio. Keep your responses conversational and concise since they will \nconst VOICE = process.env.VOICE || \"ara\";\n\n// Initialize session manager\nconst sessionManager = new SessionManager();\n\n// Store active peer connections\nconst peerConnections = new Map<string, RTCPeerManager>();\n\n// ========================================\n// REST API Endpoints\n// ========================================\n\napp.get(\"/\", (req, res) => {\n  res.json({"
   }
  ],
  "files": [
@@ -165,416 +165,6 @@
    "kind": "config",
    "lang": null,
    "lines": 1,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "examples/voice-agent-webrtc/README.md",
-   "kind": "example",
-   "lang": null,
-   "lines": 201,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-webrtc/server/README.md",
-   "kind": "example",
-   "lang": null,
-   "lines": 353,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-webrtc/server/.env.example",
-   "kind": "example",
-   "lang": null,
-   "lines": 5,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-webrtc/server/start.sh",
-   "kind": "example",
-   "lang": null,
-   "lines": 39,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "examples/voice-agent-webrtc/server/src/index.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 387,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "structured_output",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-phone/README.md",
-   "kind": "example",
-   "lang": null,
-   "lines": 320,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-phone/xai/global.d.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 8,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "examples/voice-agent-phone/xai/README.md",
-   "kind": "example",
-   "lang": null,
-   "lines": 114,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-phone/xai/.env.example",
-   "kind": "example",
-   "lang": null,
-   "lines": 17,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-phone/xai/start.sh",
-   "kind": "example",
-   "lang": null,
-   "lines": 58,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "examples/voice-agent-phone/xai/src/index.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 539,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "structured_output",
-    "tool_calling",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/x-sentiment-analysis/README.md",
-   "kind": "example",
-   "lang": null,
-   "lines": 30,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "examples/voice-agent-web/README.md",
-   "kind": "example",
-   "lang": null,
-   "lines": 199,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-web/client/src/hooks/useWebSocket.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 281,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_REALTIME_URL"
-   ],
-   "features": [
-    "structured_output",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-web/xai/README.md",
-   "kind": "example",
-   "lang": null,
-   "lines": 130,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-web/xai/backend-nodejs/README.md",
-   "kind": "example",
-   "lang": null,
-   "lines": 193,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-web/xai/backend-nodejs/.env.example",
-   "kind": "example",
-   "lang": null,
-   "lines": 3,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "examples/voice-agent-web/xai/backend-nodejs/start.sh",
-   "kind": "example",
-   "lang": null,
-   "lines": 38,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "examples/voice-agent-web/xai/backend-nodejs/src/index.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 150,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-web/xai/backend-python/main.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 182,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-web/xai/backend-python/README.md",
-   "kind": "example",
-   "lang": null,
-   "lines": 180,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-web/xai/backend-python/.env.example",
-   "kind": "example",
-   "lang": null,
-   "lines": 3,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "examples/voice-agent-web/xai/backend-python/start.sh",
-   "kind": "example",
-   "lang": null,
-   "lines": 50,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "examples/voice-agent-web/openai/README.md",
-   "kind": "example",
-   "lang": null,
-   "lines": 135,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-web/openai/backend-nodejs/.env.example",
-   "kind": "example",
-   "lang": null,
-   "lines": 4,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "examples/voice-agent-web/openai/backend-nodejs/src/index.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 151,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-web/openai/backend-python/main.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 174,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/voice-agent-web/openai/backend-python/.env.example",
-   "kind": "example",
-   "lang": null,
-   "lines": 4,
    "endpoints": [],
    "models": [],
    "env": [
@@ -670,6 +260,46 @@
    "features": []
   },
   {
+   "path": "examples/voice-agent-mobile/swift/VoiceTesterApp/VoiceAgent/VoiceAgentConversation.swift",
+   "kind": "example",
+   "lang": "Swift",
+   "lines": 289,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-mobile/swift/VoiceTesterApp/VoiceAgent/VoiceAgentWebSocket.swift",
+   "kind": "example",
+   "lang": "Swift",
+   "lines": 187,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-mobile/swift/VoiceTesterApp/Auth/APIKeysView.swift",
+   "kind": "example",
+   "lang": "Swift",
+   "lines": 113,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
    "path": "examples/voice-agent-mobile/swift/VoiceTesterApp/TextToSpeech/TextToSpeechView.swift",
    "kind": "example",
    "lang": "Swift",
@@ -698,10 +328,26 @@
    ]
   },
   {
-   "path": "examples/voice-agent-mobile/swift/VoiceTesterApp/VoiceAgent/VoiceAgentWebSocket.swift",
+   "path": "examples/voice-agent-web/README.md",
    "kind": "example",
-   "lang": "Swift",
-   "lines": 187,
+   "lang": null,
+   "lines": 199,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-web/openai/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 135,
    "endpoints": [
     "/v1/realtime"
    ],
@@ -712,10 +358,265 @@
    ]
   },
   {
-   "path": "examples/voice-agent-mobile/swift/VoiceTesterApp/VoiceAgent/VoiceAgentConversation.swift",
+   "path": "examples/voice-agent-web/openai/backend-nodejs/.env.example",
    "kind": "example",
-   "lang": "Swift",
-   "lines": 289,
+   "lang": null,
+   "lines": 4,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/voice-agent-web/openai/backend-nodejs/src/index.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 151,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-web/openai/backend-python/main.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 174,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-web/openai/backend-python/.env.example",
+   "kind": "example",
+   "lang": null,
+   "lines": 4,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/voice-agent-web/xai/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 130,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-web/xai/backend-nodejs/start.sh",
+   "kind": "example",
+   "lang": null,
+   "lines": 38,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/voice-agent-web/xai/backend-nodejs/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 193,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-web/xai/backend-nodejs/.env.example",
+   "kind": "example",
+   "lang": null,
+   "lines": 3,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/voice-agent-web/xai/backend-nodejs/src/index.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 150,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-web/xai/backend-python/main.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 182,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-web/xai/backend-python/start.sh",
+   "kind": "example",
+   "lang": null,
+   "lines": 50,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/voice-agent-web/xai/backend-python/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 180,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-web/xai/backend-python/.env.example",
+   "kind": "example",
+   "lang": null,
+   "lines": 3,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/voice-agent-web/client/src/hooks/useWebSocket.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 281,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_REALTIME_URL"
+   ],
+   "features": [
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/x-sentiment-analysis/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 30,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/voice-agent-phone/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 320,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-phone/xai/global.d.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 8,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/voice-agent-phone/xai/start.sh",
+   "kind": "example",
+   "lang": null,
+   "lines": 58,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/voice-agent-phone/xai/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 114,
    "endpoints": [],
    "models": [],
    "env": [
@@ -726,16 +627,115 @@
    ]
   },
   {
-   "path": "examples/voice-agent-mobile/swift/VoiceTesterApp/Auth/APIKeysView.swift",
+   "path": "examples/voice-agent-phone/xai/.env.example",
    "kind": "example",
-   "lang": "Swift",
-   "lines": 113,
+   "lang": null,
+   "lines": 17,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-phone/xai/src/index.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 539,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-webrtc/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 201,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-webrtc/server/start.sh",
+   "kind": "example",
+   "lang": null,
+   "lines": 39,
    "endpoints": [],
    "models": [],
    "env": [
     "XAI_API_KEY"
    ],
    "features": []
+  },
+  {
+   "path": "examples/voice-agent-webrtc/server/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 353,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-webrtc/server/.env.example",
+   "kind": "example",
+   "lang": null,
+   "lines": 5,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/voice-agent-webrtc/server/src/index.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 387,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "structured_output",
+    "voice_realtime"
+   ]
   },
   {
    "path": "templates/example/README.md",

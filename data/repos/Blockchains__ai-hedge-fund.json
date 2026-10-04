@@ -1,0 +1,126 @@
+{
+ "fork": "Blockchains/ai-hedge-fund",
+ "upstream": "virattt/ai-hedge-fund",
+ "category": "app",
+ "stars": 63854,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2024 Virat Singh Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to wh",
+ "pushed_at": "2026-10-02T14:19:04Z",
+ "description": "An AI Hedge Fund Team",
+ "commit": "78b779c1389e2d1452dc29606d2c4126d859b964",
+ "indexed_at": "2026-10-04T14:55:58Z",
+ "status": "ok",
+ "clone_kb": 2100,
+ "seconds": 1.0,
+ "files_scanned": 109,
+ "languages": {
+  "Python": 95
+ },
+ "grok_files": 5,
+ "grok_files_by_kind": {
+  "config": 3,
+  "source": 2
+ },
+ "hosts": {},
+ "endpoints": {},
+ "models": {
+  "grok-4.7": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 2
+ },
+ "features": {
+  "anthropic_compatible": 1,
+  "openai_compatible": 1,
+  "streaming": 1
+ },
+ "sdk_exports": [],
+ "packages": [
+  {
+   "path": "pyproject.toml",
+   "ecosystem": "pypi",
+   "name": "aihf",
+   "version": "2.5.0"
+  }
+ ],
+ "snippets": [
+  {
+   "path": "hedge_fund/llm/registry.py",
+   "start": 17,
+   "end": 40,
+   "code": "API_MODELS_PATH = Path(__file__).resolve().parent / \"api_models.json\"\n\n# Provider names are the strings used in api_models.json.\nPROVIDER_ENV_VARS = {\n    \"Anthropic\": \"ANTHROPIC_API_KEY\",\n    \"OpenAI\": \"OPENAI_API_KEY\",\n    \"xAI\": \"XAI_API_KEY\",\n    \"DeepSeek\": \"DEEPSEEK_API_KEY\",\n    \"Google\": \"GOOGLE_API_KEY\",\n    \"Kimi\": \"KIMI_API_KEY\",\n    \"TypeSafe\": \"TYPESAFE_API_KEY\",\n}\n\n# Providers v2 has a client for (see client.py:make_llm). Anything in the\n# registry but missing here is shown in the picker and not selectable \u2014 better\n# a greyed row than a run that dies on an id the transport rejects.\nSUPPORTED_PROVIDERS = frozenset(PROVIDER_ENV_VARS)\n\n_FALLBACK = (\"Opus 5.5\", \"claude-opus-5-5\", \"Anthropic\")\n\n\ndef load_api_models() -> list[tuple[str, str, str]]:\n    \"\"\"The registry as (display name, model id, provider), file order kept.\n"
+  },
+  {
+   "path": "hedge_fund/llm/client.py",
+   "start": 266,
+   "end": 289,
+   "code": "                            max_retries=1)\n    elif provider == \"Google\":\n        from langchain_google_genai import ChatGoogleGenerativeAI\n        chat = ChatGoogleGenerativeAI(model=model, api_key=api_key,\n                                      timeout=timeout, max_retries=1)\n    elif provider == \"xAI\":\n        from langchain_xai import ChatXAI\n        chat = ChatXAI(model=model, api_key=api_key, timeout=timeout,\n                       max_retries=1)\n    elif provider == \"Kimi\":\n        # Moonshot speaks the OpenAI wire format. Default to the international\n        # host; mainland users override with MOONSHOT_BASE_URL (v1 does the same).\n        from langchain_openai import ChatOpenAI\n        chat = ChatOpenAI(\n            model=model, api_key=api_key, timeout=timeout, max_retries=1,\n            base_url=(os.getenv(\"MOONSHOT_BASE_URL\")\n                      or \"https://api.moonshot.ai/v1\"))\n    else:  # pragma: no cover - SUPPORTED_PROVIDERS is checked above\n        raise ValueError(f\"Unhandled provider {provider}\")\n\n    return ChatLLM(model, chat, on_token)\n\n\ndef AnthropicLLM(model: str | None = None, **kwargs) -> LLMClient:  # noqa: N802"
+  }
+ ],
+ "files": [
+  {
+   "path": "pyproject.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 59,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 38,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "hedge_fund/llm/registry.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 67,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "hedge_fund/llm/api_models.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 47,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "hedge_fund/llm/client.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 365,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "streaming"
+   ]
+  }
+ ]
+}

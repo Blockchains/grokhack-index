@@ -2,16 +2,16 @@
  "fork": "Blockchains/airi",
  "upstream": "moeru-ai/airi",
  "category": "chat-ui",
- "stars": 49973,
+ "stars": 50020,
  "license_spdx": "MIT",
  "license_text_head": "MIT License Copyright (c) 2024-PRESENT Neko Ayaka Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit person",
- "pushed_at": "2026-10-03T17:26:30Z",
+ "pushed_at": "2026-10-04T14:28:02Z",
  "description": "\ud83d\udc96\ud83e\uddf8 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.",
  "commit": "7684415927147a8f64bb442ff0069c33816efedd",
- "indexed_at": "2026-10-03T18:48:21Z",
+ "indexed_at": "2026-10-04T14:56:05Z",
  "status": "ok",
- "clone_kb": 960356,
- "seconds": 63.0,
+ "clone_kb": 960352,
+ "seconds": 43.6,
  "files_scanned": 5029,
  "languages": {
   "TypeScript": 2728,
@@ -24,9 +24,9 @@
  },
  "grok_files": 6,
  "grok_files_by_kind": {
-  "doc": 3,
   "test": 2,
-  "source": 1
+  "source": 1,
+  "doc": 3
  },
  "hosts": {
   "api.x.ai": 4
@@ -59,36 +59,6 @@
   }
  ],
  "files": [
-  {
-   "path": "docs/content/ko/docs/manual/config/providers/consciousness/xai.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 35,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "docs/content/en/docs/manual/config/providers/consciousness/xai.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 35,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "docs/content/zh-Hans/docs/manual/config/providers/consciousness/xai.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 35,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
   {
    "path": "packages/stage-ui/src/components/scenarios/dialogs/onboarding/onboarding.browser.test.ts",
    "kind": "test",
@@ -130,6 +100,36 @@
    "features": [
     "openai_compatible"
    ]
+  },
+  {
+   "path": "docs/content/en/docs/manual/config/providers/consciousness/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 35,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/content/ko/docs/manual/config/providers/consciousness/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 35,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/content/zh-Hans/docs/manual/config/providers/consciousness/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 35,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
   }
  ]
 }

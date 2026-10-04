@@ -1,0 +1,533 @@
+{
+ "fork": "Blockchains/cline",
+ "upstream": "cline/cline",
+ "category": "coding-agent-cli",
+ "stars": 69829,
+ "license_spdx": "Apache-2.0",
+ "license_text_head": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the Lice",
+ "pushed_at": "2026-10-03T03:04:24Z",
+ "description": "Autonomous coding agent as an SDK, IDE extension, or CLI assistant.",
+ "commit": "39ff2359f7e08231281539696e48a166ce49270c",
+ "indexed_at": "2026-10-04T14:55:04Z",
+ "status": "ok",
+ "clone_kb": 122692,
+ "seconds": 62.4,
+ "files_scanned": 3823,
+ "languages": {
+  "TypeScript": 3236,
+  "JavaScript": 45,
+  "Python": 15,
+  "Rust": 6
+ },
+ "grok_files": 26,
+ "grok_files_by_kind": {
+  "doc": 1,
+  "source": 4,
+  "test": 21
+ },
+ "hosts": {
+  "api.x.ai": 1
+ },
+ "endpoints": {
+  "/v1/chat/completions": 9,
+  "/v1/models": 3
+ },
+ "models": {
+  "grok-code-fast-1": 10,
+  "grok-4.6": 5,
+  "grok-4": 4,
+  "grok-4.7": 4,
+  "grok-3": 2,
+  "grok-3-mini": 2,
+  "grok-imagine-image": 2,
+  "grok-3-beta": 1,
+  "grok-3-fast": 1,
+  "grok-3-mini-fast": 1,
+  "grok-2": 1,
+  "grok-4-mini": 1,
+  "grok-4-turbo": 1,
+  "grok-4-3": 1,
+  "grok-4.5": 1,
+  "grok-4.20-0309-non-reasoning": 1,
+  "grok-4.1-fast": 1,
+  "grok-4.1-fast-thinking-off": 1,
+  "grok-4.20-beta": 1,
+  "grok-4.20-beta-thinking-off": 1
+ },
+ "env_vars": {
+  "XAI_API_KEY": 3
+ },
+ "features": {
+  "anthropic_compatible": 4,
+  "image_generation": 1,
+  "live_search": 1,
+  "reasoning": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "sdk/packages/llms/src/providers/providers.generated.ts",
+   "start": 2796,
+   "end": 2819,
+   "code": "\t\tname: \"xAI\",\n\t\tdescription: \"xAI model provider from models.dev\",\n\t\tfamily: \"openai-compatible\",\n\t\tcapabilities: [\"tools\", \"reasoning\", \"prompt-cache\"],\n\t\tmodelsProviderId: \"xai\",\n\t\tdefaultModelId: \"grok-4.7\",\n\t\tapiKeyEnv: [\"XAI_API_KEY\"],\n\t\tdocsUrl: \"https://docs.x.ai/docs/models\",\n\t},\n\t{\n\t\tid: \"xiaomi\",\n\t\tname: \"Xiaomi\",\n\t\tdescription: \"Xiaomi model provider from models.dev\",\n\t\tfamily: \"openai-compatible\",\n\t\tcapabilities: [\"tools\", \"reasoning\", \"prompt-cache\"],\n\t\tmodelsProviderId: \"xiaomi\",\n\t\tdefaultModelId: \"mimo-v2.6-flash\",\n\t\tapiKeyEnv: [\"XIAOMI_API_KEY\"],\n\t\tdocsUrl: \"https://platform.xiaomimimo.com/#/docs\",\n\t\tdefaults: {\n\t\t\tbaseUrl: \"https://api.xiaomimimo.com/v1\",\n\t\t},\n\t},\n\t{"
+  },
+  {
+   "path": "sdk/packages/llms/src/providers/builtins.ts",
+   "start": 813,
+   "end": 836,
+   "code": "\t\tid: \"xai\",\n\t\tname: \"xAI\",\n\t\tdescription: \"Creator of Grok AI assistant\",\n\t\tfamily: \"openai-compatible\",\n\t\tcapabilities: [\"reasoning\"],\n\t\tdefaultModelId: \"grok-4.20-0309-non-reasoning\",\n\t\tapiKeyEnv: [\"XAI_API_KEY\"],\n\t\tdefaults: { baseUrl: \"https://api.x.ai/v1\" },\n\t},\n\t{\n\t\tid: \"together\",\n\t\tname: \"Together AI\",\n\t\tdescription: \"Fast inference for open-source models\",\n\t\tfamily: \"openai-compatible\",\n\t\tcapabilities: [\"reasoning\"],\n\t\tdefaultModelId: \"Qwen/Qwen3.5-397B-A17B\",\n\t\tapiKeyEnv: [\"TOGETHER_API_KEY\"],\n\t\tdefaults: { baseUrl: \"https://api.together.xyz/v1\" },\n\t},\n\t{\n\t\tid: \"groq\",\n\t\tname: \"Groq\",\n\t\tdescription: \"Ultra-fast LPU inference\",\n\t\tfamily: \"openai-compatible\","
+  }
+ ],
+ "files": [
+  {
+   "path": "CHANGELOG.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 2910,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-beta",
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "grpc",
+    "mcp",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/vscode/src/utils/model-utils.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 114,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "apps/vscode/src/utils/__tests__/model-utils.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 211,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-mini",
+    "grok-4-turbo"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "apps/vscode/src/test/e2e/fixtures/workspace_2/providers/xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 16,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/vscode/src/core/controller/models/__tests__/providerCatalogHandlers.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 510,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "grpc"
+   ]
+  },
+  {
+   "path": "apps/vscode/src/sdk/cline-session-factory.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1616,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "apps/vscode/src/sdk/model-catalog/shape-adapter.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 319,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/vscode/src/sdk/model-catalog/store.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1242,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/hello-and-goodbye.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 271,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/subagents.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 333,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/web-fetch.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 297,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/read-file.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 271,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/read-file-outside-cwd.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 271,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/file-edit-auto-approve.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 271,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/safe-command-no-permission.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 281,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/task-complete-new-task.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 236,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/task-complete-exit.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 236,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "sdk/packages/llms/src/providers/providers.generated.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 2973,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4-3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "sdk/packages/llms/src/providers/model-operations.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 203,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "sdk/packages/llms/src/providers/builtins.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1500,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "live_search",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "sdk/packages/llms/src/providers/vendors/openai-compatible.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 368,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "openai_compatible",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "sdk/packages/llms/src/tests/live-providers.reasoning-disabled.example.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 423,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast",
+    "grok-4.1-fast-thinking-off",
+    "grok-4.20-beta",
+    "grok-4.20-beta-thinking-off"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "sdk/packages/llms/src/catalog/catalog-live.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1266,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "sdk/packages/llms/src/catalog/cline-recommended.generated.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 160,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "sdk/packages/core/src/services/providers/local-provider-service.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 3306,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "sdk/packages/core/src/services/llms/cline-recommended-models.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 580,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  }
+ ]
+}

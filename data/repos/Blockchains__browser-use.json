@@ -1,0 +1,178 @@
+{
+ "fork": "Blockchains/browser-use",
+ "upstream": "browser-use/browser-use",
+ "category": "agent-framework",
+ "stars": 117116,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2024 Gregor Zunic Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to w",
+ "pushed_at": "2026-10-03T00:06:08Z",
+ "description": "Agents that use the browser.",
+ "commit": "7be96ed8bafa8dfe1eef228b59cf5c884b8b2431",
+ "indexed_at": "2026-10-04T14:53:34Z",
+ "status": "ok",
+ "clone_kb": 16292,
+ "seconds": 7.7,
+ "files_scanned": 502,
+ "languages": {
+  "Python": 410
+ },
+ "grok_files": 6,
+ "grok_files_by_kind": {
+  "config": 1,
+  "source": 3,
+  "example": 1,
+  "test": 1
+ },
+ "hosts": {},
+ "endpoints": {},
+ "models": {
+  "grok-3": 3,
+  "grok-4": 3,
+  "grok-2": 2,
+  "grok-code": 2,
+  "grok-2-vision": 1,
+  "grok-3-fast": 1,
+  "grok-3-mini": 1,
+  "grok-3-mini-fast": 1,
+  "grok-4-fast-non-reasoning": 1,
+  "grok-4-fast-reasoning": 1,
+  "grok-4.1-fast-non-reasoning": 1,
+  "grok-4.1-fast-reasoning": 1,
+  "grok-4.20-multi-agent-beta": 1,
+  "grok-4.20-non-reasoning-beta": 1,
+  "grok-4.20-reasoning-beta": 1,
+  "grok-code-fast-1": 1,
+  "grok-imagine-image": 1,
+  "grok-imagine-image-pro": 1,
+  "grok-imagine-video": 1
+ },
+ "env_vars": {},
+ "features": {
+  "anthropic_compatible": 2,
+  "structured_output": 2,
+  "openai_compatible": 2,
+  "mcp": 1,
+  "tool_calling": 1,
+  "embeddings": 1,
+  "image_generation": 1,
+  "reasoning": 1,
+  "vision": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [],
+ "files": [
+  {
+   "path": ".env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 71,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "browser_use/config.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 529,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
+   "path": "browser_use/agent/service.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 4163,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-3",
+    "grok-4",
+    "grok-code"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "browser_use/llm/vercel/chat.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 683,
+   "endpoints": [],
+   "models": [
+    "grok-2-vision",
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-4",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.1-fast-non-reasoning",
+    "grok-4.1-fast-reasoning",
+    "grok-4.20-multi-agent-beta",
+    "grok-4.20-non-reasoning-beta",
+    "grok-4.20-reasoning-beta",
+    "grok-code-fast-1",
+    "grok-imagine-image",
+    "grok-imagine-image-pro",
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "openai_compatible",
+    "reasoning",
+    "structured_output",
+    "vision"
+   ]
+  },
+  {
+   "path": "examples/models/openrouter.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 34,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "tests/ci/test_beta_agent.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 7920,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-3",
+    "grok-code"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  }
+ ]
+}

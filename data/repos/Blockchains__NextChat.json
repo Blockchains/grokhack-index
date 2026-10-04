@@ -1,0 +1,151 @@
+{
+ "fork": "Blockchains/NextChat",
+ "upstream": "ChatGPTNextWeb/NextChat",
+ "category": "chat-ui",
+ "stars": 88833,
+ "license_spdx": "MIT",
+ "license_text_head": "MIT License Copyright (c) 2023-2025 NextChat Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to ",
+ "pushed_at": "2026-08-11T02:07:25Z",
+ "description": "\u2728 Zero-config AI chat assistant. No API key needed \u2014 sign up and instantly chat with GPT-5, Claude 4, Gemini 2.5, DeepSeek & 100+ top models. Pay-as-you-go saves you more. Available on Web, iOS, macOS, Android, Linux, Windows.",
+ "commit": "defdcdb55d850cd12c4c657eb83729fd66e215c0",
+ "indexed_at": "2026-10-04T14:55:21Z",
+ "status": "ok",
+ "clone_kb": 14232,
+ "seconds": 4.1,
+ "files_scanned": 249,
+ "languages": {
+  "TypeScript": 183,
+  "JavaScript": 6,
+  "Rust": 3
+ },
+ "grok_files": 2,
+ "grok_files_by_kind": {
+  "source": 2
+ },
+ "hosts": {
+  "api.x.ai": 1
+ },
+ "endpoints": {
+  "/v1/embeddings": 1
+ },
+ "models": {
+  "grok-2": 1,
+  "grok-2-1212": 1,
+  "grok-2-latest": 1,
+  "grok-2-vision": 1,
+  "grok-2-vision-1212": 1,
+  "grok-2-vision-latest": 1,
+  "grok-3": 1,
+  "grok-3-beta": 1,
+  "grok-3-fast": 1,
+  "grok-3-fast-beta": 1,
+  "grok-3-fast-latest": 1,
+  "grok-3-latest": 1,
+  "grok-3-mini": 1,
+  "grok-3-mini-beta": 1,
+  "grok-3-mini-fast": 1,
+  "grok-3-mini-fast-beta": 1,
+  "grok-3-mini-fast-latest": 1,
+  "grok-3-mini-latest": 1,
+  "grok-4": 1,
+  "grok-4-0709": 1,
+  "grok-4-fast-non-reasoning": 1,
+  "grok-4-fast-reasoning": 1,
+  "grok-beta": 1,
+  "grok-code-fast-1": 1,
+  "grok-vision-beta": 1
+ },
+ "env_vars": {
+  "XAI_BASE_URL": 1,
+  "XAI_API_KEY": 1,
+  "XAI_URL": 1
+ },
+ "features": {
+  "anthropic_compatible": 2,
+  "embeddings": 1,
+  "image_generation": 1,
+  "reasoning": 1,
+  "vision": 1,
+  "voice_realtime": 1
+ },
+ "sdk_exports": [],
+ "packages": [],
+ "snippets": [
+  {
+   "path": "app/constant.ts",
+   "start": 27,
+   "end": 50,
+   "code": "\nexport const MOONSHOT_BASE_URL = \"https://api.moonshot.ai\";\nexport const IFLYTEK_BASE_URL = \"https://spark-api-open.xf-yun.com\";\n\nexport const DEEPSEEK_BASE_URL = \"https://api.deepseek.com\";\n\nexport const XAI_BASE_URL = \"https://api.x.ai\";\n\nexport const CHATGLM_BASE_URL = \"https://open.bigmodel.cn\";\n\nexport const SILICONFLOW_BASE_URL = \"https://api.siliconflow.cn\";\n\nexport const AI302_BASE_URL = \"https://api.302.ai\";\n\nexport const CACHE_URL_PREFIX = \"/api/cache\";\nexport const UPLOAD_URL = `${CACHE_URL_PREFIX}/upload`;\n\nexport enum Path {\n  Home = \"/\",\n  Chat = \"/chat\",\n  Settings = \"/settings\",\n  NewChat = \"/new-chat\",\n  Masks = \"/masks\",\n  Plugins = \"/plugins\","
+  },
+  {
+   "path": "app/config/server.ts",
+   "start": 75,
+   "end": 98,
+   "code": "\n      DEEPSEEK_URL?: string;\n      DEEPSEEK_API_KEY?: string;\n\n      // xai only\n      XAI_URL?: string;\n      XAI_API_KEY?: string;\n\n      // chatglm only\n      CHATGLM_URL?: string;\n      CHATGLM_API_KEY?: string;\n\n      // siliconflow only\n      SILICONFLOW_URL?: string;\n      SILICONFLOW_API_KEY?: string;\n\n      // 302.AI only\n      AI302_URL?: string;\n      AI302_API_KEY?: string;\n\n      // custom template for preprocessing user input\n      DEFAULT_INPUT_TEMPLATE?: string;\n\n      ENABLE_MCP?: string; // enable mcp functionality"
+  }
+ ],
+ "files": [
+  {
+   "path": "app/constant.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 933,
+   "endpoints": [
+    "/v1/embeddings"
+   ],
+   "models": [
+    "grok-2",
+    "grok-2-1212",
+    "grok-2-latest",
+    "grok-2-vision",
+    "grok-2-vision-1212",
+    "grok-2-vision-latest",
+    "grok-3",
+    "grok-3-beta",
+    "grok-3-fast",
+    "grok-3-fast-beta",
+    "grok-3-fast-latest",
+    "grok-3-latest",
+    "grok-3-mini",
+    "grok-3-mini-beta",
+    "grok-3-mini-fast",
+    "grok-3-mini-fast-beta",
+    "grok-3-mini-fast-latest",
+    "grok-3-mini-latest",
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-beta",
+    "grok-code-fast-1",
+    "grok-vision-beta"
+   ],
+   "env": [
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "reasoning",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "app/config/server.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 278,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_URL"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  }
+ ]
+}

@@ -8,9 +8,9 @@
  "pushed_at": "2026-08-04T20:29:49Z",
  "description": "Claude Code plugin that delegates reviews, rescue tasks, and session transfer to the Grok Build CLI",
  "commit": "92b76a670713335229644e94add15ab40c80e547",
- "indexed_at": "2026-10-03T18:47:18Z",
+ "indexed_at": "2026-10-04T14:52:30Z",
  "status": "ok",
- "clone_kb": 668,
+ "clone_kb": 664,
  "seconds": 0.8,
  "files_scanned": 46,
  "languages": {

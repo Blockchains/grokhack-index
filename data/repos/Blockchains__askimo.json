@@ -2,16 +2,16 @@
  "fork": "Blockchains/askimo",
  "upstream": "askimo-ai/askimo",
  "category": "gateway-router",
- "stars": 511,
+ "stars": 512,
  "license_spdx": "AGPL-3.0",
  "license_text_head": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007 Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/> Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. Preamble The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure coop",
- "pushed_at": "2026-10-03T18:12:31Z",
+ "pushed_at": "2026-10-04T04:50:46Z",
  "description": "AI desktop app for chat, RAG, Skills, MCP tools, and agents. Support multiple LLMs (Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM, Gemini, OpenRouter)",
  "commit": "6b4d6683182b1665fbad750010332d39e47dd761",
- "indexed_at": "2026-10-03T18:48:29Z",
+ "indexed_at": "2026-10-04T14:53:28Z",
  "status": "ok",
- "clone_kb": 70812,
- "seconds": 6.6,
+ "clone_kb": 70808,
+ "seconds": 12.2,
  "files_scanned": 721,
  "languages": {
   "Kotlin": 683
@@ -49,18 +49,6 @@
   }
  ],
  "files": [
-  {
-   "path": "shared/src/main/kotlin/io/askimo/core/context/ParamKey.kt",
-   "kind": "source",
-   "lang": "Kotlin",
-   "lines": 71,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": []
-  },
   {
    "path": "shared/src/main/kotlin/io/askimo/core/providers/ModelProvider.kt",
    "kind": "source",
@@ -101,6 +89,18 @@
    "features": [
     "embeddings"
    ]
+  },
+  {
+   "path": "shared/src/main/kotlin/io/askimo/core/context/ParamKey.kt",
+   "kind": "source",
+   "lang": "Kotlin",
+   "lines": 71,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
   },
   {
    "path": "cli/src/test/kotlin/io/askimo/core/providers/xai/XAiModelFactoryTest.kt",
