@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-24T14:32:35Z",
  "description": "Desktop Companion for Hermes Agent",
  "commit": "2ed89070bc6c9e8231a37bb55df8a7722a3776b8",
- "indexed_at": "2026-10-04T18:19:44Z",
+ "indexed_at": "2026-10-05T09:39:11Z",
  "status": "ok",
  "clone_kb": 52172,
- "seconds": 9.1,
+ "seconds": 7.0,
  "files_scanned": 914,
  "languages": {
   "TypeScript": 794,

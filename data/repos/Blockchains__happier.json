@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:02:26Z",
  "description": "Web, Desktop & Mobile client and orchestrator for Codex, Claude Code, OpenCode, Pi, Cursor, Grok, Antigravity, Kimi, Augment Code, Qwen, fully end-to-end encrypted",
  "commit": "45bd83c934f7a00bc3b02f29879d7a91d99445e4",
- "indexed_at": "2026-10-04T18:21:10Z",
+ "indexed_at": "2026-10-05T09:39:47Z",
  "status": "ok",
  "clone_kb": 752724,
- "seconds": 140.5,
+ "seconds": 67.2,
  "files_scanned": 20380,
  "languages": {
   "TypeScript": 17373,

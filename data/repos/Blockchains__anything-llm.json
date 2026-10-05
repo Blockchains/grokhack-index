@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T01:30:10Z",
  "description": "Stop renting your intelligence. Own it with AnythingLLM. Everything you need for a powerful local-first agent experience ",
  "commit": "feb04ca0a57cda6d0b3a69c62578f0af44d388fc",
- "indexed_at": "2026-10-04T18:19:34Z",
+ "indexed_at": "2026-10-05T09:38:55Z",
  "status": "ok",
  "clone_kb": 110028,
- "seconds": 30.3,
+ "seconds": 9.2,
  "files_scanned": 1407,
  "languages": {
   "JavaScript": 1261,

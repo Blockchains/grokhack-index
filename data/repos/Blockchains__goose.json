@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-02T17:36:13Z",
  "description": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM",
  "commit": "591edd47cf2cfea4957d720c607cf2a4def8673d",
- "indexed_at": "2026-10-04T18:17:58Z",
+ "indexed_at": "2026-10-05T09:38:09Z",
  "status": "ok",
  "clone_kb": 662952,
- "seconds": 29.3,
+ "seconds": 13.1,
  "files_scanned": 2011,
  "languages": {
   "TypeScript": 593,

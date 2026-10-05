@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-09T07:57:01Z",
  "description": "Open-source 24/7 Cowork app for OpenClaw, Hermes, Claude Code, Codex, OpenCode and 20+ more CLI Agent | Customize your assistants | Team them up\uff5cStar if you like it!",
  "commit": "6744099b279b991c17e31c243f0920477bd31cb6",
- "indexed_at": "2026-10-04T18:19:52Z",
+ "indexed_at": "2026-10-05T09:39:14Z",
  "status": "ok",
- "clone_kb": 956508,
- "seconds": 26.7,
+ "clone_kb": 956512,
+ "seconds": 19.6,
  "files_scanned": 2115,
  "languages": {
   "TypeScript": 1613,

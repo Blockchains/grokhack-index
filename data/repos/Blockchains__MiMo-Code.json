@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T11:46:21Z",
  "description": "MiMo Code: Where Models and Agents Co-Evolve",
  "commit": "6babeb0b98f9b4818bddf04a4331edfee04dbf85",
- "indexed_at": "2026-10-04T18:18:47Z",
+ "indexed_at": "2026-10-05T09:38:40Z",
  "status": "ok",
  "clone_kb": 38880,
- "seconds": 13.4,
+ "seconds": 10.8,
  "files_scanned": 1925,
  "languages": {
   "TypeScript": 1347,

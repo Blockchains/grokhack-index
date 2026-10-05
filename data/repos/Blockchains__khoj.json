@@ -8,10 +8,10 @@
  "pushed_at": "2026-08-02T01:55:40Z",
  "description": "Your AI second brain. Self-hostable. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI (gpt, claude, gemini, llama, qwen, mistral). Get started - free.",
  "commit": "ae229ca894c0b80ad84664afcfdde523b5e87057",
- "indexed_at": "2026-10-04T18:20:48Z",
+ "indexed_at": "2026-10-05T09:39:47Z",
  "status": "ok",
  "clone_kb": 157428,
- "seconds": 5.5,
+ "seconds": 5.3,
  "files_scanned": 476,
  "languages": {
   "Python": 252,

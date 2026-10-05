@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T03:26:57Z",
  "description": "Algorithm powering the For You feed on X",
  "commit": "b412112d03f27acbfd668e0cc040abcafa1080c1",
- "indexed_at": "2026-10-04T18:12:40Z",
+ "indexed_at": "2026-10-05T09:35:18Z",
  "status": "ok",
  "clone_kb": 26612,
- "seconds": 9.4,
+ "seconds": 2.5,
  "files_scanned": 1933,
  "languages": {
   "Scala": 568,
