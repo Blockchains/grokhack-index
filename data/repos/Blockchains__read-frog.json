@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T06:22:20Z",
  "description": "\ud83d\udc38 Read Frog - Language Learning & Translate | \ud83d\udc38 \u966a\u8bfb\u86d9 - \u8bed\u8a00\u5b66\u4e60\u4e0e\u7ffb\u8bd1",
  "commit": "766b7d335ead6538061853ff3fb3b0a05ec5906c",
- "indexed_at": "2026-10-05T09:40:00Z",
+ "indexed_at": "2026-10-06T09:32:20Z",
  "status": "ok",
  "clone_kb": 79132,
- "seconds": 5.1,
+ "seconds": 5.8,
  "files_scanned": 1706,
  "languages": {
   "TypeScript": 1462,

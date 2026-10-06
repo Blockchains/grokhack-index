@@ -8,10 +8,10 @@
  "pushed_at": "2026-08-12T22:28:59Z",
  "description": "Scira (Formerly MiniPerplx) is a minimalistic AI-powered search engine that helps you find information on the internet and cites it too. Powered by Vercel AI SDK!",
  "commit": "e1692f5bdec7ec3f6482a24e0c6cf9b483d810f9",
- "indexed_at": "2026-10-05T09:39:55Z",
+ "indexed_at": "2026-10-06T09:32:07Z",
  "status": "ok",
- "clone_kb": 42204,
- "seconds": 2.6,
+ "clone_kb": 42220,
+ "seconds": 7.8,
  "files_scanned": 384,
  "languages": {
   "TypeScript": 351,

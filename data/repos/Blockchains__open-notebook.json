@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T12:44:54Z",
  "description": "An Open Source implementation of Notebook LM with more flexibility and features",
  "commit": "60e3c2161e9dd32cc6327991b7d4be68f83e6e06",
- "indexed_at": "2026-10-05T09:39:41Z",
+ "indexed_at": "2026-10-06T09:31:52Z",
  "status": "ok",
  "clone_kb": 11308,
- "seconds": 1.7,
+ "seconds": 5.6,
  "files_scanned": 560,
  "languages": {
   "TypeScript": 254,

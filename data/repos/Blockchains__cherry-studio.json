@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T12:52:09Z",
  "description": "AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs",
  "commit": "50d69b685697a8c3a634bc8b4f19ce3978768423",
- "indexed_at": "2026-10-05T09:39:34Z",
+ "indexed_at": "2026-10-06T09:31:32Z",
  "status": "ok",
- "clone_kb": 154740,
- "seconds": 48.0,
+ "clone_kb": 154756,
+ "seconds": 76.8,
  "files_scanned": 8964,
  "languages": {
   "TypeScript": 8338,

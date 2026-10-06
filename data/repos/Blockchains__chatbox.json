@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-24T14:09:13Z",
  "description": "Powerful AI Client",
  "commit": "0ac6385ae1ff5bf778777826da3c5edcd55b61b8",
- "indexed_at": "2026-10-05T09:39:04Z",
+ "indexed_at": "2026-10-06T09:30:42Z",
  "status": "ok",
  "clone_kb": 47992,
- "seconds": 10.6,
+ "seconds": 15.3,
  "files_scanned": 1691,
  "languages": {
   "TypeScript": 1558,
