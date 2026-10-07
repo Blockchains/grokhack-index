@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-01T09:52:07Z",
  "description": "Open Source eCommerce & Multi-Vendor Marketplace Platform Built with Laravel for Enterprise-Scale Commerce, Supporting 10M+ SKUs",
  "commit": "b40f998fa482dcbc99d24dccd4f45a263032100b",
- "indexed_at": "2026-10-06T09:32:20Z",
+ "indexed_at": "2026-10-07T09:20:12Z",
  "status": "ok",
- "clone_kb": 158208,
- "seconds": 21.0,
+ "clone_kb": 158204,
+ "seconds": 21.6,
  "files_scanned": 3158,
  "languages": {
   "PHP": 2775,

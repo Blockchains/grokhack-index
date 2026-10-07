@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T00:44:54Z",
  "description": "AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI",
  "commit": "83692682f095528f8b71652ddacff7075e36e893",
- "indexed_at": "2026-10-06T09:28:34Z",
+ "indexed_at": "2026-10-07T09:17:10Z",
  "status": "ok",
  "clone_kb": 36020,
- "seconds": 4.7,
+ "seconds": 4.6,
  "files_scanned": 1811,
  "languages": {
   "TypeScript": 1552,

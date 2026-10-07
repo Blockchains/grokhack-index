@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T06:48:17Z",
  "description": "\u5229\u7528 AI \u5927\u6a21\u578b\u548c\u81ea\u52a8\u5316\u5de5\u4f5c\u6d41\uff0c\u6839\u636e\u4e3b\u9898\u6216\u5173\u952e\u8bcd\u4e00\u952e\u751f\u6210\u9ad8\u6e05\u77ed\u89c6\u9891\u3002Generate HD short videos from a topic or keyword with an automated AI workflow.",
  "commit": "01e9eccc1beb7d97cb8819bbae5eef9f0d08866c",
- "indexed_at": "2026-10-06T09:31:39Z",
+ "indexed_at": "2026-10-07T09:19:41Z",
  "status": "ok",
  "clone_kb": 346068,
- "seconds": 6.6,
+ "seconds": 6.1,
  "files_scanned": 239,
  "languages": {
   "Python": 199

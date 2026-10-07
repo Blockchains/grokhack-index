@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-10-06T09:32:25Z",
+ "generated_at": "2026-10-07T09:20:17Z",
  "repos_listed": 99,
  "repos_indexed_ok": 99,
  "repos_failed": [],
  "repos_with_grok_surface": 98,
  "grok_files": 4180,
  "files_scanned": 332422,
- "clone_mb_total": 16302.5,
+ "clone_mb_total": 16302.4,
  "parts": 619,
  "parts_by_type": {
   "repo-surface": 98,
@@ -135,5 +135,5 @@
   "VERTEX_XAI_MODELS": 1,
   "MAXAI_DEFAULT_CONTEXT": 1
  },
- "run_seconds": 532.4
+ "run_seconds": 439.9
 }

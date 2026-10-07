@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:56:51Z",
  "description": "An open-source AI coding agent that lives in your terminal.",
  "commit": "17c182eda0226844d7af533a52dd3ed8b956ee7b",
- "indexed_at": "2026-10-06T09:30:17Z",
+ "indexed_at": "2026-10-07T09:18:40Z",
  "status": "ok",
  "clone_kb": 319860,
- "seconds": 98.4,
+ "seconds": 86.0,
  "files_scanned": 10038,
  "languages": {
   "TypeScript": 6630,
