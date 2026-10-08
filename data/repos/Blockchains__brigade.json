@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T08:46:07Z",
  "description": "Brigade \u2014 Your personal intelligence, built enterprise-grade",
  "commit": "4c2a18fba9a7224fbddd07557ad3933866f60495",
- "indexed_at": "2026-10-07T09:20:11Z",
+ "indexed_at": "2026-10-08T09:35:20Z",
  "status": "ok",
  "clone_kb": 73640,
- "seconds": 9.4,
+ "seconds": 10.4,
  "files_scanned": 1540,
  "languages": {
   "TypeScript": 1399,

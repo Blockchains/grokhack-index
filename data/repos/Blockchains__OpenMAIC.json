@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T14:45:27Z",
  "description": "Open Multi-Agent Interactive Classroom \u2014 Get an immersive, multi-agent learning experience in just one click",
  "commit": "636fab0d7edee5e7c2694117c38ece8f623573f9",
- "indexed_at": "2026-10-07T09:20:01Z",
+ "indexed_at": "2026-10-08T09:35:11Z",
  "status": "ok",
- "clone_kb": 222788,
- "seconds": 18.2,
+ "clone_kb": 222784,
+ "seconds": 19.4,
  "files_scanned": 3301,
  "languages": {
   "TypeScript": 2918,

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:17:27Z",
  "description": "The most autonomous AI agent framework: runs unattended on GitHub Actions, self-healing skills, drives Claude Code, Grok, Codex & more. No approval loops. Configure once, forget forever.",
  "commit": "82015a358d8ca795fbc8a0a5fc781ee8bccbac87",
- "indexed_at": "2026-10-07T09:18:29Z",
+ "indexed_at": "2026-10-08T09:33:14Z",
  "status": "ok",
  "clone_kb": 36612,
- "seconds": 3.7,
+ "seconds": 8.2,
  "files_scanned": 636,
  "languages": {
   "TypeScript": 169,

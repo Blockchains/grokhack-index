@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T14:00:31Z",
  "description": "Open-source Grok App \u2014 desktop workbench (GUI) for the local Grok Build CLI: sessions, projects, media, automations. Tauri 2.",
  "commit": "453eb857940bc3f264b037dff74572fe67267d0e",
- "indexed_at": "2026-10-07T09:18:29Z",
+ "indexed_at": "2026-10-08T09:33:21Z",
  "status": "ok",
- "clone_kb": 70328,
- "seconds": 13.4,
+ "clone_kb": 70324,
+ "seconds": 17.4,
  "files_scanned": 2692,
  "languages": {
   "TypeScript": 2095,

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-01T13:16:08Z",
  "description": "Claude Code plugin that asks several AI coding agents the same question and shows their answers side by side. Gemini, OpenAI, Grok, Perplexity, Kimi and any model OpenRouter routes to over API; codex, antigravity, grok, kimi and cursor CLIs on subscription auth; ollama locally. Codex specialists take coding tasks on their own branch (experimental).",
  "commit": "5e4267ceddd7f316d2e508db894141ffe9621950",
- "indexed_at": "2026-10-07T09:13:48Z",
+ "indexed_at": "2026-10-08T09:27:30Z",
  "status": "ok",
  "clone_kb": 6476,
- "seconds": 1.3,
+ "seconds": 1.4,
  "files_scanned": 170,
  "languages": {
   "TypeScript": 30,

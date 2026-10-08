@@ -8,10 +8,10 @@
  "pushed_at": "2026-07-06T14:05:33Z",
  "description": "An open-source coding agent for the Grok API",
  "commit": "fb97af83f06dca873281d60168430f06c8de6324",
- "indexed_at": "2026-10-07T09:18:13Z",
+ "indexed_at": "2026-10-08T09:33:01Z",
  "status": "ok",
  "clone_kb": 2824,
- "seconds": 1.7,
+ "seconds": 1.8,
  "files_scanned": 164,
  "languages": {
   "TypeScript": 146

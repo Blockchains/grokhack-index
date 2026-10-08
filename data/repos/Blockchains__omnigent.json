@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T16:03:32Z",
  "description": "Omnigent is an open-source AI agent framework and meta-harness: orchestrate Claude Code, Codex, Cursor, Pi, and custom agents \u2014 swap harnesses without rewriting, enforce policies and sandboxing, and collaborate in real time from any device.",
  "commit": "374b07967c5cdfe4476f7fba1b1b66fce98c1ddf",
- "indexed_at": "2026-10-07T09:17:05Z",
+ "indexed_at": "2026-10-08T09:31:33Z",
  "status": "ok",
- "clone_kb": 157436,
- "seconds": 40.3,
+ "clone_kb": 157432,
+ "seconds": 51.5,
  "files_scanned": 5474,
  "languages": {
   "Python": 3401,

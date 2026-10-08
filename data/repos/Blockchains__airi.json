@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T14:28:02Z",
  "description": "\ud83d\udc96\ud83e\uddf8 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.",
  "commit": "7684415927147a8f64bb442ff0069c33816efedd",
- "indexed_at": "2026-10-07T09:19:26Z",
+ "indexed_at": "2026-10-08T09:34:22Z",
  "status": "ok",
- "clone_kb": 960348,
- "seconds": 52.2,
+ "clone_kb": 960352,
+ "seconds": 61.0,
  "files_scanned": 5029,
  "languages": {
   "TypeScript": 2728,
