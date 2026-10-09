@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T13:04:27Z",
  "description": "DSPy: The framework for programming\u2014not prompting\u2014language models",
  "commit": "6f0aacfa5ed68511ac10c66dbbe53eaf02fc66ec",
- "indexed_at": "2026-10-08T09:26:40Z",
+ "indexed_at": "2026-10-09T09:36:19Z",
  "status": "ok",
  "clone_kb": 45304,
- "seconds": 5.9,
+ "seconds": 3.6,
  "files_scanned": 644,
  "languages": {
   "Python": 418,

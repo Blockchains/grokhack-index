@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:56:43Z",
  "description": "Show usage stats for OpenAI Codex and Claude Code, without having to login.",
  "commit": "60c1adbce5c8b1c78dde618878875ddfe4dbac8c",
- "indexed_at": "2026-10-08T09:32:47Z",
+ "indexed_at": "2026-10-09T09:41:15Z",
  "status": "ok",
  "clone_kb": 91880,
- "seconds": 38.6,
+ "seconds": 33.3,
  "files_scanned": 3369,
  "languages": {
   "Swift": 2903,

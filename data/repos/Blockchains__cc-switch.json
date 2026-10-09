@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:50:40Z",
  "description": "A cross-platform desktop All-in-One assistant for Claude Code, Codex, OpenCode, OpenClaw, Grok Build & Hermes Agent. Only official website: ccswitch.io",
  "commit": "ba8c1cd611b172054d2bf4859edef20549f4cf4c",
- "indexed_at": "2026-10-08T09:27:27Z",
+ "indexed_at": "2026-10-09T09:36:57Z",
  "status": "ok",
  "clone_kb": 83120,
- "seconds": 8.1,
+ "seconds": 7.7,
  "files_scanned": 1170,
  "languages": {
   "TypeScript": 603,

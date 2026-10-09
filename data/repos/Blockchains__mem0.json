@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-01T20:07:39Z",
  "description": "The Memory Layer for AI Agents - Drop-in memory infrastructure for AI agents and apps. Context that persists. Built for production.",
  "commit": "abb81c88e1f738a8117d8293530fbc31a5ef8fd9",
- "indexed_at": "2026-10-08T09:28:19Z",
+ "indexed_at": "2026-10-09T09:37:33Z",
  "status": "ok",
  "clone_kb": 57912,
- "seconds": 24.1,
+ "seconds": 24.4,
  "files_scanned": 1603,
  "languages": {
   "TypeScript": 591,

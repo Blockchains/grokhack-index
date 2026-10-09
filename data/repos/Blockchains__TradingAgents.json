@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T21:30:10Z",
  "description": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
  "commit": "8b22d43d01d9ddda5d686d093d5385884622f3de",
- "indexed_at": "2026-10-08T09:27:55Z",
+ "indexed_at": "2026-10-09T09:37:10Z",
  "status": "ok",
  "clone_kb": 9000,
- "seconds": 2.1,
+ "seconds": 4.3,
  "files_scanned": 191,
  "languages": {
   "Python": 177
