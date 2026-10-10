@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T19:41:34Z",
  "description": "Open Source framework for voice agents, multimodal apps, and realtime AI. Maintained by Daily and the community.",
  "commit": "c027943125c0ef7ea1b946b6c438032eb8ff0483",
- "indexed_at": "2026-10-09T09:42:32Z",
+ "indexed_at": "2026-10-10T09:05:25Z",
  "status": "ok",
  "clone_kb": 76708,
- "seconds": 6.0,
+ "seconds": 11.6,
  "files_scanned": 1742,
  "languages": {
   "Python": 1406,

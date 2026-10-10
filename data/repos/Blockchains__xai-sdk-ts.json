@@ -8,9 +8,9 @@
  "pushed_at": "2026-10-02T22:13:59Z",
  "description": "The official TypeScript SDK for the SpaceXAI API",
  "commit": "0092a5f7f313ed092ea1326ae147c22981165e82",
- "indexed_at": "2026-10-09T09:36:16Z",
+ "indexed_at": "2026-10-10T08:57:25Z",
  "status": "ok",
- "clone_kb": 1504,
+ "clone_kb": 1492,
  "seconds": 1.2,
  "files_scanned": 101,
  "languages": {

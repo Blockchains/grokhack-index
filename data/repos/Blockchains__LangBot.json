@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T05:03:06Z",
  "description": "Production-grade platform for building agentic IM bots - \u751f\u4ea7\u7ea7\u591a\u5e73\u53f0\u667a\u80fd\u673a\u5668\u4eba\u5f00\u53d1\u5e73\u53f0/ Agent\u3001\u77e5\u8bc6\u5e93\u7f16\u6392\u3001\u63d2\u4ef6\u7cfb\u7edf / Bots for Discord / Slack / LINE / Telegram / WeChat(\u4f01\u4e1a\u5fae\u4fe1, \u4f01\u5fae\u667a\u80fd\u673a\u5668\u4eba, \u516c\u4f17\u53f7) / \u98de\u4e66 / \u9489\u9489 / QQ / Matrix e.g. Integrated with ChatGPT(GPT), DeepSeek, Dify, n8n, Langflow, Coze, Claude, Gemini, GLM, Ollama, SiliconFlow, Moonshot, openclaw / hermes agent, deerflow",
  "commit": "dcc7e17d7751c33e8db95ea90fef2e283a8b683b",
- "indexed_at": "2026-10-09T09:43:15Z",
+ "indexed_at": "2026-10-10T09:06:12Z",
  "status": "ok",
  "clone_kb": 40388,
- "seconds": 12.5,
+ "seconds": 14.7,
  "files_scanned": 1963,
  "languages": {
   "Python": 1073,

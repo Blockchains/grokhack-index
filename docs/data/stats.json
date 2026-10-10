@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-09T09:43:22Z",
+ "generated_at": "2026-10-10T09:06:22Z",
  "repos_listed": 99,
  "repos_indexed_ok": 99,
  "repos_failed": [],
@@ -135,5 +135,5 @@
   "VERTEX_XAI_MODELS": 1,
   "MAXAI_DEFAULT_CONTEXT": 1
  },
- "run_seconds": 428.7
+ "run_seconds": 538.3
 }

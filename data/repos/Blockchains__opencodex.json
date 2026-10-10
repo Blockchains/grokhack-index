@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T16:15:59Z",
  "description": "Universal provider proxy for OpenAI Codex & Claude Code \u2014 use any LLM (Claude, Gemini, Grok, DeepSeek, Ollama\u2026) with Codex CLI, App, SDK, and Claude Code",
  "commit": "249462bf570555aad103957025eea96f7489c7eb",
- "indexed_at": "2026-10-09T09:38:48Z",
+ "indexed_at": "2026-10-10T09:00:28Z",
  "status": "ok",
- "clone_kb": 327588,
- "seconds": 110.8,
+ "clone_kb": 327592,
+ "seconds": 131.1,
  "files_scanned": 10469,
  "languages": {
   "TypeScript": 4469,

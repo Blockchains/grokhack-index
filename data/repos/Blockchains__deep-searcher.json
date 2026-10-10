@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-22T10:08:42Z",
  "description": "Open Source Deep Research Alternative to Reason and Search on Private Data. Written in Python.",
  "commit": "ddc36db317836bd42302b36f03166bec5324708d",
- "indexed_at": "2026-10-09T09:43:17Z",
+ "indexed_at": "2026-10-10T09:06:15Z",
  "status": "ok",
  "clone_kb": 28604,
- "seconds": 2.0,
+ "seconds": 3.9,
  "files_scanned": 208,
  "languages": {
   "Python": 156

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:31:14Z",
  "description": "A framework for building realtime voice AI agents \ud83e\udd16\ud83c\udf99\ufe0f\ud83d\udcf9 ",
  "commit": "8d28326212fd2feb141cb68764dbcc438f25d6c1",
- "indexed_at": "2026-10-09T09:42:32Z",
+ "indexed_at": "2026-10-10T09:05:25Z",
  "status": "ok",
  "clone_kb": 22080,
- "seconds": 4.4,
+ "seconds": 10.3,
  "files_scanned": 1365,
  "languages": {
   "Python": 1098

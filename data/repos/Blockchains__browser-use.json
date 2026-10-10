@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T00:06:08Z",
  "description": "Agents that use the browser.",
  "commit": "7be96ed8bafa8dfe1eef228b59cf5c884b8b2431",
- "indexed_at": "2026-10-09T09:37:09Z",
+ "indexed_at": "2026-10-10T08:58:51Z",
  "status": "ok",
  "clone_kb": 16320,
- "seconds": 5.1,
+ "seconds": 7.4,
  "files_scanned": 502,
  "languages": {
   "Python": 410

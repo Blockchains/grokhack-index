@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T16:28:55Z",
  "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
  "commit": "9327439db69021ab4b0e2776729bf3b58fdb5a87",
- "indexed_at": "2026-10-09T09:42:58Z",
+ "indexed_at": "2026-10-10T09:05:47Z",
  "status": "ok",
  "clone_kb": 166212,
- "seconds": 15.9,
+ "seconds": 19.2,
  "files_scanned": 1887,
  "languages": {
   "Python": 539,

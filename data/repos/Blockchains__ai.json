@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T14:49:42Z",
  "description": "The AI Toolkit for TypeScript. From the creators of Next.js, the AI SDK is a free open-source library for building AI-powered applications and agents ",
  "commit": "08d7f0a75e1466d28c3b71c2be4c0d89d552acf9",
- "indexed_at": "2026-10-09T09:36:59Z",
+ "indexed_at": "2026-10-10T08:58:21Z",
  "status": "ok",
- "clone_kb": 155900,
- "seconds": 43.1,
+ "clone_kb": 155896,
+ "seconds": 54.7,
  "files_scanned": 8881,
  "languages": {
   "TypeScript": 6988,

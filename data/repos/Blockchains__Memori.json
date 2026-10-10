@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T01:33:14Z",
  "description": "Memori is agent-native memory infrastructure. A LLM-agnostic layer that turns agent execution and conversation into structured, persistent state for production systems. Built for enterprise, Memori works with the data infrastructure you already run, no rip-and-replace, and deploys across managed cloud, single-tenant cloud, VPC, and on-premises.",
  "commit": "574b1ea3e876f100ef82c37817d603eb7e258e59",
- "indexed_at": "2026-10-09T09:39:37Z",
+ "indexed_at": "2026-10-10T09:01:34Z",
  "status": "ok",
- "clone_kb": 10344,
- "seconds": 4.7,
+ "clone_kb": 10316,
+ "seconds": 7.9,
  "files_scanned": 648,
  "languages": {
   "Python": 303,

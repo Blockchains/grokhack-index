@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-29T16:57:13Z",
  "description": "SpaceXAI's coding agent harness and TUI. Fullscreen, mouse interactive, extensible.",
  "commit": "2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8",
- "indexed_at": "2026-10-09T09:36:58Z",
+ "indexed_at": "2026-10-10T08:58:16Z",
  "status": "ok",
  "clone_kb": 111904,
- "seconds": 43.9,
+ "seconds": 52.1,
  "files_scanned": 4348,
  "languages": {
   "Rust": 3620,

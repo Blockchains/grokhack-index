@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-02T01:53:01Z",
  "description": "A collection of pragmatic, real-world examples guiding you from basic to advanced use of xAI's Grok APIs.",
  "commit": "a9bb07acd488d9b619806607e880ded8268ba640",
- "indexed_at": "2026-10-09T09:36:16Z",
+ "indexed_at": "2026-10-10T08:57:26Z",
  "status": "ok",
  "clone_kb": 3832,
- "seconds": 1.9,
+ "seconds": 2.1,
  "files_scanned": 163,
  "languages": {
   "TypeScript": 42,

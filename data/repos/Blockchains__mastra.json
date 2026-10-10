@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T14:06:34Z",
  "description": "Mastra is the modern TypeScript framework for AI-powered applications and agents.",
  "commit": "cac7b1b05745e509f4a9d5d5fe36fa24402425d7",
- "indexed_at": "2026-10-09T09:40:22Z",
+ "indexed_at": "2026-10-10T09:02:52Z",
  "status": "ok",
  "clone_kb": 324964,
- "seconds": 98.6,
+ "seconds": 144.6,
  "files_scanned": 18714,
  "languages": {
   "TypeScript": 14444,
