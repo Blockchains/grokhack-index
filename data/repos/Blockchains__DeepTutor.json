@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T13:35:33Z",
  "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/.",
  "commit": "f07029cfcf2c8dfccdb671cdfc343db8334f5741",
- "indexed_at": "2026-10-19T08:12:43Z",
+ "indexed_at": "2026-10-20T08:01:37Z",
  "status": "ok",
  "clone_kb": 101648,
- "seconds": 22.7,
+ "seconds": 17.6,
  "files_scanned": 3423,
  "languages": {
   "Python": 1817,
@@ -28,9 +28,9 @@
  },
  "endpoints": {},
  "models": {
+  "grok-3": 1,
   "grok-4": 1,
-  "grok-4.6": 1,
-  "grok-3": 1
+  "grok-4.6": 1
  },
  "env_vars": {},
  "features": {
@@ -56,19 +56,6 @@
    ]
   },
   {
-   "path": "tests/services/llm/test_context_window.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 34,
-   "endpoints": [],
-   "models": [
-    "grok-4",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
    "path": "deeptutor/services/llm/context_window.py",
    "kind": "source",
    "lang": "Python",
@@ -81,6 +68,19 @@
    "features": [
     "embeddings"
    ]
+  },
+  {
+   "path": "tests/services/llm/test_context_window.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 34,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
   }
  ]
 }

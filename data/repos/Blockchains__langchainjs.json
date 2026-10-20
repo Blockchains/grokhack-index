@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T01:41:53Z",
  "description": "The agent engineering platform",
  "commit": "71ede02def46cc009807130227e22adab44f4cd3",
- "indexed_at": "2026-10-19T08:04:50Z",
+ "indexed_at": "2026-10-20T07:55:21Z",
  "status": "ok",
- "clone_kb": 37376,
- "seconds": 36.0,
+ "clone_kb": 37400,
+ "seconds": 28.4,
  "files_scanned": 2590,
  "languages": {
   "TypeScript": 2179,
@@ -31,14 +31,17 @@
  },
  "endpoints": {},
  "models": {
-  "grok-3-fast": 9,
   "grok-3": 9,
+  "grok-3-fast": 9,
   "grok-4-1-fast": 6,
   "grok-3-mini": 3,
-  "grok-3-mini-fast": 2,
   "grok-4": 2,
   "grok-4-fast": 2,
   "grok-code-fast-1": 2,
+  "grok-3-mini-fast": 2,
+  "grok-3-beta": 1,
+  "grok-3-mini-beta": 1,
+  "grok-4.1-fast": 1,
   "grok-2-latest": 1,
   "grok-2-vision": 1,
   "grok-2-vision-1212": 1,
@@ -49,20 +52,17 @@
   "grok-3-mini-latest": 1,
   "grok-4-1-fast-non-reasoning": 1,
   "grok-4-fast-non-reasoning": 1,
-  "grok-vision-beta": 1,
-  "grok-3-beta": 1,
-  "grok-3-mini-beta": 1,
-  "grok-4.1-fast": 1
+  "grok-vision-beta": 1
  },
  "env_vars": {
   "XAI_API_KEY": 12,
   "XAI_LIVE_SEARCH_TOOL_TYPE": 5,
   "XAI_LIVE_SEARCH_TOOL_NAME": 4,
   "XAI_TEST_MODEL": 3,
-  "XAI_WEB_SEARCH_TOOL_TYPE": 2,
-  "XAI_COLLECTIONS_SEARCH_TOOL_TYPE": 2,
   "XAI_CODE_EXECUTION_TOOL_TYPE": 2,
+  "XAI_WEB_SEARCH_TOOL_TYPE": 2,
   "XAI_X_SEARCH_TOOL_TYPE": 2,
+  "XAI_COLLECTIONS_SEARCH_TOOL_TYPE": 2,
   "XAI_BUILT_IN_TOOL_TYPES": 1
  },
  "features": {
@@ -70,8 +70,8 @@
   "live_search": 6,
   "anthropic_compatible": 5,
   "streaming": 5,
-  "reasoning": 4,
   "structured_output": 4,
+  "reasoning": 4,
   "vision": 2,
   "mcp": 1
  },
@@ -86,64 +86,10 @@
  ],
  "snippets": [
   {
-   "path": "libs/langchain-core/src/messages/block_translators/index.ts",
-   "start": 7,
-   "end": 30,
-   "code": "import { ChatGoogleGenAITranslator } from \"./google_genai.js\";\nimport { ChatVertexTranslator } from \"./google_vertexai.js\";\nimport { ChatGroqTranslator } from \"./groq.js\";\nimport { ChatOllamaTranslator } from \"./ollama.js\";\nimport { ChatOpenAITranslator } from \"./openai.js\";\nimport { ChatOpenRouterTranslator } from \"./openrouter.js\";\nimport { ChatXAITranslator } from \"./xai.js\";\nimport { ChatGoogleTranslator } from \"./google.js\";\n\nexport interface StandardContentBlockTranslator {\n  translateContent(message: AIMessage): Array<ContentBlock.Standard>;\n  translateContentChunk(chunk: AIMessageChunk): Array<ContentBlock.Standard>;\n}\n\ntype TranslatorRegistry = Map<string, StandardContentBlockTranslator>;\n\ndeclare global {\n  var lc_block_translators_registry: TranslatorRegistry;\n}\n\nglobalThis.lc_block_translators_registry ??= new Map([\n  [\"anthropic\", ChatAnthropicTranslator],\n  [\"bedrock-converse\", ChatBedrockConverseTranslator],\n  [\"deepseek\", ChatDeepSeekTranslator],"
-  },
-  {
-   "path": "libs/langchain-core/src/messages/block_translators/xai.ts",
-   "start": 118,
-   "end": 127,
-   "code": "    });\n  }\n\n  return blocks;\n}\n\nexport const ChatXAITranslator: StandardContentBlockTranslator = {\n  translateContent: convertToV1FromXAIMessage,\n  translateContentChunk: convertToV1FromXAIMessage,\n};"
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/tools/web_search.ts",
-   "start": 70,
-   "end": 93,
-   "code": " *\n * @param options - Configuration options for the web search tool\n * @returns An XAIWebSearchTool object to pass to the model\n *\n * @example Basic usage\n * ```typescript\n * import { ChatXAIResponses, tools } from \"@langchain/xai\";\n *\n * const llm = new ChatXAIResponses({\n *   model: \"grok-4-1-fast\",\n * });\n *\n * const webSearch = tools.xaiWebSearch();\n * const result = await llm.invoke(\"What are the latest AI developments?\", {\n *   tools: [webSearch],\n * });\n * ```\n *\n * @example With domain filtering\n * ```typescript\n * const webSearch = tools.xaiWebSearch({\n *   allowedDomains: [\"wikipedia.org\", \"arxiv.org\"],\n *   enableImageUnderstanding: true,\n * });"
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/tools/live_search.ts",
-   "start": 191,
-   "end": 214,
-   "code": " * const webSearch = tools.xaiWebSearch({ allowedDomains: [\"example.com\"] });\n * const xSearch = tools.xaiXSearch({ allowedXHandles: [\"elonmusk\"] });\n * ```\n *\n * @example\n * ```typescript\n * import { ChatXAI, tools } from \"@langchain/xai\";\n *\n * const llm = new ChatXAI({\n *   model: \"grok-3-fast\",\n * });\n *\n * const searchTool = tools.xaiLiveSearch({\n *   maxSearchResults: 5,\n *   fromDate: \"2024-01-01\",\n *   returnCitations: true\n * });\n *\n * const llmWithSearch = llm.bindTools([searchTool]);\n * const result = await llmWithSearch.invoke(\"What happened in tech today?\");\n * ```\n */\nexport function xaiLiveSearch(\n  options: XAILiveSearchToolOptions = {}"
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/tools/collections_search.ts",
-   "start": 53,
-   "end": 76,
-   "code": " *\n * @param options - Configuration options for the collections search tool\n * @returns An XAICollectionsSearchTool object to pass to the model\n *\n * @example Basic usage with collection IDs\n * ```typescript\n * import { ChatXAIResponses, tools } from \"@langchain/xai\";\n *\n * const llm = new ChatXAIResponses({\n *   model: \"grok-4-1-fast\",\n * });\n *\n * const collectionsSearch = tools.xaiCollectionsSearch({\n *   vectorStoreIds: [\"collection_abc123\"],\n * });\n *\n * const result = await llm.invoke(\n *   \"What are the key findings in the Q3 report?\",\n *   { tools: [collectionsSearch] }\n * );\n * ```\n *\n * @example Combining with other tools for hybrid analysis\n * ```typescript"
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/tools/code_execution.ts",
-   "start": 32,
-   "end": 55,
-   "code": " * Matplotlib, SciPy).\n *\n * @returns An XAICodeExecutionTool object to pass to the model\n *\n * @example Basic usage\n * ```typescript\n * import { ChatXAIResponses, tools } from \"@langchain/xai\";\n *\n * const llm = new ChatXAIResponses({\n *   model: \"grok-4-1-fast\",\n * });\n *\n * const codeExecution = tools.xaiCodeExecution();\n * const result = await llm.invoke(\n *   \"Calculate the compound interest for $10,000 at 5% annually for 10 years\",\n *   { tools: [codeExecution] }\n * );\n * ```\n *\n * @example Combining with search tools\n * ```typescript\n * const webSearch = tools.xaiWebSearch();\n * const codeExecution = tools.xaiCodeExecution();\n *"
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/tools/x_search.ts",
-   "start": 109,
-   "end": 132,
-   "code": " *\n * @param options - Configuration options for the X search tool\n * @returns An XAIXSearchTool object to pass to the model\n *\n * @example Basic usage\n * ```typescript\n * import { ChatXAIResponses, tools } from \"@langchain/xai\";\n *\n * const llm = new ChatXAIResponses({\n *   model: \"grok-4-1-fast\",\n * });\n *\n * const xSearch = tools.xaiXSearch();\n * const result = await llm.invoke(\"What is the current status of xAI?\", {\n *   tools: [xSearch],\n * });\n * ```\n *\n * @example With handle filtering\n * ```typescript\n * const xSearch = tools.xaiXSearch({\n *   allowedXHandles: [\"elonmusk\", \"xai\"],\n *   enableImageUnderstanding: true,\n * });"
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/chat_models/responses-types.ts",
-   "start": 1318,
-   "end": 1341,
-   "code": "import type {\n  BaseChatModelCallOptions,\n  BaseChatModelParams,\n} from \"@langchain/core/language_models/chat_models\";\n\n/**\n * Call options for ChatXAIResponses.\n */\nexport interface ChatXAIResponsesCallOptions extends BaseChatModelCallOptions {\n  /**\n   * Configuration options for a text response from the model.\n   */\n  text?: XAIResponsesText;\n\n  /**\n   * Specify additional output data to include in the model response.\n   */\n  include?: XAIResponsesInclude[];\n\n  /**\n   * The unique ID of the previous response to the model.\n   * Use this to create multi-turn conversations.\n   */\n  previous_response_id?: string;"
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/chat_models/completions.ts",
-   "start": 51,
-   "end": 74,
-   "code": "  XAI_LIVE_SEARCH_TOOL_TYPE,\n]);\n\n/**\n * Tool type that includes both standard tools and xAI built-in tools.\n */\ntype ChatXAIToolType =\n  | BindToolsInput\n  | OpenAIClient.ChatCompletionTool\n  | XAIBuiltInTool;\n\n/**\n * xAI-specific invocation parameters that extend the OpenAI completion params\n * with xAI's search_parameters field.\n */\nexport type ChatXAICompletionsInvocationParams = Omit<\n  OpenAIClient.Chat.Completions.ChatCompletionCreateParams,\n  \"messages\"\n> & {\n  /**\n   * Search parameters for xAI's Live Search API.\n   * When present, enables the model to search the web for real-time information.\n   */\n  search_parameters?: XAISearchParametersPayload;"
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/chat_models/responses.ts",
-   "start": 7,
-   "end": 30,
-   "code": "} from \"@langchain/core/language_models/chat_models\";\nimport { ChatGenerationChunk, type ChatResult } from \"@langchain/core/outputs\";\nimport { getEnvironmentVariable } from \"@langchain/core/utils/env\";\nimport { Serialized } from \"@langchain/core/load/serializable\";\n\nimport type {\n  ChatXAIResponsesCallOptions,\n  ChatXAIResponsesInput,\n  ChatXAIResponsesInvocationParams,\n  XAIResponse,\n  XAIResponsesCreateParams,\n  XAIResponsesCreateParamsNonStreaming,\n  XAIResponsesCreateParamsStreaming,\n  XAIResponsesReasoning,\n  XAIResponsesSearchParameters,\n  XAIResponsesStreamEvent,\n  XAIResponsesTool,\n} from \"./responses-types.js\";\n\nimport {\n  convertMessagesToResponsesInput,\n  convertResponseToAIMessage,\n  convertStreamEventToChunk,\n  extractTextFromOutput,"
+   "path": "libs/langchain-classic/src/chat_models/universal.ts",
+   "start": 105,
+   "end": 128,
+   "code": "  deepseek: {\n    package: \"@langchain/deepseek\",\n    className: \"ChatDeepSeek\",\n  },\n  xai: {\n    package: \"@langchain/xai\",\n    className: \"ChatXAI\",\n  },\n  fireworks: {\n    package: \"@langchain/fireworks\",\n    className: \"ChatFireworks\",\n  },\n  together: {\n    package: \"@langchain/together-ai\",\n    className: \"ChatTogetherAI\",\n    hasCircularDependency: true,\n  },\n  perplexity: {\n    package: \"@langchain/perplexity\",\n    className: \"ChatPerplexity\",\n  },\n} as const;\n\nconst SUPPORTED_PROVIDERS = Object.keys("
   },
   {
    "path": "libs/langchain/src/agents/nodes/AgentNode.ts",
@@ -158,10 +104,64 @@
    "code": "  deepseek: {\n    package: \"@langchain/deepseek\",\n    className: \"ChatDeepSeek\",\n  },\n  xai: {\n    package: \"@langchain/xai\",\n    className: \"ChatXAI\",\n  },\n  cerebras: {\n    package: \"@langchain/cerebras\",\n    className: \"ChatCerebras\",\n  },\n  fireworks: {\n    package: \"@langchain/fireworks\",\n    className: \"ChatFireworks\",\n  },\n  together: {\n    package: \"@langchain/together-ai\",\n    className: \"ChatTogetherAI\",\n    hasCircularDependency: true,\n  },\n  perplexity: {\n    package: \"@langchain/perplexity\",\n    className: \"ChatPerplexity\","
   },
   {
-   "path": "libs/langchain-classic/src/chat_models/universal.ts",
-   "start": 105,
-   "end": 128,
-   "code": "  deepseek: {\n    package: \"@langchain/deepseek\",\n    className: \"ChatDeepSeek\",\n  },\n  xai: {\n    package: \"@langchain/xai\",\n    className: \"ChatXAI\",\n  },\n  fireworks: {\n    package: \"@langchain/fireworks\",\n    className: \"ChatFireworks\",\n  },\n  together: {\n    package: \"@langchain/together-ai\",\n    className: \"ChatTogetherAI\",\n    hasCircularDependency: true,\n  },\n  perplexity: {\n    package: \"@langchain/perplexity\",\n    className: \"ChatPerplexity\",\n  },\n} as const;\n\nconst SUPPORTED_PROVIDERS = Object.keys("
+   "path": "libs/providers/langchain-xai/src/tools/code_execution.ts",
+   "start": 32,
+   "end": 55,
+   "code": " * Matplotlib, SciPy).\n *\n * @returns An XAICodeExecutionTool object to pass to the model\n *\n * @example Basic usage\n * ```typescript\n * import { ChatXAIResponses, tools } from \"@langchain/xai\";\n *\n * const llm = new ChatXAIResponses({\n *   model: \"grok-4-1-fast\",\n * });\n *\n * const codeExecution = tools.xaiCodeExecution();\n * const result = await llm.invoke(\n *   \"Calculate the compound interest for $10,000 at 5% annually for 10 years\",\n *   { tools: [codeExecution] }\n * );\n * ```\n *\n * @example Combining with search tools\n * ```typescript\n * const webSearch = tools.xaiWebSearch();\n * const codeExecution = tools.xaiCodeExecution();\n *"
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/tools/web_search.ts",
+   "start": 70,
+   "end": 93,
+   "code": " *\n * @param options - Configuration options for the web search tool\n * @returns An XAIWebSearchTool object to pass to the model\n *\n * @example Basic usage\n * ```typescript\n * import { ChatXAIResponses, tools } from \"@langchain/xai\";\n *\n * const llm = new ChatXAIResponses({\n *   model: \"grok-4-1-fast\",\n * });\n *\n * const webSearch = tools.xaiWebSearch();\n * const result = await llm.invoke(\"What are the latest AI developments?\", {\n *   tools: [webSearch],\n * });\n * ```\n *\n * @example With domain filtering\n * ```typescript\n * const webSearch = tools.xaiWebSearch({\n *   allowedDomains: [\"wikipedia.org\", \"arxiv.org\"],\n *   enableImageUnderstanding: true,\n * });"
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/tools/x_search.ts",
+   "start": 109,
+   "end": 132,
+   "code": " *\n * @param options - Configuration options for the X search tool\n * @returns An XAIXSearchTool object to pass to the model\n *\n * @example Basic usage\n * ```typescript\n * import { ChatXAIResponses, tools } from \"@langchain/xai\";\n *\n * const llm = new ChatXAIResponses({\n *   model: \"grok-4-1-fast\",\n * });\n *\n * const xSearch = tools.xaiXSearch();\n * const result = await llm.invoke(\"What is the current status of xAI?\", {\n *   tools: [xSearch],\n * });\n * ```\n *\n * @example With handle filtering\n * ```typescript\n * const xSearch = tools.xaiXSearch({\n *   allowedXHandles: [\"elonmusk\", \"xai\"],\n *   enableImageUnderstanding: true,\n * });"
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/tools/collections_search.ts",
+   "start": 53,
+   "end": 76,
+   "code": " *\n * @param options - Configuration options for the collections search tool\n * @returns An XAICollectionsSearchTool object to pass to the model\n *\n * @example Basic usage with collection IDs\n * ```typescript\n * import { ChatXAIResponses, tools } from \"@langchain/xai\";\n *\n * const llm = new ChatXAIResponses({\n *   model: \"grok-4-1-fast\",\n * });\n *\n * const collectionsSearch = tools.xaiCollectionsSearch({\n *   vectorStoreIds: [\"collection_abc123\"],\n * });\n *\n * const result = await llm.invoke(\n *   \"What are the key findings in the Q3 report?\",\n *   { tools: [collectionsSearch] }\n * );\n * ```\n *\n * @example Combining with other tools for hybrid analysis\n * ```typescript"
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/tools/live_search.ts",
+   "start": 191,
+   "end": 214,
+   "code": " * const webSearch = tools.xaiWebSearch({ allowedDomains: [\"example.com\"] });\n * const xSearch = tools.xaiXSearch({ allowedXHandles: [\"elonmusk\"] });\n * ```\n *\n * @example\n * ```typescript\n * import { ChatXAI, tools } from \"@langchain/xai\";\n *\n * const llm = new ChatXAI({\n *   model: \"grok-3-fast\",\n * });\n *\n * const searchTool = tools.xaiLiveSearch({\n *   maxSearchResults: 5,\n *   fromDate: \"2024-01-01\",\n *   returnCitations: true\n * });\n *\n * const llmWithSearch = llm.bindTools([searchTool]);\n * const result = await llmWithSearch.invoke(\"What happened in tech today?\");\n * ```\n */\nexport function xaiLiveSearch(\n  options: XAILiveSearchToolOptions = {}"
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/chat_models/responses.ts",
+   "start": 7,
+   "end": 30,
+   "code": "} from \"@langchain/core/language_models/chat_models\";\nimport { ChatGenerationChunk, type ChatResult } from \"@langchain/core/outputs\";\nimport { getEnvironmentVariable } from \"@langchain/core/utils/env\";\nimport { Serialized } from \"@langchain/core/load/serializable\";\n\nimport type {\n  ChatXAIResponsesCallOptions,\n  ChatXAIResponsesInput,\n  ChatXAIResponsesInvocationParams,\n  XAIResponse,\n  XAIResponsesCreateParams,\n  XAIResponsesCreateParamsNonStreaming,\n  XAIResponsesCreateParamsStreaming,\n  XAIResponsesReasoning,\n  XAIResponsesSearchParameters,\n  XAIResponsesStreamEvent,\n  XAIResponsesTool,\n} from \"./responses-types.js\";\n\nimport {\n  convertMessagesToResponsesInput,\n  convertResponseToAIMessage,\n  convertStreamEventToChunk,\n  extractTextFromOutput,"
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/chat_models/responses-types.ts",
+   "start": 1318,
+   "end": 1341,
+   "code": "import type {\n  BaseChatModelCallOptions,\n  BaseChatModelParams,\n} from \"@langchain/core/language_models/chat_models\";\n\n/**\n * Call options for ChatXAIResponses.\n */\nexport interface ChatXAIResponsesCallOptions extends BaseChatModelCallOptions {\n  /**\n   * Configuration options for a text response from the model.\n   */\n  text?: XAIResponsesText;\n\n  /**\n   * Specify additional output data to include in the model response.\n   */\n  include?: XAIResponsesInclude[];\n\n  /**\n   * The unique ID of the previous response to the model.\n   * Use this to create multi-turn conversations.\n   */\n  previous_response_id?: string;"
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/chat_models/completions.ts",
+   "start": 51,
+   "end": 74,
+   "code": "  XAI_LIVE_SEARCH_TOOL_TYPE,\n]);\n\n/**\n * Tool type that includes both standard tools and xAI built-in tools.\n */\ntype ChatXAIToolType =\n  | BindToolsInput\n  | OpenAIClient.ChatCompletionTool\n  | XAIBuiltInTool;\n\n/**\n * xAI-specific invocation parameters that extend the OpenAI completion params\n * with xAI's search_parameters field.\n */\nexport type ChatXAICompletionsInvocationParams = Omit<\n  OpenAIClient.Chat.Completions.ChatCompletionCreateParams,\n  \"messages\"\n> & {\n  /**\n   * Search parameters for xAI's Live Search API.\n   * When present, enables the model to search the web for real-time information.\n   */\n  search_parameters?: XAISearchParametersPayload;"
+  },
+  {
+   "path": "libs/langchain-core/src/messages/block_translators/index.ts",
+   "start": 7,
+   "end": 30,
+   "code": "import { ChatGoogleGenAITranslator } from \"./google_genai.js\";\nimport { ChatVertexTranslator } from \"./google_vertexai.js\";\nimport { ChatGroqTranslator } from \"./groq.js\";\nimport { ChatOllamaTranslator } from \"./ollama.js\";\nimport { ChatOpenAITranslator } from \"./openai.js\";\nimport { ChatOpenRouterTranslator } from \"./openrouter.js\";\nimport { ChatXAITranslator } from \"./xai.js\";\nimport { ChatGoogleTranslator } from \"./google.js\";\n\nexport interface StandardContentBlockTranslator {\n  translateContent(message: AIMessage): Array<ContentBlock.Standard>;\n  translateContentChunk(chunk: AIMessageChunk): Array<ContentBlock.Standard>;\n}\n\ntype TranslatorRegistry = Map<string, StandardContentBlockTranslator>;\n\ndeclare global {\n  var lc_block_translators_registry: TranslatorRegistry;\n}\n\nglobalThis.lc_block_translators_registry ??= new Map([\n  [\"anthropic\", ChatAnthropicTranslator],\n  [\"bedrock-converse\", ChatBedrockConverseTranslator],\n  [\"deepseek\", ChatDeepSeekTranslator],"
+  },
+  {
+   "path": "libs/langchain-core/src/messages/block_translators/xai.ts",
+   "start": 118,
+   "end": 127,
+   "code": "    });\n  }\n\n  return blocks;\n}\n\nexport const ChatXAITranslator: StandardContentBlockTranslator = {\n  translateContent: convertToV1FromXAIMessage,\n  translateContentChunk: convertToV1FromXAIMessage,\n};"
   }
  ],
  "files": [
@@ -178,10 +178,10 @@
    "features": []
   },
   {
-   "path": "examples/tsconfig.json",
-   "kind": "example",
+   "path": "dependency_range_tests/docker-compose.yml",
+   "kind": "config",
    "lang": null,
-   "lines": 45,
+   "lines": 178,
    "endpoints": [],
    "models": [],
    "env": [],
@@ -202,10 +202,10 @@
    ]
   },
   {
-   "path": "libs/langchain-core/src/messages/block_translators/index.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 52,
+   "path": "examples/tsconfig.json",
+   "kind": "example",
+   "lang": null,
+   "lines": 45,
    "endpoints": [],
    "models": [],
    "env": [],
@@ -214,31 +214,88 @@
    ]
   },
   {
-   "path": "libs/langchain-core/src/messages/block_translators/xai.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 127,
+   "path": "libs/langchain-classic/tsconfig.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 34,
    "endpoints": [],
    "models": [],
    "env": [],
    "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "libs/langchain-classic/src/chat_models/universal.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 935,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "libs/langchain/src/agents/nodes/AgentNode.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1074,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/langchain/src/chat_models/universal.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1163,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "libs/providers/langchain-openrouter/src/profiles.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 2569,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-beta",
+    "grok-3-mini",
+    "grok-3-mini-beta",
+    "grok-4",
+    "grok-4-fast",
+    "grok-4.1-fast",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
     "reasoning",
     "tool_calling"
    ]
   },
   {
-   "path": "libs/providers/langchain-xai/CHANGELOG.md",
-   "kind": "doc",
+   "path": "libs/providers/langchain-xai/package.json",
+   "kind": "config",
    "lang": null,
-   "lines": 395,
+   "lines": 74,
    "endpoints": [],
    "models": [],
    "env": [],
-   "features": [
-    "live_search",
-    "reasoning",
-    "structured_output"
-   ]
+   "features": []
   },
   {
    "path": "libs/providers/langchain-xai/README.md",
@@ -257,14 +314,18 @@
    ]
   },
   {
-   "path": "libs/providers/langchain-xai/package.json",
-   "kind": "config",
+   "path": "libs/providers/langchain-xai/CHANGELOG.md",
+   "kind": "doc",
    "lang": null,
-   "lines": 74,
+   "lines": 395,
    "endpoints": [],
    "models": [],
    "env": [],
-   "features": []
+   "features": [
+    "live_search",
+    "reasoning",
+    "structured_output"
+   ]
   },
   {
    "path": "libs/providers/langchain-xai/src/profiles.ts",
@@ -301,105 +362,6 @@
    ]
   },
   {
-   "path": "libs/providers/langchain-xai/src/tools/web_search.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 123,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast"
-   ],
-   "env": [
-    "XAI_WEB_SEARCH_TOOL_TYPE"
-   ],
-   "features": [
-    "live_search",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/tools/live_search.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 226,
-   "endpoints": [],
-   "models": [
-    "grok-3-fast"
-   ],
-   "env": [
-    "XAI_LIVE_SEARCH_TOOL_NAME",
-    "XAI_LIVE_SEARCH_TOOL_TYPE"
-   ],
-   "features": [
-    "live_search"
-   ]
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/tools/collections_search.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 101,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast"
-   ],
-   "env": [
-    "XAI_COLLECTIONS_SEARCH_TOOL_TYPE"
-   ],
-   "features": [
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/tools/code_execution.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 66,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast"
-   ],
-   "env": [
-    "XAI_CODE_EXECUTION_TOOL_TYPE"
-   ],
-   "features": [
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/tools/x_search.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 176,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast"
-   ],
-   "env": [
-    "XAI_X_SEARCH_TOOL_TYPE"
-   ],
-   "features": [
-    "live_search",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/tools/tests/live_search.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 159,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_LIVE_SEARCH_TOOL_NAME",
-    "XAI_LIVE_SEARCH_TOOL_TYPE"
-   ],
-   "features": [
-    "live_search",
-    "tool_calling"
-   ]
-  },
-  {
    "path": "libs/providers/langchain-xai/src/utils/tests/responses_stream_events.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -426,6 +388,124 @@
    "features": [
     "tool_calling",
     "vision"
+   ]
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/tools/code_execution.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 66,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast"
+   ],
+   "env": [
+    "XAI_CODE_EXECUTION_TOOL_TYPE"
+   ],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/tools/web_search.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 123,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast"
+   ],
+   "env": [
+    "XAI_WEB_SEARCH_TOOL_TYPE"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/tools/x_search.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 176,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast"
+   ],
+   "env": [
+    "XAI_X_SEARCH_TOOL_TYPE"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/tools/collections_search.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 101,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast"
+   ],
+   "env": [
+    "XAI_COLLECTIONS_SEARCH_TOOL_TYPE"
+   ],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/tools/live_search.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 226,
+   "endpoints": [],
+   "models": [
+    "grok-3-fast"
+   ],
+   "env": [
+    "XAI_LIVE_SEARCH_TOOL_NAME",
+    "XAI_LIVE_SEARCH_TOOL_TYPE"
+   ],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/tools/tests/live_search.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 159,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_LIVE_SEARCH_TOOL_NAME",
+    "XAI_LIVE_SEARCH_TOOL_TYPE"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/chat_models/responses.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 447,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "live_search",
+    "streaming",
+    "structured_output",
+    "tool_calling"
    ]
   },
   {
@@ -473,23 +553,28 @@
    ]
   },
   {
-   "path": "libs/providers/langchain-xai/src/chat_models/responses.ts",
-   "kind": "source",
+   "path": "libs/providers/langchain-xai/src/chat_models/tests/responses.standard.test.ts",
+   "kind": "test",
    "lang": "TypeScript",
-   "lines": 447,
+   "lines": 33,
    "endpoints": [],
-   "models": [
-    "grok-3"
-   ],
+   "models": [],
    "env": [
     "XAI_API_KEY"
    ],
-   "features": [
-    "live_search",
-    "streaming",
-    "structured_output",
-    "tool_calling"
-   ]
+   "features": []
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/chat_models/tests/completions.standard.int.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 28,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
   },
   {
    "path": "libs/providers/langchain-xai/src/chat_models/tests/completions_structured_output.int.test.ts",
@@ -505,112 +590,6 @@
    ],
    "features": [
     "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/chat_models/tests/completions.standard.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 33,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/chat_models/tests/completions.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 327,
-   "endpoints": [],
-   "models": [
-    "grok-3-fast"
-   ],
-   "env": [
-    "XAI_API_KEY",
-    "XAI_LIVE_SEARCH_TOOL_NAME",
-    "XAI_LIVE_SEARCH_TOOL_TYPE",
-    "XAI_TEST_MODEL"
-   ],
-   "features": [
-    "live_search",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/chat_models/tests/responses.standard.int.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 29,
-   "endpoints": [],
-   "models": [
-    "grok-3-fast"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/chat_models/tests/chat_models_responses_stream_events.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 151,
-   "endpoints": [],
-   "models": [
-    "grok-3"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "streaming"
-   ]
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/chat_models/tests/chat_models_stream_events.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 48,
-   "endpoints": [],
-   "models": [
-    "grok-3"
-   ],
-   "env": [],
-   "features": [
-    "live_search"
-   ]
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/chat_models/tests/responses.standard.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 33,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "libs/providers/langchain-xai/src/chat_models/tests/responses.int.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 448,
-   "endpoints": [],
-   "models": [
-    "grok-3-fast",
-    "grok-3-mini-fast"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "reasoning",
-    "streaming",
     "tool_calling"
    ]
   },
@@ -639,12 +618,42 @@
    ]
   },
   {
-   "path": "libs/providers/langchain-xai/src/chat_models/tests/completions.standard.int.test.ts",
+   "path": "libs/providers/langchain-xai/src/chat_models/tests/completions.standard.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 28,
+   "lines": 33,
    "endpoints": [],
    "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/chat_models/tests/chat_models_responses_stream_events.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 151,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/chat_models/tests/responses.standard.int.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 29,
+   "endpoints": [],
+   "models": [
+    "grok-3-fast"
+   ],
    "env": [
     "XAI_API_KEY"
    ],
@@ -672,89 +681,80 @@
    ]
   },
   {
-   "path": "libs/providers/langchain-openrouter/src/profiles.ts",
-   "kind": "source",
+   "path": "libs/providers/langchain-xai/src/chat_models/tests/completions.test.ts",
+   "kind": "test",
    "lang": "TypeScript",
-   "lines": 2569,
+   "lines": 327,
    "endpoints": [],
    "models": [
-    "grok-3",
-    "grok-3-beta",
-    "grok-3-mini",
-    "grok-3-mini-beta",
-    "grok-4",
-    "grok-4-fast",
-    "grok-4.1-fast",
-    "grok-code-fast-1"
+    "grok-3-fast"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_LIVE_SEARCH_TOOL_NAME",
+    "XAI_LIVE_SEARCH_TOOL_TYPE",
+    "XAI_TEST_MODEL"
+   ],
+   "features": [
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/chat_models/tests/responses.int.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 448,
+   "endpoints": [],
+   "models": [
+    "grok-3-fast",
+    "grok-3-mini-fast"
    ],
    "env": [],
    "features": [
-    "anthropic_compatible",
+    "live_search",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "libs/providers/langchain-xai/src/chat_models/tests/chat_models_stream_events.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 48,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "live_search"
+   ]
+  },
+  {
+   "path": "libs/langchain-core/src/messages/block_translators/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 52,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "libs/langchain-core/src/messages/block_translators/xai.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 127,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
     "reasoning",
     "tool_calling"
-   ]
-  },
-  {
-   "path": "libs/langchain/src/agents/nodes/AgentNode.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 1074,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "libs/langchain/src/chat_models/universal.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 1163,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "streaming"
-   ]
-  },
-  {
-   "path": "libs/langchain-classic/tsconfig.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 34,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "libs/langchain-classic/src/chat_models/universal.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 935,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "streaming"
-   ]
-  },
-  {
-   "path": "dependency_range_tests/docker-compose.yml",
-   "kind": "config",
-   "lang": null,
-   "lines": 178,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
    ]
   }
  ]

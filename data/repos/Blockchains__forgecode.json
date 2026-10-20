@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T17:18:41Z",
  "description": "AI enabled pair programmer for Claude, GPT, O Series, Grok, Deepseek, Gemini and 300+ models",
  "commit": "937577539c6e1b57b765fad231a802f1cc0d1a11",
- "indexed_at": "2026-10-19T08:10:22Z",
+ "indexed_at": "2026-10-20T07:59:49Z",
  "status": "ok",
  "clone_kb": 11960,
- "seconds": 6.7,
+ "seconds": 7.7,
  "files_scanned": 713,
  "languages": {
   "Rust": 474,
@@ -92,6 +92,29 @@
    ]
   },
   {
+   "path": "crates/forge_repo/src/provider/provider.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 4126,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models",
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
    "path": "crates/forge_app/src/dto/openai/transformers/pipeline.rs",
    "kind": "source",
    "lang": "Rust",
@@ -123,29 +146,6 @@
    "env": [],
    "features": [
     "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "crates/forge_repo/src/provider/provider.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 4126,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/messages",
-    "/v1/models",
-    "/v1/responses"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "reasoning",
-    "structured_output",
-    "tool_calling"
    ]
   }
  ]

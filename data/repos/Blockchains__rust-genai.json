@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-27T23:15:43Z",
  "description": "Rust multiprovider generative AI client (Ollama, OpenAi, Anthropic, Gemini, DeepSeek, ZAI, OpenRouter, FireworksAI, xAI/Grok, Groq,, ...)",
  "commit": "f928db37c365aa753f68b3267bc174dec78261e6",
- "indexed_at": "2026-10-19T08:05:08Z",
+ "indexed_at": "2026-10-20T07:55:35Z",
  "status": "ok",
  "clone_kb": 3952,
- "seconds": 5.4,
+ "seconds": 1.2,
  "files_scanned": 304,
  "languages": {
   "Rust": 235
@@ -19,8 +19,8 @@
  "grok_files": 7,
  "grok_files_by_kind": {
   "doc": 1,
-  "example": 2,
   "test": 1,
+  "example": 2,
   "source": 3
  },
  "hosts": {
@@ -32,8 +32,8 @@
   "grok-3": 3,
   "grok-3-beta": 2,
   "grok-3-mini-beta": 2,
-  "grok-4.6": 1,
-  "grok-4": 1
+  "grok-4": 1,
+  "grok-4.6": 1
  },
  "env_vars": {
   "XAI_API_KEY": 3,
@@ -88,6 +88,27 @@
    ]
   },
   {
+   "path": "tests/tests_p_xai.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 122,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-beta",
+    "grok-3-mini",
+    "grok-3-mini-beta",
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "reasoning",
+    "vision"
+   ]
+  },
+  {
    "path": "examples/c99-github-copilot.rs",
    "kind": "example",
    "lang": "Rust",
@@ -122,27 +143,6 @@
    ]
   },
   {
-   "path": "tests/tests_p_xai.rs",
-   "kind": "test",
-   "lang": "Rust",
-   "lines": 122,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-beta",
-    "grok-3-mini",
-    "grok-3-mini-beta",
-    "grok-4"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "reasoning",
-    "vision"
-   ]
-  },
-  {
    "path": "src/adapter/adapters/all_adapters.rs",
    "kind": "source",
    "lang": "Rust",
@@ -155,6 +155,21 @@
    "features": [
     "anthropic_compatible",
     "embeddings"
+   ]
+  },
+  {
+   "path": "src/adapter/adapters/github_copilot/adapter_impl.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 189,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
    ]
   },
   {
@@ -174,21 +189,6 @@
     "structured_output",
     "tool_calling",
     "vision"
-   ]
-  },
-  {
-   "path": "src/adapter/adapters/github_copilot/adapter_impl.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 189,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
    ]
   }
  ]

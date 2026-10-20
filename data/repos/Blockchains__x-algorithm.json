@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T03:26:57Z",
  "description": "Algorithm powering the For You feed on X",
  "commit": "b412112d03f27acbfd668e0cc040abcafa1080c1",
- "indexed_at": "2026-10-19T08:04:14Z",
+ "indexed_at": "2026-10-20T07:54:50Z",
  "status": "ok",
  "clone_kb": 26628,
- "seconds": 11.1,
+ "seconds": 3.0,
  "files_scanned": 1933,
  "languages": {
   "Scala": 568,
@@ -83,16 +83,16 @@
    "code": "        )\n    except (FileNotFoundError, PermissionError):\n        return \"\"\n\n\ndef _read_xai_api_key() -> str:\n    return os.getenv(\"XAI_API_KEY\") or \"\"\n\n\nclass ModelConfig(BaseModel):\n    model_config = _FROZEN\n\n    model_name: str\n    endpoint: str\n    timeout: int = 60\n    max_resp_len: int = 8092\n    temperature: float = 0.7\n    bearer_token: str = Field(default_factory=_read_bearer_token)\n    priority_header: str = \"\"\n    priority: int = 15\n\n\nclass EapiModelConfig(BaseModel):\n    model_config = _FROZEN"
   },
   {
-   "path": "grox/core/lm/convo.py",
-   "start": 3,
-   "end": 26,
-   "code": "import math\nfrom enum import Enum\nfrom base64 import b64decode, b64encode\nfrom PIL import Image as PILImage\nfrom pydantic import Field, BaseModel, field_validator, field_serializer\n\nfrom xai_sdk.chat import image as xai_image, text as xai_text, system, user, assistant\nfrom xai_sdk.proto import chat_pb2\n\nfrom grox.config.config import grox_config\n\nlogger = logging.getLogger(__name__)\nSEPARATOR_COMMAND = grox_config.prompt_tokens.separator\nSEPARATOR = f\"{SEPARATOR_COMMAND}\\n\\n\"\nTHINKING_CONTROL_END = grox_config.prompt_tokens.thinking_control_end\nTHINKING_CONTROL_START = grox_config.prompt_tokens.thinking_control_start\nSTORYBOARD_COLUMNS = 3\nSTORYBOARD_TILE_SIZE = 448\nNO_THINKING_PROMPT = grox_config.prompt_tokens.no_thinking_prompt\n\nPREVIEW_IMAGE_LABEL = \"[Video Preview Thumbnail]\"\n\nMOTION_REVEAL_DESCRIPTION = (\n    \"Motion-reveal stills for this video follow. They expose content that may be hidden under the visible video \""
-  },
-  {
    "path": "grox/libs/grok_sampler/eapi_sampler.py",
    "start": 5,
    "end": 28,
    "code": "from dataclasses import dataclass, field\nfrom asyncio import get_running_loop\n\nimport grpc.aio\nfrom monitor.metrics import Metrics\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.proto import chat_pb2\nfrom xai_sdk.tools import web_search\n\nfrom grok_sampler.config import EapiModelConfig\n\nlogger = logging.getLogger(__name__)\n\nMAX_SEARCH_DOMAINS = 5\n\n\ndef get_loop_id() -> int:\n    return id(get_running_loop())\n\n\ndef _rpc_request_id(error: Exception) -> str | None:\n    if not isinstance(error, grpc.aio.AioRpcError):\n        return None"
+  },
+  {
+   "path": "grox/core/lm/convo.py",
+   "start": 3,
+   "end": 26,
+   "code": "import math\nfrom enum import Enum\nfrom base64 import b64decode, b64encode\nfrom PIL import Image as PILImage\nfrom pydantic import Field, BaseModel, field_validator, field_serializer\n\nfrom xai_sdk.chat import image as xai_image, text as xai_text, system, user, assistant\nfrom xai_sdk.proto import chat_pb2\n\nfrom grox.config.config import grox_config\n\nlogger = logging.getLogger(__name__)\nSEPARATOR_COMMAND = grox_config.prompt_tokens.separator\nSEPARATOR = f\"{SEPARATOR_COMMAND}\\n\\n\"\nTHINKING_CONTROL_END = grox_config.prompt_tokens.thinking_control_end\nTHINKING_CONTROL_START = grox_config.prompt_tokens.thinking_control_start\nSTORYBOARD_COLUMNS = 3\nSTORYBOARD_TILE_SIZE = 448\nNO_THINKING_PROMPT = grox_config.prompt_tokens.no_thinking_prompt\n\nPREVIEW_IMAGE_LABEL = \"[Video Preview Thumbnail]\"\n\nMOTION_REVEAL_DESCRIPTION = (\n    \"Motion-reveal stills for this video follow. They expose content that may be hidden under the visible video \""
   }
  ],
  "files": [
@@ -162,19 +162,6 @@
    ]
   },
   {
-   "path": "grox/core/lm/convo.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 488,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "grpc",
-    "vision"
-   ]
-  },
-  {
    "path": "grox/libs/grok_sampler/eapi_sampler.py",
    "kind": "source",
    "lang": "Python",
@@ -189,6 +176,19 @@
     "live_search",
     "reasoning",
     "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "grox/core/lm/convo.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 488,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "grpc",
     "vision"
    ]
   }

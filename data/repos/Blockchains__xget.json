@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T10:07:53Z",
  "description": "Ultra-high-performance, secure, all-in-one acceleration engine for developer resources",
  "commit": "8706e23d09a5c53ee8aec5eeec7233478b073f83",
- "indexed_at": "2026-10-19T08:12:55Z",
+ "indexed_at": "2026-10-20T08:01:46Z",
  "status": "ok",
  "clone_kb": 1804,
- "seconds": 0.7,
+ "seconds": 1.2,
  "files_scanned": 111,
  "languages": {
   "JavaScript": 71,
@@ -49,6 +49,27 @@
  ],
  "files": [
   {
+   "path": "README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 3111,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "grpc",
+    "openai_compatible",
+    "streaming"
+   ]
+  },
+  {
    "path": "README.zh-Hans.md",
    "kind": "doc",
    "lang": null,
@@ -74,27 +95,6 @@
    "kind": "doc",
    "lang": null,
    "lines": 2971,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/messages",
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "grpc",
-    "openai_compatible",
-    "streaming"
-   ]
-  },
-  {
-   "path": "README.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 3111,
    "endpoints": [
     "/v1/chat/completions",
     "/v1/messages",

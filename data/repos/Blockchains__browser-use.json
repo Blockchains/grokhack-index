@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T00:06:08Z",
  "description": "Agents that use the browser.",
  "commit": "7be96ed8bafa8dfe1eef228b59cf5c884b8b2431",
- "indexed_at": "2026-10-19T08:05:30Z",
+ "indexed_at": "2026-10-20T07:55:42Z",
  "status": "ok",
  "clone_kb": 16320,
- "seconds": 8.2,
+ "seconds": 4.9,
  "files_scanned": 502,
  "languages": {
   "Python": 410
@@ -20,8 +20,8 @@
  "grok_files_by_kind": {
   "config": 1,
   "source": 3,
-  "example": 1,
-  "test": 1
+  "test": 1,
+  "example": 1
  },
  "hosts": {},
  "endpoints": {},
@@ -142,20 +142,6 @@
    ]
   },
   {
-   "path": "examples/models/openrouter.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 34,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": [
-    "openai_compatible"
-   ]
-  },
-  {
    "path": "tests/ci/test_beta_agent.py",
    "kind": "test",
    "lang": "Python",
@@ -172,6 +158,20 @@
     "structured_output",
     "tool_calling",
     "vision"
+   ]
+  },
+  {
+   "path": "examples/models/openrouter.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 34,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "openai_compatible"
    ]
   }
  ]

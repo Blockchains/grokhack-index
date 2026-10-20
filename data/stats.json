@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-10-19T08:13:02Z",
+ "generated_at": "2026-10-20T08:01:52Z",
  "repos_listed": 99,
  "repos_indexed_ok": 99,
  "repos_failed": [],
  "repos_with_grok_surface": 98,
  "grok_files": 4180,
  "files_scanned": 332422,
- "clone_mb_total": 16302.0,
+ "clone_mb_total": 16302.3,
  "parts": 619,
  "parts_by_type": {
   "repo-surface": 98,
@@ -14,7 +14,7 @@
   "sdk-exports": 75,
   "package": 19
  },
- "search_tokens": 2035,
+ "search_tokens": 2036,
  "repos_per_endpoint": {
   "/v1/models": 40,
   "/v1/chat/completions": 34,
@@ -37,7 +37,7 @@
   "/v1/image-generation-models": 2
  },
  "repos_per_model": {
-  "grok-4": 55,
+  "grok-4": 56,
   "grok-4.5": 52,
   "grok-4.6": 49,
   "grok-3": 49,
@@ -56,27 +56,27 @@
   "grok-imagine-image": 22,
   "grok-2": 21,
   "grok-4-1-fast-reasoning": 21,
-  "grok-imagine-video": 20,
   "grok-4.20": 20,
+  "grok-imagine-video": 20,
   "grok-4-fast-reasoning": 20,
   "grok-3-mini-fast": 18,
-  "grok-beta": 18,
+  "grok-beta": 17,
   "grok-4.20-multi-agent": 16,
   "grok-4-1-fast": 16,
   "grok-2-vision": 14,
   "grok-imagine-image-quality": 13,
   "grok-4.20-reasoning": 12,
-  "grok-2-vision-1212": 12,
   "grok-imagine-image-2.0": 11,
   "grok-4.20-non-reasoning": 11,
   "grok-imagine-image-pro": 11,
   "grok-2-1212": 11,
   "grok-2-latest": 11,
-  "grok-2-vision-latest": 11,
+  "grok-2-vision-1212": 11,
   "grok-3-beta": 11,
   "grok-4-latest": 11,
   "grok-imagine": 10,
-  "grok-imagine-video-1.5": 10
+  "grok-imagine-video-1.5": 10,
+  "grok-code-fast": 10
  },
  "repos_per_feature": {
   "anthropic_compatible": 79,
@@ -131,9 +131,9 @@
   "MAXAI_REGISTRY_MODELS": 1,
   "XAI_OAUTH_CONFIG": 1,
   "XAI_MODELS_CONFIG": 1,
-  "MAXAI_REQUEST_QUEUE_MAX_WAIT_MS": 1,
-  "VERTEX_XAI_MODELS": 1,
-  "MAXAI_DEFAULT_CONTEXT": 1
+  "MAXAI_DEFAULT_CONTEXT": 1,
+  "MAXAI_MODELS": 1,
+  "VERTEX_XAI_MODELS": 1
  },
- "run_seconds": 539.1
+ "run_seconds": 425.7
 }

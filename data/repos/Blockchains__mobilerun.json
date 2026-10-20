@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-02T12:21:57Z",
  "description": "Automate your mobile devices with natural language commands - an LLM agnostic mobile Agent \ud83e\udd16",
  "commit": "49085db55461c2f95f132f52f0c22df6fdbed79b",
- "indexed_at": "2026-10-19T08:08:17Z",
+ "indexed_at": "2026-10-20T07:58:10Z",
  "status": "ok",
  "clone_kb": 37288,
- "seconds": 1.8,
+ "seconds": 2.4,
  "files_scanned": 235,
  "languages": {
   "Python": 190
@@ -19,8 +19,8 @@
  "grok_files": 10,
  "grok_files_by_kind": {
   "doc": 4,
-  "source": 3,
-  "test": 3
+  "test": 3,
+  "source": 3
  },
  "hosts": {
   "api.x.ai": 1
@@ -96,10 +96,10 @@
    ]
   },
   {
-   "path": "mobilerun/config_manager/env_keys.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 121,
+   "path": "docs/quickstart.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 179,
    "endpoints": [],
    "models": [],
    "env": [
@@ -110,39 +110,34 @@
    ]
   },
   {
-   "path": "mobilerun/agent/utils/llm_picker.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 1033,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_BASE",
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "mobilerun/agent/providers/grok.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 74,
+   "path": "docs/guides/cli.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 620,
    "endpoints": [],
    "models": [
-    "grok-4.5",
-    "grok-4.5-latest",
     "grok-4.6",
     "grok-4.7"
    ],
    "env": [
-    "XAI_API_BASE"
+    "XAI_API_KEY"
    ],
    "features": [
-    "tool_calling"
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/sdk/configuration.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 675,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "structured_output"
    ]
   },
   {
@@ -210,10 +205,10 @@
    ]
   },
   {
-   "path": "docs/quickstart.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 179,
+   "path": "mobilerun/config_manager/env_keys.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 121,
    "endpoints": [],
    "models": [],
    "env": [
@@ -224,34 +219,39 @@
    ]
   },
   {
-   "path": "docs/guides/cli.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 620,
+   "path": "mobilerun/agent/utils/llm_picker.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1033,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_BASE",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "mobilerun/agent/providers/grok.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 74,
    "endpoints": [],
    "models": [
+    "grok-4.5",
+    "grok-4.5-latest",
     "grok-4.6",
     "grok-4.7"
    ],
    "env": [
-    "XAI_API_KEY"
+    "XAI_API_BASE"
    ],
    "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "docs/sdk/configuration.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 675,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "structured_output"
+    "tool_calling"
    ]
   }
  ]

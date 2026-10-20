@@ -8,10 +8,10 @@
  "pushed_at": "2026-08-02T01:55:40Z",
  "description": "Your AI second brain. Self-hostable. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI (gpt, claude, gemini, llama, qwen, mistral). Get started - free.",
  "commit": "ae229ca894c0b80ad84664afcfdde523b5e87057",
- "indexed_at": "2026-10-19T08:12:32Z",
+ "indexed_at": "2026-10-20T08:01:31Z",
  "status": "ok",
  "clone_kb": 157428,
- "seconds": 6.2,
+ "seconds": 5.5,
  "files_scanned": 476,
  "languages": {
   "Python": 252,
@@ -38,12 +38,12 @@
  "env_vars": {},
  "features": {
   "reasoning": 2,
-  "anthropic_compatible": 1,
   "openai_compatible": 1,
   "streaming": 1,
   "structured_output": 1,
   "tool_calling": 1,
-  "vision": 1
+  "vision": 1,
+  "anthropic_compatible": 1
  },
  "sdk_exports": [],
  "packages": [],
@@ -56,26 +56,6 @@
   }
  ],
  "files": [
-  {
-   "path": "src/khoj/utils/constants.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 94,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-latest",
-    "grok-3-mini",
-    "grok-3-mini-latest",
-    "grok-4",
-    "grok-4-fast"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
   {
    "path": "src/khoj/processor/conversation/openai/utils.py",
    "kind": "source",
@@ -94,6 +74,26 @@
     "structured_output",
     "tool_calling",
     "vision"
+   ]
+  },
+  {
+   "path": "src/khoj/utils/constants.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 94,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-latest",
+    "grok-3-mini",
+    "grok-3-mini-latest",
+    "grok-4",
+    "grok-4-fast"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
    ]
   }
  ]

@@ -8,20 +8,20 @@
  "pushed_at": "2026-09-22T10:08:42Z",
  "description": "Open Source Deep Research Alternative to Reason and Search on Private Data. Written in Python.",
  "commit": "ddc36db317836bd42302b36f03166bec5324708d",
- "indexed_at": "2026-10-19T08:12:54Z",
+ "indexed_at": "2026-10-20T08:01:47Z",
  "status": "ok",
  "clone_kb": 28604,
- "seconds": 2.4,
+ "seconds": 2.2,
  "files_scanned": 208,
  "languages": {
   "Python": 156
  },
  "grok_files": 6,
  "grok_files_by_kind": {
-  "config": 1,
   "doc": 3,
-  "source": 1,
-  "test": 1
+  "config": 1,
+  "test": 1,
+  "source": 1
  },
  "hosts": {
   "api.x.ai": 2
@@ -30,9 +30,9 @@
  "models": {
   "grok-2-latest": 3,
   "grok-4-0709": 1,
-  "grok-4": 1,
+  "grok-3": 1,
   "grok-1": 1,
-  "grok-3": 1
+  "grok-4": 1
  },
  "env_vars": {
   "XAI_API_KEY": 6
@@ -60,21 +60,6 @@
  ],
  "files": [
   {
-   "path": "env.example",
-   "kind": "config",
-   "lang": null,
-   "lines": 54,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "embeddings"
-   ]
-  },
-  {
    "path": "README.md",
    "kind": "doc",
    "lang": null,
@@ -92,48 +77,12 @@
    ]
   },
   {
-   "path": "deepsearcher/llm/xai.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 63,
-   "endpoints": [],
-   "models": [
-    "grok-2-latest",
-    "grok-4"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "openai_compatible"
-   ]
-  },
-  {
-   "path": "tests/llm/test_xai.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 165,
-   "endpoints": [],
-   "models": [
-    "grok-1",
-    "grok-2-latest"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "openai_compatible"
-   ]
-  },
-  {
-   "path": "docs/integrations/index.md",
-   "kind": "doc",
+   "path": "env.example",
+   "kind": "config",
    "lang": null,
-   "lines": 77,
+   "lines": 54,
    "endpoints": [],
-   "models": [
-    "grok-3"
-   ],
+   "models": [],
    "env": [
     "XAI_API_KEY"
    ],
@@ -156,6 +105,57 @@
    ],
    "features": [
     "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/integrations/index.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 77,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "tests/llm/test_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 165,
+   "endpoints": [],
+   "models": [
+    "grok-1",
+    "grok-2-latest"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "deepsearcher/llm/xai.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 63,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest",
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "openai_compatible"
    ]
   }
  ]

@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-30T04:46:03Z",
  "description": "\ud83d\udc2b CAMEL: The first and the best multi-agent framework. Finding the Scaling Law of Agents. https://www.camel-ai.org",
  "commit": "0106b76830c707effe48cd3da384dda38cbed92e",
- "indexed_at": "2026-10-19T08:08:10Z",
+ "indexed_at": "2026-10-20T07:58:04Z",
  "status": "ok",
  "clone_kb": 233360,
- "seconds": 25.7,
+ "seconds": 16.1,
  "files_scanned": 1933,
  "languages": {
   "Python": 1148,
@@ -21,23 +21,23 @@
  "grok_files": 15,
  "grok_files_by_kind": {
   "config": 2,
-  "example": 6,
-  "test": 2,
   "source": 4,
-  "doc": 1
+  "doc": 1,
+  "example": 6,
+  "test": 2
  },
  "hosts": {
   "api.x.ai": 5
  },
  "endpoints": {},
  "models": {
-  "grok-beta": 4,
   "grok-2-image-1212": 4,
+  "grok-beta": 4,
   "grok-3": 3,
-  "grok-4-0709": 2,
-  "grok-4.5": 2,
   "grok-2-image": 2,
   "grok-2-image-latest": 2,
+  "grok-4-0709": 2,
+  "grok-4.5": 2,
   "grok-3-mini": 1,
   "grok-4.3": 1
  },
@@ -54,15 +54,15 @@
  "features": {
   "structured_output": 5,
   "image_generation": 3,
-  "tool_calling": 2,
   "reasoning": 2,
+  "tool_calling": 2,
+  "openai_compatible": 1,
+  "vision": 1,
   "grpc": 1,
   "streaming": 1,
   "anthropic_compatible": 1,
   "embeddings": 1,
-  "voice_realtime": 1,
-  "openai_compatible": 1,
-  "vision": 1
+  "voice_realtime": 1
  },
  "sdk_exports": [
   {
@@ -83,6 +83,24 @@
  ],
  "snippets": [
   {
+   "path": "camel/toolkits/image_generation_toolkit.py",
+   "start": 119,
+   "end": 142,
+   "code": "            raise ValueError(\n                f\"Unsupported model: {model}. \"\n                f\"Supported models are: {available_models}\"\n            )\n\n        # Set default url for Grok models\n        url = \"https://api.x.ai/v1\" if model in self.GROK_MODELS else url\n\n        api_key, base_url = (\n            self.get_openai_credentials(url, api_key)\n            if model in self.OPENAI_MODELS\n            else self.get_grok_credentials(url, api_key)\n        )\n\n        self.client = OpenAI(api_key=api_key, base_url=base_url)\n        self.model = model\n        self.size = size\n        self.quality = quality\n        self.response_format = response_format\n        self.background = background\n        self.style = style\n        self.working_directory: str = working_directory or \"image_save\"\n\n    def base64_to_image(self, base64_string: str) -> Optional[Image.Image]:"
+  },
+  {
+   "path": "camel/utils/commons.py",
+   "start": 335,
+   "end": 358,
+   "code": "                    'REKA_API_KEY': \"https://docs.reka.ai/quick-start\",\n                    'SAMBA_API_KEY': \"cloud.sambanova.ai/apis\",\n                    'TOGETHER_API_KEY': \"https://docs.together.ai/docs/quickstart\",\n                    'YI_API_KEY': \"https://platform.lingyiwanwu.com/docs\",\n                    'ZHIPUAI_API_KEY': \"https://www.zhipuai.cn/\",\n                    'KLAVIS_API_KEY': \"https://www.klavis.ai/docs\",\n                    'XAI_API_KEY': \"https://docs.x.ai/docs/overview\",\n                    'AVIAN_API_KEY': \"https://avian.io\",\n                    'ORCAROUTER_API_KEY': \"https://www.orcarouter.ai/\",\n                    'QUERIT_API_KEY': \"https://www.querit.ai/en/dashboard/home\",\n                    'PERPLEXITY_API_KEY': \"https://www.perplexity.ai/account/api\",\n                    'TELEGRAM_TOKEN': 'https://t.me/BotFather',\n                    'SLACK_TOKEN': \"https://api.slack.com/apps\",\n                    'SLACK_SCOPES': \"https://api.slack.com/apps\",\n                    'SLACK_SIGNING_SECRET': \"https://api.slack.com/apps\",\n                }\n                key_way = env_key_urls.get(\n                    missing_keys[0], \"the official website\"\n                )\n                raise ValueError(\n                    \"Missing or empty required API keys in \"\n                    f\"environment variables: {', '.join(missing_keys)}.\\n\"\n                    f\"You can obtain the API key from {key_way}\"\n                )"
+  },
+  {
+   "path": "camel/models/xai_model.py",
+   "start": 43,
+   "end": 66,
+   "code": "    BaseTokenCounter,\n    OpenAITokenCounter,\n    api_keys_required,\n)\n\nif TYPE_CHECKING:\n    from xai_sdk import (\n        AsyncClient as XAIAsyncClient,  # type: ignore[import-untyped]\n    )\n    from xai_sdk import Client as XAIClient  # type: ignore[import-untyped]\n    from xai_sdk.chat import (  # type: ignore[import-untyped]\n        Response as XAIResponse,\n    )\n    from xai_sdk.proto import chat_pb2  # type: ignore[import-untyped]\n\nif os.environ.get(\"LANGFUSE_ENABLED\", \"False\").lower() == \"true\":\n    try:\n        from langfuse.decorators import observe\n    except ImportError:\n        from camel.utils import observe\nelif os.environ.get(\"TRACEROOT_ENABLED\", \"False\").lower() == \"true\":\n    try:\n        from traceroot import trace as observe  # type: ignore[import]\n    except ImportError:"
+  },
+  {
    "path": "examples/models/model_manger.py",
    "start": 19,
    "end": 42,
@@ -99,41 +117,9 @@
    "start": 18,
    "end": 41,
    "code": "\n# Take calling grok-beta model as an example\nmodel = ModelFactory.create(\n    model_platform=ModelPlatformType.OPENAI_COMPATIBLE_MODEL,\n    model_type=\"grok-beta\",\n    api_key=\"xai-...\",\n    url=\"https://api.x.ai/v1\",\n    model_config_dict={\"max_tokens\": 2000},\n)\n\nassistant_sys_msg = (\n    \"You are Grok, a chatbot inspired by the Hitchhikers Guide to the Galaxy.\"\n)\n\nagent = ChatAgent(assistant_sys_msg, model=model)\n\nuser_msg = \"\"\"What is the meaning of life, the universe, and everything?\"\"\"\n\nassistant_response = agent.step(user_msg)\nprint(assistant_response.msg.content)\n\n\"\"\"\n===============================================================================\nAh, the ultimate question! According to the Hitchhiker's Guide to the Galaxy,"
-  },
-  {
-   "path": "camel/utils/commons.py",
-   "start": 335,
-   "end": 358,
-   "code": "                    'REKA_API_KEY': \"https://docs.reka.ai/quick-start\",\n                    'SAMBA_API_KEY': \"cloud.sambanova.ai/apis\",\n                    'TOGETHER_API_KEY': \"https://docs.together.ai/docs/quickstart\",\n                    'YI_API_KEY': \"https://platform.lingyiwanwu.com/docs\",\n                    'ZHIPUAI_API_KEY': \"https://www.zhipuai.cn/\",\n                    'KLAVIS_API_KEY': \"https://www.klavis.ai/docs\",\n                    'XAI_API_KEY': \"https://docs.x.ai/docs/overview\",\n                    'AVIAN_API_KEY': \"https://avian.io\",\n                    'ORCAROUTER_API_KEY': \"https://www.orcarouter.ai/\",\n                    'QUERIT_API_KEY': \"https://www.querit.ai/en/dashboard/home\",\n                    'PERPLEXITY_API_KEY': \"https://www.perplexity.ai/account/api\",\n                    'TELEGRAM_TOKEN': 'https://t.me/BotFather',\n                    'SLACK_TOKEN': \"https://api.slack.com/apps\",\n                    'SLACK_SCOPES': \"https://api.slack.com/apps\",\n                    'SLACK_SIGNING_SECRET': \"https://api.slack.com/apps\",\n                }\n                key_way = env_key_urls.get(\n                    missing_keys[0], \"the official website\"\n                )\n                raise ValueError(\n                    \"Missing or empty required API keys in \"\n                    f\"environment variables: {', '.join(missing_keys)}.\\n\"\n                    f\"You can obtain the API key from {key_way}\"\n                )"
-  },
-  {
-   "path": "camel/models/xai_model.py",
-   "start": 43,
-   "end": 66,
-   "code": "    BaseTokenCounter,\n    OpenAITokenCounter,\n    api_keys_required,\n)\n\nif TYPE_CHECKING:\n    from xai_sdk import (\n        AsyncClient as XAIAsyncClient,  # type: ignore[import-untyped]\n    )\n    from xai_sdk import Client as XAIClient  # type: ignore[import-untyped]\n    from xai_sdk.chat import (  # type: ignore[import-untyped]\n        Response as XAIResponse,\n    )\n    from xai_sdk.proto import chat_pb2  # type: ignore[import-untyped]\n\nif os.environ.get(\"LANGFUSE_ENABLED\", \"False\").lower() == \"true\":\n    try:\n        from langfuse.decorators import observe\n    except ImportError:\n        from camel.utils import observe\nelif os.environ.get(\"TRACEROOT_ENABLED\", \"False\").lower() == \"true\":\n    try:\n        from traceroot import trace as observe  # type: ignore[import]\n    except ImportError:"
-  },
-  {
-   "path": "camel/toolkits/image_generation_toolkit.py",
-   "start": 119,
-   "end": 142,
-   "code": "            raise ValueError(\n                f\"Unsupported model: {model}. \"\n                f\"Supported models are: {available_models}\"\n            )\n\n        # Set default url for Grok models\n        url = \"https://api.x.ai/v1\" if model in self.GROK_MODELS else url\n\n        api_key, base_url = (\n            self.get_openai_credentials(url, api_key)\n            if model in self.OPENAI_MODELS\n            else self.get_grok_credentials(url, api_key)\n        )\n\n        self.client = OpenAI(api_key=api_key, base_url=base_url)\n        self.model = model\n        self.size = size\n        self.quality = quality\n        self.response_format = response_format\n        self.background = background\n        self.style = style\n        self.working_directory: str = working_directory or \"image_save\"\n\n    def base64_to_image(self, base64_string: str) -> Optional[Image.Image]:"
   }
  ],
  "files": [
-  {
-   "path": "pyproject.toml",
-   "kind": "config",
-   "lang": null,
-   "lines": 745,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "grpc",
-    "mcp"
-   ]
-  },
   {
    "path": ".env.example",
    "kind": "config",
@@ -150,112 +136,38 @@
    ]
   },
   {
-   "path": "examples/models/model_manger.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 107,
-   "endpoints": [],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/models/xai_model_example.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 57,
+   "path": "pyproject.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 745,
    "endpoints": [],
    "models": [],
-   "env": [
-    "XAI_API_KEY",
-    "XAI_GROK_4_5"
-   ],
-   "features": []
-  },
-  {
-   "path": "examples/models/config_files/config.json",
-   "kind": "example",
-   "lang": null,
-   "lines": 9,
-   "endpoints": [],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/models/config_files/config.yaml",
-   "kind": "example",
-   "lang": null,
-   "lines": 6,
-   "endpoints": [],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/models/openai_compatibility_model_examples/grok.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 48,
-   "endpoints": [],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/toolkits/grok_image_example.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 49,
-   "endpoints": [],
-   "models": [
-    "grok-2-image-1212"
-   ],
    "env": [],
    "features": [
-    "image_generation",
-    "structured_output",
-    "tool_calling"
+    "anthropic_compatible",
+    "grpc",
+    "mcp"
    ]
   },
   {
-   "path": "test/models/test_orcarouter_model.py",
-   "kind": "test",
+   "path": "camel/toolkits/image_generation_toolkit.py",
+   "kind": "source",
    "lang": "Python",
-   "lines": 105,
+   "lines": 390,
    "endpoints": [],
    "models": [
-    "grok-4-0709"
+    "grok-2-image",
+    "grok-2-image-1212",
+    "grok-2-image-latest"
    ],
    "env": [
-    "ORCAROUTER_GROK_4_3"
-   ],
-   "features": []
-  },
-  {
-   "path": "test/models/test_xai_model.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 37,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-4.5"
-   ],
-   "env": [
-    "XAI_GROK_4_5"
+    "XAI_API_KEY"
    ],
    "features": [
-    "reasoning",
-    "structured_output"
+    "image_generation",
+    "openai_compatible",
+    "structured_output",
+    "vision"
    ]
   },
   {
@@ -324,27 +236,6 @@
    ]
   },
   {
-   "path": "camel/toolkits/image_generation_toolkit.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 390,
-   "endpoints": [],
-   "models": [
-    "grok-2-image",
-    "grok-2-image-1212",
-    "grok-2-image-latest"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "image_generation",
-    "openai_compatible",
-    "structured_output",
-    "vision"
-   ]
-  },
-  {
    "path": "docs/mintlify/reference/camel.toolkits.image_generation_toolkit.mdx",
    "kind": "doc",
    "lang": null,
@@ -360,6 +251,115 @@
     "image_generation",
     "structured_output"
    ]
+  },
+  {
+   "path": "examples/toolkits/grok_image_example.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 49,
+   "endpoints": [],
+   "models": [
+    "grok-2-image-1212"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/models/model_manger.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 107,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/models/xai_model_example.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 57,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_GROK_4_5"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/models/openai_compatibility_model_examples/grok.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 48,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/models/config_files/config.json",
+   "kind": "example",
+   "lang": null,
+   "lines": 9,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/models/config_files/config.yaml",
+   "kind": "example",
+   "lang": null,
+   "lines": 6,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "test/models/test_xai_model.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 37,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_GROK_4_5"
+   ],
+   "features": [
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "test/models/test_orcarouter_model.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 105,
+   "endpoints": [],
+   "models": [
+    "grok-4-0709"
+   ],
+   "env": [
+    "ORCAROUTER_GROK_4_3"
+   ],
+   "features": []
   }
  ]
 }

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T16:16:15Z",
  "description": "Automate browser based workflows with AI",
  "commit": "90ed94ac25c367940d9a00e48f43f58a47a2e54a",
- "indexed_at": "2026-10-19T08:08:19Z",
+ "indexed_at": "2026-10-20T07:58:09Z",
  "status": "ok",
- "clone_kb": 635660,
- "seconds": 57.4,
+ "clone_kb": 635648,
+ "seconds": 35.0,
  "files_scanned": 5225,
  "languages": {
   "Python": 2540,
@@ -21,9 +21,9 @@
  "grok_files": 7,
  "grok_files_by_kind": {
   "config": 1,
+  "doc": 1,
   "source": 4,
-  "test": 1,
-  "doc": 1
+  "test": 1
  },
  "hosts": {
   "api.x.ai": 3
@@ -69,16 +69,16 @@
    "code": "    )\n\n\ndef _build_xai_grok_4_5_config() -> LLMConfig:\n    return LLMConfig(\n        XAI_GROK_4_5_MODEL,\n        [\"XAI_API_KEY\"],\n        supports_vision=True,\n        add_assistant_prefix=False,\n        max_completion_tokens=XAI_GROK_4_5_MAX_OUTPUT_TOKENS,\n        temperature=settings.LLM_CONFIG_TEMPERATURE,\n        reasoning_effort=settings.XAI_REASONING_EFFORT or None,\n        litellm_params=LiteLLMParams(\n            api_key=settings.XAI_API_KEY,\n            api_base=settings.XAI_API_BASE,\n            api_version=None,\n            model_info={\"model_name\": XAI_GROK_4_5_MODEL},\n        ),\n    )\n\n\nclass LLMConfigRegistry:\n    _configs: dict[str, LLMRouterConfig | LLMConfig] = {}\n    _config_issues: dict[str, LLMConfigRegistrationIssue] = {}"
   },
   {
-   "path": "skyvern/cli/doctor.py",
-   "start": 484,
-   "end": 507,
-   "code": "    class _ProviderCheck(TypedDict):\n        enable: str\n        key: str | tuple[str, ...] | None\n\n    providers: dict[str, _ProviderCheck] = {\n        \"OPENAI\": {\"enable\": \"ENABLE_OPENAI\", \"key\": \"OPENAI_API_KEY\"},\n        \"XAI\": {\"enable\": \"ENABLE_XAI\", \"key\": \"XAI_API_KEY\"},\n        \"ANTHROPIC\": {\"enable\": \"ENABLE_ANTHROPIC\", \"key\": \"ANTHROPIC_API_KEY\"},\n        \"GEMINI\": {\"enable\": \"ENABLE_GEMINI\", \"key\": \"GEMINI_API_KEY\"},\n        \"AZURE\": {\"enable\": \"ENABLE_AZURE\", \"key\": \"AZURE_API_KEY\"},\n        \"BEDROCK\": {\"enable\": \"ENABLE_BEDROCK\", \"key\": None},\n        \"OLLAMA\": {\"enable\": \"ENABLE_OLLAMA\", \"key\": None},\n        \"OPENROUTER\": {\"enable\": \"ENABLE_OPENROUTER\", \"key\": \"OPENROUTER_API_KEY\"},\n        \"GROQ\": {\"enable\": \"ENABLE_GROQ\", \"key\": \"GROQ_API_KEY\"},\n        \"OPENAI_COMPATIBLE\": {\n            \"enable\": \"ENABLE_OPENAI_COMPATIBLE\",\n            # config_registry.py requires all three to register the provider.\n            \"key\": (\"OPENAI_COMPATIBLE_API_KEY\", \"OPENAI_COMPATIBLE_MODEL_NAME\", \"OPENAI_COMPATIBLE_API_BASE\"),\n        },\n    }\n\n    enabled = []\n    missing_key = []\n    for name, cfg in providers.items():"
-  },
-  {
    "path": "skyvern/cli/llm_setup.py",
    "start": 45,
    "end": 68,
    "code": "        resolved_env_path.touch()\n        defaults = {\n            \"ENV\": \"local\",\n            \"ENABLE_OPENAI\": \"false\",\n            \"OPENAI_API_KEY\": \"\",\n            \"ENABLE_XAI\": \"false\",\n            \"XAI_API_KEY\": \"\",\n            \"ENABLE_ANTHROPIC\": \"false\",\n            \"ANTHROPIC_API_KEY\": \"\",\n            \"ENABLE_AZURE\": \"false\",\n            \"AZURE_DEPLOYMENT\": \"\",\n            \"AZURE_API_KEY\": \"\",\n            \"AZURE_API_BASE\": \"\",\n            \"AZURE_API_VERSION\": \"\",\n            \"ENABLE_AZURE_GPT4O_MINI\": \"false\",\n            \"AZURE_GPT4O_MINI_DEPLOYMENT\": \"\",\n            \"AZURE_GPT4O_MINI_API_KEY\": \"\",\n            \"AZURE_GPT4O_MINI_API_BASE\": \"\",\n            \"AZURE_GPT4O_MINI_API_VERSION\": \"\",\n            \"ENABLE_GEMINI\": \"false\",\n            \"GEMINI_API_KEY\": \"\",\n            \"LLM_KEY\": \"\",\n            \"SECONDARY_LLM_KEY\": \"\",\n            \"BROWSER_STREAMING_MODE\": \"cdp\","
+  },
+  {
+   "path": "skyvern/cli/doctor.py",
+   "start": 484,
+   "end": 507,
+   "code": "    class _ProviderCheck(TypedDict):\n        enable: str\n        key: str | tuple[str, ...] | None\n\n    providers: dict[str, _ProviderCheck] = {\n        \"OPENAI\": {\"enable\": \"ENABLE_OPENAI\", \"key\": \"OPENAI_API_KEY\"},\n        \"XAI\": {\"enable\": \"ENABLE_XAI\", \"key\": \"XAI_API_KEY\"},\n        \"ANTHROPIC\": {\"enable\": \"ENABLE_ANTHROPIC\", \"key\": \"ANTHROPIC_API_KEY\"},\n        \"GEMINI\": {\"enable\": \"ENABLE_GEMINI\", \"key\": \"GEMINI_API_KEY\"},\n        \"AZURE\": {\"enable\": \"ENABLE_AZURE\", \"key\": \"AZURE_API_KEY\"},\n        \"BEDROCK\": {\"enable\": \"ENABLE_BEDROCK\", \"key\": None},\n        \"OLLAMA\": {\"enable\": \"ENABLE_OLLAMA\", \"key\": None},\n        \"OPENROUTER\": {\"enable\": \"ENABLE_OPENROUTER\", \"key\": \"OPENROUTER_API_KEY\"},\n        \"GROQ\": {\"enable\": \"ENABLE_GROQ\", \"key\": \"GROQ_API_KEY\"},\n        \"OPENAI_COMPATIBLE\": {\n            \"enable\": \"ENABLE_OPENAI_COMPATIBLE\",\n            # config_registry.py requires all three to register the provider.\n            \"key\": (\"OPENAI_COMPATIBLE_API_KEY\", \"OPENAI_COMPATIBLE_MODEL_NAME\", \"OPENAI_COMPATIBLE_API_BASE\"),\n        },\n    }\n\n    enabled = []\n    missing_key = []\n    for name, cfg in providers.items():"
   }
  ],
  "files": [
@@ -97,6 +97,25 @@
     "XAI_REASONING_EFFORT"
    ],
    "features": []
+  },
+  {
+   "path": "docs/developers/self-hosted/llm-configuration.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 647,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "ENABLE_XAI",
+    "XAI_API_BASE",
+    "XAI_API_KEY",
+    "XAI_GROK_4_5",
+    "XAI_REASONING_EFFORT"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
   },
   {
    "path": "skyvern/config.py",
@@ -148,22 +167,6 @@
    ]
   },
   {
-   "path": "skyvern/cli/doctor.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 1949,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "ENABLE_XAI",
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "mcp"
-   ]
-  },
-  {
    "path": "skyvern/cli/llm_setup.py",
    "kind": "source",
    "lang": "Python",
@@ -177,6 +180,22 @@
    ],
    "features": [
     "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "skyvern/cli/doctor.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1949,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "ENABLE_XAI",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
    ]
   },
   {
@@ -196,25 +215,6 @@
     "anthropic_compatible",
     "reasoning",
     "tool_calling"
-   ]
-  },
-  {
-   "path": "docs/developers/self-hosted/llm-configuration.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 647,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "ENABLE_XAI",
-    "XAI_API_BASE",
-    "XAI_API_KEY",
-    "XAI_GROK_4_5",
-    "XAI_REASONING_EFFORT"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "structured_output"
    ]
   }
  ]

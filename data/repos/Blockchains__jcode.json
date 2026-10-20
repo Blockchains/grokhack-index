@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T05:31:28Z",
  "description": "High performance coding agent harness written in rust",
  "commit": "77f4f9d50bb41ae849da9ffaab7ea25e7815e096",
- "indexed_at": "2026-10-19T08:10:06Z",
+ "indexed_at": "2026-10-20T07:59:40Z",
  "status": "ok",
  "clone_kb": 371476,
- "seconds": 26.0,
+ "seconds": 27.1,
  "files_scanned": 1955,
  "languages": {
   "Rust": 1319,
@@ -59,8 +59,8 @@
  "features": {
   "anthropic_compatible": 13,
   "reasoning": 4,
-  "tool_calling": 3,
   "mcp": 3,
+  "tool_calling": 3,
   "grpc": 3,
   "embeddings": 3,
   "streaming": 2,
@@ -73,16 +73,16 @@
  "packages": [],
  "snippets": [
   {
-   "path": "crates/jcode-provider-openrouter-runtime/src/lib.rs",
-   "start": 1764,
-   "end": 1787,
-   "code": "        })\n    }\n\n    /// Grok Build subscription over the Grok CLI chat proxy\n    /// (`https://cli-chat-proxy.grok.com/v1`, OpenAI-compatible).\n    ///\n    /// Auth is the Grok CLI OIDC session, not `XAI_API_KEY`. The token is read\n    /// from `auth.json` for every request so refreshes (by Jcode or the Grok\n    /// CLI) are picked up without rebuilding the provider. Jcode owns tools.\n    pub fn new_grok_build_subscription(model: &str) -> Self {\n        let static_models = GROK_BUILD_MODELS\n            .iter()\n            .map(|model| model.to_string())\n            .collect::<Vec<_>>();\n        let static_context_limits = GROK_BUILD_MODELS\n            .iter()\n            .map(|model| {\n                let limit = if model.contains(\"grok-code-fast\") {\n                    256_000\n                } else {\n                    500_000\n                };\n                (model.to_string(), limit)\n            })"
-  },
-  {
    "path": "crates/jcode-provider-metadata/src/catalog.rs",
    "start": 349,
    "end": 372,
    "code": "    requires_api_key: true,\n};\n\npub const XAI_PROFILE: OpenAiCompatibleProfile = OpenAiCompatibleProfile {\n    id: \"xai\",\n    display_name: \"xAI\",\n    api_base: \"https://api.x.ai/v1\",\n    api_key_env: \"XAI_API_KEY\",\n    env_file: \"xai.env\",\n    setup_url: \"https://docs.x.ai/developers/quickstart\",\n    default_model: Some(\"grok-code-fast-1\"),\n    requires_api_key: true,\n};\n\npub const LMSTUDIO_PROFILE: OpenAiCompatibleProfile = OpenAiCompatibleProfile {\n    id: \"lmstudio\",\n    display_name: \"LM Studio\",\n    api_base: \"http://localhost:1234/v1\",\n    api_key_env: \"LMSTUDIO_API_KEY\",\n    env_file: \"lmstudio.env\",\n    setup_url: \"https://lmstudio.ai/docs/app/api/endpoints/openai\",\n    default_model: None,\n    requires_api_key: false,\n};"
+  },
+  {
+   "path": "crates/jcode-provider-openrouter-runtime/src/lib.rs",
+   "start": 1764,
+   "end": 1787,
+   "code": "        })\n    }\n\n    /// Grok Build subscription over the Grok CLI chat proxy\n    /// (`https://cli-chat-proxy.grok.com/v1`, OpenAI-compatible).\n    ///\n    /// Auth is the Grok CLI OIDC session, not `XAI_API_KEY`. The token is read\n    /// from `auth.json` for every request so refreshes (by Jcode or the Grok\n    /// CLI) are picked up without rebuilding the provider. Jcode owns tools.\n    pub fn new_grok_build_subscription(model: &str) -> Self {\n        let static_models = GROK_BUILD_MODELS\n            .iter()\n            .map(|model| model.to_string())\n            .collect::<Vec<_>>();\n        let static_context_limits = GROK_BUILD_MODELS\n            .iter()\n            .map(|model| {\n                let limit = if model.contains(\"grok-code-fast\") {\n                    256_000\n                } else {\n                    500_000\n                };\n                (model.to_string(), limit)\n            })"
   },
   {
    "path": "crates/jcode-base/src/message.rs",
@@ -99,143 +99,25 @@
  ],
  "files": [
   {
-   "path": "crates/jcode-provider-openrouter-runtime/src/openrouter_tests.rs",
+   "path": "crates/jcode-provider-metadata/src/catalog.rs",
    "kind": "source",
    "lang": "Rust",
-   "lines": 3899,
+   "lines": 1342,
    "endpoints": [
     "/v1/chat/completions",
     "/v1/models"
    ],
    "models": [
-    "grok-4.6"
-   ],
-   "env": [
-    "JCODE_GROK_CLI_VERSION"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "streaming",
-    "tool_calling",
-    "vision"
-   ]
-  },
-  {
-   "path": "crates/jcode-provider-openrouter-runtime/src/lib.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 2969,
-   "endpoints": [],
-   "models": [
-    "grok-4.5",
-    "grok-4.6",
-    "grok-code-fast",
     "grok-code-fast-1"
    ],
    "env": [
-    "XAI_API_KEY"
+    "XAI_API_KEY",
+    "XAI_LOGIN_PROVIDER",
+    "XAI_PROFILE"
    ],
    "features": [
-    "anthropic_compatible",
-    "reasoning"
+    "anthropic_compatible"
    ]
-  },
-  {
-   "path": "crates/jcode-tui/src/tui/ui_header.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 1807,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "mcp"
-   ]
-  },
-  {
-   "path": "crates/jcode-tui/src/tui/app/inline_interactive/helpers.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 381,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "crates/jcode-tui/src/tui/app/tests/state_model_poke_03.rs",
-   "kind": "test",
-   "lang": "Rust",
-   "lines": 3148,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "crates/jcode-tui/src/tui/app/tests/remote_startup_input_01/part_02.rs",
-   "kind": "test",
-   "lang": "Rust",
-   "lines": 652,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "crates/jcode-tui/src/tui/app/tests/remote_startup_input_01/part_01.rs",
-   "kind": "test",
-   "lang": "Rust",
-   "lines": 1174,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "crates/jcode-tui/src/tui/app/tests/remote_startup_input_02/part_01.rs",
-   "kind": "test",
-   "lang": "Rust",
-   "lines": 2065,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "crates/jcode-tui/src/tui/app/tests/support_failover/part_02.rs",
-   "kind": "test",
-   "lang": "Rust",
-   "lines": 833,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": []
   },
   {
    "path": "crates/jcode-provider-grok-build-runtime/src/lib.rs",
@@ -264,27 +146,6 @@
    ],
    "env": [],
    "features": []
-  },
-  {
-   "path": "crates/jcode-provider-metadata/src/catalog.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 1342,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/models"
-   ],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [
-    "XAI_API_KEY",
-    "XAI_LOGIN_PROVIDER",
-    "XAI_PROFILE"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
   },
   {
    "path": "crates/jcode-provider-core/src/lib.rs",
@@ -333,6 +194,160 @@
    ]
   },
   {
+   "path": "crates/jcode-tui/src/tui/ui_header.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1807,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
+   ]
+  },
+  {
+   "path": "crates/jcode-tui/src/tui/app/tests/state_model_poke_03.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 3148,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "crates/jcode-tui/src/tui/app/tests/support_failover/part_02.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 833,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "crates/jcode-tui/src/tui/app/tests/remote_startup_input_02/part_01.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 2065,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "crates/jcode-tui/src/tui/app/tests/remote_startup_input_01/part_02.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 652,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "crates/jcode-tui/src/tui/app/tests/remote_startup_input_01/part_01.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 1174,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "crates/jcode-tui/src/tui/app/inline_interactive/helpers.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 381,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "crates/jcode-provider-openrouter-runtime/src/lib.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 2969,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-code-fast",
+    "grok-code-fast-1"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "crates/jcode-provider-openrouter-runtime/src/openrouter_tests.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 3899,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [
+    "JCODE_GROK_CLI_VERSION"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "streaming",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "crates/jcode-provider-cursor-runtime/src/cursor_tests.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1108,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "mcp"
+   ]
+  },
+  {
    "path": "crates/jcode-provider-cursor-runtime/src/lib.rs",
    "kind": "source",
    "lang": "Rust",
@@ -372,21 +387,6 @@
    ]
   },
   {
-   "path": "crates/jcode-provider-cursor-runtime/src/cursor_tests.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 1108,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "grpc",
-    "mcp"
-   ]
-  },
-  {
    "path": "crates/jcode-base/src/provider_catalog_tests.rs",
    "kind": "source",
    "lang": "Rust",
@@ -399,26 +399,6 @@
     "grok-4.5",
     "grok-4.6",
     "grok-4.6-unknown"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings"
-   ]
-  },
-  {
-   "path": "crates/jcode-base/src/provider_catalog.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 1277,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.3",
-    "grok-4.5",
-    "grok-4.6",
-    "grok-code-fast-1"
    ],
    "env": [],
    "features": [
@@ -440,6 +420,26 @@
     "anthropic_compatible",
     "image_generation",
     "reasoning"
+   ]
+  },
+  {
+   "path": "crates/jcode-base/src/provider_catalog.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1277,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
    ]
   },
   {
@@ -515,21 +515,6 @@
    ]
   },
   {
-   "path": "src/cli/commands_tests.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 1688,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings"
-   ]
-  },
-  {
    "path": "changelog/v0.89.0.json",
    "kind": "config",
    "lang": null,
@@ -543,6 +528,21 @@
    "features": [
     "mcp",
     "voice_realtime"
+   ]
+  },
+  {
+   "path": "src/cli/commands_tests.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1688,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
    ]
   }
  ]
