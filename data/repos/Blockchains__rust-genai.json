@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-27T23:15:43Z",
  "description": "Rust multiprovider generative AI client (Ollama, OpenAi, Anthropic, Gemini, DeepSeek, ZAI, OpenRouter, FireworksAI, xAI/Grok, Groq,, ...)",
  "commit": "f928db37c365aa753f68b3267bc174dec78261e6",
- "indexed_at": "2026-10-20T07:55:35Z",
+ "indexed_at": "2026-10-21T07:59:30Z",
  "status": "ok",
  "clone_kb": 3952,
- "seconds": 1.2,
+ "seconds": 1.9,
  "files_scanned": 304,
  "languages": {
   "Rust": 235
