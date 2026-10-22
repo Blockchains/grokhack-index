@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-02T18:26:57Z",
  "description": "Never stop coding. Free MIT AI gateway: one endpoint, 359 providers (150+ free), 1200+ models Kimi, Claude, GPT, Gemini, GLM, DeepSeek, MiniMax. Works with Claude Code, Codex, Cursor, OpenCode, Cline & Copilot. Quota-aware auto-fallback, RTK+Caveman compression saves 15-95% tokens, MCP/A2A, Desktop/PWA. Built by hundreds of contributors",
  "commit": "23a11484862b3bb589a55e85b00e4ac53ffeb234",
- "indexed_at": "2026-10-21T08:02:51Z",
+ "indexed_at": "2026-10-22T08:01:06Z",
  "status": "ok",
- "clone_kb": 913808,
- "seconds": 212.2,
+ "clone_kb": 913816,
+ "seconds": 253.4,
  "files_scanned": 23370,
  "languages": {
   "TypeScript": 11720,
