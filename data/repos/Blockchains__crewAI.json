@@ -8,9 +8,9 @@
  "pushed_at": "2026-10-03T00:03:55Z",
  "description": "Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks.",
  "commit": "738c8e19e35c2888d8e0663bc5cc45c5acf6ac2d",
- "indexed_at": "2026-10-22T08:02:25Z",
+ "indexed_at": "2026-10-23T08:00:55Z",
  "status": "ok",
- "clone_kb": 597828,
+ "clone_kb": 597820,
  "seconds": 286.8,
  "files_scanned": 31743,
  "languages": {
@@ -37,22 +37,6 @@
  "snippets": [],
  "files": [
   {
-   "path": "lib/crewai/src/crewai/llms/context_window.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 348,
-   "endpoints": [],
-   "models": [
-    "grok-4.3",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings"
-   ]
-  },
-  {
    "path": "lib/crewai/src/crewai/rag/embeddings/providers/google/genai_vertex_embedding.py",
    "kind": "source",
    "lang": "Python",
@@ -73,6 +57,22 @@
    "models": [],
    "env": [],
    "features": [
+    "embeddings"
+   ]
+  },
+  {
+   "path": "lib/crewai/src/crewai/llms/context_window.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 348,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
     "embeddings"
    ]
   }

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T03:02:02Z",
  "description": null,
  "commit": "c54597913f9c73dd0b2eda883daf7d6f725f3339",
- "indexed_at": "2026-10-22T08:04:40Z",
+ "indexed_at": "2026-10-23T08:03:14Z",
  "status": "ok",
  "clone_kb": 17824,
- "seconds": 7.2,
+ "seconds": 6.1,
  "files_scanned": 810,
  "languages": {
   "Python": 431,
@@ -21,8 +21,8 @@
  },
  "grok_files": 4,
  "grok_files_by_kind": {
-  "test": 1,
-  "source": 3
+  "source": 3,
+  "test": 1
  },
  "hosts": {
   "api.x.ai": 2
@@ -59,25 +59,6 @@
  ],
  "files": [
   {
-   "path": "tests/test_providers.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 624,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
    "path": "coworker/server/manager.py",
    "kind": "source",
    "lang": "Python",
@@ -94,6 +75,23 @@
     "live_search",
     "mcp",
     "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "coworker/providers/matrix.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 349,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
     "tool_calling"
    ]
   },
@@ -117,19 +115,21 @@
    ]
   },
   {
-   "path": "coworker/providers/matrix.py",
-   "kind": "source",
+   "path": "tests/test_providers.py",
+   "kind": "test",
    "lang": "Python",
-   "lines": 349,
+   "lines": 624,
    "endpoints": [
-    "/v1/models"
+    "/v1/chat/completions",
+    "/v1/responses"
    ],
    "models": [
     "grok-4.3"
    ],
    "env": [],
    "features": [
-    "anthropic_compatible",
+    "reasoning",
+    "streaming",
     "tool_calling"
    ]
   }

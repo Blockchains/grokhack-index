@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T06:20:25Z",
  "description": "Collaborative multi-agent AI coding workspace: aggregate sessions from Claude Code, Codex, OpenCode, Pi, Grok Build, etc. Desktop app, self-hosted server, or Docker.",
  "commit": "98035964c0f3811dc80a5e9291b89cb6c0570fa0",
- "indexed_at": "2026-10-22T08:02:47Z",
+ "indexed_at": "2026-10-23T08:01:12Z",
  "status": "ok",
  "clone_kb": 159128,
- "seconds": 22.3,
+ "seconds": 17.1,
  "files_scanned": 2096,
  "languages": {
   "TypeScript": 1385,
@@ -49,8 +49,8 @@
  },
  "features": {
   "mcp": 3,
-  "tool_calling": 3,
   "reasoning": 3,
+  "tool_calling": 3,
   "structured_output": 3,
   "anthropic_compatible": 2
  },
@@ -70,19 +70,49 @@
    "code": "        let rows: [(i64, Option<&str>, Option<&str>); 8] = [\n            // The key alone: the map ends up empty, stored as NULL.\n            (1, Some(r#\"{\"CODEG_ADAPTER_CHANNEL\":\"latest\"}\"#), None),\n            // The key next to real env: only the key goes.\n            (\n                2,\n                Some(r#\"{\"XAI_API_KEY\":\"abc\",\"CODEG_ADAPTER_CHANNEL\":\"latest\"}\"#),\n                Some(r#\"{\"XAI_API_KEY\":\"abc\"}\"#),\n            ),\n            // An empty value still counts as the key being present.\n            (3, Some(r#\"{\"CODEG_ADAPTER_CHANNEL\":\"\"}\"#), None),\n            // No key: untouched, formatting included.\n            (\n                4,\n                Some(r#\"{\"XAI_API_KEY\": \"abc\"}\"#),\n                Some(r#\"{\"XAI_API_KEY\": \"abc\"}\"#),\n            ),\n            (5, None, None),\n            (6, Some(\"not json\"), Some(\"not json\")),\n            (\n                7,\n                Some(r#\"[\"CODEG_ADAPTER_CHANNEL\"]\"#),\n                Some(r#\"[\"CODEG_ADAPTER_CHANNEL\"]\"#),\n            ),"
   },
   {
-   "path": "src/components/settings/opencode-connect-dialog.tsx",
-   "start": 36,
-   "end": 59,
-   "code": "  DEFAULT_OPENAI_COMPATIBLE_NPM,\n  \"@ai-sdk/openai\",\n  \"@ai-sdk/anthropic\",\n  \"@ai-sdk/google\",\n  \"@ai-sdk/cerebras\",\n  \"@ai-sdk/azure\",\n  \"@ai-sdk/xai\",\n  \"@ai-sdk/amazon-bedrock\",\n  \"@ai-sdk/google-vertex\",\n  \"@ai-sdk/deepseek\",\n]\n\nexport interface OpenCodeConnectDialogProps {\n  open: boolean\n  onOpenChange: (open: boolean) => void\n  catalog: OpenCodeCatalogProvider[]\n  catalogLoading: boolean\n  configText: string\n  authJsonText: string\n  /** When set, the dialog edits this already-connected (catalog) provider. */\n  editProviderId?: string | null\n  onConnect: (\n    next: { configText: string; authJsonText: string },\n    providerId: string"
-  },
-  {
    "path": "src/components/settings/acp-agent-settings.tsx",
    "start": 244,
    "end": 267,
    "code": "  codexAuthJsonText: string\n  codexConfigTomlText: string\n  /** Structured codex custom-model list (mirrors the catalog source sidecar).\n   *  Drives the model editor + `model_catalog_json` generation on save. */\n  codexModelList: CodexModelConfig\n  grokConfigTomlText: string\n  // Grok authentication method (subscription via `grok login` vs XAI_API_KEY).\n  // Recorded in env as GROK_AUTH_MODE; drives which credential body renders and\n  // whether XAI_API_KEY is stripped from env on subscription.\n  grokAuthMode: GrokAuthMethod\n  // Grok structured controls (empty string = \"unset / use default\"). Backed by\n  // ~/.grok/config.toml [ui].permission_mode / [models].default_reasoning_effort;\n  // merged onto the current on-disk config server-side on save.\n  grokPermissionMode: string\n  grokReasoningEffort: string\n  // Grok custom model (BYO endpoint) \u2192 [model.<id>] + [models].default. Numeric\n  // fields are held as strings for their inputs and parsed on save.\n  grokCustomModelId: string\n  grokCustomBaseUrl: string\n  grokCustomApiKey: string\n  grokCustomApiBackend: string\n  grokCustomContextWindow: string\n  grokAutoCompactThreshold: string\n  openCodeAuthJsonText: string"
+  },
+  {
+   "path": "src/components/settings/opencode-connect-dialog.tsx",
+   "start": 36,
+   "end": 59,
+   "code": "  DEFAULT_OPENAI_COMPATIBLE_NPM,\n  \"@ai-sdk/openai\",\n  \"@ai-sdk/anthropic\",\n  \"@ai-sdk/google\",\n  \"@ai-sdk/cerebras\",\n  \"@ai-sdk/azure\",\n  \"@ai-sdk/xai\",\n  \"@ai-sdk/amazon-bedrock\",\n  \"@ai-sdk/google-vertex\",\n  \"@ai-sdk/deepseek\",\n]\n\nexport interface OpenCodeConnectDialogProps {\n  open: boolean\n  onOpenChange: (open: boolean) => void\n  catalog: OpenCodeCatalogProvider[]\n  catalogLoading: boolean\n  configText: string\n  authJsonText: string\n  /** When set, the dialog edits this already-connected (catalog) provider. */\n  editProviderId?: string | null\n  onConnect: (\n    next: { configText: string; authJsonText: string },\n    providerId: string"
   }
  ],
  "files": [
+  {
+   "path": "src-tauri/src/acp/types.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 2439,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src-tauri/src/db/migration/m20260930_000001_agent_setting_drop_adapter_channel.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 110,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
   {
    "path": "src-tauri/src/parsers/grok.rs",
    "kind": "source",
@@ -125,55 +155,7 @@
    ]
   },
   {
-   "path": "src-tauri/src/acp/types.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 2439,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src-tauri/src/db/migration/m20260930_000001_agent_setting_drop_adapter_channel.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 110,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "src/i18n/messages/es.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 6843,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/i18n/messages/en.json",
+   "path": "src/i18n/messages/ja.json",
    "kind": "config",
    "lang": null,
    "lines": 6843,
@@ -209,43 +191,7 @@
    ]
   },
   {
-   "path": "src/i18n/messages/zh-CN.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 6843,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/i18n/messages/ko.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 6843,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/i18n/messages/zh-TW.json",
+   "path": "src/i18n/messages/pt.json",
    "kind": "config",
    "lang": null,
    "lines": 6843,
@@ -281,7 +227,43 @@
    ]
   },
   {
-   "path": "src/i18n/messages/pt.json",
+   "path": "src/i18n/messages/ko.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 6843,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/zh-CN.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 6843,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/zh-TW.json",
    "kind": "config",
    "lang": null,
    "lines": 6843,
@@ -317,7 +299,7 @@
    ]
   },
   {
-   "path": "src/i18n/messages/ja.json",
+   "path": "src/i18n/messages/en.json",
    "kind": "config",
    "lang": null,
    "lines": 6843,
@@ -335,30 +317,21 @@
    ]
   },
   {
-   "path": "src/contexts/acp-connections-context.test.tsx",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 6772,
+   "path": "src/i18n/messages/es.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 6843,
    "endpoints": [],
    "models": [
     "grok-4.5"
    ],
-   "env": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
    "features": [
+    "mcp",
+    "reasoning",
     "tool_calling"
-   ]
-  },
-  {
-   "path": "src/components/settings/opencode-connect-dialog.tsx",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 636,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "structured_output"
    ]
   },
   {
@@ -393,6 +366,33 @@
     "anthropic_compatible",
     "reasoning",
     "structured_output"
+   ]
+  },
+  {
+   "path": "src/components/settings/opencode-connect-dialog.tsx",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 636,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "src/contexts/acp-connections-context.test.tsx",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 6772,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
    ]
   }
  ]

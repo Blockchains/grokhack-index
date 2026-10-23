@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:56:51Z",
  "description": "An open-source AI coding agent that lives in your terminal.",
  "commit": "17c182eda0226844d7af533a52dd3ed8b956ee7b",
- "indexed_at": "2026-10-22T08:02:54Z",
+ "indexed_at": "2026-10-23T08:01:26Z",
  "status": "ok",
  "clone_kb": 319860,
- "seconds": 88.7,
+ "seconds": 84.2,
  "files_scanned": 10038,
  "languages": {
   "TypeScript": 6630,
@@ -46,23 +46,23 @@
   "XAI_API_KEY": 6
  },
  "features": {
-  "reasoning": 1,
-  "anthropic_compatible": 1
+  "anthropic_compatible": 1,
+  "reasoning": 1
  },
  "sdk_exports": [],
  "packages": [],
  "snippets": [
   {
-   "path": "packages/core/src/providers/presets/grok.ts",
-   "start": 4,
-   "end": 27,
-   "code": " * SPDX-License-Identifier: Apache-2.0\n */\n\nimport { AuthType } from '../../core/contentGenerator.js';\nimport type { ProviderConfig } from '../types.js';\n\nexport const GROK_ENV_KEY = 'XAI_API_KEY';\nexport const GROK_BASE_URL = 'https://api.x.ai/v1';\n\nexport const grokProvider: ProviderConfig = {\n  id: 'grok',\n  label: 'Grok (xAI) API Key',\n  description: 'Quick setup for xAI Grok chat & code models',\n  protocol: AuthType.USE_OPENAI,\n  baseUrl: GROK_BASE_URL,\n  envKey: GROK_ENV_KEY,\n  // xAI's API follows the standard OpenAI format. Grok models reason by\n  // default (grok-4.5 exposes an optional reasoning_effort knob, default\n  // high) and have no Qwen-style enable_thinking toggle, so the preset\n  // carries only each model's context window.\n  models: [\n    { id: 'grok-4.5', contextWindowSize: 500000 },\n    { id: 'grok-4.3', contextWindowSize: 1000000 },\n    { id: 'grok-4.20-0309-reasoning', contextWindowSize: 1000000 },"
-  },
-  {
    "path": "packages/core/src/telemetry/gen-ai-provider.ts",
    "start": 32,
    "end": 55,
    "code": "  MISTRAL_API_KEY: 'mistral_ai',\n  MODELSCOPE_API_KEY: 'modelscope',\n  MOONSHOT_API_KEY: 'moonshot',\n  OPENAI_API_KEY: 'openai',\n  OPENROUTER_API_KEY: 'openrouter',\n  REQUESTY_API_KEY: 'requesty',\n  XAI_API_KEY: 'x_ai',\n  XIAOMI_MIMO_API_KEY: 'mimo',\n  ZAI_API_KEY: 'z_ai',\n};\n\nfunction isHostOrSubdomain(hostname: string, domain: string): boolean {\n  return hostname === domain || hostname.endsWith(`.${domain}`);\n}\n\nfunction providerFromHostname(hostname: string): string | undefined {\n  if (\n    isHostOrSubdomain(hostname, 'dashscope.aliyuncs.com') ||\n    isHostOrSubdomain(hostname, 'dashscope-intl.aliyuncs.com') ||\n    isHostOrSubdomain(hostname, 'dashscope-us.aliyuncs.com') ||\n    (hostname.startsWith('token-plan.') &&\n      isHostOrSubdomain(hostname, 'maas.aliyuncs.com')) ||\n    hostname.endsWith('.alibaba-inc.com') ||\n    hostname.endsWith('.aliyun-inc.com')"
+  },
+  {
+   "path": "packages/core/src/providers/presets/grok.ts",
+   "start": 4,
+   "end": 27,
+   "code": " * SPDX-License-Identifier: Apache-2.0\n */\n\nimport { AuthType } from '../../core/contentGenerator.js';\nimport type { ProviderConfig } from '../types.js';\n\nexport const GROK_ENV_KEY = 'XAI_API_KEY';\nexport const GROK_BASE_URL = 'https://api.x.ai/v1';\n\nexport const grokProvider: ProviderConfig = {\n  id: 'grok',\n  label: 'Grok (xAI) API Key',\n  description: 'Quick setup for xAI Grok chat & code models',\n  protocol: AuthType.USE_OPENAI,\n  baseUrl: GROK_BASE_URL,\n  envKey: GROK_ENV_KEY,\n  // xAI's API follows the standard OpenAI format. Grok models reason by\n  // default (grok-4.5 exposes an optional reasoning_effort knob, default\n  // high) and have no Qwen-style enable_thinking toggle, so the preset\n  // carries only each model's context window.\n  models: [\n    { id: 'grok-4.5', contextWindowSize: 500000 },\n    { id: 'grok-4.3', contextWindowSize: 1000000 },\n    { id: 'grok-4.20-0309-reasoning', contextWindowSize: 1000000 },"
   }
  ],
  "files": [
@@ -94,6 +94,34 @@
    ]
   },
   {
+   "path": "packages/core/src/telemetry/gen-ai-provider.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 213,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/core/src/telemetry/gen-ai-provider.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 188,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
    "path": "packages/core/src/models/generated/model-registry.json",
    "kind": "config",
    "lang": null,
@@ -114,10 +142,10 @@
    ]
   },
   {
-   "path": "packages/core/src/core/openaiContentGenerator/provider/grok.test.ts",
-   "kind": "test",
+   "path": "packages/core/src/providers/presets/grok.ts",
+   "kind": "source",
    "lang": "TypeScript",
-   "lines": 71,
+   "lines": 36,
    "endpoints": [],
    "models": [
     "grok-4.20-0309-non-reasoning",
@@ -126,7 +154,9 @@
     "grok-4.3",
     "grok-4.5"
    ],
-   "env": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
    "features": [
     "reasoning"
    ]
@@ -152,10 +182,10 @@
    ]
   },
   {
-   "path": "packages/core/src/providers/presets/grok.ts",
-   "kind": "source",
+   "path": "packages/core/src/core/openaiContentGenerator/provider/grok.test.ts",
+   "kind": "test",
    "lang": "TypeScript",
-   "lines": 36,
+   "lines": 71,
    "endpoints": [],
    "models": [
     "grok-4.20-0309-non-reasoning",
@@ -164,39 +194,9 @@
     "grok-4.3",
     "grok-4.5"
    ],
-   "env": [
-    "XAI_API_KEY"
-   ],
+   "env": [],
    "features": [
     "reasoning"
-   ]
-  },
-  {
-   "path": "packages/core/src/telemetry/gen-ai-provider.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 188,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "packages/core/src/telemetry/gen-ai-provider.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 213,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
    ]
   }
  ]

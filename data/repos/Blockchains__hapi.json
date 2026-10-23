@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-27T21:54:01Z",
  "description": "App for Codex / Claude Code / Pi / OpenCode / Kimi Code / Grok Build, vibe coding anytime, anywhere",
  "commit": "86c88df93baf5d1f738dd4b202078bdf6dec376e",
- "indexed_at": "2026-10-22T08:02:47Z",
+ "indexed_at": "2026-10-23T08:01:13Z",
  "status": "ok",
- "clone_kb": 231280,
- "seconds": 23.4,
+ "clone_kb": 231276,
+ "seconds": 17.7,
  "files_scanned": 2719,
  "languages": {
   "TypeScript": 1896,
@@ -35,14 +35,14 @@
   "grok-4.6-high": 6,
   "grok-4.5-medium": 5,
   "grok-4.5-high-fast": 4,
-  "grok-4": 3,
   "grok-4.5-medium-fast": 3,
+  "grok-4": 3,
   "grok-4.5-high": 2,
-  "grok-4.6-high-fast": 1,
-  "grok-4-20": 1,
   "grok-4.5-low": 1,
   "grok-4.5-low-fast": 1,
-  "grok-4.6-low": 1
+  "grok-4.6-low": 1,
+  "grok-4-20": 1,
+  "grok-4.6-high-fast": 1
  },
  "env_vars": {
   "XAI_API_KEY": 4
@@ -62,87 +62,10 @@
  ],
  "files": [
   {
-   "path": "web/src/lib/cursorCliSkuCatalog.test.ts",
+   "path": "hub/src/web/routes/sessions.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 61,
-   "endpoints": [],
-   "models": [
-    "grok-4.6",
-    "grok-4.6-high",
-    "grok-4.6-high-fast"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "web/src/lib/cursorPickerState.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 229,
-   "endpoints": [],
-   "models": [
-    "grok-4-20"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "web/src/lib/cursorModelOptions.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 433,
-   "endpoints": [],
-   "models": [
-    "grok-4.6",
-    "grok-4.6-high"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "web/src/components/AssistantChat/modelOptions.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 410,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "web/src/components/NewSession/types.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 64,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "web/src/components/NewSession/index.test.tsx",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 1341,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "web/src/components/NewSession/grokModels.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 109,
+   "lines": 1752,
    "endpoints": [],
    "models": [
     "grok-4.5"
@@ -153,20 +76,29 @@
    ]
   },
   {
-   "path": "docs/guide/agents.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 307,
+   "path": "hub/src/web/routes/machines.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 814,
    "endpoints": [],
    "models": [
     "grok-4.5"
    ],
-   "env": [
-    "XAI_API_KEY"
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "hub/src/sync/sessionModel.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 4802,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
    ],
+   "env": [],
    "features": [
-    "anthropic_compatible",
-    "mcp"
+    "streaming"
    ]
   },
   {
@@ -204,10 +136,10 @@
    "features": []
   },
   {
-   "path": "hub/src/web/routes/machines.test.ts",
+   "path": "web/src/components/AssistantChat/modelOptions.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 814,
+   "lines": 410,
    "endpoints": [],
    "models": [
     "grok-4.5"
@@ -216,10 +148,36 @@
    "features": []
   },
   {
-   "path": "hub/src/web/routes/sessions.test.ts",
+   "path": "web/src/components/NewSession/index.test.tsx",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 1752,
+   "lines": 1341,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "web/src/components/NewSession/types.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 64,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "web/src/components/NewSession/grokModels.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 109,
    "endpoints": [],
    "models": [
     "grok-4.5"
@@ -230,18 +188,43 @@
    ]
   },
   {
-   "path": "hub/src/sync/sessionModel.test.ts",
+   "path": "web/src/lib/cursorPickerState.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 4802,
+   "lines": 229,
    "endpoints": [],
    "models": [
-    "grok-4.5"
+    "grok-4-20"
    ],
    "env": [],
-   "features": [
-    "streaming"
-   ]
+   "features": []
+  },
+  {
+   "path": "web/src/lib/cursorModelOptions.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 433,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.6-high"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "web/src/lib/cursorCliSkuCatalog.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 61,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.6-high",
+    "grok-4.6-high-fast"
+   ],
+   "env": [],
+   "features": []
   },
   {
    "path": "cli/README.md",
@@ -285,49 +268,6 @@
    ]
   },
   {
-   "path": "cli/src/agent/backends/acp/AcpStdioTransport.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 629,
-   "endpoints": [],
-   "models": [
-    "grok-4",
-    "grok-4.5",
-    "grok-4.5-high-fast"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "cli/src/agent/backends/acp/AcpSdkBackend.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 1867,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "cli/src/modules/common/cursorModels.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 503,
-   "endpoints": [],
-   "models": [
-    "grok-4.6",
-    "grok-4.6-high"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
    "path": "cli/src/modules/common/cursorModelsSharedCache.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -354,69 +294,17 @@
    ]
   },
   {
-   "path": "cli/src/commands/resume.test.ts",
+   "path": "cli/src/modules/common/cursorModels.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 452,
+   "lines": 503,
    "endpoints": [],
    "models": [
-    "grok-4.5"
+    "grok-4.6",
+    "grok-4.6-high"
    ],
    "env": [],
    "features": []
-  },
-  {
-   "path": "cli/src/grok/grokLocal.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 59,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "cli/src/grok/utils/grokBackend.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 82,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "cli/src/grok/utils/grokBackend.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 126,
-   "endpoints": [],
-   "models": [
-    "grok-4.5",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "cli/src/api/apiMachine.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 976,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "structured_output"
-   ]
   },
   {
    "path": "cli/src/cursor/cursorAcpRemoteLauncher.test.ts",
@@ -450,22 +338,6 @@
    "features": []
   },
   {
-   "path": "cli/src/cursor/utils/cursorStaleModelRemap.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 95,
-   "endpoints": [],
-   "models": [
-    "grok-4.5",
-    "grok-4.5-high",
-    "grok-4.5-high-fast",
-    "grok-4.5-medium",
-    "grok-4.5-medium-fast"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
    "path": "cli/src/cursor/utils/cursorModeConfig.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -483,6 +355,22 @@
    ]
   },
   {
+   "path": "cli/src/cursor/utils/cursorStaleModelRemap.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 95,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.5-high",
+    "grok-4.5-high-fast",
+    "grok-4.5-medium",
+    "grok-4.5-medium-fast"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
    "path": "cli/src/cursor/utils/cursorModeConfig.ts",
    "kind": "source",
    "lang": "TypeScript",
@@ -494,6 +382,118 @@
    "env": [],
    "features": [
     "reasoning"
+   ]
+  },
+  {
+   "path": "cli/src/agent/backends/acp/AcpSdkBackend.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1867,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "cli/src/agent/backends/acp/AcpStdioTransport.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 629,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.5",
+    "grok-4.5-high-fast"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "cli/src/commands/resume.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 452,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "cli/src/api/apiMachine.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 976,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "cli/src/grok/grokLocal.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 59,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "cli/src/grok/utils/grokBackend.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 126,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "cli/src/grok/utils/grokBackend.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 82,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "docs/guide/agents.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 307,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "mcp"
    ]
   }
  ]

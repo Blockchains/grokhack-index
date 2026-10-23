@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T14:28:02Z",
  "description": "\ud83d\udc96\ud83e\uddf8 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.",
  "commit": "7684415927147a8f64bb442ff0069c33816efedd",
- "indexed_at": "2026-10-22T08:03:55Z",
+ "indexed_at": "2026-10-23T08:02:25Z",
  "status": "ok",
  "clone_kb": 960352,
- "seconds": 61.8,
+ "seconds": 61.4,
  "files_scanned": 5029,
  "languages": {
   "TypeScript": 2728,
@@ -24,9 +24,9 @@
  },
  "grok_files": 6,
  "grok_files_by_kind": {
-  "doc": 3,
   "test": 2,
-  "source": 1
+  "source": 1,
+  "doc": 3
  },
  "hosts": {
   "api.x.ai": 4
@@ -60,40 +60,10 @@
  ],
  "files": [
   {
-   "path": "docs/content/en/docs/manual/config/providers/consciousness/xai.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 35,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "docs/content/zh-Hans/docs/manual/config/providers/consciousness/xai.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 35,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "docs/content/ko/docs/manual/config/providers/consciousness/xai.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 35,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "packages/stage-ui/src/stores/providers/onboarding-save.browser.test.ts",
+   "path": "packages/stage-ui/src/components/scenarios/dialogs/onboarding/onboarding.browser.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 114,
+   "lines": 205,
    "endpoints": [],
    "models": [
     "grok-4.5",
@@ -105,10 +75,10 @@
    ]
   },
   {
-   "path": "packages/stage-ui/src/components/scenarios/dialogs/onboarding/onboarding.browser.test.ts",
+   "path": "packages/stage-ui/src/stores/providers/onboarding-save.browser.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 205,
+   "lines": 114,
    "endpoints": [],
    "models": [
     "grok-4.5",
@@ -130,6 +100,36 @@
    "features": [
     "openai_compatible"
    ]
+  },
+  {
+   "path": "docs/content/en/docs/manual/config/providers/consciousness/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 35,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/content/ko/docs/manual/config/providers/consciousness/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 35,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/content/zh-Hans/docs/manual/config/providers/consciousness/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 35,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
   }
  ]
 }

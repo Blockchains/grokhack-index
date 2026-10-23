@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-30T20:24:12Z",
  "description": "Make bilingual epub books Using AI translate",
  "commit": "e1027a4823e98f668ef950740b6f805ec30bd3b2",
- "indexed_at": "2026-10-22T08:04:54Z",
+ "indexed_at": "2026-10-23T08:03:27Z",
  "status": "ok",
  "clone_kb": 12832,
- "seconds": 4.0,
+ "seconds": 2.4,
  "files_scanned": 280,
  "languages": {
   "Python": 177,
@@ -69,38 +69,19 @@
    "code": "    \"gemini\": (\"gemini\", \"gemini-flash-latest\", \"BBM_GOOGLE_GEMINI_KEY\"),\n    \"geminipro\": (\"gemini\", \"gemini-pro-latest\", \"BBM_GOOGLE_GEMINI_KEY\"),\n    \"qwen\": (\"qwen\", \"qwen-mt-turbo\", \"BBM_QWEN_API_KEY\"),\n    \"qwen-mt-turbo\": (\"qwen\", \"qwen-mt-turbo\", \"BBM_QWEN_API_KEY\"),\n    \"qwen-mt-plus\": (\"qwen\", \"qwen-mt-plus\", \"BBM_QWEN_API_KEY\"),\n    \"groq\": (\"groq\", None, \"BBM_GROQ_API_KEY\"),\n    \"xai\": (\"xai\", \"grok-4.3\", \"BBM_XAI_API_KEY\"),\n    # A local sidecar, not an endpoint: no address, no key, and the sidecar\n    # picks its own model, so the format alone is the whole route. `--model\n    # codex` was the old spelling; `--api_format codex` is the modern one and\n    # naming a model still rides on it as `--model <id>`.\n    \"codex\": (\"codex\", None, None),\n}\n\n# Two of those aliases are also real model ids that a live endpoint serves.\n# With an explicit --api_format, that is what they are: `--api_format qwen\n# --model qwen-mt-plus` is a modern command, and so is the same id against a\n# gateway on the openai format. Nothing to rewrite, nothing to apologise for.\n_ALIAS_IS_ALSO_A_MODEL_ID = (\"qwen-mt-turbo\", \"qwen-mt-plus\")\n\n# Aliases that were always a fixed engine rather than a model.\n_MT_FORMATS = {\n    \"google\": \"google\",\n    \"caiyun\": \"caiyun\","
   },
   {
-   "path": "book_maker/translator/xai_translator.py",
-   "start": 1,
-   "end": 14,
-   "code": "\"\"\"xAI's endpoint.\n\nThe OpenAI shape at api.x.ai, so this is the OpenAI route with that address\nand xAI's key variable. See groq_translator for why no model id is named\nhere.\n\"\"\"\n\nfrom book_maker.translator.chatgptapi_translator import ChatGPTAPI\n\nXAI_API_BASE = \"https://api.x.ai/v1\"\n\n\nclass XAIClient(ChatGPTAPI):\n    DEFAULT_API_BASE = XAI_API_BASE"
-  },
-  {
    "path": "book_maker/loader/epub_loader.py",
    "start": 116,
    "end": 139,
    "code": "    \"--openai_key\": \"BBM_OPENAI_API_KEY\",\n    \"--caiyun_key\": \"BBM_CAIYUN_API_KEY\",\n    \"--deepl_key\": \"BBM_DEEPL_API_KEY\",\n    \"--claude_key\": \"BBM_CLAUDE_API_KEY\",\n    \"--gemini_key\": \"BBM_GOOGLE_GEMINI_KEY\",\n    \"--groq_key\": \"BBM_GROQ_API_KEY\",\n    \"--xai_key\": \"BBM_XAI_API_KEY\",\n    \"--orcarouter_key\": \"BBM_ORCAROUTER_API_KEY\",\n    \"--qwen_key\": \"BBM_QWEN_API_KEY\",\n    # --api_key belongs to --provider, whose key variable is named by the\n    # provider entry rather than fixed here; the generic name is a variable\n    # the user exports, which is all the placeholder has to be.\n    \"--api_key\": \"BBM_API_KEY\",\n    # This fork's one key flag. Which variable would have supplied it depends\n    # on the endpoint (FORMAT_ENV_KEYS in cli.py) and a provider entry may\n    # name its own, so the placeholder is the fallback every format accepts.\n    \"--key\": \"BBM_API_KEY\",\n}\n\n\ndef _key_flag_env(flag):\n    \"\"\"The env var standing in for `flag`'s value, or None if it carries no key.\n\n    Exact spellings are not enough: argparse accepts any unambiguous"
+  },
+  {
+   "path": "book_maker/translator/xai_translator.py",
+   "start": 1,
+   "end": 14,
+   "code": "\"\"\"xAI's endpoint.\n\nThe OpenAI shape at api.x.ai, so this is the OpenAI route with that address\nand xAI's key variable. See groq_translator for why no model id is named\nhere.\n\"\"\"\n\nfrom book_maker.translator.chatgptapi_translator import ChatGPTAPI\n\nXAI_API_BASE = \"https://api.x.ai/v1\"\n\n\nclass XAIClient(ChatGPTAPI):\n    DEFAULT_API_BASE = XAI_API_BASE"
   }
  ],
  "files": [
-  {
-   "path": "README.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 866,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "BBM_XAI_API_KEY",
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "reasoning"
-   ]
-  },
   {
    "path": "README-CN.md",
    "kind": "doc",
@@ -137,163 +118,22 @@
    ]
   },
   {
-   "path": "docs/en/cmd.md",
+   "path": "README.md",
    "kind": "doc",
    "lang": null,
-   "lines": 226,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [],
-   "env": [
-    "BBM_XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "docs/en/llm-args.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 250,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
+   "lines": 866,
+   "endpoints": [],
    "models": [
     "grok-4.3"
    ],
-   "env": [
-    "BBM_XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "docs/en/model_lang.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 215,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/messages"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "docs/en/env_settings.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 75,
-   "endpoints": [],
-   "models": [],
    "env": [
     "BBM_XAI_API_KEY",
     "XAI_API_KEY"
    ],
    "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "docs/en/migration.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 54,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "docs/zh/cmd.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 214,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [],
-   "env": [
-    "BBM_XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "docs/zh/llm-args.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 250,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "BBM_XAI_API_KEY"
-   ],
-   "features": [
     "anthropic_compatible",
+    "mcp",
     "reasoning"
-   ]
-  },
-  {
-   "path": "docs/zh/model_lang.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 139,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/messages"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "docs/zh/env_settings.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 57,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "BBM_XAI_API_KEY",
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "docs/zh/migration.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 38,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
    ]
   },
   {
@@ -332,18 +172,6 @@
    "features": []
   },
   {
-   "path": "book_maker/translator/xai_translator.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 14,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_BASE"
-   ],
-   "features": []
-  },
-  {
    "path": "book_maker/loader/epub_loader.py",
    "kind": "source",
    "lang": "Python",
@@ -356,49 +184,16 @@
    "features": []
   },
   {
-   "path": "tests/test_structured_classify.py",
-   "kind": "test",
+   "path": "book_maker/translator/xai_translator.py",
+   "kind": "source",
    "lang": "Python",
-   "lines": 901,
-   "endpoints": [
-    "/v1/messages"
-   ],
+   "lines": 14,
+   "endpoints": [],
    "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "tests/test_legacy_cli.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 485,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "tests/test_cli.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 2192,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
    "env": [
-    "BBM_XAI_API_KEY"
+    "XAI_API_BASE"
    ],
-   "features": [
-    "anthropic_compatible"
-   ]
+   "features": []
   },
   {
    "path": ".agents/skills/bbm-plan/assets/bbm_providers.example.json",
@@ -431,6 +226,211 @@
    "features": [
     "anthropic_compatible",
     "structured_output"
+   ]
+  },
+  {
+   "path": "tests/test_cli.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 2192,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "BBM_XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/test_legacy_cli.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 485,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/test_structured_classify.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 901,
+   "endpoints": [
+    "/v1/messages"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "docs/zh/migration.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 38,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/zh/cmd.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 214,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [],
+   "env": [
+    "BBM_XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/zh/model_lang.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 139,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/zh/env_settings.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 57,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "BBM_XAI_API_KEY",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/zh/llm-args.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 250,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "BBM_XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "docs/en/migration.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 54,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/en/cmd.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 226,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [],
+   "env": [
+    "BBM_XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "docs/en/model_lang.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 215,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/en/env_settings.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 75,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "BBM_XAI_API_KEY",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/en/llm-args.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 250,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "BBM_XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "voice_realtime"
    ]
   }
  ]

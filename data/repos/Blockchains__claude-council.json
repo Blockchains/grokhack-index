@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-01T13:16:08Z",
  "description": "Claude Code plugin that asks several AI coding agents the same question and shows their answers side by side. Gemini, OpenAI, Grok, Perplexity, Kimi and any model OpenRouter routes to over API; codex, antigravity, grok, kimi and cursor CLIs on subscription auth; ollama locally. Codex specialists take coding tasks on their own branch (experimental).",
  "commit": "5e4267ceddd7f316d2e508db894141ffe9621950",
- "indexed_at": "2026-10-22T07:57:12Z",
+ "indexed_at": "2026-10-23T07:55:52Z",
  "status": "ok",
  "clone_kb": 6476,
- "seconds": 3.4,
+ "seconds": 3.9,
  "files_scanned": 170,
  "languages": {
   "TypeScript": 30,
@@ -20,8 +20,8 @@
  "grok_files": 14,
  "grok_files_by_kind": {
   "doc": 6,
-  "source": 7,
-  "test": 1
+  "test": 1,
+  "source": 7
  },
  "hosts": {
   "api.x.ai": 2
@@ -35,11 +35,11 @@
   "grok-4.6": 5,
   "grok-3-mini": 2,
   "grok-4": 2,
-  "grok-4.3": 1,
   "grok-4.20-reasoning": 1,
   "grok-4.5": 1,
   "grok-4.7": 1,
   "grok-4.x": 1,
+  "grok-4.3": 1,
   "grok-4.20-non-reasoning-latest": 1
  },
  "env_vars": {
@@ -56,46 +56,6 @@
  "packages": [],
  "snippets": [],
  "files": [
-  {
-   "path": "TESTING.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 752,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "tool_calling",
-    "vision"
-   ]
-  },
-  {
-   "path": "README.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 1001,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini",
-    "grok-4",
-    "grok-4.3",
-    "grok-4.6"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "reasoning",
-    "structured_output",
-    "voice_realtime"
-   ]
-  },
   {
    "path": "CHANGELOG.md",
    "kind": "doc",
@@ -126,31 +86,55 @@
    ]
   },
   {
-   "path": "docs/ARCHITECTURE.md",
+   "path": "README.md",
    "kind": "doc",
    "lang": null,
-   "lines": 757,
+   "lines": 1001,
    "endpoints": [],
-   "models": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4",
+    "grok-4.3",
+    "grok-4.6"
+   ],
    "env": [
     "XAI_API_KEY"
    ],
    "features": [
     "anthropic_compatible",
+    "mcp",
+    "reasoning",
     "structured_output",
-    "vision"
+    "voice_realtime"
    ]
   },
   {
-   "path": "scripts/query-council.sh",
-   "kind": "source",
+   "path": "TESTING.md",
+   "kind": "doc",
    "lang": null,
-   "lines": 1078,
-   "endpoints": [],
+   "lines": 752,
+   "endpoints": [
+    "/v1/models"
+   ],
    "models": [],
    "env": [
     "XAI_API_KEY"
    ],
+   "features": [
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "mods/council-pane/tests/view.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 285,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
    "features": []
   },
   {
@@ -169,16 +153,30 @@
    "features": []
   },
   {
-   "path": "scripts/lib/keys.sh",
+   "path": "scripts/query-council.sh",
    "kind": "source",
    "lang": null,
-   "lines": 12,
+   "lines": 1078,
    "endpoints": [],
    "models": [],
    "env": [
     "XAI_API_KEY"
    ],
    "features": []
+  },
+  {
+   "path": "scripts/lib/model_fallback.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 91,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
   },
   {
    "path": "scripts/lib/providers.sh",
@@ -196,18 +194,16 @@
    ]
   },
   {
-   "path": "scripts/lib/model_fallback.sh",
+   "path": "scripts/lib/keys.sh",
    "kind": "source",
    "lang": null,
-   "lines": 91,
+   "lines": 12,
    "endpoints": [],
-   "models": [
-    "grok-4.6"
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
    ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
+   "features": []
   },
   {
    "path": "scripts/providers/grok.sh",
@@ -245,18 +241,6 @@
    ]
   },
   {
-   "path": "mods/council-pane/tests/view.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 285,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
    "path": "skills/provider-integration/SKILL.md",
    "kind": "doc",
    "lang": null,
@@ -282,6 +266,22 @@
    "env": [],
    "features": [
     "structured_output"
+   ]
+  },
+  {
+   "path": "docs/ARCHITECTURE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 757,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output",
+    "vision"
    ]
   }
  ]

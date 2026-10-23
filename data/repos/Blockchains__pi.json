@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T00:44:54Z",
  "description": "AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI",
  "commit": "83692682f095528f8b71652ddacff7075e36e893",
- "indexed_at": "2026-10-22T08:01:12Z",
+ "indexed_at": "2026-10-23T07:59:49Z",
  "status": "ok",
  "clone_kb": 36020,
- "seconds": 7.4,
+ "seconds": 6.8,
  "files_scanned": 1811,
  "languages": {
   "TypeScript": 1552,
@@ -20,8 +20,8 @@
  "grok_files": 21,
  "grok_files_by_kind": {
   "source": 7,
-  "doc": 2,
-  "test": 12
+  "test": 12,
+  "doc": 2
  },
  "hosts": {
   "api.x.ai": 4
@@ -30,8 +30,8 @@
   "/v1/models": 2,
   "/v1/chat/completions": 1,
   "/v1/messages": 1,
-  "/v1/completions": 1,
-  "/v1/responses": 1
+  "/v1/responses": 1,
+  "/v1/completions": 1
  },
  "models": {
   "grok-4.3": 9,
@@ -82,16 +82,16 @@
    "code": "\t\tnvidia: \"NVIDIA_API_KEY\",\n\t\tdeepseek: \"DEEPSEEK_API_KEY\",\n\t\tgoogle: \"GEMINI_API_KEY\",\n\t\t\"google-vertex\": \"GOOGLE_CLOUD_API_KEY\",\n\t\tgroq: \"GROQ_API_KEY\",\n\t\tcerebras: \"CEREBRAS_API_KEY\",\n\t\txai: \"XAI_API_KEY\",\n\t\ttypesafe: \"TYPESAFE_API_KEY\",\n\t\tradius: \"RADIUS_API_KEY\",\n\t\topenrouter: \"OPENROUTER_API_KEY\",\n\t\t\"vercel-ai-gateway\": \"AI_GATEWAY_API_KEY\",\n\t\tzai: \"ZAI_API_KEY\",\n\t\t\"zai-coding-cn\": \"ZAI_CODING_CN_API_KEY\",\n\t\tmistral: \"MISTRAL_API_KEY\",\n\t\tminimax: \"MINIMAX_API_KEY\",\n\t\t\"minimax-cn\": \"MINIMAX_CN_API_KEY\",\n\t\tmoonshotai: \"MOONSHOT_API_KEY\",\n\t\t\"moonshotai-cn\": \"MOONSHOT_API_KEY\",\n\t\thuggingface: \"HF_TOKEN\",\n\t\tfireworks: \"FIREWORKS_API_KEY\",\n\t\ttogether: \"TOGETHER_API_KEY\",\n\t\tbaseten: \"BASETEN_API_KEY\",\n\t\topencode: \"OPENCODE_API_KEY\",\n\t\t\"opencode-go\": \"OPENCODE_API_KEY\","
   },
   {
-   "path": "packages/ai/src/api/openai-completions.ts",
-   "start": 1603,
-   "end": 1626,
-   "code": "\tconst isDeepSeek = provider === \"deepseek\" || baseUrl.toLowerCase().includes(\"deepseek.com\");\n\n\tconst isNonStandard =\n\t\tisNvidia ||\n\t\tisCerebras ||\n\t\tprovider === \"xai\" ||\n\t\tbaseUrl.includes(\"api.x.ai\") ||\n\t\tisTogether ||\n\t\tbaseUrl.includes(\"chutes.ai\") ||\n\t\tisDeepSeek ||\n\t\tisZai ||\n\t\tisMoonshot ||\n\t\tprovider === \"opencode\" ||\n\t\tbaseUrl.includes(\"opencode.ai\") ||\n\t\tisCloudflareWorkersAI ||\n\t\tisCloudflareAiGateway ||\n\t\tisAntLing;\n\n\tconst useMaxTokens =\n\t\tbaseUrl.includes(\"chutes.ai\") ||\n\t\tisDeepSeek ||\n\t\tisMoonshot ||\n\t\tisCloudflareAiGateway ||\n\t\tisTogether ||"
-  },
-  {
    "path": "packages/ai/src/providers/xai.ts",
    "start": 5,
    "end": 24,
    "code": "import { XAI_MODELS } from \"./xai.models.ts\";\n\nexport function xaiProvider(): Provider<\"openai-responses\"> {\n\treturn createProvider({\n\t\tid: \"xai\",\n\t\tname: \"xAI\",\n\t\tbaseUrl: \"https://api.x.ai/v1\",\n\t\tauth: {\n\t\t\tapiKey: envApiKeyAuth(\"xAI API key\", [\"XAI_API_KEY\"]),\n\t\t\toauth: lazyOAuth({\n\t\t\t\tname: \"xAI (Grok/X subscription)\",\n\t\t\t\tisSubscription: true,\n\t\t\t\tloginLabel: \"Sign in with SuperGrok or X Premium\",\n\t\t\t\tload: loadXaiOAuth,\n\t\t\t}),\n\t\t},\n\t\tmodels: Object.values(XAI_MODELS),\n\t\tapi: openAIResponsesApi(),\n\t});\n}"
+  },
+  {
+   "path": "packages/ai/src/api/openai-completions.ts",
+   "start": 1603,
+   "end": 1626,
+   "code": "\tconst isDeepSeek = provider === \"deepseek\" || baseUrl.toLowerCase().includes(\"deepseek.com\");\n\n\tconst isNonStandard =\n\t\tisNvidia ||\n\t\tisCerebras ||\n\t\tprovider === \"xai\" ||\n\t\tbaseUrl.includes(\"api.x.ai\") ||\n\t\tisTogether ||\n\t\tbaseUrl.includes(\"chutes.ai\") ||\n\t\tisDeepSeek ||\n\t\tisZai ||\n\t\tisMoonshot ||\n\t\tprovider === \"opencode\" ||\n\t\tbaseUrl.includes(\"opencode.ai\") ||\n\t\tisCloudflareWorkersAI ||\n\t\tisCloudflareAiGateway ||\n\t\tisAntLing;\n\n\tconst useMaxTokens =\n\t\tbaseUrl.includes(\"chutes.ai\") ||\n\t\tisDeepSeek ||\n\t\tisMoonshot ||\n\t\tisCloudflareAiGateway ||\n\t\tisTogether ||"
   }
  ],
  "files": [
@@ -108,21 +108,6 @@
    "features": []
   },
   {
-   "path": "packages/coding-agent/docs/providers.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 200,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "mcp"
-   ]
-  },
-  {
    "path": "packages/coding-agent/test/model-resolver.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -135,6 +120,20 @@
    "features": [
     "anthropic_compatible",
     "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/coding-agent/src/core/model-resolver.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 783,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
    ]
   },
   {
@@ -153,17 +152,18 @@
    ]
   },
   {
-   "path": "packages/coding-agent/src/core/model-resolver.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 783,
+   "path": "packages/coding-agent/docs/providers.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 200,
    "endpoints": [],
-   "models": [
-    "grok-4.7"
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
    ],
-   "env": [],
    "features": [
-    "anthropic_compatible"
+    "anthropic_compatible",
+    "mcp"
    ]
   },
   {
@@ -215,141 +215,21 @@
    ]
   },
   {
-   "path": "packages/ai/test/empty.test.ts",
+   "path": "packages/ai/test/model-catalog-types.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 822,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/ai/test/tokens.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 373,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "packages/ai/test/unicode-surrogate.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 839,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/ai/test/supports-xhigh.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 256,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "packages/ai/test/context-overflow.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 771,
-   "endpoints": [
-    "/v1/completions",
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "packages/ai/test/total-tokens.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 882,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/ai/test/cross-provider-handoff.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 524,
+   "lines": 37,
    "endpoints": [],
    "models": [
     "grok-4.3",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/ai/test/tool-call-without-result.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 359,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
    ],
    "env": [
-    "XAI_API_KEY"
+    "XAI_MODELS"
    ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "tool_calling"
-   ]
+   "features": []
   },
   {
    "path": "packages/ai/test/xai-responses.test.ts",
@@ -380,23 +260,6 @@
    ]
   },
   {
-   "path": "packages/ai/test/model-catalog-types.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 37,
-   "endpoints": [],
-   "models": [
-    "grok-4.3",
-    "grok-4.5",
-    "grok-4.6",
-    "grok-4.7"
-   ],
-   "env": [
-    "XAI_MODELS"
-   ],
-   "features": []
-  },
-  {
    "path": "packages/ai/test/stream.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -417,6 +280,143 @@
    ]
   },
   {
+   "path": "packages/ai/test/context-overflow.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 771,
+   "endpoints": [
+    "/v1/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/ai/test/empty.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 822,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/ai/test/cross-provider-handoff.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 524,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/ai/test/total-tokens.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 882,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/ai/test/unicode-surrogate.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 839,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/ai/test/tool-call-without-result.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 359,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/ai/test/supports-xhigh.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 256,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/ai/test/tokens.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 373,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
    "path": "packages/ai/src/env-api-keys.ts",
    "kind": "source",
    "lang": "TypeScript",
@@ -429,6 +429,19 @@
    "features": [
     "anthropic_compatible"
    ]
+  },
+  {
+   "path": "packages/ai/src/providers/xai.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 24,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_MODELS"
+   ],
+   "features": []
   },
   {
    "path": "packages/ai/src/api/openai-completions.ts",
@@ -447,19 +460,6 @@
     "tool_calling",
     "vision"
    ]
-  },
-  {
-   "path": "packages/ai/src/providers/xai.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 24,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY",
-    "XAI_MODELS"
-   ],
-   "features": []
   }
  ]
 }

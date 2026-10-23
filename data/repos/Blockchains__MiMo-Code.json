@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T11:46:21Z",
  "description": "MiMo Code: Where Models and Agents Co-Evolve",
  "commit": "6babeb0b98f9b4818bddf04a4331edfee04dbf85",
- "indexed_at": "2026-10-22T08:02:28Z",
+ "indexed_at": "2026-10-23T08:01:11Z",
  "status": "ok",
  "clone_kb": 38876,
- "seconds": 13.7,
+ "seconds": 21.1,
  "files_scanned": 1925,
  "languages": {
   "TypeScript": 1347,
@@ -22,8 +22,8 @@
  "grok_files_by_kind": {
   "config": 1,
   "test": 4,
-  "doc": 1,
-  "source": 3
+  "source": 3,
+  "doc": 1
  },
  "hosts": {
   "api.x.ai": 2
@@ -32,8 +32,8 @@
   "/v1/messages": 1
  },
  "models": {
-  "grok-4": 2,
   "grok-3-mini": 2,
+  "grok-4": 2,
   "grok-3": 1
  },
  "env_vars": {
@@ -97,24 +97,6 @@
    "features": []
   },
   {
-   "path": "packages/cli/test/provider/strict-schema-wire.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 349,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "openai_compatible",
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
    "path": "packages/cli/test/provider/transform.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -149,18 +131,21 @@
    ]
   },
   {
-   "path": "packages/cli/src/skill/builtin/.bundle/grok-build/SKILL.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 136,
+   "path": "packages/cli/test/provider/strict-schema-wire.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 349,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
+   "models": [
+    "grok-4"
    ],
+   "env": [],
    "features": [
+    "anthropic_compatible",
     "mcp",
-    "structured_output"
+    "openai_compatible",
+    "structured_output",
+    "tool_calling"
    ]
   },
   {
@@ -207,6 +192,21 @@
    "models": [],
    "env": [],
    "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/cli/src/skill/builtin/.bundle/grok-build/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 136,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
     "structured_output"
    ]
   }

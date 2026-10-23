@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T13:04:27Z",
  "description": "DSPy: The framework for programming\u2014not prompting\u2014language models",
  "commit": "6f0aacfa5ed68511ac10c66dbbe53eaf02fc66ec",
- "indexed_at": "2026-10-22T07:56:11Z",
+ "indexed_at": "2026-10-23T07:54:52Z",
  "status": "ok",
  "clone_kb": 45304,
- "seconds": 6.8,
+ "seconds": 5.4,
  "files_scanned": 644,
  "languages": {
   "Python": 418,
@@ -31,9 +31,9 @@
   "/v1/responses": 1
  },
  "models": {
+  "grok-imagine": 2,
   "grok-4.20": 2,
-  "grok-4.6": 2,
-  "grok-imagine": 2
+  "grok-4.6": 2
  },
  "env_vars": {
   "XAI_API_KEY": 5,
@@ -159,6 +159,23 @@
    ]
   },
   {
+   "path": "dspy/_vendor/lm15/types.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 3274,
+   "endpoints": [],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
    "path": "dspy/_vendor/lm15/compat.py",
    "kind": "source",
    "lang": "Python",
@@ -180,23 +197,6 @@
     "structured_output",
     "tool_calling",
     "vision"
-   ]
-  },
-  {
-   "path": "dspy/_vendor/lm15/types.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 3274,
-   "endpoints": [],
-   "models": [
-    "grok-imagine"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "structured_output",
-    "tool_calling",
-    "voice_realtime"
    ]
   },
   {

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-02T14:19:04Z",
  "description": "An AI Hedge Fund Team",
  "commit": "78b779c1389e2d1452dc29606d2c4126d859b964",
- "indexed_at": "2026-10-22T08:04:15Z",
+ "indexed_at": "2026-10-23T08:02:52Z",
  "status": "ok",
  "clone_kb": 2100,
- "seconds": 0.6,
+ "seconds": 1.0,
  "files_scanned": 109,
  "languages": {
   "Python": 95
@@ -59,6 +59,18 @@
  ],
  "files": [
   {
+   "path": "pyproject.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 59,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
    "path": ".env.example",
    "kind": "config",
    "lang": null,
@@ -68,18 +80,6 @@
    "env": [
     "XAI_API_KEY"
    ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "pyproject.toml",
-   "kind": "config",
-   "lang": null,
-   "lines": 59,
-   "endpoints": [],
-   "models": [],
-   "env": [],
    "features": [
     "anthropic_compatible"
    ]
@@ -97,6 +97,18 @@
    "features": []
   },
   {
+   "path": "hedge_fund/llm/api_models.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 47,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
    "path": "hedge_fund/llm/client.py",
    "kind": "source",
    "lang": "Python",
@@ -109,18 +121,6 @@
     "openai_compatible",
     "streaming"
    ]
-  },
-  {
-   "path": "hedge_fund/llm/api_models.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 47,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
   }
  ]
 }
