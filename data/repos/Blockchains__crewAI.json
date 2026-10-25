@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T00:03:55Z",
  "description": "Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks.",
  "commit": "738c8e19e35c2888d8e0663bc5cc45c5acf6ac2d",
- "indexed_at": "2026-10-24T07:41:02Z",
+ "indexed_at": "2026-10-25T07:52:39Z",
  "status": "ok",
  "clone_kb": 597820,
- "seconds": 278.2,
+ "seconds": 217.4,
  "files_scanned": 31743,
  "languages": {
   "Python": 1396,

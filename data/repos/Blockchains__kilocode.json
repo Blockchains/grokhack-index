@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T09:00:13Z",
  "description": "Kilo is the all-in-one agentic engineering platform. Build, ship, and iterate faster with the most popular open source coding agent.",
  "commit": "76bcfd40be616a72f4697b3041565f322245b462",
- "indexed_at": "2026-10-24T07:42:02Z",
+ "indexed_at": "2026-10-25T07:53:28Z",
  "status": "ok",
- "clone_kb": 198184,
- "seconds": 93.0,
+ "clone_kb": 198176,
+ "seconds": 77.6,
  "files_scanned": 8029,
  "languages": {
   "TypeScript": 6080,
