@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:26:47Z",
  "description": "The agent that grows with you",
  "commit": "343500b3547e12530457c2fda60ec687e25118b4",
- "indexed_at": "2026-10-25T07:51:11Z",
+ "indexed_at": "2026-10-26T08:09:50Z",
  "status": "ok",
- "clone_kb": 329232,
- "seconds": 144.0,
+ "clone_kb": 337164,
+ "seconds": 177.7,
  "files_scanned": 15066,
  "languages": {
   "Python": 8037,

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T03:04:24Z",
  "description": "Autonomous coding agent as an SDK, IDE extension, or CLI assistant.",
  "commit": "39ff2359f7e08231281539696e48a166ce49270c",
- "indexed_at": "2026-10-25T07:52:00Z",
+ "indexed_at": "2026-10-26T08:11:07Z",
  "status": "ok",
  "clone_kb": 122696,
- "seconds": 7.3,
+ "seconds": 20.9,
  "files_scanned": 3823,
  "languages": {
   "TypeScript": 3236,

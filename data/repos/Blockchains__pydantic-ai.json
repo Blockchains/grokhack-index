@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T16:08:12Z",
  "description": "How Python does AI. Agents, realtime voice, image generation, embeddings. Every model, every interface, typed end to end.",
  "commit": "c68786e9bc525574daa9914b23de05daf9ca4ca0",
- "indexed_at": "2026-10-25T07:48:41Z",
+ "indexed_at": "2026-10-26T08:06:40Z",
  "status": "ok",
- "clone_kb": 424008,
- "seconds": 37.4,
+ "clone_kb": 424000,
+ "seconds": 45.2,
  "files_scanned": 4014,
  "languages": {
   "Python": 1699,
