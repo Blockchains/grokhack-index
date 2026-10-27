@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T13:21:58Z",
  "description": "Test your prompts, agents, and RAGs. Red teaming/pentesting/vulnerability scanning for AI. Compare performance of GPT, Claude, Gemini, DeepSeek, and more. Simple declarative configs with command line and CI/CD integration.  Used by OpenAI and Anthropic.",
  "commit": "5fde786d0c296339be3fd189d1542157e1d4217a",
- "indexed_at": "2026-10-26T08:13:56Z",
+ "indexed_at": "2026-10-27T08:27:32Z",
  "status": "ok",
- "clone_kb": 433856,
- "seconds": 33.1,
+ "clone_kb": 433860,
+ "seconds": 23.4,
  "files_scanned": 4898,
  "languages": {
   "TypeScript": 2832,
