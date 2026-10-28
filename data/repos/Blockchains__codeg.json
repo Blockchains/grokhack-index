@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T06:20:25Z",
  "description": "Collaborative multi-agent AI coding workspace: aggregate sessions from Claude Code, Codex, OpenCode, Pi, Grok Build, etc. Desktop app, self-hosted server, or Docker.",
  "commit": "98035964c0f3811dc80a5e9291b89cb6c0570fa0",
- "indexed_at": "2026-10-27T08:26:21Z",
+ "indexed_at": "2026-10-28T09:02:07Z",
  "status": "ok",
- "clone_kb": 159128,
- "seconds": 15.8,
+ "clone_kb": 159132,
+ "seconds": 8.1,
  "files_scanned": 2096,
  "languages": {
   "TypeScript": 1385,

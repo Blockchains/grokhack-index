@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-01T00:54:50Z",
  "description": "structured outputs for llms ",
  "commit": "e12f8b49203b0c1f253d27c1e709d0a09b9fc5a8",
- "indexed_at": "2026-10-27T08:21:43Z",
+ "indexed_at": "2026-10-28T08:58:01Z",
  "status": "ok",
  "clone_kb": 146996,
- "seconds": 7.1,
+ "seconds": 13.0,
  "files_scanned": 876,
  "languages": {
   "Python": 548,
