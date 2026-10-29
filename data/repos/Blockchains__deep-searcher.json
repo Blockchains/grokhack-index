@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-22T10:08:42Z",
  "description": "Open Source Deep Research Alternative to Reason and Search on Private Data. Written in Python.",
  "commit": "ddc36db317836bd42302b36f03166bec5324708d",
- "indexed_at": "2026-10-28T09:03:43Z",
+ "indexed_at": "2026-10-29T09:01:57Z",
  "status": "ok",
  "clone_kb": 28604,
- "seconds": 2.5,
+ "seconds": 2.8,
  "files_scanned": 208,
  "languages": {
   "Python": 156
@@ -30,9 +30,9 @@
  "models": {
   "grok-2-latest": 3,
   "grok-4-0709": 1,
+  "grok-3": 1,
   "grok-4": 1,
-  "grok-1": 1,
-  "grok-3": 1
+  "grok-1": 1
  },
  "env_vars": {
   "XAI_API_KEY": 6
@@ -92,6 +92,39 @@
    ]
   },
   {
+   "path": "docs/configuration/llm.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 203,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/integrations/index.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 77,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
    "path": "deepsearcher/llm/xai.py",
    "kind": "source",
    "lang": "Python",
@@ -123,39 +156,6 @@
    ],
    "features": [
     "openai_compatible"
-   ]
-  },
-  {
-   "path": "docs/integrations/index.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 77,
-   "endpoints": [],
-   "models": [
-    "grok-3"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "embeddings"
-   ]
-  },
-  {
-   "path": "docs/configuration/llm.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 203,
-   "endpoints": [],
-   "models": [
-    "grok-2-latest"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
    ]
   }
  ]

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T16:14:47Z",
  "description": "ccteam turns the coding agents you already run (Claude Code, Codex, Grok, DeepSeek Harness, Kimi, Pi) into one team \u2014 any session can spawn, dispatch, and collect work from any vendor on any machine, while you steer it all from Telegram, Lark, or a browser tab. \u628a\u4f60\u5728\u7528\u7684\u7f16\u7a0b agent \u7f16\u6210\u4e00\u652f\u56e2\u961f,\u8de8\u5382\u5546\u8de8\u673a\u5668\u6d3e\u6d3b,Telegram/\u98de\u4e66/\u7f51\u9875\u7edf\u4e00\u6307\u6325\u3002",
  "commit": "3d2960618c28b0a9af43b54834d665dcd5101623",
- "indexed_at": "2026-10-28T09:02:14Z",
+ "indexed_at": "2026-10-29T08:59:55Z",
  "status": "ok",
  "clone_kb": 28248,
- "seconds": 6.6,
+ "seconds": 8.0,
  "files_scanned": 786,
  "languages": {
   "Rust": 437,
@@ -21,8 +21,8 @@
  },
  "grok_files": 15,
  "grok_files_by_kind": {
-  "test": 7,
-  "source": 8
+  "source": 8,
+  "test": 7
  },
  "hosts": {},
  "endpoints": {
@@ -40,8 +40,8 @@
  "features": {
   "mcp": 4,
   "reasoning": 4,
-  "tool_calling": 2,
   "anthropic_compatible": 2,
+  "tool_calling": 2,
   "streaming": 1,
   "structured_output": 1
  },
@@ -56,6 +56,20 @@
   }
  ],
  "files": [
+  {
+   "path": "crates/ccteam-cli/src/doctor.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1127,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
   {
    "path": "crates/ccteam-cli/tests/doctor_readiness_test.rs",
    "kind": "test",
@@ -85,64 +99,6 @@
    "features": []
   },
   {
-   "path": "crates/ccteam-cli/src/doctor.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 1127,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp"
-   ]
-  },
-  {
-   "path": "crates/ccteam-harness/tests/grok_acp_test.rs",
-   "kind": "test",
-   "lang": "Rust",
-   "lines": 1310,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [
-    "CCTEAM_GROK_BIN"
-   ],
-   "features": [
-    "mcp",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "crates/ccteam-harness/tests/model_catalog_env_test.rs",
-   "kind": "test",
-   "lang": "Rust",
-   "lines": 78,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "crates/ccteam-harness/tests/fixtures/grok_acp/fake_grok_acp.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 448,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "mcp",
-    "reasoning"
-   ]
-  },
-  {
    "path": "crates/ccteam-harness/src/execution/session_status.rs",
    "kind": "source",
    "lang": "Rust",
@@ -155,18 +111,33 @@
    "features": []
   },
   {
-   "path": "crates/ccteam-harness/src/execution/grok_acp/mod.rs",
+   "path": "crates/ccteam-harness/src/execution/acp/protocol.rs",
    "kind": "source",
    "lang": "Rust",
-   "lines": 1295,
+   "lines": 869,
    "endpoints": [],
    "models": [
     "grok-4.5"
    ],
    "env": [],
    "features": [
-    "mcp",
+    "anthropic_compatible",
     "reasoning"
+   ]
+  },
+  {
+   "path": "crates/ccteam-harness/src/execution/acp/translate.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 1473,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
    ]
   },
   {
@@ -187,32 +158,61 @@
    ]
   },
   {
-   "path": "crates/ccteam-harness/src/execution/acp/translate.rs",
+   "path": "crates/ccteam-harness/src/execution/grok_acp/mod.rs",
    "kind": "source",
    "lang": "Rust",
-   "lines": 1473,
+   "lines": 1295,
    "endpoints": [],
    "models": [
     "grok-4.5"
    ],
    "env": [],
    "features": [
-    "reasoning",
-    "tool_calling"
+    "mcp",
+    "reasoning"
    ]
   },
   {
-   "path": "crates/ccteam-harness/src/execution/acp/protocol.rs",
-   "kind": "source",
+   "path": "crates/ccteam-harness/tests/model_catalog_env_test.rs",
+   "kind": "test",
    "lang": "Rust",
-   "lines": 869,
+   "lines": 78,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "crates/ccteam-harness/tests/grok_acp_test.rs",
+   "kind": "test",
+   "lang": "Rust",
+   "lines": 1310,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "CCTEAM_GROK_BIN"
+   ],
+   "features": [
+    "mcp",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "crates/ccteam-harness/tests/fixtures/grok_acp/fake_grok_acp.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 448,
    "endpoints": [],
    "models": [
     "grok-4.5"
    ],
    "env": [],
    "features": [
-    "anthropic_compatible",
+    "mcp",
     "reasoning"
    ]
   },
@@ -233,20 +233,6 @@
    ]
   },
   {
-   "path": "crates/ccteam-web/web/src/lib/modelsApi.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 117,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
    "path": "crates/ccteam-web/web/src/lib/vendors.ts",
    "kind": "source",
    "lang": "TypeScript",
@@ -256,6 +242,20 @@
    ],
    "models": [
     "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "crates/ccteam-web/web/src/lib/modelsApi.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 117,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.5"
    ],
    "env": [],
    "features": []

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-01T20:07:39Z",
  "description": "The Memory Layer for AI Agents - Drop-in memory infrastructure for AI agents and apps. Context that persists. Built for production.",
  "commit": "abb81c88e1f738a8117d8293530fbc31a5ef8fd9",
- "indexed_at": "2026-10-28T08:58:51Z",
+ "indexed_at": "2026-10-29T08:55:10Z",
  "status": "ok",
  "clone_kb": 57912,
- "seconds": 19.1,
+ "seconds": 32.0,
  "files_scanned": 1603,
  "languages": {
   "TypeScript": 591,
@@ -20,10 +20,10 @@
  },
  "grok_files": 8,
  "grok_files_by_kind": {
-  "example": 1,
-  "test": 3,
   "source": 2,
-  "doc": 2
+  "test": 3,
+  "doc": 2,
+  "example": 1
  },
  "hosts": {
   "api.x.ai": 7
@@ -31,9 +31,9 @@
  "endpoints": {},
  "models": {
   "grok-4.3": 6,
-  "grok-3-beta": 1,
   "grok-420-reasoning": 1,
-  "grok-2-latest": 1
+  "grok-2-latest": 1,
+  "grok-3-beta": 1
  },
  "env_vars": {
   "XAI_API_BASE": 6,
@@ -41,9 +41,9 @@
  },
  "features": {
   "openai_compatible": 2,
-  "embeddings": 1,
   "structured_output": 1,
-  "tool_calling": 1
+  "tool_calling": 1,
+  "embeddings": 1
  },
  "sdk_exports": [
   {
@@ -57,12 +57,6 @@
  "packages": [],
  "snippets": [
   {
-   "path": "examples/misc/movie_recommendation_grok3.py",
-   "start": 1,
-   "end": 24,
-   "code": "\"\"\"\nMemory-Powered Movie Recommendation Assistant (Grok 3 + Mem0)\nThis script builds a personalized movie recommender that remembers your preferences\n(e.g. dislikes horror, loves romcoms) using Mem0 as a memory layer and Grok 3 for responses.\n\nIn order to run this file, you need to set up your Mem0 API at Mem0 platform and also need an XAI API key.\nexport XAI_API_KEY=\"your_xai_api_key\"\nexport MEM0_API_KEY=\"your_mem0_api_key\"\n\"\"\"\n\nimport os\n\nfrom openai import OpenAI\n\nfrom mem0 import Memory\n\n# Configure Mem0 with Grok 3 and Qdrant\nconfig = {\n    \"vector_store\": {\"provider\": \"qdrant\", \"config\": {\"embedding_model_dims\": 384}},\n    \"llm\": {\n        \"provider\": \"xai\",\n        \"config\": {\n            \"model\": \"grok-3-beta\",\n            \"temperature\": 0.1,"
-  },
-  {
    "path": "mem0-ts/src/oss/src/llms/xai.ts",
    "start": 4,
    "end": 27,
@@ -73,41 +67,41 @@
    "start": 33,
    "end": 56,
    "code": "\n        super().__init__(config)\n\n        if not self.config.model:\n            self.config.model = \"grok-4.3\"\n\n        api_key = self.config.api_key or os.getenv(\"XAI_API_KEY\")\n        base_url = self.config.xai_base_url or os.getenv(\"XAI_API_BASE\") or \"https://api.x.ai/v1\"\n        self.client = OpenAI(api_key=api_key, base_url=base_url)\n\n    def _parse_response(self, response, tools):\n        \"\"\"\n        Process the response based on whether tools are used or not.\n\n        Args:\n            response: The raw response from API.\n            tools: The list of tools provided in the request.\n\n        Returns:\n            str or dict: The processed response.\n        \"\"\"\n        if tools:\n            processed_response = {\n                \"content\": response.choices[0].message.content,"
+  },
+  {
+   "path": "examples/misc/movie_recommendation_grok3.py",
+   "start": 1,
+   "end": 24,
+   "code": "\"\"\"\nMemory-Powered Movie Recommendation Assistant (Grok 3 + Mem0)\nThis script builds a personalized movie recommender that remembers your preferences\n(e.g. dislikes horror, loves romcoms) using Mem0 as a memory layer and Grok 3 for responses.\n\nIn order to run this file, you need to set up your Mem0 API at Mem0 platform and also need an XAI API key.\nexport XAI_API_KEY=\"your_xai_api_key\"\nexport MEM0_API_KEY=\"your_mem0_api_key\"\n\"\"\"\n\nimport os\n\nfrom openai import OpenAI\n\nfrom mem0 import Memory\n\n# Configure Mem0 with Grok 3 and Qdrant\nconfig = {\n    \"vector_store\": {\"provider\": \"qdrant\", \"config\": {\"embedding_model_dims\": 384}},\n    \"llm\": {\n        \"provider\": \"xai\",\n        \"config\": {\n            \"model\": \"grok-3-beta\",\n            \"temperature\": 0.1,"
   }
  ],
  "files": [
   {
-   "path": "examples/misc/movie_recommendation_grok3.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 80,
-   "endpoints": [],
-   "models": [
-    "grok-3-beta"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "embeddings",
-    "openai_compatible"
-   ]
-  },
-  {
-   "path": "tests/llms/test_xai.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 215,
+   "path": "mem0-ts/src/oss/src/llms/xai.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 50,
    "endpoints": [],
    "models": [
     "grok-4.3"
    ],
    "env": [
-    "XAI_API_BASE"
+    "XAI_API_BASE",
+    "XAI_API_KEY"
    ],
+   "features": []
+  },
+  {
+   "path": "mem0-ts/src/oss/tests/config-manager.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 921,
+   "endpoints": [],
+   "models": [],
+   "env": [],
    "features": [
-    "structured_output",
-    "tool_calling"
+    "anthropic_compatible",
+    "embeddings"
    ]
   },
   {
@@ -129,34 +123,6 @@
     "reasoning",
     "tool_calling"
    ]
-  },
-  {
-   "path": "mem0-ts/src/oss/tests/config-manager.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 921,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings"
-   ]
-  },
-  {
-   "path": "mem0-ts/src/oss/src/llms/xai.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 50,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_API_BASE",
-    "XAI_API_KEY"
-   ],
-   "features": []
   },
   {
    "path": "mem0/llms/xai.py",
@@ -218,6 +184,40 @@
     "tool_calling",
     "vision",
     "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/misc/movie_recommendation_grok3.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 80,
+   "endpoints": [],
+   "models": [
+    "grok-3-beta"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "tests/llms/test_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 215,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_BASE"
+   ],
+   "features": [
+    "structured_output",
+    "tool_calling"
    ]
   }
  ]

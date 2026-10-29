@@ -8,18 +8,18 @@
  "pushed_at": "2026-09-05T08:40:26Z",
  "description": "A CLI that writes your git commit messages for you with AI",
  "commit": "a414dd43b6ac2c5ff0f31eae758c5e6e106089c3",
- "indexed_at": "2026-10-28T09:01:56Z",
+ "indexed_at": "2026-10-29T08:59:17Z",
  "status": "ok",
  "clone_kb": 2628,
- "seconds": 1.3,
+ "seconds": 2.3,
  "files_scanned": 73,
  "languages": {
   "TypeScript": 50
  },
  "grok_files": 3,
  "grok_files_by_kind": {
-  "test": 2,
-  "source": 1
+  "source": 1,
+  "test": 2
  },
  "hosts": {
   "api.x.ai": 1
@@ -49,6 +49,22 @@
   }
  ],
  "files": [
+  {
+   "path": "src/feature/providers/xai.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 41,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "voice_realtime"
+   ]
+  },
   {
    "path": "tests/specs/providers.ts",
    "kind": "test",
@@ -83,22 +99,6 @@
    "features": [
     "reasoning",
     "tool_calling"
-   ]
-  },
-  {
-   "path": "src/feature/providers/xai.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 41,
-   "endpoints": [],
-   "models": [
-    "grok-4.3",
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "voice_realtime"
    ]
   }
  ]

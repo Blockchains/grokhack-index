@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T03:26:57Z",
  "description": "Algorithm powering the For You feed on X",
  "commit": "b412112d03f27acbfd668e0cc040abcafa1080c1",
- "indexed_at": "2026-10-28T08:57:30Z",
+ "indexed_at": "2026-10-29T08:53:14Z",
  "status": "ok",
- "clone_kb": 26624,
- "seconds": 2.7,
+ "clone_kb": 26620,
+ "seconds": 4.5,
  "files_scanned": 1933,
  "languages": {
   "Scala": 568,
@@ -55,12 +55,12 @@
  },
  "features": {
   "grpc": 3,
-  "reasoning": 2,
   "vision": 2,
+  "reasoning": 2,
   "image_generation": 1,
-  "embeddings": 1,
   "live_search": 1,
-  "tool_calling": 1
+  "tool_calling": 1,
+  "embeddings": 1
  },
  "sdk_exports": [
   {
@@ -77,12 +77,6 @@
  "packages": [],
  "snippets": [
   {
-   "path": "grox/config/config.py",
-   "start": 47,
-   "end": 70,
-   "code": "        )\n    except (FileNotFoundError, PermissionError):\n        return \"\"\n\n\ndef _read_xai_api_key() -> str:\n    return os.getenv(\"XAI_API_KEY\") or \"\"\n\n\nclass ModelConfig(BaseModel):\n    model_config = _FROZEN\n\n    model_name: str\n    endpoint: str\n    timeout: int = 60\n    max_resp_len: int = 8092\n    temperature: float = 0.7\n    bearer_token: str = Field(default_factory=_read_bearer_token)\n    priority_header: str = \"\"\n    priority: int = 15\n\n\nclass EapiModelConfig(BaseModel):\n    model_config = _FROZEN"
-  },
-  {
    "path": "grox/core/lm/convo.py",
    "start": 3,
    "end": 26,
@@ -93,6 +87,12 @@
    "start": 5,
    "end": 28,
    "code": "from dataclasses import dataclass, field\nfrom asyncio import get_running_loop\n\nimport grpc.aio\nfrom monitor.metrics import Metrics\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.proto import chat_pb2\nfrom xai_sdk.tools import web_search\n\nfrom grok_sampler.config import EapiModelConfig\n\nlogger = logging.getLogger(__name__)\n\nMAX_SEARCH_DOMAINS = 5\n\n\ndef get_loop_id() -> int:\n    return id(get_running_loop())\n\n\ndef _rpc_request_id(error: Exception) -> str | None:\n    if not isinstance(error, grpc.aio.AioRpcError):\n        return None"
+  },
+  {
+   "path": "grox/config/config.py",
+   "start": 47,
+   "end": 70,
+   "code": "        )\n    except (FileNotFoundError, PermissionError):\n        return \"\"\n\n\ndef _read_xai_api_key() -> str:\n    return os.getenv(\"XAI_API_KEY\") or \"\"\n\n\nclass ModelConfig(BaseModel):\n    model_config = _FROZEN\n\n    model_name: str\n    endpoint: str\n    timeout: int = 60\n    max_resp_len: int = 8092\n    temperature: float = 0.7\n    bearer_token: str = Field(default_factory=_read_bearer_token)\n    priority_header: str = \"\"\n    priority: int = 15\n\n\nclass EapiModelConfig(BaseModel):\n    model_config = _FROZEN"
   }
  ],
  "files": [
@@ -123,6 +123,37 @@
    "env": [],
    "features": [
     "image_generation"
+   ]
+  },
+  {
+   "path": "grox/core/lm/convo.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 488,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "grpc",
+    "vision"
+   ]
+  },
+  {
+   "path": "grox/libs/grok_sampler/eapi_sampler.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 221,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "grpc",
+    "live_search",
+    "reasoning",
+    "tool_calling",
+    "vision"
    ]
   },
   {
@@ -159,37 +190,6 @@
     "embeddings",
     "grpc",
     "reasoning"
-   ]
-  },
-  {
-   "path": "grox/core/lm/convo.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 488,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "grpc",
-    "vision"
-   ]
-  },
-  {
-   "path": "grox/libs/grok_sampler/eapi_sampler.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 221,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "grpc",
-    "live_search",
-    "reasoning",
-    "tool_calling",
-    "vision"
    ]
   }
  ]

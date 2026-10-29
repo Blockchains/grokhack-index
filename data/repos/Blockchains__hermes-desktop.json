@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-24T14:32:35Z",
  "description": "Desktop Companion for Hermes Agent",
  "commit": "2ed89070bc6c9e8231a37bb55df8a7722a3776b8",
- "indexed_at": "2026-10-28T09:02:42Z",
+ "indexed_at": "2026-10-29T09:00:33Z",
  "status": "ok",
  "clone_kb": 52172,
- "seconds": 5.7,
+ "seconds": 8.3,
  "files_scanned": 914,
  "languages": {
   "TypeScript": 794,
@@ -20,8 +20,8 @@
  },
  "grok_files": 9,
  "grok_files_by_kind": {
-  "test": 4,
-  "source": 5
+  "source": 5,
+  "test": 4
  },
  "hosts": {},
  "endpoints": {
@@ -66,60 +66,6 @@
   }
  ],
  "files": [
-  {
-   "path": "tests/constants.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 371,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "tests/office-env.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 285,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "tests/install-gate-providers.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 108,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "tests/oauth-model-discovery.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 156,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": []
-  },
   {
    "path": "src/renderer/src/constants.ts",
    "kind": "source",
@@ -199,6 +145,60 @@
     "mcp",
     "structured_output"
    ]
+  },
+  {
+   "path": "tests/office-env.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 285,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/constants.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 371,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/install-gate-providers.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 108,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/oauth-model-discovery.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 156,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": []
   }
  ]
 }

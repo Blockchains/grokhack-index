@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-01T13:16:08Z",
  "description": "Claude Code plugin that asks several AI coding agents the same question and shows their answers side by side. Gemini, OpenAI, Grok, Perplexity, Kimi and any model OpenRouter routes to over API; codex, antigravity, grok, kimi and cursor CLIs on subscription auth; ollama locally. Codex specialists take coding tasks on their own branch (experimental).",
  "commit": "5e4267ceddd7f316d2e508db894141ffe9621950",
- "indexed_at": "2026-10-28T08:58:21Z",
+ "indexed_at": "2026-10-29T08:54:14Z",
  "status": "ok",
  "clone_kb": 6480,
- "seconds": 2.7,
+ "seconds": 3.1,
  "files_scanned": 170,
  "languages": {
   "TypeScript": 30,
@@ -48,9 +48,9 @@
  "features": {
   "anthropic_compatible": 2,
   "voice_realtime": 1,
+  "mcp": 1,
   "reasoning": 1,
-  "vision": 1,
-  "mcp": 1
+  "vision": 1
  },
  "sdk_exports": [],
  "packages": [],
@@ -138,6 +138,62 @@
    "features": []
   },
   {
+   "path": "skills/provider-integration/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 44,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "skills/deep-execution/agent-prompt-template.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 107,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "docs/ARCHITECTURE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 757,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output",
+    "vision"
+   ]
+  },
+  {
+   "path": "scripts/query-council.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 1078,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
    "path": "scripts/check-status.sh",
    "kind": "source",
    "lang": null,
@@ -146,18 +202,6 @@
     "/v1/chat/completions",
     "/v1/models"
    ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "scripts/query-council.sh",
-   "kind": "source",
-   "lang": null,
-   "lines": 1078,
-   "endpoints": [],
    "models": [],
    "env": [
     "XAI_API_KEY"
@@ -206,6 +250,20 @@
    "features": []
   },
   {
+   "path": "scripts/providers/grok-cli.sh",
+   "kind": "source",
+   "lang": null,
+   "lines": 93,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp"
+   ]
+  },
+  {
    "path": "scripts/providers/grok.sh",
    "kind": "source",
    "lang": null,
@@ -223,64 +281,6 @@
    ],
    "features": [
     "reasoning",
-    "vision"
-   ]
-  },
-  {
-   "path": "scripts/providers/grok-cli.sh",
-   "kind": "source",
-   "lang": null,
-   "lines": 93,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp"
-   ]
-  },
-  {
-   "path": "skills/provider-integration/SKILL.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 44,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "skills/deep-execution/agent-prompt-template.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 107,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "structured_output"
-   ]
-  },
-  {
-   "path": "docs/ARCHITECTURE.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 757,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "structured_output",
     "vision"
    ]
   }

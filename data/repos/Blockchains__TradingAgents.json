@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T21:30:10Z",
  "description": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
  "commit": "8b22d43d01d9ddda5d686d093d5385884622f3de",
- "indexed_at": "2026-10-28T08:58:35Z",
+ "indexed_at": "2026-10-29T08:54:38Z",
  "status": "ok",
  "clone_kb": 9000,
- "seconds": 2.8,
+ "seconds": 4.9,
  "files_scanned": 191,
  "languages": {
   "Python": 177
@@ -20,24 +20,24 @@
  "grok_files_by_kind": {
   "doc": 1,
   "config": 1,
-  "test": 6,
-  "source": 4
+  "source": 4,
+  "test": 6
  },
  "hosts": {
   "api.x.ai": 4
  },
  "endpoints": {
-  "/v1/models": 1,
-  "/v1/responses": 1
+  "/v1/responses": 1,
+  "/v1/models": 1
  },
  "models": {
   "grok-4.20-0309-reasoning": 2,
-  "grok-4-0709": 1,
   "grok-4.20-0309-non-reasoning": 1,
   "grok-4.20-multi-agent-0309": 1,
   "grok-4.3": 1,
   "grok-4.5": 1,
-  "grok-4.6": 1
+  "grok-4.6": 1,
+  "grok-4-0709": 1
  },
  "env_vars": {
   "XAI_API_KEY": 5
@@ -53,12 +53,6 @@
  "packages": [],
  "snippets": [
   {
-   "path": "cli/prompts.py",
-   "start": 360,
-   "end": 383,
-   "code": "    \"\"\"\n    ollama_url = os.environ.get(\"OLLAMA_BASE_URL\") or \"http://localhost:11434/v1\"\n    return [\n        (\"OpenAI\", \"openai\", \"https://api.openai.com/v1\"),\n        (\"Google\", \"google\", None),\n        (\"Anthropic\", \"anthropic\", \"https://api.anthropic.com/\"),\n        (\"xAI\", \"xai\", \"https://api.x.ai/v1\"),\n        (\"DeepSeek\", \"deepseek\", \"https://api.deepseek.com\"),\n        (\"Qwen\", \"qwen\", \"https://dashscope-intl.aliyuncs.com/compatible-mode/v1\"),\n        # Z.AI international, the platform ZHIPU_API_KEY belongs to; the CN\n        # platform is the separate glm-cn key, chosen in the region prompt.\n        (\"GLM\", \"glm\", \"https://api.z.ai/api/paas/v4/\"),\n        (\"MiniMax\", \"minimax\", \"https://api.minimax.io/v1\"),\n        (\"OpenRouter\", \"openrouter\", \"https://openrouter.ai/api/v1\"),\n        (\"Mistral\", \"mistral\", \"https://api.mistral.ai/v1\"),\n        (\"Kimi (Moonshot)\", \"kimi\", \"https://api.moonshot.ai/v1\"),\n        (\"Groq\", \"groq\", \"https://api.groq.com/openai/v1\"),\n        (\"NVIDIA NIM\", \"nvidia\", \"https://integrate.api.nvidia.com/v1\"),\n        (\"Azure OpenAI\", \"azure\", None),\n        (\"Amazon Bedrock\", \"bedrock\", None),\n        (\"Ollama\", \"ollama\", ollama_url),\n        (\"OpenAI-compatible (vLLM, LM Studio, llama.cpp, custom relay)\", \"openai_compatible\", None),\n    ]\n"
-  },
-  {
    "path": "tradingagents/llm_clients/api_key_env.py",
    "start": 15,
    "end": 38,
@@ -69,6 +63,12 @@
    "start": 208,
    "end": 231,
    "code": "\n# Single source of truth for the OpenAI-compatible provider family. Dual-region\n# providers (qwen/glm/minimax) keep separate endpoints because international and\n# China accounts cannot share credentials (#758).\nOPENAI_COMPATIBLE_PROVIDERS: dict[str, ProviderSpec] = {\n    \"openai\":     ProviderSpec(use_responses_api=True),\n    \"xai\":        ProviderSpec(base_url=\"https://api.x.ai/v1\"),\n    \"deepseek\":   ProviderSpec(base_url=\"https://api.deepseek.com\", chat_class=DeepSeekChatOpenAI),\n    \"qwen\":       ProviderSpec(base_url=\"https://dashscope-intl.aliyuncs.com/compatible-mode/v1\"),\n    \"qwen-cn\":    ProviderSpec(base_url=\"https://dashscope.aliyuncs.com/compatible-mode/v1\"),\n    \"glm\":        ProviderSpec(base_url=\"https://api.z.ai/api/paas/v4/\"),\n    \"glm-cn\":     ProviderSpec(base_url=\"https://open.bigmodel.cn/api/paas/v4/\"),\n    \"minimax\":    ProviderSpec(base_url=\"https://api.minimax.io/v1\", chat_class=MinimaxChatOpenAI),\n    \"minimax-cn\": ProviderSpec(base_url=\"https://api.minimaxi.com/v1\", chat_class=MinimaxChatOpenAI),\n    \"openrouter\": ProviderSpec(base_url=\"https://openrouter.ai/api/v1\"),\n    \"mistral\":    ProviderSpec(base_url=\"https://api.mistral.ai/v1\"),\n    \"kimi\":       ProviderSpec(base_url=\"https://api.moonshot.ai/v1\"),\n    \"groq\":       ProviderSpec(base_url=\"https://api.groq.com/openai/v1\"),\n    \"nvidia\":     ProviderSpec(base_url=\"https://integrate.api.nvidia.com/v1\"),\n    \"ollama\":     ProviderSpec(base_url=\"http://localhost:11434/v1\", base_url_env=\"OLLAMA_BASE_URL\",\n                               key_optional=True, placeholder_key=\"ollama\",\n                               chat_class=LocalCompatibleChatOpenAI),\n    # Generic endpoint: user supplies base_url; key optional (keyless local).\n    \"openai_compatible\": ProviderSpec("
+  },
+  {
+   "path": "cli/prompts.py",
+   "start": 360,
+   "end": 383,
+   "code": "    \"\"\"\n    ollama_url = os.environ.get(\"OLLAMA_BASE_URL\") or \"http://localhost:11434/v1\"\n    return [\n        (\"OpenAI\", \"openai\", \"https://api.openai.com/v1\"),\n        (\"Google\", \"google\", None),\n        (\"Anthropic\", \"anthropic\", \"https://api.anthropic.com/\"),\n        (\"xAI\", \"xai\", \"https://api.x.ai/v1\"),\n        (\"DeepSeek\", \"deepseek\", \"https://api.deepseek.com\"),\n        (\"Qwen\", \"qwen\", \"https://dashscope-intl.aliyuncs.com/compatible-mode/v1\"),\n        # Z.AI international, the platform ZHIPU_API_KEY belongs to; the CN\n        # platform is the separate glm-cn key, chosen in the region prompt.\n        (\"GLM\", \"glm\", \"https://api.z.ai/api/paas/v4/\"),\n        (\"MiniMax\", \"minimax\", \"https://api.minimax.io/v1\"),\n        (\"OpenRouter\", \"openrouter\", \"https://openrouter.ai/api/v1\"),\n        (\"Mistral\", \"mistral\", \"https://api.mistral.ai/v1\"),\n        (\"Kimi (Moonshot)\", \"kimi\", \"https://api.moonshot.ai/v1\"),\n        (\"Groq\", \"groq\", \"https://api.groq.com/openai/v1\"),\n        (\"NVIDIA NIM\", \"nvidia\", \"https://integrate.api.nvidia.com/v1\"),\n        (\"Azure OpenAI\", \"azure\", None),\n        (\"Amazon Bedrock\", \"bedrock\", None),\n        (\"Ollama\", \"ollama\", ollama_url),\n        (\"OpenAI-compatible (vLLM, LM Studio, llama.cpp, custom relay)\", \"openai_compatible\", None),\n    ]\n"
   }
  ],
  "files": [
@@ -99,123 +99,6 @@
    "features": []
   },
   {
-   "path": "tests/test_ollama_base_url.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 174,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "tests/conftest.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 135,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "tests/test_provider_registry.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 60,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "tests/test_model_validation.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 100,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-0309-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "tests/test_api_key_env.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 190,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "tests/test_capabilities.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 173,
-   "endpoints": [],
-   "models": [
-    "grok-4-0709"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "cli/prompts.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 726,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "tradingagents/llm_clients/model_catalog.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 257,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.20-0309-reasoning",
-    "grok-4.20-multi-agent-0309",
-    "grok-4.3",
-    "grok-4.5",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
    "path": "tradingagents/llm_clients/api_key_env.py",
    "kind": "source",
    "lang": "Python",
@@ -241,6 +124,123 @@
    "env": [],
    "features": [
     "openai_compatible",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tradingagents/llm_clients/model_catalog.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 257,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "cli/prompts.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 726,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/test_model_validation.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 100,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/test_provider_registry.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 60,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/test_api_key_env.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 190,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/test_ollama_base_url.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 174,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/conftest.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 135,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "tests/test_capabilities.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 173,
+   "endpoints": [],
+   "models": [
+    "grok-4-0709"
+   ],
+   "env": [],
+   "features": [
     "reasoning",
     "structured_output",
     "tool_calling"

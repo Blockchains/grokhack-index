@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-01T00:54:50Z",
  "description": "structured outputs for llms ",
  "commit": "e12f8b49203b0c1f253d27c1e709d0a09b9fc5a8",
- "indexed_at": "2026-10-28T08:58:01Z",
+ "indexed_at": "2026-10-29T08:53:58Z",
  "status": "ok",
  "clone_kb": 146996,
- "seconds": 13.0,
+ "seconds": 5.1,
  "files_scanned": 876,
  "languages": {
   "Python": 548,
@@ -19,10 +19,10 @@
  },
  "grok_files": 26,
  "grok_files_by_kind": {
-  "doc": 4,
   "config": 2,
-  "test": 12,
-  "source": 8
+  "doc": 4,
+  "source": 8,
+  "test": 12
  },
  "hosts": {
   "api.x.ai": 1
@@ -56,22 +56,6 @@
  },
  "sdk_exports": [
   {
-   "path": "instructor/v2/providers/xai/client.py",
-   "lang": "Python",
-   "names": [
-    "from_xai",
-    "from_xai",
-    "from_xai"
-   ]
-  },
-  {
-   "path": "instructor/v2/providers/xai/__init__.py",
-   "lang": "Python",
-   "names": [
-    "from_xai"
-   ]
-  },
-  {
    "path": "instructor/v2/providers/xai/handlers.py",
    "lang": "Python",
    "names": [
@@ -84,6 +68,22 @@
     "XAIParallelToolsHandler",
     "XAIJSONSchemaHandler",
     "XAIMDJSONHandler"
+   ]
+  },
+  {
+   "path": "instructor/v2/providers/xai/__init__.py",
+   "lang": "Python",
+   "names": [
+    "from_xai"
+   ]
+  },
+  {
+   "path": "instructor/v2/providers/xai/client.py",
+   "lang": "Python",
+   "names": [
+    "from_xai",
+    "from_xai",
+    "from_xai"
    ]
   }
  ],
@@ -109,10 +109,10 @@
    "code": "    mode: Mode | None,\n    api_key: str | None,\n    kwargs: dict[str, Any],\n    provider_info: dict[str, str],\n) -> InstructorType:\n    try:\n        from xai_sdk.sync.client import Client as SyncClient\n        from xai_sdk.aio.client import Client as AsyncClient\n        from instructor.v2.providers.xai.client import from_xai\n\n        if from_xai is None:\n            from instructor.v2.core.errors import ConfigurationError\n\n            raise ConfigurationError(\n                \"Failed to import xAI provider. \"\n                \"This may be due to a configuration error or missing dependencies.\"\n            )\n\n        client = (\n            AsyncClient(api_key=api_key)\n            if async_client\n            else SyncClient(api_key=api_key)\n        )\n        # Use Mode.TOOLS instead of Mode.XAI_TOOLS (v2 uses generic modes)"
   },
   {
-   "path": "instructor/v2/providers/xai/client.py",
-   "start": 23,
-   "end": 46,
-   "code": "from instructor.v2.core.response_model import prepare_response_model\n\n# Ensure handlers are registered (decorators auto-register on import)\nfrom instructor.v2.providers.xai import handlers\n\nif TYPE_CHECKING:\n    from xai_sdk.sync.client import Client as SyncClient\n    from xai_sdk.aio.client import Client as AsyncClient\n    from xai_sdk import chat as xchat\nelse:\n    try:\n        from xai_sdk.sync.client import Client as SyncClient\n        from xai_sdk.aio.client import Client as AsyncClient\n        from xai_sdk import chat as xchat\n    except ImportError:\n        SyncClient = None\n        AsyncClient = None\n        xchat = None\n\n\ndef _get_model_schema(response_model: Any) -> dict[str, Any]:\n    \"\"\"Get JSON schema from a response model.\"\"\"\n    if hasattr(response_model, \"model_json_schema\") and callable(\n        response_model.model_json_schema"
+   "path": "instructor/v2/core/provider_specs.py",
+   "start": 288,
+   "end": 311,
+   "code": "                Mode.PARALLEL_TOOLS,\n            ),\n            unsupported_modes=(Mode.RESPONSES_TOOLS,),\n            legacy_modes={Mode.XAI_TOOLS: Mode.TOOLS, Mode.XAI_JSON: Mode.MD_JSON},\n            from_function=\"from_xai\",\n            client_module=\"instructor.v2.providers.xai.client\",\n            sdk_module=\"xai_sdk\",\n            provider_string=\"xai/grok-4.20-reasoning\",\n            basic_modes=(Mode.TOOLS, Mode.JSON_SCHEMA, Mode.MD_JSON),\n            async_modes=(Mode.TOOLS, Mode.JSON_SCHEMA, Mode.MD_JSON),\n        ),\n        Provider.GROQ: _spec(\n            Provider.GROQ,\n            aliases=(\"groq\",),\n            handler_module=\"instructor.v2.providers.openai.handlers\",\n            supported_modes=(Mode.TOOLS, Mode.JSON_SCHEMA, Mode.MD_JSON),\n            unsupported_modes=(Mode.PARALLEL_TOOLS, Mode.RESPONSES_TOOLS),\n            legacy_modes={},\n            from_function=\"from_groq\",\n            client_module=\"instructor.v2.providers.groq.client\",\n            sdk_module=\"groq\",\n            provider_string=\"groq/llama-3.3-70b-versatile\",\n            basic_modes=(Mode.TOOLS, Mode.JSON_SCHEMA, Mode.MD_JSON),\n            async_modes=(Mode.TOOLS, Mode.JSON_SCHEMA, Mode.MD_JSON),"
   },
   {
    "path": "instructor/v2/providers/xai/handlers.py",
@@ -121,13 +121,26 @@
    "code": ")\nfrom typing import TYPE_CHECKING, Any, cast\n\nfrom pydantic import BaseModel\n\nif TYPE_CHECKING:\n    from xai_sdk import chat as xchat\nelse:\n    try:\n        from xai_sdk import chat as xchat\n    except ImportError:\n        xchat = None\n\nfrom instructor.v2.core.mode import Mode\nfrom instructor.v2.core.providers import Provider\nfrom instructor.v2.dsl.iterable import IterableBase\nfrom instructor.v2.dsl.parallel import (\n    ParallelBase,\n    ParallelModel,\n    get_types_array,\n    handle_parallel_model,\n)\nfrom instructor.v2.dsl.simple_type import AdapterBase\nfrom instructor.v2.core.json import ("
   },
   {
-   "path": "instructor/v2/core/provider_specs.py",
-   "start": 288,
-   "end": 311,
-   "code": "                Mode.PARALLEL_TOOLS,\n            ),\n            unsupported_modes=(Mode.RESPONSES_TOOLS,),\n            legacy_modes={Mode.XAI_TOOLS: Mode.TOOLS, Mode.XAI_JSON: Mode.MD_JSON},\n            from_function=\"from_xai\",\n            client_module=\"instructor.v2.providers.xai.client\",\n            sdk_module=\"xai_sdk\",\n            provider_string=\"xai/grok-4.20-reasoning\",\n            basic_modes=(Mode.TOOLS, Mode.JSON_SCHEMA, Mode.MD_JSON),\n            async_modes=(Mode.TOOLS, Mode.JSON_SCHEMA, Mode.MD_JSON),\n        ),\n        Provider.GROQ: _spec(\n            Provider.GROQ,\n            aliases=(\"groq\",),\n            handler_module=\"instructor.v2.providers.openai.handlers\",\n            supported_modes=(Mode.TOOLS, Mode.JSON_SCHEMA, Mode.MD_JSON),\n            unsupported_modes=(Mode.PARALLEL_TOOLS, Mode.RESPONSES_TOOLS),\n            legacy_modes={},\n            from_function=\"from_groq\",\n            client_module=\"instructor.v2.providers.groq.client\",\n            sdk_module=\"groq\",\n            provider_string=\"groq/llama-3.3-70b-versatile\",\n            basic_modes=(Mode.TOOLS, Mode.JSON_SCHEMA, Mode.MD_JSON),\n            async_modes=(Mode.TOOLS, Mode.JSON_SCHEMA, Mode.MD_JSON),"
+   "path": "instructor/v2/providers/xai/client.py",
+   "start": 23,
+   "end": 46,
+   "code": "from instructor.v2.core.response_model import prepare_response_model\n\n# Ensure handlers are registered (decorators auto-register on import)\nfrom instructor.v2.providers.xai import handlers\n\nif TYPE_CHECKING:\n    from xai_sdk.sync.client import Client as SyncClient\n    from xai_sdk.aio.client import Client as AsyncClient\n    from xai_sdk import chat as xchat\nelse:\n    try:\n        from xai_sdk.sync.client import Client as SyncClient\n        from xai_sdk.aio.client import Client as AsyncClient\n        from xai_sdk import chat as xchat\n    except ImportError:\n        SyncClient = None\n        AsyncClient = None\n        xchat = None\n\n\ndef _get_model_schema(response_model: Any) -> dict[str, Any]:\n    \"\"\"Get JSON schema from a response model.\"\"\"\n    if hasattr(response_model, \"model_json_schema\") and callable(\n        response_model.model_json_schema"
   }
  ],
  "files": [
+  {
+   "path": "pyproject.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 125,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
   {
    "path": "CHANGELOG.md",
    "kind": "doc",
@@ -143,204 +156,18 @@
    ]
   },
   {
-   "path": "pyproject.toml",
-   "kind": "config",
+   "path": "docs/concepts/from_provider.md",
+   "kind": "doc",
    "lang": null,
-   "lines": 125,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "structured_output"
-   ]
-  },
-  {
-   "path": ".github/workflows/test.yml",
-   "kind": "config",
-   "lang": null,
-   "lines": 498,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "tests/test_utils.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 492,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "VERTEXAI"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "tests/test_xai_optional_dependency.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 42,
+   "lines": 394,
    "endpoints": [],
    "models": [
-    "grok-3-mini"
+    "grok-beta"
    ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "tests/typing/test_public_surface.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 268,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "openai_compatible",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "tests/v2/conftest.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 96,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "VERTEXAI",
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "tests/v2/test_request_local_streaming.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 395,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "grpc",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "tests/v2/test_xai_client.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 219,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "tests/v2/test_legacy_provider_compat.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 60,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "tests/v2/test_security_regressions.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 484,
-   "endpoints": [],
-   "models": [
-    "grok-3"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "streaming",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "tests/providers/test_auto_client.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 676,
-   "endpoints": [],
-   "models": [],
    "env": [],
    "features": [
     "anthropic_compatible",
     "openai_compatible"
-   ]
-  },
-  {
-   "path": "tests/llm/shared_config.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 187,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [
-    "XAI_API_KEY",
-    "XAI_TOOLS"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "tests/llm/test_current_doc_models.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 56,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-reasoning"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "tests/llm/test_core_providers/README.md",
-   "kind": "test",
-   "lang": null,
-   "lines": 179,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
    ]
   },
   {
@@ -374,21 +201,6 @@
     "anthropic_compatible",
     "reasoning",
     "tool_calling"
-   ]
-  },
-  {
-   "path": "docs/concepts/from_provider.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 394,
-   "endpoints": [],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "openai_compatible"
    ]
   },
   {
@@ -438,48 +250,6 @@
    ]
   },
   {
-   "path": "instructor/v2/providers/xai/client.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 576,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_JSON",
-    "XAI_TOOLS"
-   ],
-   "features": [
-    "grpc",
-    "streaming",
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "instructor/v2/providers/xai/__init__.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 11,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "instructor/v2/providers/xai/handlers.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 740,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "streaming",
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
    "path": "instructor/v2/core/provider_specs.py",
    "kind": "source",
    "lang": "Python",
@@ -502,6 +272,48 @@
    ]
   },
   {
+   "path": "instructor/v2/providers/xai/handlers.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 740,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "instructor/v2/providers/xai/__init__.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 11,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "instructor/v2/providers/xai/client.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 576,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_JSON",
+    "XAI_TOOLS"
+   ],
+   "features": [
+    "grpc",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
    "path": "instructor/providers/xai/client.py",
    "kind": "source",
    "lang": "Python",
@@ -510,6 +322,194 @@
    "models": [],
    "env": [],
    "features": []
+  },
+  {
+   "path": ".github/workflows/test.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 498,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/test_utils.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 492,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "VERTEXAI"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/test_xai_optional_dependency.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 42,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/v2/test_xai_client.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 219,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/v2/test_legacy_provider_compat.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 60,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/v2/test_security_regressions.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 484,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/v2/conftest.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 96,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "VERTEXAI",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/v2/test_request_local_streaming.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 395,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "grpc",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/typing/test_public_surface.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 268,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "tests/llm/test_current_doc_models.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 56,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-reasoning"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/llm/shared_config.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 187,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_TOOLS"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/llm/test_core_providers/README.md",
+   "kind": "test",
+   "lang": null,
+   "lines": 179,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/providers/test_auto_client.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 676,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible"
+   ]
   }
  ]
 }

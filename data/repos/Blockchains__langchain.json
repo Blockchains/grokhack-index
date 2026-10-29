@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T10:17:02Z",
  "description": "The agent engineering platform.",
  "commit": "57236d55d9ffc8634bda987861e6fce460aff268",
- "indexed_at": "2026-10-28T08:57:48Z",
+ "indexed_at": "2026-10-29T08:53:53Z",
  "status": "ok",
  "clone_kb": 72220,
- "seconds": 19.0,
+ "seconds": 41.0,
  "files_scanned": 2863,
  "languages": {
   "Python": 2615,
@@ -39,22 +39,22 @@
   "grok-4.20-0309-non-reasoning": 3,
   "grok-4.20-0309-reasoning": 3,
   "grok-4-fast-reasoning": 3,
-  "grok-4-0709": 2,
-  "grok-4-fast-non-reasoning": 2,
-  "grok-code-fast": 2,
   "grok-4.5": 2,
   "grok-4.6": 2,
   "grok-4.7": 2,
+  "grok-4-0709": 2,
+  "grok-4-fast-non-reasoning": 2,
+  "grok-code-fast": 2,
   "grok-imagine-image": 2,
   "grok-imagine-video": 2,
-  "grok-2": 1,
+  "grok-4.20": 1,
+  "grok-4.20-multi-agent": 1,
   "grok-4.20-multi-agent-0309": 1,
   "grok-imagine-image-quality": 1,
   "grok-imagine-video-1.5": 1,
   "grok-code-fast-1": 1,
-  "grok-4.20": 1,
-  "grok-4.20-multi-agent": 1,
-  "grok-beta": 1
+  "grok-beta": 1,
+  "grok-2": 1
  },
  "env_vars": {
   "XAI_API_KEY": 5,
@@ -110,6 +110,18 @@
  ],
  "snippets": [
   {
+   "path": "libs/core/langchain_core/load/mapping.py",
+   "start": 275,
+   "end": 298,
+   "code": "    ),\n    (\"langchain_openrouter\", \"chat_models\", \"ChatOpenRouter\"): (\n        \"langchain_openrouter\",\n        \"chat_models\",\n        \"ChatOpenRouter\",\n    ),\n    (\"langchain_xai\", \"chat_models\", \"ChatXAI\"): (\n        \"langchain_xai\",\n        \"chat_models\",\n        \"ChatXAI\",\n    ),\n    (\"langchain_baseten\", \"chat_models\", \"ChatBaseten\"): (\n        \"langchain_baseten\",\n        \"chat_models\",\n        \"ChatBaseten\",\n    ),\n    (\"langchain\", \"chat_models\", \"fireworks\", \"ChatFireworks\"): (\n        \"langchain_fireworks\",\n        \"chat_models\",\n        \"ChatFireworks\",\n    ),\n    (\"langchain\", \"chat_models\", \"google_palm\", \"ChatGooglePalm\"): (\n        \"langchain\",\n        \"chat_models\","
+  },
+  {
+   "path": "libs/langchain/langchain_classic/chat_models/base.py",
+   "start": 499,
+   "end": 522,
+   "code": "    if model_provider == \"ibm\":\n        _check_pkg(\"langchain_ibm\", \"ChatWatsonx\")\n        from langchain_ibm import ChatWatsonx\n\n        return ChatWatsonx(model_id=model, **kwargs)\n    if model_provider == \"xai\":\n        _check_pkg(\"langchain_xai\", \"ChatXAI\")\n        from langchain_xai import ChatXAI\n\n        return ChatXAI(model=model, **kwargs)\n    if model_provider == \"perplexity\":\n        _check_pkg(\"langchain_perplexity\", \"ChatPerplexity\")\n        from langchain_perplexity import ChatPerplexity\n\n        return ChatPerplexity(model=model, **kwargs)\n    if model_provider == \"upstage\":\n        _check_pkg(\"langchain_upstage\", \"ChatUpstage\")\n        from langchain_upstage import ChatUpstage\n\n        return ChatUpstage(model=model, **kwargs)\n    supported = \", \".join(_SUPPORTED_PROVIDERS)\n    msg = (\n        f\"Unsupported {model_provider=}.\\n\\nSupported model providers are: {supported}\"\n    )"
+  },
+  {
    "path": "libs/partners/openai/langchain_openai/chat_models/base.py",
    "start": 1381,
    "end": 1404,
@@ -126,18 +138,6 @@
    "start": 1,
    "end": 9,
    "code": "\"\"\"LangChain integration with xAI.\"\"\"\n\nfrom langchain_xai._version import __version__\nfrom langchain_xai.chat_models import ChatXAI\n\n__all__ = [\n    \"ChatXAI\",\n    \"__version__\",\n]"
-  },
-  {
-   "path": "libs/langchain/langchain_classic/chat_models/base.py",
-   "start": 499,
-   "end": 522,
-   "code": "    if model_provider == \"ibm\":\n        _check_pkg(\"langchain_ibm\", \"ChatWatsonx\")\n        from langchain_ibm import ChatWatsonx\n\n        return ChatWatsonx(model_id=model, **kwargs)\n    if model_provider == \"xai\":\n        _check_pkg(\"langchain_xai\", \"ChatXAI\")\n        from langchain_xai import ChatXAI\n\n        return ChatXAI(model=model, **kwargs)\n    if model_provider == \"perplexity\":\n        _check_pkg(\"langchain_perplexity\", \"ChatPerplexity\")\n        from langchain_perplexity import ChatPerplexity\n\n        return ChatPerplexity(model=model, **kwargs)\n    if model_provider == \"upstage\":\n        _check_pkg(\"langchain_upstage\", \"ChatUpstage\")\n        from langchain_upstage import ChatUpstage\n\n        return ChatUpstage(model=model, **kwargs)\n    supported = \", \".join(_SUPPORTED_PROVIDERS)\n    msg = (\n        f\"Unsupported {model_provider=}.\\n\\nSupported model providers are: {supported}\"\n    )"
-  },
-  {
-   "path": "libs/core/langchain_core/load/mapping.py",
-   "start": 275,
-   "end": 298,
-   "code": "    ),\n    (\"langchain_openrouter\", \"chat_models\", \"ChatOpenRouter\"): (\n        \"langchain_openrouter\",\n        \"chat_models\",\n        \"ChatOpenRouter\",\n    ),\n    (\"langchain_xai\", \"chat_models\", \"ChatXAI\"): (\n        \"langchain_xai\",\n        \"chat_models\",\n        \"ChatXAI\",\n    ),\n    (\"langchain_baseten\", \"chat_models\", \"ChatBaseten\"): (\n        \"langchain_baseten\",\n        \"chat_models\",\n        \"ChatBaseten\",\n    ),\n    (\"langchain\", \"chat_models\", \"fireworks\", \"ChatFireworks\"): (\n        \"langchain_fireworks\",\n        \"chat_models\",\n        \"ChatFireworks\",\n    ),\n    (\"langchain\", \"chat_models\", \"google_palm\", \"ChatGooglePalm\"): (\n        \"langchain\",\n        \"chat_models\","
   },
   {
    "path": "libs/langchain_v1/langchain/agents/factory.py",
@@ -166,141 +166,6 @@
    ]
   },
   {
-   "path": "openwiki/chat-models.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 834,
-   "endpoints": [],
-   "models": [
-    "grok-2"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "openai_compatible",
-    "reasoning",
-    "streaming",
-    "structured_output",
-    "tool_calling",
-    "vision"
-   ]
-  },
-  {
-   "path": "openwiki/model-initialization.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 636,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "structured_output"
-   ]
-  },
-  {
-   "path": ".github/ISSUE_TEMPLATE/bug-report.yml",
-   "kind": "config",
-   "lang": null,
-   "lines": 165,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": ".github/ISSUE_TEMPLATE/feature-request.yml",
-   "kind": "config",
-   "lang": null,
-   "lines": 167,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": ".github/ISSUE_TEMPLATE/task.yml",
-   "kind": "config",
-   "lang": null,
-   "lines": 121,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": ".github/ISSUE_TEMPLATE/privileged.yml",
-   "kind": "config",
-   "lang": null,
-   "lines": 50,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": ".github/workflows/_release.yml",
-   "kind": "config",
-   "lang": null,
-   "lines": 920,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": ".github/workflows/refresh_model_profiles.yml",
-   "kind": "config",
-   "lang": null,
-   "lines": 159,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": ".github/workflows/auto-label-by-package.yml",
-   "kind": "config",
-   "lang": null,
-   "lines": 117,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": ".github/workflows/integration_tests.yml",
-   "kind": "config",
-   "lang": null,
-   "lines": 411,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
    "path": "libs/README.md",
    "kind": "doc",
    "lang": null,
@@ -310,6 +175,58 @@
    "env": [],
    "features": [
     "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "libs/core/langchain_core/load/mapping.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1097,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "libs/core/langchain_core/load/load.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 828,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "libs/langchain/pyproject.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 228,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "grpc"
+   ]
+  },
+  {
+   "path": "libs/langchain/langchain_classic/chat_models/base.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1068,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "streaming",
+    "structured_output"
    ]
   },
   {
@@ -335,6 +252,26 @@
     "tool_calling",
     "vision",
     "voice_realtime"
+   ]
+  },
+  {
+   "path": "libs/partners/openrouter/langchain_openrouter/data/_profiles.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 8696,
+   "endpoints": [],
+   "models": [
+    "grok-4.20",
+    "grok-4.20-multi-agent",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
    ]
   },
   {
@@ -456,40 +393,38 @@
    "features": []
   },
   {
-   "path": "libs/partners/xai/tests/unit_tests/test_chat_models_standard.py",
+   "path": "libs/partners/xai/tests/integration_tests/test_chat_models.py",
    "kind": "test",
    "lang": "Python",
-   "lines": 35,
+   "lines": 141,
    "endpoints": [],
    "models": [
-    "grok-4"
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-fast-reasoning"
    ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "streaming"
+   ]
   },
   {
-   "path": "libs/partners/xai/tests/unit_tests/test_secrets.py",
+   "path": "libs/partners/xai/tests/integration_tests/test_chat_models_standard.py",
    "kind": "test",
    "lang": "Python",
-   "lines": 9,
+   "lines": 82,
    "endpoints": [],
    "models": [
-    "grok-4"
+    "grok-3",
+    "grok-4-fast-reasoning"
    ],
    "env": [],
-   "features": []
-  },
-  {
-   "path": "libs/partners/xai/tests/unit_tests/test_imports.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 7,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
   },
   {
    "path": "libs/partners/xai/tests/unit_tests/test_chat_models.py",
@@ -518,6 +453,16 @@
    ]
   },
   {
+   "path": "libs/partners/xai/tests/unit_tests/test_imports.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 7,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
    "path": "libs/partners/xai/tests/unit_tests/__init__.py",
    "kind": "test",
    "lang": "Python",
@@ -530,110 +475,30 @@
    "features": []
   },
   {
-   "path": "libs/partners/xai/tests/integration_tests/test_chat_models_standard.py",
+   "path": "libs/partners/xai/tests/unit_tests/test_secrets.py",
    "kind": "test",
    "lang": "Python",
-   "lines": 82,
+   "lines": 9,
    "endpoints": [],
    "models": [
-    "grok-3",
-    "grok-4-fast-reasoning"
+    "grok-4"
    ],
    "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
+   "features": []
   },
   {
-   "path": "libs/partners/xai/tests/integration_tests/test_chat_models.py",
+   "path": "libs/partners/xai/tests/unit_tests/test_chat_models_standard.py",
    "kind": "test",
    "lang": "Python",
-   "lines": 141,
+   "lines": 35,
    "endpoints": [],
    "models": [
-    "grok-3-mini",
-    "grok-4",
-    "grok-4-fast-reasoning"
+    "grok-4"
    ],
-   "env": [],
-   "features": [
-    "live_search",
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "libs/partners/openrouter/langchain_openrouter/data/_profiles.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 8696,
-   "endpoints": [],
-   "models": [
-    "grok-4.20",
-    "grok-4.20-multi-agent",
-    "grok-4.3",
-    "grok-4.5",
-    "grok-4.6",
-    "grok-4.7"
+   "env": [
+    "XAI_API_KEY"
    ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "libs/langchain/pyproject.toml",
-   "kind": "config",
-   "lang": null,
-   "lines": 228,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "grpc"
-   ]
-  },
-  {
-   "path": "libs/langchain/langchain_classic/chat_models/base.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 1068,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "openai_compatible",
-    "streaming",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "libs/core/langchain_core/load/load.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 828,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "libs/core/langchain_core/load/mapping.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 1097,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
+   "features": []
   },
   {
    "path": "libs/langchain_v1/pyproject.toml",
@@ -713,6 +578,141 @@
     "anthropic_compatible",
     "mcp",
     "reasoning"
+   ]
+  },
+  {
+   "path": "openwiki/model-initialization.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 636,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "openwiki/chat-models.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 834,
+   "endpoints": [],
+   "models": [
+    "grok-2"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": ".github/ISSUE_TEMPLATE/privileged.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 50,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/ISSUE_TEMPLATE/bug-report.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 165,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/ISSUE_TEMPLATE/task.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 121,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/ISSUE_TEMPLATE/feature-request.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 167,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/workflows/auto-label-by-package.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 117,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/workflows/_release.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 920,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/workflows/integration_tests.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 411,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".github/workflows/refresh_model_profiles.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 159,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
    ]
   }
  ]

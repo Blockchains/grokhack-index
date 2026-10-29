@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T16:28:55Z",
  "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
  "commit": "9327439db69021ab4b0e2776729bf3b58fdb5a87",
- "indexed_at": "2026-10-28T09:03:29Z",
+ "indexed_at": "2026-10-29T09:01:31Z",
  "status": "ok",
  "clone_kb": 166212,
- "seconds": 12.0,
+ "seconds": 13.6,
  "files_scanned": 1887,
  "languages": {
   "Python": 539,
@@ -91,10 +91,10 @@
    ]
   },
   {
-   "path": ".env.example",
-   "kind": "config",
+   "path": "README_zh-CN.md",
+   "kind": "doc",
    "lang": null,
-   "lines": 151,
+   "lines": 679,
    "endpoints": [],
    "models": [],
    "env": [
@@ -105,10 +105,10 @@
    ]
   },
   {
-   "path": "README_zh-CN.md",
-   "kind": "doc",
+   "path": ".env.example",
+   "kind": "config",
    "lang": null,
-   "lines": 679,
+   "lines": 151,
    "endpoints": [],
    "models": [],
    "env": [
@@ -159,10 +159,10 @@
    ]
   },
   {
-   "path": ".agents/skills/grok-media/SKILL.md",
+   "path": "docs/PROVIDERS.md",
    "kind": "doc",
    "lang": null,
-   "lines": 131,
+   "lines": 1502,
    "endpoints": [],
    "models": [
     "grok-imagine-image",
@@ -172,7 +172,10 @@
     "XAI_API_KEY"
    ],
    "features": [
-    "image_generation"
+    "embeddings",
+    "image_generation",
+    "vision",
+    "voice_realtime"
    ]
   },
   {
@@ -191,10 +194,10 @@
    ]
   },
   {
-   "path": "docs/PROVIDERS.md",
+   "path": ".agents/skills/grok-media/SKILL.md",
    "kind": "doc",
    "lang": null,
-   "lines": 1502,
+   "lines": 131,
    "endpoints": [],
    "models": [
     "grok-imagine-image",
@@ -204,10 +207,7 @@
     "XAI_API_KEY"
    ],
    "features": [
-    "embeddings",
-    "image_generation",
-    "vision",
-    "voice_realtime"
+    "image_generation"
    ]
   }
  ]

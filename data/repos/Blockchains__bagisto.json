@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-01T09:52:07Z",
  "description": "Open Source eCommerce & Multi-Vendor Marketplace Platform Built with Laravel for Enterprise-Scale Commerce, Supporting 10M+ SKUs",
  "commit": "b40f998fa482dcbc99d24dccd4f45a263032100b",
- "indexed_at": "2026-10-28T09:03:40Z",
+ "indexed_at": "2026-10-29T09:01:58Z",
  "status": "ok",
- "clone_kb": 158208,
- "seconds": 13.4,
+ "clone_kb": 158204,
+ "seconds": 21.9,
  "files_scanned": 3158,
  "languages": {
   "PHP": 2775,
@@ -36,10 +36,10 @@
   "XAI_API_KEY": 1
  },
  "features": {
-  "anthropic_compatible": 1,
-  "embeddings": 1,
   "image_generation": 1,
-  "reasoning": 1
+  "reasoning": 1,
+  "anthropic_compatible": 1,
+  "embeddings": 1
  },
  "sdk_exports": [],
  "packages": [],
@@ -52,21 +52,6 @@
   }
  ],
  "files": [
-  {
-   "path": "config/ai.php",
-   "kind": "source",
-   "lang": "PHP",
-   "lines": 129,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "embeddings"
-   ]
-  },
   {
    "path": "packages/Webkul/MagicAI/src/Enums/Models/XAiModel.php",
    "kind": "source",
@@ -85,6 +70,21 @@
    "features": [
     "image_generation",
     "reasoning"
+   ]
+  },
+  {
+   "path": "config/ai.php",
+   "kind": "source",
+   "lang": "PHP",
+   "lines": 129,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
    ]
   }
  ]

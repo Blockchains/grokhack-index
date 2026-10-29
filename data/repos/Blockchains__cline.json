@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T03:04:24Z",
  "description": "Autonomous coding agent as an SDK, IDE extension, or CLI assistant.",
  "commit": "39ff2359f7e08231281539696e48a166ce49270c",
- "indexed_at": "2026-10-28T09:01:08Z",
+ "indexed_at": "2026-10-29T08:58:32Z",
  "status": "ok",
  "clone_kb": 122696,
- "seconds": 6.6,
+ "seconds": 21.9,
  "files_scanned": 3823,
  "languages": {
   "TypeScript": 3236,
@@ -22,8 +22,8 @@
  "grok_files": 26,
  "grok_files_by_kind": {
   "doc": 1,
-  "source": 4,
-  "test": 21
+  "test": 21,
+  "source": 4
  },
  "hosts": {
   "api.x.ai": 1
@@ -35,24 +35,24 @@
  "models": {
   "grok-code-fast-1": 10,
   "grok-4.6": 5,
-  "grok-4": 4,
   "grok-4.7": 4,
+  "grok-4": 4,
   "grok-3": 2,
   "grok-3-mini": 2,
   "grok-imagine-image": 2,
   "grok-3-beta": 1,
   "grok-3-fast": 1,
   "grok-3-mini-fast": 1,
-  "grok-2": 1,
-  "grok-4-mini": 1,
-  "grok-4-turbo": 1,
   "grok-4-3": 1,
   "grok-4.5": 1,
   "grok-4.20-0309-non-reasoning": 1,
   "grok-4.1-fast": 1,
   "grok-4.1-fast-thinking-off": 1,
   "grok-4.20-beta": 1,
-  "grok-4.20-beta-thinking-off": 1
+  "grok-4.20-beta-thinking-off": 1,
+  "grok-2": 1,
+  "grok-4-mini": 1,
+  "grok-4-turbo": 1
  },
  "env_vars": {
   "XAI_API_KEY": 3
@@ -106,13 +106,13 @@
    ]
   },
   {
-   "path": "apps/vscode/src/utils/model-utils.ts",
-   "kind": "source",
+   "path": "sdk/packages/core/src/services/llms/cline-recommended-models.test.ts",
+   "kind": "test",
    "lang": "TypeScript",
-   "lines": 114,
+   "lines": 580,
    "endpoints": [],
    "models": [
-    "grok-4"
+    "grok-4.7"
    ],
    "env": [],
    "features": [
@@ -120,258 +120,68 @@
    ]
   },
   {
-   "path": "apps/vscode/src/utils/__tests__/model-utils.test.ts",
+   "path": "sdk/packages/core/src/services/providers/local-provider-service.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 211,
-   "endpoints": [],
-   "models": [
-    "grok-2",
-    "grok-3",
-    "grok-3-mini",
-    "grok-4",
-    "grok-4-mini",
-    "grok-4-turbo"
+   "lines": 3306,
+   "endpoints": [
+    "/v1/models"
    ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "apps/vscode/src/test/e2e/fixtures/workspace_2/providers/xai.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 16,
-   "endpoints": [],
    "models": [
-    "grok-4"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "apps/vscode/src/core/controller/models/__tests__/providerCatalogHandlers.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 510,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "grpc"
-   ]
-  },
-  {
-   "path": "apps/vscode/src/sdk/cline-session-factory.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 1616,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
+    "grok-4.7"
    ],
    "env": [],
    "features": [
     "anthropic_compatible",
-    "reasoning",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "apps/vscode/src/sdk/model-catalog/shape-adapter.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 319,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
+    "live_search",
     "structured_output",
     "voice_realtime"
    ]
   },
   {
-   "path": "apps/vscode/src/sdk/model-catalog/store.test.ts",
+   "path": "sdk/packages/llms/src/catalog/catalog-live.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 1242,
+   "lines": 1266,
    "endpoints": [],
    "models": [
-    "grok-4.6"
+    "grok-imagine-image"
    ],
    "env": [],
    "features": [
     "anthropic_compatible",
-    "structured_output"
+    "embeddings",
+    "image_generation",
+    "structured_output",
+    "voice_realtime"
    ]
   },
   {
-   "path": "apps/cli/src/tests/fixtures/hello-and-goodbye.json",
-   "kind": "test",
-   "lang": null,
-   "lines": 271,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
+   "path": "sdk/packages/llms/src/catalog/cline-recommended.generated.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 160,
+   "endpoints": [],
    "models": [
-    "grok-code-fast-1"
+    "grok-4.7"
    ],
    "env": [],
    "features": [
-    "anthropic_compatible",
-    "streaming",
-    "tool_calling"
+    "anthropic_compatible"
    ]
   },
   {
-   "path": "apps/cli/src/tests/fixtures/subagents.json",
+   "path": "sdk/packages/llms/src/providers/model-operations.test.ts",
    "kind": "test",
-   "lang": null,
-   "lines": 333,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
+   "lang": "TypeScript",
+   "lines": 203,
+   "endpoints": [],
    "models": [
-    "grok-code-fast-1"
+    "grok-imagine-image"
    ],
    "env": [],
    "features": [
-    "anthropic_compatible",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "apps/cli/src/tests/fixtures/web-fetch.json",
-   "kind": "test",
-   "lang": null,
-   "lines": 297,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "apps/cli/src/tests/fixtures/read-file.json",
-   "kind": "test",
-   "lang": null,
-   "lines": 271,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "apps/cli/src/tests/fixtures/read-file-outside-cwd.json",
-   "kind": "test",
-   "lang": null,
-   "lines": 271,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "apps/cli/src/tests/fixtures/file-edit-auto-approve.json",
-   "kind": "test",
-   "lang": null,
-   "lines": 271,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "apps/cli/src/tests/fixtures/safe-command-no-permission.json",
-   "kind": "test",
-   "lang": null,
-   "lines": 281,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "apps/cli/src/tests/fixtures/task-complete-new-task.json",
-   "kind": "test",
-   "lang": null,
-   "lines": 236,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "apps/cli/src/tests/fixtures/task-complete-exit.json",
-   "kind": "test",
-   "lang": null,
-   "lines": 236,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "streaming",
-    "tool_calling"
+    "image_generation"
    ]
   },
   {
@@ -393,20 +203,6 @@
    ],
    "features": [
     "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "sdk/packages/llms/src/providers/model-operations.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 203,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
    ]
   },
   {
@@ -465,31 +261,13 @@
    ]
   },
   {
-   "path": "sdk/packages/llms/src/catalog/catalog-live.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 1266,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "image_generation",
-    "structured_output",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "sdk/packages/llms/src/catalog/cline-recommended.generated.ts",
+   "path": "apps/vscode/src/utils/model-utils.ts",
    "kind": "source",
    "lang": "TypeScript",
-   "lines": 160,
+   "lines": 114,
    "endpoints": [],
    "models": [
-    "grok-4.7"
+    "grok-4"
    ],
    "env": [],
    "features": [
@@ -497,36 +275,258 @@
    ]
   },
   {
-   "path": "sdk/packages/core/src/services/providers/local-provider-service.test.ts",
+   "path": "apps/vscode/src/utils/__tests__/model-utils.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 3306,
-   "endpoints": [
-    "/v1/models"
-   ],
+   "lines": 211,
+   "endpoints": [],
    "models": [
-    "grok-4.7"
+    "grok-2",
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-mini",
+    "grok-4-turbo"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "apps/vscode/src/core/controller/models/__tests__/providerCatalogHandlers.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 510,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "grpc"
+   ]
+  },
+  {
+   "path": "apps/vscode/src/sdk/cline-session-factory.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1616,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
    ],
    "env": [],
    "features": [
     "anthropic_compatible",
-    "live_search",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "apps/vscode/src/sdk/model-catalog/store.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1242,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "apps/vscode/src/sdk/model-catalog/shape-adapter.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 319,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
     "structured_output",
     "voice_realtime"
    ]
   },
   {
-   "path": "sdk/packages/core/src/services/llms/cline-recommended-models.test.ts",
+   "path": "apps/vscode/src/test/e2e/fixtures/workspace_2/providers/xai.py",
    "kind": "test",
-   "lang": "TypeScript",
-   "lines": 580,
+   "lang": "Python",
+   "lines": 16,
    "endpoints": [],
    "models": [
-    "grok-4.7"
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/hello-and-goodbye.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 271,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
    ],
    "env": [],
    "features": [
-    "anthropic_compatible"
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/web-fetch.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 297,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/task-complete-exit.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 236,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/subagents.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 333,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/task-complete-new-task.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 236,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/read-file.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 271,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/file-edit-auto-approve.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 271,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/read-file-outside-cwd.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 271,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/cli/src/tests/fixtures/safe-command-no-permission.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 281,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming",
+    "tool_calling"
    ]
   }
  ]

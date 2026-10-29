@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T09:28:06Z",
  "description": "open-source coding agent",
  "commit": "5522c6f44ca0ac3528b37244818fbfa39b5af470",
- "indexed_at": "2026-10-28T09:01:14Z",
+ "indexed_at": "2026-10-29T08:58:29Z",
  "status": "ok",
- "clone_kb": 471232,
- "seconds": 7.1,
+ "clone_kb": 471228,
+ "seconds": 19.0,
  "files_scanned": 2466,
  "languages": {
   "TypeScript": 1758,
@@ -25,10 +25,10 @@
  },
  "grok_files": 20,
  "grok_files_by_kind": {
-  "config": 2,
   "source": 13,
   "test": 1,
-  "doc": 4
+  "doc": 4,
+  "config": 2
  },
  "hosts": {
   "api.x.ai": 4
@@ -40,10 +40,10 @@
   "/v1/completions": 1
  },
  "models": {
-  "grok-beta": 5,
   "grok-3": 5,
   "grok-3-mini": 5,
   "grok-4": 5,
+  "grok-beta": 5,
   "grok-code-fast-1": 4,
   "grok-3-fast": 3,
   "grok-4-0709": 3,
@@ -76,10 +76,10 @@
  "packages": [],
  "snippets": [
   {
-   "path": "core/llm/llms/OpenAI-compatible.vitest.ts",
-   "start": 281,
-   "end": 304,
-   "code": "  providerName: \"openrouter\",\n  defaultApiBase: \"https://openrouter.ai/api/v1/\",\n});\n\ncreateOpenAISubclassTests(xAI, {\n  providerName: \"xAI\",\n  defaultApiBase: \"https://api.x.ai/v1/\",\n  modelConversions: {\n    \"grok-beta\": \"grok-beta\",\n  },\n  modelConversionContent: \"hello\",\n});\n\ncreateOpenAISubclassTests(Mistral, {\n  providerName: \"mistral\",\n  defaultApiBase: \"https://api.mistral.ai/v1/\",\n  modelConversions: {\n    \"mistral-7b\": \"mistral-7b\",\n    \"mistral-8x7b\": \"open-mixtral-8x7b\",\n  },\n  modelConversionContent: \"hello\",\n});\n\ncreateOpenAISubclassTests(Mimo, {"
+   "path": "core/llm/llms/xAI.ts",
+   "start": 2,
+   "end": 16,
+   "code": "\nimport OpenAI from \"./OpenAI.js\";\n\nclass xAI extends OpenAI {\n  static providerName = \"xAI\";\n  static defaultOptions: Partial<LLMOptions> = {\n    apiBase: \"https://api.x.ai/v1/\",\n  };\n\n  supportsCompletions(): boolean {\n    return false;\n  }\n}\n\nexport default xAI;"
   },
   {
    "path": "core/llm/llms/OpenAI-compatible-core.vitest.ts",
@@ -88,10 +88,10 @@
    "code": "  providerName: \"openrouter\",\n  defaultApiBase: \"https://openrouter.ai/api/v1/\",\n});\n\ncreateOpenAISubclassTests(xAI, {\n  providerName: \"xAI\",\n  defaultApiBase: \"https://api.x.ai/v1/\",\n  modelConversions: {\n    \"grok-beta\": \"grok-beta\",\n  },\n  modelConversionContent: \"hello\",\n});\n\ncreateOpenAISubclassTests(Mistral, {\n  providerName: \"mistral\",\n  defaultApiBase: \"https://api.mistral.ai/v1/\",\n  modelConversions: {\n    \"mistral-7b\": \"mistral-7b\",\n    \"mistral-8x7b\": \"open-mixtral-8x7b\",\n  },\n  modelConversionContent: \"hello\",\n});\n\ncreateOpenAISubclassTests(LMStudio, {"
   },
   {
-   "path": "core/llm/llms/xAI.ts",
-   "start": 2,
-   "end": 16,
-   "code": "\nimport OpenAI from \"./OpenAI.js\";\n\nclass xAI extends OpenAI {\n  static providerName = \"xAI\";\n  static defaultOptions: Partial<LLMOptions> = {\n    apiBase: \"https://api.x.ai/v1/\",\n  };\n\n  supportsCompletions(): boolean {\n    return false;\n  }\n}\n\nexport default xAI;"
+   "path": "core/llm/llms/OpenAI-compatible.vitest.ts",
+   "start": 281,
+   "end": 304,
+   "code": "  providerName: \"openrouter\",\n  defaultApiBase: \"https://openrouter.ai/api/v1/\",\n});\n\ncreateOpenAISubclassTests(xAI, {\n  providerName: \"xAI\",\n  defaultApiBase: \"https://api.x.ai/v1/\",\n  modelConversions: {\n    \"grok-beta\": \"grok-beta\",\n  },\n  modelConversionContent: \"hello\",\n});\n\ncreateOpenAISubclassTests(Mistral, {\n  providerName: \"mistral\",\n  defaultApiBase: \"https://api.mistral.ai/v1/\",\n  modelConversions: {\n    \"mistral-7b\": \"mistral-7b\",\n    \"mistral-8x7b\": \"open-mixtral-8x7b\",\n  },\n  modelConversionContent: \"hello\",\n});\n\ncreateOpenAISubclassTests(Mimo, {"
   },
   {
    "path": "packages/openai-adapters/src/index.ts",
@@ -107,21 +107,6 @@
   }
  ],
  "files": [
-  {
-   "path": "extensions/vscode/config_schema.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 3541,
-   "endpoints": [],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings"
-   ]
-  },
   {
    "path": "gui/src/pages/AddNewModel/configs/models.ts",
    "kind": "source",
@@ -214,13 +199,22 @@
    ]
   },
   {
-   "path": "core/llm/llms/OpenAI-compatible.vitest.ts",
+   "path": "core/llm/llms/xAI.ts",
    "kind": "source",
    "lang": "TypeScript",
-   "lines": 459,
+   "lines": 16,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "core/llm/llms/OpenAI-compatible-core.vitest.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 305,
    "endpoints": [
-    "/v1/chat/completions",
-    "/v1/embeddings"
+    "/v1/chat/completions"
    ],
    "models": [
     "grok-beta"
@@ -234,12 +228,13 @@
    ]
   },
   {
-   "path": "core/llm/llms/OpenAI-compatible-core.vitest.ts",
+   "path": "core/llm/llms/OpenAI-compatible.vitest.ts",
    "kind": "source",
    "lang": "TypeScript",
-   "lines": 305,
+   "lines": 459,
    "endpoints": [
-    "/v1/chat/completions"
+    "/v1/chat/completions",
+    "/v1/embeddings"
    ],
    "models": [
     "grok-beta"
@@ -272,68 +267,78 @@
    ]
   },
   {
-   "path": "core/llm/llms/xAI.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 16,
+   "path": "docs/customize/models.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 133,
    "endpoints": [],
-   "models": [],
-   "env": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "docs/customize/model-providers/more/xAI.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 45,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [
+    "YOUR_XAI_API_KEY"
+   ],
    "features": []
   },
   {
-   "path": "packages/llm-info/src/providers/xAI.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 106,
-   "endpoints": [],
+   "path": "docs/customize/model-providers/more/clawrouter.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 507,
+   "endpoints": [
+    "/v1/models"
+   ],
    "models": [
-    "grok-2",
-    "grok-3",
-    "grok-3-fast",
-    "grok-3-mini",
-    "grok-4",
-    "grok-4-1-fast",
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-1-fast-reasoning",
-    "grok-4-fast",
-    "grok-4-fast-non-reasoning",
-    "grok-4-fast-reasoning",
-    "grok-beta",
-    "grok-code-fast-1"
+    "grok-4"
    ],
    "env": [],
    "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/customize/model-roles/chat.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 238,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [
+    "YOUR_XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
     "reasoning"
    ]
   },
   {
-   "path": "packages/llm-info/src/providers/cometapi.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 334,
+   "path": "extensions/vscode/config_schema.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 3541,
    "endpoints": [],
    "models": [
-    "grok-2-image-1212",
-    "grok-3",
-    "grok-3-mini",
-    "grok-4-0709",
-    "grok-4-1-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/config-yaml/src/schemas/commonSlugs.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 33,
-   "endpoints": [],
-   "models": [
-    "grok-2"
+    "grok-beta"
    ],
    "env": [],
    "features": [
@@ -388,68 +393,63 @@
    ]
   },
   {
-   "path": "docs/customize/models.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 133,
+   "path": "packages/llm-info/src/providers/cometapi.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 334,
    "endpoints": [],
    "models": [
-    "grok-code-fast-1"
+    "grok-2-image-1212",
+    "grok-3",
+    "grok-3-mini",
+    "grok-4-0709",
+    "grok-4-1-fast-reasoning"
    ],
-   "env": [
-    "XAI_API_KEY"
-   ],
+   "env": [],
    "features": [
-    "anthropic_compatible",
-    "embeddings"
+    "image_generation",
+    "reasoning"
    ]
   },
   {
-   "path": "docs/customize/model-providers/more/clawrouter.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 507,
-   "endpoints": [
-    "/v1/models"
-   ],
+   "path": "packages/llm-info/src/providers/xAI.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 106,
+   "endpoints": [],
    "models": [
-    "grok-4"
+    "grok-2",
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-1-fast",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-beta",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/config-yaml/src/schemas/commonSlugs.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 33,
+   "endpoints": [],
+   "models": [
+    "grok-2"
    ],
    "env": [],
    "features": [
     "anthropic_compatible",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "docs/customize/model-providers/more/xAI.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 45,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [
-    "YOUR_XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "docs/customize/model-roles/chat.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 238,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-non-reasoning"
-   ],
-   "env": [
-    "YOUR_XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
+    "embeddings"
    ]
   }
  ]

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:56:51Z",
  "description": "An open-source AI coding agent that lives in your terminal.",
  "commit": "17c182eda0226844d7af533a52dd3ed8b956ee7b",
- "indexed_at": "2026-10-28T09:02:12Z",
+ "indexed_at": "2026-10-29T09:00:00Z",
  "status": "ok",
- "clone_kb": 319864,
- "seconds": 63.3,
+ "clone_kb": 319860,
+ "seconds": 90.7,
  "files_scanned": 10038,
  "languages": {
   "TypeScript": 6630,
@@ -25,9 +25,9 @@
  },
  "grok_files": 8,
  "grok_files_by_kind": {
-  "config": 2,
   "test": 4,
-  "source": 2
+  "source": 2,
+  "config": 2
  },
  "hosts": {
   "api.x.ai": 4
@@ -67,30 +67,21 @@
  ],
  "files": [
   {
-   "path": ".github/workflows/ci.yml",
-   "kind": "config",
-   "lang": null,
-   "lines": 2450,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "scripts/tests/no-ak-integration-ci.test.js",
+   "path": "packages/core/src/core/openaiContentGenerator/provider/grok.test.ts",
    "kind": "test",
-   "lang": "JavaScript",
-   "lines": 992,
+   "lang": "TypeScript",
+   "lines": 71,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5"
    ],
+   "env": [],
    "features": [
-    "mcp",
-    "structured_output"
+    "reasoning"
    ]
   },
   {
@@ -142,26 +133,6 @@
    ]
   },
   {
-   "path": "packages/core/src/providers/presets/grok.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 36,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.20-0309-reasoning",
-    "grok-4.20-multi-agent-0309",
-    "grok-4.3",
-    "grok-4.5"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
    "path": "packages/core/src/providers/__tests__/presets/grok.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -182,10 +153,10 @@
    ]
   },
   {
-   "path": "packages/core/src/core/openaiContentGenerator/provider/grok.test.ts",
-   "kind": "test",
+   "path": "packages/core/src/providers/presets/grok.ts",
+   "kind": "source",
    "lang": "TypeScript",
-   "lines": 71,
+   "lines": 36,
    "endpoints": [],
    "models": [
     "grok-4.20-0309-non-reasoning",
@@ -194,10 +165,39 @@
     "grok-4.3",
     "grok-4.5"
    ],
-   "env": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
    "features": [
     "reasoning"
    ]
+  },
+  {
+   "path": "scripts/tests/no-ak-integration-ci.test.js",
+   "kind": "test",
+   "lang": "JavaScript",
+   "lines": 992,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "structured_output"
+   ]
+  },
+  {
+   "path": ".github/workflows/ci.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 2450,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
   }
  ]
 }

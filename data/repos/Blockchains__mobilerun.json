@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-02T12:21:57Z",
  "description": "Automate your mobile devices with natural language commands - an LLM agnostic mobile Agent \ud83e\udd16",
  "commit": "49085db55461c2f95f132f52f0c22df6fdbed79b",
- "indexed_at": "2026-10-28T09:00:32Z",
+ "indexed_at": "2026-10-29T08:57:21Z",
  "status": "ok",
  "clone_kb": 37292,
- "seconds": 2.3,
+ "seconds": 2.1,
  "files_scanned": 235,
  "languages": {
   "Python": 190
@@ -61,12 +61,6 @@
  "packages": [],
  "snippets": [
   {
-   "path": "mobilerun/config_manager/env_keys.py",
-   "start": 9,
-   "end": 32,
-   "code": "from mobilerun.config_manager.credential_paths import AUTH_PROFILES_PATH\n\nAPI_KEY_ENV_VARS = {\n    \"google\": \"GOOGLE_API_KEY\",\n    \"gemini\": \"GEMINI_API_KEY\",\n    \"openai\": \"OPENAI_API_KEY\",\n    \"xai\": \"XAI_API_KEY\",\n    \"anthropic\": \"ANTHROPIC_API_KEY\",\n    \"zai\": \"ZAI_API_KEY\",\n    \"minimax\": \"MINIMAX_API_KEY\",\n}\n\n_API_KEYS_SECTION = \"apiKeys\"\n\n\n@dataclass(frozen=True)\nclass ApiKeySources:\n    \"\"\"API key values from the shell and the saved env file.\"\"\"\n\n    shell: str = \"\"\n    saved: str = \"\"\n\n\ndef _load_saved_api_keys() -> dict[str, str]:"
-  },
-  {
    "path": "mobilerun/agent/utils/llm_picker.py",
    "start": 806,
    "end": 829,
@@ -77,6 +71,12 @@
    "start": 14,
    "end": 37,
    "code": "# No longer offered, but still accepted so saved OAuth profiles load.\nGROK_OAUTH_LEGACY_MODELS = (\"grok-4.5\",)\nGROK_MODEL_ALIASES = {\n    \"grok-4.5-latest\": \"grok-4.5\",\n}\n\nXAI_API_BASE = \"https://api.x.ai/v1\"\nGROK_CONTEXT_WINDOW = 500_000\n\n# Chat Completions-only controls that mobilerun keeps out of Grok Responses\n# payloads. Filter after all constructor and per-call kwargs are merged so an\n# override cannot accidentally restore them.\nGROK_UNSUPPORTED_SAMPLING_PARAMS = frozenset(\n    {\"presence_penalty\", \"frequency_penalty\", \"stop\"}\n)\n\n\ndef normalize_grok_model_id(model: object) -> str:\n    \"\"\"Normalize public xAI/Grok aliases to Mobilerun's canonical model id.\"\"\"\n\n    model_id = str(model or \"\").strip()\n    if model_id.startswith(\"xai/\"):\n        model_id = model_id.removeprefix(\"xai/\")\n    return GROK_MODEL_ALIASES.get(model_id, model_id)"
+  },
+  {
+   "path": "mobilerun/config_manager/env_keys.py",
+   "start": 9,
+   "end": 32,
+   "code": "from mobilerun.config_manager.credential_paths import AUTH_PROFILES_PATH\n\nAPI_KEY_ENV_VARS = {\n    \"google\": \"GOOGLE_API_KEY\",\n    \"gemini\": \"GEMINI_API_KEY\",\n    \"openai\": \"OPENAI_API_KEY\",\n    \"xai\": \"XAI_API_KEY\",\n    \"anthropic\": \"ANTHROPIC_API_KEY\",\n    \"zai\": \"ZAI_API_KEY\",\n    \"minimax\": \"MINIMAX_API_KEY\",\n}\n\n_API_KEYS_SECTION = \"apiKeys\"\n\n\n@dataclass(frozen=True)\nclass ApiKeySources:\n    \"\"\"API key values from the shell and the saved env file.\"\"\"\n\n    shell: str = \"\"\n    saved: str = \"\"\n\n\ndef _load_saved_api_keys() -> dict[str, str]:"
   }
  ],
  "files": [
@@ -96,12 +96,43 @@
    ]
   },
   {
-   "path": "mobilerun/config_manager/env_keys.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 121,
+   "path": "docs/quickstart.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 179,
    "endpoints": [],
    "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/sdk/configuration.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 675,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "docs/guides/cli.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 620,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
    "env": [
     "XAI_API_KEY"
    ],
@@ -146,6 +177,41 @@
    ]
   },
   {
+   "path": "mobilerun/config_manager/env_keys.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 121,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/test_grok_api.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 601,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.5-latest",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_BASE",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
    "path": "tests/test_grok_oauth.py",
    "kind": "test",
    "lang": "Python",
@@ -174,27 +240,6 @@
    ]
   },
   {
-   "path": "tests/test_grok_api.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 601,
-   "endpoints": [],
-   "models": [
-    "grok-4.5",
-    "grok-4.5-latest",
-    "grok-4.6",
-    "grok-4.7"
-   ],
-   "env": [
-    "XAI_API_BASE",
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "tool_calling",
-    "vision"
-   ]
-  },
-  {
    "path": "tests/test_grok_cli.py",
    "kind": "test",
    "lang": "Python",
@@ -207,51 +252,6 @@
    "env": [],
    "features": [
     "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "docs/quickstart.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 179,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "docs/guides/cli.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 620,
-   "endpoints": [],
-   "models": [
-    "grok-4.6",
-    "grok-4.7"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "docs/sdk/configuration.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 675,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "structured_output"
    ]
   }
  ]

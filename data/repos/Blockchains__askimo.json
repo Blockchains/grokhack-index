@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T04:50:46Z",
  "description": "AI desktop app for chat, RAG, Skills, MCP tools, and agents. Support multiple LLMs (Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM, Gemini, OpenRouter)",
  "commit": "6b4d6683182b1665fbad750010332d39e47dd761",
- "indexed_at": "2026-10-28T08:58:32Z",
+ "indexed_at": "2026-10-29T08:54:33Z",
  "status": "ok",
  "clone_kb": 70812,
- "seconds": 11.5,
+ "seconds": 18.9,
  "files_scanned": 721,
  "languages": {
   "Kotlin": 683
@@ -27,16 +27,16 @@
  "endpoints": {},
  "models": {
   "grok-4": 3,
-  "grok-3": 1,
   "grok-2-vision": 1,
+  "grok-3": 1,
   "grok-4-fast": 1,
   "grok-vision-beta": 1
  },
  "env_vars": {},
  "features": {
   "embeddings": 2,
-  "anthropic_compatible": 1,
-  "vision": 1
+  "vision": 1,
+  "anthropic_compatible": 1
  },
  "sdk_exports": [],
  "packages": [],
@@ -50,18 +50,16 @@
  ],
  "files": [
   {
-   "path": "shared/src/main/kotlin/io/askimo/core/providers/ModelProvider.kt",
+   "path": "shared/src/main/kotlin/io/askimo/core/context/ParamKey.kt",
    "kind": "source",
    "lang": "Kotlin",
-   "lines": 87,
+   "lines": 71,
    "endpoints": [],
    "models": [
-    "grok-3"
+    "grok-4"
    ],
    "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
+   "features": []
   },
   {
    "path": "shared/src/main/kotlin/io/askimo/core/providers/ModelFilterUtils.kt",
@@ -79,6 +77,20 @@
    ]
   },
   {
+   "path": "shared/src/main/kotlin/io/askimo/core/providers/ModelProvider.kt",
+   "kind": "source",
+   "lang": "Kotlin",
+   "lines": 87,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
    "path": "shared/src/main/kotlin/io/askimo/core/providers/xai/XAiSettings.kt",
    "kind": "source",
    "lang": "Kotlin",
@@ -89,18 +101,6 @@
    "features": [
     "embeddings"
    ]
-  },
-  {
-   "path": "shared/src/main/kotlin/io/askimo/core/context/ParamKey.kt",
-   "kind": "source",
-   "lang": "Kotlin",
-   "lines": 71,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": []
   },
   {
    "path": "cli/src/test/kotlin/io/askimo/core/providers/xai/XAiModelFactoryTest.kt",
