@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T05:16:46Z",
  "description": "Open Vision Agents by Stream. Build voice and vision agents quickly with any model or video provider. Uses Stream's edge network for ultra-low latency.",
  "commit": "902db86438aab03fb64aa7e6ea3afdcc867a3e80",
- "indexed_at": "2026-10-30T09:05:59Z",
+ "indexed_at": "2026-10-31T08:57:01Z",
  "status": "ok",
- "clone_kb": 246952,
- "seconds": 12.9,
+ "clone_kb": 246948,
+ "seconds": 6.0,
  "files_scanned": 794,
  "languages": {
   "Python": 550

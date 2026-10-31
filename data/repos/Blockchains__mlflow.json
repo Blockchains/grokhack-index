@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:40:58Z",
  "description": "The open source AI engineering platform for agents, LLMs, and ML models. MLflow enables teams of all sizes to debug, evaluate, monitor, and optimize production-quality AI applications while controlling costs and managing access to models and data.",
  "commit": "9340ef7cf347b2bd2b4bcf8bd95735b2596e1156",
- "indexed_at": "2026-10-30T09:06:19Z",
+ "indexed_at": "2026-10-31T08:57:07Z",
  "status": "ok",
  "clone_kb": 713000,
- "seconds": 54.1,
+ "seconds": 33.8,
  "files_scanned": 6766,
  "languages": {
   "TypeScript": 2921,
