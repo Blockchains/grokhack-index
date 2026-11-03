@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-30T04:46:03Z",
  "description": "\ud83d\udc2b CAMEL: The first and the best multi-agent framework. Finding the Scaling Law of Agents. https://www.camel-ai.org",
  "commit": "0106b76830c707effe48cd3da384dda38cbed92e",
- "indexed_at": "2026-11-02T09:59:53Z",
+ "indexed_at": "2026-11-03T10:05:38Z",
  "status": "ok",
- "clone_kb": 233364,
- "seconds": 21.5,
+ "clone_kb": 233360,
+ "seconds": 22.1,
  "files_scanned": 1933,
  "languages": {
   "Python": 1148,
