@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T03:26:57Z",
  "description": "Algorithm powering the For You feed on X",
  "commit": "b412112d03f27acbfd668e0cc040abcafa1080c1",
- "indexed_at": "2026-11-03T10:01:42Z",
+ "indexed_at": "2026-11-04T09:49:24Z",
  "status": "ok",
- "clone_kb": 26624,
- "seconds": 10.2,
+ "clone_kb": 26620,
+ "seconds": 10.9,
  "files_scanned": 1933,
  "languages": {
   "Scala": 568,
@@ -22,14 +22,12 @@
  },
  "grok_files": 5,
  "grok_files_by_kind": {
-  "doc": 1,
-  "source": 4
+  "source": 4,
+  "doc": 1
  },
  "hosts": {},
  "endpoints": {},
  "models": {
-  "grok-1": 1,
-  "grok-imagine": 1,
   "grok-4-1-fast-hedgehog": 1,
   "grok-4-1-fast-hedgehog-critical": 1,
   "grok-4-1-fast-x-algo": 1,
@@ -41,7 +39,9 @@
   "grok-4-mini": 1,
   "grok-4-mini-critical": 1,
   "grok-420-reasoning-internal": 1,
-  "grok-420-reasoning-x-algo": 1
+  "grok-420-reasoning-x-algo": 1,
+  "grok-1": 1,
+  "grok-imagine": 1
  },
  "env_vars": {
   "XAI_API_KEY": 2,
@@ -57,10 +57,10 @@
   "grpc": 3,
   "vision": 2,
   "reasoning": 2,
-  "image_generation": 1,
+  "embeddings": 1,
   "live_search": 1,
   "tool_calling": 1,
-  "embeddings": 1
+  "image_generation": 1
  },
  "sdk_exports": [
   {
@@ -83,48 +83,19 @@
    "code": "import math\nfrom enum import Enum\nfrom base64 import b64decode, b64encode\nfrom PIL import Image as PILImage\nfrom pydantic import Field, BaseModel, field_validator, field_serializer\n\nfrom xai_sdk.chat import image as xai_image, text as xai_text, system, user, assistant\nfrom xai_sdk.proto import chat_pb2\n\nfrom grox.config.config import grox_config\n\nlogger = logging.getLogger(__name__)\nSEPARATOR_COMMAND = grox_config.prompt_tokens.separator\nSEPARATOR = f\"{SEPARATOR_COMMAND}\\n\\n\"\nTHINKING_CONTROL_END = grox_config.prompt_tokens.thinking_control_end\nTHINKING_CONTROL_START = grox_config.prompt_tokens.thinking_control_start\nSTORYBOARD_COLUMNS = 3\nSTORYBOARD_TILE_SIZE = 448\nNO_THINKING_PROMPT = grox_config.prompt_tokens.no_thinking_prompt\n\nPREVIEW_IMAGE_LABEL = \"[Video Preview Thumbnail]\"\n\nMOTION_REVEAL_DESCRIPTION = (\n    \"Motion-reveal stills for this video follow. They expose content that may be hidden under the visible video \""
   },
   {
-   "path": "grox/libs/grok_sampler/eapi_sampler.py",
-   "start": 5,
-   "end": 28,
-   "code": "from dataclasses import dataclass, field\nfrom asyncio import get_running_loop\n\nimport grpc.aio\nfrom monitor.metrics import Metrics\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.proto import chat_pb2\nfrom xai_sdk.tools import web_search\n\nfrom grok_sampler.config import EapiModelConfig\n\nlogger = logging.getLogger(__name__)\n\nMAX_SEARCH_DOMAINS = 5\n\n\ndef get_loop_id() -> int:\n    return id(get_running_loop())\n\n\ndef _rpc_request_id(error: Exception) -> str | None:\n    if not isinstance(error, grpc.aio.AioRpcError):\n        return None"
-  },
-  {
    "path": "grox/config/config.py",
    "start": 47,
    "end": 70,
    "code": "        )\n    except (FileNotFoundError, PermissionError):\n        return \"\"\n\n\ndef _read_xai_api_key() -> str:\n    return os.getenv(\"XAI_API_KEY\") or \"\"\n\n\nclass ModelConfig(BaseModel):\n    model_config = _FROZEN\n\n    model_name: str\n    endpoint: str\n    timeout: int = 60\n    max_resp_len: int = 8092\n    temperature: float = 0.7\n    bearer_token: str = Field(default_factory=_read_bearer_token)\n    priority_header: str = \"\"\n    priority: int = 15\n\n\nclass EapiModelConfig(BaseModel):\n    model_config = _FROZEN"
+  },
+  {
+   "path": "grox/libs/grok_sampler/eapi_sampler.py",
+   "start": 5,
+   "end": 28,
+   "code": "from dataclasses import dataclass, field\nfrom asyncio import get_running_loop\n\nimport grpc.aio\nfrom monitor.metrics import Metrics\n\nfrom xai_sdk import AsyncClient\nfrom xai_sdk.proto import chat_pb2\nfrom xai_sdk.tools import web_search\n\nfrom grok_sampler.config import EapiModelConfig\n\nlogger = logging.getLogger(__name__)\n\nMAX_SEARCH_DOMAINS = 5\n\n\ndef get_loop_id() -> int:\n    return id(get_running_loop())\n\n\ndef _rpc_request_id(error: Exception) -> str | None:\n    if not isinstance(error, grpc.aio.AioRpcError):\n        return None"
   }
  ],
  "files": [
-  {
-   "path": "phoenix/README.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 449,
-   "endpoints": [],
-   "models": [
-    "grok-1"
-   ],
-   "env": [],
-   "features": [
-    "embeddings",
-    "grpc"
-   ]
-  },
-  {
-   "path": "phoenix/crates/serving/xai-recsys-proto/src/installed_apps.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 229,
-   "endpoints": [],
-   "models": [
-    "grok-imagine"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
   {
    "path": "grox/core/lm/convo.py",
    "kind": "source",
@@ -135,24 +106,6 @@
    "env": [],
    "features": [
     "grpc",
-    "vision"
-   ]
-  },
-  {
-   "path": "grox/libs/grok_sampler/eapi_sampler.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 221,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "grpc",
-    "live_search",
-    "reasoning",
-    "tool_calling",
     "vision"
    ]
   },
@@ -190,6 +143,53 @@
     "embeddings",
     "grpc",
     "reasoning"
+   ]
+  },
+  {
+   "path": "grox/libs/grok_sampler/eapi_sampler.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 221,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "grpc",
+    "live_search",
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "phoenix/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 449,
+   "endpoints": [],
+   "models": [
+    "grok-1"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "grpc"
+   ]
+  },
+  {
+   "path": "phoenix/crates/serving/xai-recsys-proto/src/installed_apps.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 229,
+   "endpoints": [],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
    ]
   }
  ]

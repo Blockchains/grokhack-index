@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T12:44:54Z",
  "description": "An Open Source implementation of Notebook LM with more flexibility and features",
  "commit": "60e3c2161e9dd32cc6327991b7d4be68f83e6e06",
- "indexed_at": "2026-11-03T10:09:55Z",
+ "indexed_at": "2026-11-04T09:57:12Z",
  "status": "ok",
  "clone_kb": 11308,
- "seconds": 4.3,
+ "seconds": 4.1,
  "files_scanned": 560,
  "languages": {
   "TypeScript": 254,
@@ -44,12 +44,6 @@
  "packages": [],
  "snippets": [
   {
-   "path": "api/routers/models.py",
-   "start": 396,
-   "end": 419,
-   "code": "            \"openai\": \"OPENAI_API_KEY\",\n            \"anthropic\": \"ANTHROPIC_API_KEY\",\n            \"google\": \"GOOGLE_API_KEY\",\n            \"groq\": \"GROQ_API_KEY\",\n            \"mistral\": \"MISTRAL_API_KEY\",\n            \"deepseek\": \"DEEPSEEK_API_KEY\",\n            \"xai\": \"XAI_API_KEY\",\n            \"openrouter\": \"OPENROUTER_API_KEY\",\n            \"voyage\": \"VOYAGE_API_KEY\",\n            \"elevenlabs\": \"ELEVENLABS_API_KEY\",\n            \"deepgram\": \"DEEPGRAM_API_KEY\",\n            \"ollama\": \"OLLAMA_API_BASE\",\n            \"omlx\": \"OMLX_API_BASE\",\n            \"dashscope\": \"DASHSCOPE_API_KEY\",\n            \"minimax\": \"MINIMAX_API_KEY\",\n            \"novita\": \"NOVITA_API_KEY\",\n            \"siliconflow\": \"SILICONFLOW_API_KEY\",\n            \"zai\": \"ZAI_API_KEY\",\n            \"ppq\": \"PPQ_API_KEY\",\n            \"cohere\": \"COHERE_API_KEY\",\n        }\n\n        provider_status = {}\n"
-  },
-  {
    "path": "open_notebook/ai/key_provider.py",
    "start": 44,
    "end": 67,
@@ -60,24 +54,15 @@
    "start": 132,
    "end": 155,
    "code": "        openai_compat_discovery_url=\"https://api.deepseek.com/models\",\n    ),\n    ProviderSpec(\n        name=\"xai\",\n        display_name=\"xAI (Grok)\",\n        modalities=(\"language\", \"text_to_speech\"),\n        required_env=(\"XAI_API_KEY\",),\n        test_model=\"grok-beta\",\n        docs_url=\"https://console.x.ai/\",\n        openai_compat_discovery_url=\"https://api.x.ai/v1/models\",\n    ),\n    ProviderSpec(\n        name=\"openrouter\",\n        display_name=\"OpenRouter\",\n        modalities=_ALL_MODALITIES,\n        required_env=(\"OPENROUTER_API_KEY\",),\n        test_model=\"openai/gpt-3.5-turbo\",\n        docs_url=\"https://openrouter.ai/keys\",\n        openai_compat_discovery_url=\"https://openrouter.ai/api/v1/models\",\n    ),\n    ProviderSpec(\n        name=\"dashscope\",\n        display_name=\"DashScope (Qwen)\",\n        modalities=_LANGUAGE_ONLY,"
+  },
+  {
+   "path": "api/routers/models.py",
+   "start": 396,
+   "end": 419,
+   "code": "            \"openai\": \"OPENAI_API_KEY\",\n            \"anthropic\": \"ANTHROPIC_API_KEY\",\n            \"google\": \"GOOGLE_API_KEY\",\n            \"groq\": \"GROQ_API_KEY\",\n            \"mistral\": \"MISTRAL_API_KEY\",\n            \"deepseek\": \"DEEPSEEK_API_KEY\",\n            \"xai\": \"XAI_API_KEY\",\n            \"openrouter\": \"OPENROUTER_API_KEY\",\n            \"voyage\": \"VOYAGE_API_KEY\",\n            \"elevenlabs\": \"ELEVENLABS_API_KEY\",\n            \"deepgram\": \"DEEPGRAM_API_KEY\",\n            \"ollama\": \"OLLAMA_API_BASE\",\n            \"omlx\": \"OMLX_API_BASE\",\n            \"dashscope\": \"DASHSCOPE_API_KEY\",\n            \"minimax\": \"MINIMAX_API_KEY\",\n            \"novita\": \"NOVITA_API_KEY\",\n            \"siliconflow\": \"SILICONFLOW_API_KEY\",\n            \"zai\": \"ZAI_API_KEY\",\n            \"ppq\": \"PPQ_API_KEY\",\n            \"cohere\": \"COHERE_API_KEY\",\n        }\n\n        provider_status = {}\n"
   }
  ],
  "files": [
-  {
-   "path": "api/routers/models.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 849,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "embeddings"
-   ]
-  },
   {
    "path": "open_notebook/ai/key_provider.py",
    "kind": "source",
@@ -113,6 +98,21 @@
    ]
   },
   {
+   "path": "api/routers/models.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 849,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
    "path": "docs/5-CONFIGURATION/environment-reference.md",
    "kind": "doc",
    "lang": null,
@@ -124,6 +124,20 @@
    ],
    "features": [
     "embeddings"
+   ]
+  },
+  {
+   "path": "tests/test_credential_provider_validation.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 233,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
    ]
   },
   {
@@ -141,20 +155,6 @@
    "features": [
     "anthropic_compatible",
     "embeddings"
-   ]
-  },
-  {
-   "path": "tests/test_credential_provider_validation.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 233,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
    ]
   }
  ]

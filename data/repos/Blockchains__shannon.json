@@ -8,27 +8,27 @@
  "pushed_at": "2026-10-01T22:17:59Z",
  "description": "Shannon is an AI pentester for web applications and APIs. It analyzes your source code, identifies attack vectors, and executes real exploits to prove vulnerabilities before they reach production.",
  "commit": "a14c7944d87b30ed7bfecd4bad06562e24002b01",
- "indexed_at": "2026-11-03T10:09:45Z",
+ "indexed_at": "2026-11-04T09:57:00Z",
  "status": "ok",
  "clone_kb": 110696,
- "seconds": 4.0,
+ "seconds": 4.6,
  "files_scanned": 312,
  "languages": {
   "TypeScript": 206
  },
  "grok_files": 11,
  "grok_files_by_kind": {
-  "doc": 5,
   "config": 1,
+  "doc": 5,
   "source": 5
  },
  "hosts": {},
  "endpoints": {},
  "models": {
   "grok-4.5": 4,
+  "grok-4.6": 3,
   "grok-4-6.pdf": 3,
-  "grok-4-6.sarif": 3,
-  "grok-4.6": 3
+  "grok-4-6.sarif": 3
  },
  "env_vars": {
   "XAI_API_KEY": 7
@@ -66,6 +66,21 @@
   }
  ],
  "files": [
+  {
+   "path": ".env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 56,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
   {
    "path": "llms-full.txt",
    "kind": "doc",
@@ -105,51 +120,6 @@
    "lines": 267,
    "endpoints": [],
    "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": ".env.example",
-   "kind": "config",
-   "lang": null,
-   "lines": 56,
-   "endpoints": [],
-   "models": [
-    "grok-4.5",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "docs/shannon-xbow-aikido-benchmark.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 137,
-   "endpoints": [],
-   "models": [
-    "grok-4-6.pdf",
-    "grok-4-6.sarif"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "docs/ai-providers.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 345,
-   "endpoints": [],
-   "models": [
-    "grok-4.5",
-    "grok-4.6"
-   ],
    "env": [
     "XAI_API_KEY"
    ],
@@ -221,6 +191,36 @@
    "lines": 313,
    "endpoints": [],
    "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/shannon-xbow-aikido-benchmark.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 137,
+   "endpoints": [],
+   "models": [
+    "grok-4-6.pdf",
+    "grok-4-6.sarif"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/ai-providers.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 345,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
    "env": [
     "XAI_API_KEY"
    ],

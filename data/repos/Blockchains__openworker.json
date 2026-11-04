@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T03:02:02Z",
  "description": null,
  "commit": "c54597913f9c73dd0b2eda883daf7d6f725f3339",
- "indexed_at": "2026-11-03T10:10:11Z",
+ "indexed_at": "2026-11-04T09:57:24Z",
  "status": "ok",
  "clone_kb": 17824,
- "seconds": 10.7,
+ "seconds": 9.7,
  "files_scanned": 810,
  "languages": {
   "Python": 431,
@@ -59,23 +59,6 @@
  ],
  "files": [
   {
-   "path": "coworker/providers/matrix.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 349,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "tool_calling"
-   ]
-  },
-  {
    "path": "coworker/providers/registry.py",
    "kind": "source",
    "lang": "Python",
@@ -92,6 +75,23 @@
    "features": [
     "anthropic_compatible",
     "openai_compatible"
+   ]
+  },
+  {
+   "path": "coworker/providers/matrix.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 349,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
    ]
   },
   {

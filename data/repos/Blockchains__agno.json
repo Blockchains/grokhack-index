@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T14:37:22Z",
  "description": "Build, run, and manage agent platforms.",
  "commit": "3ca74c272fa5017fae4fab234e988378c8f14c63",
- "indexed_at": "2026-11-03T10:04:52Z",
+ "indexed_at": "2026-11-04T09:52:17Z",
  "status": "ok",
- "clone_kb": 93876,
- "seconds": 77.3,
+ "clone_kb": 93912,
+ "seconds": 88.5,
  "files_scanned": 5890,
  "languages": {
   "Python": 5023,
@@ -140,6 +140,22 @@
    ]
   },
   {
+   "path": "cookbook/90_models/neosantara/tool_use.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 38,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
    "path": "cookbook/90_models/neosantara/basic.py",
    "kind": "example",
    "lang": "Python",
@@ -170,22 +186,6 @@
    ]
   },
   {
-   "path": "cookbook/90_models/neosantara/tool_use.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 38,
-   "endpoints": [],
-   "models": [
-    "grok-4.1-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
    "path": "cookbook/90_models/xai/image_agent_with_memory.py",
    "kind": "example",
    "lang": "Python",
@@ -198,37 +198,6 @@
    "features": [
     "tool_calling",
     "vision"
-   ]
-  },
-  {
-   "path": "cookbook/90_models/xai/oauth_chat_signin.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 69,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_TOKEN_ENCRYPTION_KEY"
-   ],
-   "features": [
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "cookbook/90_models/xai/live_search_agent_stream.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 35,
-   "endpoints": [],
-   "models": [
-    "grok-3"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "streaming"
    ]
   },
   {
@@ -246,17 +215,18 @@
    "features": []
   },
   {
-   "path": "cookbook/90_models/xai/live_search_agent.py",
+   "path": "cookbook/90_models/xai/tool_use.py",
    "kind": "example",
    "lang": "Python",
-   "lines": 33,
+   "lines": 30,
    "endpoints": [],
    "models": [
-    "grok-3"
+    "grok-2"
    ],
    "env": [],
    "features": [
-    "live_search"
+    "streaming",
+    "tool_calling"
    ]
   },
   {
@@ -274,32 +244,17 @@
    ]
   },
   {
-   "path": "cookbook/90_models/xai/TEST_LOG.md",
+   "path": "cookbook/90_models/xai/live_search_agent.py",
    "kind": "example",
-   "lang": null,
-   "lines": 73,
-   "endpoints": [
-    "/v1/responses"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "cookbook/90_models/xai/README.md",
-   "kind": "example",
-   "lang": null,
-   "lines": 100,
+   "lang": "Python",
+   "lines": 33,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY",
-    "XAI_TOKEN_ENCRYPTION_KEY"
+   "models": [
+    "grok-3"
    ],
+   "env": [],
    "features": [
-    "tool_calling"
+    "live_search"
    ]
   },
   {
@@ -316,35 +271,6 @@
     "streaming",
     "tool_calling",
     "vision"
-   ]
-  },
-  {
-   "path": "cookbook/90_models/xai/structured_output.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 58,
-   "endpoints": [],
-   "models": [
-    "grok-2-latest"
-   ],
-   "env": [],
-   "features": [
-    "structured_output"
-   ]
-  },
-  {
-   "path": "cookbook/90_models/xai/tool_use.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 30,
-   "endpoints": [],
-   "models": [
-    "grok-2"
-   ],
-   "env": [],
-   "features": [
-    "streaming",
-    "tool_calling"
    ]
   },
   {
@@ -379,6 +305,36 @@
    ]
   },
   {
+   "path": "cookbook/90_models/xai/README.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 100,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_TOKEN_ENCRYPTION_KEY"
+   ],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/xai/live_search_agent_stream.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 35,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "streaming"
+   ]
+  },
+  {
    "path": "cookbook/90_models/xai/finance_agent.py",
    "kind": "example",
    "lang": "Python",
@@ -392,6 +348,50 @@
     "reasoning",
     "streaming",
     "tool_calling"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/xai/TEST_LOG.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 73,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "cookbook/90_models/xai/oauth_chat_signin.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 69,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_TOKEN_ENCRYPTION_KEY"
+   ],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "cookbook/90_models/xai/structured_output.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 58,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
    ]
   },
   {
@@ -512,6 +512,21 @@
    ]
   },
   {
+   "path": "libs/agno/tests/unit/models/xai_model/test_oauth_store.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 359,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_OAUTH_SCOPE",
+    "XAI_TOKEN_ENCRYPTION_KEY",
+    "XAI_TOKEN_URL"
+   ],
+   "features": []
+  },
+  {
    "path": "libs/agno/tests/unit/models/xai_model/test_xai_responses.py",
    "kind": "test",
    "lang": "Python",
@@ -529,21 +544,6 @@
     "openai_compatible",
     "reasoning"
    ]
-  },
-  {
-   "path": "libs/agno/tests/unit/models/xai_model/test_oauth_store.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 359,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY",
-    "XAI_OAUTH_SCOPE",
-    "XAI_TOKEN_ENCRYPTION_KEY",
-    "XAI_TOKEN_URL"
-   ],
-   "features": []
   },
   {
    "path": "libs/agno/tests/unit/models/xai_model/test_oauth_refresh.py",
@@ -576,21 +576,6 @@
    ]
   },
   {
-   "path": "libs/agno/tests/integration/models/xai/test_multimodal.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 21,
-   "endpoints": [],
-   "models": [
-    "grok-2-vision-1212"
-   ],
-   "env": [],
-   "features": [
-    "tool_calling",
-    "vision"
-   ]
-  },
-  {
    "path": "libs/agno/tests/integration/models/xai/test_basic.py",
    "kind": "test",
    "lang": "Python",
@@ -605,6 +590,21 @@
     "reasoning",
     "streaming",
     "structured_output"
+   ]
+  },
+  {
+   "path": "libs/agno/tests/integration/models/xai/test_multimodal.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 21,
+   "endpoints": [],
+   "models": [
+    "grok-2-vision-1212"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling",
+    "vision"
    ]
   },
   {

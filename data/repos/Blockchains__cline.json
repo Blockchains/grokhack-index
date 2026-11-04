@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T03:04:24Z",
  "description": "Autonomous coding agent as an SDK, IDE extension, or CLI assistant.",
  "commit": "39ff2359f7e08231281539696e48a166ce49270c",
- "indexed_at": "2026-11-03T10:06:55Z",
+ "indexed_at": "2026-11-04T09:54:19Z",
  "status": "ok",
  "clone_kb": 122696,
- "seconds": 23.1,
+ "seconds": 20.9,
  "files_scanned": 3823,
  "languages": {
   "TypeScript": 3236,
@@ -43,9 +43,9 @@
   "grok-3-beta": 1,
   "grok-3-fast": 1,
   "grok-3-mini-fast": 1,
+  "grok-4.20-0309-non-reasoning": 1,
   "grok-4-3": 1,
   "grok-4.5": 1,
-  "grok-4.20-0309-non-reasoning": 1,
   "grok-4.1-fast": 1,
   "grok-4.1-fast-thinking-off": 1,
   "grok-4.20-beta": 1,
@@ -67,16 +67,16 @@
  "packages": [],
  "snippets": [
   {
-   "path": "sdk/packages/llms/src/providers/providers.generated.ts",
-   "start": 2796,
-   "end": 2819,
-   "code": "\t\tname: \"xAI\",\n\t\tdescription: \"xAI model provider from models.dev\",\n\t\tfamily: \"openai-compatible\",\n\t\tcapabilities: [\"tools\", \"reasoning\", \"prompt-cache\"],\n\t\tmodelsProviderId: \"xai\",\n\t\tdefaultModelId: \"grok-4.7\",\n\t\tapiKeyEnv: [\"XAI_API_KEY\"],\n\t\tdocsUrl: \"https://docs.x.ai/docs/models\",\n\t},\n\t{\n\t\tid: \"xiaomi\",\n\t\tname: \"Xiaomi\",\n\t\tdescription: \"Xiaomi model provider from models.dev\",\n\t\tfamily: \"openai-compatible\",\n\t\tcapabilities: [\"tools\", \"reasoning\", \"prompt-cache\"],\n\t\tmodelsProviderId: \"xiaomi\",\n\t\tdefaultModelId: \"mimo-v2.6-flash\",\n\t\tapiKeyEnv: [\"XIAOMI_API_KEY\"],\n\t\tdocsUrl: \"https://platform.xiaomimimo.com/#/docs\",\n\t\tdefaults: {\n\t\t\tbaseUrl: \"https://api.xiaomimimo.com/v1\",\n\t\t},\n\t},\n\t{"
-  },
-  {
    "path": "sdk/packages/llms/src/providers/builtins.ts",
    "start": 813,
    "end": 836,
    "code": "\t\tid: \"xai\",\n\t\tname: \"xAI\",\n\t\tdescription: \"Creator of Grok AI assistant\",\n\t\tfamily: \"openai-compatible\",\n\t\tcapabilities: [\"reasoning\"],\n\t\tdefaultModelId: \"grok-4.20-0309-non-reasoning\",\n\t\tapiKeyEnv: [\"XAI_API_KEY\"],\n\t\tdefaults: { baseUrl: \"https://api.x.ai/v1\" },\n\t},\n\t{\n\t\tid: \"together\",\n\t\tname: \"Together AI\",\n\t\tdescription: \"Fast inference for open-source models\",\n\t\tfamily: \"openai-compatible\",\n\t\tcapabilities: [\"reasoning\"],\n\t\tdefaultModelId: \"Qwen/Qwen3.5-397B-A17B\",\n\t\tapiKeyEnv: [\"TOGETHER_API_KEY\"],\n\t\tdefaults: { baseUrl: \"https://api.together.xyz/v1\" },\n\t},\n\t{\n\t\tid: \"groq\",\n\t\tname: \"Groq\",\n\t\tdescription: \"Ultra-fast LPU inference\",\n\t\tfamily: \"openai-compatible\","
+  },
+  {
+   "path": "sdk/packages/llms/src/providers/providers.generated.ts",
+   "start": 2796,
+   "end": 2819,
+   "code": "\t\tname: \"xAI\",\n\t\tdescription: \"xAI model provider from models.dev\",\n\t\tfamily: \"openai-compatible\",\n\t\tcapabilities: [\"tools\", \"reasoning\", \"prompt-cache\"],\n\t\tmodelsProviderId: \"xai\",\n\t\tdefaultModelId: \"grok-4.7\",\n\t\tapiKeyEnv: [\"XAI_API_KEY\"],\n\t\tdocsUrl: \"https://docs.x.ai/docs/models\",\n\t},\n\t{\n\t\tid: \"xiaomi\",\n\t\tname: \"Xiaomi\",\n\t\tdescription: \"Xiaomi model provider from models.dev\",\n\t\tfamily: \"openai-compatible\",\n\t\tcapabilities: [\"tools\", \"reasoning\", \"prompt-cache\"],\n\t\tmodelsProviderId: \"xiaomi\",\n\t\tdefaultModelId: \"mimo-v2.6-flash\",\n\t\tapiKeyEnv: [\"XIAOMI_API_KEY\"],\n\t\tdocsUrl: \"https://platform.xiaomimimo.com/#/docs\",\n\t\tdefaults: {\n\t\t\tbaseUrl: \"https://api.xiaomimimo.com/v1\",\n\t\t},\n\t},\n\t{"
   }
  ],
  "files": [
@@ -106,20 +106,6 @@
    ]
   },
   {
-   "path": "sdk/packages/core/src/services/llms/cline-recommended-models.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 580,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
    "path": "sdk/packages/core/src/services/providers/local-provider-service.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -139,28 +125,10 @@
    ]
   },
   {
-   "path": "sdk/packages/llms/src/catalog/catalog-live.test.ts",
+   "path": "sdk/packages/core/src/services/llms/cline-recommended-models.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 1266,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "image_generation",
-    "structured_output",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "sdk/packages/llms/src/catalog/cline-recommended.generated.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 160,
+   "lines": 580,
    "endpoints": [],
    "models": [
     "grok-4.7"
@@ -168,6 +136,27 @@
    "env": [],
    "features": [
     "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "sdk/packages/llms/src/providers/builtins.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1500,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "live_search",
+    "reasoning"
    ]
   },
   {
@@ -206,27 +195,6 @@
    ]
   },
   {
-   "path": "sdk/packages/llms/src/providers/builtins.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 1500,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.20-0309-non-reasoning"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "image_generation",
-    "live_search",
-    "reasoning"
-   ]
-  },
-  {
    "path": "sdk/packages/llms/src/providers/vendors/openai-compatible.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -244,6 +212,38 @@
    ]
   },
   {
+   "path": "sdk/packages/llms/src/catalog/catalog-live.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1266,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "sdk/packages/llms/src/catalog/cline-recommended.generated.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 160,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
    "path": "sdk/packages/llms/src/tests/live-providers.reasoning-disabled.example.json",
    "kind": "test",
    "lang": null,
@@ -258,6 +258,80 @@
    "env": [],
    "features": [
     "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "apps/vscode/src/sdk/cline-session-factory.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1616,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "apps/vscode/src/sdk/model-catalog/shape-adapter.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 319,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "apps/vscode/src/sdk/model-catalog/store.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1242,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "apps/vscode/src/test/e2e/fixtures/workspace_2/providers/xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 16,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "apps/vscode/src/core/controller/models/__tests__/providerCatalogHandlers.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 510,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "grpc"
    ]
   },
   {
@@ -294,84 +368,10 @@
    ]
   },
   {
-   "path": "apps/vscode/src/core/controller/models/__tests__/providerCatalogHandlers.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 510,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "grpc"
-   ]
-  },
-  {
-   "path": "apps/vscode/src/sdk/cline-session-factory.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 1616,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "apps/vscode/src/sdk/model-catalog/store.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 1242,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "apps/vscode/src/sdk/model-catalog/shape-adapter.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 319,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "structured_output",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "apps/vscode/src/test/e2e/fixtures/workspace_2/providers/xai.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 16,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "apps/cli/src/tests/fixtures/hello-and-goodbye.json",
+   "path": "apps/cli/src/tests/fixtures/safe-command-no-permission.json",
    "kind": "test",
    "lang": null,
-   "lines": 271,
+   "lines": 281,
    "endpoints": [
     "/v1/chat/completions"
    ],
@@ -386,10 +386,10 @@
    ]
   },
   {
-   "path": "apps/cli/src/tests/fixtures/web-fetch.json",
+   "path": "apps/cli/src/tests/fixtures/hello-and-goodbye.json",
    "kind": "test",
    "lang": null,
-   "lines": 297,
+   "lines": 271,
    "endpoints": [
     "/v1/chat/completions"
    ],
@@ -422,10 +422,10 @@
    ]
   },
   {
-   "path": "apps/cli/src/tests/fixtures/subagents.json",
+   "path": "apps/cli/src/tests/fixtures/web-fetch.json",
    "kind": "test",
    "lang": null,
-   "lines": 333,
+   "lines": 297,
    "endpoints": [
     "/v1/chat/completions"
    ],
@@ -458,10 +458,10 @@
    ]
   },
   {
-   "path": "apps/cli/src/tests/fixtures/read-file.json",
+   "path": "apps/cli/src/tests/fixtures/subagents.json",
    "kind": "test",
    "lang": null,
-   "lines": 271,
+   "lines": 333,
    "endpoints": [
     "/v1/chat/completions"
    ],
@@ -512,10 +512,10 @@
    ]
   },
   {
-   "path": "apps/cli/src/tests/fixtures/safe-command-no-permission.json",
+   "path": "apps/cli/src/tests/fixtures/read-file.json",
    "kind": "test",
    "lang": null,
-   "lines": 281,
+   "lines": 271,
    "endpoints": [
     "/v1/chat/completions"
    ],

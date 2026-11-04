@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:03:46Z",
  "description": "Supercharge your AI agents with data from the web and beyond. Building the library for superintelligence. \ud83d\udd25",
  "commit": "4244638a7041bae8b99bdd42e3c44520f9e62da1",
- "indexed_at": "2026-11-03T10:09:46Z",
+ "indexed_at": "2026-11-04T09:56:56Z",
  "status": "ok",
  "clone_kb": 89720,
- "seconds": 16.0,
+ "seconds": 10.8,
  "files_scanned": 1828,
  "languages": {
   "TypeScript": 1022,
@@ -25,17 +25,17 @@
  },
  "grok_files": 14,
  "grok_files_by_kind": {
-  "example": 1,
   "config": 2,
   "source": 7,
-  "test": 4
+  "test": 4,
+  "example": 1
  },
  "hosts": {
   "api.x.ai": 2
  },
  "endpoints": {
-  "/v1/chat/completions": 1,
-  "/v1/responses": 1
+  "/v1/responses": 1,
+  "/v1/chat/completions": 1
  },
  "models": {
   "grok-4-1-fast-non-reasoning": 4,
@@ -43,8 +43,8 @@
  },
  "env_vars": {
   "XAI_API_KEY": 8,
-  "HAS_XAI": 1,
-  "XAI_RESPONSES_MODEL": 1
+  "XAI_RESPONSES_MODEL": 1,
+  "HAS_XAI": 1
  },
  "features": {
   "structured_output": 2,
@@ -58,12 +58,6 @@
  "sdk_exports": [],
  "packages": [],
  "snippets": [
-  {
-   "path": "examples/grok_web_crawler/grok_web_crawler.py",
-   "start": 23,
-   "end": 46,
-   "code": "\n# Initialize the FirecrawlApp\napp = FirecrawlApp(api_key=firecrawl_api_key)\n\n# Function to make Grok API calls\ndef grok_completion(prompt):\n    url = \"https://api.x.ai/v1/chat/completions\"\n    headers = {\n        \"Content-Type\": \"application/json\",\n        \"Authorization\": f\"Bearer {grok_api_key}\"\n    }\n    data = {\n        \"messages\": [\n            {\n                \"role\": \"system\",\n                \"content\": \"You are a helpful assistant.\"\n            },\n            {\n                \"role\": \"user\",\n                \"content\": prompt\n            }\n        ],\n        \"model\": \"grok-beta\",\n        \"stream\": False,"
-  },
   {
    "path": "apps/api/src/config.ts",
    "start": 180,
@@ -99,35 +93,15 @@
    "start": 1,
    "end": 18,
    "code": "import { xai } from \"@ai-sdk/xai\";\nimport { generateText, jsonSchema, Output, type GenerateTextResult } from \"ai\";\nimport { config } from \"../../../../config\";\nimport { withUsageTelemetry } from \"../../../../lib/ai-usage-telemetry\";\nimport {\n  xSearchCost,\n  xSearchUsageFromResponseBody,\n} from \"../../../../lib/xai-x-search\";\nimport { Meta } from \"../..\";\nimport { EngineScrapeResult } from \"..\";\nimport { EngineError, XTwitterConfigurationError } from \"../../error\";\nimport { safeMarkdownToHtml } from \"../pdf/markdownToHtml\";\nimport { calculateCost } from \"../../transformers/llmExtract\";\nimport {\n  isXTwitterUrl,\n  parseXTwitterUrl,\n  type XTwitterPostUrl,\n  type XTwitterProfileUrl,"
+  },
+  {
+   "path": "examples/grok_web_crawler/grok_web_crawler.py",
+   "start": 23,
+   "end": 46,
+   "code": "\n# Initialize the FirecrawlApp\napp = FirecrawlApp(api_key=firecrawl_api_key)\n\n# Function to make Grok API calls\ndef grok_completion(prompt):\n    url = \"https://api.x.ai/v1/chat/completions\"\n    headers = {\n        \"Content-Type\": \"application/json\",\n        \"Authorization\": f\"Bearer {grok_api_key}\"\n    }\n    data = {\n        \"messages\": [\n            {\n                \"role\": \"system\",\n                \"content\": \"You are a helpful assistant.\"\n            },\n            {\n                \"role\": \"user\",\n                \"content\": prompt\n            }\n        ],\n        \"model\": \"grok-beta\",\n        \"stream\": False,"
   }
  ],
  "files": [
-  {
-   "path": "examples/grok_web_crawler/grok_web_crawler.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 150,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "apps/api/package.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 168,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
   {
    "path": "apps/api/pnpm-lock.yaml",
    "kind": "config",
@@ -139,6 +113,18 @@
    "features": [
     "anthropic_compatible",
     "grpc"
+   ]
+  },
+  {
+   "path": "apps/api/package.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 168,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
    ]
   },
   {
@@ -158,6 +144,18 @@
    ]
   },
   {
+   "path": "apps/api/src/services/monitoring/store.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1461,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
    "path": "apps/api/src/services/monitoring/store.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -170,15 +168,13 @@
    "features": []
   },
   {
-   "path": "apps/api/src/services/monitoring/store.ts",
+   "path": "apps/api/src/lib/xai-x-search.ts",
    "kind": "source",
    "lang": "TypeScript",
-   "lines": 1461,
+   "lines": 55,
    "endpoints": [],
    "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
+   "env": [],
    "features": []
   },
   {
@@ -199,29 +195,6 @@
     "structured_output",
     "tool_calling"
    ]
-  },
-  {
-   "path": "apps/api/src/lib/xai-x-search.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 55,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "apps/api/src/__tests__/snips/lib.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 145,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "HAS_XAI",
-    "XAI_API_KEY"
-   ],
-   "features": []
   },
   {
    "path": "apps/api/src/scraper/scrapeURL/error.ts",
@@ -301,6 +274,33 @@
     "structured_output",
     "tool_calling"
    ]
+  },
+  {
+   "path": "apps/api/src/__tests__/snips/lib.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 145,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "HAS_XAI",
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/grok_web_crawler/grok_web_crawler.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 150,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": []
   }
  ]
 }

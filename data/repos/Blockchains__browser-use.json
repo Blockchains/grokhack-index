@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T00:06:08Z",
  "description": "Agents that use the browser.",
  "commit": "7be96ed8bafa8dfe1eef228b59cf5c884b8b2431",
- "indexed_at": "2026-11-03T10:03:03Z",
+ "indexed_at": "2026-11-04T09:50:32Z",
  "status": "ok",
  "clone_kb": 16320,
- "seconds": 9.2,
+ "seconds": 8.8,
  "files_scanned": 502,
  "languages": {
   "Python": 410
@@ -19,15 +19,15 @@
  "grok_files": 6,
  "grok_files_by_kind": {
   "config": 1,
-  "example": 1,
+  "test": 1,
   "source": 3,
-  "test": 1
+  "example": 1
  },
  "hosts": {},
  "endpoints": {},
  "models": {
-  "grok-4": 3,
   "grok-3": 3,
+  "grok-4": 3,
   "grok-2": 2,
   "grok-code": 2,
   "grok-2-vision": 1,
@@ -48,15 +48,15 @@
  },
  "env_vars": {},
  "features": {
-  "openai_compatible": 2,
   "anthropic_compatible": 2,
+  "openai_compatible": 2,
   "structured_output": 2,
   "mcp": 1,
-  "tool_calling": 1,
   "embeddings": 1,
   "image_generation": 1,
   "reasoning": 1,
-  "vision": 1
+  "vision": 1,
+  "tool_calling": 1
  },
  "sdk_exports": [],
  "packages": [],
@@ -75,17 +75,22 @@
    ]
   },
   {
-   "path": "examples/models/openrouter.py",
-   "kind": "example",
+   "path": "tests/ci/test_beta_agent.py",
+   "kind": "test",
    "lang": "Python",
-   "lines": 34,
+   "lines": 7920,
    "endpoints": [],
    "models": [
-    "grok-4"
+    "grok-2",
+    "grok-3",
+    "grok-code"
    ],
    "env": [],
    "features": [
-    "openai_compatible"
+    "anthropic_compatible",
+    "structured_output",
+    "tool_calling",
+    "vision"
    ]
   },
   {
@@ -98,25 +103,6 @@
    "env": [],
    "features": [
     "mcp"
-   ]
-  },
-  {
-   "path": "browser_use/agent/service.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 4163,
-   "endpoints": [],
-   "models": [
-    "grok-2",
-    "grok-3",
-    "grok-4",
-    "grok-code"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "structured_output",
-    "tool_calling"
    ]
   },
   {
@@ -156,22 +142,36 @@
    ]
   },
   {
-   "path": "tests/ci/test_beta_agent.py",
-   "kind": "test",
+   "path": "browser_use/agent/service.py",
+   "kind": "source",
    "lang": "Python",
-   "lines": 7920,
+   "lines": 4163,
    "endpoints": [],
    "models": [
     "grok-2",
     "grok-3",
+    "grok-4",
     "grok-code"
    ],
    "env": [],
    "features": [
     "anthropic_compatible",
     "structured_output",
-    "tool_calling",
-    "vision"
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/models/openrouter.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 34,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "openai_compatible"
    ]
   }
  ]

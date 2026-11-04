@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T16:13:12Z",
  "description": "An Obsidian plugin that embeds Claude Code/Codex as an AI collaborator in your vault",
  "commit": "5bb335e73936e626cb1ffd6be54195133a87a517",
- "indexed_at": "2026-11-03T10:07:48Z",
+ "indexed_at": "2026-11-04T09:55:06Z",
  "status": "ok",
  "clone_kb": 32820,
- "seconds": 13.7,
+ "seconds": 12.3,
  "files_scanned": 1137,
  "languages": {
   "TypeScript": 1039,
@@ -69,6 +69,53 @@
    ]
   },
   {
+   "path": "tests/unit/providers/grok/env/GrokSettingsReconciler.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 210,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-4.5",
+    "grok-code-fast-1"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/providers/grok/app/GrokWorkspaceServices.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 226,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/unit/providers/grok/history/GrokHistoryStore.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 873,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
    "path": "tests/unit/providers/grok/runtime/GrokModelCatalogService.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -95,52 +142,6 @@
     "XAI_API_KEY"
    ],
    "features": []
-  },
-  {
-   "path": "tests/unit/providers/grok/app/GrokWorkspaceServices.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 226,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "tests/unit/providers/grok/env/GrokSettingsReconciler.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 210,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-4.5",
-    "grok-code-fast-1"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "tests/unit/providers/grok/execution/GrokSessionModelMetadata.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 119,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
   },
   {
    "path": "tests/unit/providers/grok/execution/GrokExecutionBackend.test.ts",
@@ -179,6 +180,20 @@
    ]
   },
   {
+   "path": "tests/unit/providers/grok/execution/GrokSessionModelMetadata.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 119,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
    "path": "tests/unit/providers/grok/ui/GrokChatUIConfig.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -211,21 +226,6 @@
    ]
   },
   {
-   "path": "tests/unit/providers/grok/history/GrokHistoryStore.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 873,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
    "path": "tests/integration/main.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -241,6 +241,30 @@
     "structured_output",
     "tool_calling"
    ]
+  },
+  {
+   "path": "tests/integration/features/chat/side-chat/SideChatNative.grok.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 106,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "tests/integration/features/chat/tabs/TabForking.grok.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 118,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": []
   },
   {
    "path": "tests/integration/providers/grok/ToolRendererCompatibility.dom.test.ts",
@@ -261,23 +285,6 @@
    ]
   },
   {
-   "path": "tests/integration/providers/grok/runtime/GrokModelCatalogService.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 142,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.5",
-    "grok-4.6",
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
    "path": "tests/integration/providers/grok/runtime/GrokModels.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -295,28 +302,51 @@
    ]
   },
   {
-   "path": "tests/integration/features/chat/tabs/TabForking.grok.test.ts",
+   "path": "tests/integration/providers/grok/runtime/GrokModelCatalogService.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 118,
+   "lines": 142,
    "endpoints": [],
    "models": [
-    "grok-code-fast-1"
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
    ],
    "env": [],
-   "features": []
+   "features": [
+    "reasoning"
+   ]
   },
   {
-   "path": "tests/integration/features/chat/side-chat/SideChatNative.grok.test.ts",
+   "path": "tests/helpers/features/chat/ProviderForkTestHarness.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 106,
+   "lines": 139,
    "endpoints": [],
    "models": [
     "grok-code-fast-1"
    ],
    "env": [],
-   "features": []
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "tests/fixtures/providers/grok/runtime/models-list-byok.json",
+   "kind": "test",
+   "lang": null,
+   "lines": 55,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
   },
   {
    "path": "tests/fixtures/providers/grok/runtime/GrokModelCatalogProcess.mjs",
@@ -344,36 +374,6 @@
    ],
    "env": [],
    "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "tests/fixtures/providers/grok/runtime/models-list-byok.json",
-   "kind": "test",
-   "lang": null,
-   "lines": 55,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "tests/helpers/features/chat/ProviderForkTestHarness.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 139,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
     "reasoning"
    ]
   }

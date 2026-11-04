@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T16:28:55Z",
  "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
  "commit": "9327439db69021ab4b0e2776729bf3b58fdb5a87",
- "indexed_at": "2026-11-03T10:09:54Z",
+ "indexed_at": "2026-11-04T09:57:10Z",
  "status": "ok",
  "clone_kb": 166216,
- "seconds": 13.2,
+ "seconds": 15.8,
  "files_scanned": 1887,
  "languages": {
   "Python": 539,
@@ -20,8 +20,8 @@
  },
  "grok_files": 8,
  "grok_files_by_kind": {
-  "doc": 5,
   "config": 1,
+  "doc": 5,
   "source": 2
  },
  "hosts": {
@@ -77,6 +77,20 @@
  ],
  "files": [
   {
+   "path": ".env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 151,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
    "path": "README.md",
    "kind": "doc",
    "lang": null,
@@ -105,17 +119,55 @@
    ]
   },
   {
-   "path": ".env.example",
-   "kind": "config",
+   "path": "docs/ARCHITECTURE.md",
+   "kind": "doc",
    "lang": null,
-   "lines": 151,
+   "lines": 527,
    "endpoints": [],
    "models": [],
    "env": [
     "XAI_API_KEY"
    ],
    "features": [
+    "anthropic_compatible",
+    "image_generation"
+   ]
+  },
+  {
+   "path": "docs/PROVIDERS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1502,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-video"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "vision",
     "voice_realtime"
+   ]
+  },
+  {
+   "path": ".agents/skills/grok-media/SKILL.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 131,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-video"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "image_generation"
    ]
   },
   {
@@ -156,58 +208,6 @@
    "features": [
     "image_generation",
     "vision"
-   ]
-  },
-  {
-   "path": "docs/PROVIDERS.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 1502,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image",
-    "grok-imagine-video"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "embeddings",
-    "image_generation",
-    "vision",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "docs/ARCHITECTURE.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 527,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "image_generation"
-   ]
-  },
-  {
-   "path": ".agents/skills/grok-media/SKILL.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 131,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image",
-    "grok-imagine-video"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "image_generation"
    ]
   }
  ]
