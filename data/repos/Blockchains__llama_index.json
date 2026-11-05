@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-01T18:39:47Z",
  "description": "LlamaIndex is the document processing platform for AI",
  "commit": "962940ddc079cc21701d28d1237c84c82a7c5164",
- "indexed_at": "2026-11-04T09:50:19Z",
+ "indexed_at": "2026-11-05T09:50:11Z",
  "status": "ok",
- "clone_kb": 893356,
- "seconds": 64.3,
+ "clone_kb": 893600,
+ "seconds": 29.0,
  "files_scanned": 6436,
  "languages": {
   "Python": 3772,
