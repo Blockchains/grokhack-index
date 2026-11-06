@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T16:19:03Z",
  "description": "Enhanced ChatGPT Clone: Features Agents, MCP, Skills, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active",
  "commit": "f10b1d91f1eee3a2c82d5247bf620351486b7c1b",
- "indexed_at": "2026-11-05T09:53:34Z",
+ "indexed_at": "2026-11-06T09:57:43Z",
  "status": "ok",
  "clone_kb": 98220,
- "seconds": 25.0,
+ "seconds": 44.0,
  "files_scanned": 5467,
  "languages": {
   "TypeScript": 4433,
@@ -22,8 +22,8 @@
  "grok_files": 14,
  "grok_files_by_kind": {
   "config": 2,
-  "source": 5,
-  "test": 7
+  "test": 7,
+  "source": 5
  },
  "hosts": {
   "api.x.ai": 3
@@ -37,8 +37,8 @@
   "grok-4-7": 7,
   "grok-4": 7,
   "grok-2-vision": 5,
-  "grok-4.6": 5,
   "grok-4-fast": 5,
+  "grok-4.6": 5,
   "grok-2": 4,
   "grok-2-1212": 4,
   "grok-2-latest": 4,
@@ -62,8 +62,8 @@
  },
  "env_vars": {
   "XAI_API_KEY": 2,
-  "VERTEXAI_MISTRAL_OCR": 1,
-  "VERTEXAI": 1
+  "VERTEXAI": 1,
+  "VERTEXAI_MISTRAL_OCR": 1
  },
  "features": {
   "anthropic_compatible": 4,
@@ -87,26 +87,6 @@
  ],
  "files": [
   {
-   "path": ".env.example",
-   "kind": "config",
-   "lang": null,
-   "lines": 1456,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "grpc",
-    "live_search",
-    "mcp",
-    "streaming",
-    "voice_realtime"
-   ]
-  },
-  {
    "path": "librechat.example.yaml",
    "kind": "config",
    "lang": null,
@@ -129,6 +109,97 @@
     "streaming",
     "structured_output",
     "voice_realtime"
+   ]
+  },
+  {
+   "path": ".env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 1456,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "grpc",
+    "live_search",
+    "mcp",
+    "streaming",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "api/server/controllers/agents/client.test.js",
+   "kind": "test",
+   "lang": "JavaScript",
+   "lines": 10473,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [
+    "VERTEXAI"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "mcp",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "api/utils/tokens.spec.js",
+   "kind": "test",
+   "lang": "JavaScript",
+   "lines": 2294,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-2-1212",
+    "grok-2-latest",
+    "grok-2-vision",
+    "grok-2-vision-1212",
+    "grok-2-vision-latest",
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-1-fast",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast",
+    "grok-beta",
+    "grok-code-fast",
+    "grok-code-fast-1",
+    "grok-vision-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "vision"
+   ]
+  },
+  {
+   "path": "packages/data-provider/src/parameterSettings.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1419,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "live_search",
+    "reasoning"
    ]
   },
   {
@@ -157,22 +228,6 @@
     "tool_calling",
     "vision",
     "voice_realtime"
-   ]
-  },
-  {
-   "path": "packages/data-provider/src/parameterSettings.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 1419,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "live_search",
-    "reasoning"
    ]
   },
   {
@@ -360,61 +415,6 @@
     "grok-4.5",
     "grok-4.6",
     "grok-4.7",
-    "grok-beta",
-    "grok-code-fast",
-    "grok-code-fast-1",
-    "grok-vision-beta"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "vision"
-   ]
-  },
-  {
-   "path": "api/server/controllers/agents/client.test.js",
-   "kind": "test",
-   "lang": "JavaScript",
-   "lines": 10473,
-   "endpoints": [],
-   "models": [
-    "grok-3"
-   ],
-   "env": [
-    "VERTEXAI"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "live_search",
-    "mcp",
-    "tool_calling",
-    "vision"
-   ]
-  },
-  {
-   "path": "api/utils/tokens.spec.js",
-   "kind": "test",
-   "lang": "JavaScript",
-   "lines": 2294,
-   "endpoints": [],
-   "models": [
-    "grok-2",
-    "grok-2-1212",
-    "grok-2-latest",
-    "grok-2-vision",
-    "grok-2-vision-1212",
-    "grok-2-vision-latest",
-    "grok-3",
-    "grok-3-fast",
-    "grok-3-mini",
-    "grok-3-mini-fast",
-    "grok-4",
-    "grok-4-0709",
-    "grok-4-1-fast",
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-1-fast-reasoning",
-    "grok-4-fast",
     "grok-beta",
     "grok-code-fast",
     "grok-code-fast-1",

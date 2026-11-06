@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T09:39:02Z",
  "description": "Unrestricted Open-source alternative to AI video platforms \u2014 Free AI image & video generation studio with 600+ models (Flux, Midjourney, Kling, Sora, Veo). No content filters. Self-hosted, MIT licensed.",
  "commit": "ce82e99365ee25271427442e92310c6b0c05e94c",
- "indexed_at": "2026-11-05T09:53:57Z",
+ "indexed_at": "2026-11-06T09:58:28Z",
  "status": "ok",
  "clone_kb": 56952,
- "seconds": 1.5,
+ "seconds": 2.0,
  "files_scanned": 189,
  "languages": {
   "JavaScript": 145
@@ -29,8 +29,8 @@
   "grok-imagine-image-to-video": 2,
   "grok-imagine-text-to-video": 2,
   "grok-imagine-video-1.5": 2,
-  "grok-imagine-video-1-5-preview": 1,
   "grok-imagine-extend": 1,
+  "grok-imagine-video-1-5-preview": 1,
   "grok-imagine": 1,
   "grok-imagine-image-2-edit": 1,
   "grok-imagine-image-to-image": 1,
@@ -64,6 +64,39 @@
    ]
   },
   {
+   "path": "packages/studio/src/videoToolCapabilities.js",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 753,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-extend",
+    "grok-imagine-image-to-video",
+    "grok-imagine-text-to-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "packages/studio/src/videoWorkflows.js",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 959,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
    "path": "packages/studio/src/xaiModels.js",
    "kind": "source",
    "lang": "JavaScript",
@@ -85,23 +118,6 @@
    ]
   },
   {
-   "path": "packages/studio/src/videoToolCapabilities.js",
-   "kind": "source",
-   "lang": "JavaScript",
-   "lines": 753,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-extend",
-    "grok-imagine-image-to-video",
-    "grok-imagine-text-to-video"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "vision"
-   ]
-  },
-  {
    "path": "packages/studio/src/modelFamilies.js",
    "kind": "source",
    "lang": "JavaScript",
@@ -114,22 +130,6 @@
     "grok-imagine-text-to-image",
     "grok-imagine-text-to-image-quality",
     "grok-imagine-video"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "vision"
-   ]
-  },
-  {
-   "path": "packages/studio/src/videoWorkflows.js",
-   "kind": "source",
-   "lang": "JavaScript",
-   "lines": 959,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video",
-    "grok-imagine-video-1.5"
    ],
    "env": [],
    "features": [

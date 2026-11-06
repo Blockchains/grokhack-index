@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-05T08:40:26Z",
  "description": "A CLI that writes your git commit messages for you with AI",
  "commit": "a414dd43b6ac2c5ff0f31eae758c5e6e106089c3",
- "indexed_at": "2026-11-05T09:52:46Z",
+ "indexed_at": "2026-11-06T09:56:15Z",
  "status": "ok",
  "clone_kb": 2628,
- "seconds": 1.1,
+ "seconds": 1.4,
  "files_scanned": 73,
  "languages": {
   "TypeScript": 50
@@ -66,21 +66,6 @@
    ]
   },
   {
-   "path": "tests/specs/generate-commit-message.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 1284,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
    "path": "tests/specs/providers.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -99,6 +84,21 @@
     "image_generation",
     "reasoning",
     "voice_realtime"
+   ]
+  },
+  {
+   "path": "tests/specs/generate-commit-message.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1284,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
    ]
   }
  ]

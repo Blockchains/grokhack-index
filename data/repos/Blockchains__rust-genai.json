@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-27T23:15:43Z",
  "description": "Rust multiprovider generative AI client (Ollama, OpenAi, Anthropic, Gemini, DeepSeek, ZAI, OpenRouter, FireworksAI, xAI/Grok, Groq,, ...)",
  "commit": "f928db37c365aa753f68b3267bc174dec78261e6",
- "indexed_at": "2026-11-05T09:50:12Z",
+ "indexed_at": "2026-11-06T09:51:21Z",
  "status": "ok",
  "clone_kb": 3952,
- "seconds": 1.2,
+ "seconds": 3.4,
  "files_scanned": 304,
  "languages": {
   "Rust": 235
@@ -158,6 +158,21 @@
    ]
   },
   {
+   "path": "examples/c99-github-copilot.rs",
+   "kind": "example",
+   "lang": "Rust",
+   "lines": 42,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
    "path": "examples/c00-readme.rs",
    "kind": "example",
    "lang": "Rust",
@@ -171,21 +186,6 @@
     "MODEL_XAI",
     "XAI_API_KEY"
    ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/c99-github-copilot.rs",
-   "kind": "example",
-   "lang": "Rust",
-   "lines": 42,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
    "features": [
     "anthropic_compatible",
     "reasoning"

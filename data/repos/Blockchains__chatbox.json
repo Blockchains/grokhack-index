@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-24T14:09:13Z",
  "description": "Powerful AI Client",
  "commit": "0ac6385ae1ff5bf778777826da3c5edcd55b61b8",
- "indexed_at": "2026-11-05T09:53:20Z",
+ "indexed_at": "2026-11-06T09:57:17Z",
  "status": "ok",
  "clone_kb": 47980,
- "seconds": 7.5,
+ "seconds": 14.3,
  "files_scanned": 1691,
  "languages": {
   "TypeScript": 1558,
@@ -31,20 +31,20 @@
  },
  "models": {
   "grok-4": 6,
-  "grok-4.6": 6,
   "grok-4.5": 6,
+  "grok-4.6": 6,
   "grok-4.3": 5,
   "grok-4-1-fast": 4,
   "grok-4-fast": 4,
   "grok-4-1-fast-non-reasoning": 2,
   "grok-4-1-fast-reasoning": 1,
-  "grok-4.1-fast-non-reasoning": 1,
+  "grok-imagine-image-2.0": 1,
   "grok-4.20": 1,
   "grok-4.20-0309-non-reasoning": 1,
   "grok-4.20-0309-reasoning": 1,
   "grok-4.20-multi-agent": 1,
   "grok-4.20-multi-agent-0309": 1,
-  "grok-imagine-image-2.0": 1
+  "grok-4.1-fast-non-reasoning": 1
  },
  "env_vars": {
   "XAI_API_KEY": 1
@@ -53,8 +53,8 @@
   "tool_calling": 7,
   "anthropic_compatible": 6,
   "embeddings": 4,
-  "reasoning": 3,
   "mcp": 3,
+  "reasoning": 3,
   "voice_realtime": 1
  },
  "sdk_exports": [],
@@ -115,145 +115,78 @@
    ]
   },
   {
-   "path": "src/shared/providers/definitions/opencode-zen.test.ts",
+   "path": "src/renderer/stores/session/agent-harness.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 143,
+   "lines": 1905,
    "endpoints": [],
    "models": [
-    "grok-4.6"
+    "grok-4"
    ],
    "env": [],
    "features": [
     "anthropic_compatible",
-    "streaming"
-   ]
-  },
-  {
-   "path": "src/shared/providers/definitions/xai.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 65,
-   "endpoints": [],
-   "models": [
-    "grok-4",
-    "grok-4-1-fast",
-    "grok-4-fast",
-    "grok-4.3",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/shared/providers/definitions/vercel-ai-gateway.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 255,
-   "endpoints": [],
-   "models": [
-    "grok-4.1-fast-non-reasoning",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
+    "live_search",
     "reasoning",
+    "streaming",
     "tool_calling"
    ]
   },
   {
-   "path": "src/shared/providers/definitions/openrouter.ts",
+   "path": "src/renderer/i18n/changelogs/changelog_en.ts",
    "kind": "source",
    "lang": "TypeScript",
-   "lines": 230,
-   "endpoints": [],
-   "models": [
-    "grok-4.3",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/shared/providers/definitions/opencode-zen.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 576,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.5",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/shared/providers/definitions/opencode-go.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 238,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/shared/providers/definitions/opencode-shared.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 277,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "streaming"
-   ]
-  },
-  {
-   "path": "src/shared/providers/definitions/opencode-go.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 131,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "streaming"
-   ]
-  },
-  {
-   "path": "src/shared/providers/definitions/models/xai.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 32,
+   "lines": 858,
    "endpoints": [],
    "models": [],
    "env": [],
-   "features": []
+   "features": [
+    "embeddings",
+    "mcp"
+   ]
+  },
+  {
+   "path": "src/renderer/i18n/changelogs/changelog_zh_Hans.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 856,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings",
+    "mcp"
+   ]
+  },
+  {
+   "path": "src/renderer/i18n/changelogs/changelog_zh_Hant.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 649,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "embeddings",
+    "mcp"
+   ]
+  },
+  {
+   "path": "src/shared/model-registry/transform.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 161,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image-2.0"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "structured_output",
+    "tool_calling"
+   ]
   },
   {
    "path": "src/shared/model-registry/snapshot.generated.ts",
@@ -281,19 +214,161 @@
    ]
   },
   {
-   "path": "src/shared/model-registry/transform.test.ts",
-   "kind": "test",
+   "path": "src/shared/providers/definitions/opencode-zen.ts",
+   "kind": "source",
    "lang": "TypeScript",
-   "lines": 161,
-   "endpoints": [],
+   "lines": 576,
+   "endpoints": [
+    "/v1/models"
+   ],
    "models": [
-    "grok-imagine-image-2.0"
+    "grok-4.5",
+    "grok-4.6"
    ],
    "env": [],
    "features": [
     "anthropic_compatible",
-    "image_generation",
-    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/shared/providers/definitions/openrouter.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 230,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/shared/providers/definitions/opencode-go.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 131,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "src/shared/providers/definitions/opencode-zen.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 143,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "src/shared/providers/definitions/opencode-shared.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 277,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "src/shared/providers/definitions/opencode-go.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 238,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/shared/providers/definitions/vercel-ai-gateway.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 255,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast-non-reasoning",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/shared/providers/definitions/xai.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 65,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4-1-fast",
+    "grok-4-fast",
+    "grok-4.3",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/shared/providers/definitions/models/xai.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 32,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/shared/utils/reasoning-control.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1046,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4-1-fast",
+    "grok-4-fast"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
     "tool_calling"
    ]
   },
@@ -316,81 +391,6 @@
     "anthropic_compatible",
     "reasoning",
     "tool_calling"
-   ]
-  },
-  {
-   "path": "src/shared/utils/reasoning-control.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 1046,
-   "endpoints": [],
-   "models": [
-    "grok-4",
-    "grok-4-1-fast",
-    "grok-4-fast"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/renderer/stores/session/agent-harness.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 1905,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "live_search",
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "src/renderer/i18n/changelogs/changelog_zh_Hant.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 649,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "embeddings",
-    "mcp"
-   ]
-  },
-  {
-   "path": "src/renderer/i18n/changelogs/changelog_en.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 858,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "embeddings",
-    "mcp"
-   ]
-  },
-  {
-   "path": "src/renderer/i18n/changelogs/changelog_zh_Hans.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 856,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "embeddings",
-    "mcp"
    ]
   },
   {

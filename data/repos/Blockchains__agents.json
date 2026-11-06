@@ -8,28 +8,28 @@
  "pushed_at": "2026-10-04T15:31:14Z",
  "description": "A framework for building realtime voice AI agents \ud83e\udd16\ud83c\udf99\ufe0f\ud83d\udcf9 ",
  "commit": "8d28326212fd2feb141cb68764dbcc438f25d6c1",
- "indexed_at": "2026-11-05T09:53:47Z",
+ "indexed_at": "2026-11-06T09:58:02Z",
  "status": "ok",
- "clone_kb": 22080,
- "seconds": 8.1,
+ "clone_kb": 22076,
+ "seconds": 13.9,
  "files_scanned": 1365,
  "languages": {
   "Python": 1098
  },
  "grok_files": 15,
  "grok_files_by_kind": {
-  "source": 8,
   "doc": 1,
+  "source": 8,
   "test": 3,
-  "config": 1,
-  "example": 2
+  "example": 2,
+  "config": 1
  },
  "hosts": {
   "api.x.ai": 8
  },
  "endpoints": {
-  "/v1/chat/completions": 1,
-  "/v1/realtime": 1
+  "/v1/realtime": 1,
+  "/v1/chat/completions": 1
  },
  "models": {
   "grok-4-1-fast-non-reasoning": 3,
@@ -63,12 +63,12 @@
  },
  "features": {
   "voice_realtime": 7,
-  "reasoning": 5,
   "tool_calling": 5,
-  "embeddings": 2,
-  "structured_output": 2,
+  "reasoning": 5,
   "streaming": 2,
   "live_search": 2,
+  "embeddings": 2,
+  "structured_output": 2,
   "image_generation": 1,
   "vision": 1,
   "openai_compatible": 1,
@@ -111,12 +111,6 @@
  "packages": [],
  "snippets": [
   {
-   "path": "livekit-plugins/livekit-plugins-openai/livekit/plugins/openai/llm.py",
-   "start": 406,
-   "end": 429,
-   "code": "\n    @staticmethod\n    def with_x_ai(\n        *,\n        model: str | XAIChatModels = \"grok-3-fast\",\n        api_key: str | None = None,\n        base_url: str = \"https://api.x.ai/v1\",\n        client: openai.AsyncClient | None = None,\n        user: NotGivenOr[str] = NOT_GIVEN,\n        temperature: NotGivenOr[float] = NOT_GIVEN,\n        parallel_tool_calls: NotGivenOr[bool] = NOT_GIVEN,\n        tool_choice: ToolChoice = \"auto\",\n        reasoning_effort: NotGivenOr[ReasoningEffort] = NOT_GIVEN,\n        safety_identifier: NotGivenOr[str] = NOT_GIVEN,\n        prompt_cache_key: NotGivenOr[str] = NOT_GIVEN,\n        top_p: NotGivenOr[float] = NOT_GIVEN,\n    ) -> LLM:\n        \"\"\"\n        Create a new instance of XAI LLM.\n\n        ``api_key`` must be set to your XAI API key, either using the argument or by setting\n        the ``XAI_API_KEY`` environmental variable.\n        \"\"\"\n        api_key = api_key or os.environ.get(\"XAI_API_KEY\")"
-  },
-  {
    "path": "livekit-plugins/livekit-plugins-xai/livekit/plugins/xai/tts.py",
    "start": 39,
    "end": 62,
@@ -141,6 +135,12 @@
    "code": ")\nfrom livekit.agents.utils import is_given\nfrom livekit.plugins import openai\n\nfrom ..tools import XAITool\n\nXAI_BASE_URL = \"https://api.x.ai/v1\"\n\n\nclass LLM(openai.responses.LLM):\n    # xAI's server-side tools (web_search, x_search, file_search) subclass XAITool.\n    _provider_tool_type = XAITool\n\n    def __init__(\n        self,\n        *,\n        model: str = \"grok-4-1-fast-non-reasoning\",\n        api_key: str | None = None,\n        base_url: NotGivenOr[str] = NOT_GIVEN,\n        user: NotGivenOr[str] = NOT_GIVEN,\n        temperature: NotGivenOr[float] = NOT_GIVEN,\n        parallel_tool_calls: NotGivenOr[bool] = NOT_GIVEN,\n        tool_choice: NotGivenOr[ToolChoice] = NOT_GIVEN,\n        timeout: httpx.Timeout | None = None,"
   },
   {
+   "path": "livekit-plugins/livekit-plugins-openai/livekit/plugins/openai/llm.py",
+   "start": 406,
+   "end": 429,
+   "code": "\n    @staticmethod\n    def with_x_ai(\n        *,\n        model: str | XAIChatModels = \"grok-3-fast\",\n        api_key: str | None = None,\n        base_url: str = \"https://api.x.ai/v1\",\n        client: openai.AsyncClient | None = None,\n        user: NotGivenOr[str] = NOT_GIVEN,\n        temperature: NotGivenOr[float] = NOT_GIVEN,\n        parallel_tool_calls: NotGivenOr[bool] = NOT_GIVEN,\n        tool_choice: ToolChoice = \"auto\",\n        reasoning_effort: NotGivenOr[ReasoningEffort] = NOT_GIVEN,\n        safety_identifier: NotGivenOr[str] = NOT_GIVEN,\n        prompt_cache_key: NotGivenOr[str] = NOT_GIVEN,\n        top_p: NotGivenOr[float] = NOT_GIVEN,\n    ) -> LLM:\n        \"\"\"\n        Create a new instance of XAI LLM.\n\n        ``api_key`` must be set to your XAI API key, either using the argument or by setting\n        the ``XAI_API_KEY`` environmental variable.\n        \"\"\"\n        api_key = api_key or os.environ.get(\"XAI_API_KEY\")"
+  },
+  {
    "path": "livekit-agents/livekit/agents/telemetry/trace_types.py",
    "start": 320,
    "end": 343,
@@ -148,54 +148,6 @@
   }
  ],
  "files": [
-  {
-   "path": "livekit-plugins/livekit-plugins-openai/livekit/plugins/openai/models.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 314,
-   "endpoints": [],
-   "models": [
-    "grok-2-1212",
-    "grok-2-image-1212",
-    "grok-2-vision-1212",
-    "grok-3",
-    "grok-3-fast",
-    "grok-3-mini",
-    "grok-3-mini-fast",
-    "grok-4-0709",
-    "grok-4-fast-non-reasoning",
-    "grok-4-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "embeddings",
-    "image_generation",
-    "reasoning",
-    "vision",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "livekit-plugins/livekit-plugins-openai/livekit/plugins/openai/llm.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 1074,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [
-    "grok-3-fast"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "openai_compatible",
-    "reasoning",
-    "structured_output",
-    "tool_calling"
-   ]
-  },
   {
    "path": "livekit-plugins/livekit-plugins-xai/README.md",
    "kind": "doc",
@@ -279,44 +231,51 @@
    ]
   },
   {
-   "path": "livekit-agents/livekit/agents/inference/llm.py",
+   "path": "livekit-plugins/livekit-plugins-openai/livekit/plugins/openai/models.py",
    "kind": "source",
    "lang": "Python",
-   "lines": 614,
+   "lines": 314,
    "endpoints": [],
    "models": [
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-1-fast-reasoning",
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.20-0309-reasoning",
-    "grok-4.20-multi-agent",
-    "grok-4.20-multi-agent-0309",
-    "grok-4.3",
-    "grok-4.5"
+    "grok-2-1212",
+    "grok-2-image-1212",
+    "grok-2-vision-1212",
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-4-0709",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning"
    ],
    "env": [],
    "features": [
-    "live_search",
+    "embeddings",
+    "image_generation",
     "reasoning",
-    "streaming",
-    "structured_output",
-    "tool_calling",
+    "vision",
     "voice_realtime"
    ]
   },
   {
-   "path": "livekit-agents/livekit/agents/telemetry/trace_types.py",
+   "path": "livekit-plugins/livekit-plugins-openai/livekit/plugins/openai/llm.py",
    "kind": "source",
    "lang": "Python",
-   "lines": 469,
-   "endpoints": [],
-   "models": [],
-   "env": [],
+   "lines": 1074,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-3-fast"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
    "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "tool_calling",
-    "voice_realtime"
+    "openai_compatible",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
    ]
   },
   {
@@ -363,16 +322,43 @@
    ]
   },
   {
-   "path": ".github/workflows/test-realtime.yml",
-   "kind": "config",
-   "lang": null,
-   "lines": 57,
+   "path": "livekit-agents/livekit/agents/inference/llm.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 614,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "livekit-agents/livekit/agents/telemetry/trace_types.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 469,
    "endpoints": [],
    "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
+   "env": [],
    "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "tool_calling",
     "voice_realtime"
    ]
   },
@@ -402,6 +388,20 @@
    "kind": "example",
    "lang": null,
    "lines": 81,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": ".github/workflows/test-realtime.yml",
+   "kind": "config",
+   "lang": null,
+   "lines": 57,
    "endpoints": [],
    "models": [],
    "env": [

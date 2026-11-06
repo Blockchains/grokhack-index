@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:56:51Z",
  "description": "An open-source AI coding agent that lives in your terminal.",
  "commit": "17c182eda0226844d7af533a52dd3ed8b956ee7b",
- "indexed_at": "2026-11-05T09:53:09Z",
+ "indexed_at": "2026-11-06T09:57:02Z",
  "status": "ok",
- "clone_kb": 319860,
- "seconds": 47.3,
+ "clone_kb": 319856,
+ "seconds": 92.2,
  "files_scanned": 10038,
  "languages": {
   "TypeScript": 6630,
@@ -67,28 +67,25 @@
  ],
  "files": [
   {
-   "path": "packages/core/src/core/openaiContentGenerator/provider/grok.test.ts",
+   "path": "scripts/tests/no-ak-integration-ci.test.js",
    "kind": "test",
-   "lang": "TypeScript",
-   "lines": 71,
+   "lang": "JavaScript",
+   "lines": 992,
    "endpoints": [],
-   "models": [
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.20-0309-reasoning",
-    "grok-4.20-multi-agent-0309",
-    "grok-4.3",
-    "grok-4.5"
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
    ],
-   "env": [],
    "features": [
-    "reasoning"
+    "mcp",
+    "structured_output"
    ]
   },
   {
-   "path": "packages/core/src/providers/presets/grok.ts",
-   "kind": "source",
+   "path": "packages/core/src/providers/__tests__/presets/grok.test.ts",
+   "kind": "test",
    "lang": "TypeScript",
-   "lines": 36,
+   "lines": 109,
    "endpoints": [],
    "models": [
     "grok-4.20-0309-non-reasoning",
@@ -105,10 +102,10 @@
    ]
   },
   {
-   "path": "packages/core/src/providers/__tests__/presets/grok.test.ts",
-   "kind": "test",
+   "path": "packages/core/src/providers/presets/grok.ts",
+   "kind": "source",
    "lang": "TypeScript",
-   "lines": 109,
+   "lines": 36,
    "endpoints": [],
    "models": [
     "grok-4.20-0309-non-reasoning",
@@ -173,18 +170,21 @@
    ]
   },
   {
-   "path": "scripts/tests/no-ak-integration-ci.test.js",
+   "path": "packages/core/src/core/openaiContentGenerator/provider/grok.test.ts",
    "kind": "test",
-   "lang": "JavaScript",
-   "lines": 992,
+   "lang": "TypeScript",
+   "lines": 71,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3",
+    "grok-4.5"
    ],
+   "env": [],
    "features": [
-    "mcp",
-    "structured_output"
+    "reasoning"
    ]
   },
   {

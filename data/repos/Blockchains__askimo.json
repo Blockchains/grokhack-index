@@ -8,18 +8,18 @@
  "pushed_at": "2026-10-04T04:50:46Z",
  "description": "AI desktop app for chat, RAG, Skills, MCP tools, and agents. Support multiple LLMs (Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM, Gemini, OpenRouter)",
  "commit": "6b4d6683182b1665fbad750010332d39e47dd761",
- "indexed_at": "2026-11-05T09:50:17Z",
+ "indexed_at": "2026-11-06T09:51:33Z",
  "status": "ok",
  "clone_kb": 70812,
- "seconds": 4.3,
+ "seconds": 12.4,
  "files_scanned": 721,
  "languages": {
   "Kotlin": 683
  },
  "grok_files": 6,
  "grok_files_by_kind": {
-  "source": 4,
-  "test": 2
+  "test": 2,
+  "source": 4
  },
  "hosts": {
   "api.x.ai": 2
@@ -27,10 +27,10 @@
  "endpoints": {},
  "models": {
   "grok-4": 3,
-  "grok-2-vision": 1,
-  "grok-3": 1,
   "grok-4-fast": 1,
-  "grok-vision-beta": 1
+  "grok-vision-beta": 1,
+  "grok-2-vision": 1,
+  "grok-3": 1
  },
  "env_vars": {},
  "features": {
@@ -49,6 +49,36 @@
   }
  ],
  "files": [
+  {
+   "path": "cli/src/test/kotlin/io/askimo/core/providers/xai/XAiModelFactoryTest.kt",
+   "kind": "test",
+   "lang": "Kotlin",
+   "lines": 136,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "cli/src/test/kotlin/io/askimo/core/config/AppConfigTest.kt",
+   "kind": "test",
+   "lang": "Kotlin",
+   "lines": 590,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4-fast",
+    "grok-vision-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "vision"
+   ]
+  },
   {
    "path": "shared/src/main/kotlin/io/askimo/core/context/ParamKey.kt",
    "kind": "source",
@@ -100,36 +130,6 @@
    "env": [],
    "features": [
     "embeddings"
-   ]
-  },
-  {
-   "path": "cli/src/test/kotlin/io/askimo/core/providers/xai/XAiModelFactoryTest.kt",
-   "kind": "test",
-   "lang": "Kotlin",
-   "lines": 136,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "cli/src/test/kotlin/io/askimo/core/config/AppConfigTest.kt",
-   "kind": "test",
-   "lang": "Kotlin",
-   "lines": 590,
-   "endpoints": [],
-   "models": [
-    "grok-4",
-    "grok-4-fast",
-    "grok-vision-beta"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "vision"
    ]
   }
  ]

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T01:30:10Z",
  "description": "Stop renting your intelligence. Own it with AnythingLLM. Everything you need for a powerful local-first agent experience ",
  "commit": "feb04ca0a57cda6d0b3a69c62578f0af44d388fc",
- "indexed_at": "2026-11-05T09:53:21Z",
+ "indexed_at": "2026-11-06T09:57:16Z",
  "status": "ok",
- "clone_kb": 110056,
- "seconds": 13.9,
+ "clone_kb": 110032,
+ "seconds": 24.8,
  "files_scanned": 1407,
  "languages": {
   "JavaScript": 1261,
@@ -20,8 +20,8 @@
  },
  "grok_files": 11,
  "grok_files_by_kind": {
-  "source": 9,
-  "config": 2
+  "config": 2,
+  "source": 9
  },
  "hosts": {
   "api.x.ai": 4
@@ -42,11 +42,11 @@
   "openai_compatible": 4,
   "streaming": 3,
   "vision": 2,
+  "embeddings": 1,
+  "voice_realtime": 1,
   "mcp": 1,
   "reasoning": 1,
-  "tool_calling": 1,
-  "embeddings": 1,
-  "voice_realtime": 1
+  "tool_calling": 1
  },
  "sdk_exports": [],
  "packages": [],
@@ -58,10 +58,10 @@
    "code": "    if (!process.env.XAI_LLM_API_KEY)\n      throw new Error(\"No xAI API key was set.\");\n    this.className = \"XAiLLM\";\n    const { OpenAI: OpenAIApi } = require(\"openai\");\n\n    this.openai = new OpenAIApi({\n      baseURL: \"https://api.x.ai/v1\",\n      apiKey: process.env.XAI_LLM_API_KEY,\n    });\n    this.model =\n      modelPreference || process.env.XAI_LLM_MODEL_PREF || \"grok-beta\";\n    this.limits = {\n      history: this.promptWindowLimit() * 0.15,\n      system: this.promptWindowLimit() * 0.15,\n      user: this.promptWindowLimit() * 0.7,\n    };\n\n    this.embedder = embedder ?? new NativeEmbedder();\n    this.log(\n      `Initialized ${this.model} with context window ${this.promptWindowLimit()}`\n    );\n  }\n\n  log(text, ...args) {"
   },
   {
-   "path": "server/utils/agents/aibitat/providers/xai.js",
-   "start": 16,
-   "end": 39,
-   "code": "  model;\n\n  constructor(config = {}) {\n    const { model = \"grok-4.3\" } = config;\n    super();\n    const client = new OpenAI({\n      baseURL: \"https://api.x.ai/v1\",\n      apiKey: process.env.XAI_LLM_API_KEY,\n    });\n\n    this.providerTag = \"xai\";\n    this._client = client;\n    this.model = model;\n    this.verbose = true;\n  }\n\n  get client() {\n    return this._client;\n  }\n\n  get supportsAgentStreaming() {\n    return true;\n  }\n"
+   "path": "server/utils/helpers/customModels.js",
+   "start": 841,
+   "end": 864,
+   "code": "  const { OpenAI: OpenAIApi } = require(\"openai\");\n  const apiKey =\n    _apiKey === true\n      ? process.env.XAI_LLM_API_KEY\n      : _apiKey || process.env.XAI_LLM_API_KEY || null;\n  const openai = new OpenAIApi({\n    baseURL: \"https://api.x.ai/v1\",\n    apiKey,\n  });\n  const models = await openai.models\n    .list()\n    .then((results) => results.data)\n    .catch((e) => {\n      console.error(`XAI:listModels`, e.message);\n      return [\n        {\n          created: 1725148800,\n          id: \"grok-beta\",\n          object: \"model\",\n          owned_by: \"xai\",\n        },\n      ];\n    });\n"
   },
   {
    "path": "server/utils/agents/aibitat/providers/ai-provider.js",
@@ -70,51 +70,13 @@
    "code": "          apiKey: process.env.DEEPSEEK_API_KEY ?? null,\n          ...config,\n        });\n      case \"xai\":\n        return new ChatOpenAI({\n          configuration: {\n            baseURL: \"https://api.x.ai/v1\",\n          },\n          apiKey: process.env.XAI_LLM_API_KEY ?? null,\n          ...config,\n        });\n      case \"zai\":\n        return new ChatOpenAI({\n          configuration: {\n            baseURL: \"https://api.z.ai/api/paas/v4\",\n          },\n          apiKey: process.env.ZAI_API_KEY ?? null,\n          ...config,\n        });\n      case \"novita\":\n        return new ChatOpenAI({\n          configuration: {\n            baseURL: \"https://api.novita.ai/v3/openai\",\n          },"
   },
   {
-   "path": "server/utils/helpers/customModels.js",
-   "start": 841,
-   "end": 864,
-   "code": "  const { OpenAI: OpenAIApi } = require(\"openai\");\n  const apiKey =\n    _apiKey === true\n      ? process.env.XAI_LLM_API_KEY\n      : _apiKey || process.env.XAI_LLM_API_KEY || null;\n  const openai = new OpenAIApi({\n    baseURL: \"https://api.x.ai/v1\",\n    apiKey,\n  });\n  const models = await openai.models\n    .list()\n    .then((results) => results.data)\n    .catch((e) => {\n      console.error(`XAI:listModels`, e.message);\n      return [\n        {\n          created: 1725148800,\n          id: \"grok-beta\",\n          object: \"model\",\n          owned_by: \"xai\",\n        },\n      ];\n    });\n"
+   "path": "server/utils/agents/aibitat/providers/xai.js",
+   "start": 16,
+   "end": 39,
+   "code": "  model;\n\n  constructor(config = {}) {\n    const { model = \"grok-4.3\" } = config;\n    super();\n    const client = new OpenAI({\n      baseURL: \"https://api.x.ai/v1\",\n      apiKey: process.env.XAI_LLM_API_KEY,\n    });\n\n    this.providerTag = \"xai\";\n    this._client = client;\n    this.model = model;\n    this.verbose = true;\n  }\n\n  get client() {\n    return this._client;\n  }\n\n  get supportsAgentStreaming() {\n    return true;\n  }\n"
   }
  ],
  "files": [
-  {
-   "path": "frontend/src/hooks/useGetProvidersModels.js",
-   "kind": "source",
-   "lang": "JavaScript",
-   "lines": 93,
-   "endpoints": [],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "frontend/src/pages/GeneralSettings/LLMPreference/index.jsx",
-   "kind": "source",
-   "lang": "JavaScript",
-   "lines": 590,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "frontend/src/pages/OnboardingFlow/Steps/LLMPreference/index.jsx",
-   "kind": "source",
-   "lang": "JavaScript",
-   "lines": 486,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
   {
    "path": "server/.env.example",
    "kind": "config",
@@ -168,6 +130,27 @@
    ]
   },
   {
+   "path": "server/utils/helpers/customModels.js",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 1752,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [
+    "XAI_LLM_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "openai_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
    "path": "server/utils/agents/index.js",
    "kind": "source",
    "lang": "JavaScript",
@@ -184,23 +167,6 @@
     "anthropic_compatible",
     "mcp",
     "reasoning"
-   ]
-  },
-  {
-   "path": "server/utils/agents/aibitat/providers/xai.js",
-   "kind": "source",
-   "lang": "JavaScript",
-   "lines": 159,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_LLM_API_KEY"
-   ],
-   "features": [
-    "openai_compatible",
-    "streaming"
    ]
   },
   {
@@ -222,24 +188,58 @@
    ]
   },
   {
-   "path": "server/utils/helpers/customModels.js",
+   "path": "server/utils/agents/aibitat/providers/xai.js",
    "kind": "source",
    "lang": "JavaScript",
-   "lines": 1752,
-   "endpoints": [
-    "/v1/models"
-   ],
+   "lines": 159,
+   "endpoints": [],
    "models": [
-    "grok-beta"
+    "grok-4.3"
    ],
    "env": [
     "XAI_LLM_API_KEY"
    ],
    "features": [
-    "anthropic_compatible",
-    "embeddings",
     "openai_compatible",
-    "voice_realtime"
+    "streaming"
+   ]
+  },
+  {
+   "path": "frontend/src/hooks/useGetProvidersModels.js",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 93,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "frontend/src/pages/OnboardingFlow/Steps/LLMPreference/index.jsx",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 486,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "frontend/src/pages/GeneralSettings/LLMPreference/index.jsx",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 590,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
    ]
   },
   {

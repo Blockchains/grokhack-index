@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T13:35:33Z",
  "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/.",
  "commit": "f07029cfcf2c8dfccdb671cdfc343db8334f5741",
- "indexed_at": "2026-11-05T09:54:10Z",
+ "indexed_at": "2026-11-06T09:58:30Z",
  "status": "ok",
  "clone_kb": 101648,
- "seconds": 15.1,
+ "seconds": 14.9,
  "files_scanned": 3423,
  "languages": {
   "Python": 1817,
@@ -41,6 +41,19 @@
  "snippets": [],
  "files": [
   {
+   "path": "tests/services/llm/test_context_window.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 34,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
    "path": "web/tests/provider-registry-workflow.spec.tsx",
    "kind": "test",
    "lang": "TypeScript",
@@ -54,19 +67,6 @@
     "structured_output",
     "voice_realtime"
    ]
-  },
-  {
-   "path": "tests/services/llm/test_context_window.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 34,
-   "endpoints": [],
-   "models": [
-    "grok-4",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": []
   },
   {
    "path": "deeptutor/services/llm/context_window.py",

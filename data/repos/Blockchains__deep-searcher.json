@@ -8,20 +8,20 @@
  "pushed_at": "2026-09-22T10:08:42Z",
  "description": "Open Source Deep Research Alternative to Reason and Search on Private Data. Written in Python.",
  "commit": "ddc36db317836bd42302b36f03166bec5324708d",
- "indexed_at": "2026-11-05T09:54:12Z",
+ "indexed_at": "2026-11-06T09:58:47Z",
  "status": "ok",
  "clone_kb": 28604,
- "seconds": 1.8,
+ "seconds": 2.7,
  "files_scanned": 208,
  "languages": {
   "Python": 156
  },
  "grok_files": 6,
  "grok_files_by_kind": {
-  "doc": 3,
   "config": 1,
-  "source": 1,
-  "test": 1
+  "doc": 3,
+  "test": 1,
+  "source": 1
  },
  "hosts": {
   "api.x.ai": 2
@@ -30,9 +30,9 @@
  "models": {
   "grok-2-latest": 3,
   "grok-4-0709": 1,
-  "grok-4": 1,
+  "grok-1": 1,
   "grok-3": 1,
-  "grok-1": 1
+  "grok-4": 1
  },
  "env_vars": {
   "XAI_API_KEY": 6
@@ -60,6 +60,21 @@
  ],
  "files": [
   {
+   "path": "env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 54,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
    "path": "README.md",
    "kind": "doc",
    "lang": null,
@@ -77,29 +92,14 @@
    ]
   },
   {
-   "path": "env.example",
-   "kind": "config",
-   "lang": null,
-   "lines": 54,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "embeddings"
-   ]
-  },
-  {
-   "path": "deepsearcher/llm/xai.py",
-   "kind": "source",
+   "path": "tests/llm/test_xai.py",
+   "kind": "test",
    "lang": "Python",
-   "lines": 63,
+   "lines": 165,
    "endpoints": [],
    "models": [
-    "grok-2-latest",
-    "grok-4"
+    "grok-1",
+    "grok-2-latest"
    ],
    "env": [
     "XAI_API_KEY"
@@ -142,14 +142,14 @@
    ]
   },
   {
-   "path": "tests/llm/test_xai.py",
-   "kind": "test",
+   "path": "deepsearcher/llm/xai.py",
+   "kind": "source",
    "lang": "Python",
-   "lines": 165,
+   "lines": 63,
    "endpoints": [],
    "models": [
-    "grok-1",
-    "grok-2-latest"
+    "grok-2-latest",
+    "grok-4"
    ],
    "env": [
     "XAI_API_KEY"

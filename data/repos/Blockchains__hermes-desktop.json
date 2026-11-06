@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-24T14:32:35Z",
  "description": "Desktop Companion for Hermes Agent",
  "commit": "2ed89070bc6c9e8231a37bb55df8a7722a3776b8",
- "indexed_at": "2026-11-05T09:53:26Z",
+ "indexed_at": "2026-11-06T09:57:27Z",
  "status": "ok",
  "clone_kb": 52172,
- "seconds": 5.1,
+ "seconds": 10.9,
  "files_scanned": 914,
  "languages": {
   "TypeScript": 794,
@@ -40,8 +40,8 @@
   "anthropic_compatible": 4,
   "structured_output": 3,
   "voice_realtime": 1,
-  "mcp": 1,
-  "reasoning": 1
+  "reasoning": 1,
+  "mcp": 1
  },
  "sdk_exports": [],
  "packages": [],
@@ -82,6 +82,41 @@
    ]
   },
   {
+   "path": "src/main/model-discovery.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 695,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "src/main/default-models.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 98,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
    "path": "src/main/installer.ts",
    "kind": "source",
    "lang": "TypeScript",
@@ -112,39 +147,16 @@
    ]
   },
   {
-   "path": "src/main/default-models.ts",
-   "kind": "source",
+   "path": "tests/office-env.test.ts",
+   "kind": "test",
    "lang": "TypeScript",
-   "lines": 98,
+   "lines": 285,
    "endpoints": [],
    "models": [
     "grok-4.3"
    ],
    "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "src/main/model-discovery.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 695,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.20-0309-reasoning",
-    "grok-4.20-multi-agent-0309",
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "structured_output"
-   ]
+   "features": []
   },
   {
    "path": "tests/constants.test.ts",
@@ -161,32 +173,6 @@
    ]
   },
   {
-   "path": "tests/install-gate-providers.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 108,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "tests/office-env.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 285,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
    "path": "tests/oauth-model-discovery.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -199,6 +185,20 @@
    ],
    "env": [],
    "features": []
+  },
+  {
+   "path": "tests/install-gate-providers.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 108,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
   }
  ]
 }

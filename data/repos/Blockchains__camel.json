@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-30T04:46:03Z",
  "description": "\ud83d\udc2b CAMEL: The first and the best multi-agent framework. Finding the Scaling Law of Agents. https://www.camel-ai.org",
  "commit": "0106b76830c707effe48cd3da384dda38cbed92e",
- "indexed_at": "2026-11-05T09:51:52Z",
+ "indexed_at": "2026-11-06T09:54:19Z",
  "status": "ok",
- "clone_kb": 233364,
- "seconds": 12.3,
+ "clone_kb": 233360,
+ "seconds": 17.2,
  "files_scanned": 1933,
  "languages": {
   "Python": 1148,
@@ -22,8 +22,8 @@
  "grok_files_by_kind": {
   "config": 2,
   "test": 2,
-  "source": 4,
   "doc": 1,
+  "source": 4,
   "example": 6
  },
  "hosts": {
@@ -34,8 +34,8 @@
   "grok-2-image-1212": 4,
   "grok-beta": 4,
   "grok-3": 3,
-  "grok-4.5": 2,
   "grok-4-0709": 2,
+  "grok-4.5": 2,
   "grok-2-image": 2,
   "grok-2-image-latest": 2,
   "grok-3-mini": 1,
@@ -56,13 +56,13 @@
   "image_generation": 3,
   "reasoning": 2,
   "tool_calling": 2,
+  "anthropic_compatible": 1,
+  "embeddings": 1,
+  "voice_realtime": 1,
   "openai_compatible": 1,
   "vision": 1,
   "grpc": 1,
-  "streaming": 1,
-  "anthropic_compatible": 1,
-  "embeddings": 1,
-  "voice_realtime": 1
+  "streaming": 1
  },
  "sdk_exports": [
   {
@@ -121,6 +121,20 @@
  ],
  "files": [
   {
+   "path": "pyproject.toml",
+   "kind": "config",
+   "lang": null,
+   "lines": 745,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "grpc",
+    "mcp"
+   ]
+  },
+  {
    "path": ".env.example",
    "kind": "config",
    "lang": null,
@@ -136,18 +150,18 @@
    ]
   },
   {
-   "path": "pyproject.toml",
-   "kind": "config",
-   "lang": null,
-   "lines": 745,
+   "path": "test/models/test_orcarouter_model.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 105,
    "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "grpc",
-    "mcp"
-   ]
+   "models": [
+    "grok-4-0709"
+   ],
+   "env": [
+    "ORCAROUTER_GROK_4_3"
+   ],
+   "features": []
   },
   {
    "path": "test/models/test_xai_model.py",
@@ -168,18 +182,52 @@
    ]
   },
   {
-   "path": "test/models/test_orcarouter_model.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 105,
+   "path": "docs/mintlify/reference/camel.toolkits.image_generation_toolkit.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 186,
    "endpoints": [],
    "models": [
-    "grok-4-0709"
+    "grok-2-image",
+    "grok-2-image-1212",
+    "grok-2-image-latest"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "camel/types/enums.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 2311,
+   "endpoints": [],
+   "models": [
+    "grok-2-image-1212",
+    "grok-3",
+    "grok-3-mini",
+    "grok-4-0709",
+    "grok-4.3",
+    "grok-4.5"
    ],
    "env": [
-    "ORCAROUTER_GROK_4_3"
+    "COMETAPI_GROK_2_IMAGE_1212",
+    "COMETAPI_GROK_3",
+    "COMETAPI_GROK_3_MINI",
+    "COMETAPI_GROK_4_0709",
+    "ORCAROUTER_GROK_4_3",
+    "XAI_GROK_4_5"
    ],
-   "features": []
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "reasoning",
+    "structured_output",
+    "voice_realtime"
+   ]
   },
   {
    "path": "camel/toolkits/image_generation_toolkit.py",
@@ -223,37 +271,6 @@
    ]
   },
   {
-   "path": "camel/types/enums.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 2311,
-   "endpoints": [],
-   "models": [
-    "grok-2-image-1212",
-    "grok-3",
-    "grok-3-mini",
-    "grok-4-0709",
-    "grok-4.3",
-    "grok-4.5"
-   ],
-   "env": [
-    "COMETAPI_GROK_2_IMAGE_1212",
-    "COMETAPI_GROK_3",
-    "COMETAPI_GROK_3_MINI",
-    "COMETAPI_GROK_4_0709",
-    "ORCAROUTER_GROK_4_3",
-    "XAI_GROK_4_5"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "image_generation",
-    "reasoning",
-    "structured_output",
-    "voice_realtime"
-   ]
-  },
-  {
    "path": "camel/utils/commons.py",
    "kind": "source",
    "lang": "Python",
@@ -264,23 +281,6 @@
     "XAI_API_KEY"
    ],
    "features": [
-    "structured_output"
-   ]
-  },
-  {
-   "path": "docs/mintlify/reference/camel.toolkits.image_generation_toolkit.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 186,
-   "endpoints": [],
-   "models": [
-    "grok-2-image",
-    "grok-2-image-1212",
-    "grok-2-image-latest"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
     "structured_output"
    ]
   },
@@ -326,6 +326,18 @@
    "features": []
   },
   {
+   "path": "examples/models/openai_compatibility_model_examples/grok.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 48,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
    "path": "examples/models/config_files/config.json",
    "kind": "example",
    "lang": null,
@@ -342,18 +354,6 @@
    "kind": "example",
    "lang": null,
    "lines": 6,
-   "endpoints": [],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/models/openai_compatibility_model_examples/grok.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 48,
    "endpoints": [],
    "models": [
     "grok-beta"

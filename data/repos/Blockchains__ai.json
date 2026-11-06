@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T14:49:42Z",
  "description": "The AI Toolkit for TypeScript. From the creators of Next.js, the AI SDK is a free open-source library for building AI-powered applications and agents ",
  "commit": "08d7f0a75e1466d28c3b71c2be4c0d89d552acf9",
- "indexed_at": "2026-11-05T09:50:11Z",
+ "indexed_at": "2026-11-06T09:51:17Z",
  "status": "ok",
  "clone_kb": 155892,
- "seconds": 28.2,
+ "seconds": 59.3,
  "files_scanned": 8881,
  "languages": {
   "TypeScript": 6988,
@@ -22,11 +22,11 @@
  },
  "grok_files": 243,
  "grok_files_by_kind": {
-  "config": 12,
   "doc": 37,
+  "config": 12,
   "test": 23,
-  "source": 24,
-  "example": 147
+  "example": 147,
+  "source": 24
  },
  "hosts": {
   "api.x.ai": 25
@@ -37,10 +37,10 @@
   "/v1/images/generations": 3,
   "/v1/realtime": 2,
   "/v1/files": 2,
+  "/v1/models": 1,
   "/v1/videos/generations": 1,
-  "/v1/batches": 1,
   "/v1/images/edits": 1,
-  "/v1/models": 1
+  "/v1/batches": 1
  },
  "models": {
   "grok-4.7": 46,
@@ -52,40 +52,40 @@
   "grok-4.3": 16,
   "grok-imagine-image": 16,
   "grok-4": 13,
-  "grok-4.20-reasoning": 13,
   "grok-4-fast-reasoning": 13,
+  "grok-4.20-reasoning": 13,
   "grok-code-fast-1": 13,
   "grok-3": 12,
-  "grok-4.20-non-reasoning": 9,
-  "grok-4-fast-non-reasoning": 9,
   "grok-imagine-image-2.0": 9,
+  "grok-4-fast-non-reasoning": 9,
+  "grok-4.20-non-reasoning": 9,
   "grok-imagine-video": 9,
   "grok-4.6": 8,
   "grok-4.1-fast-reasoning": 7,
   "grok-imagine-image-pro": 6,
   "grok-4.20-multi-agent": 4,
-  "grok-4.1-fast-non-reasoning": 3,
   "grok-4-1": 3,
+  "grok-4.1-fast-non-reasoning": 3,
   "grok-4.20": 2,
+  "grok-3-mini-latest": 2,
+  "grok-3-beta": 2,
   "grok-4-1-fast": 2,
   "grok-4-fast": 2,
   "grok-4.20-multi-agent-0309": 2,
   "grok-4.20-0309-reasoning": 2,
-  "grok-3-mini-latest": 2,
-  "grok-3-beta": 2,
-  "grok-imagine-video-1.5-lite": 1,
+  "grok-3-fast-beta": 1,
+  "grok-3-mini-beta": 1,
+  "grok-3-mini-fast-beta": 1,
   "grok-4.20-multi-agent-beta": 1,
   "grok-4.20-non-reasoning-beta": 1,
   "grok-4.20-reasoning-beta": 1,
+  "grok-imagine-video-1.5-lite": 1,
   "grok-2": 1,
   "grok-2-image-1212": 1,
   "grok-4-0709": 1,
   "grok-4-latest": 1,
   "grok-imagine": 1,
-  "grok-4.20-0309-non-reasoning": 1,
-  "grok-3-fast-beta": 1,
-  "grok-3-mini-beta": 1,
-  "grok-3-mini-fast-beta": 1
+  "grok-4.20-0309-non-reasoning": 1
  },
  "env_vars": {
   "XAI_API_KEY": 21,
@@ -130,90 +130,48 @@
  ],
  "packages": [
   {
-   "path": "packages/xai/package.json",
-   "ecosystem": "npm",
-   "name": "@ai-sdk/xai",
-   "version": "5.0.14"
-  },
-  {
    "path": "examples/xai-tts-demo/package.json",
    "ecosystem": "npm",
    "name": "@example/xai-tts-demo",
    "version": "0.0.0"
+  },
+  {
+   "path": "packages/xai/package.json",
+   "ecosystem": "npm",
+   "name": "@ai-sdk/xai",
+   "version": "5.0.14"
   }
  ],
  "snippets": [
   {
-   "path": "packages/harness-grok-build/src/grok-build-subscription.ts",
-   "start": 22,
-   "end": 45,
-   "code": "}): Promise<Readonly<Record<string, string | undefined>>> {\n  if (isHarnessAuthenticationEnvironment(auth)) return auth;\n  if (\n    !shouldResolveNativeSubscription({\n      auth,\n      env,\n      hasDirectCredential: env.XAI_API_KEY != null,\n    })\n  ) {\n    return env;\n  }\n\n  const subscription = await readGrokBuildSubscription({ env });\n  return subscription == null ? env : { ...env, ...subscription };\n}\n\nexport async function readGrokBuildSubscription({\n  env = process.env,\n  homeDirectory = homedir(),\n  fetch,\n}: {\n  env?: Readonly<Record<string, string | undefined>>;\n  homeDirectory?: string;\n  fetch?: typeof globalThis.fetch;"
+   "path": "examples/harness-e2e-next/agent/harness/acp-grok-build/harness.ts",
+   "start": 19,
+   "end": 42,
+   "code": "  executable: 'grok',\n  args: ['agent', 'stdio'],\n  modelMapping: {\n    type: 'session-model',\n    path: 'modelId',\n  },\n  credentialEnv: ['XAI_API_KEY'],\n  credentialBrokering: ({ env, sandboxEnv }) => {\n    if (!env.XAI_API_KEY || !sandboxEnv?.XAI_API_KEY) return [];\n    return [\n      createCredentialRequestTransformation({\n        matchUrl: env.GROK_XAI_API_BASE_URL ?? 'https://api.x.ai/v1',\n        matchHeaders: {\n          Authorization: `Bearer ${sandboxEnv.XAI_API_KEY}`,\n        },\n        transformHeaders: { Authorization: `Bearer ${env.XAI_API_KEY}` },\n      }),\n    ];\n  },\n  instructionMapping: {\n    type: 'filesystem',\n    path: '.grok/AGENTS.md',\n  },\n  providerAuthentication: {"
   },
   {
-   "path": "packages/harness-grok-build/src/grok-build-harness.ts",
-   "start": 345,
-   "end": 368,
-   "code": "    ],\n    forwardEnv: [\n      'GROK_XAI_API_BASE_URL',\n      'GROK_MODELS_BASE_URL',\n      'GROK_CLI_CHAT_PROXY_BASE_URL',\n    ],\n    credentialEnv: ['XAI_API_KEY'],\n    credentialBrokering: ({ env, sandboxEnv, headers }) => {\n      if (!env.XAI_API_KEY || !sandboxEnv?.XAI_API_KEY) return [];\n      return [\n        createCredentialRequestTransformation({\n          matchUrl: env.GROK_XAI_API_BASE_URL ?? 'https://api.x.ai/v1',\n          matchHeaders: {\n            Authorization: `Bearer ${sandboxEnv.XAI_API_KEY}`,\n          },\n          transformHeaders: {\n            ...headers,\n            Authorization: `Bearer ${env.XAI_API_KEY}`,\n            ...(env.GROK_CLI_CHAT_PROXY_BASE_URL == null\n              ? {}\n              : { 'X-XAI-Token-Auth': 'xai-grok-cli' }),\n          },\n        }),\n      ];"
+   "path": "examples/xai-tts-demo/server.mjs",
+   "start": 1,
+   "end": 19,
+   "code": "// Minimal local app to test xAI text-to-speech and speech-to-text through\n// @ai-sdk/xai. The API key remains on this server and is never sent to the\n// browser.\nimport { createServer } from 'node:http';\nimport { xai } from '@ai-sdk/xai';\nimport { generateSpeech, transcribe } from 'ai';\n\nconst PORT = Number(process.env.PORT) || 5051;\nconst VOICES = ['eve', 'ara', 'rex', 'sal', 'leo'];\nconst LANGUAGES = ['auto', 'en', 'es-ES', 'fr', 'de', 'ja', 'pt-BR'];\nconst TRANSCRIPTION_LANGUAGES = ['auto', 'en', 'es', 'fr', 'de', 'ja', 'pt', 'zh'];\nconst CODECS = ['mp3', 'wav', 'pcm', 'mulaw', 'alaw'];\nconst SAMPLE_RATES = [8000, 16000, 22050, 24000, 44100, 48000];\n\nconst options = (values, selected) =>\n  values\n    .map(\n      value =>\n        `<option value=\"${value}\"${value === selected ? ' selected' : ''}>${value}</option>`,"
   },
   {
-   "path": "packages/harness-fx/src/fx-harness.ts",
-   "start": 673,
-   "end": 696,
-   "code": "        sandboxEnv: sandboxEnv ?? {},\n      }).map(({ provider, accessToken, sandboxAccessToken }) =>\n        createCredentialRequestTransformation({\n          matchUrl:\n            provider === 'chatgpt'\n              ? 'https://chatgpt.com/backend-api/codex'\n              : 'https://api.x.ai/v1',\n          matchHeaders: {\n            Authorization: `Bearer ${sandboxAccessToken}`,\n          },\n          transformHeaders: {\n            ...headers,\n            Authorization: `Bearer ${accessToken}`,\n            'x-client-app': FX_CLIENT_APP,\n          },\n        }),\n      );\n      if (subscriptionTransformations.length > 0) {\n        return subscriptionTransformations;\n      }\n\n      const environmentVariableName = suppliedAuthenticationEnvironment\n        ? env.AI_GATEWAY_API_KEY\n          ? 'AI_GATEWAY_API_KEY'"
+   "path": "examples/ai-e2e-next/agent/xai/mcp-server-agent.ts",
+   "start": 1,
+   "end": 14,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { ToolLoopAgent, type InferAgentUIMessage } from 'ai';\nexport const xaiMcpServerAgent = new ToolLoopAgent({\n  model: xai.responses('grok-4-1-fast-reasoning'),\n  tools: {\n    mcp_server: xai.tools.mcpServer({\n      serverUrl: 'https://mcp.deepwiki.com/mcp',\n      serverLabel: 'deepwiki',\n      serverDescription: 'DeepWiki MCP server for repository analysis',\n    }),\n  },\n});\n\nexport type XaiMcpServerMessage = InferAgentUIMessage<typeof xaiMcpServerAgent>;"
   },
   {
-   "path": "packages/harness-opencode/src/opencode-auth.ts",
-   "start": 15,
-   "end": 38,
-   "code": "export const OPENCODE_CREDENTIAL_ENVIRONMENT_VARIABLES = [\n  'AI_GATEWAY_API_KEY',\n  'OPENAI_API_KEY',\n  'ANTHROPIC_API_KEY',\n  'ANTHROPIC_AUTH_TOKEN',\n  'GOOGLE_GENERATIVE_AI_API_KEY',\n  'XAI_API_KEY',\n  'GITHUB_TOKEN',\n  'GITHUB_COPILOT_TOKEN',\n  'POE_API_KEY',\n  'OPENCODE_API_KEY',\n  'GITLAB_TOKEN',\n  OPENCODE_SUBSCRIPTION_ACCESS_TOKEN_ENVIRONMENT_VARIABLE,\n] as const;\n\nconst NON_GOOGLE_DIRECT_CREDENTIAL_ENVIRONMENT_VARIABLES = [\n  'OPENAI_API_KEY',\n  'ANTHROPIC_API_KEY',\n  'ANTHROPIC_AUTH_TOKEN',\n  'XAI_API_KEY',\n  'GITHUB_TOKEN',\n  'GITHUB_COPILOT_TOKEN',\n  'POE_API_KEY',\n  'OPENCODE_API_KEY',"
+   "path": "examples/ai-e2e-next/agent/xai/web-search-agent.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { ToolLoopAgent, type InferAgentUIMessage } from 'ai';\nexport const xaiWebSearchAgent = new ToolLoopAgent({\n  model: xai.responses('grok-4-fast-reasoning'),\n  tools: {\n    web_search: xai.tools.webSearch({\n      enableImageUnderstanding: true,\n    }),\n    x_search: xai.tools.xSearch({\n      enableImageUnderstanding: true,\n    }),\n  },\n  onStepStart: ({ messages }) => {\n    console.log('Messages:', JSON.stringify(messages, null, 2));\n  },\n  onStepFinish: ({ response }) => {\n    console.log('Response headers:', response.headers);\n    console.log('Response body:', JSON.stringify(response.messages, null, 2));"
   },
   {
-   "path": "packages/harness-opencode/src/opencode-subscription.ts",
-   "start": 625,
-   "end": 648,
-   "code": "\nfunction resolveRequestUrl(authentication: OpenCodeSubscription): string {\n  switch (authentication.providerId) {\n    case 'openai':\n      return 'https://chatgpt.com/backend-api/codex';\n    case 'xai':\n      return 'https://api.x.ai/v1';\n    case 'github-copilot':\n      return authentication.enterpriseUrl == null\n        ? 'https://api.githubcopilot.com'\n        : `https://copilot-api.${normalizeDomain(authentication.enterpriseUrl)}`;\n    case 'poe':\n      return 'https://api.poe.com';\n    case 'opencode-go':\n      return 'https://opencode.ai/zen/go/v1';\n    case 'gitlab':\n      return authentication.enterpriseUrl ?? 'https://gitlab.com';\n  }\n}\n\nfunction normalizeDomain(value: string): string {\n  try {\n    return new URL(value.includes('://') ? value : `https://${value}`).host;\n  } catch {"
-  },
-  {
-   "path": "packages/xai/src/index.ts",
-   "start": 16,
-   "end": 36,
-   "code": "  /** @deprecated Use `XaiVideoModelOptions` instead. */\n  XaiVideoModelOptions as XaiVideoProviderOptions,\n} from './xai-video-model-options';\nexport type { XaiSpeechModelOptions } from './xai-speech-model-options';\nexport type { XaiTranscriptionModelOptions } from './xai-transcription-model-options';\nexport type { XaiFilesOptions } from './files/xai-files-options';\nexport { createXai, xai } from './xai-provider';\nexport type { XaiProvider, XaiProviderSettings } from './xai-provider';\nexport { XaiRealtimeModel as Experimental_XaiRealtimeModel } from './realtime/xai-realtime-model';\nexport type { XaiRealtimeModelConfig as Experimental_XaiRealtimeModelConfig } from './realtime/xai-realtime-model';\nexport {\n  codeExecution,\n  imageGeneration,\n  mcpServer,\n  viewImage,\n  viewXVideo,\n  webSearch,\n  xSearch,\n  xaiTools,\n} from './tool';\nexport { VERSION } from './version';"
-  },
-  {
-   "path": "packages/xai/src/xai-provider.ts",
-   "start": 138,
-   "end": 161,
-   "code": "   * Custom WebSocket implementation. Required in runtimes whose native\n   * WebSocket constructor does not support headers for xAI streaming STT.\n   */\n  webSocket?: WebSocketConstructor;\n}\n\nexport function createXai(options: XaiProviderSettings = {}): XaiProvider {\n  const baseURL = withoutTrailingSlash(\n    options.baseURL ?? 'https://api.x.ai/v1',\n  );\n  const getHeaders = () =>\n    withUserAgentSuffix(\n      {\n        Authorization: `Bearer ${loadApiKey({\n          apiKey: options.apiKey,\n          environmentVariableName: 'XAI_API_KEY',\n          description: 'xAI API key',\n        })}`,\n        ...options.headers,\n      },\n      `ai-sdk-xai/${VERSION}`,\n    );\n\n  const createResponsesLanguageModel = (modelId: XaiResponsesModelId) => {"
-  },
-  {
-   "path": "packages/xai/src/xai-transcription-model.ts",
-   "start": 143,
-   "end": 166,
-   "code": "\n    const {\n      value: response,\n      responseHeaders,\n      rawValue: rawResponse,\n    } = await postFormDataToApi({\n      url: `${this.config.baseURL ?? 'https://api.x.ai/v1'}/stt`,\n      headers: combineHeaders(this.config.headers?.(), options.headers),\n      formData,\n      failedResponseHandler: xaiFailedResponseHandler,\n      successfulResponseHandler: createJsonResponseHandler(\n        xaiTranscriptionResponseSchema,\n      ),\n      abortSignal: options.abortSignal,\n      fetch: this.config.fetch,\n    });\n\n    return {\n      text: response.text,\n      segments:\n        response.words?.map(word => ({\n          text: word.text,\n          startSecond: word.start,\n          endSecond: word.end,"
-  },
-  {
-   "path": "packages/xai/src/xai-image-model.ts",
-   "start": 159,
-   "end": 182,
-   "code": "    if (imageUrls.length === 1) {\n      body.image = { url: imageUrls[0], type: 'image_url' };\n    } else if (imageUrls.length > 1) {\n      body.images = imageUrls.map(url => ({ url, type: 'image_url' }));\n    }\n\n    const baseURL = this.config.baseURL ?? 'https://api.x.ai/v1';\n    const currentDate = this.config._internal?.currentDate?.() ?? new Date();\n    const { value: response, responseHeaders } = await postJsonToApi({\n      url: `${baseURL}${endpoint}`,\n      headers: combineHeaders(this.config.headers?.(), headers),\n      body,\n      failedResponseHandler: xaiFailedResponseHandler,\n      successfulResponseHandler: createJsonResponseHandler(\n        xaiImageResponseSchema,\n      ),\n      abortSignal,\n      fetch: this.config.fetch,\n    });\n\n    if (response.data.some(image => image.respect_moderation === false)) {\n      throw new Error(\n        'Image generation was blocked due to a content policy violation.',\n      );"
-  },
-  {
-   "path": "packages/xai/src/xai-video-model.ts",
-   "start": 577,
-   "end": 600,
-   "code": "    options: Parameters<NonNullable<VideoModelV4['doStart']>>[0],\n  ): Promise<VideoModelV4OperationStartResult> {\n    const currentDate = this.config._internal?.currentDate?.() ?? new Date();\n    const { body, warnings, isEdit, isExtension } =\n      await this.buildRequestBody(options);\n\n    const baseURL = this.config.baseURL ?? 'https://api.x.ai/v1';\n\n    // Determine endpoint based on mode\n    let endpoint: string;\n    if (isEdit) {\n      endpoint = `${baseURL}/videos/edits`;\n    } else if (isExtension) {\n      endpoint = `${baseURL}/videos/extensions`;\n    } else {\n      endpoint = `${baseURL}/videos/generations`;\n    }\n\n    const { value: createResponse, responseHeaders } = await postJsonToApi({\n      url: endpoint,\n      headers: combineHeaders(this.config.headers(), options.headers),\n      body,\n      failedResponseHandler: xaiFailedResponseHandler,\n      successfulResponseHandler: createJsonResponseHandler("
-  },
-  {
-   "path": "packages/xai/src/xai-batch.ts",
-   "start": 677,
-   "end": 700,
-   "code": "        },\n      },\n    };\n  }\n\n  private getUrl(path: string) {\n    return `${this.options.config.baseURL ?? 'https://api.x.ai/v1'}${path}`;\n  }\n}\n\nfunction convertXaiBatchStatus(batch: XaiBatchResponse): BatchV4Status {\n  const requestCounts = normalizeBatchRequestCounts({\n    total: batch.state?.num_requests,\n    pending: batch.state?.num_pending,\n    completed: batch.state?.num_success,\n    failed:\n      batch.state?.num_error != null && batch.state?.num_cancelled != null\n        ? batch.state.num_error + batch.state.num_cancelled\n        : undefined,\n  });\n  const isCancelled =\n    batch.cancel_time != null || batch.cancel_by_xai_message != null;\n  const isExpired = isPastDate(batch.expire_time);\n  const status: BatchV4Status['status'] ="
-  },
-  {
-   "path": "packages/xai/src/responses/xai-responses-language-model.ts",
-   "start": 51,
-   "end": 74,
-   "code": "  baseURL: string | undefined;\n  headers?: () => Record<string, string | undefined>;\n  generateId: () => string;\n  fetch?: FetchFunction;\n};\n\nfunction createXaiResponsesStreamError({\n  message,\n  code,\n  eventType,\n  data,\n}: {\n  message: string;\n  code?: string | null;\n  eventType: 'error' | 'response.failed';\n  data: unknown;\n}) {\n  const statusCode = getHttpStatusCode(code);\n\n  return createProviderStreamError({\n    message,\n    type: eventType,\n    code: code ?? undefined,\n    ...(statusCode != null"
+   "path": "examples/ai-e2e-next/agent/xai/image-generation-agent.ts",
+   "start": 1,
+   "end": 16,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { ToolLoopAgent, type InferAgentUIMessage } from 'ai';\n\nexport const xaiImageGenerationAgent = new ToolLoopAgent({\n  model: xai.responses('grok-4.7'),\n  tools: {\n    image_generation: xai.tools.imageGeneration(),\n  },\n  onStepFinish: ({ request }) => {\n    console.log(JSON.stringify(request.body, null, 2));\n  },\n});\n\nexport type XaiImageGenerationMessage = InferAgentUIMessage<\n  typeof xaiImageGenerationAgent\n>;"
   },
   {
    "path": "examples/ai-e2e-next/components/tool/xai-image-generation-view.tsx",
@@ -226,6 +184,12 @@
    "start": 1,
    "end": 23,
    "code": "'use client';\n\nimport { experimental_useRealtime } from '@ai-sdk/react';\nimport { openai } from '@ai-sdk/openai';\nimport { google } from '@ai-sdk/google';\nimport { xai } from '@ai-sdk/xai';\nimport { useState, useRef, useEffect, useMemo } from 'react';\n\ntype Provider = 'openai' | 'google' | 'xai';\n\ntype VoiceOption = { id: string; label: string };\n\nfunction toVoiceOptions(names: string[]): VoiceOption[] {\n  return names.map(n => ({ id: n, label: n }));\n}\n\nconst PROVIDER_CONFIG: Record<\n  Provider,\n  {\n    label: string;\n    defaultModel: string;\n    staticVoices: VoiceOption[];\n    createModel: ("
+  },
+  {
+   "path": "examples/ai-e2e-next/app/api/upload-file/route.ts",
+   "start": 1,
+   "end": 21,
+   "code": "import { anthropic } from '@ai-sdk/anthropic';\nimport { google } from '@ai-sdk/google';\nimport { openai } from '@ai-sdk/openai';\nimport { xai } from '@ai-sdk/xai';\nimport { uploadFile } from 'ai';\n\nexport async function POST(req: Request) {\n  const {\n    data,\n    mediaType,\n    filename,\n    provider,\n  }: {\n    data: string;\n    mediaType: string;\n    filename: string;\n    provider: 'anthropic' | 'google' | 'openai' | 'xai';\n  } = await req.json();\n\n  const filesMap = {\n    anthropic: () => anthropic.files(),"
   },
   {
    "path": "examples/ai-e2e-next/app/api/realtime/[...path]/route.ts",
@@ -252,139 +216,187 @@
    "code": "import { xai } from '@ai-sdk/xai';\nimport {\n  convertToModelMessages,\n  createUIMessageStreamResponse,\n  streamText,\n  toUIMessageStream,\n  type UIMessage,\n} from 'ai';\nexport const maxDuration = 30;\n\nexport async function POST(req: Request) {\n  const { messages }: { messages: UIMessage[] } = await req.json();\n\n  const result = streamText({\n    model: xai('grok-4.7'),\n    messages: await convertToModelMessages(messages),\n  });\n"
   },
   {
-   "path": "examples/ai-e2e-next/app/api/upload-file/route.ts",
-   "start": 1,
-   "end": 21,
-   "code": "import { anthropic } from '@ai-sdk/anthropic';\nimport { google } from '@ai-sdk/google';\nimport { openai } from '@ai-sdk/openai';\nimport { xai } from '@ai-sdk/xai';\nimport { uploadFile } from 'ai';\n\nexport async function POST(req: Request) {\n  const {\n    data,\n    mediaType,\n    filename,\n    provider,\n  }: {\n    data: string;\n    mediaType: string;\n    filename: string;\n    provider: 'anthropic' | 'google' | 'openai' | 'xai';\n  } = await req.json();\n\n  const filesMap = {\n    anthropic: () => anthropic.files(),"
-  },
-  {
-   "path": "examples/ai-e2e-next/agent/xai/web-search-agent.ts",
-   "start": 1,
-   "end": 18,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { ToolLoopAgent, type InferAgentUIMessage } from 'ai';\nexport const xaiWebSearchAgent = new ToolLoopAgent({\n  model: xai.responses('grok-4-fast-reasoning'),\n  tools: {\n    web_search: xai.tools.webSearch({\n      enableImageUnderstanding: true,\n    }),\n    x_search: xai.tools.xSearch({\n      enableImageUnderstanding: true,\n    }),\n  },\n  onStepStart: ({ messages }) => {\n    console.log('Messages:', JSON.stringify(messages, null, 2));\n  },\n  onStepFinish: ({ response }) => {\n    console.log('Response headers:', response.headers);\n    console.log('Response body:', JSON.stringify(response.messages, null, 2));"
-  },
-  {
-   "path": "examples/ai-e2e-next/agent/xai/image-generation-agent.ts",
-   "start": 1,
-   "end": 16,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { ToolLoopAgent, type InferAgentUIMessage } from 'ai';\n\nexport const xaiImageGenerationAgent = new ToolLoopAgent({\n  model: xai.responses('grok-4.7'),\n  tools: {\n    image_generation: xai.tools.imageGeneration(),\n  },\n  onStepFinish: ({ request }) => {\n    console.log(JSON.stringify(request.body, null, 2));\n  },\n});\n\nexport type XaiImageGenerationMessage = InferAgentUIMessage<\n  typeof xaiImageGenerationAgent\n>;"
-  },
-  {
-   "path": "examples/ai-e2e-next/agent/xai/mcp-server-agent.ts",
-   "start": 1,
-   "end": 14,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { ToolLoopAgent, type InferAgentUIMessage } from 'ai';\nexport const xaiMcpServerAgent = new ToolLoopAgent({\n  model: xai.responses('grok-4-1-fast-reasoning'),\n  tools: {\n    mcp_server: xai.tools.mcpServer({\n      serverUrl: 'https://mcp.deepwiki.com/mcp',\n      serverLabel: 'deepwiki',\n      serverDescription: 'DeepWiki MCP server for repository analysis',\n    }),\n  },\n});\n\nexport type XaiMcpServerMessage = InferAgentUIMessage<typeof xaiMcpServerAgent>;"
-  },
-  {
-   "path": "examples/xai-tts-demo/server.mjs",
-   "start": 1,
-   "end": 19,
-   "code": "// Minimal local app to test xAI text-to-speech and speech-to-text through\n// @ai-sdk/xai. The API key remains on this server and is never sent to the\n// browser.\nimport { createServer } from 'node:http';\nimport { xai } from '@ai-sdk/xai';\nimport { generateSpeech, transcribe } from 'ai';\n\nconst PORT = Number(process.env.PORT) || 5051;\nconst VOICES = ['eve', 'ara', 'rex', 'sal', 'leo'];\nconst LANGUAGES = ['auto', 'en', 'es-ES', 'fr', 'de', 'ja', 'pt-BR'];\nconst TRANSCRIPTION_LANGUAGES = ['auto', 'en', 'es', 'fr', 'de', 'ja', 'pt', 'zh'];\nconst CODECS = ['mp3', 'wav', 'pcm', 'mulaw', 'alaw'];\nconst SAMPLE_RATES = [8000, 16000, 22050, 24000, 44100, 48000];\n\nconst options = (values, selected) =>\n  values\n    .map(\n      value =>\n        `<option value=\"${value}\"${value === selected ? ' selected' : ''}>${value}</option>`,"
-  },
-  {
    "path": "examples/ai-functions/src/deprecated-options-types.test-d.ts",
    "start": 130,
    "end": 153,
    "code": "} from '@ai-sdk/togetherai';\nimport type {\n  XaiImageModelOptions,\n  XaiImageProviderOptions,\n  XaiLanguageModelResponsesOptions,\n  XaiResponsesProviderOptions,\n} from '@ai-sdk/xai';\nimport { describe, expectTypeOf, it } from 'vitest';\n\ndescribe('deprecated provider options type aliases', () => {\n  describe('@ai-sdk/alibaba', () => {\n    it('AlibabaProviderOptions equals AlibabaLanguageModelOptions', () => {\n      expectTypeOf<AlibabaProviderOptions>().toEqualTypeOf<AlibabaLanguageModelOptions>();\n    });\n    it('AlibabaVideoProviderOptions equals AlibabaVideoModelOptions', () => {\n      expectTypeOf<AlibabaVideoProviderOptions>().toEqualTypeOf<AlibabaVideoModelOptions>();\n    });\n  });\n\n  describe('@ai-sdk/amazon-bedrock', () => {\n    it('BedrockProviderOptions equals AmazonBedrockLanguageModelOptions', () => {\n      expectTypeOf<BedrockProviderOptions>().toEqualTypeOf<AmazonBedrockLanguageModelOptions>();\n    });\n    it('BedrockRerankingOptions equals AmazonBedrockRerankingModelOptions', () => {"
   },
   {
-   "path": "examples/ai-functions/src/generate-image/xai/basic.ts",
+   "path": "examples/ai-functions/src/start-batch/xai/cancel-and-list.ts",
    "start": 1,
-   "end": 13,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { generateImage } from 'ai';\nimport { presentImages } from '../../lib/present-image';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const { image } = await generateImage({\n    model: xai.image('grok-imagine-image'),\n    prompt: 'A salamander at dusk in a forest pond surrounded by fireflies.',\n  });\n\n  await presentImages([image]);\n});"
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport {\n  experimental_cancelBatch as cancelBatch,\n  experimental_getBatchStatus as getBatchStatus,\n  experimental_listBatches as listBatches,\n  experimental_startBatch as startBatch,\n} from 'ai';\nimport { print } from '../../lib/print';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const provider = xai;\n  const batch = await startBatch({\n    provider,\n    requests: [\n      {\n        id: 'capital-france',\n        type: 'text',"
   },
   {
-   "path": "examples/ai-functions/src/generate-image/xai/edit.ts",
+   "path": "examples/ai-functions/src/start-batch/xai/provider-tools.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport {\n  experimental_getBatchResults as getBatchResults,\n  experimental_getBatchStatus as getBatchStatus,\n  experimental_startBatch as startBatch,\n} from 'ai';\nimport { setTimeout } from 'node:timers/promises';\nimport { print } from '../../lib/print';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const provider = xai;\n  const model = 'grok-4.3';\n  const tools = {\n    web_search: xai.tools.webSearch(),\n  };\n  const batch = await startBatch({\n    provider,"
+  },
+  {
+   "path": "examples/ai-functions/src/start-batch/xai/image.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport {\n  experimental_getBatchResults as getBatchResults,\n  experimental_getBatchStatus as getBatchStatus,\n  experimental_startBatch as startBatch,\n} from 'ai';\nimport { setTimeout } from 'node:timers/promises';\nimport { presentImages } from '../../lib/present-image';\nimport { print } from '../../lib/print';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const provider = xai;\n  const batch = await startBatch({\n    provider,\n    requests: [\n      {\n        id: 'red-panda',"
+  },
+  {
+   "path": "examples/ai-functions/src/start-batch/xai/basic.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport {\n  experimental_getBatchResults as getBatchResults,\n  experimental_getBatchStatus as getBatchStatus,\n  experimental_startBatch as startBatch,\n} from 'ai';\nimport { setTimeout } from 'node:timers/promises';\nimport { print } from '../../lib/print';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const provider = xai;\n  const model = 'grok-4.3';\n\n  const batch = await startBatch({\n    provider,\n    requests: [\n      {"
+  },
+  {
+   "path": "examples/ai-functions/src/start-batch/xai/client-tools.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport {\n  experimental_getBatchResults as getBatchResults,\n  experimental_getBatchStatus as getBatchStatus,\n  experimental_startBatch as startBatch,\n  tool,\n} from 'ai';\nimport { setTimeout } from 'node:timers/promises';\nimport { z } from 'zod';\nimport { print } from '../../lib/print';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const provider = xai;\n  const model = 'grok-4.3';\n  let executeCallCount = 0;\n  const tools = {\n    get_weather: tool({"
+  },
+  {
+   "path": "examples/ai-functions/src/agent/xai/agent-research.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { ToolLoopAgent } from 'ai';\nimport { run } from '../../lib/run';\n\nconst agent = new ToolLoopAgent({\n  model: xai.responses('grok-4-1-fast-non-reasoning'),\n  instructions: 'you are a helpful research assistant',\n  tools: {\n    web_search: xai.tools.webSearch(),\n    x_search: xai.tools.xSearch(),\n    code_execution: xai.tools.codeExecution(),\n  },\n});\n\nrun(async () => {\n  const result = await agent.stream({\n    prompt: 'research prompt caching in llms and explain how it reduces costs',\n  });"
+  },
+  {
+   "path": "examples/ai-functions/src/agent/xai/tui.ts",
    "start": 1,
    "end": 19,
-   "code": "import { readFileSync } from 'node:fs';\nimport { xai } from '@ai-sdk/xai';\nimport { generateImage } from 'ai';\nimport { presentImages } from '../../lib/present-image';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const imageBuffer = readFileSync('data/comic-cat.png');\n\n  console.log('INPUT IMAGE:');\n  await presentImages([\n    {\n      uint8Array: new Uint8Array(imageBuffer),\n      base64: '',\n      mediaType: 'image/png',\n    },\n  ]);\n\n  const prompt = 'Turn the cat into a golden retriever dog';"
+   "code": "import { runAgentTUI } from '@ai-sdk/tui';\nimport { xai } from '@ai-sdk/xai';\nimport { ToolLoopAgent } from 'ai';\nimport { run } from '../../lib/run';\n\nconst agent = new ToolLoopAgent({\n  model: xai.responses('grok-4-1-fast-non-reasoning'),\n  instructions:\n    'You are a helpful research assistant. Use search and code execution tools when they help.',\n  tools: {\n    web_search: xai.tools.webSearch(),\n    x_search: xai.tools.xSearch(),\n    code_execution: xai.tools.codeExecution(),\n  },\n});\n\nrun(async () => {\n  await runAgentTUI({\n    title: 'XAI Research Agent',"
   },
   {
-   "path": "examples/ai-functions/src/generate-image/xai/grok-imagine-image-2-0.ts",
-   "start": 1,
-   "end": 13,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { generateImage } from 'ai';\nimport { presentImages } from '../../lib/present-image';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const { image } = await generateImage({\n    model: xai.image('grok-imagine-image-2.0'),\n    prompt: 'A salamander at dusk in a forest pond surrounded by fireflies.',\n  });\n\n  await presentImages([image]);\n});"
-  },
-  {
-   "path": "examples/ai-functions/src/generate-image/xai/many.ts",
-   "start": 1,
-   "end": 14,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { generateImage } from 'ai';\nimport { presentImages } from '../../lib/present-image';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const { images } = await generateImage({\n    model: xai.image('grok-imagine-image'),\n    n: 3,\n    prompt: 'A chicken flying into the sunset in the style of anime.',\n  });\n\n  await presentImages(images);\n});"
-  },
-  {
-   "path": "examples/ai-functions/src/generate-image/xai/edit-multi-image.ts",
-   "start": 1,
-   "end": 19,
-   "code": "import { readFileSync } from 'node:fs';\nimport { xai } from '@ai-sdk/xai';\nimport { generateImage } from 'ai';\nimport { presentImages } from '../../lib/present-image';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const cat = readFileSync('data/comic-cat.png');\n  const dog = readFileSync('data/comic-dog.png');\n\n  console.log('INPUT IMAGES: 2 animal images');\n\n  const prompt =\n    'Combine these two animals into a single image, like a group photo, retaining the style and appearance of the original images';\n  console.log(`PROMPT: ${prompt}`);\n\n  const { images } = await generateImage({\n    model: xai.image('grok-imagine-image'),\n    prompt: {"
-  },
-  {
-   "path": "examples/ai-functions/src/generate-image/xai/b64-cost-quality.ts",
+   "path": "examples/ai-functions/src/transcribe/xai/string.ts",
    "start": 1,
    "end": 18,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { generateImage } from 'ai';\nimport { presentImages } from '../../lib/present-image';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const { image, providerMetadata } = await generateImage({\n    model: xai.image('grok-imagine-image'),\n    prompt:\n      'A serene mountain lake at sunrise with mist rising from the water.',\n    providerOptions: {\n      xai: {\n        quality: 'high',\n        user: 'example-user-123',\n      },\n    },\n  });\n"
+   "code": "import { xai, type XaiTranscriptionModelOptions } from '@ai-sdk/xai';\nimport { transcribe } from 'ai';\nimport { readFile } from 'fs/promises';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = await transcribe({\n    model: xai.transcription(),\n    audio: Buffer.from(await readFile('./data/galileo.mp3')).toString('base64'),\n    providerOptions: {\n      xai: {\n        language: 'en',\n        format: true,\n        keyterm: ['Galileo', 'Jupiter'],\n      } satisfies XaiTranscriptionModelOptions,\n    },\n  });\n"
   },
   {
-   "path": "examples/ai-functions/src/generate-image/xai/imagine-image-pro.ts",
-   "start": 1,
-   "end": 13,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { generateImage } from 'ai';\nimport { presentImages } from '../../lib/present-image';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const { image } = await generateImage({\n    model: xai.image('grok-imagine-image-pro'),\n    prompt: 'A salamander at dusk in a forest pond surrounded by fireflies.',\n  });\n\n  await presentImages([image]);\n});"
-  },
-  {
-   "path": "examples/ai-functions/src/generate-image/xai/resolution.ts",
+   "path": "examples/ai-functions/src/transcribe/xai/url.ts",
    "start": 1,
    "end": 18,
-   "code": "import { xai, type XaiImageModelOptions } from '@ai-sdk/xai';\nimport { generateImage } from 'ai';\nimport { presentImages } from '../../lib/present-image';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const { image } = await generateImage({\n    model: xai.image('grok-imagine-image'),\n    prompt: 'A salamander at dusk in a forest pond surrounded by fireflies.',\n    providerOptions: {\n      xai: {\n        resolution: '2k',\n      } satisfies XaiImageModelOptions,\n    },\n  });\n\n  await presentImages([image]);\n});"
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { transcribe } from 'ai';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = await transcribe({\n    model: xai.transcription(),\n    audio: new URL(\n      'https://github.com/vercel/ai/raw/refs/heads/main/examples/ai-functions/data/galileo.mp3',\n    ),\n  });\n\n  console.log('Text:', result.text);\n  console.log('Duration:', result.durationInSeconds);\n  console.log('Language:', result.language);\n  console.log('Segments:', result.segments);\n  console.log('Warnings:', result.warnings);\n  console.log('Responses:', result.responses);"
   },
   {
-   "path": "examples/ai-functions/src/generate-image/xai/resolution-1-5k.ts",
+   "path": "examples/ai-functions/src/transcribe/xai/basic.ts",
    "start": 1,
    "end": 18,
-   "code": "import { xai, type XaiImageModelOptions } from '@ai-sdk/xai';\nimport { generateImage } from 'ai';\nimport { presentImages } from '../../lib/present-image';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const { image } = await generateImage({\n    model: xai.image('grok-imagine-image-pro'),\n    prompt: 'A salamander at dusk in a forest pond surrounded by fireflies.',\n    providerOptions: {\n      xai: {\n        resolution: '1.5k',\n      } satisfies XaiImageModelOptions,\n    },\n  });\n\n  await presentImages([image]);\n});"
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { transcribe } from 'ai';\nimport { readFile } from 'fs/promises';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = await transcribe({\n    model: xai.transcription(),\n    audio: await readFile('data/galileo.mp3'),\n  });\n\n  console.log('Text:', result.text);\n  console.log('Duration:', result.durationInSeconds);\n  console.log('Language:', result.language);\n  console.log('Segments:', result.segments);\n  console.log('Warnings:', result.warnings);\n  console.log('Responses:', result.responses);\n});"
   },
   {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-reasoning.ts",
+   "path": "examples/ai-functions/src/stream-text/xai/responses-usage.ts",
    "start": 1,
    "end": 18,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { generateText } from 'ai';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = await generateText({\n    model: xai.responses('grok-3-mini-latest'),\n    prompt: 'How many \"r\"s are in the word \"strawberry\"?',\n  });\n\n  for (const part of result.content) {\n    switch (part.type) {\n      case 'reasoning': {\n        console.log('--- reasoning ---');\n        console.log(part.text);\n        break;\n      }\n      case 'text': {"
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { streamText } from 'ai';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = streamText({\n    model: xai.responses('grok-3-mini'),\n    prompt: 'Say a single word.',\n  });\n\n  for await (const textPart of result.textStream) {\n    process.stdout.write(textPart);\n  }\n\n  console.log();\n  console.log();\n  console.log('sdk usage:', JSON.stringify(await result.usage, null, 2));\n});"
   },
   {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-usage-full.ts",
+   "path": "examples/ai-functions/src/stream-text/xai/responses-file-search.ts",
    "start": 1,
    "end": 18,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { generateText } from 'ai';\nimport { run } from '../../lib/run';\n\nconst models = [\n  'grok-4.5',\n  'grok-4',\n  'grok-4-1-fast-reasoning',\n  'grok-4-1-fast-non-reasoning',\n  'grok-4-fast-reasoning',\n  'grok-4-fast-non-reasoning',\n  'grok-code-fast-1',\n  'grok-3',\n  'grok-3-mini',\n];\n\nrun(async () => {\n  for (const modelId of models) {"
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { streamText } from 'ai';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = streamText({\n    model: xai.responses('grok-4-1-fast-reasoning'),\n    prompt: 'What documents do you have access to?',\n    tools: {\n      file_search: xai.tools.fileSearch({\n        vectorStoreIds: ['collection_your-id-here'],\n      }),\n    },\n  });\n\n  for await (const part of result.textStream) {\n    process.stdout.write(part);\n  }"
   },
   {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-image-multiturn.ts",
+   "path": "examples/ai-functions/src/stream-text/xai/responses-output-object.ts",
    "start": 1,
    "end": 18,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { generateText } from 'ai';\nimport 'dotenv/config';\n\nasync function main() {\n  console.log(\n    'Testing xai.responses() with image in multiturn conversation...\\n',\n  );\n\n  const imageUrl =\n    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg';\n\n  console.log('Turn 1: Describe the image');\n  const result1 = await generateText({\n    model: xai.responses('grok-4-1-fast-non-reasoning'),\n    messages: [\n      {\n        role: 'user',"
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { Output, streamText } from 'ai';\nimport { z } from 'zod';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = streamText({\n    model: xai.responses('grok-4.7'),\n    output: Output.object({\n      schema: z.object({\n        characters: z.array(\n          z.object({\n            name: z.string(),\n            class: z\n              .string()\n              .describe('Character class, e.g. warrior, mage, or thief.'),\n            description: z.string(),\n          }),"
   },
   {
-   "path": "examples/ai-functions/src/generate-text/xai/image-detail.ts",
+   "path": "examples/ai-functions/src/stream-text/xai/tool-call.ts",
    "start": 1,
    "end": 18,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { generateText } from 'ai';\nimport fs from 'node:fs';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = await generateText({\n    model: xai('grok-4.7'),\n    messages: [\n      {\n        role: 'user',\n        content: [\n          { type: 'text', text: 'Describe the image in detail.' },\n          {\n            type: 'file',\n            mediaType: 'image/png',\n            data: fs.readFileSync('./data/comic-cat.png'),\n            // process the image at reduced resolution (fewer input tokens)"
+   "code": "import { xai } from '@ai-sdk/xai';\nimport {\n  streamText,\n  type ModelMessage,\n  type ToolCallPart,\n  type ToolResultPart,\n} from 'ai';\nimport { weatherTool } from '../../tools/weather-tool';\nimport { run } from '../../lib/run';\n\nconst messages: ModelMessage[] = [];\n\nrun(async () => {\n  let toolResponseAvailable = false;\n\n  const result = streamText({\n    model: xai('grok-4.7'),\n    maxOutputTokens: 512,"
   },
   {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-output-object.ts",
+   "path": "examples/ai-functions/src/stream-text/xai/responses.ts",
    "start": 1,
    "end": 18,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { generateText, Output } from 'ai';\nimport { z } from 'zod';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = await generateText({\n    model: xai.responses('grok-4.7'),\n    output: Output.object({\n      schema: z.object({\n        recipe: z.object({\n          name: z.string(),\n          ingredients: z.array(\n            z.object({\n              name: z.string(),\n              amount: z.string(),\n            }),\n          ),"
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { streamText } from 'ai';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = streamText({\n    model: xai.responses('grok-4-1-fast-reasoning'),\n    prompt: 'Invent a new holiday and describe its traditions.',\n  });\n\n  for await (const textPart of result.textStream) {\n    process.stdout.write(textPart);\n  }\n\n  console.log();\n  console.log('Token usage:', await result.usage);\n  console.log('Finish reason:', await result.finishReason);\n});"
   },
   {
-   "path": "examples/ai-functions/src/generate-text/xai/tool-call.ts",
+   "path": "examples/ai-functions/src/stream-text/xai/responses-image-generation.ts",
    "start": 1,
    "end": 18,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { generateText, tool } from 'ai';\nimport { z } from 'zod';\nimport { weatherTool } from '../../tools/weather-tool';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = await generateText({\n    model: xai('grok-4-1-fast-reasoning'),\n    maxOutputTokens: 512,\n    tools: {\n      weather: weatherTool,\n      cityAttractions: tool({\n        inputSchema: z.object({ city: z.string() }),\n      }),\n    },\n    prompt:\n      'What is the weather in San Francisco and what attractions should I visit?',"
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { streamText } from 'ai';\nimport { convertBase64ToUint8Array } from '../../lib/convert-base64';\nimport { presentImages } from '../../lib/present-image';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = streamText({\n    model: xai.responses('grok-4.7'),\n    prompt: 'Generate an image of an origami fox in a paper forest',\n    tools: {\n      image_generation: xai.tools.imageGeneration({ action: 'generate' }),\n    },\n  });\n\n  for await (const part of result.stream) {\n    if (part.type === 'text-delta') {\n      process.stdout.write(part.text);"
   },
   {
-   "path": "examples/ai-functions/src/generate-text/xai/grok-3-mini-output-object-reasoning-effort.ts",
+   "path": "examples/ai-functions/src/stream-text/xai/chatbot.ts",
    "start": 1,
    "end": 18,
-   "code": "import { xai } from '@ai-sdk/xai';\nimport { generateText, Output } from 'ai';\nimport { z } from 'zod';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = await generateText({\n    model: xai('grok-3-mini'),\n    output: Output.object({\n      schema: z.object({\n        name: z.string(),\n        age: z.number().optional(),\n        occupation: z.string().optional(),\n      }),\n    }),\n    instructions: 'identify the person information from the following text',\n    messages: [\n      {"
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { isStepCount, streamText, tool, type ModelMessage } from 'ai';\nimport * as readline from 'node:readline/promises';\nimport { z } from 'zod';\nimport { run } from '../../lib/run';\n\nconst terminal = readline.createInterface({\n  input: process.stdin,\n  output: process.stdout,\n});\n\nconst messages: ModelMessage[] = [];\n\nrun(async () => {\n  while (true) {\n    const userInput = await terminal.question('You: ');\n\n    messages.push({ role: 'user', content: userInput });"
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/openai-compat-file-search.ts",
+   "start": 1,
+   "end": 24,
+   "code": "import { createOpenAI } from '@ai-sdk/openai';\nimport { streamText } from 'ai';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const openai = createOpenAI({\n    baseURL: 'https://api.x.ai/v1',\n    apiKey: process.env.XAI_API_KEY,\n  });\n\n  const result = streamText({\n    model: openai('grok-4-1-fast-reasoning'),\n    prompt: 'What documents do you have access to?',\n    tools: {\n      file_search: openai.tools.fileSearch({\n        vectorStoreIds: ['vs_example'],\n        maxNumResults: 5,\n      }),\n    },\n  });\n\n  for await (const chunk of result.stream) {\n    switch (chunk.type) {\n      case 'text-delta': {"
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/output-object-name-description.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { Output, streamText } from 'ai';\nimport { z } from 'zod';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = streamText({\n    model: xai('grok-4.7'),\n    output: Output.object({\n      schema: z.object({\n        name: z.string(),\n        ingredients: z.array(\n          z.object({\n            name: z.string(),\n            amount: z.string(),\n          }),\n        ),\n        steps: z.array(z.string()),"
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-usage-full.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { streamText } from 'ai';\nimport { run } from '../../lib/run';\n\nconst models = [\n  'grok-4.5',\n  'grok-4',\n  'grok-4-1-fast-reasoning',\n  'grok-4-1-fast-non-reasoning',\n  'grok-4-fast-reasoning',\n  'grok-4-fast-non-reasoning',\n  'grok-code-fast-1',\n  'grok-3',\n  'grok-3-mini',\n];\n\nrun(async () => {\n  for (const modelId of models) {"
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-image.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { streamText } from 'ai';\nimport fs from 'node:fs';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = streamText({\n    model: xai.responses('grok-4.7'),\n    messages: [\n      {\n        role: 'user',\n        content: [\n          { type: 'text', text: 'Describe the image in detail.' },\n          {\n            type: 'file',\n            mediaType: 'image',\n            data: fs.readFileSync('./data/comic-cat.png'),\n          },"
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-reasoning-effort.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { streamText } from 'ai';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = streamText({\n    model: xai.responses('grok-3-mini-latest'),\n    reasoning: 'medium',\n    prompt: 'How many \"r\"s are in the word \"strawberry\"?',\n  });\n\n  let inReasoning = false;\n  let inText = false;\n\n  for await (const part of result.stream) {\n    if (part.type === 'reasoning-delta') {\n      if (!inReasoning) {\n        console.log('Reasoning:');"
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/usage.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { streamText } from 'ai';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = streamText({\n    model: xai('grok-3-mini'),\n    prompt: 'Say a single word.',\n  });\n\n  for await (const textPart of result.textStream) {\n    process.stdout.write(textPart);\n  }\n\n  console.log();\n  console.log();\n  console.log('sdk usage:', JSON.stringify(await result.usage, null, 2));\n});"
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-encrypted-reasoning.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai, type XaiLanguageModelResponsesOptions } from '@ai-sdk/xai';\nimport { streamText } from 'ai';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const models = ['grok-code-fast-1', 'grok-4-1-fast-reasoning'];\n\n  for (const modelId of models) {\n    console.log(`\\n=> ${modelId}`);\n\n    const result = streamText({\n      model: xai.responses(modelId),\n      prompt: 'What is 2+2? Think carefully.',\n      providerOptions: {\n        xai: {\n          store: false,\n        } satisfies XaiLanguageModelResponsesOptions,\n      },"
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/web-search-image-understanding.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { streamText } from 'ai';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const { stream } = streamText({\n    model: xai.responses('grok-4-1-fast-non-reasoning'),\n    tools: {\n      web_search: xai.tools.webSearch({\n        allowedDomains: ['x.ai'],\n        enableImageUnderstanding: true,\n      }),\n    },\n    prompt:\n      'search x.ai website and describe any images you find on the homepage',\n  });\n\n  console.log('searching x.ai with image understanding...\\n');"
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/output-object.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { Output, streamText } from 'ai';\nimport { z } from 'zod';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = streamText({\n    model: xai('grok-4.7'),\n    output: Output.object({\n      schema: z.object({\n        characters: z.array(\n          z.object({\n            name: z.string(),\n            class: z\n              .string()\n              .describe('Character class, e.g. warrior, mage, or thief.'),\n            description: z.string(),\n          }),"
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-grok-code-fast-1.ts",
+   "start": 1,
+   "end": 18,
+   "code": "import { xai } from '@ai-sdk/xai';\nimport { streamText } from 'ai';\nimport { run } from '../../lib/run';\n\nrun(async () => {\n  const result = streamText({\n    model: xai.responses('grok-code-fast-1'),\n    prompt: 'Invent a new holiday and describe its traditions.',\n  });\n\n  for await (const part of result.stream) {\n    if (part.type === 'reasoning-delta') {\n      process.stdout.write(`\\x1b[34m${part.text}\\x1b[0m`);\n    } else if (part.type === 'text-delta') {\n      process.stdout.write(part.text);\n    }\n  }\n  console.log();"
   }
  ],
  "files": [
+  {
+   "path": "CHANGELOG.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 90,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
   {
    "path": "turbo.json",
    "kind": "config",
@@ -398,15 +410,70 @@
    "features": []
   },
   {
-   "path": "CHANGELOG.md",
+   "path": "skills/update-provider-models/SKILL.md",
    "kind": "doc",
    "lang": null,
-   "lines": 90,
+   "lines": 193,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "apps/docs/lib/home/code-examples.ts",
+   "kind": "doc",
+   "lang": "TypeScript",
+   "lines": 347,
+   "endpoints": [],
+   "models": [
+    "grok-4.7",
+    "grok-imagine-image-2.0",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "image_generation",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "apps/docs/scripts/version-host-redirects.test.mjs",
+   "kind": "test",
+   "lang": "JavaScript",
+   "lines": 89,
    "endpoints": [],
    "models": [],
    "env": [],
+   "features": []
+  },
+  {
+   "path": "apps/docs/components/docs/interactive-code-preview.tsx",
+   "kind": "doc",
+   "lang": "TypeScript",
+   "lines": 1014,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.7",
+    "grok-imagine-image-2.0",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
    "features": [
-    "anthropic_compatible"
+    "anthropic_compatible",
+    "image_generation"
    ]
   },
   {
@@ -425,67 +492,40 @@
    ]
   },
   {
-   "path": "content/providers/01-ai-sdk-providers/16-google-vertex.mdx",
+   "path": "content/providers/02-ai-sdk-harnesses/06-acp.mdx",
    "kind": "doc",
    "lang": null,
-   "lines": 2215,
+   "lines": 706,
    "endpoints": [],
-   "models": [
-    "grok-4.1-fast-non-reasoning",
-    "grok-4.1-fast-reasoning",
-    "grok-4.20-non-reasoning",
-    "grok-4.20-reasoning"
+   "models": [],
+   "env": [
+    "GROK_XAI_API_BASE_URL",
+    "XAI_API_KEY"
    ],
-   "env": [],
    "features": [
     "anthropic_compatible",
-    "embeddings",
-    "image_generation",
+    "mcp",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "content/providers/02-ai-sdk-harnesses/07-grok-build.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 240,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "GROK_XAI_API_BASE_URL",
+    "XAI_API_KEY"
+   ],
+   "features": [
     "live_search",
+    "mcp",
     "reasoning",
     "streaming",
-    "structured_output",
-    "tool_calling",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "content/providers/01-ai-sdk-providers/index.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 121,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-mini",
-    "grok-4",
-    "grok-4-fast-reasoning",
-    "grok-4.5",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "content/providers/01-ai-sdk-providers/00-ai-gateway.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 1819,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "live_search",
-    "streaming",
-    "structured_output",
-    "tool_calling",
-    "voice_realtime"
+    "structured_output"
    ]
   },
   {
@@ -532,40 +572,67 @@
    ]
   },
   {
-   "path": "content/providers/02-ai-sdk-harnesses/07-grok-build.mdx",
+   "path": "content/providers/01-ai-sdk-providers/16-google-vertex.mdx",
    "kind": "doc",
    "lang": null,
-   "lines": 240,
+   "lines": 2215,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "GROK_XAI_API_BASE_URL",
-    "XAI_API_KEY"
+   "models": [
+    "grok-4.1-fast-non-reasoning",
+    "grok-4.1-fast-reasoning",
+    "grok-4.20-non-reasoning",
+    "grok-4.20-reasoning"
    ],
+   "env": [],
    "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
     "live_search",
-    "mcp",
     "reasoning",
     "streaming",
-    "structured_output"
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
    ]
   },
   {
-   "path": "content/providers/02-ai-sdk-harnesses/06-acp.mdx",
+   "path": "content/providers/01-ai-sdk-providers/00-ai-gateway.mdx",
    "kind": "doc",
    "lang": null,
-   "lines": 706,
+   "lines": 1819,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "GROK_XAI_API_BASE_URL",
-    "XAI_API_KEY"
+   "models": [
+    "grok-4.7"
    ],
+   "env": [],
    "features": [
     "anthropic_compatible",
-    "mcp",
+    "live_search",
     "streaming",
-    "structured_output"
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "content/providers/01-ai-sdk-providers/index.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 121,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-fast-reasoning",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
    ]
   },
   {
@@ -590,16 +657,24 @@
    ]
   },
   {
-   "path": "content/docs/03-ai-sdk-core/36-transcription.mdx",
+   "path": "content/docs/08-migration-guides/23-migration-guide-7-0.mdx",
    "kind": "doc",
    "lang": null,
-   "lines": 374,
+   "lines": 1911,
    "endpoints": [],
-   "models": [],
+   "models": [
+    "grok-4.3"
+   ],
    "env": [],
    "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "image_generation",
+    "mcp",
+    "reasoning",
     "streaming",
-    "voice_realtime"
+    "structured_output",
+    "tool_calling"
    ]
   },
   {
@@ -612,6 +687,33 @@
    "env": [],
    "features": [
     "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "content/docs/03-ai-sdk-core/35-image-generation.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 414,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "content/docs/03-ai-sdk-core/36-transcription.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 374,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "streaming",
     "voice_realtime"
    ]
   },
@@ -648,1282 +750,6 @@
    ]
   },
   {
-   "path": "content/docs/03-ai-sdk-core/35-image-generation.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 414,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "content/docs/08-migration-guides/23-migration-guide-7-0.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 1911,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "image_generation",
-    "mcp",
-    "reasoning",
-    "streaming",
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/harness-grok-build/README.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 45,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "packages/harness-grok-build/src/grok-build-harness.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 326,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "GROK_XAI_API_BASE_URL",
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp",
-    "reasoning",
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/harness-grok-build/src/grok-build-subscription.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 152,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "GROK_XAI_API_BASE_URL",
-    "XAI_API_KEY",
-    "XAI_CLIENT_ID"
-   ],
-   "features": [
-    "structured_output"
-   ]
-  },
-  {
-   "path": "packages/harness-grok-build/src/grok-build-harness.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 400,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "GROK_XAI_API_BASE_URL",
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "live_search",
-    "mcp",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/harness-grok-build/src/grok-build-subscription.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 92,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "structured_output"
-   ]
-  },
-  {
-   "path": "packages/alibaba/CHANGELOG.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 1231,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "structured_output",
-    "tool_calling",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "packages/provider/src/realtime-model/v4/realtime-model-v4.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 125,
-   "endpoints": [],
-   "models": [
-    "grok-3"
-   ],
-   "env": [],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "packages/google-vertex/src/xai/google-vertex-xai-provider.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 251,
-   "endpoints": [],
-   "models": [
-    "grok-4.1-fast-reasoning",
-    "grok-4.20-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "embeddings",
-    "openai_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/google-vertex/src/xai/google-vertex-xai-options.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 7,
-   "endpoints": [],
-   "models": [
-    "grok-4.1-fast-non-reasoning",
-    "grok-4.1-fast-reasoning",
-    "grok-4.20-non-reasoning",
-    "grok-4.20-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/amazon-bedrock/src/mantle/bedrock-mantle-provider.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 346,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "embeddings"
-   ]
-  },
-  {
-   "path": "packages/harness-fx/src/fx-harness.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 732,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "live_search",
-    "mcp",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/gateway/README.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 44,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "packages/gateway/CHANGELOG.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 3484,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [
-    "grok-4",
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "reasoning",
-    "streaming",
-    "structured_output",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "packages/gateway/src/gateway-video-model-settings.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 38,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video",
-    "grok-imagine-video-1.5",
-    "grok-imagine-video-1.5-lite"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "packages/gateway/src/gateway-image-model-settings.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 36,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image",
-    "grok-imagine-image-2.0"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "packages/gateway/src/gateway-language-model-settings.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 269,
-   "endpoints": [],
-   "models": [
-    "grok-4.1-fast-non-reasoning",
-    "grok-4.1-fast-reasoning",
-    "grok-4.20-multi-agent",
-    "grok-4.20-multi-agent-beta",
-    "grok-4.20-non-reasoning",
-    "grok-4.20-non-reasoning-beta",
-    "grok-4.20-reasoning",
-    "grok-4.20-reasoning-beta",
-    "grok-4.3",
-    "grok-4.5",
-    "grok-4.6",
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/ai/package.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 129,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "packages/ai/src/generate-text/stream-provider-error.integration.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 497,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-4-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "openai_compatible",
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "packages/harness-pi/src/pi-model-resolver.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 93,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "packages/harness-pi/src/pi-model-resolver.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 244,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "packages/harness-opencode/src/opencode-auth.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 451,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "packages/harness-opencode/src/opencode-auth.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 486,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY",
-    "XAI_BASE_URL"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "openai_compatible"
-   ]
-  },
-  {
-   "path": "packages/harness-opencode/src/opencode-subscription.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 727,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_CLIENT_ID"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "packages/openai-compatible/src/chat/openai-compatible-chat-language-model.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 4549,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [
-    "grok-3",
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "openai_compatible",
-    "reasoning",
-    "streaming",
-    "structured_output",
-    "tool_calling",
-    "vision"
-   ]
-  },
-  {
-   "path": "packages/openai-compatible/src/chat/__fixtures__/xai-text.chunks.txt",
-   "kind": "doc",
-   "lang": null,
-   "lines": 344,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/openai-compatible/src/chat/__fixtures__/xai-text.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 38,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/openai-compatible/src/chat/__fixtures__/xai-tool-call.chunks.txt",
-   "kind": "doc",
-   "lang": null,
-   "lines": 230,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/openai-compatible/src/chat/__fixtures__/xai-tool-call.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 48,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/package.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 78,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "packages/xai/README.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 46,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "packages/xai/CHANGELOG.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 3695,
-   "endpoints": [
-    "/v1/videos/generations"
-   ],
-   "models": [
-    "grok-2",
-    "grok-2-image-1212",
-    "grok-3",
-    "grok-4",
-    "grok-4-0709",
-    "grok-4-1",
-    "grok-4-1-fast",
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-1-fast-reasoning",
-    "grok-4-fast",
-    "grok-4-latest",
-    "grok-4.20-multi-agent-0309",
-    "grok-4.20-non-reasoning",
-    "grok-4.20-reasoning",
-    "grok-4.3",
-    "grok-4.5",
-    "grok-code-fast-1",
-    "grok-imagine",
-    "grok-imagine-image-pro",
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "embeddings",
-    "image_generation",
-    "live_search",
-    "mcp",
-    "reasoning",
-    "structured_output",
-    "tool_calling",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "packages/xai/src/xai-video-settings.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 4,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video",
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "packages/xai/src/index.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 36,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "packages/xai/src/xai-provider.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 282,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "embeddings",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "packages/xai/src/xai-image-settings.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 5,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image",
-    "grok-imagine-image-2.0",
-    "grok-imagine-image-pro"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "packages/xai/src/xai-error.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 68,
-   "endpoints": [
-    "/v1/images/generations",
-    "/v1/responses"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "packages/xai/src/xai-transcription-model.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 574,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "packages/xai/src/xai-speech-model.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 360,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "openai_compatible",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "packages/xai/src/supports-reasoning-effort.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 12,
-   "endpoints": [],
-   "models": [
-    "grok-4",
-    "grok-4.20",
-    "grok-4.20-0309-reasoning",
-    "grok-4.20-multi-agent",
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/xai/src/xai-image-model.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 250,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image",
-    "grok-imagine-image-2.0",
-    "grok-imagine-image-pro"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "structured_output",
-    "vision"
-   ]
-  },
-  {
-   "path": "packages/xai/src/xai-image-model.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 713,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image",
-    "grok-imagine-image-2.0"
-   ],
-   "env": [],
-   "features": [
-    "grpc",
-    "image_generation",
-    "structured_output",
-    "vision"
-   ]
-  },
-  {
-   "path": "packages/xai/src/supports-reasoning-effort.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 23,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini",
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.20-0309-reasoning",
-    "grok-4.20-multi-agent",
-    "grok-4.20-multi-agent-0309",
-    "grok-4.20-non-reasoning",
-    "grok-4.20-reasoning",
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/xai/src/xai-batch.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 1048,
-   "endpoints": [
-    "/v1/batches",
-    "/v1/files",
-    "/v1/images/generations",
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-4.20-non-reasoning",
-    "grok-4.3",
-    "grok-imagine-image"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "live_search",
-    "openai_compatible",
-    "reasoning",
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/xai-video-model.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 898,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video",
-    "grok-imagine-video-1.5"
-   ],
-   "env": [
-    "XAI_VIDEO_GENERATION_ERROR"
-   ],
-   "features": [
-    "image_generation",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "packages/xai/src/xai-video-model.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 1636,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video",
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "packages/xai/src/xai-transcription-model.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 820,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "openai_compatible",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "packages/xai/src/xai-provider.test-d.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 17,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "packages/xai/src/xai-provider.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 285,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image",
-    "grok-imagine-video"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "packages/xai/src/xai-batch.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 925,
-   "endpoints": [
-    "/v1/images/edits",
-    "/v1/images/generations",
-    "/v1/responses"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "image_generation",
-    "reasoning",
-    "structured_output",
-    "tool_calling",
-    "vision"
-   ]
-  },
-  {
-   "path": "packages/xai/src/__fixtures__/xai-text.chunks.txt",
-   "kind": "doc",
-   "lang": null,
-   "lines": 8,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/xai/src/__fixtures__/xai-text.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 38,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/xai/src/__fixtures__/xai-tool-call.chunks.txt",
-   "kind": "doc",
-   "lang": null,
-   "lines": 8,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/__fixtures__/xai-tool-call.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 48,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/realtime/xai-realtime-model.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 44,
-   "endpoints": [
-    "/v1/realtime"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "openai_compatible",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/xai-responses-language-model-options.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 79,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-non-reasoning",
-    "grok-4.20-reasoning",
-    "grok-4.3",
-    "grok-4.5",
-    "grok-4.6",
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/xai-responses-raw-usage.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 146,
-   "endpoints": [
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-4-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "openai_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/xai-responses-language-model.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 5247,
-   "endpoints": [
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-3-mini",
-    "grok-4-fast",
-    "grok-4-fast-non-reasoning",
-    "grok-4.20-reasoning",
-    "grok-4.3",
-    "grok-4.5",
-    "grok-4.6",
-    "grok-4.7",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "live_search",
-    "openai_compatible",
-    "reasoning",
-    "structured_output",
-    "tool_calling",
-    "vision"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/xai-responses-language-model.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 1447,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "live_search",
-    "reasoning",
-    "streaming",
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/__fixtures__/xai-file-search-tool.1.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 81,
-   "endpoints": [],
-   "models": [
-    "grok-4-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/__fixtures__/xai-image-generation-tool.1.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 95,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "live_search",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/__fixtures__/xai-text-streaming.1.chunks.txt",
-   "kind": "doc",
-   "lang": null,
-   "lines": 698,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/__fixtures__/xai-x-search-tool.1.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 149,
-   "endpoints": [],
-   "models": [
-    "grok-4-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/__fixtures__/xai-code-execution-tool.1.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 68,
-   "endpoints": [],
-   "models": [
-    "grok-4-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/__fixtures__/xai-text-with-reasoning-streaming.1.chunks.txt",
-   "kind": "doc",
-   "lang": null,
-   "lines": 679,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/__fixtures__/xai-web-search-tool.1.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 90,
-   "endpoints": [],
-   "models": [
-    "grok-4-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/__fixtures__/xai-web-search-tool.1.chunks.txt",
-   "kind": "doc",
-   "lang": null,
-   "lines": 274,
-   "endpoints": [],
-   "models": [
-    "grok-4-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/__fixtures__/xai-x-search-tool.chunks.txt",
-   "kind": "doc",
-   "lang": null,
-   "lines": 1757,
-   "endpoints": [],
-   "models": [
-    "grok-4-1",
-    "grok-4-1-fast",
-    "grok-4-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/__fixtures__/xai-text-with-reasoning-streaming-store-false.1.chunks.txt",
-   "kind": "doc",
-   "lang": null,
-   "lines": 655,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/responses/__fixtures__/xai-image-generation-tool.1.chunks.txt",
-   "kind": "doc",
-   "lang": null,
-   "lines": 29,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "live_search",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/xai/src/files/xai-files.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 625,
-   "endpoints": [
-    "/v1/files"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "openai_compatible"
-   ]
-  },
-  {
-   "path": "contributing/packages.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 57,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "apps/docs/components/docs/interactive-code-preview.tsx",
-   "kind": "doc",
-   "lang": "TypeScript",
-   "lines": 1014,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.7",
-    "grok-imagine-image-2.0",
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "image_generation"
-   ]
-  },
-  {
-   "path": "apps/docs/lib/home/code-examples.ts",
-   "kind": "doc",
-   "lang": "TypeScript",
-   "lines": 347,
-   "endpoints": [],
-   "models": [
-    "grok-4.7",
-    "grok-imagine-image-2.0",
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "image_generation",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "apps/docs/scripts/version-host-redirects.test.mjs",
-   "kind": "test",
-   "lang": "JavaScript",
-   "lines": 89,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "skills/update-provider-models/SKILL.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 193,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "image_generation",
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": ".changeset/xai-image-resolution-1-5k.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 5,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
    "path": ".changeset/xai-image-model-ids.md",
    "kind": "doc",
    "lang": null,
@@ -1938,6 +764,105 @@
    ]
   },
   {
+   "path": ".changeset/xai-image-resolution-1-5k.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 5,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "contributing/packages.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 57,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "examples/harness-e2e-next/env.local.example",
+   "kind": "example",
+   "lang": null,
+   "lines": 29,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/harness-e2e-next/agent/harness/acp-harnesses.md",
+   "kind": "example",
+   "lang": null,
+   "lines": 36,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "GROK_XAI_API_BASE_URL",
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/harness-e2e-next/agent/harness/acp-grok-build/harness.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 63,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "GROK_XAI_API_BASE_URL",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/xai-tts-demo/package.json",
+   "kind": "example",
+   "lang": null,
+   "lines": 15,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/xai-tts-demo/server.mjs",
+   "kind": "example",
+   "lang": "JavaScript",
+   "lines": 541,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/xai-tts-demo/.env.example",
+   "kind": "example",
+   "lang": null,
+   "lines": 1,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
    "path": "examples/ai-e2e-next/package.json",
    "kind": "example",
    "lang": null,
@@ -1948,6 +873,53 @@
    "features": [
     "anthropic_compatible",
     "mcp"
+   ]
+  },
+  {
+   "path": "examples/ai-e2e-next/agent/xai/mcp-server-agent.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 14,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-e2e-next/agent/xai/web-search-agent.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 29,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-e2e-next/agent/xai/image-generation-agent.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 16,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "tool_calling"
    ]
   },
   {
@@ -1974,29 +946,15 @@
    ]
   },
   {
-   "path": "examples/ai-e2e-next/app/chat/upload-file/page.tsx",
+   "path": "examples/ai-e2e-next/app/api/upload-file/route.ts",
    "kind": "example",
    "lang": "TypeScript",
-   "lines": 362,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "examples/ai-e2e-next/app/chat/xai-web-search/page.tsx",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 71,
+   "lines": 39,
    "endpoints": [],
    "models": [],
    "env": [],
    "features": [
-    "live_search"
+    "anthropic_compatible"
    ]
   },
   {
@@ -2054,99 +1012,41 @@
    ]
   },
   {
-   "path": "examples/ai-e2e-next/app/api/upload-file/route.ts",
+   "path": "examples/ai-e2e-next/app/chat/upload-file/page.tsx",
    "kind": "example",
    "lang": "TypeScript",
-   "lines": 39,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "examples/ai-e2e-next/agent/xai/web-search-agent.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 29,
-   "endpoints": [],
-   "models": [
-    "grok-4-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-e2e-next/agent/xai/image-generation-agent.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 16,
+   "lines": 362,
    "endpoints": [],
    "models": [
     "grok-4.7"
    ],
    "env": [],
    "features": [
-    "image_generation",
-    "tool_calling"
+    "anthropic_compatible"
    ]
   },
   {
-   "path": "examples/ai-e2e-next/agent/xai/mcp-server-agent.ts",
+   "path": "examples/ai-e2e-next/app/chat/xai-web-search/page.tsx",
    "kind": "example",
    "lang": "TypeScript",
-   "lines": 14,
+   "lines": 71,
    "endpoints": [],
-   "models": [
-    "grok-4-1-fast-reasoning"
-   ],
+   "models": [],
    "env": [],
    "features": [
-    "mcp",
-    "reasoning",
-    "tool_calling"
+    "live_search"
    ]
   },
   {
-   "path": "examples/xai-tts-demo/.env.example",
+   "path": "examples/ai-functions/package.json",
    "kind": "example",
    "lang": null,
-   "lines": 1,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "examples/xai-tts-demo/package.json",
-   "kind": "example",
-   "lang": null,
-   "lines": 15,
+   "lines": 117,
    "endpoints": [],
    "models": [],
    "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/xai-tts-demo/server.mjs",
-   "kind": "example",
-   "lang": "JavaScript",
-   "lines": 541,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
    "features": [
-    "structured_output",
-    "voice_realtime"
+    "anthropic_compatible"
    ]
   },
   {
@@ -2164,18 +1064,6 @@
    ]
   },
   {
-   "path": "examples/ai-functions/package.json",
-   "kind": "example",
-   "lang": null,
-   "lines": 117,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
    "path": "examples/ai-functions/src/deprecated-options-types.test-d.ts",
    "kind": "example",
    "lang": "TypeScript",
@@ -2185,1633 +1073,6 @@
    "env": [],
    "features": [
     "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-image/xai/basic.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 13,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-image/xai/edit.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 32,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-image/xai/grok-imagine-image-2-0.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 13,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image-2.0"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-image/xai/many.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 14,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-image/xai/edit-multi-image.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 27,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-image/xai/b64-cost-quality.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 29,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-image/xai/imagine-image-pro.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 13,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image-pro"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-image/xai/resolution.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 18,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-image/xai/resolution-1-5k.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 18,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image-pro"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/google/vertex-xai-output-object.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 30,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/google/vertex-xai-tool-call.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 35,
-   "endpoints": [],
-   "models": [
-    "grok-4.1-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/google/vertex-xai-image-url.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 25,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/google/vertex-xai.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 15,
-   "endpoints": [],
-   "models": [
-    "grok-4.1-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/gateway/tool-call.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 63,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/gateway/image-data-url.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 29,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/gateway/image-url.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 23,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/gateway/image-base64.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 24,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/gateway/output-object.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 29,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-reasoning.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 26,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini-latest"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-usage-full.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 43,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-mini",
-    "grok-4",
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-1-fast-reasoning",
-    "grok-4-fast-non-reasoning",
-    "grok-4-fast-reasoning",
-    "grok-4.5",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-image-multiturn.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 53,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/image-detail.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 29,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-output-object.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 30,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/tool-call.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 66,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/grok-3-mini-output-object-reasoning-effort.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 31,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/basic.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 15,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-usage.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 16,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-provider-options.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 28,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/structured-output.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 26,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-web-search-image-search.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 36,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/usage-full.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 43,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-mini",
-    "grok-4",
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-1-fast-reasoning",
-    "grok-4-fast-non-reasoning",
-    "grok-4-fast-reasoning",
-    "grok-4.5",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-image-generation.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 31,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-file-search.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 45,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-encrypted-reasoning.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 53,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-reasoning",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/logprobs.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 21,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/code-execution.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 30,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/grok-4-fast-output-object-reasoning.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 30,
-   "endpoints": [],
-   "models": [
-    "grok-4-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-image.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 28,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-web-search.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 37,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/strict-tool-call.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 28,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-tool-call.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 67,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-cost.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 17,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/mcp-server.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 33,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "mcp",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/usage.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 16,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/output-object-name-description.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 30,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-search-citations.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 33,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-reasoning-effort.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 22,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/generate-text/xai/responses-image-test.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 28,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-speech/xai/basic.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 18,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/generate-speech/xai/timestamps.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 39,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-speech/xai/output-format.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 28,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-speech/xai/speech-tags.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 20,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-speech/xai/voice.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 20,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-speech/xai/error-handling.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 80,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/first-last-frame-audio.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 40,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/extend.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 60,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/poll-options.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 28,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/i2v-url.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 28,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/storage-options.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 34,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/basic.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 26,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/edit.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 26,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/cost.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 27,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/webhook-options.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 34,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/r2v-reference-media-type.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 39,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/t2v-1080p.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 27,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/extend-warnings.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 45,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/keyframes.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 45,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/i2v-base64.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 28,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/legacy-edit-warnings.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 41,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/i2v-frame-images.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 34,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/edit-concurrent.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 65,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/r2v-reference-voice.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 37,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/reference-images.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 37,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/generate-video/xai/r2v-reference-images.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 33,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/e2e/xai.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 41,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-beta",
-    "grok-3-fast-beta",
-    "grok-3-mini-beta",
-    "grok-3-mini-fast-beta",
-    "grok-4",
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-1-fast-reasoning",
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/e2e/gateway.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 17,
-   "endpoints": [],
-   "models": [
-    "grok-3-beta"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/transcribe/xai/url.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 19,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/transcribe/xai/basic.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 18,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/transcribe/xai/string.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 25,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/google/vertex-xai-output-object.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 31,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/google/vertex-xai-tool-call.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 39,
-   "endpoints": [],
-   "models": [
-    "grok-4.1-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/google/vertex-xai.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 18,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/gateway/output-object.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 32,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/responses-grok-code-fast-1.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 21,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/responses-usage-full.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 42,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-mini",
-    "grok-4",
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-1-fast-reasoning",
-    "grok-4-fast-non-reasoning",
-    "grok-4-fast-reasoning",
-    "grok-4.5",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/responses-output-object.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 36,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/tool-call.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 81,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/basic.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 18,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/responses-usage.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 18,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/responses-tools.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 32,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/chatbot.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 48,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/usage-full.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 42,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-mini",
-    "grok-4",
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-1-fast-reasoning",
-    "grok-4-fast-non-reasoning",
-    "grok-4-fast-reasoning",
-    "grok-4.5",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/responses-image-generation.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 31,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/responses-file-search.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 19,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/responses.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 18,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/responses-encrypted-reasoning.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 62,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-reasoning",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/logprobs.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 39,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/openai-compat-file-search.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 40,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-reasoning"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "openai_compatible",
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/web-search-image-understanding.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 41,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/code-execution.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 20,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/x-search-video-understanding.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 42,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/responses-image.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 27,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/responses-tool-call.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 51,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/responses-cost.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 21,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-non-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/mcp-server.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 33,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "mcp",
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/image.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 27,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/usage.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 18,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/output-object-name-description.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 30,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/output-object.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 33,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/raw-chunks.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 36,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/stream-text/xai/responses-reasoning-effort.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 36,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini-latest"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/start-batch/xai/basic.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 56,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-non-reasoning",
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "examples/ai-functions/src/start-batch/xai/client-tools.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 54,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "streaming",
-    "tool_calling"
    ]
   },
   {
@@ -3858,6 +1119,1025 @@
    ]
   },
   {
+   "path": "examples/ai-functions/src/start-batch/xai/basic.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 56,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/start-batch/xai/client-tools.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 54,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/agent/xai/agent-research.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 23,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/agent/xai/tui.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 23,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/transcribe/xai/string.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 25,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/transcribe/xai/url.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 19,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/transcribe/xai/basic.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 18,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/gateway/output-object.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 32,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/google/vertex-xai-tool-call.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 39,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/google/vertex-xai.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 18,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/google/vertex-xai-output-object.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 31,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-usage.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 18,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-file-search.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 19,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-output-object.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 36,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/tool-call.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 81,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 18,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-image-generation.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 31,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/chatbot.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 48,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/openai-compat-file-search.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 40,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-reasoning"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/output-object-name-description.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 30,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-usage-full.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 42,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.5",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-image.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 27,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-reasoning-effort.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 36,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini-latest"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/usage.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 18,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-encrypted-reasoning.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 62,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-reasoning",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/web-search-image-understanding.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 41,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/output-object.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 33,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-grok-code-fast-1.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 21,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/raw-chunks.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 36,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/image.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 27,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/code-execution.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 20,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/mcp-server.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 33,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-cost.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 21,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/basic.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 18,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/x-search-video-understanding.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 42,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-tools.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 32,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/responses-tool-call.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 51,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/logprobs.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 39,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/stream-text/xai/usage-full.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 42,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.5",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/e2e/xai.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 41,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-beta",
+    "grok-3-fast-beta",
+    "grok-3-mini-beta",
+    "grok-3-mini-fast-beta",
+    "grok-4",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/e2e/gateway.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 17,
+   "endpoints": [],
+   "models": [
+    "grok-3-beta"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/stream-transcribe/xai/basic.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 64,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-speech/xai/output-format.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 28,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-speech/xai/timestamps.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 39,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-speech/xai/voice.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 20,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-speech/xai/basic.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 18,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/generate-speech/xai/speech-tags.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 20,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-speech/xai/error-handling.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 80,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/i2v-url.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 28,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/r2v-reference-images.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 33,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/poll-options.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 28,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/i2v-base64.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 28,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/r2v-reference-media-type.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 39,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/keyframes.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 45,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/edit.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 26,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/t2v-1080p.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 27,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/reference-images.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 37,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/extend-warnings.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 45,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/cost.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 27,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/edit-concurrent.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 65,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/legacy-edit-warnings.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 41,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/first-last-frame-audio.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 40,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/i2v-frame-images.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 34,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/storage-options.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 34,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/basic.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 26,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/extend.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 60,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/r2v-reference-voice.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 37,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-video/xai/webhook-options.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 34,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/harness-agent/grok-build/native-subscription.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 30,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/upload-file/xai/pdf.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 40,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
    "path": "examples/ai-functions/src/upload-file/xai/image-with-stream.ts",
    "kind": "example",
    "lang": "TypeScript",
@@ -3884,16 +2164,6 @@
    "features": []
   },
   {
-   "path": "examples/ai-functions/src/upload-file/xai/provider-shorthand.ts",
-   "kind": "example",
-   "lang": "TypeScript",
-   "lines": 18,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
    "path": "examples/ai-functions/src/upload-file/xai/image.ts",
    "kind": "example",
    "lang": "TypeScript",
@@ -3906,10 +2176,146 @@
    "features": []
   },
   {
-   "path": "examples/ai-functions/src/upload-file/xai/pdf.ts",
+   "path": "examples/ai-functions/src/upload-file/xai/provider-shorthand.ts",
    "kind": "example",
    "lang": "TypeScript",
-   "lines": 40,
+   "lines": 18,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/generate-image/xai/resolution.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 18,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-image/xai/edit.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 32,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-image/xai/edit-multi-image.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 27,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-image/xai/grok-imagine-image-2-0.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 13,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image-2.0"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-image/xai/resolution-1-5k.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 18,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image-pro"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-image/xai/b64-cost-quality.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 29,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-image/xai/basic.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 13,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-image/xai/many.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 14,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-image/xai/imagine-image-pro.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 13,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image-pro"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/gateway/image-base64.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 24,
    "endpoints": [],
    "models": [
     "grok-4.7"
@@ -3918,22 +2324,402 @@
    "features": []
   },
   {
-   "path": "examples/ai-functions/src/harness-agent/grok-build/native-subscription.ts",
+   "path": "examples/ai-functions/src/generate-text/gateway/tool-call.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 63,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/gateway/image-url.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 23,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/gateway/image-data-url.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 29,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/gateway/output-object.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 29,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/google/vertex-xai-image-url.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 25,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/google/vertex-xai-tool-call.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 35,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/google/vertex-xai.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 15,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/google/vertex-xai-output-object.ts",
    "kind": "example",
    "lang": "TypeScript",
    "lines": 30,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
+   "models": [
+    "grok-4.20-reasoning"
    ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-usage.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 16,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-file-search.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 45,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-web-search-image-search.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 36,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-output-object.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 30,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
    "features": []
   },
   {
-   "path": "examples/ai-functions/src/agent/xai/tui.ts",
+   "path": "examples/ai-functions/src/generate-text/xai/responses-reasoning.ts",
    "kind": "example",
    "lang": "TypeScript",
-   "lines": 23,
+   "lines": 26,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini-latest"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/tool-call.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 66,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-image-generation.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 31,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/output-object-name-description.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 30,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-usage-full.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 43,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.5",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-image.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 28,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/grok-3-mini-output-object-reasoning-effort.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 31,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-provider-options.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 28,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-image-multiturn.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 53,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/image-detail.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 29,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-reasoning-effort.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 22,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/usage.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 16,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-encrypted-reasoning.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 53,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-reasoning",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/strict-tool-call.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 28,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-search-citations.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 33,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/code-execution.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 30,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-web-search.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 37,
    "endpoints": [],
    "models": [
     "grok-4-1-fast-non-reasoning"
@@ -3946,20 +2732,134 @@
    ]
   },
   {
-   "path": "examples/ai-functions/src/agent/xai/agent-research.ts",
+   "path": "examples/ai-functions/src/generate-text/xai/structured-output.ts",
    "kind": "example",
    "lang": "TypeScript",
-   "lines": 23,
+   "lines": 26,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/mcp-server.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 33,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-cost.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 17,
    "endpoints": [],
    "models": [
     "grok-4-1-fast-non-reasoning"
    ],
    "env": [],
    "features": [
-    "live_search",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/basic.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 15,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-image-test.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 28,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/responses-tool-call.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 67,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
     "reasoning",
-    "streaming",
     "tool_calling"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/logprobs.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 21,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/grok-4-fast-output-object-reasoning.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 30,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "examples/ai-functions/src/generate-text/xai/usage-full.ts",
+   "kind": "example",
+   "lang": "TypeScript",
+   "lines": 43,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.5",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
    ]
   },
   {
@@ -3990,47 +2890,1079 @@
    ]
   },
   {
-   "path": "examples/ai-functions/src/stream-transcribe/xai/basic.ts",
-   "kind": "example",
+   "path": "packages/openai-compatible/src/chat/openai-compatible-chat-language-model.test.ts",
+   "kind": "test",
    "lang": "TypeScript",
-   "lines": 64,
+   "lines": 4549,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-3",
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "packages/openai-compatible/src/chat/__fixtures__/xai-tool-call.chunks.txt",
+   "kind": "doc",
+   "lang": null,
+   "lines": 230,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/openai-compatible/src/chat/__fixtures__/xai-text.chunks.txt",
+   "kind": "doc",
+   "lang": null,
+   "lines": 344,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/openai-compatible/src/chat/__fixtures__/xai-text.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 38,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/openai-compatible/src/chat/__fixtures__/xai-tool-call.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 48,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/harness-fx/src/fx-harness.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 732,
    "endpoints": [],
    "models": [],
    "env": [],
    "features": [
+    "live_search",
+    "mcp",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/google-vertex/src/xai/google-vertex-xai-provider.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 251,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast-reasoning",
+    "grok-4.20-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "openai_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/google-vertex/src/xai/google-vertex-xai-options.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 7,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast-non-reasoning",
+    "grok-4.1-fast-reasoning",
+    "grok-4.20-non-reasoning",
+    "grok-4.20-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/alibaba/CHANGELOG.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1231,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/ai/package.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 129,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/ai/src/generate-text/stream-provider-error.integration.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 497,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "reasoning",
     "streaming"
    ]
   },
   {
-   "path": "examples/harness-e2e-next/env.local.example",
-   "kind": "example",
+   "path": "packages/gateway/CHANGELOG.md",
+   "kind": "doc",
    "lang": null,
-   "lines": 29,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
+   "lines": 3484,
+   "endpoints": [
+    "/v1/realtime"
    ],
+   "models": [
+    "grok-4",
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/gateway/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 44,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
    "features": []
   },
   {
-   "path": "examples/harness-e2e-next/agent/harness/acp-harnesses.md",
-   "kind": "example",
+   "path": "packages/gateway/src/gateway-image-model-settings.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 36,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-2.0"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "packages/gateway/src/gateway-language-model-settings.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 269,
+   "endpoints": [],
+   "models": [
+    "grok-4.1-fast-non-reasoning",
+    "grok-4.1-fast-reasoning",
+    "grok-4.20-multi-agent",
+    "grok-4.20-multi-agent-beta",
+    "grok-4.20-non-reasoning",
+    "grok-4.20-non-reasoning-beta",
+    "grok-4.20-reasoning",
+    "grok-4.20-reasoning-beta",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/gateway/src/gateway-video-model-settings.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 38,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video",
+    "grok-imagine-video-1.5",
+    "grok-imagine-video-1.5-lite"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "packages/harness-opencode/src/opencode-auth.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 486,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY",
+    "XAI_BASE_URL"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "packages/harness-opencode/src/opencode-subscription.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 727,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_CLIENT_ID"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/harness-opencode/src/opencode-auth.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 451,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/provider/src/realtime-model/v4/realtime-model-v4.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 125,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/harness-pi/src/pi-model-resolver.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 244,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/harness-pi/src/pi-model-resolver.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 93,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/xai/CHANGELOG.md",
+   "kind": "doc",
    "lang": null,
+   "lines": 3695,
+   "endpoints": [
+    "/v1/videos/generations"
+   ],
+   "models": [
+    "grok-2",
+    "grok-2-image-1212",
+    "grok-3",
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-1",
+    "grok-4-1-fast",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast",
+    "grok-4-latest",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.20-non-reasoning",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-code-fast-1",
+    "grok-imagine",
+    "grok-imagine-image-pro",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "live_search",
+    "mcp",
+    "reasoning",
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/xai/package.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 78,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "packages/xai/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 46,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "packages/xai/src/xai-video-model.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1636,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/xai/src/xai-image-model.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 250,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-pro"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output",
+    "vision"
+   ]
+  },
+  {
+   "path": "packages/xai/src/xai-batch.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 925,
+   "endpoints": [
+    "/v1/images/edits",
+    "/v1/images/generations",
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "image_generation",
+    "reasoning",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "packages/xai/src/xai-image-settings.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 5,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-2.0",
+    "grok-imagine-image-pro"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "packages/xai/src/xai-image-model.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 713,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-image-2.0"
+   ],
+   "env": [],
+   "features": [
+    "grpc",
+    "image_generation",
+    "structured_output",
+    "vision"
+   ]
+  },
+  {
+   "path": "packages/xai/src/xai-transcription-model.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 820,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "openai_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/xai/src/supports-reasoning-effort.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 12,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-4.20",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/xai/src/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
    "lines": 36,
    "endpoints": [],
    "models": [],
+   "env": [],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/xai/src/xai-batch.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1048,
+   "endpoints": [
+    "/v1/batches",
+    "/v1/files",
+    "/v1/images/generations",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.20-non-reasoning",
+    "grok-4.3",
+    "grok-imagine-image"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "live_search",
+    "openai_compatible",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/xai-provider.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 282,
+   "endpoints": [],
+   "models": [],
    "env": [
-    "GROK_XAI_API_BASE_URL",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/xai/src/xai-transcription-model.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 574,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "packages/xai/src/xai-provider.test-d.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 17,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "packages/xai/src/xai-error.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 68,
+   "endpoints": [
+    "/v1/images/generations",
+    "/v1/responses"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "packages/xai/src/xai-speech-model.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 360,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "openai_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/xai/src/xai-video-settings.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 4,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "packages/xai/src/xai-provider.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 285,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-video"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "image_generation"
+   ]
+  },
+  {
+   "path": "packages/xai/src/xai-video-model.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 898,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
+   ],
+   "env": [
+    "XAI_VIDEO_GENERATION_ERROR"
+   ],
+   "features": [
+    "image_generation",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/xai/src/supports-reasoning-effort.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 23,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini",
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-multi-agent",
+    "grok-4.20-multi-agent-0309",
+    "grok-4.20-non-reasoning",
+    "grok-4.20-reasoning",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/xai/src/realtime/xai-realtime-model.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 44,
+   "endpoints": [
+    "/v1/realtime"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "openai_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "packages/xai/src/__fixtures__/xai-tool-call.chunks.txt",
+   "kind": "doc",
+   "lang": null,
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/__fixtures__/xai-text.chunks.txt",
+   "kind": "doc",
+   "lang": null,
+   "lines": 8,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/xai/src/__fixtures__/xai-text.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 38,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/xai/src/__fixtures__/xai-tool-call.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 48,
+   "endpoints": [],
+   "models": [
+    "grok-3-mini"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/xai-responses-language-model.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 1447,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "live_search",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/xai-responses-raw-usage.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 146,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "openai_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/xai-responses-language-model.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 5247,
+   "endpoints": [
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-3-mini",
+    "grok-4-fast",
+    "grok-4-fast-non-reasoning",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "live_search",
+    "openai_compatible",
+    "reasoning",
+    "structured_output",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/xai-responses-language-model-options.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 79,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-non-reasoning",
+    "grok-4.20-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/__fixtures__/xai-x-search-tool.chunks.txt",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1757,
+   "endpoints": [],
+   "models": [
+    "grok-4-1",
+    "grok-4-1-fast",
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/__fixtures__/xai-web-search-tool.1.chunks.txt",
+   "kind": "doc",
+   "lang": null,
+   "lines": 274,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/__fixtures__/xai-text-streaming.1.chunks.txt",
+   "kind": "doc",
+   "lang": null,
+   "lines": 698,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/__fixtures__/xai-code-execution-tool.1.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 68,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/__fixtures__/xai-file-search-tool.1.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 81,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-non-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/__fixtures__/xai-web-search-tool.1.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 90,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/__fixtures__/xai-text-with-reasoning-streaming-store-false.1.chunks.txt",
+   "kind": "doc",
+   "lang": null,
+   "lines": 655,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/__fixtures__/xai-image-generation-tool.1.chunks.txt",
+   "kind": "doc",
+   "lang": null,
+   "lines": 29,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/__fixtures__/xai-x-search-tool.1.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 149,
+   "endpoints": [],
+   "models": [
+    "grok-4-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/__fixtures__/xai-text-with-reasoning-streaming.1.chunks.txt",
+   "kind": "doc",
+   "lang": null,
+   "lines": 679,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/responses/__fixtures__/xai-image-generation-tool.1.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 95,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "live_search",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/xai/src/files/xai-files.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 625,
+   "endpoints": [
+    "/v1/files"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "packages/harness-grok-build/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 45,
+   "endpoints": [],
+   "models": [],
+   "env": [
     "XAI_API_KEY"
    ],
    "features": []
   },
   {
-   "path": "examples/harness-e2e-next/agent/harness/acp-grok-build/harness.ts",
-   "kind": "example",
+   "path": "packages/harness-grok-build/src/grok-build-harness.ts",
+   "kind": "source",
    "lang": "TypeScript",
-   "lines": 63,
+   "lines": 400,
    "endpoints": [],
    "models": [],
    "env": [
@@ -4038,7 +3970,75 @@
     "XAI_API_KEY"
    ],
    "features": [
+    "live_search",
+    "mcp",
+    "reasoning",
     "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/harness-grok-build/src/grok-build-subscription.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 152,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "GROK_XAI_API_BASE_URL",
+    "XAI_API_KEY",
+    "XAI_CLIENT_ID"
+   ],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/harness-grok-build/src/grok-build-harness.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 326,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "GROK_XAI_API_BASE_URL",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "reasoning",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/harness-grok-build/src/grok-build-subscription.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 92,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/amazon-bedrock/src/mantle/bedrock-mantle-provider.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 346,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "embeddings"
    ]
   },
   {

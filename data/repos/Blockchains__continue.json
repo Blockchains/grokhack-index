@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T09:28:06Z",
  "description": "open-source coding agent",
  "commit": "5522c6f44ca0ac3528b37244818fbfa39b5af470",
- "indexed_at": "2026-11-05T09:52:24Z",
+ "indexed_at": "2026-11-06T09:55:30Z",
  "status": "ok",
- "clone_kb": 471228,
- "seconds": 8.4,
+ "clone_kb": 471232,
+ "seconds": 20.1,
  "files_scanned": 2466,
  "languages": {
   "TypeScript": 1758,
@@ -21,22 +21,22 @@
   "Rust": 10,
   "Java": 4,
   "PHP": 2,
-  "Go": 1
+  "Ruby": 1
  },
  "grok_files": 20,
  "grok_files_by_kind": {
   "source": 13,
+  "doc": 4,
   "config": 2,
-  "test": 1,
-  "doc": 4
+  "test": 1
  },
  "hosts": {
   "api.x.ai": 4
  },
  "endpoints": {
   "/v1/chat/completions": 3,
-  "/v1/embeddings": 2,
   "/v1/models": 2,
+  "/v1/embeddings": 2,
   "/v1/completions": 1
  },
  "models": {
@@ -46,16 +46,16 @@
   "grok-beta": 5,
   "grok-code-fast-1": 4,
   "grok-3-fast": 3,
+  "grok-4-0709": 3,
   "grok-4-1-fast-non-reasoning": 3,
   "grok-4-1-fast-reasoning": 3,
   "grok-4-fast-non-reasoning": 3,
   "grok-4-fast-reasoning": 3,
-  "grok-4-0709": 3,
   "grok-code": 3,
-  "grok-2": 2,
   "grok-4-1-fast": 2,
   "grok-4-fast": 2,
   "grok-2-image-1212": 2,
+  "grok-2": 2,
   "grok-code-beta": 1
  },
  "env_vars": {
@@ -66,33 +66,15 @@
   "anthropic_compatible": 6,
   "embeddings": 6,
   "reasoning": 4,
+  "structured_output": 3,
   "openai_compatible": 3,
   "streaming": 3,
-  "structured_output": 3,
-  "image_generation": 2,
-  "tool_calling": 2
+  "tool_calling": 2,
+  "image_generation": 2
  },
  "sdk_exports": [],
  "packages": [],
  "snippets": [
-  {
-   "path": "packages/openai-adapters/src/index.ts",
-   "start": 125,
-   "end": 148,
-   "code": "      return new WatsonXApi(config);\n    case \"vertexai\":\n      return new VertexAIApi(config);\n    case \"llamastack\":\n      return new LlamastackApi(config);\n    case \"xAI\":\n      return openAICompatible(\"https://api.x.ai/v1/\", config);\n    case \"zAI\":\n      return openAICompatible(\"https://api.z.ai/api/paas/v4/\", config);\n    case \"voyage\":\n      return openAICompatible(\"https://api.voyageai.com/v1/\", config);\n    case \"mistral\":\n      return openAICompatible(\"https://api.mistral.ai/v1/\", config);\n    case \"deepinfra\":\n      return openAICompatible(\"https://api.deepinfra.com/v1/openai/\", config);\n    case \"vllm\":\n      return openAICompatible(\"http://localhost:8000/v1/\", config);\n    case \"groq\":\n      return openAICompatible(\"https://api.groq.com/openai/v1/\", config);\n    case \"minimax\":\n      return new MiniMaxApi(config);\n    case \"sambanova\":\n      return openAICompatible(\"https://api.sambanova.ai/v1/\", config);\n    case \"text-gen-webui\":"
-  },
-  {
-   "path": "packages/openai-adapters/src/apis/AiSdk.ts",
-   "start": 1,
-   "end": 22,
-   "code": "import { createAnthropic } from \"@ai-sdk/anthropic\";\nimport { createGoogleGenerativeAI } from \"@ai-sdk/google\";\nimport { createDeepSeek } from \"@ai-sdk/deepseek\";\nimport { createOpenAI } from \"@ai-sdk/openai\";\nimport { createXai } from \"@ai-sdk/xai\";\nimport {\n  ChatCompletion,\n  ChatCompletionChunk,\n  ChatCompletionCreateParamsNonStreaming,\n  ChatCompletionCreateParamsStreaming,\n  Completion,\n  CompletionCreateParamsNonStreaming,\n  CompletionCreateParamsStreaming,\n  CreateEmbeddingResponse,\n  EmbeddingCreateParams,\n  Model,\n} from \"openai/resources/index\";\nimport { AiSdkConfig } from \"../types.js\";\nimport { customFetch, embedding } from \"../util.js\";\nimport {\n  BaseLlmApi,\n  CreateRerankResponse,"
-  },
-  {
-   "path": "core/llm/llms/xAI.ts",
-   "start": 2,
-   "end": 16,
-   "code": "\nimport OpenAI from \"./OpenAI.js\";\n\nclass xAI extends OpenAI {\n  static providerName = \"xAI\";\n  static defaultOptions: Partial<LLMOptions> = {\n    apiBase: \"https://api.x.ai/v1/\",\n  };\n\n  supportsCompletions(): boolean {\n    return false;\n  }\n}\n\nexport default xAI;"
-  },
   {
    "path": "core/llm/llms/OpenAI-compatible.vitest.ts",
    "start": 281,
@@ -104,9 +86,266 @@
    "start": 230,
    "end": 253,
    "code": "  providerName: \"openrouter\",\n  defaultApiBase: \"https://openrouter.ai/api/v1/\",\n});\n\ncreateOpenAISubclassTests(xAI, {\n  providerName: \"xAI\",\n  defaultApiBase: \"https://api.x.ai/v1/\",\n  modelConversions: {\n    \"grok-beta\": \"grok-beta\",\n  },\n  modelConversionContent: \"hello\",\n});\n\ncreateOpenAISubclassTests(Mistral, {\n  providerName: \"mistral\",\n  defaultApiBase: \"https://api.mistral.ai/v1/\",\n  modelConversions: {\n    \"mistral-7b\": \"mistral-7b\",\n    \"mistral-8x7b\": \"open-mixtral-8x7b\",\n  },\n  modelConversionContent: \"hello\",\n});\n\ncreateOpenAISubclassTests(LMStudio, {"
+  },
+  {
+   "path": "core/llm/llms/xAI.ts",
+   "start": 2,
+   "end": 16,
+   "code": "\nimport OpenAI from \"./OpenAI.js\";\n\nclass xAI extends OpenAI {\n  static providerName = \"xAI\";\n  static defaultOptions: Partial<LLMOptions> = {\n    apiBase: \"https://api.x.ai/v1/\",\n  };\n\n  supportsCompletions(): boolean {\n    return false;\n  }\n}\n\nexport default xAI;"
+  },
+  {
+   "path": "packages/openai-adapters/src/index.ts",
+   "start": 125,
+   "end": 148,
+   "code": "      return new WatsonXApi(config);\n    case \"vertexai\":\n      return new VertexAIApi(config);\n    case \"llamastack\":\n      return new LlamastackApi(config);\n    case \"xAI\":\n      return openAICompatible(\"https://api.x.ai/v1/\", config);\n    case \"zAI\":\n      return openAICompatible(\"https://api.z.ai/api/paas/v4/\", config);\n    case \"voyage\":\n      return openAICompatible(\"https://api.voyageai.com/v1/\", config);\n    case \"mistral\":\n      return openAICompatible(\"https://api.mistral.ai/v1/\", config);\n    case \"deepinfra\":\n      return openAICompatible(\"https://api.deepinfra.com/v1/openai/\", config);\n    case \"vllm\":\n      return openAICompatible(\"http://localhost:8000/v1/\", config);\n    case \"groq\":\n      return openAICompatible(\"https://api.groq.com/openai/v1/\", config);\n    case \"minimax\":\n      return new MiniMaxApi(config);\n    case \"sambanova\":\n      return openAICompatible(\"https://api.sambanova.ai/v1/\", config);\n    case \"text-gen-webui\":"
+  },
+  {
+   "path": "packages/openai-adapters/src/apis/AiSdk.ts",
+   "start": 1,
+   "end": 22,
+   "code": "import { createAnthropic } from \"@ai-sdk/anthropic\";\nimport { createGoogleGenerativeAI } from \"@ai-sdk/google\";\nimport { createDeepSeek } from \"@ai-sdk/deepseek\";\nimport { createOpenAI } from \"@ai-sdk/openai\";\nimport { createXai } from \"@ai-sdk/xai\";\nimport {\n  ChatCompletion,\n  ChatCompletionChunk,\n  ChatCompletionCreateParamsNonStreaming,\n  ChatCompletionCreateParamsStreaming,\n  Completion,\n  CompletionCreateParamsNonStreaming,\n  CompletionCreateParamsStreaming,\n  CreateEmbeddingResponse,\n  EmbeddingCreateParams,\n  Model,\n} from \"openai/resources/index\";\nimport { AiSdkConfig } from \"../types.js\";\nimport { customFetch, embedding } from \"../util.js\";\nimport {\n  BaseLlmApi,\n  CreateRerankResponse,"
   }
  ],
  "files": [
+  {
+   "path": "gui/src/pages/AddNewModel/configs/models.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 3330,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-0709",
+    "grok-4-1-fast",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-fast",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "docs/customize/models.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 133,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "docs/customize/model-providers/more/clawrouter.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 507,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/customize/model-providers/more/xAI.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 45,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [
+    "YOUR_XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
+   "path": "docs/customize/model-roles/chat.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 238,
+   "endpoints": [],
+   "models": [
+    "grok-4-1-fast-non-reasoning"
+   ],
+   "env": [
+    "YOUR_XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "extensions/vscode/config_schema.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 3541,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "core/llm/autodetect.vitest.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 339,
+   "endpoints": [],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "core/llm/autodetect.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 537,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-code"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "core/llm/toolSupport.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 536,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-code",
+    "grok-code-beta"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "core/llm/toolSupport.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 523,
+   "endpoints": [],
+   "models": [
+    "grok-code"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "core/llm/llms/OpenAI-compatible.vitest.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 459,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/embeddings"
+   ],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "openai_compatible",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "core/llm/llms/OpenAI-compatible-core.vitest.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 305,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-beta"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "openai_compatible",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "core/llm/llms/CometAPI.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 361,
+   "endpoints": [],
+   "models": [
+    "grok-2-image-1212",
+    "grok-3",
+    "grok-3-mini",
+    "grok-4-0709"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "reasoning"
+   ]
+  },
+  {
+   "path": "core/llm/llms/xAI.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 16,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
   {
    "path": "packages/llm-info/src/providers/xAI.ts",
    "kind": "source",
@@ -153,6 +392,21 @@
    ]
   },
   {
+   "path": "packages/config-yaml/src/schemas/commonSlugs.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 33,
+   "endpoints": [],
+   "models": [
+    "grok-2"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
    "path": "packages/openai-adapters/package.json",
    "kind": "config",
    "lang": null,
@@ -196,260 +450,6 @@
     "openai_compatible",
     "streaming",
     "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/config-yaml/src/schemas/commonSlugs.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 33,
-   "endpoints": [],
-   "models": [
-    "grok-2"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings"
-   ]
-  },
-  {
-   "path": "core/llm/toolSupport.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 536,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-fast",
-    "grok-3-mini",
-    "grok-4",
-    "grok-4-fast-non-reasoning",
-    "grok-4-fast-reasoning",
-    "grok-code",
-    "grok-code-beta"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "core/llm/toolSupport.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 523,
-   "endpoints": [],
-   "models": [
-    "grok-code"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "core/llm/autodetect.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 537,
-   "endpoints": [],
-   "models": [
-    "grok-4",
-    "grok-code"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "core/llm/autodetect.vitest.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 339,
-   "endpoints": [],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "core/llm/llms/xAI.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 16,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "core/llm/llms/OpenAI-compatible.vitest.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 459,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/embeddings"
-   ],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [],
-   "features": [
-    "embeddings",
-    "openai_compatible",
-    "streaming",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "core/llm/llms/CometAPI.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 361,
-   "endpoints": [],
-   "models": [
-    "grok-2-image-1212",
-    "grok-3",
-    "grok-3-mini",
-    "grok-4-0709"
-   ],
-   "env": [],
-   "features": [
-    "embeddings",
-    "image_generation",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "core/llm/llms/OpenAI-compatible-core.vitest.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 305,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [],
-   "features": [
-    "embeddings",
-    "openai_compatible",
-    "streaming",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "gui/src/pages/AddNewModel/configs/models.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 3330,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-fast",
-    "grok-3-mini",
-    "grok-4",
-    "grok-4-0709",
-    "grok-4-1-fast",
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-1-fast-reasoning",
-    "grok-4-fast",
-    "grok-4-fast-non-reasoning",
-    "grok-4-fast-reasoning",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "extensions/vscode/config_schema.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 3541,
-   "endpoints": [],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings"
-   ]
-  },
-  {
-   "path": "docs/customize/models.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 133,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "embeddings"
-   ]
-  },
-  {
-   "path": "docs/customize/model-providers/more/xAI.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 45,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
-   ],
-   "env": [
-    "YOUR_XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "docs/customize/model-providers/more/clawrouter.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 507,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "docs/customize/model-roles/chat.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 238,
-   "endpoints": [],
-   "models": [
-    "grok-4-1-fast-non-reasoning"
-   ],
-   "env": [
-    "YOUR_XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
    ]
   }
  ]

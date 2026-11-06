@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T16:28:55Z",
  "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
  "commit": "9327439db69021ab4b0e2776729bf3b58fdb5a87",
- "indexed_at": "2026-11-05T09:53:55Z",
+ "indexed_at": "2026-11-06T09:58:23Z",
  "status": "ok",
- "clone_kb": 166212,
- "seconds": 6.6,
+ "clone_kb": 166216,
+ "seconds": 10.9,
  "files_scanned": 1887,
  "languages": {
   "Python": 539,
@@ -20,8 +20,8 @@
  },
  "grok_files": 8,
  "grok_files_by_kind": {
-  "config": 1,
   "doc": 5,
+  "config": 1,
   "source": 2
  },
  "hosts": {
@@ -77,20 +77,6 @@
  ],
  "files": [
   {
-   "path": ".env.example",
-   "kind": "config",
-   "lang": null,
-   "lines": 151,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
    "path": "README.md",
    "kind": "doc",
    "lang": null,
@@ -109,6 +95,20 @@
    "kind": "doc",
    "lang": null,
    "lines": 679,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": ".env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 151,
    "endpoints": [],
    "models": [],
    "env": [

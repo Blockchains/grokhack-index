@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T03:02:02Z",
  "description": null,
  "commit": "c54597913f9c73dd0b2eda883daf7d6f725f3339",
- "indexed_at": "2026-11-05T09:54:03Z",
+ "indexed_at": "2026-11-06T09:58:37Z",
  "status": "ok",
  "clone_kb": 17824,
- "seconds": 6.5,
+ "seconds": 7.3,
  "files_scanned": 810,
  "languages": {
   "Python": 431,
@@ -21,15 +21,15 @@
  },
  "grok_files": 4,
  "grok_files_by_kind": {
-  "source": 3,
-  "test": 1
+  "test": 1,
+  "source": 3
  },
  "hosts": {
   "api.x.ai": 2
  },
  "endpoints": {
-  "/v1/models": 2,
   "/v1/chat/completions": 2,
+  "/v1/models": 2,
   "/v1/responses": 1
  },
  "models": {
@@ -58,6 +58,25 @@
   }
  ],
  "files": [
+  {
+   "path": "tests/test_providers.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 624,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/responses"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
   {
    "path": "coworker/providers/registry.py",
    "kind": "source",
@@ -111,25 +130,6 @@
     "live_search",
     "mcp",
     "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "tests/test_providers.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 624,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/responses"
-   ],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "streaming",
     "tool_calling"
    ]
   }

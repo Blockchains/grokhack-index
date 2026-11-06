@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T14:28:02Z",
  "description": "\ud83d\udc96\ud83e\uddf8 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.",
  "commit": "7684415927147a8f64bb442ff0069c33816efedd",
- "indexed_at": "2026-11-05T09:53:39Z",
+ "indexed_at": "2026-11-06T09:57:48Z",
  "status": "ok",
  "clone_kb": 960356,
- "seconds": 31.3,
+ "seconds": 56.4,
  "files_scanned": 5029,
  "languages": {
   "TypeScript": 2728,
@@ -24,9 +24,9 @@
  },
  "grok_files": 6,
  "grok_files_by_kind": {
-  "test": 2,
+  "doc": 3,
   "source": 1,
-  "doc": 3
+  "test": 2
  },
  "hosts": {
   "api.x.ai": 4
@@ -60,6 +60,48 @@
  ],
  "files": [
   {
+   "path": "docs/content/zh-Hans/docs/manual/config/providers/consciousness/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 35,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/content/ko/docs/manual/config/providers/consciousness/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 35,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/content/en/docs/manual/config/providers/consciousness/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 35,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "packages/provider-inference/src/providers/cloud/xai/index.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 53,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "openai_compatible"
+   ]
+  },
+  {
    "path": "packages/stage-ui/src/stores/providers/onboarding-save.browser.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -88,48 +130,6 @@
    "features": [
     "structured_output"
    ]
-  },
-  {
-   "path": "packages/provider-inference/src/providers/cloud/xai/index.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 53,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "openai_compatible"
-   ]
-  },
-  {
-   "path": "docs/content/en/docs/manual/config/providers/consciousness/xai.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 35,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "docs/content/ko/docs/manual/config/providers/consciousness/xai.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 35,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "docs/content/zh-Hans/docs/manual/config/providers/consciousness/xai.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 35,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
   }
  ]
 }

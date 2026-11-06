@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T06:32:37Z",
  "description": "Open Source Global Intelligence Platform - Real-Time OSINT Dashboard - A Palantir Alternative -                            2nZNHm3Lr9umG3DVrzYwHgktwkuKuJRXqqRqs3ewpump ",
  "commit": "6431d1a99a59b2e3946764151ebf9bc2fd8af5ce",
- "indexed_at": "2026-11-05T09:54:12Z",
+ "indexed_at": "2026-11-06T09:58:44Z",
  "status": "ok",
- "clone_kb": 20056,
- "seconds": 2.8,
+ "clone_kb": 20060,
+ "seconds": 6.9,
  "files_scanned": 417,
  "languages": {
   "TypeScript": 386,
@@ -49,18 +49,6 @@
  ],
  "files": [
   {
-   "path": "src/lib/oi/models.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 153,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
    "path": "src/lib/oi/providers.ts",
    "kind": "source",
    "lang": "TypeScript",
@@ -78,6 +66,18 @@
     "structured_output",
     "voice_realtime"
    ]
+  },
+  {
+   "path": "src/lib/oi/models.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 153,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
   }
  ]
 }

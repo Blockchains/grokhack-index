@@ -8,27 +8,27 @@
  "pushed_at": "2026-10-01T22:17:59Z",
  "description": "Shannon is an AI pentester for web applications and APIs. It analyzes your source code, identifies attack vectors, and executes real exploits to prove vulnerabilities before they reach production.",
  "commit": "a14c7944d87b30ed7bfecd4bad06562e24002b01",
- "indexed_at": "2026-11-05T09:53:55Z",
+ "indexed_at": "2026-11-06T09:58:17Z",
  "status": "ok",
- "clone_kb": 110704,
- "seconds": 2.6,
+ "clone_kb": 110692,
+ "seconds": 4.5,
  "files_scanned": 312,
  "languages": {
   "TypeScript": 206
  },
  "grok_files": 11,
  "grok_files_by_kind": {
-  "config": 1,
   "doc": 5,
+  "config": 1,
   "source": 5
  },
  "hosts": {},
  "endpoints": {},
  "models": {
   "grok-4.5": 4,
-  "grok-4.6": 3,
   "grok-4-6.pdf": 3,
-  "grok-4-6.sarif": 3
+  "grok-4-6.sarif": 3,
+  "grok-4.6": 3
  },
  "env_vars": {
   "XAI_API_KEY": 7
@@ -66,21 +66,6 @@
   }
  ],
  "files": [
-  {
-   "path": ".env.example",
-   "kind": "config",
-   "lang": null,
-   "lines": 56,
-   "endpoints": [],
-   "models": [
-    "grok-4.5",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
   {
    "path": "llms-full.txt",
    "kind": "doc",
@@ -123,6 +108,21 @@
    "env": [
     "XAI_API_KEY"
    ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": ".env.example",
+   "kind": "config",
+   "lang": null,
+   "lines": 56,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
    "features": [
     "anthropic_compatible"
    ]

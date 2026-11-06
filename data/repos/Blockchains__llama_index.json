@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-01T18:39:47Z",
  "description": "LlamaIndex is the document processing platform for AI",
  "commit": "962940ddc079cc21701d28d1237c84c82a7c5164",
- "indexed_at": "2026-11-05T09:50:11Z",
+ "indexed_at": "2026-11-06T09:51:37Z",
  "status": "ok",
  "clone_kb": 893600,
- "seconds": 29.0,
+ "seconds": 78.9,
  "files_scanned": 6436,
  "languages": {
   "Python": 3772,
@@ -20,8 +20,8 @@
  "grok_files": 5,
  "grok_files_by_kind": {
   "source": 2,
-  "doc": 1,
-  "test": 2
+  "test": 2,
+  "doc": 1
  },
  "hosts": {
   "api.x.ai": 2
@@ -32,11 +32,11 @@
   "grok-4-fast-reasoning": 2,
   "grok-3-mini": 2,
   "grok-4": 2,
-  "grok-4-0709": 1,
   "grok-3": 1,
   "grok-3-fast": 1,
   "grok-3-mini-fast": 1,
-  "grok-code-fast-1": 1
+  "grok-code-fast-1": 1,
+  "grok-4-0709": 1
  },
  "env_vars": {
   "SKIP_GROK": 1
@@ -70,18 +70,6 @@
    "features": [
     "anthropic_compatible"
    ]
-  },
-  {
-   "path": "llama-index-integrations/llms/llama-index-llms-cometapi/README.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 123,
-   "endpoints": [],
-   "models": [
-    "grok-4-0709"
-   ],
-   "env": [],
-   "features": []
   },
   {
    "path": "llama-index-integrations/llms/llama-index-llms-openai-like/tests/test_openai_like_grok.py",
@@ -143,6 +131,18 @@
     "tool_calling",
     "vision"
    ]
+  },
+  {
+   "path": "llama-index-integrations/llms/llama-index-llms-cometapi/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 123,
+   "endpoints": [],
+   "models": [
+    "grok-4-0709"
+   ],
+   "env": [],
+   "features": []
   }
  ]
 }
