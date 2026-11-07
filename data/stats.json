@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-06T09:58:53Z",
+ "generated_at": "2026-11-07T09:19:57Z",
  "repos_listed": 99,
  "repos_indexed_ok": 99,
  "repos_failed": [],
  "repos_with_grok_surface": 98,
  "grok_files": 4180,
  "files_scanned": 332422,
- "clone_mb_total": 16308.3,
+ "clone_mb_total": 16310.1,
  "parts": 619,
  "parts_by_type": {
   "repo-surface": 98,
@@ -135,5 +135,5 @@
   "XAI_CHAT_OAUTH_TEST_CONFIG": 1,
   "XAI_CHAT_HISTORY_LIMIT": 1
  },
- "run_seconds": 516.7
+ "run_seconds": 389.0
 }
