@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-30T09:47:13Z",
  "description": "Build and run agents you can see, understand and trust.",
  "commit": "72f3f6fa0b2fc38b8517f408ab616f0f2bd229e6",
- "indexed_at": "2026-11-13T09:59:21Z",
+ "indexed_at": "2026-11-14T09:24:57Z",
  "status": "ok",
  "clone_kb": 28432,
- "seconds": 9.9,
+ "seconds": 8.8,
  "files_scanned": 1129,
  "languages": {
   "Python": 740,
