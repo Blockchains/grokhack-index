@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T14:20:31Z",
  "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
  "commit": "4d9890fea806d4160f230a5d3ce1542300f3e1b9",
- "indexed_at": "2026-11-15T10:01:31Z",
+ "indexed_at": "2026-11-16T10:17:44Z",
  "status": "ok",
  "clone_kb": 210936,
- "seconds": 9.3,
+ "seconds": 10.2,
  "files_scanned": 3058,
  "languages": {
   "TypeScript": 1839,
