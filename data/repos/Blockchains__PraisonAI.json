@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T08:36:00Z",
  "description": "PraisonAI \ud83e\udd9e \u2014 Hire a 24/7 AI Workforce. Stop writing boilerplate and start shipping autonomous self-improving agents that research, plan, code, and execute tasks. Deployed in 5 lines of code with built-in memory, RAG, and support for 100+ LLMs.",
  "commit": "e49b254509c3eaca45a688daccf046a270fd382c",
- "indexed_at": "2026-11-16T10:13:49Z",
+ "indexed_at": "2026-11-17T11:09:09Z",
  "status": "ok",
  "clone_kb": 148352,
- "seconds": 48.2,
+ "seconds": 33.4,
  "files_scanned": 6409,
  "languages": {
   "Python": 4876,

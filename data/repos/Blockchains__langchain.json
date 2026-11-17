@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T10:17:02Z",
  "description": "The agent engineering platform.",
  "commit": "57236d55d9ffc8634bda987861e6fce460aff268",
- "indexed_at": "2026-11-16T10:09:21Z",
+ "indexed_at": "2026-11-17T11:05:58Z",
  "status": "ok",
  "clone_kb": 72220,
- "seconds": 38.5,
+ "seconds": 28.9,
  "files_scanned": 2863,
  "languages": {
   "Python": 2615,
