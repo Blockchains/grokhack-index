@@ -8,10 +8,10 @@
  "pushed_at": "2026-09-30T20:24:12Z",
  "description": "Make bilingual epub books Using AI translate",
  "commit": "e1027a4823e98f668ef950740b6f805ec30bd3b2",
- "indexed_at": "2026-11-19T10:52:00Z",
+ "indexed_at": "2026-11-20T10:32:44Z",
  "status": "ok",
  "clone_kb": 12832,
- "seconds": 4.0,
+ "seconds": 2.2,
  "files_scanned": 280,
  "languages": {
   "Python": 177,
