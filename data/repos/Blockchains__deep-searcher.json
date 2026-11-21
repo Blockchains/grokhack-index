@@ -8,18 +8,18 @@
  "pushed_at": "2026-09-22T10:08:42Z",
  "description": "Open Source Deep Research Alternative to Reason and Search on Private Data. Written in Python.",
  "commit": "ddc36db317836bd42302b36f03166bec5324708d",
- "indexed_at": "2026-11-20T10:32:44Z",
+ "indexed_at": "2026-11-21T10:16:37Z",
  "status": "ok",
  "clone_kb": 28604,
- "seconds": 2.1,
+ "seconds": 1.7,
  "files_scanned": 208,
  "languages": {
   "Python": 156
  },
  "grok_files": 6,
  "grok_files_by_kind": {
-  "config": 1,
   "doc": 3,
+  "config": 1,
   "test": 1,
   "source": 1
  },
@@ -60,12 +60,14 @@
  ],
  "files": [
   {
-   "path": "env.example",
-   "kind": "config",
+   "path": "README.md",
+   "kind": "doc",
    "lang": null,
-   "lines": 54,
+   "lines": 605,
    "endpoints": [],
-   "models": [],
+   "models": [
+    "grok-4-0709"
+   ],
    "env": [
     "XAI_API_KEY"
    ],
@@ -75,14 +77,12 @@
    ]
   },
   {
-   "path": "README.md",
-   "kind": "doc",
+   "path": "env.example",
+   "kind": "config",
    "lang": null,
-   "lines": 605,
+   "lines": 54,
    "endpoints": [],
-   "models": [
-    "grok-4-0709"
-   ],
+   "models": [],
    "env": [
     "XAI_API_KEY"
    ],

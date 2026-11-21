@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T04:50:46Z",
  "description": "AI desktop app for chat, RAG, Skills, MCP tools, and agents. Support multiple LLMs (Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM, Gemini, OpenRouter)",
  "commit": "6b4d6683182b1665fbad750010332d39e47dd761",
- "indexed_at": "2026-11-20T10:27:20Z",
+ "indexed_at": "2026-11-21T10:11:08Z",
  "status": "ok",
- "clone_kb": 70812,
- "seconds": 9.2,
+ "clone_kb": 70824,
+ "seconds": 10.1,
  "files_scanned": 721,
  "languages": {
   "Kotlin": 683
@@ -29,14 +29,14 @@
   "grok-4": 3,
   "grok-4-fast": 1,
   "grok-vision-beta": 1,
-  "grok-2-vision": 1,
-  "grok-3": 1
+  "grok-3": 1,
+  "grok-2-vision": 1
  },
  "env_vars": {},
  "features": {
   "embeddings": 2,
-  "vision": 1,
-  "anthropic_compatible": 1
+  "anthropic_compatible": 1,
+  "vision": 1
  },
  "sdk_exports": [],
  "packages": [],
@@ -49,18 +49,6 @@
   }
  ],
  "files": [
-  {
-   "path": "cli/src/test/kotlin/io/askimo/core/providers/xai/XAiModelFactoryTest.kt",
-   "kind": "test",
-   "lang": "Kotlin",
-   "lines": 136,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": []
-  },
   {
    "path": "cli/src/test/kotlin/io/askimo/core/config/AppConfigTest.kt",
    "kind": "test",
@@ -80,6 +68,18 @@
    ]
   },
   {
+   "path": "cli/src/test/kotlin/io/askimo/core/providers/xai/XAiModelFactoryTest.kt",
+   "kind": "test",
+   "lang": "Kotlin",
+   "lines": 136,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
    "path": "shared/src/main/kotlin/io/askimo/core/context/ParamKey.kt",
    "kind": "source",
    "lang": "Kotlin",
@@ -90,6 +90,20 @@
    ],
    "env": [],
    "features": []
+  },
+  {
+   "path": "shared/src/main/kotlin/io/askimo/core/providers/ModelProvider.kt",
+   "kind": "source",
+   "lang": "Kotlin",
+   "lines": 87,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
   },
   {
    "path": "shared/src/main/kotlin/io/askimo/core/providers/ModelFilterUtils.kt",
@@ -104,20 +118,6 @@
    "features": [
     "embeddings",
     "vision"
-   ]
-  },
-  {
-   "path": "shared/src/main/kotlin/io/askimo/core/providers/ModelProvider.kt",
-   "kind": "source",
-   "lang": "Kotlin",
-   "lines": 87,
-   "endpoints": [],
-   "models": [
-    "grok-3"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
    ]
   },
   {

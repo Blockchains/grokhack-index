@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T09:00:13Z",
  "description": "Kilo is the all-in-one agentic engineering platform. Build, ship, and iterate faster with the most popular open source coding agent.",
  "commit": "76bcfd40be616a72f4697b3041565f322245b462",
- "indexed_at": "2026-11-20T10:31:19Z",
+ "indexed_at": "2026-11-21T10:15:06Z",
  "status": "ok",
- "clone_kb": 198176,
- "seconds": 62.7,
+ "clone_kb": 198172,
+ "seconds": 58.1,
  "files_scanned": 8029,
  "languages": {
   "TypeScript": 6080,
@@ -26,8 +26,8 @@
  "grok_files_by_kind": {
   "config": 3,
   "test": 12,
-  "doc": 6,
-  "source": 10
+  "source": 10,
+  "doc": 6
  },
  "hosts": {
   "api.x.ai": 7
@@ -40,13 +40,13 @@
   "grok-4": 5,
   "grok-3-mini": 3,
   "grok-4.20": 2,
-  "grok-code-fast-1": 2,
   "grok-4.3": 2,
-  "grok-beta": 1,
+  "grok-code-fast-1": 2,
+  "grok-4.5": 1,
   "grok-2-vision": 1,
   "grok-2-vision-latest": 1,
   "grok-3": 1,
-  "grok-4.5": 1
+  "grok-beta": 1
  },
  "env_vars": {
   "XAI_API_KEY": 5
@@ -71,6 +71,30 @@
  ],
  "snippets": [
   {
+   "path": "packages/llm/script/recording-cost-report.ts",
+   "start": 57,
+   "end": 80,
+   "code": "const providerFromUrl = (url: string) => {\n  if (url.includes(\"api.openai.com\")) return \"openai\"\n  if (url.includes(\"api.anthropic.com\")) return \"anthropic\"\n  if (url.includes(\"generativelanguage.googleapis.com\")) return \"google\"\n  if (url.includes(\"bedrock\")) return \"amazon-bedrock\"\n  if (url.includes(\"openrouter.ai\")) return \"openrouter\"\n  if (url.includes(\"api.x.ai\")) return \"xai\"\n  if (url.includes(\"api.groq.com\")) return \"groq\"\n  if (url.includes(\"api.deepseek.com\")) return \"deepseek\"\n  if (url.includes(\"api.together.xyz\")) return \"togetherai\"\n  return \"unknown\"\n}\n\nconst providerAliases: Record<string, ReadonlyArray<string>> = {\n  openai: [\"openai\"],\n  anthropic: [\"anthropic\"],\n  google: [\"google\"],\n  \"amazon-bedrock\": [\"amazon-bedrock\"],\n  openrouter: [\"openrouter\", \"openai\", \"anthropic\", \"google\"],\n  xai: [\"xai\"],\n  groq: [\"groq\"],\n  deepseek: [\"deepseek\"],\n  togetherai: [\"togetherai\"],\n}"
+  },
+  {
+   "path": "packages/llm/script/setup-recording-env.ts",
+   "start": 97,
+   "end": 120,
+   "code": "  },\n  {\n    id: \"xai\",\n    label: \"xAI\",\n    tier: \"canary\",\n    note: \"OpenAI-compatible xAI chat endpoint\",\n    vars: [{ name: \"XAI_API_KEY\" }],\n    validate: (env) => validateBearer(\"https://api.x.ai/v1/models\", Redacted.make(env.XAI_API_KEY)),\n  },\n  {\n    id: \"cloudflare-ai-gateway\",\n    label: \"Cloudflare AI Gateway\",\n    tier: \"canary\",\n    note: \"Cloudflare Unified/OpenAI-compatible gateway; supports provider/model ids like workers-ai/@cf/...\",\n    vars: [\n      { name: \"CLOUDFLARE_ACCOUNT_ID\", label: \"Cloudflare account ID\", secret: false },\n      {\n        name: \"CLOUDFLARE_GATEWAY_ID\",\n        label: \"Cloudflare AI Gateway ID (defaults to default)\",\n        optional: true,\n        secret: false,\n      },\n      { name: \"CLOUDFLARE_API_TOKEN\", label: \"Cloudflare AI Gateway token\" },\n    ],"
+  },
+  {
+   "path": "packages/llm/src/providers/xai.ts",
+   "start": 11,
+   "end": 34,
+   "code": "  ProviderAuthOption<\"optional\"> & {\n    readonly baseURL?: string\n  }\n\nexport const routes = [OpenAIResponses.route, OpenAICompatibleChat.route]\n\nconst auth = (options: ProviderAuthOption<\"optional\">) => AuthOptions.bearer(options, \"XAI_API_KEY\")\n\nconst configuredResponsesRoute = (input: ModelOptions) => {\n  const { apiKey: _, auth: _auth, baseURL, ...rest } = input\n  return OpenAIResponses.route.with({\n    ...rest,\n    provider: id,\n    endpoint: { baseURL: baseURL ?? OpenAICompatibleProfiles.profiles.xai.baseURL },\n    auth: auth(input),\n  })\n}\n\nconst configuredChatRoute = (input: ModelOptions) => {\n  const { apiKey: _, auth: _auth, baseURL, ...rest } = input\n  return OpenAICompatibleChat.route.with({\n    ...rest,\n    provider: id,\n    endpoint: { baseURL: baseURL ?? OpenAICompatibleProfiles.profiles.xai.baseURL },"
+  },
+  {
+   "path": "packages/llm/src/providers/openai-compatible-profile.ts",
+   "start": 9,
+   "end": 20,
+   "code": "  deepinfra: { provider: \"deepinfra\", baseURL: \"https://api.deepinfra.com/v1/openai\" },\n  deepseek: { provider: \"deepseek\", baseURL: \"https://api.deepseek.com/v1\" },\n  fireworks: { provider: \"fireworks\", baseURL: \"https://api.fireworks.ai/inference/v1\" },\n  groq: { provider: \"groq\", baseURL: \"https://api.groq.com/openai/v1\" },\n  openrouter: { provider: \"openrouter\", baseURL: \"https://openrouter.ai/api/v1\" },\n  togetherai: { provider: \"togetherai\", baseURL: \"https://api.together.xyz/v1\" },\n  xai: { provider: \"xai\", baseURL: \"https://api.x.ai/v1\" },\n} as const satisfies Record<string, OpenAICompatibleProfile>\n\nexport const byProvider: Record<string, OpenAICompatibleProfile> = Object.fromEntries(\n  Object.values(profiles).map((profile) => [profile.provider, profile]),\n)"
+  },
+  {
    "path": "packages/opencode/src/session/message-v2.ts",
    "start": 271,
    "end": 294,
@@ -83,40 +107,16 @@
    "code": "        // provider onto one HTTP call so we don't replay a rotating refresh_token.\n        let refreshPromise: Promise<RefreshResult> | undefined\n\n        return {\n          // Dummy bearer keeps the AI SDK from bailing on \"missing apiKey\"; the\n          // real OAuth token is injected by the fetch override below.\n          // We intentionally do NOT set baseURL \u2014 @ai-sdk/xai already defaults\n          // to https://api.x.ai/v1 and overriding here would silently route\n          // around a user-configured gateway.\n          apiKey: OAUTH_DUMMY_KEY,\n          async fetch(requestInput: RequestInfo | URL, init?: RequestInit) {\n            let currentAuth = await getAuth()\n            // Auth can flip from oauth to api mid-session (user re-runs\n            // /connect with a pasted key). When that happens, pass the\n            // request through untouched so the AI SDK's own apiKey-based\n            // Authorization header reaches xAI unmodified.\n            if (currentAuth.type !== \"oauth\") return fetch(requestInput, init)\n\n            // Refresh either when the stored expires timestamp is within the\n            // skew window, or \u2014 for JWT access tokens \u2014 when the JWT exp\n            // claim itself is. The stored expires field is best-effort\n            // (xAI doesn't always return expires_in) so the JWT check is the\n            // load-bearing one for tokens that lack a fresh stored deadline.\n            const expiresSoon ="
   },
   {
-   "path": "packages/opencode/src/provider/provider.ts",
-   "start": 140,
-   "end": 163,
-   "code": "  \"@ai-sdk/google-vertex\": () => import(\"@ai-sdk/google-vertex\").then((m) => m.createVertex),\n  \"@ai-sdk/google-vertex/anthropic\": () =>\n    import(\"@ai-sdk/google-vertex/anthropic\").then((m) => m.createVertexAnthropic),\n  \"@ai-sdk/openai\": () => import(\"@ai-sdk/openai\").then((m) => m.createOpenAI),\n  \"@ai-sdk/openai-compatible\": () => import(\"@ai-sdk/openai-compatible\").then((m) => m.createOpenAICompatible),\n  \"@openrouter/ai-sdk-provider\": () => import(\"@openrouter/ai-sdk-provider\").then((m) => m.createOpenRouter),\n  \"@ai-sdk/xai\": () => import(\"@ai-sdk/xai\").then((m) => m.createXai),\n  \"@ai-sdk/mistral\": () => import(\"@ai-sdk/mistral\").then((m) => m.createMistral),\n  \"@ai-sdk/groq\": () => import(\"@ai-sdk/groq\").then((m) => m.createGroq),\n  \"@ai-sdk/deepinfra\": () => import(\"@ai-sdk/deepinfra\").then((m) => m.createDeepInfra),\n  \"@ai-sdk/cerebras\": () => import(\"@ai-sdk/cerebras\").then((m) => m.createCerebras),\n  \"@ai-sdk/cohere\": () => import(\"@ai-sdk/cohere\").then((m) => m.createCohere),\n  \"@ai-sdk/gateway\": () => import(\"@ai-sdk/gateway\").then((m) => m.createGateway),\n  \"@ai-sdk/togetherai\": () => import(\"@ai-sdk/togetherai\").then((m) => m.createTogetherAI),\n  \"@ai-sdk/perplexity\": () => import(\"@ai-sdk/perplexity\").then((m) => m.createPerplexity),\n  \"@ai-sdk/vercel\": () => import(\"@ai-sdk/vercel\").then((m) => m.createVercel),\n  \"@ai-sdk/alibaba\": () => import(\"@ai-sdk/alibaba\").then((m) => m.createAlibaba),\n  \"gitlab-ai-provider\": () => import(\"gitlab-ai-provider\").then((m) => m.createGitLab),\n  \"@ai-sdk/github-copilot\": () =>\n    import(\"@opencode-ai/core/github-copilot/copilot-provider\").then((m) => m.createOpenaiCompatible),\n  \"venice-ai-sdk-provider\": () => import(\"venice-ai-sdk-provider\").then((m) => m.createVenice),\n  ...KILO_BUNDLED_PROVIDERS, // kilocode_change\n}\n"
-  },
-  {
    "path": "packages/opencode/src/provider/transform.ts",
    "start": 76,
    "end": 99,
    "code": "    case \"@ai-sdk/perplexity\":\n      return \"perplexity\"\n    case \"@ai-sdk/togetherai\":\n      return \"togetherai\"\n    case \"@ai-sdk/vercel\":\n      return \"vercel\"\n    case \"@ai-sdk/xai\":\n      return \"xai\"\n    case \"venice-ai-sdk-provider\":\n      return \"venice\"\n    case \"@ai-sdk/gateway\":\n      return \"gateway\"\n    case \"@openrouter/ai-sdk-provider\":\n      return \"openrouter\"\n    case \"@kilocode/kilo-gateway\": // kilocode_change\n      return \"openrouter\"\n    case \"merge-gateway-ai-sdk-provider\":\n      return \"mergeGateway\"\n    case \"ai-gateway-provider\":\n      // ai-gateway-provider/unified wraps createOpenAICompatible({ name: \"Unified\" }),\n      // and @ai-sdk/openai-compatible parses compatibleOptions from one of\n      // \"openai-compatible\" / \"openaiCompatible\" / \"Unified\" / \"unified\". The\n      // \"openai-compatible\" key emits a deprecation warning at runtime, so we\n      // pick the camelCase form the SDK now treats as canonical."
   },
   {
-   "path": "packages/llm/script/setup-recording-env.ts",
-   "start": 97,
-   "end": 120,
-   "code": "  },\n  {\n    id: \"xai\",\n    label: \"xAI\",\n    tier: \"canary\",\n    note: \"OpenAI-compatible xAI chat endpoint\",\n    vars: [{ name: \"XAI_API_KEY\" }],\n    validate: (env) => validateBearer(\"https://api.x.ai/v1/models\", Redacted.make(env.XAI_API_KEY)),\n  },\n  {\n    id: \"cloudflare-ai-gateway\",\n    label: \"Cloudflare AI Gateway\",\n    tier: \"canary\",\n    note: \"Cloudflare Unified/OpenAI-compatible gateway; supports provider/model ids like workers-ai/@cf/...\",\n    vars: [\n      { name: \"CLOUDFLARE_ACCOUNT_ID\", label: \"Cloudflare account ID\", secret: false },\n      {\n        name: \"CLOUDFLARE_GATEWAY_ID\",\n        label: \"Cloudflare AI Gateway ID (defaults to default)\",\n        optional: true,\n        secret: false,\n      },\n      { name: \"CLOUDFLARE_API_TOKEN\", label: \"Cloudflare AI Gateway token\" },\n    ],"
-  },
-  {
-   "path": "packages/llm/script/recording-cost-report.ts",
-   "start": 57,
-   "end": 80,
-   "code": "const providerFromUrl = (url: string) => {\n  if (url.includes(\"api.openai.com\")) return \"openai\"\n  if (url.includes(\"api.anthropic.com\")) return \"anthropic\"\n  if (url.includes(\"generativelanguage.googleapis.com\")) return \"google\"\n  if (url.includes(\"bedrock\")) return \"amazon-bedrock\"\n  if (url.includes(\"openrouter.ai\")) return \"openrouter\"\n  if (url.includes(\"api.x.ai\")) return \"xai\"\n  if (url.includes(\"api.groq.com\")) return \"groq\"\n  if (url.includes(\"api.deepseek.com\")) return \"deepseek\"\n  if (url.includes(\"api.together.xyz\")) return \"togetherai\"\n  return \"unknown\"\n}\n\nconst providerAliases: Record<string, ReadonlyArray<string>> = {\n  openai: [\"openai\"],\n  anthropic: [\"anthropic\"],\n  google: [\"google\"],\n  \"amazon-bedrock\": [\"amazon-bedrock\"],\n  openrouter: [\"openrouter\", \"openai\", \"anthropic\", \"google\"],\n  xai: [\"xai\"],\n  groq: [\"groq\"],\n  deepseek: [\"deepseek\"],\n  togetherai: [\"togetherai\"],\n}"
-  },
-  {
-   "path": "packages/llm/src/providers/openai-compatible-profile.ts",
-   "start": 9,
-   "end": 20,
-   "code": "  deepinfra: { provider: \"deepinfra\", baseURL: \"https://api.deepinfra.com/v1/openai\" },\n  deepseek: { provider: \"deepseek\", baseURL: \"https://api.deepseek.com/v1\" },\n  fireworks: { provider: \"fireworks\", baseURL: \"https://api.fireworks.ai/inference/v1\" },\n  groq: { provider: \"groq\", baseURL: \"https://api.groq.com/openai/v1\" },\n  openrouter: { provider: \"openrouter\", baseURL: \"https://openrouter.ai/api/v1\" },\n  togetherai: { provider: \"togetherai\", baseURL: \"https://api.together.xyz/v1\" },\n  xai: { provider: \"xai\", baseURL: \"https://api.x.ai/v1\" },\n} as const satisfies Record<string, OpenAICompatibleProfile>\n\nexport const byProvider: Record<string, OpenAICompatibleProfile> = Object.fromEntries(\n  Object.values(profiles).map((profile) => [profile.provider, profile]),\n)"
-  },
-  {
-   "path": "packages/llm/src/providers/xai.ts",
-   "start": 11,
-   "end": 34,
-   "code": "  ProviderAuthOption<\"optional\"> & {\n    readonly baseURL?: string\n  }\n\nexport const routes = [OpenAIResponses.route, OpenAICompatibleChat.route]\n\nconst auth = (options: ProviderAuthOption<\"optional\">) => AuthOptions.bearer(options, \"XAI_API_KEY\")\n\nconst configuredResponsesRoute = (input: ModelOptions) => {\n  const { apiKey: _, auth: _auth, baseURL, ...rest } = input\n  return OpenAIResponses.route.with({\n    ...rest,\n    provider: id,\n    endpoint: { baseURL: baseURL ?? OpenAICompatibleProfiles.profiles.xai.baseURL },\n    auth: auth(input),\n  })\n}\n\nconst configuredChatRoute = (input: ModelOptions) => {\n  const { apiKey: _, auth: _auth, baseURL, ...rest } = input\n  return OpenAICompatibleChat.route.with({\n    ...rest,\n    provider: id,\n    endpoint: { baseURL: baseURL ?? OpenAICompatibleProfiles.profiles.xai.baseURL },"
+   "path": "packages/opencode/src/provider/provider.ts",
+   "start": 140,
+   "end": 163,
+   "code": "  \"@ai-sdk/google-vertex\": () => import(\"@ai-sdk/google-vertex\").then((m) => m.createVertex),\n  \"@ai-sdk/google-vertex/anthropic\": () =>\n    import(\"@ai-sdk/google-vertex/anthropic\").then((m) => m.createVertexAnthropic),\n  \"@ai-sdk/openai\": () => import(\"@ai-sdk/openai\").then((m) => m.createOpenAI),\n  \"@ai-sdk/openai-compatible\": () => import(\"@ai-sdk/openai-compatible\").then((m) => m.createOpenAICompatible),\n  \"@openrouter/ai-sdk-provider\": () => import(\"@openrouter/ai-sdk-provider\").then((m) => m.createOpenRouter),\n  \"@ai-sdk/xai\": () => import(\"@ai-sdk/xai\").then((m) => m.createXai),\n  \"@ai-sdk/mistral\": () => import(\"@ai-sdk/mistral\").then((m) => m.createMistral),\n  \"@ai-sdk/groq\": () => import(\"@ai-sdk/groq\").then((m) => m.createGroq),\n  \"@ai-sdk/deepinfra\": () => import(\"@ai-sdk/deepinfra\").then((m) => m.createDeepInfra),\n  \"@ai-sdk/cerebras\": () => import(\"@ai-sdk/cerebras\").then((m) => m.createCerebras),\n  \"@ai-sdk/cohere\": () => import(\"@ai-sdk/cohere\").then((m) => m.createCohere),\n  \"@ai-sdk/gateway\": () => import(\"@ai-sdk/gateway\").then((m) => m.createGateway),\n  \"@ai-sdk/togetherai\": () => import(\"@ai-sdk/togetherai\").then((m) => m.createTogetherAI),\n  \"@ai-sdk/perplexity\": () => import(\"@ai-sdk/perplexity\").then((m) => m.createPerplexity),\n  \"@ai-sdk/vercel\": () => import(\"@ai-sdk/vercel\").then((m) => m.createVercel),\n  \"@ai-sdk/alibaba\": () => import(\"@ai-sdk/alibaba\").then((m) => m.createAlibaba),\n  \"gitlab-ai-provider\": () => import(\"gitlab-ai-provider\").then((m) => m.createGitLab),\n  \"@ai-sdk/github-copilot\": () =>\n    import(\"@opencode-ai/core/github-copilot/copilot-provider\").then((m) => m.createOpenaiCompatible),\n  \"venice-ai-sdk-provider\": () => import(\"venice-ai-sdk-provider\").then((m) => m.createVenice),\n  ...KILO_BUNDLED_PROVIDERS, // kilocode_change\n}\n"
   },
   {
    "path": "packages/core/src/v1/config/provider-options.ts",
@@ -147,22 +147,10 @@
    ]
   },
   {
-   "path": "packages/kilo-vscode/src/services/autocomplete/continuedev/core/llm/countTokens.test.ts",
+   "path": "packages/tui/test/kilocode/model-picker.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 82,
-   "endpoints": [],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "packages/kilo-vscode/tests/unit/model-selector-utils.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 326,
+   "lines": 145,
    "endpoints": [],
    "models": [
     "grok-4.20"
@@ -173,27 +161,13 @@
    ]
   },
   {
-   "path": "packages/kilo-docs/source-links.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 213,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "packages/kilo-docs/pages/collaborate/teams/analytics.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 135,
+   "path": "packages/llm/test/auth-options.types.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 168,
    "endpoints": [],
    "models": [
-    "grok-code-fast-1"
+    "grok-4"
    ],
    "env": [],
    "features": [
@@ -201,59 +175,91 @@
    ]
   },
   {
-   "path": "packages/kilo-docs/pages/gateway/models-and-providers.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 123,
+   "path": "packages/llm/test/exports.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 76,
    "endpoints": [],
    "models": [
-    "grok-4",
-    "grok-code-fast-1"
+    "grok-4.3"
    ],
    "env": [],
    "features": [
-    "anthropic_compatible",
-    "streaming"
+    "anthropic_compatible"
    ]
   },
   {
-   "path": "packages/kilo-docs/pages/ai-providers/xai.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 158,
+   "path": "packages/llm/test/provider/golden.recorded.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 223,
    "endpoints": [],
    "models": [
-    "grok-2-vision",
-    "grok-2-vision-latest",
-    "grok-3"
+    "grok-3-mini",
+    "grok-4.3"
    ],
    "env": [
     "XAI_API_KEY"
    ],
    "features": [
-    "reasoning",
-    "vision"
+    "anthropic_compatible",
+    "reasoning"
    ]
   },
   {
-   "path": "packages/plugin/src/v2/promise/README.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 103,
+   "path": "packages/llm/script/recording-cost-report.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 250,
    "endpoints": [],
    "models": [],
    "env": [],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/llm/script/setup-recording-env.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 542,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/llm/src/providers/xai.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 56,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
    "features": []
   },
   {
-   "path": "packages/plugin/src/v2/effect/README.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 111,
+   "path": "packages/llm/src/providers/openai-compatible-profile.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 20,
    "endpoints": [],
    "models": [],
    "env": [],
-   "features": []
+   "features": [
+    "openai_compatible"
+   ]
   },
   {
    "path": "packages/opencode/package.json",
@@ -340,22 +346,6 @@
    ]
   },
   {
-   "path": "packages/opencode/src/provider/provider.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 2210,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "openai_compatible",
-    "reasoning",
-    "streaming",
-    "structured_output"
-   ]
-  },
-  {
    "path": "packages/opencode/src/provider/transform.ts",
    "kind": "source",
    "lang": "TypeScript",
@@ -374,10 +364,89 @@
    ]
   },
   {
-   "path": "packages/tui/test/kilocode/model-picker.test.ts",
+   "path": "packages/opencode/src/provider/provider.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 2210,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "packages/kilo-docs/source-links.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 213,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/kilo-docs/pages/ai-providers/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 158,
+   "endpoints": [],
+   "models": [
+    "grok-2-vision",
+    "grok-2-vision-latest",
+    "grok-3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "reasoning",
+    "vision"
+   ]
+  },
+  {
+   "path": "packages/kilo-docs/pages/gateway/models-and-providers.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 123,
+   "endpoints": [],
+   "models": [
+    "grok-4",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "packages/kilo-docs/pages/collaborate/teams/analytics.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 135,
+   "endpoints": [],
+   "models": [
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/kilo-vscode/tests/unit/model-selector-utils.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 145,
+   "lines": 326,
    "endpoints": [],
    "models": [
     "grok-4.20"
@@ -388,104 +457,35 @@
    ]
   },
   {
-   "path": "packages/llm/test/exports.test.ts",
+   "path": "packages/kilo-vscode/src/services/autocomplete/continuedev/core/llm/countTokens.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 76,
+   "lines": 82,
    "endpoints": [],
    "models": [
-    "grok-4.3"
+    "grok-beta"
    ],
    "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
+   "features": []
   },
   {
-   "path": "packages/llm/test/auth-options.types.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 168,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "packages/llm/test/provider/golden.recorded.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 223,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini",
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
-   "path": "packages/llm/script/setup-recording-env.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 542,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/models"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "packages/llm/script/recording-cost-report.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 250,
+   "path": "packages/plugin/src/v2/promise/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 103,
    "endpoints": [],
    "models": [],
    "env": [],
-   "features": [
-    "anthropic_compatible",
-    "structured_output"
-   ]
+   "features": []
   },
   {
-   "path": "packages/llm/src/providers/openai-compatible-profile.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 20,
+   "path": "packages/plugin/src/v2/effect/README.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 111,
    "endpoints": [],
    "models": [],
    "env": [],
-   "features": [
-    "openai_compatible"
-   ]
-  },
-  {
-   "path": "packages/llm/src/providers/xai.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 56,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
    "features": []
   },
   {
@@ -516,18 +516,6 @@
    ]
   },
   {
-   "path": "packages/core/test/plugin/provider-xai.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 125,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
    "path": "packages/core/test/config/provider-options.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -539,6 +527,18 @@
     "anthropic_compatible",
     "reasoning"
    ]
+  },
+  {
+   "path": "packages/core/test/plugin/provider-xai.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 125,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
   },
   {
    "path": "packages/core/src/v1/config/provider-options.ts",

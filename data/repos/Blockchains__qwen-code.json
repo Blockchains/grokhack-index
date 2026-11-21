@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:56:51Z",
  "description": "An open-source AI coding agent that lives in your terminal.",
  "commit": "17c182eda0226844d7af533a52dd3ed8b956ee7b",
- "indexed_at": "2026-11-20T10:31:25Z",
+ "indexed_at": "2026-11-21T10:15:03Z",
  "status": "ok",
- "clone_kb": 319856,
- "seconds": 70.3,
+ "clone_kb": 319860,
+ "seconds": 64.3,
  "files_scanned": 10038,
  "languages": {
   "TypeScript": 6630,
@@ -25,9 +25,9 @@
  },
  "grok_files": 8,
  "grok_files_by_kind": {
+  "config": 2,
   "test": 4,
-  "source": 2,
-  "config": 2
+  "source": 2
  },
  "hosts": {
   "api.x.ai": 4
@@ -67,18 +67,23 @@
  ],
  "files": [
   {
-   "path": "scripts/tests/no-ak-integration-ci.test.js",
-   "kind": "test",
-   "lang": "JavaScript",
-   "lines": 992,
+   "path": "packages/core/src/models/generated/model-registry.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1416,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
+   "models": [
+    "grok-4.20-0309-non-reasoning",
+    "grok-4.20-0309-reasoning",
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
    ],
+   "env": [],
    "features": [
-    "mcp",
-    "structured_output"
+    "reasoning",
+    "voice_realtime"
    ]
   },
   {
@@ -119,26 +124,6 @@
    ],
    "features": [
     "reasoning"
-   ]
-  },
-  {
-   "path": "packages/core/src/models/generated/model-registry.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 1416,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-0309-non-reasoning",
-    "grok-4.20-0309-reasoning",
-    "grok-4.3",
-    "grok-4.5",
-    "grok-4.6",
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "voice_realtime"
    ]
   },
   {
@@ -185,6 +170,21 @@
    "env": [],
    "features": [
     "reasoning"
+   ]
+  },
+  {
+   "path": "scripts/tests/no-ak-integration-ci.test.js",
+   "kind": "test",
+   "lang": "JavaScript",
+   "lines": 992,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "structured_output"
    ]
   },
   {

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T00:44:54Z",
  "description": "AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI",
  "commit": "83692682f095528f8b71652ddacff7075e36e893",
- "indexed_at": "2026-11-20T10:30:05Z",
+ "indexed_at": "2026-11-21T10:13:56Z",
  "status": "ok",
  "clone_kb": 36020,
- "seconds": 5.2,
+ "seconds": 4.5,
  "files_scanned": 1811,
  "languages": {
   "TypeScript": 1552,
@@ -28,8 +28,8 @@
  },
  "endpoints": {
   "/v1/models": 2,
-  "/v1/completions": 1,
   "/v1/responses": 1,
+  "/v1/completions": 1,
   "/v1/chat/completions": 1,
   "/v1/messages": 1
  },
@@ -38,11 +38,11 @@
   "grok-4.7": 6,
   "grok-4.6": 3,
   "grok-code-fast-1": 3,
-  "grok-4.5": 2,
   "grok-3": 2,
   "grok-3-fast": 2,
   "grok-4.20-0309-non-reasoning": 2,
-  "grok-4.20-0309-reasoning": 2
+  "grok-4.20-0309-reasoning": 2,
+  "grok-4.5": 2
  },
  "env_vars": {
   "XAI_API_KEY": 13,
@@ -188,147 +188,6 @@
    ]
   },
   {
-   "path": "packages/ai/test/context-overflow.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 771,
-   "endpoints": [
-    "/v1/completions",
-    "/v1/models"
-   ],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "packages/ai/test/supports-xhigh.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 256,
-   "endpoints": [],
-   "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "packages/ai/test/model-catalog-types.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 37,
-   "endpoints": [],
-   "models": [
-    "grok-4.3",
-    "grok-4.5",
-    "grok-4.6",
-    "grok-4.7"
-   ],
-   "env": [
-    "XAI_MODELS"
-   ],
-   "features": []
-  },
-  {
-   "path": "packages/ai/test/tokens.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 373,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "streaming"
-   ]
-  },
-  {
-   "path": "packages/ai/test/unicode-surrogate.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 839,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/ai/test/tool-call-without-result.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 359,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/ai/test/stream.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 1741,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "streaming",
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "packages/ai/test/total-tokens.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 882,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
-   ]
-  },
-  {
    "path": "packages/ai/test/xai-responses.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -357,6 +216,145 @@
    ]
   },
   {
+   "path": "packages/ai/test/context-overflow.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 771,
+   "endpoints": [
+    "/v1/completions",
+    "/v1/models"
+   ],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/ai/test/model-catalog-types.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 37,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_MODELS"
+   ],
+   "features": []
+  },
+  {
+   "path": "packages/ai/test/stream.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1741,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/ai/test/tokens.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 373,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "streaming"
+   ]
+  },
+  {
+   "path": "packages/ai/test/cross-provider-handoff.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 524,
+   "endpoints": [],
+   "models": [
+    "grok-4.3",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/ai/test/tool-call-without-result.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 359,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "packages/ai/test/supports-xhigh.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 256,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "packages/ai/test/total-tokens.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 882,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
+  },
+  {
    "path": "packages/ai/test/empty.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -374,18 +372,20 @@
    ]
   },
   {
-   "path": "packages/ai/test/cross-provider-handoff.test.ts",
+   "path": "packages/ai/test/unicode-surrogate.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 524,
+   "lines": 839,
    "endpoints": [],
    "models": [
-    "grok-4.3",
-    "grok-code-fast-1"
+    "grok-4.3"
    ],
-   "env": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
    "features": [
     "anthropic_compatible",
+    "reasoning",
     "tool_calling"
    ]
   },

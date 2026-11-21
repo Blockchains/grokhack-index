@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-02T12:21:57Z",
  "description": "Automate your mobile devices with natural language commands - an LLM agnostic mobile Agent \ud83e\udd16",
  "commit": "49085db55461c2f95f132f52f0c22df6fdbed79b",
- "indexed_at": "2026-11-20T10:29:29Z",
+ "indexed_at": "2026-11-21T10:13:18Z",
  "status": "ok",
  "clone_kb": 37288,
- "seconds": 2.0,
+ "seconds": 1.8,
  "files_scanned": 235,
  "languages": {
   "Python": 190
@@ -146,6 +146,27 @@
    ]
   },
   {
+   "path": "tests/test_grok_api.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 601,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.5-latest",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_BASE",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
    "path": "tests/test_grok_oauth.py",
    "kind": "test",
    "lang": "Python",
@@ -189,50 +210,12 @@
    ]
   },
   {
-   "path": "tests/test_grok_api.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 601,
-   "endpoints": [],
-   "models": [
-    "grok-4.5",
-    "grok-4.5-latest",
-    "grok-4.6",
-    "grok-4.7"
-   ],
-   "env": [
-    "XAI_API_BASE",
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "tool_calling",
-    "vision"
-   ]
-  },
-  {
    "path": "docs/quickstart.mdx",
    "kind": "doc",
    "lang": null,
    "lines": 179,
    "endpoints": [],
    "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "docs/guides/cli.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 620,
-   "endpoints": [],
-   "models": [
-    "grok-4.6",
-    "grok-4.7"
-   ],
    "env": [
     "XAI_API_KEY"
    ],
@@ -252,6 +235,23 @@
    ],
    "features": [
     "structured_output"
+   ]
+  },
+  {
+   "path": "docs/guides/cli.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 620,
+   "endpoints": [],
+   "models": [
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
    ]
   }
  ]

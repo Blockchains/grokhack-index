@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T01:33:14Z",
  "description": "Memori is agent-native memory infrastructure. A LLM-agnostic layer that turns agent execution and conversation into structured, persistent state for production systems. Built for enterprise, Memori works with the data infrastructure you already run, no rip-and-replace, and deploys across managed cloud, single-tenant cloud, VPC, and on-premises.",
  "commit": "574b1ea3e876f100ef82c37817d603eb7e258e59",
- "indexed_at": "2026-11-20T10:29:28Z",
+ "indexed_at": "2026-11-21T10:13:17Z",
  "status": "ok",
- "clone_kb": 10344,
- "seconds": 3.8,
+ "clone_kb": 10316,
+ "seconds": 3.1,
  "files_scanned": 648,
  "languages": {
   "Python": 303,
@@ -23,8 +23,8 @@
  "grok_files_by_kind": {
   "config": 4,
   "test": 15,
-  "doc": 4,
-  "source": 3
+  "source": 3,
+  "doc": 4
  },
  "hosts": {
   "api.x.ai": 5
@@ -126,68 +126,6 @@
    ]
   },
   {
-   "path": "tests/integration/conftest.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 394,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "openai_compatible"
-   ]
-  },
-  {
-   "path": "tests/integration/cloud/test_cloud_xai.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 267,
-   "endpoints": [],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [
-    "XAI_BASE_URL"
-   ],
-   "features": [
-    "openai_compatible",
-    "streaming"
-   ]
-  },
-  {
-   "path": "tests/integration/providers/test_xai.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 579,
-   "endpoints": [],
-   "models": [
-    "grok-beta"
-   ],
-   "env": [
-    "XAI_BASE_URL"
-   ],
-   "features": [
-    "openai_compatible",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "tests/llm/test_llm_provider_sdk_version.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 270,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
    "path": "tests/llm/test_llm_xai_wrappers.py",
    "kind": "test",
    "lang": "Python",
@@ -202,6 +140,18 @@
    "kind": "test",
    "lang": "Python",
    "lines": 165,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "tests/llm/test_llm_provider_sdk_version.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 270,
    "endpoints": [],
    "models": [],
    "env": [],
@@ -236,22 +186,6 @@
    "features": []
   },
   {
-   "path": "tests/llm/clients/oss/agno/xai_streaming.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 63,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "streaming"
-   ]
-  },
-  {
    "path": "tests/llm/clients/oss/agno/xai_async.py",
    "kind": "test",
    "lang": "Python",
@@ -266,24 +200,10 @@
    "features": []
   },
   {
-   "path": "tests/llm/clients/oss/xai/async.py",
+   "path": "tests/llm/clients/oss/agno/xai_streaming.py",
    "kind": "test",
    "lang": "Python",
-   "lines": 97,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "tests/llm/clients/oss/xai/async_stream.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 115,
+   "lines": 63,
    "endpoints": [],
    "models": [
     "grok-4"
@@ -310,6 +230,36 @@
    "features": []
   },
   {
+   "path": "tests/llm/clients/oss/xai/async_stream.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 115,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "streaming"
+   ]
+  },
+  {
+   "path": "tests/llm/clients/oss/xai/async.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 97,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
+  },
+  {
    "path": "tests/memory/augmentation/test_aa_payload_unit.py",
    "kind": "test",
    "lang": "Python",
@@ -324,67 +274,52 @@
    ]
   },
   {
-   "path": "docs/memori-cloud/llm/xai-grok.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 92,
+   "path": "tests/integration/conftest.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 394,
    "endpoints": [],
-   "models": [
-    "grok-2-latest"
-   ],
+   "models": [],
    "env": [
     "XAI_API_KEY"
    ],
    "features": [
     "anthropic_compatible",
-    "openai_compatible",
-    "streaming"
+    "openai_compatible"
    ]
   },
   {
-   "path": "docs/memori-cloud/llm/agno.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 135,
+   "path": "tests/integration/providers/test_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 579,
    "endpoints": [],
    "models": [
-    "grok-3"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "streaming"
-   ]
-  },
-  {
-   "path": "docs/memori-byodb/llm/xai-grok.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 112,
-   "endpoints": [],
-   "models": [
-    "grok-2-latest"
+    "grok-beta"
    ],
    "env": [
-    "XAI_API_KEY"
+    "XAI_BASE_URL"
    ],
    "features": [
     "openai_compatible",
-    "streaming"
+    "streaming",
+    "tool_calling"
    ]
   },
   {
-   "path": "docs/memori-byodb/llm/agno.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 155,
+   "path": "tests/integration/cloud/test_cloud_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 267,
    "endpoints": [],
    "models": [
-    "grok-3"
+    "grok-beta"
    ],
-   "env": [],
+   "env": [
+    "XAI_BASE_URL"
+   ],
    "features": [
-    "anthropic_compatible",
+    "openai_compatible",
     "streaming"
    ]
   },
@@ -430,6 +365,71 @@
    "features": [
     "anthropic_compatible",
     "grpc"
+   ]
+  },
+  {
+   "path": "docs/memori-byodb/llm/xai-grok.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 112,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "openai_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/memori-byodb/llm/agno.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 155,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/memori-cloud/llm/xai-grok.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 92,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible",
+    "streaming"
+   ]
+  },
+  {
+   "path": "docs/memori-cloud/llm/agno.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 135,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
    ]
   },
   {

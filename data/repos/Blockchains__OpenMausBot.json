@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T14:20:31Z",
  "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
  "commit": "4d9890fea806d4160f230a5d3ce1542300f3e1b9",
- "indexed_at": "2026-11-20T10:32:49Z",
+ "indexed_at": "2026-11-21T10:16:42Z",
  "status": "ok",
- "clone_kb": 210948,
- "seconds": 6.8,
+ "clone_kb": 210936,
+ "seconds": 6.5,
  "files_scanned": 3058,
  "languages": {
   "TypeScript": 1839,
@@ -42,9 +42,9 @@
   "grok-3-mini": 4,
   "grok-imagine-image-2.0": 3,
   "grok-4-fast": 3,
-  "grok-5": 1,
   "grok-99": 1,
-  "grok-3-mini-actual": 1
+  "grok-3-mini-actual": 1,
+  "grok-5": 1
  },
  "env_vars": {
   "XAI_API_KEY": 22,
@@ -87,6 +87,18 @@
    "code": "  // shadow the save until the next launch.\n  cfg.mistral = { ...cfg.mistral };\n  if (process.env.MISTRAL_API_KEY !== undefined) cfg.mistral.key = process.env.MISTRAL_API_KEY;\n  cfg.cerebras = { ...cfg.cerebras };\n  if (process.env.CEREBRAS_API_KEY !== undefined) cfg.cerebras.key = process.env.CEREBRAS_API_KEY;\n  cfg.xai = { ...cfg.xai };\n  if (process.env.XAI_API_KEY !== undefined) cfg.xai.key = process.env.XAI_API_KEY;\n  // Deliberately not ANTHROPIC_API_KEY: a key in the server's own env is\n  // never the workspace key, so an operator's stray variable cannot flip\n  // every Claude bot onto pay-as-you-go billing.\n  cfg.anthropic = { ...cfg.anthropic };\n  if (process.env.OMB_ANTHROPIC_API_KEY !== undefined) cfg.anthropic.key = process.env.OMB_ANTHROPIC_API_KEY;\n  if (process.env.OMB_ANTHROPIC_API_URL !== undefined) cfg.anthropic.url = process.env.OMB_ANTHROPIC_API_URL;\n  cfg.openai = { ...cfg.openai };\n  if (process.env.OMB_OPENAI_API_KEY !== undefined) cfg.openai.key = process.env.OMB_OPENAI_API_KEY;\n  cfg.openrouter = { ...cfg.openrouter };\n  if (process.env.OMB_OPENROUTER_API_KEY !== undefined) cfg.openrouter.key = process.env.OMB_OPENROUTER_API_KEY;\n  cfg.openaiCompat = { ...cfg.openaiCompat };\n  if (process.env.OPENAI_COMPAT_API_KEY !== undefined) cfg.openaiCompat.key = process.env.OPENAI_COMPAT_API_KEY;\n  if (process.env.OPENAI_COMPAT_URL !== undefined) cfg.openaiCompat.url = process.env.OPENAI_COMPAT_URL;\n  if (process.env.OPENAI_COMPAT_MODEL !== undefined) cfg.openaiCompat.model = process.env.OPENAI_COMPAT_MODEL;\n  if (process.env.OPENAI_COMPAT_PROVIDER !== undefined) cfg.openaiCompat.provider = process.env.OPENAI_COMPAT_PROVIDER;\n  cfg.composio = { ...cfg.composio };\n  if (process.env.COMPOSIO_API_KEY !== undefined) cfg.composio.apiKey = process.env.COMPOSIO_API_KEY;"
   },
   {
+   "path": "server/model-catalog/presets.ts",
+   "start": 144,
+   "end": 167,
+   "code": "    publicModels: true,\n    checkedAt: CHECKED,\n  },\n  { id: \"groq\", catalogId: \"groq\", label: \"Groq\", recommended: 6, api: \"https://api.groq.com/openai/v1\", checkedAt: CHECKED },\n  { id: \"togetherai\", catalogId: \"togetherai\", label: \"Together AI\", recommended: 7, api: \"https://api.together.xyz/v1\", checkedAt: CHECKED },\n  { id: \"mistral\", catalogId: \"mistral\", label: \"Mistral\", recommended: 8, api: \"https://api.mistral.ai/v1\", checkedAt: CHECKED },\n  { id: \"xai\", catalogId: \"xai\", label: \"xAI\", recommended: 9, api: \"https://api.x.ai/v1\", checkedAt: CHECKED },\n  {\n    id: \"moonshotai\",\n    catalogId: \"moonshotai\",\n    label: \"Moonshot (Kimi)\",\n    recommended: 10,\n    api: \"https://api.moonshot.ai/v1\",\n    anthropic: { baseUrl: \"https://api.moonshot.ai/anthropic\" },\n    checkedAt: CHECKED,\n  },\n  {\n    id: \"zai\",\n    catalogId: \"zai\",\n    label: \"Z.ai\",\n    recommended: 11,\n    api: \"https://api.z.ai/api/paas/v4\",\n    anthropic: { baseUrl: \"https://api.z.ai/api/anthropic\" },\n    checkedAt: CHECKED,"
+  },
+  {
+   "path": "server/tts/grok.ts",
+   "start": 1,
+   "end": 22,
+   "code": "// xAI TTS runs on the harness and reuses the existing workspace xAI key.\nimport { z } from \"zod\";\nimport type { Audio, Voice } from \"./elevenlabs.ts\";\n\nconst API = (process.env.OMB_XAI_TTS_API || \"https://api.x.ai/v1\").replace(/\\/+$/, \"\");\nconst voicesSchema = z.object({\n  voices: z.array(z.object({\n    voice_id: z.string().min(1),\n    name: z.string().min(1),\n    description: z.string().optional(),\n  })),\n});\n\nfunction refusal(status: number): string {\n  if (status === 401 || status === 403) return \"xAI rejected the key or its TTS permissions. Check the xAI key in Settings.\";\n  if (status === 402) return \"The xAI account needs credits to generate speech.\";\n  if (status === 429) return \"xAI is rate-limiting speech. Wait a moment and try again.\";\n  if (status === 404) return \"xAI could not find that voice. Refresh the voice list and select a voice again.\";\n  return `Grok voice failed (HTTP ${status}). Try again later.`;\n}\n\nasync function request(path: string, init: RequestInit): Promise<Response> {"
+  },
+  {
    "path": "server/drivers/grok.ts",
    "start": 1,
    "end": 24,
@@ -99,28 +111,16 @@
    "code": "    }\n  },\n\n  // The CLI owns its own grok.com login; a leaked API key silently flips\n  // billing from the subscription to pay-as-you-go.\n  transformEnv: (env) => {\n    delete env.XAI_API_KEY;\n  },\n  applyTurnEnv: (env, { toolScope }) => {\n    if (toolScope !== undefined) {\n      // The verified runtime gives these local env switches priority over\n      // account defaults, preventing an unfiltered managed gateway fallback.\n      env.GROK_MANAGED_MCPS_ENABLED = \"false\";\n      env.GROK_MANAGED_MCP_GATEWAY_TOOLS_ENABLED = \"false\";\n      if (narrowsNativeTools(toolScope)) {\n        if (env.GROK_AGENT && env.GROK_AGENT !== \"grok-build\") {\n          throw new Error(\"Grok's existing agent profile cannot be safely intersected with tool selection. Use a separate default Grok account.\");\n        }\n        // A model's agent_type otherwise takes priority over ACP profiles.\n        // Preserve profile-file restrictions when intersecting them below.\n        env.GROK_AGENT = \"grok-build\";\n      }\n    }\n  },"
   },
   {
-   "path": "server/tts/grok.ts",
-   "start": 1,
-   "end": 22,
-   "code": "// xAI TTS runs on the harness and reuses the existing workspace xAI key.\nimport { z } from \"zod\";\nimport type { Audio, Voice } from \"./elevenlabs.ts\";\n\nconst API = (process.env.OMB_XAI_TTS_API || \"https://api.x.ai/v1\").replace(/\\/+$/, \"\");\nconst voicesSchema = z.object({\n  voices: z.array(z.object({\n    voice_id: z.string().min(1),\n    name: z.string().min(1),\n    description: z.string().optional(),\n  })),\n});\n\nfunction refusal(status: number): string {\n  if (status === 401 || status === 403) return \"xAI rejected the key or its TTS permissions. Check the xAI key in Settings.\";\n  if (status === 402) return \"The xAI account needs credits to generate speech.\";\n  if (status === 429) return \"xAI is rate-limiting speech. Wait a moment and try again.\";\n  if (status === 404) return \"xAI could not find that voice. Refresh the voice list and select a voice again.\";\n  return `Grok voice failed (HTTP ${status}). Try again later.`;\n}\n\nasync function request(path: string, init: RequestInit): Promise<Response> {"
-  },
-  {
-   "path": "server/model-catalog/presets.ts",
-   "start": 144,
-   "end": 167,
-   "code": "    publicModels: true,\n    checkedAt: CHECKED,\n  },\n  { id: \"groq\", catalogId: \"groq\", label: \"Groq\", recommended: 6, api: \"https://api.groq.com/openai/v1\", checkedAt: CHECKED },\n  { id: \"togetherai\", catalogId: \"togetherai\", label: \"Together AI\", recommended: 7, api: \"https://api.together.xyz/v1\", checkedAt: CHECKED },\n  { id: \"mistral\", catalogId: \"mistral\", label: \"Mistral\", recommended: 8, api: \"https://api.mistral.ai/v1\", checkedAt: CHECKED },\n  { id: \"xai\", catalogId: \"xai\", label: \"xAI\", recommended: 9, api: \"https://api.x.ai/v1\", checkedAt: CHECKED },\n  {\n    id: \"moonshotai\",\n    catalogId: \"moonshotai\",\n    label: \"Moonshot (Kimi)\",\n    recommended: 10,\n    api: \"https://api.moonshot.ai/v1\",\n    anthropic: { baseUrl: \"https://api.moonshot.ai/anthropic\" },\n    checkedAt: CHECKED,\n  },\n  {\n    id: \"zai\",\n    catalogId: \"zai\",\n    label: \"Z.ai\",\n    recommended: 11,\n    api: \"https://api.z.ai/api/paas/v4\",\n    anthropic: { baseUrl: \"https://api.z.ai/api/anthropic\" },\n    checkedAt: CHECKED,"
+   "path": "server/testing/fake-pi-cli.ts",
+   "start": 49,
+   "end": 72,
+   "code": "      }\n    }\n    appendFileSync(\n      process.env.FAKE_PI_DUMP,\n      JSON.stringify({\n        argv,\n        envConfigured: [\"PATH\", \"HOME\", \"ANTHROPIC_API_KEY\", \"OPENAI_API_KEY\", \"XAI_API_KEY\", \"BOX_TOKEN\"].filter(\n          (k) => process.env[k] !== undefined,\n        ),\n        mcpConfig,\n      }) + \"\\n\",\n    );\n  } catch {\n    /* never let dumping break a run */\n  }\n}\n\n// Explicit model refresh is a short-lived command, separate from RPC mode.\nif (argv[0] === \"update\" && argv.includes(\"--models\")) {\n  process.exit(mode === \"update-error\" ? 1 : 0);\n}\n\n// exit-early: die before saying anything \u2014 a failed spawn surfaces as a\n// runtime.error + failed turn, never a hang."
   },
   {
    "path": "server/testing/fake-acp-cli.ts",
    "start": 253,
    "end": 276,
    "code": "    \"TEST_POLICY\",\n    \"OPENCODE_API_KEY\",\n    \"OPENCODE_PERMISSION\",\n    \"OPENAI_API_KEY\",\n    \"OPENROUTER_API_KEY\",\n    \"ANTHROPIC_API_KEY\",\n    \"XAI_API_KEY\",\n    \"GROK_AGENT\",\n    \"BOX_TOKEN\",\n    \"OMB_TTS_KEY\",\n    \"OMB_FISH_AUDIO_API_KEY\",\n    \"OMB_CLOUD_READY_TOKEN\",\n    \"OMB_CLOUD_BOOTSTRAP\",\n    \"OMB_LICENSE_KEY\",\n    \"OMB_INSTALLATION_CREDENTIAL\",\n    \"FACTORY_API_KEY\",\n    \"UNSLOTH_STUDIO_AUTH_TOKEN\",\n    \"CURSOR_API_KEY\",\n    \"CURSOR_AUTH_TOKEN\",\n    \"KIMI_MODEL_NAME\",\n    \"KIMI_MODEL_API_KEY\",\n    \"KIMI_MODEL_BASE_URL\",\n    \"KIMI_MODEL_PROVIDER_TYPE\",\n    \"KIMI_MODEL_DISPLAY_NAME\","
-  },
-  {
-   "path": "server/testing/fake-pi-cli.ts",
-   "start": 49,
-   "end": 72,
-   "code": "      }\n    }\n    appendFileSync(\n      process.env.FAKE_PI_DUMP,\n      JSON.stringify({\n        argv,\n        envConfigured: [\"PATH\", \"HOME\", \"ANTHROPIC_API_KEY\", \"OPENAI_API_KEY\", \"XAI_API_KEY\", \"BOX_TOKEN\"].filter(\n          (k) => process.env[k] !== undefined,\n        ),\n        mcpConfig,\n      }) + \"\\n\",\n    );\n  } catch {\n    /* never let dumping break a run */\n  }\n}\n\n// Explicit model refresh is a short-lived command, separate from RPC mode.\nif (argv[0] === \"update\" && argv.includes(\"--models\")) {\n  process.exit(mode === \"update-error\" ? 1 : 0);\n}\n\n// exit-early: die before saying anything \u2014 a failed spawn surfaces as a\n// runtime.error + failed turn, never a hang."
   },
   {
    "path": "electron/workspace-credentials.mjs",
@@ -137,25 +137,42 @@
  ],
  "files": [
   {
-   "path": "src/lib/model-friendly.test.ts",
+   "path": "server/control-omb.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 40,
+   "lines": 354,
    "endpoints": [],
-   "models": [
-    "grok-4"
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
    ],
-   "env": [],
-   "features": []
+   "features": [
+    "structured_output"
+   ]
   },
   {
-   "path": "src/components/ModelPicker.simple.test.ts",
+   "path": "server/provider-key-check.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 100,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "server/model-context-window.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 774,
+   "lines": 33,
    "endpoints": [],
    "models": [
-    "grok-5"
+    "grok-4",
+    "grok-4.7"
    ],
    "env": [],
    "features": [
@@ -163,29 +180,107 @@
    ]
   },
   {
-   "path": "src/components/PlaceChip.test.ts",
+   "path": "server/provider-key-check.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 134,
+   "lines": 159,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "server/model-context-window.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 19,
    "endpoints": [],
    "models": [
-    "grok-4.6"
+    "grok-4.7"
    ],
    "env": [],
    "features": []
   },
   {
-   "path": "src/components/CompanyModels.test.ts",
+   "path": "server/boat-credential-env.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 132,
+   "lines": 44,
    "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "server/engine-install.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 189,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "server/avatar-image.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 225,
+   "endpoints": [
+    "/v1/images/generations"
+   ],
    "models": [
-    "grok-4"
+    "grok-imagine-image-2.0"
    ],
    "env": [],
    "features": [
-    "anthropic_compatible"
+    "image_generation",
+    "streaming",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "server/config.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1943,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "server/usage-attribution.e2e.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 292,
+   "endpoints": [],
+   "models": [
+    "grok-4.7"
+   ],
+   "env": [],
+   "features": [
+    "structured_output"
    ]
   },
   {
@@ -228,95 +323,20 @@
    ]
   },
   {
-   "path": "server/config.test.ts",
+   "path": "server/model-prices.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 1943,
+   "lines": 82,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "structured_output",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "server/engine-install.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 189,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "server/provider-key-check.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 100,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "server/boat-credential-env.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 44,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "server/control-omb.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 354,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "structured_output"
-   ]
-  },
-  {
-   "path": "server/avatar-image.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 225,
-   "endpoints": [
-    "/v1/images/generations"
-   ],
    "models": [
-    "grok-imagine-image-2.0"
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-fast",
+    "grok-4.7"
    ],
    "env": [],
    "features": [
-    "image_generation",
-    "streaming",
-    "structured_output"
+    "reasoning"
    ]
   },
   {
@@ -338,55 +358,12 @@
    ]
   },
   {
-   "path": "server/model-context-window.ts",
+   "path": "server/model-catalog/presets.ts",
    "kind": "source",
    "lang": "TypeScript",
-   "lines": 19,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "server/model-prices.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 82,
-   "endpoints": [],
-   "models": [
-    "grok-3-mini",
-    "grok-4",
-    "grok-4-fast",
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "reasoning"
-   ]
-  },
-  {
-   "path": "server/usage-attribution.e2e.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 292,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "structured_output"
-   ]
-  },
-  {
-   "path": "server/provider-key-check.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 159,
+   "lines": 264,
    "endpoints": [
-    "/v1/models"
+    "/v1/messages"
    ],
    "models": [],
    "env": [],
@@ -395,30 +372,38 @@
    ]
   },
   {
-   "path": "server/model-context-window.test.ts",
-   "kind": "test",
+   "path": "server/tts/grok.ts",
+   "kind": "source",
    "lang": "TypeScript",
-   "lines": 33,
+   "lines": 72,
    "endpoints": [],
-   "models": [
-    "grok-4",
-    "grok-4.7"
+   "models": [],
+   "env": [
+    "OMB_XAI_TTS_API"
    ],
-   "env": [],
    "features": [
-    "anthropic_compatible"
+    "voice_realtime"
    ]
   },
   {
-   "path": "server/drivers/grok.ts",
-   "kind": "source",
+   "path": "server/drivers/retry.test.ts",
+   "kind": "test",
    "lang": "TypeScript",
-   "lines": 65,
+   "lines": 130,
    "endpoints": [],
    "models": [
-    "grok-3-mini",
-    "grok-4",
-    "grok-4-fast",
+    "grok-99"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "server/drivers/grok.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 229,
+   "endpoints": [],
+   "models": [
     "grok-4.7"
    ],
    "env": [
@@ -426,8 +411,9 @@
     "XAI_API_KEY"
    ],
    "features": [
-    "openai_compatible",
-    "reasoning"
+    "streaming",
+    "structured_output",
+    "tool_calling"
    ]
   },
   {
@@ -467,53 +453,6 @@
    ]
   },
   {
-   "path": "server/drivers/retry.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 130,
-   "endpoints": [],
-   "models": [
-    "grok-99"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "server/drivers/grok.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 229,
-   "endpoints": [],
-   "models": [
-    "grok-4.7"
-   ],
-   "env": [
-    "FAKE_GROK_RETRY_SCALE",
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "streaming",
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "server/drivers/pi.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 1269,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "mcp",
-    "structured_output"
-   ]
-  },
-  {
    "path": "server/drivers/openai-chat.test.ts",
    "kind": "test",
    "lang": "TypeScript",
@@ -536,53 +475,31 @@
    ]
   },
   {
-   "path": "server/drivers/acp/grok.ts",
+   "path": "server/drivers/grok.ts",
    "kind": "source",
    "lang": "TypeScript",
-   "lines": 455,
+   "lines": 65,
    "endpoints": [],
    "models": [
-    "grok-4.5",
-    "grok-4.6",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-fast",
     "grok-4.7"
    ],
    "env": [
-    "STATIC_GROK_MODELS",
+    "FAKE_GROK_RETRY_SCALE",
     "XAI_API_KEY"
    ],
    "features": [
-    "mcp",
-    "structured_output",
-    "tool_calling"
+    "openai_compatible",
+    "reasoning"
    ]
   },
   {
-   "path": "server/drivers/acp/acp.test.ts",
+   "path": "server/drivers/pi.test.ts",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 2523,
-   "endpoints": [],
-   "models": [
-    "grok-4.5",
-    "grok-4.6",
-    "grok-4.7"
-   ],
-   "env": [
-    "FAKE_ACP_GROK_VERSION",
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp",
-    "streaming",
-    "structured_output",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "server/drivers/acp/opencode-go.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 1114,
+   "lines": 1269,
    "endpoints": [],
    "models": [],
    "env": [
@@ -590,20 +507,7 @@
    ],
    "features": [
     "anthropic_compatible",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "server/drivers/acp/custom.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 129,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
+    "mcp",
     "structured_output"
    ]
   },
@@ -640,6 +544,57 @@
    ]
   },
   {
+   "path": "server/drivers/acp/custom.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 129,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "structured_output"
+   ]
+  },
+  {
+   "path": "server/drivers/acp/opencode-go.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 1114,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "server/drivers/acp/acp.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 2523,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
+   ],
+   "env": [
+    "FAKE_ACP_GROK_VERSION",
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "streaming",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
    "path": "server/drivers/acp/droid.ts",
    "kind": "source",
    "lang": "TypeScript",
@@ -654,42 +609,18 @@
    ]
   },
   {
-   "path": "server/tts/grok.ts",
+   "path": "server/drivers/acp/grok.ts",
    "kind": "source",
    "lang": "TypeScript",
-   "lines": 72,
+   "lines": 455,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "OMB_XAI_TTS_API"
+   "models": [
+    "grok-4.5",
+    "grok-4.6",
+    "grok-4.7"
    ],
-   "features": [
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "server/model-catalog/presets.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 264,
-   "endpoints": [
-    "/v1/messages"
-   ],
-   "models": [],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "server/testing/fake-acp-cli.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 1234,
-   "endpoints": [],
-   "models": [],
    "env": [
-    "FAKE_ACP_GROK_VERSION",
+    "STATIC_GROK_MODELS",
     "XAI_API_KEY"
    ],
    "features": [
@@ -715,21 +646,85 @@
    ]
   },
   {
-   "path": "scripts/smoke-approval-modes.cjs",
+   "path": "server/testing/fake-acp-cli.ts",
    "kind": "source",
-   "lang": "JavaScript",
-   "lines": 412,
+   "lang": "TypeScript",
+   "lines": 1234,
    "endpoints": [],
-   "models": [
-    "grok-4.5",
-    "grok-4.6"
+   "models": [],
+   "env": [
+    "FAKE_ACP_GROK_VERSION",
+    "XAI_API_KEY"
    ],
-   "env": [],
    "features": [
     "mcp",
     "structured_output",
     "tool_calling"
    ]
+  },
+  {
+   "path": "src/lib/model-friendly.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 40,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/components/PlaceChip.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 134,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "src/components/ModelPicker.simple.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 774,
+   "endpoints": [],
+   "models": [
+    "grok-5"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "src/components/CompanyModels.test.ts",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 132,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/custom-engines.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 97,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
   },
   {
    "path": "docs/avatar-storage.md",
@@ -747,18 +742,6 @@
    ]
   },
   {
-   "path": "docs/custom-engines.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 97,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
    "path": "docs/verification/usage-ledger.md",
    "kind": "doc",
    "lang": null,
@@ -771,22 +754,27 @@
    "features": []
   },
   {
+   "path": "scripts/smoke-approval-modes.cjs",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 412,
+   "endpoints": [],
+   "models": [
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "structured_output",
+    "tool_calling"
+   ]
+  },
+  {
    "path": "electron/workspace-credentials.mjs",
    "kind": "source",
    "lang": "JavaScript",
    "lines": 74,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": []
-  },
-  {
-   "path": "electron/diagnostics.mjs",
-   "kind": "source",
-   "lang": "JavaScript",
-   "lines": 348,
    "endpoints": [],
    "models": [],
    "env": [
@@ -819,6 +807,18 @@
    "features": [
     "voice_realtime"
    ]
+  },
+  {
+   "path": "electron/diagnostics.mjs",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 348,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": []
   }
  ]
 }

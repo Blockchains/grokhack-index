@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:40:58Z",
  "description": "The open source AI engineering platform for agents, LLMs, and ML models. MLflow enables teams of all sizes to debug, evaluate, monitor, and optimize production-quality AI applications while controlling costs and managing access to models and data.",
  "commit": "9340ef7cf347b2bd2b4bcf8bd95735b2596e1156",
- "indexed_at": "2026-11-20T10:32:17Z",
+ "indexed_at": "2026-11-21T10:16:12Z",
  "status": "ok",
- "clone_kb": 713004,
- "seconds": 26.8,
+ "clone_kb": 712996,
+ "seconds": 29.7,
  "files_scanned": 6766,
  "languages": {
   "TypeScript": 2921,
@@ -22,17 +22,17 @@
  },
  "grok_files": 21,
  "grok_files_by_kind": {
-  "source": 3,
-  "config": 12,
   "test": 3,
-  "doc": 3
+  "doc": 3,
+  "source": 3,
+  "config": 12
  },
  "hosts": {
   "api.x.ai": 4
  },
  "endpoints": {
-  "/v1/completions": 2,
   "/v1/chat/completions": 2,
+  "/v1/completions": 2,
   "/v1/messages": 2
  },
  "models": {
@@ -41,29 +41,29 @@
   "grok-4.3": 6,
   "grok-3": 5,
   "grok-4.7": 5,
-  "grok-3-mini": 4,
   "grok-4.20-multi-agent": 4,
-  "grok-3-mini-fast": 3,
+  "grok-3-mini": 4,
   "grok-4.20": 3,
+  "grok-4.5": 3,
+  "grok-3-mini-fast": 3,
   "grok-code-fast-1": 3,
   "grok-4-1-fast-non-reasoning": 3,
-  "grok-4.5": 3,
   "grok-4.20-non-reasoning": 3,
   "grok-4.20-reasoning": 3,
+  "grok-4.1-fast-reasoning": 2,
+  "grok-2-latest": 2,
+  "grok-4.20-0309-reasoning": 2,
   "grok-3-fast": 2,
+  "grok-2": 2,
+  "grok-2-vision": 2,
   "grok-4-1-fast-reasoning": 2,
   "grok-4-20-non-reasoning": 2,
   "grok-4-20-reasoning": 2,
   "grok-4-fast-non-reasoning": 2,
   "grok-4-fast-reasoning": 2,
-  "grok-2": 2,
-  "grok-2-vision": 2,
-  "grok-4.1-fast-reasoning": 2,
-  "grok-2-latest": 2,
-  "grok-4.20-0309-reasoning": 2,
+  "grok-4-6": 1,
   "grok-4-fast": 1,
   "grok-4.1-fast": 1,
-  "grok-4-6": 1,
   "grok-4.1-fast-non-reasoning": 1,
   "grok-2-1212": 1,
   "grok-2-vision-1212": 1,
@@ -118,16 +118,16 @@
  "packages": [],
  "snippets": [
   {
-   "path": "mlflow/gateway/providers/xai.py",
-   "start": 2,
-   "end": 8,
-   "code": "from mlflow.gateway.providers.openai_compatible import OpenAICompatibleProvider\n\n\nclass XAIProvider(OpenAICompatibleProvider):\n    DISPLAY_NAME = \"xAI\"\n    CONFIG_TYPE = _OpenAICompatibleConfig\n    DEFAULT_API_BASE = \"https://api.x.ai/v1\""
-  },
-  {
    "path": "mlflow/metrics/genai/model_utils.py",
    "start": 471,
    "end": 494,
    "code": "        return DeepSeekProvider(_get_route_config(config))\n\n    elif provider == Provider.XAI:\n        from mlflow.gateway.config import _OpenAICompatibleConfig\n        from mlflow.gateway.providers.xai import XAIProvider\n\n        config = _OpenAICompatibleConfig(api_key=os.environ.get(\"XAI_API_KEY\"))\n        return XAIProvider(_get_route_config(config))\n\n    elif provider == Provider.OPENROUTER:\n        from mlflow.gateway.config import _OpenAICompatibleConfig\n        from mlflow.gateway.providers.openrouter import OpenRouterProvider\n\n        config = _OpenAICompatibleConfig(api_key=os.environ.get(\"OPENROUTER_API_KEY\"))\n        return OpenRouterProvider(_get_route_config(config))\n\n    elif provider == Provider.OLLAMA:\n        from mlflow.gateway.providers.ollama import OllamaConfig, OllamaProvider\n\n        config = OllamaConfig(api_key=os.environ.get(\"OLLAMA_API_KEY\", \"ollama\"))\n        return OllamaProvider(_get_route_config(config))\n\n    elif provider == Provider.DATABRICKS:\n        from mlflow.gateway.providers.databricks import DatabricksConfig, DatabricksProvider"
+  },
+  {
+   "path": "mlflow/gateway/providers/xai.py",
+   "start": 2,
+   "end": 8,
+   "code": "from mlflow.gateway.providers.openai_compatible import OpenAICompatibleProvider\n\n\nclass XAIProvider(OpenAICompatibleProvider):\n    DISPLAY_NAME = \"xAI\"\n    CONFIG_TYPE = _OpenAICompatibleConfig\n    DEFAULT_API_BASE = \"https://api.x.ai/v1\""
   },
   {
    "path": "mlflow/utils/providers.py",
@@ -138,14 +138,99 @@
  ],
  "files": [
   {
-   "path": "mlflow/gateway/providers/xai.py",
-   "kind": "source",
+   "path": "tests/metrics/genai/test_model_utils.py",
+   "kind": "test",
    "lang": "Python",
-   "lines": 8,
-   "endpoints": [],
+   "lines": 841,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/completions",
+    "/v1/messages"
+   ],
    "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "structured_output"
+   ]
+  },
+  {
+   "path": "tests/gateway/providers/test_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 77,
+   "endpoints": [],
+   "models": [
+    "grok-3"
+   ],
    "env": [],
    "features": []
+  },
+  {
+   "path": "tests/gateway/providers/test_vertex_ai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 1148,
+   "endpoints": [
+    "/v1/chat/completions",
+    "/v1/messages"
+   ],
+   "models": [
+    "grok-4.1-fast-reasoning"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "reasoning",
+    "streaming",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "docs/src/components/OpenAICompatibleProviders/config.ts",
+   "kind": "doc",
+   "lang": "TypeScript",
+   "lines": 81,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/docs/genai/eval-monitor/quickstart.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 317,
+   "endpoints": [],
+   "models": [
+    "grok-2-latest"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "openai_compatible"
+   ]
+  },
+  {
+   "path": "docs/docs/genai/eval-monitor/scorers/llm-judge/custom-judges/supported-models.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 78,
+   "endpoints": [],
+   "models": [
+    "grok-4.20-0309-reasoning"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "reasoning"
+   ]
   },
   {
    "path": "mlflow/metrics/genai/model_utils.py",
@@ -165,6 +250,16 @@
    ]
   },
   {
+   "path": "mlflow/gateway/providers/xai.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 8,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
    "path": "mlflow/utils/providers.py",
    "kind": "source",
    "lang": "Python",
@@ -177,133 +272,6 @@
    "features": [
     "anthropic_compatible",
     "embeddings",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "mlflow/utils/model_catalog/oci.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 874,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-fast",
-    "grok-3-mini",
-    "grok-3-mini-fast",
-    "grok-4",
-    "grok-4-fast",
-    "grok-4.1-fast",
-    "grok-4.20",
-    "grok-4.20-multi-agent",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "embeddings",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "mlflow/utils/model_catalog/databricks.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 1623,
-   "endpoints": [],
-   "models": [
-    "grok-4-6"
-   ],
-   "env": [],
-   "features": [
-    "embeddings",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "mlflow/utils/model_catalog/azure_ai.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 3166,
-   "endpoints": [],
-   "models": [
-    "grok-3",
-    "grok-3-mini",
-    "grok-4",
-    "grok-4-1-fast-non-reasoning",
-    "grok-4-1-fast-reasoning",
-    "grok-4-20-non-reasoning",
-    "grok-4-20-reasoning",
-    "grok-4-fast-non-reasoning",
-    "grok-4-fast-reasoning",
-    "grok-4.3",
-    "grok-4.6",
-    "grok-code-fast-1"
-   ],
-   "env": [],
-   "features": [
-    "embeddings",
-    "image_generation",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "mlflow/utils/model_catalog/vercel_ai_gateway.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 2090,
-   "endpoints": [],
-   "models": [
-    "grok-2",
-    "grok-2-vision",
-    "grok-3",
-    "grok-3-fast",
-    "grok-3-mini",
-    "grok-3-mini-fast",
-    "grok-4"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "reasoning",
-    "tool_calling",
-    "vision"
-   ]
-  },
-  {
-   "path": "mlflow/utils/model_catalog/aihubmix.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 1498,
-   "endpoints": [],
-   "models": [
-    "grok-4-20-non-reasoning",
-    "grok-4-20-reasoning",
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": [
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "mlflow/utils/model_catalog/bedrock.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 11572,
-   "endpoints": [],
-   "models": [
-    "grok-4.6",
-    "grok-4.7"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "embeddings",
-    "image_generation",
     "tool_calling"
    ]
   },
@@ -345,6 +313,61 @@
    ]
   },
   {
+   "path": "mlflow/utils/model_catalog/replicate.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 707,
+   "endpoints": [],
+   "models": [
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "mlflow/utils/model_catalog/databricks.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1623,
+   "endpoints": [],
+   "models": [
+    "grok-4-6"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "mlflow/utils/model_catalog/oci.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 874,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-4",
+    "grok-4-fast",
+    "grok-4.1-fast",
+    "grok-4.20",
+    "grok-4.20-multi-agent",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
    "path": "mlflow/utils/model_catalog/perplexity.json",
    "kind": "config",
    "lang": null,
@@ -364,6 +387,75 @@
    "features": [
     "anthropic_compatible",
     "embeddings",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "mlflow/utils/model_catalog/vercel_ai_gateway.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 2090,
+   "endpoints": [],
+   "models": [
+    "grok-2",
+    "grok-2-vision",
+    "grok-3",
+    "grok-3-fast",
+    "grok-3-mini",
+    "grok-3-mini-fast",
+    "grok-4"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings",
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "mlflow/utils/model_catalog/azure_ai.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 3166,
+   "endpoints": [],
+   "models": [
+    "grok-3",
+    "grok-3-mini",
+    "grok-4",
+    "grok-4-1-fast-non-reasoning",
+    "grok-4-1-fast-reasoning",
+    "grok-4-20-non-reasoning",
+    "grok-4-20-reasoning",
+    "grok-4-fast-non-reasoning",
+    "grok-4-fast-reasoning",
+    "grok-4.3",
+    "grok-4.6",
+    "grok-code-fast-1"
+   ],
+   "env": [],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "mlflow/utils/model_catalog/aihubmix.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 1498,
+   "endpoints": [],
+   "models": [
+    "grok-4-20-non-reasoning",
+    "grok-4-20-reasoning",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
     "reasoning",
     "tool_calling"
    ]
@@ -448,113 +540,21 @@
    ]
   },
   {
-   "path": "mlflow/utils/model_catalog/replicate.json",
+   "path": "mlflow/utils/model_catalog/bedrock.json",
    "kind": "config",
    "lang": null,
-   "lines": 707,
+   "lines": 11572,
    "endpoints": [],
    "models": [
-    "grok-4"
+    "grok-4.6",
+    "grok-4.7"
    ],
    "env": [],
    "features": [
     "anthropic_compatible",
+    "embeddings",
+    "image_generation",
     "tool_calling"
-   ]
-  },
-  {
-   "path": "tests/gateway/providers/test_vertex_ai.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 1148,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/messages"
-   ],
-   "models": [
-    "grok-4.1-fast-reasoning"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "reasoning",
-    "streaming",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "tests/gateway/providers/test_xai.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 77,
-   "endpoints": [],
-   "models": [
-    "grok-3"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "tests/metrics/genai/test_model_utils.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 841,
-   "endpoints": [
-    "/v1/chat/completions",
-    "/v1/completions",
-    "/v1/messages"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "docs/src/components/OpenAICompatibleProviders/config.ts",
-   "kind": "doc",
-   "lang": "TypeScript",
-   "lines": 81,
-   "endpoints": [],
-   "models": [
-    "grok-4"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "docs/docs/genai/eval-monitor/quickstart.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 317,
-   "endpoints": [],
-   "models": [
-    "grok-2-latest"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible",
-    "openai_compatible"
-   ]
-  },
-  {
-   "path": "docs/docs/genai/eval-monitor/scorers/llm-judge/custom-judges/supported-models.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 78,
-   "endpoints": [],
-   "models": [
-    "grok-4.20-0309-reasoning"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "reasoning"
    ]
   }
  ]
