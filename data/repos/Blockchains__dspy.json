@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T13:04:27Z",
  "description": "DSPy: The framework for programming\u2014not prompting\u2014language models",
  "commit": "6f0aacfa5ed68511ac10c66dbbe53eaf02fc66ec",
- "indexed_at": "2026-11-22T10:14:57Z",
+ "indexed_at": "2026-11-23T11:13:51Z",
  "status": "ok",
  "clone_kb": 45304,
- "seconds": 5.7,
+ "seconds": 2.1,
  "files_scanned": 644,
  "languages": {
   "Python": 418,
@@ -31,9 +31,9 @@
   "/v1/responses": 1
  },
  "models": {
-  "grok-imagine": 2,
   "grok-4.20": 2,
-  "grok-4.6": 2
+  "grok-4.6": 2,
+  "grok-imagine": 2
  },
  "env_vars": {
   "XAI_API_KEY": 5,
@@ -63,6 +63,12 @@
  "packages": [],
  "snippets": [
   {
+   "path": "dspy/_vendor/lm15/router.py",
+   "start": 134,
+   "end": 157,
+   "code": "    RouteRule(\"o1\", \"openai\", note=\"OpenAI o1 reasoning family\"),\n    RouteRule(\"o3\", \"openai\", note=\"OpenAI o3 reasoning family\"),\n    RouteRule(\"o4\", \"openai\", note=\"OpenAI o4 reasoning family\"),\n    RouteRule(\"gemini-\", \"gemini\", note=\"Google Gemini family\"),\n    RouteRule(\"gemma-\", \"gemini\", note=\"Google Gemma open models, served by the Gemini API (live /models listing 2026-09-01)\"),\n    RouteRule(\"nano-banana\", \"gemini\", note=\"Google image models on the Gemini API (live /models listing 2026-09-01)\"),\n    RouteRule(\"grok-\", \"xai\", note=\"xAI Grok family (XAI_API_KEY or subscription OAuth)\"),\n    RouteRule(\"sora-\", \"openai\", note=\"OpenAI Sora video generation\"),\n    RouteRule(\"veo-\", \"gemini\", note=\"Google Veo video generation\"),\n    RouteRule(\"chat-latest\", \"openai\", note=\"OpenAI rolling chat alias (live /models listing 2026-09-01)\"),\n    RouteRule(\"jev-\", \"typesafe\", note=\"TypeSafe Jev (live /v1/models listing 2026-09-17: jev-latest, jev-preview; versioned ids jev-1.13.0 accepted)\"),\n)\n\n\n# provider string -> LM class.  Read-only views of the provider registry\n# (lm15.registry.PROVIDERS): adapter-owned entries here, chat-bound\n# entries in CHAT_PRESET_ROUTES.  Exported and inspectable, as before;\n# the registry is the one place a provider is declared.\n# Values are the *sync* classes; AsyncLMRouter uses ASYNC_ADAPTERS.\nADAPTERS: Mapping[str, type] = MappingProxyType(\n    {d.id: d.adapter for d in PROVIDERS.values() if not d.bound}\n)\n\nASYNC_ADAPTERS: Mapping[str, type] = MappingProxyType("
+  },
+  {
    "path": "dspy/_vendor/lm15/registry.py",
    "start": 410,
    "end": 433,
@@ -73,12 +79,6 @@
    "start": 148,
    "end": 171,
    "code": "    provider=\"openai-chat\",\n    supports=EndpointSupport(complete=True, stream=True, models=True),\n    auth_modes=(\"bearer\",),\n    env_keys=(\"OPENAI_API_KEY\",),\n)\n\nDEFAULT_XAI_BASE_URL = \"https://api.x.ai/v1\"\n\nXAI = AccessPolicy(\n    provider=\"xai\",\n    supports=EndpointSupport(complete=True, stream=True, models=True, images=True, video=True),\n    credential_policy=\"oauth-unless-explicit\",\n    auth_modes=(\"bearer\", \"xai-oauth\"),\n    env_keys=(\"XAI_API_KEY\",),\n    login_hint=XAI_LOGIN_HINT,\n    base_url=DEFAULT_XAI_BASE_URL,\n)\n\nGEMINI_API = AccessPolicy(\n    provider=\"gemini\",\n    supports=EndpointSupport(\n        complete=True, stream=True, live=True, files=True, batches=True,\n        images=True, speech=True, video=True, models=True, caches=True,\n    ),"
-  },
-  {
-   "path": "dspy/_vendor/lm15/router.py",
-   "start": 134,
-   "end": 157,
-   "code": "    RouteRule(\"o1\", \"openai\", note=\"OpenAI o1 reasoning family\"),\n    RouteRule(\"o3\", \"openai\", note=\"OpenAI o3 reasoning family\"),\n    RouteRule(\"o4\", \"openai\", note=\"OpenAI o4 reasoning family\"),\n    RouteRule(\"gemini-\", \"gemini\", note=\"Google Gemini family\"),\n    RouteRule(\"gemma-\", \"gemini\", note=\"Google Gemma open models, served by the Gemini API (live /models listing 2026-09-01)\"),\n    RouteRule(\"nano-banana\", \"gemini\", note=\"Google image models on the Gemini API (live /models listing 2026-09-01)\"),\n    RouteRule(\"grok-\", \"xai\", note=\"xAI Grok family (XAI_API_KEY or subscription OAuth)\"),\n    RouteRule(\"sora-\", \"openai\", note=\"OpenAI Sora video generation\"),\n    RouteRule(\"veo-\", \"gemini\", note=\"Google Veo video generation\"),\n    RouteRule(\"chat-latest\", \"openai\", note=\"OpenAI rolling chat alias (live /models listing 2026-09-01)\"),\n    RouteRule(\"jev-\", \"typesafe\", note=\"TypeSafe Jev (live /v1/models listing 2026-09-17: jev-latest, jev-preview; versioned ids jev-1.13.0 accepted)\"),\n)\n\n\n# provider string -> LM class.  Read-only views of the provider registry\n# (lm15.registry.PROVIDERS): adapter-owned entries here, chat-bound\n# entries in CHAT_PRESET_ROUTES.  Exported and inspectable, as before;\n# the registry is the one place a provider is declared.\n# Values are the *sync* classes; AsyncLMRouter uses ASYNC_ADAPTERS.\nADAPTERS: Mapping[str, type] = MappingProxyType(\n    {d.id: d.adapter for d in PROVIDERS.values() if not d.bound}\n)\n\nASYNC_ADAPTERS: Mapping[str, type] = MappingProxyType("
   },
   {
    "path": "dspy/_vendor/lm15/compat.py",
@@ -100,6 +100,23 @@
   }
  ],
  "files": [
+  {
+   "path": "dspy/_vendor/lm15/router.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 1423,
+   "endpoints": [
+    "/v1/models"
+   ],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "streaming"
+   ]
+  },
   {
    "path": "dspy/_vendor/lm15/registry.py",
    "kind": "source",
@@ -142,40 +159,6 @@
    ]
   },
   {
-   "path": "dspy/_vendor/lm15/types.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 3274,
-   "endpoints": [],
-   "models": [
-    "grok-imagine"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "structured_output",
-    "tool_calling",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "dspy/_vendor/lm15/router.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 1423,
-   "endpoints": [
-    "/v1/models"
-   ],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
-    "streaming"
-   ]
-  },
-  {
    "path": "dspy/_vendor/lm15/compat.py",
    "kind": "source",
    "lang": "Python",
@@ -197,6 +180,23 @@
     "structured_output",
     "tool_calling",
     "vision"
+   ]
+  },
+  {
+   "path": "dspy/_vendor/lm15/types.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 3274,
+   "endpoints": [],
+   "models": [
+    "grok-imagine"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "structured_output",
+    "tool_calling",
+    "voice_realtime"
    ]
   },
   {

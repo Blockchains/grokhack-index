@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T16:28:55Z",
  "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
  "commit": "9327439db69021ab4b0e2776729bf3b58fdb5a87",
- "indexed_at": "2026-11-22T10:20:50Z",
+ "indexed_at": "2026-11-23T11:18:58Z",
  "status": "ok",
  "clone_kb": 166216,
- "seconds": 6.4,
+ "seconds": 10.4,
  "files_scanned": 1887,
  "languages": {
   "Python": 539,
@@ -77,10 +77,10 @@
  ],
  "files": [
   {
-   "path": "README_zh-CN.md",
+   "path": "README.md",
    "kind": "doc",
    "lang": null,
-   "lines": 679,
+   "lines": 786,
    "endpoints": [],
    "models": [],
    "env": [
@@ -105,10 +105,10 @@
    ]
   },
   {
-   "path": "README.md",
+   "path": "README_zh-CN.md",
    "kind": "doc",
    "lang": null,
-   "lines": 786,
+   "lines": 679,
    "endpoints": [],
    "models": [],
    "env": [
@@ -116,6 +116,41 @@
    ],
    "features": [
     "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/PROVIDERS.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1502,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-image",
+    "grok-imagine-video"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "embeddings",
+    "image_generation",
+    "vision",
+    "voice_realtime"
+   ]
+  },
+  {
+   "path": "docs/ARCHITECTURE.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 527,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible",
+    "image_generation"
    ]
   },
   {
@@ -172,41 +207,6 @@
     "XAI_API_KEY"
    ],
    "features": [
-    "image_generation"
-   ]
-  },
-  {
-   "path": "docs/PROVIDERS.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 1502,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-image",
-    "grok-imagine-video"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "embeddings",
-    "image_generation",
-    "vision",
-    "voice_realtime"
-   ]
-  },
-  {
-   "path": "docs/ARCHITECTURE.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 527,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "anthropic_compatible",
     "image_generation"
    ]
   }

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T09:39:02Z",
  "description": "Unrestricted Open-source alternative to AI video platforms \u2014 Free AI image & video generation studio with 600+ models (Flux, Midjourney, Kling, Sora, Veo). No content filters. Self-hosted, MIT licensed.",
  "commit": "ce82e99365ee25271427442e92310c6b0c05e94c",
- "indexed_at": "2026-11-22T10:20:55Z",
+ "indexed_at": "2026-11-23T11:19:00Z",
  "status": "ok",
  "clone_kb": 56952,
- "seconds": 2.4,
+ "seconds": 2.2,
  "files_scanned": 189,
  "languages": {
   "JavaScript": 145
@@ -105,22 +105,6 @@
    ]
   },
   {
-   "path": "packages/studio/src/videoWorkflows.js",
-   "kind": "source",
-   "lang": "JavaScript",
-   "lines": 959,
-   "endpoints": [],
-   "models": [
-    "grok-imagine-video",
-    "grok-imagine-video-1.5"
-   ],
-   "env": [],
-   "features": [
-    "image_generation",
-    "vision"
-   ]
-  },
-  {
    "path": "packages/studio/src/videoToolCapabilities.js",
    "kind": "source",
    "lang": "JavaScript",
@@ -130,6 +114,22 @@
     "grok-imagine-extend",
     "grok-imagine-image-to-video",
     "grok-imagine-text-to-video"
+   ],
+   "env": [],
+   "features": [
+    "image_generation",
+    "vision"
+   ]
+  },
+  {
+   "path": "packages/studio/src/videoWorkflows.js",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 959,
+   "endpoints": [],
+   "models": [
+    "grok-imagine-video",
+    "grok-imagine-video-1.5"
    ],
    "env": [],
    "features": [

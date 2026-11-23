@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-01T22:17:59Z",
  "description": "Shannon is an AI pentester for web applications and APIs. It analyzes your source code, identifies attack vectors, and executes real exploits to prove vulnerabilities before they reach production.",
  "commit": "a14c7944d87b30ed7bfecd4bad06562e24002b01",
- "indexed_at": "2026-11-22T10:20:52Z",
+ "indexed_at": "2026-11-23T11:18:56Z",
  "status": "ok",
- "clone_kb": 110696,
- "seconds": 3.7,
+ "clone_kb": 110700,
+ "seconds": 5.0,
  "files_scanned": 312,
  "languages": {
   "TypeScript": 206
@@ -26,9 +26,9 @@
  "endpoints": {},
  "models": {
   "grok-4.5": 4,
-  "grok-4.6": 3,
   "grok-4-6.pdf": 3,
-  "grok-4-6.sarif": 3
+  "grok-4-6.sarif": 3,
+  "grok-4.6": 3
  },
  "env_vars": {
   "XAI_API_KEY": 7
@@ -67,6 +67,25 @@
  ],
  "files": [
   {
+   "path": "llms-full.txt",
+   "kind": "doc",
+   "lang": null,
+   "lines": 1436,
+   "endpoints": [],
+   "models": [
+    "grok-4-6.pdf",
+    "grok-4-6.sarif",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
    "path": "CLAUDE.md",
    "kind": "doc",
    "lang": null,
@@ -76,21 +95,6 @@
    "env": [
     "XAI_API_KEY"
    ],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": ".env.example",
-   "kind": "config",
-   "lang": null,
-   "lines": 56,
-   "endpoints": [],
-   "models": [
-    "grok-4.5",
-    "grok-4.6"
-   ],
-   "env": [],
    "features": [
     "anthropic_compatible"
    ]
@@ -109,14 +113,27 @@
    "features": []
   },
   {
-   "path": "llms-full.txt",
-   "kind": "doc",
+   "path": ".env.example",
+   "kind": "config",
    "lang": null,
-   "lines": 1436,
+   "lines": 56,
    "endpoints": [],
    "models": [
-    "grok-4-6.pdf",
-    "grok-4-6.sarif",
+    "grok-4.5",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "docs/ai-providers.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 345,
+   "endpoints": [],
+   "models": [
     "grok-4.5",
     "grok-4.6"
    ],
@@ -126,6 +143,19 @@
    "features": [
     "anthropic_compatible"
    ]
+  },
+  {
+   "path": "docs/shannon-xbow-aikido-benchmark.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 137,
+   "endpoints": [],
+   "models": [
+    "grok-4-6.pdf",
+    "grok-4-6.sarif"
+   ],
+   "env": [],
+   "features": []
   },
   {
    "path": "apps/worker/src/ai/models.ts",
@@ -171,20 +201,6 @@
    ]
   },
   {
-   "path": "apps/cli/src/commands/setup.ts",
-   "kind": "source",
-   "lang": "TypeScript",
-   "lines": 357,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
    "path": "apps/cli/src/config/resolver.ts",
    "kind": "source",
    "lang": "TypeScript",
@@ -199,31 +215,15 @@
    ]
   },
   {
-   "path": "docs/shannon-xbow-aikido-benchmark.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 137,
+   "path": "apps/cli/src/commands/setup.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 357,
    "endpoints": [],
    "models": [
-    "grok-4-6.pdf",
-    "grok-4-6.sarif"
+    "grok-4.5"
    ],
    "env": [],
-   "features": []
-  },
-  {
-   "path": "docs/ai-providers.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 345,
-   "endpoints": [],
-   "models": [
-    "grok-4.5",
-    "grok-4.6"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
    "features": [
     "anthropic_compatible"
    ]

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T14:28:02Z",
  "description": "\ud83d\udc96\ud83e\uddf8 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.",
  "commit": "7684415927147a8f64bb442ff0069c33816efedd",
- "indexed_at": "2026-11-22T10:20:33Z",
+ "indexed_at": "2026-11-23T11:18:35Z",
  "status": "ok",
  "clone_kb": 960356,
- "seconds": 47.1,
+ "seconds": 35.8,
  "files_scanned": 5029,
  "languages": {
   "TypeScript": 2728,
@@ -102,16 +102,6 @@
    ]
   },
   {
-   "path": "docs/content/zh-Hans/docs/manual/config/providers/consciousness/xai.md",
-   "kind": "doc",
-   "lang": null,
-   "lines": 35,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": []
-  },
-  {
    "path": "docs/content/en/docs/manual/config/providers/consciousness/xai.md",
    "kind": "doc",
    "lang": null,
@@ -123,6 +113,16 @@
   },
   {
    "path": "docs/content/ko/docs/manual/config/providers/consciousness/xai.md",
+   "kind": "doc",
+   "lang": null,
+   "lines": 35,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": []
+  },
+  {
+   "path": "docs/content/zh-Hans/docs/manual/config/providers/consciousness/xai.md",
    "kind": "doc",
    "lang": null,
    "lines": 35,

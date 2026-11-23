@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-01T20:07:39Z",
  "description": "The Memory Layer for AI Agents - Drop-in memory infrastructure for AI agents and apps. Context that persists. Built for production.",
  "commit": "abb81c88e1f738a8117d8293530fbc31a5ef8fd9",
- "indexed_at": "2026-11-22T10:16:07Z",
+ "indexed_at": "2026-11-23T11:14:45Z",
  "status": "ok",
  "clone_kb": 57912,
- "seconds": 17.7,
+ "seconds": 14.0,
  "files_scanned": 1603,
  "languages": {
   "TypeScript": 591,
@@ -20,10 +20,10 @@
  },
  "grok_files": 8,
  "grok_files_by_kind": {
-  "test": 3,
+  "example": 1,
   "source": 2,
-  "doc": 2,
-  "example": 1
+  "test": 3,
+  "doc": 2
  },
  "hosts": {
   "api.x.ai": 7
@@ -31,9 +31,9 @@
  "endpoints": {},
  "models": {
   "grok-4.3": 6,
+  "grok-3-beta": 1,
   "grok-420-reasoning": 1,
-  "grok-2-latest": 1,
-  "grok-3-beta": 1
+  "grok-2-latest": 1
  },
  "env_vars": {
   "XAI_API_BASE": 6,
@@ -57,16 +57,16 @@
  "packages": [],
  "snippets": [
   {
-   "path": "mem0-ts/src/oss/src/llms/xai.ts",
-   "start": 4,
-   "end": 27,
-   "code": "\n/**\n * xAI (Grok) LLM provider.\n *\n * xAI's Grok API is OpenAI-compatible, so this simply reuses {@link OpenAILLM}\n * and overrides the connection defaults \u2014 mirroring `mem0/llms/xai.py` in the\n * Python SDK. The API key resolves from `config.apiKey` or the `XAI_API_KEY`\n * env var, and the base URL from `config.baseURL`, `XAI_API_BASE`, else\n * `https://api.x.ai/v1`.\n */\nexport class XAILLM extends OpenAILLM {\n  constructor(config: LLMConfig) {\n    const apiKey = config.apiKey || process.env.XAI_API_KEY;\n    if (!apiKey) {\n      throw new Error(\"xAI API key is required\");\n    }\n    super({\n      ...config,\n      apiKey,\n      baseURL:\n        config.baseURL || process.env.XAI_API_BASE || \"https://api.x.ai/v1\",\n      model: config.model || \"grok-4.3\",\n    });\n  }"
-  },
-  {
    "path": "examples/misc/movie_recommendation_grok3.py",
    "start": 1,
    "end": 24,
    "code": "\"\"\"\nMemory-Powered Movie Recommendation Assistant (Grok 3 + Mem0)\nThis script builds a personalized movie recommender that remembers your preferences\n(e.g. dislikes horror, loves romcoms) using Mem0 as a memory layer and Grok 3 for responses.\n\nIn order to run this file, you need to set up your Mem0 API at Mem0 platform and also need an XAI API key.\nexport XAI_API_KEY=\"your_xai_api_key\"\nexport MEM0_API_KEY=\"your_mem0_api_key\"\n\"\"\"\n\nimport os\n\nfrom openai import OpenAI\n\nfrom mem0 import Memory\n\n# Configure Mem0 with Grok 3 and Qdrant\nconfig = {\n    \"vector_store\": {\"provider\": \"qdrant\", \"config\": {\"embedding_model_dims\": 384}},\n    \"llm\": {\n        \"provider\": \"xai\",\n        \"config\": {\n            \"model\": \"grok-3-beta\",\n            \"temperature\": 0.1,"
+  },
+  {
+   "path": "mem0-ts/src/oss/src/llms/xai.ts",
+   "start": 4,
+   "end": 27,
+   "code": "\n/**\n * xAI (Grok) LLM provider.\n *\n * xAI's Grok API is OpenAI-compatible, so this simply reuses {@link OpenAILLM}\n * and overrides the connection defaults \u2014 mirroring `mem0/llms/xai.py` in the\n * Python SDK. The API key resolves from `config.apiKey` or the `XAI_API_KEY`\n * env var, and the base URL from `config.baseURL`, `XAI_API_BASE`, else\n * `https://api.x.ai/v1`.\n */\nexport class XAILLM extends OpenAILLM {\n  constructor(config: LLMConfig) {\n    const apiKey = config.apiKey || process.env.XAI_API_KEY;\n    if (!apiKey) {\n      throw new Error(\"xAI API key is required\");\n    }\n    super({\n      ...config,\n      apiKey,\n      baseURL:\n        config.baseURL || process.env.XAI_API_BASE || \"https://api.x.ai/v1\",\n      model: config.model || \"grok-4.3\",\n    });\n  }"
   },
   {
    "path": "mem0/llms/xai.py",
@@ -77,17 +77,36 @@
  ],
  "files": [
   {
-   "path": "mem0-ts/src/oss/tests/config-manager.test.ts",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 921,
+   "path": "examples/misc/movie_recommendation_grok3.py",
+   "kind": "example",
+   "lang": "Python",
+   "lines": 80,
    "endpoints": [],
-   "models": [],
-   "env": [],
+   "models": [
+    "grok-3-beta"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
    "features": [
-    "anthropic_compatible",
-    "embeddings"
+    "embeddings",
+    "openai_compatible"
    ]
+  },
+  {
+   "path": "mem0-ts/src/oss/src/llms/xai.ts",
+   "kind": "source",
+   "lang": "TypeScript",
+   "lines": 50,
+   "endpoints": [],
+   "models": [
+    "grok-4.3"
+   ],
+   "env": [
+    "XAI_API_BASE",
+    "XAI_API_KEY"
+   ],
+   "features": []
   },
   {
    "path": "mem0-ts/src/oss/tests/xai.test.ts",
@@ -110,10 +129,23 @@
    ]
   },
   {
-   "path": "mem0-ts/src/oss/src/llms/xai.ts",
-   "kind": "source",
+   "path": "mem0-ts/src/oss/tests/config-manager.test.ts",
+   "kind": "test",
    "lang": "TypeScript",
-   "lines": 50,
+   "lines": 921,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "anthropic_compatible",
+    "embeddings"
+   ]
+  },
+  {
+   "path": "docs/components/llms/models/xAI.mdx",
+   "kind": "doc",
+   "lang": null,
+   "lines": 69,
    "endpoints": [],
    "models": [
     "grok-4.3"
@@ -122,23 +154,8 @@
     "XAI_API_BASE",
     "XAI_API_KEY"
    ],
-   "features": []
-  },
-  {
-   "path": "tests/llms/test_xai.py",
-   "kind": "test",
-   "lang": "Python",
-   "lines": 215,
-   "endpoints": [],
-   "models": [
-    "grok-4.3"
-   ],
-   "env": [
-    "XAI_API_BASE"
-   ],
    "features": [
-    "structured_output",
-    "tool_calling"
+    "embeddings"
    ]
   },
   {
@@ -168,37 +185,20 @@
    ]
   },
   {
-   "path": "docs/components/llms/models/xAI.mdx",
-   "kind": "doc",
-   "lang": null,
-   "lines": 69,
+   "path": "tests/llms/test_xai.py",
+   "kind": "test",
+   "lang": "Python",
+   "lines": 215,
    "endpoints": [],
    "models": [
     "grok-4.3"
    ],
    "env": [
-    "XAI_API_BASE",
-    "XAI_API_KEY"
+    "XAI_API_BASE"
    ],
    "features": [
-    "embeddings"
-   ]
-  },
-  {
-   "path": "examples/misc/movie_recommendation_grok3.py",
-   "kind": "example",
-   "lang": "Python",
-   "lines": 80,
-   "endpoints": [],
-   "models": [
-    "grok-3-beta"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "embeddings",
-    "openai_compatible"
+    "structured_output",
+    "tool_calling"
    ]
   },
   {
