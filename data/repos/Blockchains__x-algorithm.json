@@ -8,7 +8,7 @@
  "pushed_at": "2026-10-03T03:26:57Z",
  "description": "Algorithm powering the For You feed on X",
  "commit": "b412112d03f27acbfd668e0cc040abcafa1080c1",
- "indexed_at": "2026-11-23T11:13:50Z",
+ "indexed_at": "2026-11-24T12:54:54Z",
  "status": "ok",
  "clone_kb": 26604,
  "seconds": 2.3,
@@ -58,9 +58,9 @@
   "reasoning": 2,
   "vision": 2,
   "image_generation": 1,
+  "embeddings": 1,
   "live_search": 1,
-  "tool_calling": 1,
-  "embeddings": 1
+  "tool_calling": 1
  },
  "sdk_exports": [
   {
@@ -77,6 +77,12 @@
  "packages": [],
  "snippets": [
   {
+   "path": "grox/config/config.py",
+   "start": 47,
+   "end": 70,
+   "code": "        )\n    except (FileNotFoundError, PermissionError):\n        return \"\"\n\n\ndef _read_xai_api_key() -> str:\n    return os.getenv(\"XAI_API_KEY\") or \"\"\n\n\nclass ModelConfig(BaseModel):\n    model_config = _FROZEN\n\n    model_name: str\n    endpoint: str\n    timeout: int = 60\n    max_resp_len: int = 8092\n    temperature: float = 0.7\n    bearer_token: str = Field(default_factory=_read_bearer_token)\n    priority_header: str = \"\"\n    priority: int = 15\n\n\nclass EapiModelConfig(BaseModel):\n    model_config = _FROZEN"
+  },
+  {
    "path": "grox/libs/grok_sampler/eapi_sampler.py",
    "start": 5,
    "end": 28,
@@ -87,12 +93,6 @@
    "start": 3,
    "end": 26,
    "code": "import math\nfrom enum import Enum\nfrom base64 import b64decode, b64encode\nfrom PIL import Image as PILImage\nfrom pydantic import Field, BaseModel, field_validator, field_serializer\n\nfrom xai_sdk.chat import image as xai_image, text as xai_text, system, user, assistant\nfrom xai_sdk.proto import chat_pb2\n\nfrom grox.config.config import grox_config\n\nlogger = logging.getLogger(__name__)\nSEPARATOR_COMMAND = grox_config.prompt_tokens.separator\nSEPARATOR = f\"{SEPARATOR_COMMAND}\\n\\n\"\nTHINKING_CONTROL_END = grox_config.prompt_tokens.thinking_control_end\nTHINKING_CONTROL_START = grox_config.prompt_tokens.thinking_control_start\nSTORYBOARD_COLUMNS = 3\nSTORYBOARD_TILE_SIZE = 448\nNO_THINKING_PROMPT = grox_config.prompt_tokens.no_thinking_prompt\n\nPREVIEW_IMAGE_LABEL = \"[Video Preview Thumbnail]\"\n\nMOTION_REVEAL_DESCRIPTION = (\n    \"Motion-reveal stills for this video follow. They expose content that may be hidden under the visible video \""
-  },
-  {
-   "path": "grox/config/config.py",
-   "start": 47,
-   "end": 70,
-   "code": "        )\n    except (FileNotFoundError, PermissionError):\n        return \"\"\n\n\ndef _read_xai_api_key() -> str:\n    return os.getenv(\"XAI_API_KEY\") or \"\"\n\n\nclass ModelConfig(BaseModel):\n    model_config = _FROZEN\n\n    model_name: str\n    endpoint: str\n    timeout: int = 60\n    max_resp_len: int = 8092\n    temperature: float = 0.7\n    bearer_token: str = Field(default_factory=_read_bearer_token)\n    priority_header: str = \"\"\n    priority: int = 15\n\n\nclass EapiModelConfig(BaseModel):\n    model_config = _FROZEN"
   }
  ],
  "files": [
@@ -123,37 +123,6 @@
    "env": [],
    "features": [
     "image_generation"
-   ]
-  },
-  {
-   "path": "grox/libs/grok_sampler/eapi_sampler.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 221,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "grpc",
-    "live_search",
-    "reasoning",
-    "tool_calling",
-    "vision"
-   ]
-  },
-  {
-   "path": "grox/core/lm/convo.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 488,
-   "endpoints": [],
-   "models": [],
-   "env": [],
-   "features": [
-    "grpc",
-    "vision"
    ]
   },
   {
@@ -190,6 +159,37 @@
     "embeddings",
     "grpc",
     "reasoning"
+   ]
+  },
+  {
+   "path": "grox/libs/grok_sampler/eapi_sampler.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 221,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "grpc",
+    "live_search",
+    "reasoning",
+    "tool_calling",
+    "vision"
+   ]
+  },
+  {
+   "path": "grox/core/lm/convo.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 488,
+   "endpoints": [],
+   "models": [],
+   "env": [],
+   "features": [
+    "grpc",
+    "vision"
    ]
   }
  ]

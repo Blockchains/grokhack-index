@@ -8,18 +8,18 @@
  "pushed_at": "2026-09-05T08:40:26Z",
  "description": "A CLI that writes your git commit messages for you with AI",
  "commit": "a414dd43b6ac2c5ff0f31eae758c5e6e106089c3",
- "indexed_at": "2026-11-23T11:17:43Z",
+ "indexed_at": "2026-11-24T12:58:00Z",
  "status": "ok",
  "clone_kb": 2628,
- "seconds": 1.1,
+ "seconds": 1.5,
  "files_scanned": 73,
  "languages": {
   "TypeScript": 50
  },
  "grok_files": 3,
  "grok_files_by_kind": {
-  "source": 1,
-  "test": 2
+  "test": 2,
+  "source": 1
  },
  "hosts": {
   "api.x.ai": 1
@@ -50,17 +50,22 @@
  ],
  "files": [
   {
-   "path": "src/feature/providers/xai.ts",
-   "kind": "source",
+   "path": "tests/specs/providers.ts",
+   "kind": "test",
    "lang": "TypeScript",
-   "lines": 41,
-   "endpoints": [],
+   "lines": 164,
+   "endpoints": [
+    "/v1/models"
+   ],
    "models": [
     "grok-4.3",
-    "grok-4.5"
+    "grok-4.5",
+    "grok-imagine-image",
+    "grok-imagine-video"
    ],
    "env": [],
    "features": [
+    "image_generation",
     "reasoning",
     "voice_realtime"
    ]
@@ -81,22 +86,17 @@
    ]
   },
   {
-   "path": "tests/specs/providers.ts",
-   "kind": "test",
+   "path": "src/feature/providers/xai.ts",
+   "kind": "source",
    "lang": "TypeScript",
-   "lines": 164,
-   "endpoints": [
-    "/v1/models"
-   ],
+   "lines": 41,
+   "endpoints": [],
    "models": [
     "grok-4.3",
-    "grok-4.5",
-    "grok-imagine-image",
-    "grok-imagine-video"
+    "grok-4.5"
    ],
    "env": [],
    "features": [
-    "image_generation",
     "reasoning",
     "voice_realtime"
    ]
