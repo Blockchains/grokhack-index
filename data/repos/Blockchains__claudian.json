@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T16:13:12Z",
  "description": "An Obsidian plugin that embeds Claude Code/Codex as an AI collaborator in your vault",
  "commit": "5bb335e73936e626cb1ffd6be54195133a87a517",
- "indexed_at": "2026-11-24T12:58:05Z",
+ "indexed_at": "2026-11-25T11:47:03Z",
  "status": "ok",
  "clone_kb": 32820,
- "seconds": 7.8,
+ "seconds": 13.5,
  "files_scanned": 1137,
  "languages": {
   "TypeScript": 1039,

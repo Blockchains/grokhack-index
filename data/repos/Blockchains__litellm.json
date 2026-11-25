@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T16:19:31Z",
  "description": "The fastest, litest AI Gateway. Rust core with Python SDK. Call 100+ LLM APIs in OpenAI (or native) format with cost tracking, guardrails, load balancing, and logging [Bedrock, Azure, OpenAI, Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM]",
  "commit": "a2bf67a03707e474be41e07806ee4fd9791ca7cd",
- "indexed_at": "2026-11-24T12:56:53Z",
+ "indexed_at": "2026-11-25T11:44:21Z",
  "status": "ok",
- "clone_kb": 306588,
- "seconds": 93.6,
+ "clone_kb": 306448,
+ "seconds": 148.7,
  "files_scanned": 11756,
  "languages": {
   "Python": 7316,
