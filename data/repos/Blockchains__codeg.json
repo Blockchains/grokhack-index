@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-03T06:20:25Z",
  "description": "Collaborative multi-agent AI coding workspace: aggregate sessions from Claude Code, Codex, OpenCode, Pi, Grok Build, etc. Desktop app, self-hosted server, or Docker.",
  "commit": "98035964c0f3811dc80a5e9291b89cb6c0570fa0",
- "indexed_at": "2026-11-26T11:32:02Z",
+ "indexed_at": "2026-11-27T11:29:04Z",
  "status": "ok",
- "clone_kb": 159112,
- "seconds": 14.0,
+ "clone_kb": 159116,
+ "seconds": 23.7,
  "files_scanned": 2096,
  "languages": {
   "TypeScript": 1385,
@@ -22,8 +22,8 @@
  "grok_files": 18,
  "grok_files_by_kind": {
   "source": 6,
-  "config": 10,
-  "test": 2
+  "test": 2,
+  "config": 10
  },
  "hosts": {
   "api.x.ai": 11
@@ -31,15 +31,15 @@
  "endpoints": {},
  "models": {
   "grok-4.5": 14,
+  "grok-0.2.101": 1,
+  "grok-4.5-fast": 1,
+  "grok-4.6": 1,
   "grok-4-fast": 1,
   "grok-4.20": 1,
   "grok-4.20-0309-reasoning": 1,
   "grok-4.3": 1,
   "grok-7-experimental": 1,
-  "grok-code-fast-1": 1,
-  "grok-0.2.101": 1,
-  "grok-4.5-fast": 1,
-  "grok-4.6": 1
+  "grok-code-fast-1": 1
  },
  "env_vars": {
   "XAI_API_KEY": 14,
@@ -114,6 +114,24 @@
    ]
   },
   {
+   "path": "src-tauri/src/parsers/grok.rs",
+   "kind": "source",
+   "lang": "Rust",
+   "lines": 3255,
+   "endpoints": [],
+   "models": [
+    "grok-0.2.101",
+    "grok-4.5",
+    "grok-4.5-fast",
+    "grok-4.6"
+   ],
+   "env": [],
+   "features": [
+    "mcp",
+    "tool_calling"
+   ]
+  },
+  {
    "path": "src-tauri/src/parsers/mod.rs",
    "kind": "source",
    "lang": "Rust",
@@ -137,25 +155,21 @@
    ]
   },
   {
-   "path": "src-tauri/src/parsers/grok.rs",
-   "kind": "source",
-   "lang": "Rust",
-   "lines": 3255,
+   "path": "src/contexts/acp-connections-context.test.tsx",
+   "kind": "test",
+   "lang": "TypeScript",
+   "lines": 6772,
    "endpoints": [],
    "models": [
-    "grok-0.2.101",
-    "grok-4.5",
-    "grok-4.5-fast",
-    "grok-4.6"
+    "grok-4.5"
    ],
    "env": [],
    "features": [
-    "mcp",
     "tool_calling"
    ]
   },
   {
-   "path": "src/i18n/messages/ko.json",
+   "path": "src/i18n/messages/ja.json",
    "kind": "config",
    "lang": null,
    "lines": 6843,
@@ -173,7 +187,7 @@
    ]
   },
   {
-   "path": "src/i18n/messages/ar.json",
+   "path": "src/i18n/messages/pt.json",
    "kind": "config",
    "lang": null,
    "lines": 6843,
@@ -227,7 +241,25 @@
    ]
   },
   {
-   "path": "src/i18n/messages/pt.json",
+   "path": "src/i18n/messages/ko.json",
+   "kind": "config",
+   "lang": null,
+   "lines": 6843,
+   "endpoints": [],
+   "models": [
+    "grok-4.5"
+   ],
+   "env": [
+    "XAI_API_KEY"
+   ],
+   "features": [
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
+  {
+   "path": "src/i18n/messages/ar.json",
    "kind": "config",
    "lang": null,
    "lines": 6843,
@@ -299,24 +331,6 @@
    ]
   },
   {
-   "path": "src/i18n/messages/ja.json",
-   "kind": "config",
-   "lang": null,
-   "lines": 6843,
-   "endpoints": [],
-   "models": [
-    "grok-4.5"
-   ],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
-    "mcp",
-    "reasoning",
-    "tool_calling"
-   ]
-  },
-  {
    "path": "src/i18n/messages/zh-CN.json",
    "kind": "config",
    "lang": null,
@@ -335,17 +349,18 @@
    ]
   },
   {
-   "path": "src/contexts/acp-connections-context.test.tsx",
+   "path": "src/components/settings/acp-agent-settings.test.tsx",
    "kind": "test",
    "lang": "TypeScript",
-   "lines": 6772,
+   "lines": 2352,
    "endpoints": [],
-   "models": [
-    "grok-4.5"
+   "models": [],
+   "env": [
+    "XAI_API_KEY"
    ],
-   "env": [],
    "features": [
-    "tool_calling"
+    "reasoning",
+    "structured_output"
    ]
   },
   {
@@ -376,21 +391,6 @@
    ],
    "features": [
     "anthropic_compatible",
-    "reasoning",
-    "structured_output"
-   ]
-  },
-  {
-   "path": "src/components/settings/acp-agent-settings.test.tsx",
-   "kind": "test",
-   "lang": "TypeScript",
-   "lines": 2352,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_API_KEY"
-   ],
-   "features": [
     "reasoning",
     "structured_output"
    ]

@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T03:02:02Z",
  "description": null,
  "commit": "c54597913f9c73dd0b2eda883daf7d6f725f3339",
- "indexed_at": "2026-11-26T11:33:19Z",
+ "indexed_at": "2026-11-27T11:30:33Z",
  "status": "ok",
  "clone_kb": 17808,
- "seconds": 5.9,
+ "seconds": 7.6,
  "files_scanned": 810,
  "languages": {
   "Python": 431,
@@ -28,8 +28,8 @@
   "api.x.ai": 2
  },
  "endpoints": {
-  "/v1/models": 2,
   "/v1/chat/completions": 2,
+  "/v1/models": 2,
   "/v1/responses": 1
  },
  "models": {
@@ -40,12 +40,12 @@
   "XAI_API_KEY": 1
  },
  "features": {
-  "anthropic_compatible": 2,
   "tool_calling": 2,
-  "openai_compatible": 1,
+  "anthropic_compatible": 2,
   "live_search": 1,
   "mcp": 1,
-  "reasoning": 1
+  "reasoning": 1,
+  "openai_compatible": 1
  },
  "sdk_exports": [],
  "packages": [],
@@ -58,6 +58,26 @@
   }
  ],
  "files": [
+  {
+   "path": "coworker/server/manager.py",
+   "kind": "source",
+   "lang": "Python",
+   "lines": 8387,
+   "endpoints": [
+    "/v1/chat/completions"
+   ],
+   "models": [
+    "grok-4",
+    "grok-4.3"
+   ],
+   "env": [],
+   "features": [
+    "live_search",
+    "mcp",
+    "reasoning",
+    "tool_calling"
+   ]
+  },
   {
    "path": "coworker/providers/registry.py",
    "kind": "source",
@@ -91,26 +111,6 @@
    "env": [],
    "features": [
     "anthropic_compatible",
-    "tool_calling"
-   ]
-  },
-  {
-   "path": "coworker/server/manager.py",
-   "kind": "source",
-   "lang": "Python",
-   "lines": 8387,
-   "endpoints": [
-    "/v1/chat/completions"
-   ],
-   "models": [
-    "grok-4",
-    "grok-4.3"
-   ],
-   "env": [],
-   "features": [
-    "live_search",
-    "mcp",
-    "reasoning",
     "tool_calling"
    ]
   },

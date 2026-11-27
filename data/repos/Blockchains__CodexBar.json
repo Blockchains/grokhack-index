@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:56:43Z",
  "description": "Show usage stats for OpenAI Codex and Claude Code, without having to login.",
  "commit": "60c1adbce5c8b1c78dde618878875ddfe4dbac8c",
- "indexed_at": "2026-11-26T11:31:42Z",
+ "indexed_at": "2026-11-27T11:28:32Z",
  "status": "ok",
- "clone_kb": 91864,
- "seconds": 19.7,
+ "clone_kb": 91876,
+ "seconds": 29.8,
  "files_scanned": 3369,
  "languages": {
   "Swift": 2903,
@@ -22,8 +22,8 @@
  "grok_files": 12,
  "grok_files_by_kind": {
   "test": 9,
-  "source": 1,
-  "doc": 2
+  "doc": 2,
+  "source": 1
  },
  "hosts": {
   "management-api.x.ai": 4
@@ -32,9 +32,9 @@
  "models": {
   "grok-4.6": 3,
   "grok-5h": 2,
-  "grok-code-fast-1": 1,
   "grok-4": 1,
-  "grok-4-fast": 1
+  "grok-4-fast": 1,
+  "grok-code-fast-1": 1
  },
  "env_vars": {
   "XAI_MANAGEMENT_API_KEY": 4,
@@ -53,25 +53,13 @@
  ],
  "files": [
   {
-   "path": "Tests/CodexBarTests/GrokTokenSnapshotProjectionTests.swift",
+   "path": "Tests/CodexBarTests/UsageStoreWidgetSnapshotTests.swift",
    "kind": "test",
    "lang": "Swift",
-   "lines": 209,
+   "lines": 1129,
    "endpoints": [],
    "models": [
-    "grok-4.6"
-   ],
-   "env": [],
-   "features": []
-  },
-  {
-   "path": "Tests/CodexBarTests/OpenCodeGoLocalUsageReaderTests.swift",
-   "kind": "test",
-   "lang": "Swift",
-   "lines": 797,
-   "endpoints": [],
-   "models": [
-    "grok-code-fast-1"
+    "grok-5h"
    ],
    "env": [],
    "features": []
@@ -91,13 +79,40 @@
    ]
   },
   {
-   "path": "Tests/CodexBarTests/UsageStoreWidgetSnapshotTests.swift",
+   "path": "Tests/CodexBarTests/ShareStatsTests.swift",
    "kind": "test",
    "lang": "Swift",
-   "lines": 1129,
+   "lines": 572,
    "endpoints": [],
    "models": [
-    "grok-5h"
+    "grok-4-fast"
+   ],
+   "env": [],
+   "features": [
+    "anthropic_compatible"
+   ]
+  },
+  {
+   "path": "Tests/CodexBarTests/XAIProviderTests.swift",
+   "kind": "test",
+   "lang": "Swift",
+   "lines": 308,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_MANAGEMENT_API_KEY",
+    "XAI_TEAM_ID"
+   ],
+   "features": []
+  },
+  {
+   "path": "Tests/CodexBarTests/GrokLocalSessionScannerTests.swift",
+   "kind": "test",
+   "lang": "Swift",
+   "lines": 248,
+   "endpoints": [],
+   "models": [
+    "grok-4.6"
    ],
    "env": [],
    "features": []
@@ -127,24 +142,10 @@
    "features": []
   },
   {
-   "path": "Tests/CodexBarTests/ShareStatsTests.swift",
+   "path": "Tests/CodexBarTests/GrokTokenSnapshotProjectionTests.swift",
    "kind": "test",
    "lang": "Swift",
-   "lines": 572,
-   "endpoints": [],
-   "models": [
-    "grok-4-fast"
-   ],
-   "env": [],
-   "features": [
-    "anthropic_compatible"
-   ]
-  },
-  {
-   "path": "Tests/CodexBarTests/GrokLocalSessionScannerTests.swift",
-   "kind": "test",
-   "lang": "Swift",
-   "lines": 248,
+   "lines": 209,
    "endpoints": [],
    "models": [
     "grok-4.6"
@@ -153,29 +154,15 @@
    "features": []
   },
   {
-   "path": "Tests/CodexBarTests/XAIProviderTests.swift",
+   "path": "Tests/CodexBarTests/OpenCodeGoLocalUsageReaderTests.swift",
    "kind": "test",
    "lang": "Swift",
-   "lines": 308,
+   "lines": 797,
    "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_MANAGEMENT_API_KEY",
-    "XAI_TEAM_ID"
+   "models": [
+    "grok-code-fast-1"
    ],
-   "features": []
-  },
-  {
-   "path": "Sources/CodexBarCore/Resources/Plugins/xai.js",
-   "kind": "source",
-   "lang": "JavaScript",
-   "lines": 113,
-   "endpoints": [],
-   "models": [],
-   "env": [
-    "XAI_MANAGEMENT_API_KEY",
-    "XAI_TEAM_ID"
-   ],
+   "env": [],
    "features": []
   },
   {
@@ -205,6 +192,19 @@
    "features": [
     "voice_realtime"
    ]
+  },
+  {
+   "path": "Sources/CodexBarCore/Resources/Plugins/xai.js",
+   "kind": "source",
+   "lang": "JavaScript",
+   "lines": 113,
+   "endpoints": [],
+   "models": [],
+   "env": [
+    "XAI_MANAGEMENT_API_KEY",
+    "XAI_TEAM_ID"
+   ],
+   "features": []
   }
  ]
 }
