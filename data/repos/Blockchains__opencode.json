@@ -8,10 +8,10 @@
  "pushed_at": "2026-10-04T15:23:54Z",
  "description": "The open source coding agent.",
  "commit": "907b3bc518fa48e90e8ec24dd327d13eee71c36c",
- "indexed_at": "2026-11-27T11:27:30Z",
+ "indexed_at": "2026-11-28T10:54:45Z",
  "status": "ok",
- "clone_kb": 229436,
- "seconds": 36.0,
+ "clone_kb": 229416,
+ "seconds": 33.0,
  "files_scanned": 4598,
  "languages": {
   "TypeScript": 3349,
